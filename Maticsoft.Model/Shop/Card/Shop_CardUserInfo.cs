@@ -404,6 +404,12 @@ namespace Maticsoft.Model
         /// </summary>
         public DateTime InsureOrderEnd { get; set; }
 
+        /// <summary>
+        /// 报案电话
+        /// </summary>
+        public virtual string TelephoneRreport { get; set; }
+
+
 
     }
     /// <summary>
@@ -904,6 +910,11 @@ namespace Maticsoft.Model
         /// 保单生效结束日期
         /// </summary>
         public DateTime InsureOrderEnd { get; set; }
+
+        /// <summary>
+        /// 报案电话
+        /// </summary>
+        public virtual string TelephoneRreport { get; set; }
     }
 
 }

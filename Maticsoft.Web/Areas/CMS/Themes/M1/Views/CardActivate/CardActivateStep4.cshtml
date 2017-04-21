@@ -13,18 +13,11 @@
             <div class="fuwu11"></div>
         </div>
     </div>
-    <div class="button"><a href="javascript:void(0);" onclick="javascript:ViewActivatedCard();">查看激活数据</a></div>
-
-    using (Html.BeginForm("Login", "Shop/Account", FormMethod.Post, new { Class = "wform form", Id = "formLogin" }))
-    {    <input type="hidden" name="UserName" value="@Model.UserName"/>
-        <input type="hidden" name="Password" value="@Model.PasswordOrigin"/>
-        <input type="hidden" name="Source" value="1" />
-        <input type="hidden" name="returnUrl" value="/Shop/UserCenter/HLCard" />
-    }
-    
+    <div class="button"><a href="javascript:void(0);" onclick="$('#formViewCard')[0].submit();">查看激活数据</a></div>
+  
       <form id="formViewCard" method="post" action="/CardActivate/ViewActivatedCard" target="_self">
-          <input  type="hidden" name="cardNo" id="hdcardNo" />
-          <input  type="hidden" name="PWD" id="hdcardPWD"/>
+          <input  type="hidden" name="cardNo" id="hdcardNo" value="@Model.UserName"/>
+          <input  type="hidden" name="PWD" id="hdcardPWD" value="@Model.PasswordOrigin"/>
       </form>
 }
 else
@@ -32,36 +25,8 @@ else
     <span>激活失败.</span>
 }
 <script>
-
     //当前样式
     $("#liStep4").addClass("on");
-
-    function login() {
-
-        $("#formLogin")[0].submit();
-    }
-
-
-    function ViewActivatedCard() {
-        var cardNo = $("#txtCardNo").val();
-        var cardPwd = $("#txtPwd").val();
-
-        if (cardNo == "") {
-            alert("请输入查询卡号!");
-            return;
-        }
-        if (cardPwd == "") {
-            alert("请输入查询密码!");
-            return;
-        }
-
-        $("#hdcardNo").val(cardNo);
-        $("#hdcardPWD").val(cardPwd);
-        $("#formViewCard")[0].submit();
-
-    }
-
-
 </script>
 
 
