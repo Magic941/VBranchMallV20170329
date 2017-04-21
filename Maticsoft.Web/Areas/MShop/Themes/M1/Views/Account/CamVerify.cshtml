@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "校园创业卡校验";
+}
+
+<link href="/Areas/MShop/Themes/M1/Content/Css/hlcard.css" rel="stylesheet" />
+<link href="/Areas/MShop/Themes/M1/Content/style.css" rel="stylesheet" />
+<script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/Pay/SubmitOrder.js"></script>
+<div class="top">
+    <span>校园创业卡校验</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="mem_ber_pur">
+    <ul class="back" style="background-image: none; padding: 0 1em;">
+        <li class="card_a">
+            <label>创业卡卡号：</label>
+            <div class="us_er">
+                <input type="text" id="CardNum" name="acc" />
+            </div>
+        </li>
+        <li class="card_a">
+            <label>创业卡密码：</label>
+            <div class="secret_code">
+                <input style="background: #cacaca;" type="password" id="CardPwd" name="pwd" />
+            </div>
+        </li>
+        <li class="card_b"><em><span id="onloading" style="display: none">
+            <img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span></em></li>
+        <li class="regi_stra_ti_on clearfix"></li>
+    </ul>
+    <div class="" style="padding: 0 2rem 2rem 2rem">
+        <a id="order-submit" href="javascript:void(0)" class="red_den btn_active" style="color: #FFFFFF">立即校验</a>
+    </div>
+</div>
+<div class="step buju" style="background-image: url('/Areas/Shop/Themes/M1/Content/images/images/step.png')">
+    <ul class="clearfix">
+        <li class="active">
+            <dl>
+                <dt>第一步</dt>
+                <dd>卡校验</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第二步</dt>
+                <dd>卡支付</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第三步</dt>
+                <dd>卡激活</dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+        // 提交按钮
+        $("#order-submit").unbind("click").bind("click", function () {
+            var cardNo = $.trim($("#CardNum").val());
+            var cardPwd = $.trim($("#CardPwd").val());
+            // 检验卡号是否合法
+            var reg = new RegExp("^(hlscard)[A-Z0-9]{11}$", "i");
+            if (!reg.test(cardNo)) {
+                ShowFailTip("请输入正确的卡号!");
+                return;
+            }
+            // 检验卡密码
+            if (cardPwd.length <= 0) {
+                ShowFailTip("密码不能为空!");
+                return;
+            }
+            // 提交
+            CheckCard(cardNo, cardPwd);
+        });
+    });
+    </script>

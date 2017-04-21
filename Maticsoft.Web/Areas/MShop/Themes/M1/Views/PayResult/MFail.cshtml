@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link href="/Areas/MShop/Themes/M1/Content/Css/shopc2.css" rel="stylesheet" type="text/css" />
+<div class="w main">
+    <div class="m m3" id="qpay">
+        <div class="mc">
+            <s class="icon-wrong02" style="margin-left:5px;"></s>
+            <div class="fore" style="margin-top: -50px;">
+                <h3 class="ftx-02" style="color: #c00;margin-left: 60px;">
+                   此订单只能在电脑上支付 或 重新下单。</h3>
+                <ul class="list-h" style="margin-left: 20px;">
+                    <li class="fore2">订单号：@(ViewBag.OrderCode)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+ 
+ 

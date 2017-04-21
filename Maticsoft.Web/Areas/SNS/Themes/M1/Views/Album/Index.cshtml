@@ -1,0 +1,62 @@
+﻿@model List<Maticsoft.Model.SNS.AlbumType>
+@{
+    //ViewBag.Title = "专辑 - 收录美好 - 热卖购";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<script type="text/javascript" src="/Areas/SNS/Themes/M1/Content/Scripts/show.js"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowAlbum.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript">    $(function () { $.lazyFixedLoadImg('.AlbumPart', 62, 62); });</script>
+<!------banner-------->
+<div class="banner">
+    <div class="banner_pic">
+        <div class="banner_pic_tu">
+             @Html.Action("AdDetail", "Partial", new { id =3, ViewName = "_IndexAd" })
+        </div>
+        <div class="banner_pic_wrt">
+            <div class="album_bar">
+                <a href="@(ViewBag.BasePath)Album/Create" onclick="return CheckUserState4UserType()">创建专辑</a></div>
+            <p class="album_o">
+                收录我喜欢的！<br />
+                用专一的态度，把它们记录下来。</p>
+        </div>
+    </div>
+</div>
+<!------banner结束----->
+<!-----main----->
+<!-----album------->
+<div class="clear">
+</div>
+@foreach (var item in Model)
+{
+    <!--专辑分类-->
+    <div class="main_album">
+        <p class="album_sort">
+            <a href="@(ViewBag.BasePath)Album/TypeIndex?AlbumType=@item.ID">@item.TypeName</a></p>
+        <div class="main_album_bl">
+            @Html.Action("AlbumPart", new { AlbumType = item.ID })
+            <div class="clear">
+            </div>
+        </div>
+        <div class="album_more">
+            <div class="album_more_an">
+                <a href="@(ViewBag.BasePath)Album/TypeIndex?AlbumType=@item.ID">查看全部@(item.TypeName)专辑</a></div>
+            <p class="album_more_nn">@item.AlbumsCount.ToString() 个</p>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    <!--专辑分类end-->
+
+}
+<!-----album end----->
+<div class="album_ad">
+    @*<a href="javascript:;">
+       <img src="/Areas/SNS/Themes/M1/Content/images/album_04.jpg" /></a>*@
+    @Html.Action("AdDetail", "Partial", new { id =2, ViewName = "_ImageAd" })
+</div>
+<!-----main end---->

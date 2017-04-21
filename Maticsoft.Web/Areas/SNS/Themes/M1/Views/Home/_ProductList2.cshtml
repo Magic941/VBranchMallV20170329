@@ -1,0 +1,29 @@
+﻿@model List<Maticsoft.Model.SNS.Products>
+ <script type="text/javascript">
+     $(function () {
+         resizeImg('.image_01', 400, 400);
+         resizeImg('.image_02', 200, 200);
+     })
+</script>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="club-meitushow">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (i == 0)
+            {
+            <div class="image_01">
+                <a href="@Model[i].StaticUrl">
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbImageUrl, "T400x1280_"))" alt="@Model[i].ProductName"  title="@Model[i].ProductName">
+                    <span >@Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 18, "...")</span></a></div>
+            }
+            else
+            {
+            <div class="image_02 ">
+                <a href="@Model[i].StaticUrl">
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbImageUrl, "T211x1280_"))" alt="@Model[i].ProductName"  title="@Model[i].ProductName">
+                    <span  >@Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 10, "...")</span></a></div>
+            }
+        }
+    </div>
+}

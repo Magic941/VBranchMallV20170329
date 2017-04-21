@@ -1,0 +1,325 @@
+﻿img {
+    border: none;
+}
+
+li {
+    list-style: none;
+}
+
+input, select, textarea {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*清浮动*/
+.clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+/* banner */
+.banner {
+    height: 282px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel_advertising ul {
+    height: 282px;
+    overflow: hidden;
+}
+
+.banner-btn {
+    display: none;
+}
+
+    .banner-btn a {
+        display: block;
+        position: absolute;
+        top: 120px;
+        width: 40px;
+        height: 40px;
+        background-color: #000;
+        opacity: 0.3;
+        filter: alpha(opacity=30) color:rgb(255, 255, 255);
+        overflow: hidden;
+        z-index: 4;
+    }
+
+.prevBtn {
+    left: 5px;
+}
+
+.nextBtn {
+    right: 5px;
+}
+
+.banner-img {
+    height: 282px;
+    width: 796px;
+    overflow: hidden;
+    font-size: 0;
+    *word-spacing: -1px; /* IE6、7 */
+    letter-spacing: -3px;
+    position: relative;
+}
+
+    .banner-img li {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1; /* IE6、7 */
+        vertical-align: top;
+        letter-spacing: normal;
+        word-spacing: normal;
+        font-size: 12px;
+    }
+
+.New_winter_nan {
+    height: 195px;
+    width: 796px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner_ul {
+    height: 173px;
+    overflow: hidden;
+    font-size: 0;
+    *word-spacing: -1px; /* IE6、7 */
+    letter-spacing: -3px;
+    position: relative;
+}
+
+    .banner_ul li {
+        display: inline-block;
+        *display: inline;
+        *zoom: 1; /* IE6、7 */
+        vertical-align: top;
+        letter-spacing: normal;
+        word-spacing: normal;
+        font-size: 12px;
+        border: 1px solid #ccc;
+    }
+
+.banner i {
+    background: url() no-repeat;
+    width: 15px;
+    height: 23px;
+    cursor: pointer;
+    margin: 8px 0 0 12px;
+    display: block;
+}
+
+.banner .nextBtn i {
+    background-position: -200px -24px;
+}
+
+.banner .prevBtn i {
+    background-position: -200px 0px;
+    width: 24px;
+    height: 41px;
+    background: url(/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/14_03.png) no-repeat;
+    display: block;
+}
+
+.banner-circle {
+    position: absolute;
+    left: 50%;
+    bottom: 15px;
+    height: 13px;
+    text-align: center;
+    font-size: 0;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.3);
+    filter: alpha(opacity:30);
+}
+
+    .banner-circle li {
+        border-radius: 10px;
+        margin: 2px;
+        display: inline-block;
+        display: -moz-inline-stack;
+        vertical-align: middle;
+        zoom: 1;
+    }
+
+        .banner-circle li a {
+            display: block;
+            padding-top: 9px;
+            width: 9px;
+            height: 0;
+            border-radius: 50%;
+            background: #B7B7B7;
+            overflow: hidden;
+        }
+
+    .banner-circle .selected a {
+        background: #F40;
+    }
+
+
+.relian_one {
+    width: 238px;
+    height: 478px;
+    overflow: hidden;
+}
+
+    .relian_one .one_zhuang {
+        width: 238px;
+        height: 478px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 238px;
+    height: 956px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.relian_Two {
+    width: 238px;
+    height: 238px;
+    overflow: hidden;
+}
+
+    .relian_Two .one_zhuang {
+        width: 238px;
+        height: 238px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 238px;
+    height: 476px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.relian_Three {
+    width: 240px;
+    height: 479px;
+    overflow: hidden;
+}
+
+    .relian_Three .one_zhuang {
+        width: 240px;
+        height: 479px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 240px;
+    height: 958px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.relian_Four {
+    width: 238px;
+    height: 478px;
+    overflow: hidden;
+}
+
+    .relian_Four .one_zhuang {
+        width: 238px;
+        height: 478px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 238px;
+    height: 956px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.relian_Five {
+    width: 238px;
+    height: 242px;
+    overflow: hidden;
+    float: left;
+}
+
+    .relian_Five .one_zhuang {
+        width: 238px;
+        height: 242px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 238px;
+    height: 484px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.relian_Eight {
+    width: 479px;
+    height: 242px;
+    overflow: hidden;
+}
+
+    .relian_Eight .one_zhuang {
+        width: 479px;
+        height: 242px;
+        position: relative;
+    }
+
+    .relian_Eight .pic2 {
+        width: 479px;
+        height: 484px;
+        overflow: hidden;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+
+.relian_XieOne {
+    width: 240px;
+    height: 479px;
+    overflow: hidden;
+}
+
+    .relian_XieOne .one_zhuang {
+        width: 240px;
+        height: 479px;
+        position: relative;
+    }
+
+.pic2 {
+    width: 240px;
+    height: 958px;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0;
+}

@@ -1,0 +1,133 @@
+﻿@model List<Maticsoft.Model.Settings.MainMenus>
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "";
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".search_box table.mg tr:even").css("background", "#f5f5f5");
+        $("#tKeyWord").keyup(function () {
+            var keyword = $(this).val();
+            if (keyword.length < 1) {
+                $(".lxxg").hide();
+            }
+            else {
+                $(".lxxg").show();
+            }
+            if (keyword.length > 4) {
+                keyword = keyword.substring(0, 4) + "..";
+            }
+            $("#tProduct").text(keyword);
+            $("#tAlbums").text(keyword);
+            $("#tUser").text(keyword);
+            $("#tGroups").text(keyword);
+            $("#btnSearch").click(function () {
+                $(".lxxg").hide();
+            });
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        var tkeyword = $.getUrlParam("keyword") == null ? "" : $.getUrlParam("keyword");
+        $("#tKeyWord").val(tkeyword);
+        $(".btnProduct").click(function () {
+            var keyword = $("#tKeyWord").val();
+            window.location = $Maticsoft.BasePath + "Search/Product?type=hot&keyword=" + escape(keyword);
+        });
+        $(".btnAlbums").click(function () {
+            var keyword = $("#tKeyWord").val();
+            window.location = $Maticsoft.BasePath + "Search/Albums?type=hot&keyword=" + escape(keyword);
+        });
+        $(".btnUser").click(function () {
+            var keyword = $("#tKeyWord").val();
+            window.location = $Maticsoft.BasePath + "Search/User?keyword=" + escape(keyword);
+        });
+        $(".btnGroups2").click(function () {
+            var keyword = $("#tKeyWord").val();
+            window.location = $Maticsoft.BasePath + "Search/Groups?keyword=" + escape(keyword);
+        });
+        $(".btnPhoto").click(function () {
+            var keyword = $("#tKeyWord").val();
+            window.location = $Maticsoft.BasePath + "Search/Photo?type=hot&keyword=" + escape(keyword);
+        });
+    });
+</script>
+<div class="nav default"  id="menu" style="margin-bottom: 0px; z-index: 9999">
+    <div class="navbar ">
+        <div class="navbar_bar">
+            <ul>
+                <li><a href="@(ViewBag.BasePath)" class="nav1" id="snsindex">首页</a></li>
+             @*   <li>@Html.ActionLink("逛宝贝", "Index", "Product", new { cname = "all", topcid = 0 }, new { @class = "nav4", @id = "sns0" })*@
+                    @foreach (Maticsoft.Model.Settings.MainMenus item in Model)
+                    {
+                        if (item.URLType == 2)
+                        {
+                            @Html.ActionLink(item.MenuName, "Index", "Product", new
+                                {
+                                    cname = item.MenuName,
+                                    topcid = item.NavURL,
+                                    cid = item.NavURL,
+                                    minprice = 0,
+                                    maxprice = 0,
+                                    sequence = "hot"
+                                }, new { @class = "nav3", @id = "sns" + item.NavURL })
+                        }
+                        else  if (item.URLType == 3)
+                        {
+                            <a href="@(ViewBag.BasePath)Photo/Index/-1/@item.NavURL/all/hot">@item.MenuName</a>
+                        }
+                    }
+                </li>
+                    @foreach (Maticsoft.Model.Settings.MainMenus item in Model)
+                    {
+                        if (item.URLType == 0)
+                        {
+                               <li><a href="@item.NavURL">@item.MenuName</a></li>
+                        }
+                    }
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="search">
+            <div class="search_t">
+            </div>
+            <div class="search_z" style="position: relative">
+                <div class="lxxg" id="lxxg" style="top: 30px; right: 0px">
+                    <p>
+                        <a href="javascript:void(0)" class="btnProduct" id="btnProduct">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/baby-cot24.png" />搜"<span id="tProduct"></span>"的商品</a></p>
+                    <p>
+                        <a href="javascript:void(0)" class="btnAlbums" id="btnAlbums">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/Open-Folder-Add24.png" />搜"<span
+                                id="tAlbums"></span>"的专辑</a></p>
+                    <p>
+                        <a href="javascript:void(0)" class="btnUser" id="btnUser">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/baby24.png" />搜"<span id="tUser"></span>"的用户</a></p>
+                    <p>
+                        <a href="javascript:void(0)" class="btnGroups2" id="btnGroups">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/baby24.png" />搜"<span id="tGroups"></span>"小组</a></p>
+                </div>
+                <input name="" type="" class="keyword" id="tKeyWord"></div>
+            <div class="search_w">
+                <a href="javascript:;" class="searchlist" id="btnSearch">搜索</a></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        if ($("#sns@(cid)")) {
+            $("#sns@(cid)").css("background", "#ff4981").css("display", "block");
+            $("#snsindex").removeClass("nav1").addClass("nav3");
+        }
+        $(".searchlist").click(function () {
+            var keyword = $("#tKeyWord").val();
+            if (keyword) {
+                window.open("@(ViewBag.BasePath)Search/Product?type=hot&keyword=" + escape(keyword));
+            } else {
+                alert();
+                window.open("@(ViewBag.BasePath)Search/Product/hot/");
+            }
+        });
+    })
+</script>

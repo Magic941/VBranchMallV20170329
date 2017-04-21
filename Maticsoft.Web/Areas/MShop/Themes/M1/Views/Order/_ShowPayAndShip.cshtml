@@ -1,0 +1,97 @@
+﻿@model Maticsoft.ViewModel.Shop.PayAndShip
+
+@*<a name="payAndShipFocus"  href="@(ViewBag.BasePath)Order/PayAndShipInfo?payId=@Model.CurrentPaymentMode.ModeId&shipId=@Model.CurrentShippingType.ModeId">
+<div class="step-title" style="display: none">
+    <div id="save-consignee-tip" class="step-right">
+    </div>
+    <strong>支付及配送方式</strong> <span class="step-action" id="payment-ship_edit_action"></span>
+</div>
+<div class="step-content">
+    <div id="payment-ship" class="sbox-wrap" style="position: relative; padding-left: 8px">
+        <div class="sbox">
+            <div class="s-content payment-info">
+                @if (Model.CurrentPaymentMode != null)
+                {
+                    <div class="payment-selected">
+                        @Model.CurrentPaymentMode.Name <span class="easyPayWarning"></span>
+                    </div>
+                    <input type="hidden" id="PaymentModeId" value="@Model.CurrentPaymentMode.ModeId" />
+                }
+                @if (Model.CurrentShippingType != null)
+                {
+                    <div class="way-list">
+                        <div class="way-item">
+                            @Model.CurrentShippingType.Name 
+                        </div>
+                    </div>
+                    <input type="hidden" id="ShippingTypeId" value="@Model.CurrentShippingType.ModeId" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+</a>
+<script type="text/javascript">
+    $(function () {
+        $('#freightPriceId').text('￥@(ViewBag.Freight.ToString("F"))');
+        var totalprice = (parseFloat($('#payPriceId').attr('BasePrice')) + @(ViewBag.Freight)).toFixed(2);
+        $('#payPriceId').text('￥' + totalprice);
+        $("#payPriceId").attr("TotalPrice", totalprice);
+    });
+</script>
+*@
+@{
+    string options = "<select onchange =\"changeFreight(this)\"  class=\"mgL5 w85\" name=\"\">";
+   
+    if (Model.ListShippingType != null && Model.ListShippingType.Count > 0)
+    {
+        foreach (Maticsoft.Model.Shop.Shipping.ShippingType item in Model.ListShippingType)
+        {
+            options += "<option value=\"" + item.ModeId + "\">" + item.Name + "</option>";
+        }
+        options += "</select>";
+    }
+    string freightinfo = (string)ViewBag.FreightFeeList == null ? "0.00" : (string)ViewBag.FreightFeeList;
+    
+}
+<script type="text/javascript">
+    $(function () {
+        @*var totalprice = (parseFloat($('#payPriceId').attr('BasePrice')) + @(ViewBag.Freight)).toFixed(2);
+        $('#payPriceId').text('￥' + totalprice);
+        $("#payPriceId").attr("TotalPrice", totalprice);*@
+        //edit by wangzhongyu at 20140710
+        $(".ddl_Freight").html('@Html.Raw(@options)');
+        var totalFreightFee = 0;
+        var FreightFeeList = $("#FreightFeeList").val();
+        if (FreightFeeList != "") {
+            var obj = eval("(" + FreightFeeList + ")");
+
+            for (var i = 0; i < obj.length; i++) {
+                $("#freightPriceId" + obj[i].supplier).text('￥' + obj[i].fee);
+                $("#freightPriceHidden" + obj[i].supplier).val(obj[i].fee);
+                $("#priceEvrShop" + obj[i].supplier).text((parseFloat(obj[i].fee) + parseFloat($("#xiaoji" + obj[i].supplier).val())));
+                totalFreightFee += obj[i].fee;
+            }
+        }
+
+        $("#NeedPay").text("￥" + (parseFloat(totalFreightFee) + parseFloat($("#totalPrice").val())));
+        $("#totalNeedPay").val((parseFloat(totalFreightFee) + parseFloat($("#totalPrice").val())));
+    });
+</script>
+<div id="payment-ship" class="sbox-wrap" style="position: relative; text-align:center">
+    <div class="msg">
+        <div >
+            <p>
+                @if (Model.CurrentPaymentMode != null)
+                {
+                    <div>
+                        @Model.CurrentPaymentMode.Name <span class="easyPayWarning"></span>
+                    </div>
+                    <input type="hidden" id="PaymentModeId" value="@Model.CurrentPaymentMode.ModeId" />
+                }
+            </p>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="FreightFeeList" value="@freightinfo" />
+    

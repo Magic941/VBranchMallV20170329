@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/admin/js/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $("[id$=txtStartDate]").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("[id$=txtEndDate]").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("[id$=txtEndDate]").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("[id$=txtStartDate]").datepicker("option", "maxDate", selectedDate);
+                $("[id$=txtEndDate]").val($(this).val());
+            }
+        });
+    })
+</script>
+<form action="" method="post">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            订单统计
+        </h3>
+        <small class="desc">您可以查看订单统计信息 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <tr>
+                <td class="tdbg">
+                    开始时间：<input type="text" name="StartDate" id="txtStartDate" value="@ViewBag.StartDate" />
+                    &nbsp;&nbsp;结束时间<input type="text" name="EndDate" value="@ViewBag.EndDate" id="txtEndDate" />
+                    &nbsp;&nbsp;<input type="submit" name="btnReStatistic" id="btnReStatistic" value="统计"
+                        class="sub" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="5" width="280px" border="0" style="border-collapse: collapse;
+                        margin-left: 5%; margin-top: 10px; margin-bottom: 10px">
+                        <tr>
+                            <td class="td_class" style="width: auto">
+                                &emsp;
+                            </td>
+                            <td style="text-align: center; font-weight: bold;">
+                                单数
+                            </td>
+                            <td style="text-align: right; font-weight: bold;">
+                                金额
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                未支付
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @*<asp:label id="lblNotPayQuantity" runat="server"></asp:label>*@
+                                @ViewBag.lblNotPayQuantity
+                                &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                                &emsp;@*<asp:label id="lblNotPayPrice" runat="server"></asp:label>*@
+                                @ViewBag.lblNotPayPrice
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                进行中
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @*<asp:label id="lblPaymentQuantity" runat="server"></asp:label>*@
+                                @ViewBag.lblPaymentQuantity
+                                &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                                &emsp;@*<asp:label id="lblPaymentPrice" runat="server"></asp:label>*@
+                                @ViewBag.lblPaymentPrice
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                已完成
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @*<asp:label id="lblCompleteQuantity" runat="server"></asp:label>*@
+                                @ViewBag.lblCompleteQuantity
+                                &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                                &emsp;@*<asp:label id="lblCompletePrice" runat="server"></asp:label>*@
+                                @ViewBag.lblCompletePrice
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+    </table>
+    <table style="width: 100%; display: none;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="td_class">
+            </td>
+            <td height="25">
+                <div class="form stdform">
+                    <asp:button id="btnEdit" runat="server" text="重新统计" class="adminsubmit">
+                                </asp:button>
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+</form>

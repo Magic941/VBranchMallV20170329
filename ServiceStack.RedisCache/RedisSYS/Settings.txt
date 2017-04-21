@@ -1,0 +1,5 @@
+WriteServerList: 192.168.0.181
+ReadServerList: 192.168.0.181
+MaxWritePoolSize: 5
+MaxReadPoolSize: 5
+AutoStart: True

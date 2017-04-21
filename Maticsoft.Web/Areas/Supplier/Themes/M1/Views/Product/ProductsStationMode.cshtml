@@ -1,0 +1,25 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.ViewModel.Supplier.ProductsStationMode
+@section head{
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/gridviewstyle.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <style type="text/css">
+        .borderImage { width: 81px; height: 81px; border: 1px solid #CCC; text-align: center; }
+    </style>
+}
+<div style="background: white; width: 100%" id="relatedProc">
+    <div class="advanceSearchArea clearfix">
+        <!--预留显示高级搜索项区域-->
+    </div>
+    <div class="toptitle">
+        <h3 class="title_height" style="margin-bottom: 5px">
+        </h3>
+    </div>
+    <div id="Goodsgifts" class="Goodsgifts">
+        @{ Html.RenderPartial("_ProdStatMode", Model); }
+    </div>
+    <div class="bntto">
+    </div>
+</div>

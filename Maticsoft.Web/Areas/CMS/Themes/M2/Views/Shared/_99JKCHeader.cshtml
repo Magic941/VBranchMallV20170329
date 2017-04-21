@@ -1,0 +1,26 @@
+﻿<!--网站公共头部-->
+@{
+    
+    Maticsoft.BLL.SysManage.WebSiteSet WebSiteSetShop = new Maticsoft.BLL.SysManage.WebSiteSet(Maticsoft.Model.SysManage.ApplicationKeyType.Shop);
+    var Logo = WebSiteSetShop.LogoPath;
+    var WebName = WebSiteSetShop.WebName;
+    
+  }
+<div class="header">
+	<div class="head w1200 c m">
+    	<div class="logo"><a href="#" title="@WebName"> <img src="@Logo" alt="" title=""  height="42px" /></a></div>
+        <div class="nav">
+        	<ul>
+            	
+                <li><a href="/">网站首页</a></li>
+                <li><a href="/Article/ArticleList?classid=42&viewName=JKZhiShiList" target="_blank">健康知识</a></li>               
+                <li><a href="/Article/ArticleList?classid=43&viewName=JKZhiShiList" target="_blank">健康新闻</a></li>                
+                <li><a href="/Article/ArticleList?classid=44&viewName=JKZhiShiList" target="_blank">保险资讯</a></li>
+                <li><a href="/Article/Details/73" target="_blank">加盟合作</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+<!--网站公共头部-->

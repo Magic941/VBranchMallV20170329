@@ -1,0 +1,26 @@
+﻿ @model List<Maticsoft.Model.SNS.ReportType>
+  <div>
+ <div id="CreateReport">
+        <div class="cre_a" style="width:400px">
+        <div class="cre_a_2">
+                <div class="cre_a_1a">
+                    分类：</div>
+                <div class="cre_a_2b" id="AlumbsType" style="width: 350px">
+                    @foreach (var item in Model)
+                    { 
+                        <p>
+                            <input name='reporttype' type='radio' value="@item.ID"/>@item.TypeName</p>
+                    }
+                </div>
+            </div>
+            <div class="cre_a_1" style=" margin-top:20px">
+                <p class="cre_a_1a" style="height: 20px">
+                    理由：</p>
+                <p class="cre_a_2a" style="height:auto;border: #F7F2F2 1px solid;">
+                <textarea name="Description" cols="" rows=""  id="Description" style="width: 340px;height: 80px; margin-top:10px"></textarea>
+               </p>
+            </div>
+            
+        </div>
+    </div>
+</div>

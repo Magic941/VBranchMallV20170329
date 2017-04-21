@@ -1,0 +1,89 @@
+﻿@model Maticsoft.ViewModel.UserCenter.UserBindList
+<p style="height: 20px; width: 150px; float: right; margin-top: 5px" class="bind">
+    @if (Model != null)
+    {
+        if (Model.Sina != null)
+        {  
+        <span>分享到：</span>
+        <span class="cursor_f g_sina weibo" s_type="2" s_name="weibo"   value="@Model.Sina.MediaID" style="margin-right: 5px" title="未同步到新浪微博"></span>
+        }
+        else
+        {   
+        <span>分享到：</span>
+        <span class="cursor_f g_sina" onclick="btnBind('新浪微博')" s_type="2" s_name="weibo" value="" style="margin-right: 5px"  title="未同步到新浪微博"></span>
+        }
+        if (Model.QZone != null)
+        {
+             <span class="cursor_f g_qzone grey " s_type="2" s_name="qzone"   value="@Model.QZone.MediaID"  style="margin-right: 5px"  title="未同步到腾讯微博"></span>
+        }
+        else
+        {
+         <span class="cursor_f g_qzone grey" onclick="btnBind('QQ')" s_type="2" s_name="qzone" value="" style="margin-right: 5px"  title="未同步到腾讯微博"></span>
+        }
+        <input name="isSendAll" class="isSendAll" id="isSendAll" type="checkbox" style="vertical-align: middle;"/><label for="isSendAll" style="vertical-align: middle;">全部</label>
+        <input type="hidden" value="@Model.Count" id="bindcount"/>
+    }
+</p>
+<style type="text/css">
+   
+    .tanchu
+    {
+        display: none;
+        height: 120px;
+        width:360px;
+        background: #fff;
+        position: fixed;
+        z-index: 10000001;
+        border: 1px solid #000;
+        left: 60%;
+        top: 60%;
+        margin: -250px 0px 0px -485px;
+        _position: absolute;
+        _top: expression(documentElement.scrollTop + 50 + "%");
+    }
+    .close5
+    {
+        float: left;
+        cursor: pointer;
+    }
+    .btmbg2
+    {
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        filter: alpha(opacity=70);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7;
+        z-index: 10000000;
+        left: 0;
+        top: 0;
+        display: none;
+        _position: absolute;
+        _top: expression(documentElement.scrollTop + 0 + "px");
+    }
+</style>
+<div class="tanchu">
+    <div class="tanchu_t">
+        <p class="p1">
+            帐号绑定</p>
+        <p class="p2 close5">
+            关闭</p>
+    </div>
+    <div class="tanchu_c">
+        <div class="tanchu_c_a">
+            <p>
+                您还未绑定<span id="txtWeibo"></span>帐号 点这里 <a href="/UserCenter/UserBind" tyle="color: #fff;" target="_blank">
+                    开始绑定</a></p>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div class="btmbg2">
+</div>
+<script type="text/javascript">
+ 
+    
+</script>

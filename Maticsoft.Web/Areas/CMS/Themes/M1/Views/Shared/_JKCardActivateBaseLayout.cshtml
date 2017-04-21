@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_JKIISiteLayout.cshtml";
+}
+@section head{   
+     <link href="/Areas/CMS/Themes/M1/Content/99jkc/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/cmstop-common.js"></script> 
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/common.js"></script> 
+	<script src="/Areas/CMS/Themes/M1/Content/99jkc/js/index.js"></script>
+
+     <link rel="stylesheet" type="text/css" href="/Areas/CMS/Themes/M1/Content/99jkc/css/about.css" />
+    <link rel="stylesheet" href="/Areas/CMS/Themes/M1/Content/99jkc/css/daterange.css" />
+  
+    @RenderSection("head", false)
+     <style>
+        .frm_control_group1 {
+            width: 460px;
+            margin-right: 20px;
+        }
+    </style>
+}
+@Html.Partial("_99JKCHeader") 
+ 
+  <div class="main">
+        <div class="wrapper">
+            <div class="imgbox clearfix">
+                <div class="lft">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_01.png" alt="">
+                </div>
+                <div class="rgt">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_02.png" alt="">
+                </div>
+            </div>
+            <div class="mainBox">
+                <div class="leftBox">
+                    <ul class="subNav">
+                        <li><a href="#">激活步骤<i></i></a></li>
+                        <li id="liStep1"><a href="#">阅读条款<i></i></a></li>
+                        <li id="liStep2"><a href="#">填写资料<i></i></a></li>
+                        <li id="liStep3"><a href="#">确认信息<i></i></a></li>
+                        <li id="liStep4"><a href="#">激活成功<i></i></a></li>
+                    </ul>
+                </div>
+                <!--leftbox-->
+                <div class="rightBox">
+                   
+                     @RenderBody()
+                   
+                </div>
+                <!--rightbox-->
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+@Html.Partial("_99JKCFooter")
+ 
+@section foot{
+    @RenderSection("foot", false)
+}

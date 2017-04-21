@@ -1,0 +1,39 @@
+﻿@{
+    Layout = null;
+}
+<!--<div class="footer_bott">
+    <p class="footer_bott_about">
+        <a href="javascript:;">关于读科技</a> | <a href="javascript:;">加入读科技</a> | <a href="javascript:;">联系我们</a></p>
+    <p class="footer_bott_company">
+        <a href="@ViewBag.BaseHost" style="color:Black;" target="_blank">@ViewBag.WebName</a>
+    </p>
+</div>-->
+<style type="text/css">
+    .bot_menu
+    {
+        background: #E6E6E6;
+        height: 35px;
+        width: 100%;
+        margin: auto;
+        margin-top: 0px;
+        text-align: center;
+        line-height: 35px;
+        font-size: 12px;
+        color: #626262;
+    }
+    .bot_menu a
+    {
+        color: #626262;
+    }
+</style>
+<div class="bot_menu">
+    @Html.ActionLink("关于读科技", "../About/")
+    |
+    加入读科技
+   @* @Html.ActionLink("加入读科技", "../Article/Details/", new { id = 81 })*@
+    |
+    联系我们
+  @*  @Html.ActionLink("联系我们", "../Article/Details/", new { id = 82 })*@
+    <div class="bot_menu">@ViewBag.WebPowerBy @ViewBag.WebRecord
+    </div>
+</div>

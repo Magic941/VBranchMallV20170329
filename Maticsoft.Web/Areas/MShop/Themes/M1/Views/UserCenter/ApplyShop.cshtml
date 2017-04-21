@@ -1,0 +1,171 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "申请健康服务店";
+    //Maticsoft.Model.Members.UsersExpModel UserInfo = ViewBag.UserInfo;
+    int type = ViewBag.ApplyType;   //返回的值
+}
+@using Webdiyer.WebControls.Mvc
+@*@model PagedList<Maticsoft.Model.Pay.BalanceDetails>*@
+@model Maticsoft.Model.Members.Users
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/hlcard.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/ApplyShop.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/UserCenter/Mobile.js" type="text/javascript"></script>
+<style>
+    .tab-content_tbc input {
+        display: block;
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        background: #dfdbdb;
+        border: none;
+    }
+
+    .tab-content_tbf input {
+        width: 100%;
+        height: 2rem;
+        line-height: 2rem;
+        background: #dfdbdb;
+        border: none;
+    }
+
+    .tab-content_tbe {
+        padding-bottom: 2px;
+    }
+
+    .tab-content_tbe {
+    }
+</style>
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="content content_view">
+    <div class="tab-list">
+        <div class="tab-buttons controlgroup">
+            <span class="tab-list-button selected">在线申请</span>
+            @if (type == 4)
+            {
+                <em style="font-style: normal; width: 90%; height:3rem; line-height: 1.5rem; margin: 0 auto; display: block; font-size: 1.0rem;">健康服务店特色：商品批发，店内销售，送货上门，上门体验，验货付款，售后问题处理。
+                </em>
+            }
+            else if (type == 3)
+            {
+                <em style="font-style: normal; width: 90%; height: 3rem; line-height: 1.5rem; margin: 0 auto; display: block; font-size: 1.0rem;">健康分销店特色：商品批发，店内销售，送货上门
+                </em>
+            }
+            <div class=""><em style="display:block; text-align:center; font-style:normal; ">专线指导：021-54260290</em></div>
+        </div>
+        <div class="tab-content">
+            <div>
+                <form>
+
+                    <div id="gbook_input" style="display: inline-block; width: 100%; margin: 0 auto;">
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <legend class="jq-ui-forms" data-role="none"><b style="color: red">*</b>用户姓名</legend>
+                        </div>
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <input type="text" class="jq-ui-forms forms_bb" maxlength="50" id="TrueName" value="@Model.TrueName" />
+                        </div>
+                        @*<div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">年龄</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" class="jq-ui-forms  forms_bb" maxlength="2" id="age" />
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">邮箱</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" class="jq-ui-forms forms_bb" maxlength="50" id="Email" />
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">电话</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                  <input type="text" class="jq-ui-forms forms_bb" maxlength="15" id="TelPhone" />
+                              
+                            </div>*@
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <legend class="jq-ui-forms" data-role="none"><b style="color: red">*</b>手机</legend>
+                        </div>
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <input type="text" class="jq-ui-forms forms_bb" readonly="true" maxlength="11" id="Phone" value="@Model.Phone.ToString()"/>
+
+                        </div>
+                        @*<div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">QQ</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms  forms_bb" maxlength="10" id="QQ" />
+ 
+                            </div>
+                            
+                            @*<div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">公司地址</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms  forms_bb" maxlength="200" id="CompanyAddress" />
+                           
+                            </div>*@
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <legend class="jq-ui-forms" data-role="none"><b style="color: red">*</b>联系地址</legend>
+                        </div>
+                        <div>
+                            <span id="divaddressselect" data-role="none">
+                                <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                                <input type="hidden" class="forms_cc" id="hfSelectedNode" />
+                                <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script>
+                            </span>
+                        </div>
+
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <input type="text" class="jq-ui-forms  forms_bb" maxlength="200" id="HouseAddress" />
+
+                        </div>
+                        <script type="text/javascript">
+                            $('#divaddressselect select').attr('data-role', 'none').css('width', '90px'); //不产生额外的文本
+                        </script>
+                        @*<div style="display:inline-block; width:100%;" class="jq-ui-forms">
+                                <legend class="jq-ui-forms" data-role="none">性别</legend>
+                            </div>
+                      
+                            <div style="display:inline-block;margin-left: 1px; " class="jq-ui-forms"  >
+                            
+                                <select id="Sex" style="width:74px;" data-role="none">
+                                    <option value="">请选择</option>
+                                    <option value="0">男</option>
+                                     <option value="1">女</option>
+                                </select>
+
+                               
+                            </div>*@
+                        @*<div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">内容</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms  forms_bb" maxlength="16" id="Description" />
+                           
+                            </div>*@
+                        <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                            <legend class="jq-ui-forms" data-role="none">备注</legend>
+                        </div>
+                        <div style="display: inline-block; width: 100%; /*margin-left: 8px; */" class="jq-ui-forms" data-role="none">
+
+                            <input class="jq-ui-forms  forms_bb" maxlength="300" id="Remark">
+                        </div>
+                    </div>
+                    <input type="hidden" id="state" value="@ViewBag.ApplyType" />
+                   @* <input type="button" value=" 提交 " id="btnEntryForm" class="button1 " data-role="none">
+                    <input type="reset" name="clear_btn" value=" 重新填写 " class="button2 " data-role="none">*@
+                    <a href="javascript:void(0);" id="btnEntryForm" class="button1" style="width:80px; float:left; height:35px; display:block; text-align:center; line-height:35px; color:white;border-radius:4px;" data-role="none">提交</a>
+                    <a href="javascript:void(0);"  class="button2"style="width:80px; height:35px; float:left; margin-left:10px; display:block; text-align:center; line-height:35px; color:red;border-radius:4px;" onclick="javascript: window.history.go(-1);">取消</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

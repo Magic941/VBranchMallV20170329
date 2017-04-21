@@ -1,0 +1,117 @@
+﻿  @{
+      Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@section head{
+
+    <link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+    <link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/Style-1.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/EmailRegister.js"></script>
+    <link href="/Areas/Shop/Themes/M1/Content/Css/css/register/register.css" rel="stylesheet" />
+    <script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/Account/registerCheck.js"></script>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#goBuy").click(function () {
+            location.href = "/Product";
+        })
+    });
+
+</script>
+<input type="hidden" value="@ViewBag.Msg" id="hidmsg" />
+<input type="hidden" value="@ViewBag.email" id="hidemail"/>
+<input type="hidden" value="@ViewBag.SecretKey" id="SecretKey"/>
+<input type="hidden" value="@ViewBag.Email" id="email"/>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { Class = "wform form" }))
+{
+    <div class="disem_bark">
+        <div class="disem_bark_top clearfix">
+            <h1><a href="/">健康商城</a></h1>
+            <span>欢迎登录</span>
+        </div>
+        <div class="land_bark">
+            <div class="land_bark_nav">
+                <ul class="clearfix">
+                    <li><a id="PhoneReg" href="javascript:;">手机号注册</a></li>
+                    <li class="active_y"><a id="EmailReg" href="javascript:;">邮箱注册</a></li>
+                    <li><a href="javascript:;">健康卡激活</a></li>
+                </ul>
+            </div>
+            <div class="mem_ber">
+                <div class="mem_ber_pu"><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/zhuce/den_3_3.png" width="492" height="160" /></a></div>
+                <div class="mem_ber_potl">
+				<ul>
+					<li>
+						<label>登陆密码</label>
+						<div class="regi_steb">
+							<input type="mailbox" id="pwd" name="mbx"/><i id="pwdTip" style="color:#f00"></i>
+						</div>
+						<em>您已经通过邮箱验证，请设置您的登录密码</em>
+					</li>
+					<li>
+						<label>确认密码</label>
+						<div class="regi_steb">
+							<input type="password" id="pwdComfirm" name="pwd" /><i id="comTip" style="color:#f00"></i>
+							<em>请您设置确认密码</em>
+						</div>
+					</li>
+					<li class="user_tt clearfix">
+						<a href="javascript:;" class="agr_ee" id="reg_pwd">确认</a>
+					</li>
+				</ul>	
+			</div>
+			<div class="pop_up"></div>
+			<div class="step">
+				<ul class="clearfix">
+					<li>
+						<dl>
+							<dt>第一步</dt>
+							<dd>输入邮箱</dd>
+						</dl>
+					</li>
+					<li class="active">
+						<dl>
+							<dt>第二步</dt>
+							<dd>设置密码</dd>
+						</dl>
+					</li>
+					<li>
+						<dl>
+							<dt>第三步</dt>
+							<dd>完成注册</dd>
+						</dl>
+					</li>
+				</ul>
+			</div>
+            </div>
+            <div class="team_work">
+                <span>使用合作网站账号登陆：</span>
+                <a href="#">QQ</a>
+            </div>
+            <div class="bon_anza">
+        	<div class="congrat" style="margin:0 auto;">
+                <span><em></em>恭喜，<span id="EmailName">111111111</span>已注册成功！</span>
+                <div class="post_box_stt"> 
+                    <input type="button" id="goBuy" value="立即抢购" />
+				</div>
+				@*<div class="check_mail_top">
+					<div class="check_mail">
+						<p>超过<b>80%</b>的用户选择了立即验证邮箱，账户更安全购物更放心。</p>
+					</div>
+					<div class="tran_p clearfix">
+						<label>您的邮箱：</label>
+						<div class="tran_pt">
+							<input type="mailbox" name="mbx"/>
+						</div>
+						<a href="#" class="send_bb">发送验证邮箱</a>
+					</div>
+			  </div>*@
+			</div>
+		</div>
+        </div>
+    </div>
+}

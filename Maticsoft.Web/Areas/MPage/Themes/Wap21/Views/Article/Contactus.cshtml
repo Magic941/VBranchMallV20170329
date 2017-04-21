@@ -1,0 +1,13 @@
+﻿@model Maticsoft.Model.CMS.Content   
+<!--联系 contactus-->
+    <header class="header ilist">
+         <a  href="tel:@ViewBag.tel"  class="ui-link">电话</a>
+        <h1>@ViewBag.ClassName</h1>
+    </header>
+@if (Model != null)
+{
+    <div class="content content_view">
+        @Html.Raw(Model.Description)
+    </div>
+}
+<!--联系-->

@@ -1,0 +1,580 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string regionId = Request.RequestContext.RouteData.Values["regionid"] != null ? Request.RequestContext.RouteData.Values["regionid"].ToString() : "643";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+}
+<style>
+    select {
+        min-height: 30px;
+    }
+
+    .txtenddate span {
+        font-size: 12px;
+        color: #ccc;
+    }
+</style>
+<link href="/Areas/Shop/Themes/M1/Content/Css/GroupBuy/style.css" rel="stylesheet"
+    type="text/css">
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/dialog,item,item-s,paging,scroeAndlist-v1.css"
+    type="text/css" />
+@*<link href="/Areas/Shop/Themes/M1/Content/Css/GroupBuy/tuangou.css" rel="stylesheet"
+    type="text/css">*@
+<link href="/Areas/Shop/Themes/M1/Content/Css/GroupBuy/whole-purchase.css" rel="stylesheet"
+    type="text/css">
+
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/GroupBuy/slideshow.js"></script>*@
+<script language="javascript" type="text/javascript">    var $Maticsoft = { BasePath: '/' } </script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMdd"))" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+
+
+
+
+<script type="text/javascript">
+
+    $(function () {
+        var time=@DateTime.Now.Hour    
+        //左侧菜单浮动
+        $("#Float").capacityFixed({ "top": 320 });
+        //$(".cate3-L-listCont").capacityFixed({ "top": 319 });
+
+        //左侧ul菜单伸缩效果
+        $(".listCont-B").each(function (_index, _li) {
+            $("h3", _li).click(function () {
+                var attr = $(".listCont-BL", _li)[0].style.display;
+                if (attr == "none") {
+                    $(".listCont-BL", _li).slideDown();
+                    $('i', this).addClass("zk");
+                    $('i', this).removeClass("ss");
+                }
+                else {
+                    $(".listCont-BL", _li).slideUp();
+                    $('i', this).addClass("ss");
+                    $('i', this).removeClass("zk");
+                }
+            });
+        });
+
+        $(".purchase_while a").each(function () {
+
+            if ($(this).attr("id") == time) {
+                //alert($(this).attr("id"));
+                $(".purchase_while li").removeClass("active");
+                $(this).parent().addClass("active");
+            }
+        });
+    })
+
+</script>
+@*<div class="comiis_wrapad" id="slideContainer">
+    <div id="frameHlicAe" class="frame cl">
+        <div class="temp">
+        </div>
+        @Html.Action("AdDetail", "Partial", new { id = 61, ViewName = "_IndexAdGroup" })
+    </div>
+</div>*@
+@*<div style="background: #C1004F">
+    <div class="wrapper">
+        <div>
+            <a href="http://www.zhenhaolin.com/Product/Detail/1111">
+                <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/tuangou_banner_4.jpg" /></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //SlideShow(5000);
+</script>
+<div class="blank10">
+</div>*@
+@*
+<div class="catg-II">
+    <div class=" wrapper">
+        <div class=" clearfix">
+            <div class="cate3-L">
+                <div class="tg2-title">所有商品分类</div>
+                <div class="cate3-L-list">
+
+                    <div class="cate3-L-listCont" name="__NZLB001">
+                        @Html.Action("ProductGroupBuyCategoryList", new { Cid = @cid, IsForMember = ViewBag.IsForMembers, ViewName = "_ProductCategoryGroupBuy" })
+                    </div>
+
+                </div>
+                <div class="m0 mgT10 rank">
+                    <div class="mt tg2Lt">
+                        <h3>TOP热销榜</h3>
+                    </div>
+                    <div class="tp">
+                        <ul class="clearfix">
+                            @{ System.Data.DataSet dshot = ViewBag.hotgroupbuy as System.Data.DataSet;
+                               for (int i = 0; i < dshot.Tables[0].Rows.Count; i++)
+                               {
+                                   System.Data.DataRow dr = dshot.Tables[0].Rows[i];
+                                   int GroupBase = int.Parse(dr["BuyCount"].ToString());
+                                   if (!string.IsNullOrWhiteSpace(dr["GroupBase"].ToString().Trim()))
+                                   {
+                                       GroupBase = GroupBase + int.Parse(dr["GroupBase"].ToString().Trim());
+                                   }
+                                   
+                                <li>
+                                    <i>@(i + 1)</i><span><a href="/Product/GroupBuyDetail?id=@dr["GroupBuyId"]&Groupbase=@GroupBase">@Maticsoft.Common.StringPlus.SubString(dr["ProductName"].ToString(), 12, null)</a></span>
+                                    <dl class="tpcon clearfix">
+                                        <dt><a href="/Product/GroupBuyDetail?id=@dr["GroupBuyId"]&Groupbase= @GroupBase">
+                                            <img width="80" style="border:0px" height="60" src=" @Maticsoft.Web.Components.FileHelper.GeThumbImage(dr["GroupBuyImage"].ToString(), "T115X115_")" /></a></dt>
+                                        <dd><span>￥@Convert.ToDecimal(dr["Price"]).ToString("F")</span></dd>
+                                        @*<dd>折扣</dd>*@
+                                        @*<dd>
+
+                                            <samp>@GroupBase</samp>人团购</dd>
+                                    </dl>
+                                </li>
+                               }
+                               
+                            	
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="cate3-R">
+                <div class="sort">
+                   
+                </div>
+
+                <div class="date_KMP">
+                    <ul class="clearfix">
+                        <li class="date_KMP1 jintian" id="@DateTime.Now.ToString("yyyy-MM-dd")"><a href="javascript:void(0);">今天</a></li>
+                        <li id="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(1).ToString("MM月dd日") </a></li>
+                        <li id="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(2).ToString("MM月dd日") </a></li>
+                        <li id="@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(3).ToString("MM月dd日") </a></li>
+                        <li id="@DateTime.Now.AddDays(4).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(4).ToString("MM月dd日") </a></li>
+                        <li id="@DateTime.Now.AddDays(5).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(5).ToString("MM月dd日") </a></li>
+                        <li id="@DateTime.Now.AddDays(6).ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.AddDays(6).ToString("MM月dd日") </a></li>
+
+                    </ul>
+                </div>
+                <div class="W-slt mgT10 clearfix" id="ProductListDiv">
+                    @Html.Partial("_BuyProductListGroupHaoLi", Model);
+                </div>
+            </div>
+        </div>
+    </div>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+ <div style="">
+        <div class="wrapper">
+            <div ><a href="#"><img src="/areas/shop/Themes/M1/Content/images/haolidbs.jpg" width="1200" height="201"/></a></div>
+        </div>
+    </div>
+<div class="">
+                
+</div>
+    <div class="catg-II">
+            
+    	<div class="ho_ceremony wrapper">
+            <div class="datepanic">
+                <a class="active_date" id="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" href="javascript:void(0);"><em >@DateTime.Now.ToString("MM月dd日") (今天)</em></a>
+          @*      <a id="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")" href="javascript:void(0);"><em>@DateTime.Now.AddDays(1).ToString("MM月dd日")</em></a>
+                <a id="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd HH:mm:ss")" href="javascript:void(0);"><em>@DateTime.Now.AddDays(2).ToString("MM月dd日")</em></a>
+                <a id="@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd HH:mm:ss")" href="javascript:void(0);"><em>@DateTime.Now.AddDays(3).ToString("MM月dd日")</em></a>
+                <a id="@DateTime.Now.AddDays(4).ToString("yyyy-MM-dd HH:mm:ss")" href="javascript:void(0);"><em>@DateTime.Now.AddDays(4).ToString("MM月dd日")</em></a>*@
+           @*	<ul class="clearfix">
+                	<li class="active_date" id="@DateTime.Now.ToString("yyyy-MM-dd")"><a href="javascript:void(0);">@DateTime.Now.ToString("MM月dd日") (今天)</a></li>
+                    <li id="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")"><a href="javascript:void(0);>@DateTime.Now.AddDays(1).ToString("MM月dd日")</a></li>
+                    <li id="@DateTime.Now.AddDays(2).ToString("yyyy-MM-dd")"><a href="javascript:void(0);>@DateTime.Now.AddDays(2).ToString("MM月dd日")</a></li>
+                    <li id="@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")"><a href="javascript:void(0);>@DateTime.Now.AddDays(3).ToString("MM月dd日")</a></li>
+                    <li id="@DateTime.Now.AddDays(4).ToString("yyyy-MM-dd")"><a href="javascript:void(0);>@DateTime.Now.AddDays(4).ToString("MM月dd日")</a></li>
+                </ul>*@
+            </div>
+            <div class="purchase_while">
+            	<ul class="clearfix">
+                	@*<li class="arr">
+						<i></i>
+                    	<a href="javascript:void(0);" id="07">7点</a>
+                        @if (DateTime.Now.Hour>7)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>6&& DateTime.Now.Hour<8)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+
+                    </li>
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="08">8点</a>
+                        @if (DateTime.Now.Hour>8)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>7&& DateTime.Now.Hour<9)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="09">9点</a>
+                        @if (DateTime.Now.Hour>9)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>8&& DateTime.Now.Hour<10)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>*@
+                   @* <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="10">10点</a>
+                        @if (DateTime.Now.Hour>10)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>9&& DateTime.Now.Hour<11)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="11">11点</a>
+                        @if (DateTime.Now.Hour>11)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>10&& DateTime.Now.Hour<12)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>*@
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="12">12点</a>
+                        @if (DateTime.Now.Hour>12)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>11&& DateTime.Now.Hour<13)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    @*<li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="13">13点</a>
+                         @if (DateTime.Now.Hour>13)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>12&& DateTime.Now.Hour<14)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>*@
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="14">14点</a>
+                        @if (DateTime.Now.Hour>14)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>13&& DateTime.Now.Hour<15)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    @*<li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="15">15点</a>
+                        @if (DateTime.Now.Hour>15)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>14&& DateTime.Now.Hour<16)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="16">16点</a>
+                        @if (DateTime.Now.Hour>16)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>15&& DateTime.Now.Hour<17)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="17">17点</a>
+                         @if (DateTime.Now.Hour>17)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>16&& DateTime.Now.Hour<18)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                        
+                    </li>*@
+                   <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="18">18点</a>
+                        @if (DateTime.Now.Hour>18)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>17&& DateTime.Now.Hour<19)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+
+                    <li>
+                    	<a href="javascript:void(0);" id="20">20点</a>
+                        @if (DateTime.Now.Hour>20)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>19&& DateTime.Now.Hour<21)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                  @*   <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="19">19点</a>
+                        @if (DateTime.Now.Hour>19)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>18&& DateTime.Now.Hour<20)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li
+						><i></i>
+                    
+                    <li>
+						<i></i>
+                    	<a href="javascript:void(0);" id="21">21点</a>
+                        @if (DateTime.Now.Hour>21)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>20&& DateTime.Now.Hour<22)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>
+                    <li class="no">
+						<i></i>
+                    	<a href="javascript:void(0);" id="22">22点</a>
+                        @if (DateTime.Now.Hour>22)
+                        {
+                          <span>已结束</span>  
+                        }
+                        else if (DateTime.Now.Hour>21&& DateTime.Now.Hour<23)
+                        {
+                           <span>抢购中</span>
+                        }
+                        else
+                        {
+                            <span>未开始</span>
+                        }
+                    </li>*@
+                </ul>
+            </div>
+            <div id="ProductListDiv">
+             @Html.Partial("_BuyProductListGroupHaoLi", Model)       
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+<div class="clear">
+</div>
+
+
+<script id="demo1" type="text/x-jquery-tmpl">
+    ${title}:<span style="color: #808080;">${day}</span>天<span style="color: #808080;">${hour}</span>时<span style="color: #808080;">${minute}</span>分 <span style="color: #808080;">${second}</span>秒
+</script>
+
+
+
+<script type="text/javascript">
+
+    var tmplObj = $('#demo1');
+   
+
+    function render(data, productId) {
+
+        //按钮颜色
+        //结束后执行该指令
+        if (data.status == -1) {
+            $("#img_" + productId).attr("src", "/Areas/Shop/Themes/M1/Content/images/cctv_2.png");
+            $(this).html("抢购已结束");
+            $("#" + productId).html("售罄");
+            $("#" + productId).parent().parent().find("[class=price]").attr("class", "price1");
+            $("#" + productId).parent().parent().find("[class=progress]").attr("class", "progress1");
+            $("#" + productId).parent().parent().find("[class=buy]").attr("class", "buy1");
+            //$("#" + productId).parent().attr("class", "buy1");
+        }
+        if (data.status == 0) {
+            data.title = "倒计时";
+            var tmp = $("#" + $(this).context.id).attr("Product");
+            $("#" + tmp).html("等待");
+            $("#" + tmp).parent().parent().attr("class", "feature featureA");
+            $("#" + tmp).parent().parent().find("[class=progress]").css("display","none");
+
+            //var tmpid = $(this).id.attr("productid");
+
+            //$("#" + tmpid).html("等待");
+            //$(this).html("准备开抢");           
+        }
+
+        //return $('#demo1').tmpl(data);
+        return tmplObj.tmpl(data);
+
+    }
+</script>
+
+<script>
+    $(".purchase_while a").live("click", function () {
+        var thisobj = this;
+        $.ajax({
+            url: "/ProSales/SalesForMembersByHours", async: false, data: { Date: $(this).attr("id") }, success: function (data) {
+                $(".purchase_while li").removeClass("active");
+                $(thisobj).parent().addClass("active");
+
+                $("#ProductListDiv").html(data);
+                ProSecond();
+            }
+        });
+    });
+
+
+    //定义天切换的图标事件, 请求数据
+    $(".datepanic a").live("click", function () {
+        var thisobj = this;
+        $.ajax({
+            url: "/ProSales/SalesForMembers", async: false, data: { curDate: $(this).attr("id") }, success: function (data) {
+                $(".datepanic a").removeClass("active_date");
+                $(thisobj).addClass("active_date");
+
+                $("#ProductListDiv").html(data);
+                ProSecond();
+            }
+        });
+    });
+
+
+
+    //产生秒表
+    function ProSecond() {
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+
+            var myclass = new CountDown();
+           
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: render,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+
+            });
+        })
+    }
+ProSecond();
+
+</script>

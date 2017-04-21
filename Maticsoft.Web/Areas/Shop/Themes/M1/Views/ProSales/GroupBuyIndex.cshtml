@@ -1,0 +1,225 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string regionId = Request.RequestContext.RouteData.Values["regionid"] != null ? Request.RequestContext.RouteData.Values["regionid"].ToString() : "643";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+}
+<style>
+    select {
+        min-height: 30px;
+    }
+
+    .txtenddate span {
+        font-size: 12px;
+        color: #ccc;
+    }
+    .list_con_AD img{
+        width:1920px;
+        height:450px;
+        position: absolute;
+        left: 50%;
+        margin-left: -960px;
+        /*margin:0 auto;*/
+    }
+
+</style> 
+<link href="/Areas/Shop/Themes/M1/Content/Css/GroupBuy/style.css" rel="stylesheet"
+    type="text/css">
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/dialog,item,item-s,paging,scroeAndlist-v1.css"
+    type="text/css" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/GroupBuy/tuangou.css" rel="stylesheet"
+    type="text/css">
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/GroupBuy/slideshow.js"></script>*@
+<script language="javascript" type="text/javascript">    var $Maticsoft = { BasePath: '/' } </script>
+
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMdd"))" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+    $(function () {
+
+        //左侧菜单浮动
+        $("#Float").capacityFixed({ "top": 320 });
+        //$(".cate3-L-listCont").capacityFixed({ "top": 319 });
+
+        //左侧ul菜单伸缩效果
+        $(".listCont-B").each(function (_index, _li) {
+            $("h3", _li).click(function () {
+                var attr = $(".listCont-BL", _li)[0].style.display;
+                if (attr == "none") {
+                    $(".listCont-BL", _li).slideDown();
+                    $('i', this).addClass("zk");
+                    $('i', this).removeClass("ss");
+                }
+                else {
+                    $(".listCont-BL", _li).slideUp();
+                    $('i', this).addClass("ss");
+                    $('i', this).removeClass("zk");
+                }
+            });
+        });
+
+
+
+    })
+
+</script>
+@*<div class="comiis_wrapad" id="slideContainer">
+    <div id="frameHlicAe" class="frame cl">
+        <div class="temp">
+        </div>
+        @Html.Action("AdDetail", "Partial", new { id = 61, ViewName = "_IndexAdGroup" })
+    </div>
+</div>*@
+<div>
+    <div class="" style="margin:auto; width:100%; height:450px; position:relative; ">
+        <div class="list_con_AD" style="">
+            <a href="http://zhenhaolin.com/product/160/253/0/default/" style="">
+                <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/tuangou_banner_4.jpg"  /></a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //SlideShow(5000);
+</script>
+<div class="blank10">
+</div>
+<div class="catg-II">
+    <div class=" wrapper">
+        <div class=" clearfix">
+            <div class="cate3-L">
+                <div class="tg2-title">所有商品分类</div>
+                <div class="cate3-L-list">
+
+                    <div class="cate3-L-listCont" name="__NZLB001">
+                        @Html.Action("ProductGroupBuyCategoryList", new { Cid = @cid, IsForMember = ViewBag.IsForMembers, ViewName = "_ProductCategoryGroupBuy" })
+                    </div>
+
+                </div>
+                <div class="m0 mgT10 rank">
+                    <div class="mt tg2Lt">
+                        <h3>TOP热销榜</h3>
+                    </div>
+                    <div class="tp">
+                        <ul class="clearfix">
+                            @{ System.Data.DataSet dshot = ViewBag.hotgroupbuy as System.Data.DataSet;
+                               for (int i = 0; i < dshot.Tables[0].Rows.Count; i++)
+                               {
+                                   System.Data.DataRow dr = dshot.Tables[0].Rows[i];
+                                   int GroupBase = int.Parse(dr["BuyCount"].ToString());
+                                   if (!string.IsNullOrWhiteSpace(dr["GroupBase"].ToString().Trim()))
+                                   {
+                                       GroupBase = GroupBase + int.Parse(dr["GroupBase"].ToString().Trim());
+                                   }
+                                   
+                                <li>
+                                    <i>@(i + 1)</i><span><a href="/Product/GroupBuyDetail?id=@dr["GroupBuyId"]&Groupbase=@GroupBase">@Maticsoft.Common.StringPlus.SubString(dr["ProductName"].ToString(), 12, null)</a></span>
+                                    <dl class="tpcon clearfix">
+                                        <dt><a href="/Product/GroupBuyDetail?id=@dr["GroupBuyId"]&Groupbase= @GroupBase">
+                                            <img width="80" style="border:0px" height="60" src=" @Maticsoft.Web.Components.FileHelper.GeThumbImage(dr["GroupBuyImage"].ToString(), "T115X115_")" /></a></dt>
+                                        <dd><span>￥@Convert.ToDecimal(dr["Price"]).ToString("F")</span></dd>
+                                        @*<dd>折扣</dd>*@
+                                        <dd>
+
+                                            <samp>@GroupBase</samp>人团购</dd>
+                                    </dl>
+                                </li>
+                               }
+                               
+                            	
+                            }
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="cate3-R">
+                <div class="sort">
+                    <div class="sortcon">
+                        <div class="sortcon-link" style="display: none">
+                            <span class="title">区&nbsp;&nbsp;域：</span>
+                            <div class="sortcon-linkson" id="arealist">
+                            </div>
+                        </div>
+                        @Html.Action("GetListCate", new { IsForMembers = ViewBag.IsForMembers })
+                    </div>
+                    <div class="sequence">
+                        <span class="title">排&nbsp;&nbsp;序：</span>
+                        <a href="@(ViewBag.BasePath)ProSales/@(ViewBag.IsForMembers == true ? "SalesForMembers" : "GroupBuy")/@regionId/@cid/default" title="默认排序" id1="default">默认</a>
+                        <a href="@(ViewBag.BasePath)ProSales/@(ViewBag.IsForMembers == true ? "SalesForMembers" : "GroupBuy")/@regionId/@cid/new" title="按发布时间排序"  id1="new"><span>最新</span><span class="down"></span></a>
+                        <a href="@(ViewBag.BasePath)ProSales/@(ViewBag.IsForMembers == true ? "SalesForMembers" : "GroupBuy")/@regionId/@cid/hot" title="销量从高到低" id1="hot"><span>销量</span><span class="down"></span></a>
+                        <a href="@(ViewBag.BasePath)ProSales/@(ViewBag.IsForMembers == true ? "SalesForMembers" : "GroupBuy")/@regionId/@cid/price" title="价格从低到高"  id1="price"><span>价格</span><span class="up"></span></a>
+                        <div class="f-input" style="float: right; border: solid 1px #ccc; display: none" id="">
+                            <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                            <input type="hidden" id="hfSelectedNode"  value="@ViewBag.regionId"/>
+                            <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script>
+                        </div>
+                    </div>
+                </div>
+                <div class="W-slt mgT10 clearfix" id="ProductListDiv">
+                    @Html.Partial("_BuyProductListGroup", Model);
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="clear">
+</div>
+<script id="sencondTemplate" type="text/x-jquery-tmpl">
+    ${title}:<span style="color: #808080;">${day}</span>天<span style="color: #808080;">${hour}</span>时<span style="color: #808080;">${minute}</span>分 <span style="color: #808080;">${second}</span>秒
+
+</script>
+<script>
+    //定义天切换的图标事件, 请求数据
+
+    function render(data, productId) {
+        //alert(data.status);
+        //按钮颜色
+        //结束后执行该指令
+        if (data.status == -1) {
+            //alert(data.status);
+            $("#img_" + productId).attr("src", "/Areas/Shop/Themes/M1/Content/images/cctv_2.png");
+            // alert("结束");
+            $(this).html("团购活动已结束");
+        }
+        if (data.status == 0) {
+            // $(this).html("距离团购");
+            data.title = "距离团购";
+            return $('#sencondTemplate').tmpl(data);
+        }
+        if (data.status == 1) { return $('#sencondTemplate').tmpl(data); }
+
+    }
+
+    //产生秒表
+    function ProSecond() {
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            // alert(curDate);
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+            // alert(curDate);
+            var myclass = new CountDown();
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: render,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+
+            });
+        })
+    }
+    ProSecond();
+
+</script>

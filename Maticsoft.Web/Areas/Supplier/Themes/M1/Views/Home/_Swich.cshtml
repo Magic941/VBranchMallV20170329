@@ -1,0 +1,94 @@
+﻿@{
+    //Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+  }
+
+<html>
+
+<head>
+
+<title>cssrain</title>
+
+<meta charset="gb2312" content="text/html;" http-equiv="Content-Type"/>
+
+<script language="javascript">
+
+
+
+    function switchSysBar() {
+
+        if (parent.document.getElementById('attachucp').cols == "198,9,*") {
+
+            document.getElementById('leftbar').style.display = "";
+
+            parent.document.getElementById('attachucp').cols = "0,9,*";
+
+        }
+
+        else {
+
+            parent.document.getElementById('attachucp').cols = "198,9,*";
+
+            document.getElementById('leftbar').style.display = ""
+
+        }
+
+    }
+
+    function load() {
+
+        if (parent.document.getElementById('attachucp').cols == "198,9,*") {
+
+            document.getElementById('leftbar').style.display = "";
+
+        }
+
+    }
+
+
+
+</script>
+
+</head>
+
+<body marginwidth="0" marginheight="0"  onLoad="load()" topmargin="0" leftmargin="0">
+
+<center>
+
+<table height="100%" cellspacing="0" cellpadding="0" border="0" width="100%" >
+
+<tbody>
+
+<tr>
+
+ 
+
+<td id="leftbar" width="6"  style="background-color:#eee;"">
+
+<a onClick="switchSysBar()" href="javascript:void(0);">
+
+<img height="41" border="0" width="9" alt="展开左侧菜单" src="/images/pic24.gif"/>
+
+</a>
+
+</td>
+
+<td  id="rightbar" bgcolor="#eee">
+
+<a onClick="switchSysBar()" href="javascript:void(0);">
+
+<img height="41" border="0" width="9" alt="隐藏左侧菜单" src="/images/pic23.gif"/>
+</a>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</center>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+﻿<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="/Areas/Supplier/Themes/M1/Content/css/admin.css" rel="stylesheet" type="text/css">
+    <title>健康商城商家系统</title>
+</head>
+<frameset rows="118,*" cols="*" framespacing="0" frameborder="no" border="0">
+    <frame src="@(ViewBag.BasePath)Home/Top" name="topFrame" scrolling="No" noresize="noresize" id="topFrame"
+        title="topFrame" />
+    </frame>
+    <frameset id="attachucp" framespacing="0" border="0" frameborder="no" cols="198,9,*"
+        rows="*">
+        <frame scrolling="auto" noresize="" frameborder="no" name="leftFrame" src="@(ViewBag.BasePath)Home/LeftMenu/604" id="leftMenu">
+        </frame>
+        <frame id="leftbar" scrolling="no" noresize="" name="switchFrame" src="@(ViewBag.BasePath)Home/Swich">
+        </frame>
+        <frame scrolling="yes" noresize="" border="0" name="mainFrame" src="@(ViewBag.BasePath)Home/Main" id="mainMenu">
+        </frame>
+    </frameset>
+</frameset>

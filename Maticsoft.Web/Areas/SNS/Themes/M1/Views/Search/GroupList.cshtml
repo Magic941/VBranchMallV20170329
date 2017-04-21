@@ -1,0 +1,151 @@
+﻿ @using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.GroupSearch
+
+@{   string q = Request.RequestContext.RouteData.Values["q"] != null ? Request.RequestContext.RouteData.Values["q"].ToString() : "";}
+@*<div class="group3">
+    <h3 class="all_group_result">与"@(q)"相关的小组</h3>
+    <div class="clear">
+    </div>
+    <div id="target" style="width: 663px; height:auto">
+        <ul>
+            @foreach (Maticsoft.Model.SNS.Groups item in Model)
+            {
+                <ul>
+                    <li style="margin-left:20px">
+                        <div class="group2_s_1_a">
+                            <a class="pic_load" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">
+                                <img ref="@item.GroupLogo" alt="@item.GroupName"/>
+                            </a>
+                        </div>
+                        <div class="group2_s_1_b">
+                            <p class="group2_s_1_ba">
+                                <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">@item.GroupName</a></p>
+                            <p class="group2_s_1_bb">@item.GroupUserCount 个成员</p>*@
+@*      <p class="group2_s_1_bc">@item.GroupDescription</p>*@ @*                   </div>
+                    </li>
+                </ul>
+            }
+        </ul>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+*@
+<div class="s_list">
+    <div class="s_list_x">
+@*        <h1>
+            与<span>“@(q)”</span>相关的小组</h1>*@
+        <div class="s_list_s">
+            @* <p class="s_list_s1">全部类型<img src="/Areas/SNS/Themes/M1/Content/images/jiantou.png"/></p>
+        <p class="s_list_s2">排序<img src="/Areas/SNS/Themes/M1/Content/images/jiantou.png"/></p>*@
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <ul>
+            @if (Model.SearchList != null)
+            {
+                foreach (Maticsoft.Model.SNS.Groups item in Model.SearchList)
+                {
+                <li>
+                    <div class="s_list_b">
+                        <a href="javascript:;">
+                            <img src="@item.GroupLogo" style=" width:64px; height:64px"/></a></div>
+                    <div class="s_list_a">
+                        <p class="group2_s_1_ba">
+                            <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">@item.GroupName</a></p>
+                        <p class="s_list_x_a">
+                            创建者：<a href="@(ViewBag.BasePath)User/Posts?uid=@(item.CreatedUserId)">@item.CreatedNickName</a>
+                            成员：@(item.GroupUserCount)人 主题数：@item.TopicCount</p>
+                        <p class="s_list_x_a">
+                            简介：@(Maticsoft.Common.StringPlus.SubString(item.GroupDescription, 20))
+                            <span>[创建时间：@(item.CreatedDate)]</span></p>
+                       
+                            @if (!string.IsNullOrEmpty(item.Tags))
+                            { <p class="s_list_x_b">
+                               小组标签：
+                                @foreach (string stritem in Maticsoft.Common.StringPlus.GetSubStringList(item.Tags, ','))
+                                { 
+                                <a href="@(ViewBag.BasePath)Search/Groups/@stritem">@stritem</a>
+                                }                        </p>
+                            }
+
+                    </div>
+                    <div class="clear">
+                    </div>
+                </li> 
+                }
+            }
+
+        </ul>
+    </div>
+    <div class="s_list_w">
+        <div class="s_list_w1">
+            <h1>
+                群组推荐</h1>
+            <ul>
+                @if (Model.RecommandList != null)
+                {
+                    foreach (Maticsoft.Model.SNS.Groups item in Model.RecommandList)
+                    {
+                    <li>
+                        <div class="s_list_b">
+                            <a href="javascript:;">
+                                <img src="@item.GroupLogo" style=" width:64px; height:64px"/></a></div>
+                        <div class="s_list_w1_1">
+                            <p class="group2_s_1_ba">
+                                <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">@item.GroupName</a></p>
+                            <p class="group2_s_1_bb">@(item.GroupUserCount)个成员</p>
+                            <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(item.GroupDescription, 10))</p>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="s_list_w1">
+            <h1>
+                活跃小组</h1>
+            <ul>
+                @if (Model.HotList != null)
+                {
+                    foreach (Maticsoft.Model.SNS.Groups item in Model.HotList)
+                    {
+                    <li>
+                        <div class="s_list_b">
+                            <a href="javascript:;">
+                                <img src="@item.GroupLogo" style=" width:64px; height:64px"/></a></div>
+                        <div class="s_list_w1_1">
+                            <p class="group2_s_1_ba">
+                                <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">@item.GroupName</a></p>
+                            <p class="group2_s_1_bb">@(item.GroupUserCount)个成员</p>
+                            <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(item.GroupDescription, 10))</p>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+   
+</div>
+
+<div>
+        <!-- FansList BEGIN -->
+    <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model.SearchList, new PagerOptions()
+   {
+       CssClass = "in_pages",
+       PageIndexParameterName = "pageIndex",
+       NumericPagerItemCount = 5,
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+   }, new AjaxOptions() { UpdateTargetId = "MaticsoftToplist" })
+        <!--jQuery Ajax Paging End-->
+    </center></div>

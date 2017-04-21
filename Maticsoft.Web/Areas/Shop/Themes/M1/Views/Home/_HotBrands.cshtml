@@ -1,0 +1,24 @@
+﻿@model List<Maticsoft.Model.Shop.Products.BrandInfo>
+<div class="hd">
+    <h2>
+        热卖品牌</h2>
+    <div class="act divOpenAct" style="display: none">
+        <a href="#" target="_blank">
+            查看所有品牌</a></div>
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="bd divContent" >
+        <ul class="hp-brand-list">
+            @foreach (var item in Model)
+            {
+                   <li class="brand-item">
+                <a target="_blank" href="/product/0/@item.BrandId">
+                    <img alt="@item.BrandName" src="@item.Logo"
+                         width="110" height="58"></a>
+            </li>
+            }
+        </ul>
+        </div>
+}
+        

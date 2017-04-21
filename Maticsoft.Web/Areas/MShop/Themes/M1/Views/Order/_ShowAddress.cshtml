@@ -1,0 +1,44 @@
+﻿@model List<Maticsoft.Model.Shop.Shipping.ShippingAddress>
+@if (Model != null && Model.Count > 0)
+{
+    var item = Model[0];
+    <a href="@(ViewBag.BasePath)Order/AddressInfo/@item.ShippingId">
+        <input id="txtAddressCount" type="hidden" value="@Model.Count"/>
+        <div class="step-title" style="display: none">
+            <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action"> @*<a href="#none" onclick="Edit_Consignee(this, @item.ShippingId)" style="display: none">[修改]</a>*@
+            </span>
+        </div>
+        <div class="step-content" addressId="@item.ShippingId">
+            <div id="consignee" class="sbox-wrap">
+                <div class="sbox">
+                    <div class="s-content">
+                        <p>
+                            @item.ShipName &nbsp; @item.CelPhone &nbsp; &nbsp; @*@item.EmailAddress*@<br>
+                            @item.Address
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+}
+else
+{
+    <a href="@(ViewBag.BasePath)Order/AddressInfo">
+        <input id="txtAddressCount" type="hidden" value="0" />
+        <div class="step-title" style="display: none">
+            <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action"> </span>
+        </div>
+        <div class="step-content" addressid="-1">
+            <div id="consignee" class="sbox-wrap">
+                <div class="sbox">
+                    <div class="s-content">
+                        <p>
+                            未设置收货信息
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </a>
+}

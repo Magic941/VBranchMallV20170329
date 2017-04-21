@@ -1,0 +1,32 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Common;
+@model PagedList<Maticsoft.Model.CMS.Content>
+@if (Model != null)
+{
+    <div id="listbox">
+        @foreach (var item in Model )
+        { 
+             <a href="javascript:; " itemid="@item.ContentID" itemtitle="@item.Title">@item.Title</a>        
+        }     
+    </div>
+
+    <div class="pagePrevNext controlgroup">
+        <span>
+            <a  class="ui-link pagePrevlink" >没有了</a   >    
+        </span>
+        <span class="pagecount">
+            <a class="ui-link">@ViewBag.pageIndex/@ViewBag.totalPage</a>
+        </span>
+        <span>
+            <a class="ui-link pageNextlink">没有了</a>
+        </span>
+    </div>
+    <input type="hidden"  class="hidmenuidnewsListpage" value="@ViewBag.menuid" /> //类型
+    <input type="hidden"  class="hidkwnewsListpage" value="@ViewBag.keywords" /> //关键字
+    <input type="hidden"  class="hidpageindexnewsListpage" value="@ViewBag.pageIndex" /> //当前页码
+    <input type="hidden"  class="hidtotalPagenewsListpage" value="@ViewBag.totalPage" /> //总页码
+    <script type="text/javascript">
+        searchlistDataload();//调用方法
+    </script>
+    
+}

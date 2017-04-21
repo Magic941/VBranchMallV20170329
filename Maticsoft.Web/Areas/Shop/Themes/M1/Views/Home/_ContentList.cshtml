@@ -1,0 +1,17 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<ul>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+            <li><a href="/Article/Details/@item.ContentID" rel="nofollow"
+                   target="_blank" title="@item.Title "><span class="c-red mr5">[公告]</span>@item.Title
+                </a></li>
+
+        }
+    }
+    else
+    {
+        <p>暂无内容</p>
+    }
+</ul>

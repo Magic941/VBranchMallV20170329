@@ -1,0 +1,142 @@
+﻿@{
+    Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+  
+}
+@section head{
+    <link href="/Areas/MShop/Themes/M1/Content/css/shopc2.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+}
+@model Maticsoft.ViewModel.Shop.PayAndShip
+<div class="top">
+    <a href="@(ViewBag.BasePath)Order/SubmitOrder?payId=@ViewBag.PayId&shipId=@ViewBag.ShipId"><span>返回</span></a>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="step-title" style="padding-left: 18px; padding-top: 8px">
+</div>
+<div class="step-title" style="display: none">
+    <div id="save-consignee-tip" class="step-right" style="display: none;">
+        <span class="save-consignee-payship">由于您更改了收货人信息，请重新填写支付及配送方式</span></div>
+    <strong>支付及配送方式</strong> <span class="step-action" id="payment-ship_edit_action"
+        style="display: inline;"><span style="display: none"><a href="#none" onclick="back_Before('payment-ship')">
+            [关闭]</a></span></span>
+</div>
+<div class="step-content" id="step-2">
+    <div id="payment-ship"  style="position: relative; padding-left: 8px">
+        <div class="payment">
+            <h3>
+                支付方式</h3>
+            <div style="padding-bottom: 10px">
+            </div>
+            <div class="mc form">
+                @if (Model.ListPaymentMode != null && Model.ListPaymentMode.Count > 0)
+                {
+                    foreach (Maticsoft.Payment.Model.PaymentModeInfo item in Model.ListPaymentMode)
+                    {
+                        <div class="item">
+                            <div class="label">
+                                <input type="radio" name="payment" payname="@item.Name" id="pay-method-@item.ModeId" class="hookbox" value="@item.ModeId">
+                                <label for="pay-method-@item.ModeId">
+                                    @item.Name
+                                </label>
+                            </div>
+                            <span class="clr"></span>
+                        </div>
+                    <div class="field" style=" padding-left: 28px; color: gray;padding: 8px">
+                            <span class="tip">@Html.Raw(item.Description)</span>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="shipment">
+            <div class="way" style="padding-top: 20px;">
+                <h3>
+                    配送方式</h3>
+                <div class="mc form">
+                    <div class="way-category">
+                        <div class="way-category-label" id="pick-sku" style="padding-top: 10px;">
+                            <div class="way-category-label-a" style="display: none">
+                                <span style="color: #999">根据您选择的支付方式, 可以使用以下配送方式:</span>
+                            </div>
+                        </div>
+                        <div id="subway-sment">
+                            <div class="mc form">
+                                <div  id="pickSiteInfo">
+                                    @if (Model.ListShippingType != null && Model.ListShippingType.Count > 0)
+                                    {
+                                        foreach (Maticsoft.Model.Shop.Shipping.ShippingType item in Model.ListShippingType)
+                                        {
+                                            <div class="item  item-selected">
+                                                <div class="label" style="width: 210px;">
+                                                    <input name="pick" id="shipping-type-@item.ModeId" class="hookbox" value="@item.ModeId" type="radio"/>
+                                                    <label for="shipping-type-@item.ModeId">
+                                                        @item.Name</label>
+                                                </div>
+                                          
+                                            </div>
+                                           <div class="field" style=" padding-left: 28px; color: gray;padding: 8px">
+                                                <span class="tip">@Html.Raw(@item.Description)</span>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="form-btn group">
+                     <input type="button" value="保存支付及配送方式" onclick=" Save_PayAndShip(this) " class="sub_btn"/>
+                    <div class="loading loading-1" style="display: none">
+                        <b></b>正在提交信息，请等待！</div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!--<div id="shipment"></div>-->
+</div>
+@if (Model.CurrentPaymentMode != null)
+{
+    <script type="text/javascript">
+        $('#step-2 .payment :radio[value=@(Model.CurrentPaymentMode.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}
+@if (Model.CurrentShippingType != null)
+{
+    <script type="text/javascript">
+        $('#step-2 #shipment .item-selected :radio[value=@(Model.CurrentShippingType.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}
+<script type="text/javascript">
+    $('#step-2 .payment :radio').unbind('click').bind('click', function () {
+        $('#step-2 .payment :radio').removeAttr('checked').parents('.form:eq(0)>.item').removeClass('item-selected');
+        $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+        $('#body').load($Maticsoft.BasePath +'Order/PayAndShipInfo', {
+            payId: $(this).val()
+        });
+    });
+    $('#step-2 #shipment .item-selected :radio').unbind('click').bind('click', function () {
+        $('#step-2 #shipment .item-selected :radio').removeAttr('checked').parents('.sment-box:eq(0)>.item').removeClass('item-selected');
+        $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    });
+    function Save_PayAndShip(sender) {
+        $(sender).hide();
+        $(sender).next().show();
+//        $('#step-2').load($Maticsoft.BasePath + 'Order/ShowPayAndShip', {
+//            payId: $('#step-2 .payment :radio:checked').val(),
+//            shipId: $('#step-2 #shipment .sment-box :radio:checked').val()
+//        }, function () {
+//            Status_None();
+//            //window.location.hash = "payAndShipFocus";
+        //        });
+
+        var addressId = $('#step-1 .step-content').attr("addressId");
+        if (!addressId) addressId = 0;
+        
+        var payId = $('#step-2 .payment :radio:checked').val();
+        var shipId = $('#step-2 #shipment .item-selected :radio:checked').val();
+        window.location.href = $Maticsoft.BasePath + "Order/SubmitOrder?payId=" + payId + "&shipId=" + shipId + "&addrId=" + addressId;
+    }
+</script>

@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@section head{
+
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+}
+
+<div class="main">
+    <!--主要内容-->
+    <div class="mainnews">
+        <!--顶部文字新闻-->
+        <div style="overflow: hidden;" class="latestnews">            
+            @Html.Action("HomePartial", "Article", new { classid = 49,viewName="_HomeGongGao",top=3})                   
+            
+        </div>
+        <!--左侧-->
+        <div class="newsl">
+            <!-- 首页幻灯片 -->
+            @Html.Action("HomePartial", "Article", new { classid = 50,viewName="_HomeHeaderHot",top=4 })         
+            <!-- 首页幻灯片 -->
+
+            <!--健康知识-->
+             @Html.Action("HomePartial", "Article", new { classid = 42,viewName="_HomeJKZhiShi",top=6})
+
+            <!--精选导读-->
+            <!--保险资讯-->          
+            @Html.Action("HomePartial", "Article", new { classid = 44,viewName="_HomeBaoxianzixun",top=4 })
+            <!--热门推荐-->
+        </div>
+
+        <!--右侧-->
+        <div class="newsr">
+            @Html.Action("HomePartial", "Article", new { classid = 43,viewName="_HomeJKNews",top=5 })     
+
+            <!--关注我们-->
+            <div class="follow" style="margin-top: 82px;height:1px">
+               @* <div class="com-title">
+                    <span>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-5.png" alt="">关注我们</span>
+                </div>
+                <div class="followcon">
+                    <span>关注微信公众号，了解最新精彩内容</span>
+                    <p class="">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/qr1.jpg" alt="">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/qr2.jpg" alt="">
+                    </p>
+                   <a href="" class="awb1"></a><a href="" class="awb2"></a><a href="" class="asubscription"></a>
+                </div>*@
+            </div>
+
+            <!--阅读推荐-->
+             @Html.Action("HomePartial", "Article", new { classid = 22,viewName="_HomeBXChaoShi",top=5,isRec=true })
+            
+
+            <!--新闻资讯-->
+             @Html.Action("HomePartial", "Article", new { classid = 46,viewName="_HomeNews",top=10 })           
+
+        </div>
+
+        <div class="floatfix"></div>
+        <!-- 广告位01 -->
+          @Html.Action("HomePartial", "Article", new { classid = 52,viewName="_HomeGuanggao",top=10,isRec=true })   
+       
+        <!-- 广告位01 -->
+    </div>
+
+    <!--其他信息-->
+    <div class="mainother">
+        <!-- 合作伙伴 -->
+        <div class="partners">
+            <div class="partnerstitle"></div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo1.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo2.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo3.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo4.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo5.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo6.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo7.jpg" alt=""></a>
+            </div>
+            <div class="partnersimg">
+                <a href="">
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/link_logo8.jpg" alt=""></a>
+            </div>
+
+        </div>
+
+        <!-- 合作伙伴 -->
+
+        <!-- 友情链接 -->
+        <div class="links">
+            <div class="linkstitle"></div>
+            <ul class="ulfix">
+               @* <li><a href="http://www.baidu.com" target="_blank">99健康保险服务网</a> </li>
+                <li><a href="http://www.baidu.com/" target="_blank">99健康保险服务网</a> </li>*@
+            </ul>
+        </div>
+        <!-- 友情链接 -->
+    </div>
+    <div class="mreturn">
+        <div id="code"></div>
+        <div id="code_img" src="/Areas/CMS/Themes/M1/Content/99jkc/images/qr2.jpg"></div>
+        <a id="gotop"></a>
+    </div>
+</div>
+
+
+
+
+

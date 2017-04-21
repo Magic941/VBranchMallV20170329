@@ -1,0 +1,233 @@
+﻿<style>
+    .beabout {
+        width:72px;
+        float:left;
+        height:16px;
+        line-height:16px;
+        text-align:center;
+        margin:20px 0 0 15px;
+        background:url(/Areas/Shop/Themes/M1/Content/images/aaa/33_08.png) no-repeat;
+        display:block;
+            
+    }
+</style>
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+@if (Model != null && Model.Count > 0)
+{
+    for (int i = 0, m = 0, j = Model.Count, n = j / 4; i < j || m < n; m++, i++)
+    {
+        Maticsoft.BLL.Shop.Products.ProductInfo product = new Maticsoft.BLL.Shop.Products.ProductInfo();
+        
+    <div class="matches">
+        <div class="matches_hour clearfix">
+            @*<em>17:00</em><span><img src="/areas/shop/Themes/M1/Content/images/aaa/jija.png" width="88" height="24" /></span>*@
+        </div>
+        <ul class="clearfix">
+            <li class="countdown">
+                <a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" tracknum="1" target="_blank">
+                    <img src=" @Maticsoft.Web.Components.FileHelper.GeThumbImage(product.GetModel(Convert.ToInt64(Model[i].ProductId)).ImageUrl, "T350X350__")" alt="@Model[i].ProductName" width="243" height="243" /></a>
+                <p>@Model[i].ProductName</p>
+
+                @if (Model[i].StartDate > DateTime.Now)
+                {
+                    <div class="feature featureA">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                    <div class="beabout">
+                        即将开枪
+                    </div>
+                }
+                else
+                {
+                    <div class="feature">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width:@(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100)%"></div>
+                            <span> 已售 @(Math.Round(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100,2)) %</span>
+                        </div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                }
+
+
+                <span><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)">
+                    @if (Model[i].BuyCount >= Model[i].MaxCount)
+                    {
+                        <div class="robbed">
+                            <img src="/areas/shop/Themes/M1/Content/images/aaa/mai01_07.png" width="154" height="153" />
+
+                        </div>
+                    }
+                </a></span>
+
+                <div class="matches_names">
+                    <span class="clearfix">
+                        <em>市场价:￥<s>@Model[i].MarketPrice.ToString("F")</s></em>
+                        <i>折扣:@((Model[i].Price / Model[i].MarketPrice * 10).ToString("F"))折</i>
+                    </span>
+                    <b>
+                        <p class="item-brand txtenddate" style="color:red;" startDate="@Model[i].StartDate"  endDate="@Model[i].EndDate" Product="@Model[i].ProductId"  id="txtenddate_@(Model[i].ProductId)" curDate="@DateTime.Now">
+                            <span style="color: red;">0</span>天<span style="color: red;">0</span>时<span style="color: red;">0</span>分 <span style="color: red;">0</span>秒
+                        </p>
+                    </b>
+                </div>
+            </li>
+
+            @if (i >= j - 1) { break; }
+            <li class="countdown">
+                <a href="/Product/GroupBuyDetailHaoLi?id=@Model[++i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" tracknum="1" target="_blank">
+                    <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(product.GetModel(Convert.ToInt64(Model[i].ProductId)).ImageUrl, "T350X350__")" alt="@Model[i].ProductName" width="243" height="243" /></a>
+                <p>@Model[i].ProductName</p>
+                     @if (Model[i].StartDate > DateTime.Now)
+                {
+                    <div class="feature featureA">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                    <div class="beabout">
+                        即将开枪
+                    </div>
+                }
+                else
+                {
+                    <div class="feature">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width:@(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100)%"></div>
+                            <span> 已售 @(Math.Round(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100,2)) %</span>
+                        </div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                }
+                <a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)">
+                    @if (Model[i].BuyCount >= Model[i].MaxCount)
+                    {
+                        <div class="robbed">
+                            <img src="/areas/shop/Themes/M1/Content/images/aaa/mai01_07.png" width="154" height="153" />
+
+                        </div>
+                    }
+                </a>
+
+                <div class="matches_names">
+                    <span class="clearfix">
+                        <em>市场价:￥<s>@Model[i].MarketPrice.ToString("F")</s></em>
+                        <i>折扣:@((Model[i].Price / Model[i].MarketPrice * 10).ToString("F"))折</i>
+                    </span>
+                    <b>
+                        <p class="item-brand txtenddate" style="color:red;" startDate="@Model[i].StartDate"  endDate="@Model[i].EndDate" Product="@Model[i].ProductId"  id="txtenddate_@(Model[i].ProductId)" curDate="@DateTime.Now">
+                            <span style="color: red;">0</span>天<span style="color: red;">0</span>时<span style="color: red;">0</span>分 <span style="color: red;">0</span>秒
+                        </p>
+                    </b>
+                </div>
+            </li>
+            @if (i >= j - 1) { break; }
+            <li class="countdown">
+                <a href="/Product/GroupBuyDetailHaoLi?id=@Model[++i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" tracknum="1" target="_blank">
+                    <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(product.GetModel(Convert.ToInt64(Model[i].ProductId)).ImageUrl, "T350X350__")" alt="@Model[i].ProductName" width="243" height="243" /></a>
+                <p>@Model[i].ProductName</p>
+                     @if (Model[i].StartDate > DateTime.Now)
+                {
+                    <div class="feature featureA">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                    <div class="beabout">
+                        即将开枪
+                    </div>
+                }
+                else
+                {
+                    <div class="feature">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width:@(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100)%"></div>
+                            <span> 已售 @(Math.Round(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100,2)) %</span>
+                        </div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                }
+                <span><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)">
+                    @if (Model[i].BuyCount >= Model[i].MaxCount)
+                    {
+                        <div class="robbed">
+                            <img src="/areas/shop/Themes/M1/Content/images/aaa/mai01_07.png" width="154" height="153" />
+
+                        </div>
+                    }
+                </a></span>
+                <div class="matches_names">
+                    <span class="clearfix">
+                        <em>市场价:￥<s>@Model[i].MarketPrice.ToString("F")</s></em>
+                        <i>折扣:@((Model[i].Price / Model[i].MarketPrice * 10).ToString("F"))折</i>
+                    </span>
+                    <b>
+                        <p class="item-brand txtenddate" style="color:red;" startDate="@Model[i].StartDate"  endDate="@Model[i].EndDate" Product="@Model[i].ProductId"  id="txtenddate_@(Model[i].ProductId)" curDate="@DateTime.Now">
+                            <span style="color: red;">0</span>天<span style="color: red;">0</span>时<span style="color: red;">0</span>分 <span style="color: red;">0</span>秒
+                        </p>
+                    </b>
+                </div>
+            </li>
+
+            @if (i >= j - 1) { break; }
+            <li class="countdown">
+                <a href="/Product/GroupBuyDetailHaoLi?id=@Model[++i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" tracknum="1" target="_blank">
+                    <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(product.GetModel(Convert.ToInt64(Model[i].ProductId)).ImageUrl, "T350X350__")" alt="@Model[i].ProductName" width="243" height="243" /></a>
+                <p>@Model[i].ProductName</p>
+                    @if (Model[i].StartDate > DateTime.Now)
+                {
+                    <div class="feature featureA">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                    <div class="beabout">
+                        即将开枪
+                    </div>
+                }
+                else
+                {
+                    <div class="feature">
+                        <div class="price"><a href="#"><span>￥</span><em>@Model[i].Price.ToString("F")</em></a></div>
+                        <div class="progress">
+                            <div class="progress_bar" style="width:@(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100)%"></div>
+                            <span> 已售 @(Math.Round(Model[i].BuyCount * 1.00 /Model[i].MaxCount * 100,2)) %</span>
+                        </div>
+                        <div class="buy"><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i].ProductId">抢购</a></div>
+                    </div>
+                }
+                <span><a href="/Product/GroupBuyDetailHaoLi?id=@Model[i].GroupBuyId&Groupbase=@(Model[i].BuyCount + Model[i].GroupBase)" id="@Model[i]">
+                    @if (Model[i].BuyCount >= Model[i].MaxCount)
+                    {
+                        <div class="robbed">
+                            <img src="/areas/shop/Themes/M1/Content/images/aaa/mai01_07.png" width="154" height="153" />
+
+                        </div>
+                    }
+                </a></span>
+                <div class="matches_names">
+                    <span class="clearfix">
+                        <em>市场价:￥<s>@Model[i].MarketPrice.ToString("F")</s></em>
+                        <i>折扣:@((Model[i].Price / Model[i].MarketPrice * 10).ToString("F"))折</i>
+                    </span>
+                    <b>
+                        <p class="item-brand txtenddate" style="color:red;" startDate="@Model[i].StartDate"  endDate="@Model[i].EndDate" Product="@Model[i].ProductId"  id="txtenddate_@(Model[i].ProductId)" curDate="@DateTime.Now">
+                            <span style="color: red;">0</span>天<span style="color: red;">0</span>时<span style="color: red;">0</span>分 <span style="color: red;">0</span>秒
+                        </p>
+                    </b>
+                </div>
+            </li>
+        </ul>
+    </div>
+    }
+
+}
+else
+{
+    <div style="width: 1200px; height: 800px; text-align: center;">
+        <img src="/Areas/Shop/Themes/M1/Content/images//haoliwait.png" width="300" height="300" />
+    </div>
+}
+
+

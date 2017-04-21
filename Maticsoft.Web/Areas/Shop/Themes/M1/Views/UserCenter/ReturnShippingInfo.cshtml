@@ -1,0 +1,300 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+    Maticsoft.Model.Shop.Order.OrderReturnGoods orderReturnGoods = ViewBag.OrderReturnGoods;
+    Maticsoft.BLL.Ms.Regions bllRegions = new Maticsoft.BLL.Ms.Regions();
+    
+    Func<string, string> FuncParseRegionPath = path =>
+    {
+        if (string.IsNullOrWhiteSpace(path)) return string.Empty;
+        string ret = string.Empty;
+        Maticsoft.Model.Ms.Regions regionModel = null;
+        path.TrimStart("0,".ToCharArray()).Split(",".ToCharArray(), StringSplitOptions.RemoveEmptyEntries).ToList().ForEach(item =>
+        {
+            if (int.Parse(item) > 0)
+            {
+                regionModel = bllRegions.GetModel(int.Parse(item));
+                if (null != regionModel) ret += (string.IsNullOrWhiteSpace(ret) ? "" : " ") + regionModel.RegionName;
+            }
+        });
+        return ret;
+    };
+}
+
+@model   Maticsoft.Model.Shop.Order.OrderReturnGoodsItem
+<!--SWF图片上传开始-->
+<link href="/admin/js/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet" type="text/css" />
+<script src="/admin/js/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+<script src="/admin/js/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("~/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/returnApply.js")"></script>
+<style>
+p {
+    margin:0;
+    }
+em, i {
+    font-style:normal;
+    }
+ ul {
+    padding:0;
+    margin:0;
+    }
+.returned_purchase ul {
+        width:95%;
+        margin:0 auto;
+    }
+.returned_purchase li,.return_rmation li {
+        overflow:hidden;
+        padding:10px 0;
+    }
+ .returned_purchase li span{
+        width:5.25em;
+        float:left;
+        text-align:right;
+    }
+.returned_purchase li div {
+        float:left;
+        /*padding-left:10px;*/
+    }
+.purchase4 em{
+        width:20px;
+        height:20px;
+        line-height:20px;
+        display:inline-block;
+        *display:inline;zoom:1;
+        text-align:center;
+        border:1px solid #ccc;
+        padding-bottom:2px;
+    }
+.purchase6 i{
+        display:block;
+    }
+.purchase4 input {
+        width:20px;
+        height:20px;
+        line-height:20px;
+        text-align:center;
+    }
+ .returned_purchase dt li,.return_rmation li {
+        padding-top:10px;
+    }
+.return_rmation li label {
+        width:5.25em;
+        text-align:right;
+        float:left;
+    }
+.return_rmation ul {
+        width:95%;
+        margin:0 auto;
+    }
+.return_rmation li textarea {
+    width:66%;
+    }
+   #allReturnAmount {
+       font-size:24px;
+       display:block;
+       color:#eb020b;
+    }
+.submit_cancel {
+    }
+.submit_cancel a {
+        width:100px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        display:inline-block;
+        *display:inline;zoom:1;
+        color:#fff;
+        border-radius:3px;
+    }
+.purchase2 {
+    width:66%;
+    }
+ .img-box {
+        display:block;
+        width:4rem;
+        height:4rem;
+        margin:0 auto;
+    }
+</style>
+<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">退货发货处理</h3>
+        </div>
+    </div>
+    <div class="my_order_right" style="margin-top:10px;">
+    @if (Model != null)
+    {                    
+        <div class="returned_purchase">
+                    <ul class="clearfix">
+                        <li class="purchase1">
+                            <span>商品名称：</span>
+                            <div class="purchase6">
+                                <p>@Model.ProductName</p>
+                                <em>@Model.Attribute</em>
+                                <i>商品编号：@Model.SKU</i>
+                            </div>
+                        </li>
+                        @*    <li class="purchase2">
+                            	<span>商品附件</span>
+                                <div class="purchase2">
+                        	        <em>...</em>
+                                </div>
+                            </li>*@
+                        <li class="purchase3">
+                            <span>价格：</span>
+                            <div class="purchase3">
+                                <em>￥@Math.Round(Model.AdjustedPrice.Value, 2)</em>
+                            </div>
+                        </li>
+                        <li class="purchase4">
+                            <span>数量：</span>
+                            <div class="purchase4">
+                                <em>@Model.Quantity</em>
+                            </div>
+                        </li>
+                        <li class="purchase5">
+                            <span>优惠：</span>
+                            <div class="purchase5">
+                                <em>￥@Math.Round(Model.SellPrice.Value - Model.AdjustedPrice.Value, 2)</em>
+                            </div>
+                        </li>
+                    </ul>
+        </div>          
+        <div class="return_rmation">
+            <ul>
+                <li>
+                    <label>状态：</label>
+                    @{string status = "等待审核";      }
+                    @if (orderReturnGoods != null)
+                    {
+                        status = @Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetMainStatusStr(orderReturnGoods.ReturnGoodsType, orderReturnGoods.Status, orderReturnGoods.RefundStatus, orderReturnGoods.LogisticStatus);
+                    }
+                    <span>@status</span>
+                </li>
+                <li>
+                    <label>原因：</label>
+                    <span>@orderReturnGoods.ReturnReason</span>
+                </li>
+                <li>
+                    <label>问题描述：</label>
+                    <span>
+                        @orderReturnGoods.ReturnDescription
+                    </span>
+                </li>
+                <li>
+                    <label style="padding-top:7px;">退款金额：</label>
+                    <span style="font-size:24px; color:red;">￥@Math.Round(orderReturnGoods.ReturnAmounts.Value, 2)</span>
+
+                </li>
+                @if (orderReturnGoods.ReturnGoodsType != (int)Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Money)
+                { 
+                <li>
+                    <label>退回地址：</label>
+                    <span>@FuncParseRegionPath.Invoke(bllRegions.GetModel(null == orderReturnGoods.PickRegionId ? 0 : (int)orderReturnGoods.PickRegionId).Path + orderReturnGoods.PickRegionId) @orderReturnGoods.ReturnAddress</span>
+                </li>
+                <li>
+                    <label>物流公司：</label>
+                    <div style="display: inline-block">
+                        <div>
+                            <select id="selectLink">
+                                @{
+                                    System.Data.DataSet ds = ViewBag.dataset as System.Data.DataSet;
+
+                                    if (ds != null)
+                                    {
+                                        for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                                        {
+                                            System.Data.DataRow dr = ds.Tables[0].Rows[i];
+                                                    <option value="@dr["ExpressId"]">@dr["ExpressName"]</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label>快递单号：</label>
+                    <span>
+                        <input type="hidden" id="txtProductId" value="@Model.Id"/>
+                        <input type="text" id="txtexpressNo" />
+                    </span>
+                    <span id="Span_Lable" style="display:none">
+                        <label style="color:red;font-size:12px;font-family:微软雅黑">只能输入数字/字母</label>
+                    </span>
+                </li>
+                <li class="annex clearfix">
+                    <label>上传附件：</label>
+                    <div class="annexa" id="uploadfileNamShow">
+                        @if (!string.IsNullOrWhiteSpace(orderReturnGoods.Attachment))
+                        {
+                            foreach (var imgurl in orderReturnGoods.Attachment.Split(','))
+                            {
+                                <p>
+                                    <img src="@Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("PicServerUrl")@(string.Format(imgurl, ""))" width="120" />
+                                </p>
+                            }
+                        }
+                    </div>
+                </li>
+                <li style=" width: 230px; margin:0 auto;">
+                    <p>
+                        <a class="cell_BtnOk" id="Btn_shippingOK" style="height:35px; line-height:35px; width:100px; background:#eb020b; text-align:center; border-radius:3px; display:block; color:#fff;" onclick="Btn_shippingOK();" href="javascript:void(0);">提交</a></p>
+                </li>
+                }
+            </ul>
+        </div>
+    }
+    </div>
+</div>
+
+
+<script type="text/javascript">
+
+    //提交物流信息
+    function Btn_shippingOK() {
+        var expressNo = $.trim($("#txtexpressNo").val());
+        var Information = $.trim($("#selectLink").val());
+        var ProductId = $.trim($("#txtProductId").val());
+
+        var reg = new RegExp("^[A-Za-z0-9]+$");
+
+        if (expressNo.match(reg)) {
+            $("#Span_Lable").hide();
+        } else {
+            $("#Span_Lable").show();
+            return false;
+        }
+
+        $.ajax({
+            url: $Maticsoft.BasePath + "UserCenter/Btn_ShippingInfoOk",
+            type: 'post',
+            dataType: 'json',
+            timeout: 10000,
+            async: false,
+            data: {
+                Action: "post",
+                expressNo: expressNo,
+                Information: Information,
+                Id: ProductId
+            },
+            success: function (JsonData) {
+                switch (JsonData.STATUS) {
+                    case "SUCC":
+                        ShowSuccessTip("提交成功！");
+                        location.href = "/UserCenter/ReturnInfos";
+                        break;
+                    case "FAIL":
+                        ShowFailTip("提交失败！");
+                        break;
+                    default:
+                        ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                        break;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+            }
+        });
+    }
+</script>

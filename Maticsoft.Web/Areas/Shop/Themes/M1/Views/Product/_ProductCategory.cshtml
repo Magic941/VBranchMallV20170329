@@ -1,0 +1,66 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string attrvalues = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+
+    var ParentCatgList = Model.Where(rec => rec.ParentCategoryId == 0).ToList();
+
+}
+<script type="text/javascript">
+    $(function () {
+        var currentcid = '@cid';
+        $(".catelist").each(function () {
+            var cateId = $(this).attr("cateId");
+            if (cateId == currentcid) {
+                $(this).addClass("cur");
+            }
+        });
+    })
+</script>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in ParentCatgList)
+    {
+    <ul>
+        <li class="listCont-B">
+            @*<h3><i class="ss"></i><a href="/product/@ViewBag.Cid/@brandid/@attrvalues/@mod/@price">@item.Name</a></h3>*@
+            <h3><i class="@(ViewBag.Cid == item.CategoryId ? "zk" : "ss")"></i><a href="javascript:;">@item.Name</a></h3>
+            @{
+        var Children = Model.Where(rec => rec.ParentCategoryId == item.CategoryId);
+        var flag = false;
+        int maxcalss = Children.Where(b => b.CategoryId == ViewBag.Cid).ToList().Count();
+
+
+        if (ViewBag.Cid == item.CategoryId)
+        {
+            flag = true;
+        }
+        else
+        {
+            if (maxcalss > 0)
+            {
+                flag = true;
+            }
+        }
+            }
+
+          
+            <div class="listCont-BL" style='display: @(flag==true ? "block" : "none")'>
+
+                <ul>
+                    @foreach (var child in Children)
+                    {
+                        <li><a cateId="@child.CategoryId" href="@(ViewBag.BasePath)/product/@child.CategoryId">@child.Name</a></li>
+                    }
+                </ul>
+            </div>
+        </li>
+    </ul>
+    }
+
+}
+
+

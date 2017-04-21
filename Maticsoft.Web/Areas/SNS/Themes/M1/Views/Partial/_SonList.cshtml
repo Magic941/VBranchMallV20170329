@@ -1,0 +1,11 @@
+﻿     @model List<Maticsoft.Model.SNS.Categories>
+      @foreach (var item in Model)
+                {
+                    <dl class="cates_cate_s" style="margin-top: 10px;">
+                        <p class="cates_cate_s_a">
+                            @item.Name</p>
+                        <p class="cates_cate_s_b">
+                                      @Html.Action("CategoryList", new { Cid = item.CategoryId, Top = 5, ViewName = "_GrandSon" })
+                        </p>
+                    </dl>
+                }

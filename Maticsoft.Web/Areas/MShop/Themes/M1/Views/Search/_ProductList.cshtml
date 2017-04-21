@@ -1,0 +1,110 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "0-0";
+        //int cid = 0, int brandid = 0, string keyword = "", string mod = "hot", string price = "0-0",
+        //                  int? pageIndex = 1
+}
+<script type="text/javascript" src="/Scripts/jquery.waterfall/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/Scripts/jquery.waterfall/js/jquery.waterfallnew.js"></script>
+<link rel="stylesheet" href="/Scripts/jquery.waterfall/css/stylenew.css" />
+
+
+@*<script type="text/javascript">
+
+     $(function () {
+         waterFall.init({
+             //Ajax请求参数
+             AjaxOptions: {
+                 //Ajax请求参数
+                 Params:@Html.Raw(ViewBag.DataParam),
+                //Ajax请求URL
+                DataURL: "@(ViewBag.BasePath)search/ListWaterfall"
+            },
+              //瀑布流起始索引记录器 - 用于累计
+              CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+              //瀑布流起始索引
+              StartIndex:$('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+              //瀑布流结束索引
+              EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+              //分页容器
+              PagedContainer: $('.in_pages'),
+              //列容器ID前缀，数据区
+              ColumnFirstId: "J_lazyload",
+              //列数
+              ColumnNumber: 0,
+              RowNumber: 1
+          });
+         $.lazyFixedLoadImg('.item', 175, 228);
+     })
+ </script>*@
+<div id="ProductListDiv">
+    @if (Model.ProductPagedList != null)
+    {
+        <div class="products_list" id="J_lazyload">
+        </div>
+        <div>
+            <!--数据索引开始位置-->
+            <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartPageIndex" />
+            <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndPageIndex" />
+        </div>
+    }
+</div>
+
+<script type="text/javascript">
+    $(function(){
+        // 一次性全部加载到本地，再部分显示
+       
+       
+        // $("#divResult2").html( $("#divResult2").html() + "执行索引为："+waterFall.StartIndex);
+        //结束数据位置
+      
+        var endpageindex=$("#hfCurrentPageAjaxEndIndex").val();
+        // 按需加载方式
+        var wf_page = 0;
+        var pageindex=1;
+        $('#J_lazyload').waterfall({
+           
+            EndIndex:endpageindex,
+            StartIndex:pageindex,
+            perNum:1,
+            imgUrlName:"ThumbnailUrl1",
+            // 自定义跨域请求
+            ajaxFunc: function(success, error){
+               
+                $.ajax({
+                    type: 'GET',
+                    url: "@(ViewBag.BasePath)search/ListWaterfallNew",
+                    cache: false,
+                    data: $.extend(@Html.Raw(ViewBag.DataParam),{ PageIndex:  ++wf_page }),
+         	            dataType:'json',
+         	            timeout: 60000,
+         	            success: success,
+         	            error: error
+                });
+         	    
+            },
+            createHtml: function(data){
+     
+                return '<div class="wf_item_inner">' +
+                          '<a href="@(ViewBag.BasePath)p/d/0/'+data.ProductId +'/4" class="listimg ALIsting" target="_blank">' +
+                            '<img class="thumb_img"  src="'+data.ThumbnailUrl1 +'"  />' +
+                          '</a>' +
+                          '<h3 class="desc" style="margin-top:1px;"> <a href="@(ViewBag.BasePath)p/d/0/'+data.ProductId +'/4"> '+ data.ProductName +' </a>  </h3>' +
+                          '<small class="zeng" >￥'+data.LowestSalePrice +'</small>' +
+                    '<div class="zsdgu"><b style="font-family: SimSun; color:#808080; text-decoration: line-through; vertical-align: middle;  display:block;">￥'+data.MarketPrice+' </b>'+
+                    '<h style="font-family: SimSun; color:#808080; float:right;margin-right:10px ">已售 '+data.SaleCounts+' 件 </h>'+
+                        '</div></div>';
+              
+
+            }
+        });
+    });
+</script>
+
+

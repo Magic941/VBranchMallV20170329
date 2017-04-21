@@ -1,0 +1,75 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "用户登录";
+}
+@section head{
+
+    <script type="text/javascript">
+        var selfurl = window.location.pathname + window.location.search;
+        if (selfurl.indexOf($Maticsoft.BasePath + 'Account/Login') == -1) {
+            window.location = $Maticsoft.BasePath + "Account/Login?returnUrl=" + selfurl;
+        }
+        ; if (parent.length) { top.window.location = $Maticsoft.BasePath + "Account/Login" + window.location.search; }
+    </script>
+
+<link href="/Areas/Shop/Themes/M1/Content/card/css/home.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/card/css/login.css" rel="stylesheet" />
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/DefaultLogin.js" type="text/javascript"></script>
+}
+@model Maticsoft.ViewModel.Shop.LogOnModel 
+@if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            ShowFailTip('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+        })
+    </script>
+}
+
+<!--Conent Start-->
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { Class = "wform form" }))
+{
+    <input name="returnUrl" type="hidden"  value="@ViewBag.returnUrl"/>
+
+
+<div class="focus_mapa">
+</div>
+<div class="land">
+    <div class="" style="padding-top:25px;">
+        <div class="land_register">
+            <span>会员登陆</span>
+            <ul>
+            	
+                	<li class="subscriber">
+                    	
+                             <input type="submit" id="inputloginsubmit" value="" style="display: none;" />
+                                @Html.TextBoxFor(m => m.UserName, new { Class = "inp",placeholder="请输入用户名", id = "txtLogin", name = "xlInput" })
+                                <bdo></bdo>
+                                <em id="userNameTip" class="spanMsg" style="color:red;"></em>
+                        <i><img src="/Areas/Shop/Themes/M1/Content/card/ico/ico_yh.jpg" width="13" height="18"/></i>
+                    </li>
+                    <li class="subscriber">
+                    	 @Html.PasswordFor(m => m.Password, new { Class = "inp",placeholder="请输入登录密码", id = "password", name = "xlInput" })
+                                <bdo></bdo>
+                                <em id="pwdTip" class="spanMsg" style="color:red;"></em>
+                        <i><img src="/Areas/Shop/Themes/M1/Content/card/ico/ico_mm.jpg" width="15" height="19"/></i>
+                    </li>
+                    <li class="remember">
+                    	
+                        <a style=" background:none;" href="/Account/FindPwdByPhone">忘记密码</a>
+                    </li>
+                    <li class="button_red clearfix">
+                    	 <a href="javascript:;" class="red_den" id="loginsubmit">登  录</a>
+                            <a href="/Account/Register" class="my_zhu">我要注册</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+}
+
+

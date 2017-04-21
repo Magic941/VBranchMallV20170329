@@ -1,0 +1,62 @@
+﻿@using Maticsoft.Model.Shop.Products;
+@model List<ProductInfo>
+@{
+    if (Model==null)
+    {
+        return;
+    }
+    }
+<div class="tj-msg clearfix">
+    <div class="hot-tj fL">
+        <div class="tjHD">
+            <h3>热卖推荐</h3>
+        </div>
+        <div class="hot-tjList">
+            <ul class="clearfix">
+                @foreach (ProductInfo item in Model)
+                {
+                    <li>
+                        <div class="tj-img">
+                            <a   target="_blank" href="/Product/Detail/@item.ProductId">
+                                <img style="width:100px;height:100px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")" /></a>
+                        </div>
+                        <div class="tj-txt">
+                            <a class="tj-txt-T" href="#">@item.ProductName</a>
+                            <p class="te">特价：<strong>&yen;@item.LowestSalePrice.ToString("F")</strong></p>
+                            <div><a class="btn-red" href="/Product/Detail/@item.ProductId">立即购买</a></div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="act-cx fR" style="display:none">
+        <div class="tjHD">
+            <h3>促销活动</h3>
+        </div>
+        <div class="act-tjList">
+            <ul>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+                <li><a href="#">·为世界杯加油，为健康加</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+@* @foreach (ProductInfo item in Model)
+                {
+                    <li>
+                        <div class="tj-img">
+                            <a href="#">
+                                <img src="images/w/a.jpg" /></a>
+                        </div>
+                        <div class="tj-txt">
+                            <a class="tj-txt-T" href="#"><i>@item.ProductName</i></a>
+                            <p class="te">特价：<strong>&yen;@item.LowestSalePrice.ToString("F")</strong></p>
+                            <div><a class="btn-red" href="#">立即购买</a></div>
+                        </div>
+                    </li>
+                } *@

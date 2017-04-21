@@ -1,0 +1,52 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--一般的新闻-->
+@if (Model != null && Model.Count > 0)
+{
+     
+        foreach (var item in Model)
+        {
+         
+                <dl class="bianji_wl">
+            	<dt>
+                	<img src="@item.ImageUrl" width="245" height="188" />
+                </dt>
+                <dd>
+                	<h3>@item.Title</h3>
+                    @if(item.Summary.Length>48)
+                    {
+                        <p>@item.Summary.Substring(0,48)....</p>
+                    }
+                    else
+                    {
+                         <p>@item.Summary</p>
+                    }                      
+                    
+                </dd>
+            </dl>
+               
+        }     
+    
+           
+}
+else
+{
+        <dl class="bianji_wl">
+            	<dt>
+                	<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw12.jpg" />
+                </dt>
+                <dd>
+                	<h3>菠菜这么多做法!</h3>
+                    <p>菠菜有"营养模范生"之称，其可以经常用来烧汤，凉拌，单炒，煮粥。大力水手的最.........</p>
+                </dd>
+            </dl>
+            <dl class="bianji_wl">
+            	<dt>
+                	<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw12.jpg" />
+                </dt>
+                <dd>
+                	<h3>菠菜这么多做法!</h3>
+                    <p>菠菜有"营养模范生"之称，其可以经常用来烧汤，凉拌，单炒，煮粥。大力水手的最.........</p>
+                </dd>
+            </dl>
+    
+}

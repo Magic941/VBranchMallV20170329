@@ -1,0 +1,38 @@
+﻿@model List<Maticsoft.Model.Shop.Order.OrderAction>
+              
+                <table cellpadding="0" cellspacing="0" width="100%">
+                    <tbody id="tbody_track">
+                        <tr>
+                            <th width="15%">
+                                <strong>处理时间</strong>
+                            </th>
+                            <th width="50%">
+                                <strong>处理信息</strong>
+                            </th>
+                            <th width="35%">
+                                <strong>操作人</strong>
+                            </th>
+                        </tr>
+        @if (Model != null)
+           {
+               foreach (var item in Model)
+               {
+                   <tr>
+                            <td>
+                             @item.ActionDate.ToString("yyyy-MM-dd HH:mm:ss")  
+                            </td>
+                            <td>
+                              @item.Remark
+                            </td>
+                            <td>
+                                 @item.Username
+                            </td>
+                        </tr>
+               }
+
+
+           }
+                    
+                    </tbody>
+                </table>
+         

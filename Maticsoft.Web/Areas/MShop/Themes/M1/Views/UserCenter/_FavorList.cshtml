@@ -1,0 +1,78 @@
+﻿ @using Maticsoft.Model.Shop.Products
+@using Webdiyer.WebControls.Mvc
+ @model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.ViewModel.Shop.FavoProdModel> 
+
+ @if (Model != null)
+ {
+     foreach (var item in Model)
+     {
+         if (item.SaleStatus == (int) ProductSaleStatus.OnSale)
+         {
+             
+             <ul style="overflow:hidden;padding-bottom:10px;">  
+                 <div class="" style="overflow:hidden; width:95%;margin:0 auto;">           
+                     <a href="@(ViewBag.BasePath)p/d/@item.ProductId" class="favor_listimg">
+                         <img title="@item.ProductName" width="100%"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  onerror=" this.onerror = '';this.src = '/Content/themes/base/Shop/images/none.png' " >
+                     </a>
+                    <h3 style=" float:left; width:80%;padding-left:10px;"><a href="@(ViewBag.BasePath)p/d/@item.ProductId" target="_blank">@item.ProductName</a></h3> 
+                 </div> 
+                 
+                 <span style="/*float:right;*/ overflow:hidden; width:95%; display:block; margin:0 auto;"> <a href="javascript:;"  class="btnDelete u-btn"  itemid="@item.FavoriteId">取消收藏</a></span>
+             </ul>
+            
+         }
+         else
+         {
+             <h3 title="此商品已下架"><a href="@(ViewBag.BasePath)p/d/@item.ProductId" target="_blank">@item.ProductName</a></h3>
+             <ul>
+                 <a href="javascript:;" class="favor_listimg"><img title="此商品已下架"  width="50px" height="65px"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  onerror=" this.onerror = '';this.src = '/Content/themes/base/Shop/images/none.png' " /> </a>
+
+                 <span><a href="javascript:;"  class="btnDelete u-btn"  itemid="@item.FavoriteId">取消收藏</a></span>
+             </ul>
+         }
+     }
+     <script type="text/javascript">
+
+         $(".btnDelete").click(function () {
+                 var itemId = $(this).attr("itemid");
+                 $.ajax({
+                     type: "POST",
+                     dataType: "text",
+                     url: $Maticsoft.BasePath +"u/RemoveFavorItem",
+                     data: { ItemId: itemId },
+                     success: function(data) {
+                         if (data == "Ok") {
+                             $("#divmyfavorlist").load($Maticsoft.BasePath +"u/FavorList");
+                         } else {
+                             ShowFailTip("服务器繁忙，请稍候再试！");
+                         }
+                     }
+                 });
+             });
+       
+     </script>
+      @Html.AjaxPager(Model, new PagerOptions
+ {
+     PageIndexParameterName = "pageIndex",
+     NumericPagerItemCount = 3,
+     NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+     NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+     CssClass = "in_pages_m",
+     SeparatorHtml = ""
+ }, new AjaxOptions { UpdateTargetId = "divmyfavorlist" })
+ }
+ else
+ {
+     <p style="margin-top:20px;margin-left:20px;font-size: inherit; text-align:center">
+         <img src="/Areas/MShop/Themes/M1/Content/img/isnull.png" style="width:130px; height:130px" /><br />
+         亲，您暂时还没有收藏商品哦 <br /><br />
+         <a href="javascript:;" id="a_shop_p" target="_blank" style="background:#fff; width:8rem; height:2.5rem; line-height:2.5rem; text-align:center; display:block;margin:0 auto;   color:#D91C10; border:1px solid #D91C10; border-radius:5px" >&nbsp;&nbsp;挑选商品&nbsp;&nbsp;</a></p>
+     <div style="margin-top:20px; margin-bottom:20px;"></div>
+     <script type="text/javascript">
+         if (window.navigator.userAgent.indexOf('Maticsoft_Shop_APP') == -1) {
+             //非手机APP访问
+             $('#a_shop_p').attr('href', $Maticsoft.BasePath+'p');
+         }
+    </script>
+ } 
+  

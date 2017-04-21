@@ -1,0 +1,51 @@
+﻿@{
+    Layout = null;
+}
+@model Maticsoft.Model.Poll.PollActionHelper
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="x-ua-compatible" content="ie=7" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>投票</title>
+    <link href="/Content/themes/base/COM/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery-1.8.1.min.js" type="text/javascript"></script>
+    <script src="/Scripts/COM/pollhelper.js" type="text/javascript"></script>
+</head>
+
+<body>
+<div class="main">
+<input type="hidden" id="MaticsoftHfPoll"/>
+<input type="hidden" id="MaticsoftHfPoll_FID" value="@ViewBag.FID"/>
+  <div class="main_a"></div>
+  <div class="main_b">
+    <h1>@Model.FormsHelper.Name</h1>
+    <p>页数：1/1    题目数：@Model.TopicsHelper.Count</p>
+    @{
+        foreach (Maticsoft.Model.Poll.Topics item in @Model.TopicsHelper)
+        {
+            if (item.Type == 0)
+            { 
+                <div class="main_c">
+                  <h2>@item.RowNum.@item.Title</h2>
+                   <ul>
+                            @Html.Action("PollOptions", "Partial", new { topicId = @item.ID, isCheckBox=false })
+                   </ul>
+                </div>
+            }
+            else if (item.Type == 1)
+            {
+                <div class="main_c">
+                  <h2>@item.RowNum.@item.Title</h2>
+                   <ul>
+                      @Html.Action("PollOptions", "Partial", new { topicId = @item.ID, isCheckBox=true })
+                   </ul>
+                </div>
+            }
+        }
+        }<div class="main_d"><a href="javascript:;" onclick="SelectOption();"><img src="/Content/themes/base/com/images/v5.jpg"/></a></div>
+  </div>
+</div>
+</body>
+</html>

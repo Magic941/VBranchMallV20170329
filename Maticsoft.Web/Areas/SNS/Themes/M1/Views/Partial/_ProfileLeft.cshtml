@@ -1,0 +1,85 @@
+﻿@model Maticsoft.ViewModel.SNS.ProfileLeft
+<div class="user_cont_you">
+    <div class="mygroup">
+        @if (Model.joingroupList != null && Model.joingroupList.Count > 0)
+        {
+            if (ViewBag.IsCurrentUser == true)
+            {
+            <h1>
+                <a href="javascript:;">我加入的小组</a></h1>
+            }
+            else
+            { 
+            <h1>
+                <a href="javascript:;">Ta加入的小组</a></h1>
+            }
+
+            foreach (var item in Model.joingroupList)
+            {
+            <div class="mygroup_a">
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">
+                        <img src="@item.GroupLogo" style="width:50px; height:50px"></a></p>
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID" title="@item.GroupName">@Maticsoft.Common.StringPlus.SubString(item.GroupName, 4)</a></p>
+            </div>
+            }
+            <div class="clear">
+            </div>
+        }
+        @if (Model.creategroupList != null && Model.creategroupList.Count > 0)
+        {
+            if (ViewBag.IsCurrentUser == true)
+            {
+            <h1>
+                <a href="javascript:;">我创建的小组</a></h1>  
+            }
+            else
+            { 
+            <h1>
+                <a href="javascript:;">Ta创建的小组</a></h1>
+            }
+
+            foreach (var item in Model.creategroupList)
+            {
+            <div class="mygroup_a">
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">
+                        <img src="@item.GroupLogo" style="width:50px; height:50px"></a></p>
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID" title="@item.GroupName">@Maticsoft.Common.StringPlus.SubString(item.GroupName, 4)</a></p>
+            </div>
+            }
+ 
+            <div class="clear">
+            </div>
+        }
+    </div>
+    <div class="mygroup">
+        <h1>
+            @if (ViewBag.IsCurrentUser == true)
+            {
+                <a href="@(ViewBag.BasePath)Profile/Fans" target="_blank">我的粉丝</a>
+            }
+            else
+            { 
+                <a href="@(ViewBag.BasePath)User/Fans?uid=@ViewBag.UserId" target="_blank">Ta的粉丝</a>
+            }
+            <span>（@(ViewBag.FansCount)人）</span></h1>
+        @if (null != Model.shipList)
+        {
+            foreach (Maticsoft.Model.SNS.UserShip item in Model.shipList)
+            {
+            <div class="mygroup_a">
+                <p>
+                    <a href="@(ViewBag.BasePath)User/Posts/@item.ActiveUserID" >
+                        <img style=" width:50px; height:50px" src="/Upload/User/Gravatar/@(item.ActiveUserID).jpg" alt="@item.NickName" ></a></p>
+                <p>
+                    <a href="@(ViewBag.BasePath)User/Posts/@item.ActiveUserID"  title="@item.NickName">@Maticsoft.Common.StringPlus.SubString(item.NickName, 4)</a></p>
+            </div>
+            }
+        }
+        <div class="clear">
+        </div>
+    </div>
+</div>

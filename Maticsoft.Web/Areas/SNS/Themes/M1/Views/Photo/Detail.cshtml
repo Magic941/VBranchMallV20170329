@@ -1,0 +1,362 @@
+﻿@model Maticsoft.ViewModel.SNS.TargetDetail
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_ProductLayout.cshtml";
+}
+<link href="/Scripts/Pagination/pagination.css" rel="stylesheet" type="text/css" />@*分页控件的css*@
+<script type="text/javascript" src="/Scripts/Pagination/jquery.pagination.js"></script>@*分页控件的javascript*@
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/ProductDetail.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowAlbum.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/SNS/Themes/M1/Content/Scripts/AdminOperation.js"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.emerge').unbind('hover').hover(function () {
+            $(this).find('#dodge').show();
+        }, function () {
+            $(this).find('#dodge').hide();
+        });
+        resizeImg('.imagewalls', 211, 1280);
+        resizeImg('#imshang', 630, 1280);
+
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)Photo/GetCount",
+            data: { PhotoId: @Model.TargetId },
+            success: function (data) {
+                if (data != "No") {
+                      $("#favouritecount").text(data.split("|")[0]);
+                      $("#pvcount").text(data.split("|")[1]);
+                      $("#commmentcount").text(data.split("|")[2]);
+                         $("#favcount").text(data.split("|")[3]);
+                }
+            }
+        });
+        var photoids="";
+        $(".TargetId").each(function()
+        {
+        photoids=photoids+","+$(this).val();
+        });
+          $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)Photo/GetListCounts",
+            data: { PhotoIds: photoids },
+            success: function (result) {
+                if (result != "No") {
+                     $.each( result.split("|"), function(i, data){
+                       $("#FavouriteCount_"+data.split(",")[0]).text(data.split(",")[1]);
+                     $("#CommentCount_"+data.split(",")[0]).text(data.split(",")[2]);
+                     });
+                }
+            }
+        });
+    });
+</script>
+<input type="hidden"  id="ImageUrl" value="@(Model.Imageurl)" />
+<input type="hidden"  id="Commentcount" value="@(Model.Commentcount)" />
+<input type="hidden"  id="CommentPageSize" value="@(Model.CommentPageSize)" />
+<input type="hidden"  id="CommentType" value="@(Model.Type)" />
+<input type="hidden"  id="TargetId" value="@(Model.TargetId)" />
+<input type="hidden"  id="Thumbimageurl" value="@(Model.Thumbimageurl)" />
+<div class="tgoods">
+    <div class="tgoods_zuo">
+        <div class="tgoods_zuo_a">
+            <div class="tgoods_det">
+                <div class="twitter_top">
+                    <a class="avatar32_f" href="@(ViewBag.BasePath)User/Posts/@(Model.Userid)" target="_blank">
+                        <img style=" width:32px; height:32px" src="/Upload/User/Gravatar/@(Model.Userid).jpg" alt="@Model.Nickname"></a>
+                    <p>
+                        <a class="f14_f" href="@(ViewBag.BasePath)User/Posts/@(Model.Userid)" target="_blank">@Model.Nickname</a>
+                        <span class="gray_f" style="color: #666;"><span style="color: #999">第一个和您分享了此照片</span>@(string.IsNullOrEmpty(Model.Sharedes) ? "" : ":" + Maticsoft.ViewModel.ViewModelBase.ReplaceFace(Model.Sharedes))</span>
+                        <span class="date">@Model.CreatedDate.ToString("yyyy年MM月dd日 HH:mm")
+                        </span>
+                    </p>
+                    <p class="f14_f twitter_context">
+                    </p>
+                </div>
+                <div id="imshang">
+                    <p>
+                        <a target="_blank" href="@Model.Imageurl">
+                            <img ref="@Model.Imageurl" alt="@(Model.Sharedes != null ? new HtmlString(Model.Sharedes) : null)"></a></p>
+                    <div id="imshang_a">
+                        <a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png"></a></div>
+                </div>
+                <div class="tgoods_rep_a" style="margin-top: 10px">
+                    <div class="shangpin_a">
+                        <dl class="tgoods_det_b11">
+                            <dt class="tgoods_det_b11_a"><a href="javascript:;" class="favourite" imagetype=@Model.Type targetid=@Model.TargetId>
+                                <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg"></a></dt>
+                            <dd class="tgoods_det_b11_b">
+                                <a href="javascript:;" id="favouritecount">@Model.Favouritecount</a></dd>
+                        </dl>
+                        <dl class="tgoods_det_b12">
+                            <a href="javascript:;" class="addalbum" targetid=@Model.TargetId imagetype=@Model.Type imageurl=@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.Thumbimageurl, "T116x170_"))>
+                                <img src="/Areas/SNS/Themes/M1/Content/images/tgoods_3.jpg"></a></dl>
+                        @if (ViewBag.DeleteAuthority == true)
+                        {   
+@*   <dl class="tgoods_det_b12">
+                    @if (Model.IsRecommand == (int)Maticsoft.Model.SNS.EnumHelper.RecommendType.Home)
+                    {
+                      <span class="removeGroupFollow pink_follow" id="cancalRecommand" targetid="@Model.TargetId" imagetype="photo" >已推荐到首页</span>
+                      <span class="addGroupFollow red_follow" id="Recommand" style="display:none" targetid="@Model.TargetId" imagetype="photo">推荐到首页</span>
+                    }
+                    else
+                    { 
+                      <span class="removeGroupFollow pink_follow" id="cancalRecommand" style=" display:none" targetid="@Model.TargetId" imagetype="photo">已推荐到首页</span>
+                      <span class="addGroupFollow red_follow" id="Recommand" targetid="@Model.TargetId" imagetype="photo">推荐到首页</span>
+                    
+                    }
+                    </dl>
+                     <dl class="tgoods_det_b12">
+                      <span class="addGroupFollow red_follow" id="Delete" targetid="@Model.TargetId" imagetype="photo">删除</span>
+                   
+                    </dl>*@
+                        }
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="tgoods_rep" style="margin-top: 10px">
+                <div class="shangpin">
+                    <div class="shangpin_b">
+                        <p class="tgoods_x">
+                            被<span id="favcount">@Model.FavCount</span>&nbsp;个Ta们也喜欢</p>
+                        <div class="shangpin_a1" style="width: 652px">
+                            <ul>
+                                @foreach (var item in Model.FavUserList)
+                                {
+                                    <li><a target="_blank" href="@(ViewBag.BasePath)User/Posts/@(item.CreatedUserID)" class="UserTip" UserId="@item.CreatedUserID">
+                                        <img style=" width:32px; height:32px" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" alt="@item.CreatedNickName"></a></li>
+                                }
+                            </ul>
+                            <div class="tgoods_rep_b" style="width: 350px;">
+                                <p class="tgoods_rep_b1" style="width: 60px;">
+                                    浏览<span id="pvcount">&nbsp;@Model.PvCount </span>|</p>
+                                <p class="tgoods_rep_b1" style="width: 60px;">
+                                    评论&nbsp;<span id="commmentcount">@Model.Commentcount </span>|</p>
+                                    @Html.Action("BaiduShare","Partial")
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+                <div class="tgoods_rep_sa">
+                    <div class="tgoods_rep_sa1">
+                    </div>
+                    <div class="tgoods_rep_sa2">
+                        <div class="tgoods_rep_sa2_t">
+                            <dl class="tgoods_rep_sa2_a">
+                                <textarea name="" id="CommentContent" cols="" rows=""></textarea></dl>
+                            <dl class="tgoods_rep_sa2_b">
+                                <dl class="tgoods_rep_sa2_b1" id="biaoqingshow">
+                                    <dt class="tgoods_rep_sa2_b11"><a href="javascript:;">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/detailed_14.jpg"></a></dt>
+                                    <dd class="tgoods_rep_sa2_b11" style="position: relative;">
+                                        <a href="javascript:;">表情</a>
+                                        <div class="cbiaoqing" style="top: 10px; display: none; left: -20px" id="tbiaoqing">
+                                            @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing.cshtml")
+                                        </div>
+                                    </dd>
+                                </dl>
+                                <dl class="tgoods_rep_sa2_b3" style="display: none">
+                                    <dt class="tgoods_rep_sa2_b31">
+                                        <input name="" type="checkbox" value=""></dt>
+                                    <dd class="tgoods_rep_sa2_b31">
+                                        同时转发到我的分享</dd>
+                                </dl>
+                                <dl class="tgoods_rep_sa2_b2">
+                                    <a href="javascript:;" id="AddCommentBtn" detailtype="Photo" targetid="@Model.TargetId">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/tgoods_10.jpg"></a></dl>
+                                @Html.Action("WeiBoBind", "Partial")
+                            </dl>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="tgoods_rep_sa2_r">
+                            <div id="CommentArea">
+                            </div>
+                            <div id="Pagination" class="pagination" style="width: 500px">
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="tgoods_zuo_b">
+            <h3>
+                你可能喜欢</h3>
+            <div class="imagewalls">
+                @{
+                    if (Model.RecommandPhoto4ThreeCol != null)
+                    {
+                        for (int i = 0; i < Model.RecommandPhoto4ThreeCol.Length; i++)
+                        {
+                    <div id="col_@(i)" class="col1" @(i == 2 ? "style=margin-right:0px" : "")>
+                        @foreach (Maticsoft.Model.SNS.Photos item in Model.RecommandPhoto4ThreeCol[i])
+                        {
+                            <div class="i_w_y">
+                                <div id="emerge" class="emerge">
+                                    <p>
+                                        <a class="pic_load" href="@item.StaticUrl" target="_blank">
+                                            <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@(item.Description != null ? new HtmlString(item.Description) : null)"/>
+                                            @* <span class="price">¥@item.Price.Value.ToString("F")</span>*@ </a>
+                                    </p>
+                                    <div id="dodge" class="addalbum"  imagetype="Photo"  targetid=@item.PhotoID imageurl="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T116x170_"))" >
+                                        <a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>
+                                </div>
+                                <div class="search_com">
+                                    <div class="search_com_a">
+                                        <p class="search_com_a1">
+                                            <a href="javascript:;" class="favourite"  imagetype="Photo" targetid=@item.PhotoID>
+                                                <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" />
+                                            </a>
+                                        </p>
+                                        <p class="search_com_a2">
+                                            <a href="javascript:;" id="FavouriteCount_@(item.PhotoID)">@item.FavouriteCount</a></p>
+                                    </div>
+                                    <div class="search_com_b" style="cursor: pointer">
+                                        <p class="search_com_b1">
+                                            <a href="javascript:;">
+                                                <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                                        <p class="search_com_b2">
+                                            <span class="commentcount" id="CommentCount_@(item.PhotoID)">@item.CommentCount</span>评论</p>
+                                        <input class="TargetId" type="hidden" value="@item.PhotoID" imagetype="Photo"/>
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                                <div class="search_iss">
+                                    @{if (item.CommentCount > 0 && item.commmentList != null && item.commmentList.Count > 0)
+                                      {
+                                          Html.Partial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", item.commmentList);
+                                      }}
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        }
+                    }
+                }
+            </div>
+            @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div class="tgoods_you">
+        <div class="tgoods_you_a">
+            <p style="text-align: center">
+                <a href="@(ViewBag.BasePath)User/Posts/@Model.Userid" target="_blank">
+                    <img style=" width:140px; height:140px" src="/Upload/User/Gravatar/@(Model.Userid).jpg" alt="@Model.Nickname"></a></p>
+            <div class="tgoods_you_a1">
+                <p class="tgoods_you_a11">
+                    <a href="@(ViewBag.BasePath)User/Posts/@Model.Userid">@Model.Nickname</a></p>
+                <p class="tgoods_you_a12">
+                    <a href="javascript:;" class="FellowUser"  UserId="@Model.Userid">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  style="display:none"  UserId="@Model.Userid" >
+                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                </p>
+            </div>
+            <div class="tgoods_you_a2">
+                <ul>
+                    <li><a target="_blank" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.Userid"><span
+                        class="black">@(Model.UserModel != null ? Model.UserModel.FellowCount : 0)</span></a></li>
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.Userid">关注</a></li>
+                </ul>
+                <ul>
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fans?uid=@Model.Userid"><span
+                        class="black">@(Model.UserModel != null ? Model.UserModel.FansCount : 0)</span></a></li>
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fans?uid=@Model.Userid">粉丝</a></li>
+                </ul>
+                <ul>
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fav?uid=@Model.Userid"><span
+                        class="black">@(Model.UserModel != null ? Model.UserModel.FavouritesCount : 0)</span></a></li>
+                    <li><a  target="_blank"c href="@(ViewBag.BasePath)User/Fav?uid=@Model.Userid">喜欢</a></li>
+                </ul>
+                <ul style="border-right: 0px; padding: 0px; width: 50px">
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Albums?uid=@Model.Userid"><span
+                        class="pink">@(Model.UserModel != null ? Model.UserModel.FavoritedCount : 0)</span></a></li>
+                    <li><a  target="_blank" href="@(ViewBag.BasePath)User/Albums?uid=@Model.Userid">专辑</a></li>
+                </ul>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="tgoods_you_b">
+            <div class="Palbum" style="margin-top: 0px;">
+                <h3>
+                    所在专辑</h3>
+                <p>
+                    <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@(Model.UserAlums != null ? Model.UserAlums.AlbumID : 0)">@(Model.UserAlums != null ? Model.UserAlums.AlbumName : "")</a></p>
+                <ul>
+                    @if (Model.CovorImageList != null && Model.CovorImageList.Count > 0)
+                    {
+                        for (int i = 0; i < Model.CovorImageList.Count; i++)
+                        {
+                            if ((i + 1) % 3 == 0)
+                            { 
+                        <li><a href="@(ViewBag.BasePath)Album/Details?AlbumID=@(Model.UserAlums != null ? Model.UserAlums.AlbumID : 0)">
+                            <img style=" width:62px; height:62px" src="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.CovorImageList[i], "T60x60_"))"]></a></li>
+                            }
+                            else
+                            { 
+                        <li style="margin-right: 0px;"><a  target="_blank" href="@(ViewBag.BasePath)Album/Details?AlbumID=@(Model.UserAlums != null ? Model.UserAlums.AlbumID : 0)" >
+                            <img style=" width:62px; height:62px" src="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.CovorImageList[i], "T60x60_"))"></a></li>
+                            }
+                        }
+                    }
+                </ul>
+                <p>
+                    <a href="javascript:;" class="FellowAlbum"  AlbumId="@(Model.UserAlums != null ? @Model.UserAlums.AlbumID : 0)">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/id_3.jpg" /></a> <a href="javascript:;" class="UnFellowAlbum"  style="display:none"  AlbumId="@(Model.UserAlums != null ? @Model.UserAlums.AlbumID : 0)">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao.jpg" /></a></p>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="shangpin_c2">
+                <h3>
+                    热门标签</h3>
+                <ul>
+                    @foreach (var item in Model.PhotoTagList)
+                    {
+                        <li><a class="photoLink" href="javascript:void(0)">@item.TagName</a></li>
+                    }
+                    <script type="text/javascript">
+                        $(".photoLink").click(function () {
+                            var url = escape($(this).text());
+                            window.location.href = "@(ViewBag.BasePath)Search/Photo?type=hot&keyword=" + url + "";
+                        });
+                    </script>
+                    <div class="clear">
+                    </div>
+                </ul>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_ShoppingLayout.cshtml";
+}
+<div class="w main">
+    <div class="m m3" id="qpay">
+        <div class="m mtips">
+            <div class="mc">
+                <div class="i-mtips">
+                    <s class="icon-wrong02"></s>
+                    <div class="fore">
+                        <h3 class="ftx-01">
+                            您的账户余额不足，请充值。</h3>
+                        <ul class="list-h">
+                            <li class="fore1">订单号：@(ViewBag.OrderCode)</li>
+                            <li class="fore1">应付金额：<strong class="ftx-01">@(ViewBag.Amount.ToString("F"))元</strong></li>
+                            <li class="fore3">账户余额：<strong class="ftx-01">@(ViewBag.Balance.ToString("F"))元</strong></li>
+                        </ul>
+                        <ul class="list-h">
+                            <li class="fore1"><span class="fenzi"></span><a href="@(ViewBag.BasePath)UserCenter/Recharge">立即充值</a></li>
+                            <li class="fore3"><span class="fenzi"></span><a href="@(ViewBag.BasePath)UserCenter/Orders">查看或更改您的订单</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.OrderId" id="OrderId"/>
+<input type="hidden" value="@ViewBag.PayStatus" id="Status"/>

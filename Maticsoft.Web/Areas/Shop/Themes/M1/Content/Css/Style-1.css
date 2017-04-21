@@ -1,0 +1,27 @@
+﻿ 
+/*****404*****/
+.error{width:820px; height:auto !important; background:#fff; margin:20px auto 0; padding:80px 0px 80px 140px; overflow:hidden;}
+.error_r{width:248px; height:241px; float:left; background:url(/Areas/Shop/Themes/M1/Content/images/error1.jpg);}
+.error_w{width:360px; float:left; margin-left:40px; margin-top:80px;}
+.error_w_a{ font-size:24px; margin-bottom:15px; color:#c33; font-family:"微软雅黑";}
+.error_w_b{ font-size:14px; color:#333; line-height:26px;}
+.error_w_b a{ color:#0081bf;}
+
+
+/****覆盖jqueryUi的样式  Dia弹层的样式****/
+.ui-widget-header
+    {
+        background: #E66;
+        color: #FFF;
+        font-size: 14px;
+    }
+.ui-widget-content
+    {
+        border: 8px solid #CCC;
+        color: #988;
+        font-size: 14px;
+    }
+
+
+
+

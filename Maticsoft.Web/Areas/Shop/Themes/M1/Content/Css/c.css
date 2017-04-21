@@ -1,0 +1,113 @@
+.step {
+	overflow:hidden;
+	width:920px;
+	margin:10px auto 15px;
+	padding-bottom:15px;
+	border-bottom:1px dotted #E4E4E4;
+}
+.step a {
+	float:left;
+	width:50px;
+	margin-left:30px;
+	padding-left:30px;
+	background-repeat:no-repeat;
+	background-position:0 70%;
+	color:#999;
+	text-decoration:none;
+}
+.step a:hover {
+	color:#F60;
+	text-decoration:none;
+}
+.step span {
+	display:block;
+	margin-bottom:-5px;
+	font-size:14px;
+	font-weight:bold;
+}
+.step .step1 {
+	background-image:url(../images/ico-step1.png);
+}
+.step .step2 {
+	background-image:url(../images/ico-step2.png);
+}
+.step .step3 {
+	padding-left:35px;
+	background-image:url(../images/ico-step3.png);
+}
+.step .step4 {
+	background-image:url(../images/ico-step4.png);
+}
+.step .step1cur {
+	background-image:url(../images/ico-step1c.png);
+	color:#F60;
+	cursor:default;
+}
+.step .step2cur {
+	background-image:url(../images/ico-step2c.png);
+	color:#F60;
+	cursor:default;
+}
+.step .step3cur {
+	padding-left:35px;
+	background-image:url(../images/ico-step3c.png);
+	color:#F60;
+	cursor:default;
+}
+.step .step4cur {
+	background-image:url(../images/ico-step4c.png);
+	color:#F60;
+	cursor:default;
+}
+#login-pop .overlay {
+	width:420px;
+	height:290px;
+	margin:-145px 0 0 -210px;
+}
+#login-pop .overlaymain {
+	width:400px;
+	height:270px;
+	margin:-135px 0 0 -200px;
+}
+#login-pop .clew {
+	padding:10px 15px;
+	border-bottom:1px solid #666;
+	background:#FFFFCC;
+}
+#login-pop fieldset {
+	padding:20px 0 0 80px;
+}
+#login-pop legend {
+	position:absolute;
+	left:-999em;
+	font-size:0;
+}
+#login-pop fieldset div {
+	height:40px;
+	text-align:left;
+}
+#login-pop fieldset label {
+	vertical-align:middle;
+}
+#login-pop fieldset .text {
+	height:20px;
+}
+#login-pop .handle {
+	overflow:hidden;
+	width:200px;
+	margin:10px auto 0;
+}
+#login-pop .handle a {
+	float:right;
+	margin-top:5px;
+	text-decoration:underline;
+}
+#login-pop .handle input {
+	float:left;
+	width:112px;
+	height:32px;
+	background:url(../images/btn-login.png) no-repeat 0 0;
+	border:none;
+	text-indent:-99em;
+	cursor:pointer;
+}

@@ -1,0 +1,103 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B8EC1189-040C-40B3-85CE-8356B1DE825C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.DALFactory</RootNamespace>
+    <AssemblyName>Maticsoft.DALFactory</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Common, Version=4.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DACMS.cs" />
+    <Compile Include="DAJLT.cs" />
+    <Compile Include="DAMembers.cs" />
+    <Compile Include="DAPay.cs" />
+    <Compile Include="DAPoll.cs" />
+    <Compile Include="DASettings.cs" />
+    <Compile Include="DAShopAM.cs" />
+    <Compile Include="DAShopAMDetail.cs" />
+    <Compile Include="DAShopAMP.cs" />
+    <Compile Include="DAShopCard.cs" />
+    <Compile Include="DAShopCoupon.cs" />
+    <Compile Include="DAShopFreight.cs" />
+    <Compile Include="DAShopGifts.cs" />
+    <Compile Include="DAShopInquiry.cs" />
+    <Compile Include="DAShopOrder.cs" />
+    <Compile Include="DAShopProducts.cs" />
+    <Compile Include="DAShopProSales.cs" />
+    <Compile Include="DAShopRechargeCards.cs" />
+    <Compile Include="DAShopSales.cs" />
+    <Compile Include="DAShopShipping.cs" />
+    <Compile Include="DASysManage.cs" />
+    <Compile Include="DataAccessBase.cs" />
+    <Compile Include="DATeam.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DAMs.cs" />
+    <Compile Include="DataAccess.cs" />
+    <Compile Include="DASNS.cs" />
+    <Compile Include="DAShopPackage.cs" />
+    <Compile Include="DAShop.cs" />
+    <Compile Include="DAShopSupplier.cs" />
+    <Compile Include="DAMsAgent.cs" />
+    <Compile Include="DAAppt.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maticsoft.IDAL\Maticsoft.IDAL.csproj">
+      <Project>{A4F34F0C-FE32-40C1-9443-87A2BF72EF7C}</Project>
+      <Name>Maticsoft.IDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

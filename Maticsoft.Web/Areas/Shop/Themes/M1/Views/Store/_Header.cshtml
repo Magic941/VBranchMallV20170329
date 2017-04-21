@@ -1,0 +1,44 @@
+﻿@model List<Maticsoft.Model.Shop.Supplier.SupplierMenus>
+        
+<div class="second_nav" id="supp_second_nav" style="width:1200px; height:68px;">
+        <div class="second_nav_logo"><img src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(ViewBag.SuppId,"T980X68")" width="1200" height="68" onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_980X68.jpg'" /></div>
+       @*@if (Model != null && Model.Count > 0)
+       {
+           string target;
+         
+               <div class="second_nav_con">
+                   @foreach (Maticsoft.Model.Shop.Supplier.SupplierMenus item in Model)
+                   {
+
+                       switch (item.Target)
+                       {
+                           case 1:
+                               target = "_blank";
+                               break;
+                           default:
+                               target = "_self";
+
+                               break;
+                       }
+                       string navurl = "javascript:;";
+                       switch (item.URLType)
+                       {
+                           case 0:
+                               navurl = item.NavURL;
+                               break;
+                           case 1:
+                               navurl = ViewBag.BasePath + "Supplier/list/" + item.SupplierId + "/" + item.NavURL;
+                               break;
+                           default:
+
+
+                               break;
+                       }
+                        <a href="@navurl" target="@target"  class="xuanzhong" title="@item.MenuTitle">@item.MenuName</a> 
+                   }
+               </div>
+           }*@
+</div>
+ <div class="clear"></div>
+         
+ 

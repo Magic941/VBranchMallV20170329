@@ -1,0 +1,12 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@model  Maticsoft.ViewModel.Shop.RegisterModel
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+
+ <div class="top"> <span><a href="@(ViewBag.BasePath)a/r">&lt;返回</a></span>
+  <div class="header-btn fr"> <a href="@ViewBag.BasePath" style="margin:8px 2px 8px 0;padding-top:8px;height:22px">   <img src="/Areas/MShop/Themes/M1/Content/images/home.png" width="20" height="18" > </a> </div>
+</div>
+<div class="home_newlist">
+  <div class="home_newcontent">@Html.Raw(Model.UserAgreement)</div>
+</div>

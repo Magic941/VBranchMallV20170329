@@ -1,0 +1,60 @@
+﻿@model List<Maticsoft.ViewModel.Supplier.WeChatMenu>
+@*<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />*@
+@*<link href="/admin/css/gridviewstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />*@
+@if (Model != null)
+{
+    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridViewStyle">
+        <tbody>
+            <tr class="head1">
+                <th width="10%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">菜单名称</span>
+                </th>
+                <th width="10%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">显示顺序</span>
+                </th>
+                <th width="10%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">菜单类型</span>
+                </th>
+                <th width="20%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">菜单Url</span>
+                </th>
+                <th width="10%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">菜单状态</span>
+                </th>
+                <th width="20%" bgcolor="#FFFFFF">
+                    <span style="color: #666666;">操作</span>
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="grdrow" style="height: 34px; background: #FFF">
+                    <td class="productcag@(item.ParentId == 0 ? 0 : 1)" style="width: 10%;margin-left:1cm">
+                        @if (item.ParentId !=0)
+                        {
+                            <span id="spShowImage2" parentid='@item.ParentId' style="padding-left: 24px"></span>
+                        }
+                        <span>@item.Name</span>
+                    </td>
+                    <td>
+                        <input type="text" name="name" value="@item.Sequence" style="width: 50px" />
+                    </td>
+                    <td align="center">
+                        @item.MenuType
+                    </td>
+                    <td>
+                        @item.MenuUrl
+                    </td>
+                    <td align="center">
+                        @item.MenuStatus
+                    </td>
+                    <td align="center">
+                        <a href="@(ViewBag.BasePath)WeChat/UpdateMenu?id=@item.MenuId" class="iframe"  style="color: Blue">编辑</a>&nbsp;&nbsp;
+                        <a href="@(ViewBag.BasePath)WeChat/UpdateGroup?id=@item.MenuId" class="iframe"  style="color: Blue">删除</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

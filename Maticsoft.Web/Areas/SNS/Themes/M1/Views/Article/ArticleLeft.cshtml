@@ -1,0 +1,11 @@
+﻿@{
+    Layout = null;
+}
+@model List<Maticsoft.Model.CMS.Content>
+@if (null != Model)
+{
+    foreach (var item in Model)
+    {
+    <li><a id="maticsoft@(@item.ContentID)" href="@(ViewBag.BasePath)Article/Details/@item.ContentID">@item.Title</a></li>
+    }
+}

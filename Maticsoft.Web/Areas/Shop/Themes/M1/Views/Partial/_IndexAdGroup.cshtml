@@ -1,0 +1,28 @@
+﻿@model List<Maticsoft.Model.Settings.Advertisement>
+<div class="block" >
+    @if (Model != null)
+    {     
+        <div class="cl">
+                <ul class="slideshow" id="slidesImgs">
+                @foreach (var item in Model)
+                {
+                     <li><a href="@item.NavigateUrl" target="_blank">
+                        <img src="@item.FileUrl" width="960" height="230" alt="" /></a></li>
+                }
+            </ul>
+        </div>
+    
+        <div class="slidebar" id="slideBar">
+                <ul>
+            @for (int i = 1; i <= Model.Count;i++ )
+            {
+                   <li class="on">@i</li>
+            }
+        </ul></div>
+    }
+</div>
+
+
+
+            
+

@@ -1,0 +1,205 @@
+﻿@model Maticsoft.Model.Members.UsersExpModel
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+<script src="/Scripts/jquery/jquery.Jcrop.min.js" type="text/javascript"></script>
+  <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+<link href="/Content/themes/base/jquery.Jcrop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+
+
+
+</script>
+<script type="text/javascript">
+    function Upload(control) {
+        $(".btn-success").find("input").css("height", "28px");
+        var uploadbutton = $(control).html();
+        var templatehtml = '<div class="qq-uploader span12">' +
+            '<pre class="qq-upload-drop-area span12"><span>{dragZoneText}</span></pre>' +
+            '<div class="qq-upload-button btn btn-success" style="width: 110px; height:30px;padding-top: 0px;background:#fff;">{uploadButtonText}</div>' +
+            '<span class="qq-drop-processing"><span>{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
+            '<ul class="qq-upload-list" style=" text-align: center; "></ul>' +
+            '</div>';
+        var uploader = new qq.FineUploader({
+            element: $(control)[0],
+            request: {
+                endpoint: '/Upload/UploadGravatar.aspx'
+            },
+            text: {
+                uploadButton: uploadbutton,
+                dropProcessingText: "正在上传，请稍候..."
+            },
+            multiple: false,
+            template: templatehtml,
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                sizeLimit: 10485760 // 10M = 10 * 1024*1024 bytes
+            },
+            callbacks: {
+                onComplete: function (id, fileName, responseJSON) {
+                    $(".qq-upload-list").hide();
+                    $(".btn-success").css("overflow", "");
+                    if (responseJSON.success) {
+                        var d = new Date();
+                        //$("#imgGravatar").attr("src", response+"?id="+ d.getTime());
+                        $("#UploadPhoto").hide();
+                        $(".amend_c").hide();
+                        ShowSuccessTip('上传成功！');
+                        $("#container").show();
+                        $("#tPath").val(responseJSON.data);
+                        $("#Cropbox").attr("src", responseJSON.data);
+                        $("#Preview").attr("src", responseJSON.data);
+
+                        $('#Cropbox').Jcrop({
+                            setSelect: [100, 100, 220, 220],
+                            onChange: showCoords,
+                            onSelect: showCoords,
+                            aspectRatio: 1
+                        }, function () {
+                            // Use the API to get the real image size
+                            var bounds = this.getBounds();
+                            boundx = bounds[0];
+                            boundy = bounds[1];
+                            // Store the API in the jcrop_api variable
+                            jcrop_api = this;
+                        });
+
+
+                    }
+                    else {
+                        ShowFailTip("服务器没有返回数据，可能服务器忙，请稍候再试：");
+                    }
+                }
+            }
+        });
+    }
+    var jcrop_api, boundx, boundy;
+    $(function () {
+
+        Upload($("#UploadPhoto"));
+
+        $("#btnOK").click(function () {
+            var t_x = $("#x").val();
+            var t_y = $("#y").val();
+            var t_w = $("#w").val();
+            var t_h = $("#h").val();
+            var t_name = $("#tPath").val();
+            $.ajax({
+                url: $Maticsoft.BasePath + "UserCenter/CutGravatar",
+                type: 'post',
+                dataType: 'text',
+                data: { Action: 'Cut', filename: t_name, x: t_x, y: t_y, w: t_w, h: t_h },
+                success: function (resultData) {
+                    if (resultData == "success") {
+                        window.location = $Maticsoft.BasePath + "UserCenter/Gravatar";
+                    } else {
+                        $.jBox.tip('服务器繁忙，请稍后再试！');
+                        //alert(resultData);
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert(textStatus);
+                    alert(errorThrown);
+                }
+            });
+        });
+    });
+
+    function showCoords(c) {
+        var rx = 120 / c.w;
+        var ry = 120 / c.h;
+
+        $('#Preview').css({
+            width: Math.round(rx * boundx) + 'px',
+            height: Math.round(ry * boundy) + 'px',
+            marginLeft: '-' + Math.round(rx * c.x) + 'px',
+            marginTop: '-' + Math.round(ry * c.y) + 'px'
+        });
+        $('#x').val(c.x);
+        $('#y').val(c.y);
+        $('#x2').val(c.x2);
+        $('#y2').val(c.y2);
+        $('#w').val(c.w);
+        $('#h').val(c.h);
+    };
+</script>
+<style type="text/css">
+    #container
+    {
+        width: 560px;
+        height: 420px;
+        margin: 10px auto;
+        border: solid 1px #ccc;
+        padding: 10px;
+        background: #fff;
+    }
+    .generate
+    {
+        border: none;
+        width: 102px;
+        height: 22px;
+        background: #4f565b;
+        display: block;
+        text-decoration: none;
+        margin-top: 10px;
+        font-size: 12px;
+        line-height: 22px;
+        color: #fff;
+        text-align: center;
+        float: right;
+    }
+    a:hover.generate
+    {
+        background: #6c7277;
+    }
+    a:active.generate
+    {
+        background: #6c7277;
+    }
+</style>
+<input type="hidden" id="currentpage" value="span_2" />
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            修改头像</p>
+    </h1>
+    <div class="amend">
+        <div class="amend_b" style="width: 600px;">
+            选择一张你喜欢的图片做头像吧（建议图片尺寸大小不小于176*176），支持JPG、GIF、PNG，大小不超过5M。</div>
+        <div class="amend_a">
+            <div class="picture" id="UploadPhotoWindow">
+                <div class="picture_an" id="UploadPhoto">
+                    <a href="javascript:void(0);" class="btn_addPic"><span><em>+</em>添加头像</span><input
+                        tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" name="pic" id="absFileInput"
+                        class="filePrew" type="file"></a>
+                </div>
+                <div class="picture_wen">
+                </div>
+            </div>
+        </div>
+        <div class="amend_c">
+            <img src="" id="imgGravatar" width="176px"
+                height="176px" />
+                  <script type="text/javascript">                      $("#imgGravatar").attr("src", "/Upload/User/Gravatar/@(@ViewBag.UserID).jpg?id=" + $.Guid.New());</script>
+        </div>
+        <div id="container" style="display: none">
+            <div id="CropCon" >
+                <div style="float: left; text-align: center; width: 420px; height: 400px; border: 1px solid #cccccc;"
+                    id="txtCrop">
+                    <img src='' id="Cropbox" />
+                </div>
+                <div style="width: 120px; height: 120px; float: right; overflow: hidden; border: 1px solid #cccccc;">
+                    <img id="Preview" src="/images/default.jpg" />
+                </div>
+                <input type="hidden" id="x" name="x" />
+                <input type="hidden" id="y" name="y" />
+                <input type="hidden" id="x2" name="x2" />
+                <input type="hidden" id="y2" name="y2" />
+                <input type="hidden" id="w" name="w" />
+                <input type="hidden" id="h" name="h" />
+                <input id="tPath" type="hidden" name="path" />
+                <input id="btnOK" type="button" class="generate" value="保存头像" />
+            </div>
+        </div>
+    </div>
+</div>

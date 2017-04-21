@@ -1,0 +1,10 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+    <dd>
+        <a target="_blank" href="/product/@item.CategoryId"  
+            >@item.Name</a></dd>  
+    }
+}

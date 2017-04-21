@@ -1,0 +1,257 @@
+﻿ @model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Shop.Products.ProductInfo>
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_StoreLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+    string suppid = Request.RequestContext.RouteData.Values["suppid"] != null ? Request.RequestContext.RouteData.Values["suppid"].ToString() : "0";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+    string ky = Request.RequestContext.RouteData.Values["ky"] != null ? Request.RequestContext.RouteData.Values["ky"].ToString() : "";
+ }
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+ <script type="text/javascript">
+     $(function () {
+
+         var url = window.location.pathname; //展开当前节点
+         $("#box-category a").each(function () {
+             var href = $(this).attr("href").toLowerCase();
+             var indexof = window.location.pathname.toLowerCase().indexOf('%');
+             if (indexof < 0) {
+                 if (url.toLowerCase().slice(0, href.length) == href) {
+                     $(this).addClass('supp_category_cur');
+                     if ($(this).hasClass('clearfix')) {
+                         $(this).addClass('active').prev('div.menuopen').removeClass('menuopen').addClass('menuclose');
+                     } else {
+                         $(this).parents('ul').prev('a.clearfix').addClass('active').prev('div.menuopen').removeClass('menuopen').addClass('menuclose');
+                     }
+
+                 }
+             } else {
+                 if (url.toLowerCase().slice(0, indexof) == href.slice(0, indexof)) {
+                     $(this).addClass('supp_category_cur');
+                     if ($(this).hasClass('clearfix')) {
+                         $(this).addClass('active').prev('div.menuopen').removeClass('menuopen').addClass('menuclose');
+                     } else {
+                         $(this).parents('ul').prev('a.clearfix').addClass('active').prev('div.menuopen').removeClass('menuopen').addClass('menuclose');
+                     }
+
+                 }
+             }
+         });
+         //选中当前排序方式
+         var mod = '@mod';
+         $("#divprodorderby").find("a").each(function () {
+             var mode = $(this).attr("mod");
+             if (mode == mod) {
+                 $(this).addClass("xuanzhong");
+             }
+         });
+
+
+         //分类折叠
+         $('.menuopen').die('click').live('click', function () {
+             $(this).next('a.clearfix').addClass('active');
+             $(this).removeClass('menuopen').addClass('menuclose');
+
+             //关闭其他
+             var $thisparent = $(this).parent().siblings();
+             $thisparent.find('a.clearfix').removeClass('active');
+             $thisparent.find('div').removeClass('menuclose').addClass('menuopen');
+         });
+
+
+         $('.menuclose').die('click').live('click', function () {
+             $(this).next('a.clearfix').removeClass('active');
+             $(this).removeClass('menuclose').addClass('menuopen');
+         });
+
+         //保存显示价格
+         var priceStr = '@price';
+         var price1 = priceStr.split("-")[0];
+         var price2 = priceStr.split("-")[1];
+         if (!isNaN(price1) && parseInt(price1) > 0) {
+             $("#txtPrice1").val(price1);
+         }
+         if (!isNaN(price2) && parseInt(price2) > 0) {
+             $("#txtPrice2").val(price2);
+         }
+         //搜索按钮
+         $("#butsearch").click(function () {
+             price1 = parseInt($("#txtPrice1").val());
+             price2 = parseInt($("#txtPrice2").val());
+             if (isNaN(price1)) {
+                 price1 = 0;
+             }
+             if (isNaN(price2)) {
+                 price2 = 0;
+             }
+             location.href = "/Store/list/@suppid/@cid/@mod/" + price1 + "-" + price2 + "/" + $('#inputKeyword').val();
+         });
+
+         //收藏操作
+         $(".ProductFav").click(function () {
+             if (CheckUserState()) {
+                 var productId = $(this).attr("productId");
+                 $.ajax({
+                     type: "POST",
+                     dataType: "text",
+                     url: "/UserCenter/AjaxAddFav",
+                     async: false,
+                     data: { ProductId: productId },
+                     success: function (data) {
+                         if (data == "Rep") {
+                             ShowSuccessTip('您已经收藏了该商品，请不要重复收藏');
+                         } else if (data == "True") {
+                             ShowSuccessTip('收藏商品成功');
+                         } else {
+                             ShowFailTip('服务器繁忙，请稍候再试！');
+                         }
+                     }
+                 });
+             }
+         });
+     });
+
+     //检查是否登录
+     var CheckUserState = function () {
+         var dialogOpts = {
+             title: "登录",
+             width: 400,
+             modal: true,
+             resizable:false,
+             buttons: {
+                 "确定": function () {
+                     submitAjaxLogin();
+                 },
+                 "取消": function () {
+                     //  $(this).dialog("close"); //关闭层
+                     $("#divAjaxLogin").dialog("close");
+                 }
+             }
+         };
+         var islogin;
+         $.ajax({
+             url: "/Account/AjaxIsLogin",
+             type: 'post',
+             dataType: 'text',
+             async: false,
+             success: function (resultData) {
+                 if (resultData != "True") {
+                     $("#divAjaxLogin").dialog(dialogOpts);  
+                     //dialog层中项的设置
+                     islogin = false;
+                     return false;
+                 } else {
+                     islogin = true;
+                     return true;
+                 }
+             },
+             error: function (XMLHttpRequest, textStatus, errorThrown) {
+                 alert(errorThrown);
+             }
+         });
+         return islogin;
+     };
+     //发送消息
+     function submitAjaxLogin() {
+         var userName = $('#txtEmail').val();
+         var pwd = $('#txtPwd').val();
+
+         //验证标题
+         if (userName == '') {
+             ShowFailTip("请输入用户名！");
+             return false;
+         }
+         //验证标题
+         if (pwd == '') {
+             ShowFailTip("请输入密码！");
+             return false;
+         }
+
+         $.ajax({
+             type: "POST",
+             dataType: "text",
+             url: "/Account/AjaxLogin",
+             async: false,
+             data: { UserName: userName, UserPwd: pwd },
+             success: function (data) {
+                 if (parseInt(data) == -1) {
+                     ShowFailTip('该功能已被管理员关闭，如有疑问，请联系网站管理员');
+                     return false;
+                 }
+                 if (parseInt(data.split("|")[0]) > 0) {
+                     $("#divAjaxLogin").dialog("close");
+                     $('#hd-login').load('/Partial/Login');
+                     return true;
+                 }
+                 else {
+                     ShowFailTip('用户名或者密码不正确，请重试');
+                 }
+             }
+         });
+     }
+ </script>
+ 
+<div class="con_zhengwen">
+    <div class="searchArea">
+	<div class="jSearchArea">
+        <div class="jSearchInput">
+            <input type="text" value="@ky" size="40" maxlength="40" class="inputMiddle" placeholder="请输入关键词"  id="inputKeyword">
+		  <div class="jPriceArea">
+             <input type="text" size="7" maxlength="7" onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" onchange="this.value=this.value.replace(/\D/g,'')"  class="inputSmall"  id="txtPrice1" value="" placeholder="￥">
+            <span class="jText">-</span>
+            <input type="text" style="margin-right:0;" size="7" maxlength="7"  onafterpaste="this.value=this.value.replace(/\D/g,'')" onkeyup="this.value=this.value.replace(/\D/g,'')" onchange="this.value=this.value.replace(/\D/g,'')"  class="inputSmall" value="" placeholder="￥"  id="txtPrice2"/> 
+		  </div>
+						
+			            <button   id="butsearch" type="button" style="background-color: rgb(190, 190, 190);">搜索<s></s></button>
+        </div>
+					<div class="jHotwords" style="display:none;"><strong>热门搜索：</strong>
+        		        			<a   href="javascript:void(0)" style="color: #CC0000">毛衣</a>
+        		        			<a   href="javascript:void(0)" style="color: #CC0000">风衣</a>
+        		        			<a   href="javascript:void(0)" style="color: #CC0000">裤装</a>
+        		        			<a   href="javascript:void(0)" style="color: #CC0000">大衣</a>
+        		        			<a   href="javascript:void(0)" style="color: #CC0000">羽绒服</a>
+        		    		</div>
+			</div>
+</div>
+    <div class="blank10"></div>
+    <!--商品分类-->
+    <div class="con_zhengwen_left">
+        <div class="shangpinfenlei">
+            <div class="box-heading">商品分类</div>
+            <div class="box-category" id="box-category">
+               @Html.Action("CategoryList", "Store", new { Pcid = 0, suppId = suppid, viewName = "_CategoryList" })
+            </div>
+
+        </div>
+
+    </div>
+    <div class="con_zhengwen_right">
+        <div class="shanpinpaixu" id="divprodorderby">
+           <a href="/Store/list/@suppid/@cid/hot/@price/@ky"  mod="hot" >销量</a>
+           <a href="/Store/list/@suppid/@cid/pricedesc/@price/@ky"  mod="pricedesc" >价格</a> 
+           <a href="javascript:;" style="display:none;"  >好评度</a>
+           <a href="/Store/list/@suppid/@cid/new/@price/@ky"  mod="new" >上架时间</a>
+        </div>
+        <div id="ProductListDiv">
+            @{Html.RenderPartial("_PageProductList", Model);}
+        </div>
+    </div>
+</div>
+ 
+ <div id="divAjaxLogin" style="display: none">
+    <div style='margin-left: 40px; margin-top: 10px; font-weight: bold;'>
+        邮箱：<input type='text' style='border:1px solid #979494;height: 20px; width: 220px;' id='txtEmail' name='Email' />
+    </div>
+    <div style='margin-left: 40px; margin-top: 20px; font-weight: bold;'>
+        密码：<input type="password" style='border:1px solid #979494;height: 20px; width: 220px;' id='txtPwd' name='Pwd' />
+    </div>
+</div>
+<style type="text/css">
+    .ui-widget-header { background: #E66;color: #FFF; font-size: 14px; }
+    .ui-widget-content { border: 8px solid #CCC; color: #988; font-size: 14px;}
+    .ui-dialog-buttonset button{width:58px; height: 32px; } 
+    .ui-button-text{width:36px;  }
+     
+</style>

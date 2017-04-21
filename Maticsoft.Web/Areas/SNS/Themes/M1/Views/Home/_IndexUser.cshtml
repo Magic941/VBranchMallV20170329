@@ -1,0 +1,35 @@
+﻿@model Maticsoft.Accounts.Bus.User
+@if (Model == null)
+{
+    <div class="userpiece-welcome-guide">
+        <h4>
+            欢迎来到</h4>
+        <h1>
+            商人社区</h1>
+        <p>
+            <em>Hi，</em>您好，请登录后享受您的商人社区之旅吧！</p>
+    </div>
+    <ul class="userpiece-login-guide" style=" padding-top: 18px">
+        <li class="userpiece-loginin"><a href="/Account/Login" title="马上登录">马上登录&gt;</a></li>
+        <li class="userpiece-registe"><a href="/Account/Register" title="免费注册" rel="nofollow">
+            免费注册&gt;</a></li>
+    </ul>
+}
+else
+{
+    <div class="userpiece-welcome-guide">
+        <h4>
+            欢迎来到</h4>
+        <h1>
+            商人社区</h1>
+        <p>
+            <em>Hi，</em>享受您的商人社区之旅吧！</p>
+    </div>
+    <div style="padding-top: 18px">
+        <p style="float: left; padding-left: 32px;padding-bottom: 12px">
+            <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">
+                <img style="width: 50px; height: 50px" src="/Upload/User/Gravatar/@(Model.UserID).jpg" alt="@Model.NickName"></a></p>
+        <p class="appear_y">
+            <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">@Model.NickName</a></p>
+    </div>
+}

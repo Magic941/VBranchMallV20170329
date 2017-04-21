@@ -1,0 +1,407 @@
+
+
+.m18_body {
+	width:950px;
+	height:500px;
+	margin:10px auto 0 auto;
+	text-align:center;
+}
+[class].m18_body {
+	height:auto;
+}
+#shopc_msg {
+	width:930px;
+	height:28px;
+	margin:0 auto 0 auto;
+}
+#shopc_msg ul {
+	margin:0;
+	padding:0;
+}
+#shopc_msg ul li {
+	float:left;
+	height:28px;
+}
+#msg_margin {
+	margin-right:15px;
+}
+.msn_lineheight {
+	line-height:28px;
+	margin-top:2px;
+	font-size:14px;
+	color:#993300;
+}
+.msn_lineheight span {
+	color:#F00;
+	font-size:16px;
+	font-weight:bold;
+}
+#shopc_list_title {
+	width:930px;
+	height:26px;
+	margin:1px auto 0 auto;
+	background-image:url(../images/list_titile_bk.gif);
+}
+#shopc_list_title ul li {
+	line-height:26px;
+	float:left;
+	height:26px;
+	font-size:14px;
+	color:#999;
+	text-align:center;
+	padding:0 10px 0 10px;
+	color:#999;
+}
+.title_width1 {
+	width:430px;
+}
+.title_width2 {
+	width:100px;
+}
+.list_big_body {
+	width:932px;
+	border:1px solid #d8b98f;
+	margin:5px auto 0 auto;
+}
+[class].list_big_body {
+	height:auto;
+}
+.list_shop {
+	width:930px;
+	float:left;
+	height:90px;
+}
+.list_shop ul li {
+	line-height:90px;
+	float:left;
+	height:90px;
+	padding:0 10px 0 10px;
+}
+.vi_pic {
+	padding:3px;
+	float:left;
+	border:1px solid #CCC;
+	font-size:0;
+	margin:5px 0 5px 10px;
+}
+.vi_inf {
+	line-height:18px;
+	text-align:left;
+}
+.vi_inf span {
+	padding:0 5px 0 5px
+}
+.vi_inf a {
+	text-decoration:underline;
+}
+.vi_inf_color {
+	color:#666;
+}
+.vi_inf_h1_color {
+	color:#333;
+}
+.vi_inf_input {
+	width:25px;
+	height:15px;
+	border:1px solid #ccc;
+	margin:0 3px 0 3px;
+	text-align:center;
+	color:#333;
+}
+.vi_inf_suprise {
+	font-size:14px;
+	color:#ff3300;
+}
+#count_all {
+	width:930px;
+	height:23px;
+	margin:10px auto 10px auto;
+}
+#count_all ul {
+	float:right;
+}
+#count_all ul li {
+	padding:0 10px 0 10px;
+	float:left;
+	text-align:center;
+}
+#count_all span {
+	color:#F00;
+	font-weight:bold;
+	height:23px;
+	line-height:23px;
+}
+.count_solid {
+	border-right:1px dashed #999;
+	border-left:1px dashed #999;
+}
+#check_buy {
+	width:930px;
+	margin:10px auto 10px auto;
+}
+.check_bt {
+	width:530px;
+	float:left;
+	background-color:#f5f5f5;
+	text-align:center;
+}
+.check_coupon {
+	width:390px;
+	height:50px;
+	line-height:50px;
+	float:left;
+	margin-right:10px;
+	background-color:#f5f5f5;
+	text-align:center;
+}
+.check_coupon input {
+	width:85px;
+	height:20px;
+	margin-top:15px;
+}
+.check_coupon .t1a {
+	padding:2px;
+	border:1px solid #999;
+	background:#A39883;
+}
+.text_msg {
+	width:415px;
+	float:left;
+	font-size:14px;
+	color:#FF6600;
+}
+.text_msg a {
+	color:#FF6600;
+	text-decoration:underline;
+}
+.bt_check {
+	float:left;
+	margin-top:7px;
+}
+#goon_buy {
+	width:930px;
+	height:30px;
+	margin:10px auto 10px auto;
+	text-align:right;
+}
+#goon_buy img {
+	width:120px;
+	height:29px;
+}
+.zengpin {
+	width:950px;
+	height:340px;
+}
+.zengpin1_1 {
+	width:461px;
+	height:340px;
+	float:left;
+}
+.zengpin2_2 {
+	width:461px;
+	height:340px;
+	float:right;
+}
+.zengpin_h1 {
+	width:450px;
+	height:25px;
+	float:left;
+	text-align:left;
+	font-size:14px;
+}
+.zengpin1 {
+	width:460px;
+	height:280px;
+	float:left;
+	border:1px dashed #999;
+}
+.zengpin2 {
+	width:460px;
+	height:280px;
+	float:right;
+	border:1px dashed #999;
+}
+[class].zengpin1 {
+	height:auto;
+}
+[class].zengpin2 {
+	height:auto;
+}
+.zengpin1_h1,.zengpin2_h1 {
+	width:450px;
+	height:22px;
+	text-align:left;
+	font-size:14px;
+}
+.zengpin1_border,.zengpin2_border {
+	width:450px;
+	height:340px;
+	border:1px dashed #999;
+}
+.zp_pic {
+	width:196px;
+	float:left;
+	font-size:14px;
+	text-align:left;
+	padding:5px;
+}
+.zp_pic a {
+	color:#4E5C89;
+}
+.zp_text {
+	width:230px;
+	float:left;
+	padding:5px;
+}
+.zp_text div {
+	width:220px;
+	text-align:left;
+	float:left;
+}
+.zp_text_red_size {
+	border:1px solid #C98181;
+	background-color:#FFF7F7;
+	height:135px;
+	padding:5px;
+}
+.zp_text_red_size span {
+	color:#900;
+}
+.zp_text_red_size ul li {
+	float:left;
+	margin-right:5px;
+}
+.zp_text_red_size a img {
+	border:1px solid #333;
+}
+.zp_text_img {
+	border:1px solid #333;
+}
+.zp_text_red_size input {
+	width:35px;
+	height:16px;
+}
+.zp_text_red_size div {
+	margin:3px 0 3px 0
+}
+.zp_img_border {
+	border:1px solid #333;
+	font-size:0px;
+}
+.zp_size a {
+	display:block;
+	border:1px solid #333;
+	background-color:#FFF;
+	padding:0px 5px 0px 5px;
+}
+.zp_size_2 a {
+	border:2px solid #333;
+}
+.zp_msg {
+	padding:5px;
+	border:1px solid #F60;
+	background-color:#FFC;
+}
+.zp_msg span {
+	color:#F00;
+	font-size:14px;
+	font-weight:bold;
+}
+.clearboth {
+	clear:both;
+	font-size:0px;
+}
+.tiptable {
+	width:935px;
+	margin:0 auto;
+}
+.tiptable td {
+	background:#F5F5F5;
+	padding:5px;
+}
+.tiptable .t1 {
+	border-right:5px solid #FFF;
+	width:365px;
+}
+.tiptable .t2 {
+	padding:10px;
+}
+.tiptable .t2 a {
+	text-decoration:underline;
+}
+.tiptable .t3 {
+	width:110px;
+	text-align:center;
+}
+.list_big_body .t1 {
+	width:90px;
+	padding:5px 0;
+}
+#login-pop .overlay {
+	width:420px;
+	height:290px;
+	margin:-145px 0 0 -210px;
+}
+#login-pop .overlaymain {
+	width:400px;
+	height:270px;
+	margin:-135px 0 0 -200px;
+}
+#login-pop .clew {
+	padding:10px 15px;
+	border-bottom:1px solid #666;
+	background:#FFFFCC;
+}
+#login-pop fieldset {
+	padding:20px 0 0 80px;
+}
+#login-pop legend {
+	position:absolute;
+	left:-999em;
+	font-size:0;
+}
+#login-pop fieldset div {
+	height:40px;
+	text-align:left;
+}
+#login-pop fieldset label {
+	vertical-align:middle;
+}
+#login-pop fieldset .text {
+	height:20px;
+}
+#login-pop .handle {
+	overflow:hidden;
+	width:200px;
+	margin:10px auto 0;
+}
+#login-pop .handle a {
+	float:right;
+	margin-top:5px;
+	text-decoration:underline;
+}
+#login-pop .handle input {
+	float:left;
+	width:112px;
+	height:32px;
+	background:url(../images/btn-login.png) no-repeat 0 0;
+	border:none;
+	text-indent:-99em;
+	cursor:pointer;
+}
+.tips {
+	display:none;
+	padding:10px;
+	background:#FFF7F7;
+	border:1px solid #C98181;
+}
+.tips td {
+	padding:5px 10px;
+	text-align:left;
+}
+.zengpin1 .handle {
+	cursor:pointer;
+}
+.zengpin1 .disable {
+	cursor:not-allowed;
+}

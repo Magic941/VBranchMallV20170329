@@ -1,0 +1,44 @@
+﻿<div class="ic_toolbar">
+    <div class="wrapper clearfix">
+        <div class="fL toolba_msgL">
+            @if (ViewBag.CurrentUser == null)
+            {
+                @:欢迎来到健康商城！<a href="/Shop/Account/Login">[请登录]</a>，<a href="/Shop/Account/Register">[免费注册]</a>
+            }
+            else
+            {
+                Maticsoft.Accounts.Bus.User user = ViewBag.CurrentUser as Maticsoft.Accounts.Bus.User;
+                var NickName = user.NickName;
+                <a href="@(ViewBag.BasePath)UserCenter/Orders">@NickName </a>@:，您好，欢迎来到健康商城！ <a href="/Account/LogOut">[退出]</a> 
+            }
+            <a href="@(ViewBag.BasePath)m" id="phone" style="display:none;">手机端</a>
+            @if (Maticsoft.Web.MvcApplication.HasArea(Maticsoft.Web.AreaRoute.MShop))
+            {
+                <script type="text/javascript">
+                    try {
+                        if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))) {
+                            //alert("手机端");
+                            $("#phone").show();
+                        }
+                        else {
+
+                        }
+                    } catch (e) { }
+
+                </script>
+            }
+        </div>
+        <div class="fR toolba_msgR">
+            @if (ViewBag.CurrentUser == null)
+            {
+                <a href="@(ViewBag.BasePath)UserCenter/Orders">我的订单</a><span>|</span><a href="@(ViewBag.BasePath)UserCenter/Orders">会员中心</a><span>|</span><a href="@(ViewBag.BasePath)ShoppingCart/CartInfo">我的购物车</a>
+            }
+            else
+            {
+                <a href="@(ViewBag.BasePath)UserCenter/Orders">我的订单</a><span>|</span><a href="@(ViewBag.BasePath)UserCenter/Orders">会员中心</a><span>|</span><a href="@(ViewBag.BasePath)ShoppingCart/CartInfo">我的购物车</a>
+            }
+        </div>
+    </div>
+</div>
+
+

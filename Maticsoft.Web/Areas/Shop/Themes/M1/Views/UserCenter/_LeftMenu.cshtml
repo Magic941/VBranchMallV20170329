@@ -1,0 +1,154 @@
+﻿<div class="U-L-nav">
+    <dl>
+        <dt><i class="jiaoyi"></i>交易管理</dt>
+        <dd><a href="/UserCenter/Orders">订单中心</a></dd>
+        <dd><a href="/UserCenter/ReturnInfos">我的退货单</a></dd>
+        <dd><a href="/UserCenter/MyFavor">我的关注</a></dd>
+    </dl>
+    @*<dl>
+        <dt><i class="fuwu"></i>客户服务</dt>
+        <dd><a href="#">退换货</a></dd>
+    </dl>*@
+    <dl>
+        <dt><i class="zhanghu"></i>账户管理</dt>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/Personal">个人信息</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/ChangePassword" title="修改密码">修改密码</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/Gravatar" title="修改头像">修改头像</a></dd>
+        @*<dd><a href="#">安全设置</a></dd>*@
+        @*<dd><a href="#">到货通知</a></dd>*@
+        <dd><a href="@(ViewBag.BasePath)UserCenter/ShippAddressList">收货地址</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/Balance">我的钱包</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/HLCard">我的健康卡</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/MyCoupon">我的优惠券</a></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/Balance" title="账户余额"></dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/PointsDetail" title="我的积分" >我的积分</a></dd>
+        @*<dd><a href="@(ViewBag.BasePath)UserCenter/Exchanges" title="积分兑换" >积分兑换</a></dd>*@
+        @*<dd><a href="@(ViewBag.BasePath)UserCenter/MyInvite" title="我的邀请">我的邀请</a></dd>*@
+
+    </dl>
+    <dl style="border:none">
+        <dt><i class="jiaoyi"></i>消息箱</dt>
+@*        <dd><a href="@(ViewBag.BasePath)UserCenter/SendMessage" title="发信息">发信息</a> </dd>
+        <dd><a href="@(ViewBag.BasePath)UserCenter/Outbox" title="发件箱">发件箱</a> </dd>*@
+        @if (ViewBag.privatecount > 0)
+        {
+            <dd><a href="@(ViewBag.BasePath)UserCenter/Inbox" title="收件箱" style=" font-weight:bold;">收件箱(@ViewBag.privatecount)</a>  </dd>
+        }
+        else
+        {
+            <dd><a href="@(ViewBag.BasePath)UserCenter/Inbox" title="收件箱">收件箱</a>  </dd>
+        }
+        <dd><a href="@(ViewBag.BasePath)UserCenter/SysInfo" title="系统消息">系统消息</a> </dd>
+    </dl>
+</div>
+
+@*<div class="col-sub col-sub-mymenu">
+
+    <!-- 我的常用链接 S -->
+    <div class="box-sub" id="J_menucustom" style="display:none;">
+        <div class="hd" >
+            <h2>
+                我的常用链接</h2>
+            <div class="act">
+                <a href="javascript:;" id="J_menuset">设置</a>
+            </div>
+        </div>
+        <div class="bd" style="">
+        </div>
+    </div>
+    <!-- 我的常用链接 E -->
+    <div class="box-sub menu-main">
+         
+        <div class="hd">
+            <h2>
+                个人设置</h2>
+        </div>
+        <div class="bd">
+            <ul class="sub-nav-list">
+                <li><a href="@(ViewBag.BasePath)UserCenter/Personal" title="我的资料">个人资料</a> </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/ChangePassword" title="修改密码">修改密码</a> </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/Gravatar" title="修改头像">修改头像</a> </li>
+                <li style="display:none;"><a href="javascript:;" title="我的收货地址">我的收货地址</a> </li>
+                <li ><a href="@(ViewBag.BasePath)UserCenter/UserBind" title="微博帐号绑定">微博帐号绑定</a> </li>
+            </ul>
+        </div>
+        <div class="hd">
+            <h2>
+                订单中心</h2>
+        </div>
+        <div class="bd">
+            <ul class="sub-nav-list">
+                <li ><a href="@(ViewBag.BasePath)UserCenter/Orders" title="我的订单">我的订单</a> </li>
+                <li  style="display:none;"><a  href="javascript:;" title="我的团购">我的团购</a> </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/MyFavor" title="我的收藏">我的收藏</a> </li>
+                <li style="display:none;"><a href="javascript:;" title="商品评论回复">商品评论回复</a> </li>
+            </ul>
+        </div>
+        <div class="hd">
+            <h2>
+                账户中心</h2>
+        </div>
+        <div class="bd">
+            <ul class="sub-nav-list">
+                <li><a href="@(ViewBag.BasePath)UserCenter/Balance" title="账户余额">账户余额</a> </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/ShippAddressList" title="收货地址">收货地址</a> </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/PointsDetail" title="我的积分" >我的积分</a> </li>
+                    <li><a href="@(ViewBag.BasePath)UserCenter/Exchanges" title="积分兑换" >积分兑换</a> </li>
+                <li ><a href="@(ViewBag.BasePath)UserCenter/MyInvite" title="我的邀请">我的邀请</a> </li> 
+                <li  ><a href="@(ViewBag.BasePath)UserCenter/MyCoupon" title="我的优惠券">我的优惠券</a> </li> 
+            </ul>
+        </div>
+        <div class="hd" style="display:none;" >
+            <h2>
+                客服服务</h2>
+        </div>
+        <div class="bd"   style="display:none;" >
+            <ul class="sub-nav-list">
+                <li><a href="javascript:;" title="退换货">退换货</a> </li>
+                <li><a href="javascript:;" title="投诉建议">投诉建议</a> </li>
+                <li><a href="javascript:;" title="退款申请">退款申请</a> </li>
+            </ul>
+        </div>
+        
+
+        <div class="hd" >
+            <h2>
+                站内消息</h2>
+        </div>
+        <div class="bd"  >
+            <ul class="sub-nav-list">
+                <li><a href="@(ViewBag.BasePath)UserCenter/SendMessage" title="发信息">发信息</a>  </li>
+                <li><a href="@(ViewBag.BasePath)UserCenter/Outbox" title="发件箱">发件箱</a>  </li>
+                @if (ViewBag.privatecount > 0)
+                {
+                    <li><a href="@(ViewBag.BasePath)UserCenter/Inbox" title="收件箱" style=" font-weight:bold;">收件箱(@ViewBag.privatecount)</a>  </li>
+                }
+                else
+                {
+                    <li><a href="@(ViewBag.BasePath)UserCenter/Inbox" title="收件箱">收件箱</a>  </li>
+                }    
+                <li><a href="@(ViewBag.BasePath)UserCenter/SysInfo" title="系统消息">系统消息</a>  </li>
+                <li style="display:none;"><a href="javascript:;" title="给管理员发消息">给管理员发消息</a>  </li>
+            </ul>
+        </div>
+        
+        
+        @*
+        <div class="hd"  style="display:none;">
+            <h2>
+                我的社区</h2>
+        </div>
+        <div class="bd"  style="display:none;">
+            <ul class="sub-nav-list">
+                <li><a href="javascript:;" title="MY时尚" target="_blank">MY时尚</a> </li>
+                <li><a href="javascript:;" title="社区信息">社区信息</a> </li>
+                <li><a href="javascript:;" title="我的体型">我的体型</a> </li>
+                <li><a href="javascript:;" title="我的问答">我的问答</a> </li>
+                <li><a href="javascript:;" title="我的评论">我的评论</a> </li>
+                <li><a href="javascript:;" title="微博">微博</a> </li>
+            </ul>
+        </div>
+
+</div>
+</div>
+*@

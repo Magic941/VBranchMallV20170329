@@ -1,0 +1,207 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using System.Web.UI.WebControls
+@using Maticsoft.Controls.MVC
+@model Maticsoft.Model.Shop.Supplier.SupplierAD
+<link rel="stylesheet" href="/Scripts/validate/pagevalidator.css" type="text/css" />
+<script type="text/javascript" src="/Scripts/validate/pagevalidator.js"></script>
+<script type="text/javascript" src="/Scripts/jquery/jquery.form.js"></script>
+<!--SWF图片上传开始-->
+<link href="/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet"
+    type="text/css" />
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js"
+    type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[id$='lnkDelete']").hide();
+        $("#uploadify").uploadify({
+            'uploader': '/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.swf',
+            'script': '/UploadNormalImg.aspx',
+            'cancelImg': '/Scripts/jquery.uploadify/uploadify-v2.1.0/cancel.png',
+            'buttonImg': '/Areas/Supplier/Themes/M1/Content/images/uploadfile.jpg',
+            'folder': 'UploadFile',
+            'queueID': 'fileQueue',
+            'auto': true,
+            'multi': true,
+            'width': 76,
+            'height': 25,
+            'fileExt': '*.jpg;*.gif;*.png;*.bmp',
+            'fileDesc': 'Image Files (.JPG, .GIF, .PNG)',
+            'queueSizeLimit': 1,
+            'sizeLimit': 1024 * 1024 * 10,
+            'onInit': function () {
+            },
+
+            'onSelect': function (e, queueID, fileObj) {
+            },
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                if (response.split('|')[0] == "1") {
+                    $("[id$='hfFileUrl']").val(response.split('|')[1]);
+                    //$("[id$='imageurl']").val(response.split('|')[1].toString()); 
+                    ShowSuccessTip("上传成功");
+                } else {
+                    ShowFailTip("图片上传失败！");
+                }
+            }
+        });
+
+
+        $('.OnlyNum').OnlyNum();
+    });
+</script>
+<!--SWF图片上传结束-->
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>增加广告位</span></h3>
+        <small class="desc">您可以 <span>增加广告位</span> </small>
+    </div>
+    <form id="FormSubmitProduct">
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="borderkuang border form">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            广告名称 ：
+                        </td>
+                        <td height="25">
+                            @Html.TextBoxFor(m => m.Name, new { id = "txtName", name = "Name", width = "400px" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div id="errorMsg" class="msgError">
+                                此项为必填项<br>
+                                请输入广告名称，长度限制在20个字符以内！
+                            </div>
+                            <div id="focusMsg" class="msgNormal">
+                                必填<br>
+                                广告名称不能为空，长度限制在20个字符以内！
+                            </div>
+                        </td>
+                    </tr>
+                    <tr style="display: none;">
+                        <td class="td_class">
+                            广告位置 ：
+                        </td>
+                        <td height="25">
+                            @Html.TextBoxFor(m => m.PositionId, new { id = "txtPositionId", name = "PositionId", @class = "OnlyNum" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            图片地址 ：
+                        </td>
+                        <td height="25">
+                            @Html.HiddenFor(m => m.FileUrl, new { id = "hfFileUrl", name = "hfFileUrl" })
+                            @*    <asp:HiddenField ID="hfFileUrl" runat="server" />*@
+                            <div id="fileQueue">
+                            </div>
+                            <input type="file" name="uploadify" id="uploadify" />&nbsp;&nbsp;&nbsp;&nbsp;建议上传图片尺寸为1200*410（px）
+                        </td>
+                    </tr>
+                    @* <tr style="display: none;">
+                        <td class="td_class">
+                            广告语：
+                        </td>
+                        <td height="25">
+                            @Html.TextBoxFor(m => m.AlternateText, new { id = "txtAlternateText", name = "txtAlternateText" })
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <td class="td_class">
+                            链接地址：
+                        </td>
+                        <td height="25">
+                            @Html.TextBoxFor(m => m.NavigateUrl, new { id = "txtNavigateUrl", name = "txtNavigateUrl" })
+                            @* <asp:TextBox id="txtNavigateUrl" runat="server" Width="400px"></asp:TextBox>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            状态 ：
+                        </td>
+                        <td height="25">
+                            @Html.RadioButtonList("Status", new List<SelectListItem> { new SelectListItem { Value = "1", Text = "启用", Selected = true }, 
+                                new SelectListItem { Value = "0", Text = "未启用" } }, new Dictionary<string, object>() { }, Position.Horizontal, 2)
+                            @*        <input type="radio" name="1" value="ftytyu"  id="use" checked="checked"/>*@
+                            @*     @Html.RadioButtonFor(m=>m.Status,new List<ListItem>{})*@ @*      <label for="use">启用</label>*@
+                            @*             @Html.RadioButtonFor(m => m.AlternateText, new { name = "status", @Value = "0" })*@
+                            @* <input type="radio" name="1" value="0"  id="unuse"/>*@ @* <label for="unuse">不启用</label>*@
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            顺序 ：
+                        </td>
+                        <td height="25">
+                            @Html.TextBoxFor(m => m.Sequence, new { id = "txtSequence", name = "txtSequence", @Value = "1", @class = "OnlyNum" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                        <div class="form stdform">
+                            <input type="button" value="保存" id="btnSave" class="reset radius2 btn_style" />
+                            <input type="button" value="取消" id="btnCancle" class="reset radius2" />
+                        </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    </form>
+</div>
+<br />
+<script type="text/javascript">
+    $(function () {
+        $("#errorMsg").hide();
+        //$("#focusMsg").addClass("msgNormal");
+        $("#txtName").focusin(function () {
+            $("#focusMsg").addClass("msgOnFocus");
+        }).focusout(function () {
+            if ($("#txtName").val().length == 0) {
+                $("#errorMsg").show();
+                $("#focusMsg").hide();
+            } else {
+                $("#focusMsg").text("输入正确").removeClass().addClass("msgOK");
+            }
+        });
+        $("#btnSave").click(function () {
+            if ($("#hfFileUrl").val().length == 0) {
+                ShowFailTip("请上传图片！");
+                return false;
+            }
+            if ($("#txtNavigateUrl").val().length == 0) {
+                ShowFailTip("链接地址不能为空！");
+                return false;
+            }
+            var datas = $("#FormSubmitProduct").serialize();
+            $.ajax({
+                url: $Maticsoft.BasePath + "Home/AddAds",
+                data: datas,
+                type: "Post",
+                success: function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("添加成功！");
+                        setTimeout(function () {
+                            window.location = $Maticsoft.BasePath + "Home/AdsSetting";
+                        }, 2000);
+                    } else {
+                        ShowFailTip("添加失败！");
+                    }
+                }
+            });
+        });
+        $("#btnCancle").click(function () {
+            window.location = $Maticsoft.BasePath + "Home/AdsSetting";
+        });
+    });
+</script>

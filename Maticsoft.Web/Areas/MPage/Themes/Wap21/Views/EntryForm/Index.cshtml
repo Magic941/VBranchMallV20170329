@@ -1,0 +1,130 @@
+﻿ 
+<!--在线报名开始--->
+ 
+ <header class="header view">
+<span class="nowposition">
+<a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');" class="ui-link">首页</a>
+<a href="javascript:;"  class="ui-link">在线报名</a>
+</span>
+</header>
+<div class="content content_view">
+    <div class="tab-list">
+        <div class="tab-buttons controlgroup" >
+            <span class="tab-list-button selected">
+                <a class="js-git-protocol-selector ui-link"> 在线报名 </a>
+            </span>
+        </div>
+      <div class="tab-content">
+            <div >
+                <form>
+                             <fieldset>
+                        <legend> 在线报名 </legend>
+                        <div id="gbook_input" style="display:inline-block; width:100%;">
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">用户姓名</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" class="jq-ui-forms" maxlength="50" id="username" />
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">年龄</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" class="jq-ui-forms" maxlength="2" id="age" />
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">邮箱</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" class="jq-ui-forms" maxlength="50" id="Email" />
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">电话</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                  <input type="text" class="jq-ui-forms" maxlength="15" id="TelPhone" />
+                              
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">手机</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms" maxlength="11" id="Phone" />
+                              
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">QQ</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms" maxlength="10" id="QQ" />
+ 
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">家庭地址</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms" maxlength="200" id="HouseAddress" />
+                            
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">公司地址</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms" maxlength="200" id="CompanyAddress" />
+                           
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">省/市</legend>
+                            </div>
+                            <div  >
+                                <span id="divaddressselect" style="margin-left: 8px; "  data-role="none">
+                                    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                                    <input type="hidden"  id="hfSelectedNode" />
+                                    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script> 
+                                </span>
+                            </div>
+                            <script type="text/javascript">
+                                $('#divaddressselect select').attr('data-role', 'none').css('width','90px'); //不产生额外的文本
+                            </script>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms">
+                                <legend class="jq-ui-forms" data-role="none">性别</legend>
+                            </div>
+                      
+                            <div style="display:inline-block;margin-left: 8px; " class="jq-ui-forms"  >
+                            
+                                <select id="Sex"  data-role="none">
+                                    <option value="">请选择</option>
+                                    <option value="0">男</option>
+                                     <option value="1">女</option>
+                                </select>
+
+                               
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">内容</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                 <input type="text" class="jq-ui-forms" maxlength="16" id="Description" />
+                           
+                            </div>
+                            <div style="display:inline-block; width:100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">备注</legend>
+                            </div>
+                            <div style="display:inline-block; width:100%;margin-left:8px; " class="jq-ui-forms" data-role="none">
+                               
+                                <textarea class="jq-ui-forms" maxlength="300" id="Remark"></textarea>
+                            </div>
+                        </div>
+                        <input type="button"   value=" 提交 " id="btnEntryForm" class="button " data-role="none" >
+                        <input type="reset" name="clear_btn" value=" 重新填写 " class="button " data-role="none">
+                    </fieldset>
+                 
+            </form>
+            </div>
+        </div> 
+    </div>
+</div>
+ 
+
+<!--在线报名结束-->
+ 

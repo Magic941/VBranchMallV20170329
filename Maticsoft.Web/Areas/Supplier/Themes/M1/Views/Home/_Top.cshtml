@@ -1,0 +1,43 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model List<Maticsoft.Model.SysManage.SysNode>
+<div class="top">
+    <div class="logo">
+        <img src="../../../../../../Admin/Images/ss-02.png" /></div>
+    <div class="righttop">
+        <ul>
+            <li class="righttophelp" style="height:25px">使用帮助</li>
+            <li class="righttopabout" style="height:25px">关于</li>
+            <li class="righttoptuichu" style="height:25px">
+            <a href="@(ViewBag.BasePath)Account/Logout" target="_parent">
+                退出</a></li>
+        </ul>
+    </div>
+    <div class="adminmenu">
+        欢迎您，@ViewBag.UserName
+        <em>|</em> <a href="UserInfo" target="mainFrame">个人资料</a> <em>|</em><a href="@(ViewBag.BasePath)Home/index" target="_parent" class="sel">首页</a>
+    </div>
+</div>
+<div class="nav">
+    @if (Model != null && Model.Count > 0)
+    {
+        <ul class="TabBarLevel1" id="TabPage1">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                <li id="Tab@(i + 1)"><a href="@(ViewBag.BasePath)Home/LeftMenu/@Model[i].NodeID" target="leftFrame" onclick="javascript:switchTab('TabPage1','Tab@(i + 1)');">@Model[i].TreeText</a></li>
+            }
+        </ul>
+    }
+</div>
+<script language="JavaScript" type="text/javascript">
+    function switchTab(tabpage, tabid) {
+
+        $("#TabPage1 li").removeClass('Selected');
+        $("#TabPage1").find("#" + tabid).addClass('Selected');
+    }
+
+    $(function () {
+        switchTab('TabPage1', 'Tab1');
+    });
+</script>

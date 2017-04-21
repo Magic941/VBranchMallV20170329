@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<form name="form1" method="post" action="">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            供货统计
+        </h3>
+        <small class="desc">您可以查看供货统计信息 </small>
+    </div>
+    <div style="background-color: #ffffff; border: 1px solid #CCC;">
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="5" width="280px" border="0" style="border-collapse: collapse;
+                        margin-left: 5%; margin-top: 10px; margin-bottom: 10px">
+                        <tr>
+                            <td class="td_class" style="width: auto">
+                                &emsp;
+                            </td>
+                            <td style="text-align: center; font-weight: bold;">
+                                总量
+                            </td>
+                            <td style="text-align: right; font-weight: bold;">
+                                金额
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                供货
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @*<asp:label id="lblToalQuantity" runat="server"></asp:label>*@
+                                <label>@ViewBag.ToalQuantity</label>
+                                &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                              @ViewBag.ToalPrice
+                                &emsp;@*<asp:label id="lblToalPrice" runat="server"></asp:label>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                已售
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @*<asp:label id="lblSoldQuantity" runat="server"></asp:label>*@
+                                <label> @ViewBag.SoldQuantity</label>
+                                &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                                @ViewBag.SoldPrice
+                                &emsp;@*<asp:label id="lblSoldPrice" runat="server"></asp:label>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class" style="width: auto; text-align: center; font-weight: bold;">
+                                剩余
+                            </td>
+                            <td height="25" style="text-align: right">
+                                 <label>@ViewBag.RemainQuantity</label>
+                                @*<asp:label id="lblRemainQuantity" runat="server"></asp:label>*@ &emsp;
+                            </td>
+                            <td height="25" style="text-align: right">
+                                &emsp;@*<asp:label id="lblRemainPrice" runat="server"></asp:label>*@
+                                 @ViewBag.RemainPrice
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="td_class">
+                </td>
+                <td height="25">
+                    <div class="form stdform">
+                        <input type="submit" name="name" value="重新统计" class="reset radius2" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

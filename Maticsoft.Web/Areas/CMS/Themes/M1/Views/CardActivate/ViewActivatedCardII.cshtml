@@ -1,0 +1,208 @@
+﻿@using Maticsoft.Model;
+@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@model V_DriveCardInfo
+<link rel="stylesheet" type="text/css" href="/Areas/CMS/Themes/M1/Content/99jkc/css/about.css" />
+<div class="main">
+    <div class="wrapper">
+        <div class="imgbox clearfix">
+            <div class="lft">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_01.png" alt="">
+            </div>
+            <div class="rgt">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_02.png" alt="">
+            </div>
+        </div>
+        <div class="mainBox">
+            <div class="leftBox">
+                <ul class="subNav">
+                    <li class="on"><a href="#">查询信息<i></i></a></li>
+                </ul>
+            </div>
+            <!--leftbox-->
+            <div class="rightBox">
+                <div class="position">您所在的位置：<a href="/">主页</a> &gt; <a href="/">账号激活</a> &gt; <a href="/">查询驾乘卡信息</a></div>
+                <div class="body" ng-app="activaDrivenCardApp" ng-controller="activaDrivenCardCtrl">
+                    <div class="fuwu" style="margin-top: 20px;" ng-show="ApplicantType==1">                        
+                        <div class="fwpz1">个人驾乘卡激活信息查询</div>
+                        @if (Model != null)
+                        {
+                            <div>
+                              <p>投保信息</p>
+                               <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#666" class="fwpz24">
+                                <tbody>
+                                    <tr>
+                                        <td bgcolor="#FFFFFF">
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="fwpz21">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="28%">卡号：@Model.CardNo</td>
+                                                        <td class="fwpz22"></td>
+                                                        <td width="28%">激活日期：@Model.ActivateDate.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>投保人：@Model.Name</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>身份证号：@Model.CardID</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr> 
+                                                    <tr>
+                                                        <td>手机号：@Model.Mobile</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>保单号：@Model.InsureNo</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>车牌号：@Model.LPNumber</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>车架号:@Model.VINumber</td>
+                                                        <td></td>
+                                                    </tr>
+                                                   
+                                                    <tr>
+                                                        <td>车座位数：@Model.SeatsNumber</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                     @if (!string.IsNullOrEmpty(Model.InsureNo))
+                                                    {
+                                                       <tr>
+                                                        <td>保单号：@Model.InsureNo</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>保单生效日期：
+                                                            @if (Model.InsureOrderStart>= Convert.ToDateTime("1900-01-02"))
+                                                            {
+                                                               <p> @Model.InsureOrderStart.ToString("yyyy-MM-dd")</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                <p>--</p>
+                                                            }
+
+                                                        </td>
+                                                        <td>保单到期日：
+                                                            @if (Model.InsureOrderEnd >= Convert.ToDateTime("1900-01-02"))
+                                                            {
+                                                                <p> @Model.InsureOrderEnd.ToString("yyyy-MM-dd")</p>
+                                                            }
+                                                            else
+                                                            {
+                                                                 <p>--</p>
+                                                            }
+
+                                                        </td>
+                                                    </tr>
+                                                    }
+                                                   @* @if (!string.IsNullOrEmpty(Model.InsureNo))
+                                                    {
+                                                        <tr>
+                                                            <td>保单号：@Model.InsureNo</td>
+                                                            <td class="fwpz22">&nbsp;</td>
+                                                            <td>保单文件：<a href="@Model.InsureOrderFileUrl" target="_blank">点击查看保单</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    }*@
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>                            
+                            </div>               
+
+                        }
+                        else
+                        {
+                           <span>未查到激活信息</span>
+                        }
+                    </div>
+
+                     <div class="fuwu" style="margin-top: 20px;" ng-show="ApplicantType==2">                        
+                        <div class="fwpz1">单位驾乘卡激活信息查询</div>
+                        @if (Model != null)
+                        {
+                            <div>
+                              <p>投保信息</p>
+                               <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#666" class="fwpz24">
+                                <tbody>
+                                    <tr>
+                                        <td bgcolor="#FFFFFF">
+                                            <table width="100%" border="0" cellpadding="0" cellspacing="0" class="fwpz21">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="28%">卡号：@Model.CardNo</td>
+                                                        <td class="fwpz22"></td>
+                                                        <td width="28%">激活日期：@Model.ActivateDate.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>投保单位：@Model.EnterpriseName</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>单位机构代码证：@Model.EnterpriseCode</td>
+                                                        <td>&nbsp;</td>
+                                                    </tr> 
+                                                    <tr>
+                                                        <td>手机号：@Model.Mobile</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>保单号：@Model.InsureNo</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>车牌号：@Model.LPNumber</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td>车架号:@Model.VINumber</td>
+                                                        <td></td>
+                                                    </tr>
+                                                   
+                                                    <tr>
+                                                        <td>车座位数：@Model.SeatsNumber 座</td>
+                                                        <td class="fwpz22">&nbsp;</td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                    @if (!string.IsNullOrEmpty(Model.InsureNo))
+                                                    {
+                                                        <tr>
+                                                            <td>保单号：@Model.InsureNo</td>
+                                                            <td class="fwpz22">&nbsp;</td>
+                                                            <td>保单文件：<a href="@Model.InsureOrderFileUrl" target="_blank">点击查看保单</a></td>
+                                                            <td></td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>                            
+                            </div>               
+
+                        }
+                        else
+                        {
+                           <span>未查到激活信息</span>
+                        }
+                    </div>
+                </div>
+
+                <!--服务凭证结束-->
+            </div>
+            <!--rightbox-->
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    var app = angular.module('activaDrivenCardApp', []);
+    app.controller('activaDrivenCardCtrl', function ($scope, $http) {
+        $scope.ApplicantType = '@Model.ApplicantType';
+    });
+
+</script>

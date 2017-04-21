@@ -1,0 +1,7 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@Html.Action("Header", "Partial")
+@Html.Action("Navigation", "Partial", new { Theme="M1" })@*导航*@
+@RenderBody()
+@Html.Action("Footer", "Partial")

@@ -1,0 +1,12 @@
+﻿@model List<Maticsoft.Model.Shop.Supplier.SupplierAD>
+@if (Model != null && Model.Count>0)
+{
+ <div id="full-screen-slider" style ="width:1200px; height:410px;">
+     <ul id="slides">
+         @foreach (Maticsoft.Model.Shop.Supplier.SupplierAD item in Model)
+         {
+              <li ><a href="@item.NavigateUrl" target="_blank" ><img width="1200" height="410" src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(item.FileUrl)" alt="@item.Name" title="@(item.Name)" /></a></li> 
+         }   
+     </ul>
+</div>
+}

@@ -1,0 +1,711 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "学生板块";
+}
+@section head{
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+<style>
+.focus_map,.focus_map img{
+        width:100%;
+    }
+    .focus_map img {
+        display:block;
+    }
+.focus_picture{
+        background:#00bbfb;
+        padding:25px 0 52px 0;
+    }
+    .focus_picture ul {
+        width:92.5%;
+        overflow:hidden;
+        margin:0 auto;
+        padding:0;
+        border-bottom:4px solid #009bf8;
+
+    }
+    .focus_picture li {
+        width:31%;
+        float:left;
+        margin-right:3.5%;
+        margin-bottom:30px;
+    }
+    .focus_picture li a {
+        }
+    .focus_picture li a,.focus_picture li a img{
+        width:100%;
+        display:block;
+    }
+    .focus_title{
+        width:67%;
+        position:relative;
+        margin:0 auto;     
+    }
+    .focus_title span{
+        width:100%;
+        position:absolute;
+        left:0;
+        text-align:center;
+        display:block;
+        margin:0 auto;
+        color: #0f9153;
+        background: url(/Areas/MShop/Themes/M1/Content/img/students/xszl_05.png) center no-repeat;
+        background-size: cover;
+
+    }
+    .women {
+        background:#fbd10d;
+    }
+    .viands {
+        background:#ff3464;
+    }
+    .digital {
+        background:#0f9153;
+        padding-bottom:30px;
+    }
+    .student {
+    }
+</style>
+<div class="top">
+   
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+   
+</div>
+<div class="focus_map">
+    <img src="/Areas/MShop/Themes/M1/Content/img/students/xszl_01.jpg" />
+</div>
+<div class="focus_picture">
+    <ul>
+        <li>
+            <a href="#women">
+                <img src="/Areas/MShop/Themes/M1/Content/img/students/xszl_02.jpg" />
+            </a>
+        </li>
+        <li>
+            <a href="#viands">
+                <img src="/Areas/MShop/Themes/M1/Content/img/students/xszl_03.jpg" />
+            </a>
+        </li>
+        <li style="margin-right:0;">
+            <a href="#digital">
+                <img src="/Areas/MShop/Themes/M1/Content/img/students/xszl_04.jpg" />
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="women student" id="women">
+    <div class="focus_title">
+        <span>女装精选区</span>
+    </div>
+    <div class='Wechat_cn '>
+        <ul class='clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157422/0/0">
+                        <img class="lazy" src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251511358912338.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157422/0/0">2015夏装新款V领印花连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157421/0/0">
+                        <img class="lazy" src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251509540699412.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157421/0/0">2015新款钉珠V领包臀连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157420/0/0">
+                        <img class="lazy" src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251425521845500.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157420/0/0">2015夏装新款镂空蕾丝短袖连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157419/0/0">
+                        <img class="lazy" src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251424246964401.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157419/0/0">2015夏装新款时尚印花雪纺连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157418/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251422497786871.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157418/0/0">2015新款印花通勤连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157417/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251421200559141.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157417/0/0">2015新款印花雪纺连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 116.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157416/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251419312953719.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157416/0/0">2015夏装新款无袖通勤连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 138.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157415/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251417486400629.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157415/0/0">2015夏装新款荷叶袖通勤连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157414/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251416006417753.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157414/0/0">2015新款百搭蕾丝连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 138.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157413/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251412315917559.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157413/0/0">2015新款印花连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 128.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157412/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251409525540981.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157412/0/0">2015夏装新款翻领OL通勤连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 128.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157411/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251408065423286.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157411/0/0">2015新款通勤系带连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 128.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157410/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251405221173056.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157410/0/0">2015新款印花OL百搭修身连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157409/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251403488162702.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157409/0/0">2015新款印花OL通勤无袖连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157408/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251401211367714.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157408/0/0">2015新款条纹OL连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157407/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150325/T300X300_201503251357127424678.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157407/0/0">2015夏装新款V领印花连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157349/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150313/T300X300_201503131604527447154.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157349/0/0">2015夏装新款条纹连衣裙 斜纹印花布 65%涤纶 35%氨纶 有内衬 有配饰</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157347/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150313/T300X300_201503131601536772926.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157347/0/0">2015夏装新款印花通勤连衣裙 斜纹印花布 65%涤纶 35%氨纶 有内衬 无配饰</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 110.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="viands student"  id="viands">
+    <div class="focus_title">
+        <span>食品精选区</span>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157315/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091503005736336.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157315/0/0">江南好枸杞果醋饮料20ml盒装休闲饮品西部宁夏特产x3</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 66.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157314/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091502001592044.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157314/0/0">江南好枸杞奶茶(麦香)140g盒装精品特色西部宁夏特产x3</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 59.40</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157313/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091501359307350.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157313/0/0">江南好苹果脆片营养早餐120g八棱筒装西部宁夏特产</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 49.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157312/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091459349622228.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157312/0/0">江南好枸杞奶茶(香芋)140g盒装精品特色西部宁夏特产x3</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 59.40</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157299/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091448246838214.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157299/0/0">江南好枸杞咖啡大礼包416g礼盒装精品特色西部宁夏特产</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 109.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157298/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091448108302159.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157298/0/0">江南好枸杞果糕红色经典三种味道组合256g盒装西部宁夏特产x2</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 50.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157297/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150309/T300X300_201503091446140349569.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157297/0/0">江南好枸杞果糕6种味道组合装1320g西部宁夏特产</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 90.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157220/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131011085787904.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157220/0/0">【零零食】零食山椒凤爪 泡椒凤爪 山椒味 鸡爪 220g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 15.80</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157219/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131009425022430.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157219/0/0">【零零食】零食烤鱿鱼丝 休闲海鲜食品鱿鱼丝 188g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 18.80</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157218/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131008193885370.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157218/0/0">【零零食】零食五香牛肉粒 五香味牛肉干/牛肉粒 120g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 19.80</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157217/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131005583907255.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157217/0/0">【零零食】零食沙嗲肉粒 沙爹猪肉粒 140g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 19.80</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157216/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131003195970477.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157216/0/0">【零零食】零食五香牛肉片 手撕牛肉干 黄牛肉 83g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 9.90</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157215/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131001481394343.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157215/0/0">零零食】零食手撕肉条 手撕猪肉条猪肉丝 168g</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 19.80</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157214/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150213/T300X300_201502131000180695695.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157214/0/0">【零零食】零食烤鱼片 休闲海鲜食品干货 烧烤鱼片68g/包 3包装</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 27.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157202/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111119406990149.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157202/0/0">山西特产汉波108克香脆枣年货</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 15.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157198/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111054358158851.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157198/0/0">山西特产素有220克苦荞麦片</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 38.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157197/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111013396887334.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157197/0/0">湘岳 25g*20包卤汁豆干湖南特产豆腐干零食休闲食品小吃厂家直供</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 19.50</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157196/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111011061261990.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157196/0/0">湘岳 烧烤鱼排1000克散装称重湖南特产零食休闲食品厂家直供</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157195/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111008418882386.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157195/0/0">湘岳 烧烤鱼尾香辣散装称重1000克湘岳食品湖南特产小吃零食</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157194/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111007244096776.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157194/0/0">湘岳 鱼豆腐营养美味休闲食品零食小吃多种口味25g*20包/盒</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 23.50</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157192/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111004567292022.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157192/0/0">湘岳 香辣豆干3口味20包*25g湖南特产零食休闲食品豆腐干 2盒装</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 39.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157193/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150211/T300X300_201502111006164510134.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157193/0/0">湘岳 酱汁味美味嫩仔鱼1000克湖南特产零食休闲食品厂家直供</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            
+        </ul>
+    </div>
+</div>
+<div class="digital" id="digital">
+    <div class="focus_title">
+        <span>数码精选区</span>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157212/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150212/T300X300_201502121803222991495.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157212/0/0">蓝牙智能手表 新款M26蓝牙手表</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 629.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157210/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150212/T300X300_201502121746420299162.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157210/0/0">铝金属外壳土豪金移动电源 9000mAh</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 109.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156599/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150202/T400X400_201502021111125476403.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156599/0/0">闪迪家居 SmartWallit 蓝牙防丢器电子报警器防偷器防丢钱夹寻物器</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 129.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156575/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150202/T300X300_201502021028427006249.png"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156575/0/0">闪迪家居 USB便携式充电器</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 55.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155725/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20150107/T300X300_201501071017174486417.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155725/0/0">柏贝 E09新款蓝牙音箱热销无线手机低音炮小音箱双喇叭大音量 银色</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 158.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155171/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141222/T300X300_201412221748491497072.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155171/0/0">REMAX百褶 苹果iPhone6手提包皮套手机套4.7支架保护套</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 48.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154781/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141224/T300X300_201412241135231445311.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154781/0/0">REMAX 耳机 RM-303版 采用新型的14mm高性能驱动系统 通过低音透气孔来优化</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 38.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154778/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141224/T300X300_201412241122146508338.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154778/0/0">REMAX耳机 RM-701/702版 功能性陶瓷音乐耳机 史上最小 PET 5U高品质复合膜片</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 85.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154777/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141224/T300X300_201412241118117450222.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154777/0/0">蓝牙耳机 RB-T1版 HD高质量语音通话传输 采用顶级CSR8系 蓝牙4.0</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 115.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154766/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141222/T300X300_201412221618229957931.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154766/0/0">REMAX蓝牙音箱 RM-X2 蓝牙3.0技术兼有线 便携式设计 超强防水防尘功能</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 131.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154746/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141211/T300X300_201412111050260065210.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154746/0/0">REMAX炫彩极速iphone5s 扁线设计 方便整理收纳 无毒环保TPE线材</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 25.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154717/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141210/T300X300_201412101423020601332.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154717/0/0">睿丰(REMAX) iPhone 6 Plus 悦己皮套</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 58.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154716/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141210/T300X300_201412101417005950816.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154716/0/0">睿丰(REMAX) IPhone6 plus 闪钻钢化玻璃</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 35.00</em>
+                </div>
+
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154681/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141210/T300X300_201412101141505878515.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154681/0/0">睿丰(REMAX) IPhone 6 牛奶皮套</a></p>
+                <div class="Wechat_sell">
+                    <em>￥36.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/8918/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20140919/T300X300_201409191502444760660.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/8918/0/0">睿丰(REMAX) 9H高透钢化玻璃手机贴膜 适用于小米4/米4/M4</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 28.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/8917/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20140919/T400X400_201409191456300212076.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/8917/0/0">睿丰(REMAX)9H浮法防爆钢化玻璃膜手机贴膜</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 35.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/8916/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20141224/T300X300_201412241104522821543.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/8916/0/0">睿丰(REMAX) Only One百变单肩包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 98.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/8892/0/0">
+                        <img class="lazy"src="http://218.244.133.188:80//Upload/Shop/Images/ProductThumbs/20140919/T300X300_201409191118112677915.jpg"/></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/8892/0/0">睿丰 小米 3智能休眠皮套 4色可选</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 30.00</em>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+
+
+
+

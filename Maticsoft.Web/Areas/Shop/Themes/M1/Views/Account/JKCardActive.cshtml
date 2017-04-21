@@ -1,0 +1,268 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@model Maticsoft.Model.ShopCardUserInfo2
+  <link href="/Areas/Shop/Themes/M1/Content/card/css/style.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/card/js/style.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Shop/Themes/M1/Content/card/js/activation.css" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js")" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/card/js/CardUserInfoCheck.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMddHHmmss"))" type="text/javascript"></script>
+<link href="/Areas/Shop/Themes/M1/Content/card/js/activestep2.css" rel="stylesheet" />
+<script src="/Areas/Shop/Themes/M1/Content/card/js/jquery.jobtypepicker_1.0.js?ver="+@DateTime.Now.Hour.ToString()></script>
+<script src="/Areas/Shop/Themes/M1/Content/card/js/jquery.validate.min.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/card/js/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+<style>
+    .Second_c1 {
+        color: red;
+        margin-left: 97px;
+    }
+
+    .divJobTypePicker input {
+        width: 45px;
+    }
+
+    .divJobTypePicker select {
+        border: 1px solid #ff2164;
+    }
+
+    .sele level3 {
+        width: 259px;
+    }
+</style>
+
+<script type="text/javascript">
+    var personnum = parseInt('@ViewBag.PersonNum');
+    var jobpicker = null;
+    //激活过程中写基本资料
+    $(function () {
+        $(".btn-next-1").click(function () {
+            /*职业类型检查*/
+            if (jobpicker != null) {
+                var job = jobpicker.getValue();
+               // alert(job);
+                $("#txtJob").val(job);
+            }
+            var cardid = checkCardId();
+            //检查第二投保人
+            if (personnum >= 2) {
+                var result = checkCardId2($("#NameOneCardId").val());
+                if (!result) return;
+
+                if ($("#NameOne").val() == "") {
+                    alert("第二投保人姓名不能为空");
+                    return;
+                }
+            }
+            $('#baseInfo').submit();
+        });
+        $(":radio[name='sex']").click(function () { $("#Sex").val($(this).val()); });
+        $(":radio[name='IsMarry']").click(function () { $("#IsMarry").val($(this).val()); });
+        $(".sele[name='relation1']").click(function () { $("#RelationshipOne").val($(this).val()); });
+
+        $("#BackPerson").val("@ViewBag.SalesName");
+        $("#CardNo").val("@ViewBag.CardNo");
+        $("#CardSysId").val("@ViewBag.CardSysId");
+    });
+</script>
+
+
+@using (Html.BeginForm("JKCardActive", "Account", FormMethod.Post, new { id = "baseInfo" }))
+{
+    @Html.HiddenFor(m => m.CardSysId, new { id = "CardSysId" })
+    <input type="hidden" name="CardTypeNo" value="@ViewBag.CardTypeNo" />
+    <input type="hidden" name="Batch" value="@ViewBag.Batch" />
+    <input type="hidden" name="Password" value="@ViewBag.Password" />
+
+
+    
+    <div class="header">
+	<div class="wrapper">
+    	<h1 class="logo">
+        	<a href="#"></a>
+        </h1>
+    </div>
+</div>
+<div class="container">
+	<div class="wrapper">
+    	<div class="activation">
+            <div class="activation_nav">
+                <ul class="clearfix">
+                    <li class="active">
+                        <b>1</b>
+                        <span>激活</span>
+                    </li>                  
+                    <li class="active">
+                        <b>2</b>
+                        <span>提交激活卡</span>
+                    </li>
+                    <li>
+                        <b>3</b>
+                        <span>保险协议</span>
+                    </li>
+                    <li>
+                        <b>4</b>
+                        <span>激活成功</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="submit">
+                <div class="title">卡激活基本资料</div>
+                <div class="cardholder">
+                  @*  <span>产品名称：  欧瑞联合会员卡- 福祥B款</span>
+                    <span>产品卡号： </span>*@
+                </div>
+                <div class="message_write">
+                	<ul>
+                    	   <li class="write2 clearfix">
+
+                        	<label>卡号：</label>
+                            @Html.TextBoxFor(m => m.CardNo, new { id = "CardNo", ReadOnly = "true", name = "" })
+                                      
+                            <i>*</i>
+                            <em> @Html.ValidationMessageFor(m => m.CardNo)</em>
+                        </li>
+                        <li class="write2 clearfix">
+
+                        	<label>身份证号码：</label>
+                             @Html.TextBoxFor(m => m.CardId, new { id = "CardId", name = "" })
+                                       
+                            <i>*</i>
+                            <em> @Html.ValidationMessageFor(m => m.CardId)</em>
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>持卡人姓名：</label>
+                              @Html.TextBoxFor(m => m.Name, new { id = "Name", name = "" })
+                                      
+                            <i>*</i>
+                            <em>  @Html.ValidationMessageFor(m => m.Name)</em>
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>持卡人生日:</label>
+                              @Html.TextBoxFor(m => m.BirthDay, new { name = "txtBirthday", id = "txtBirthday", ReadOnly = "true" })
+                                       
+                            <i>*</i>
+                            <em>  @Html.ValidationMessageFor(m => m.BirthDay)</em>
+                        </li>
+                        <li class="write3 clearfix">
+                        	<label>持卡人的性别：</label>
+                            <input type="radio" name="sex" value="男" checked="checked">
+                                        男
+									    <input type="radio" name="sex" value="女">
+                                        女
+                                        @Html.HiddenFor(m => m.Sex, new { id = "Sex" })
+                                      
+                             <i>*</i>
+                            <em>  @Html.ValidationMessageFor(m => m.Sex)</em>
+                        </li>
+                        <li class="write3 clearfix">
+                        	<label>持卡人的婚姻状况：</label>
+                             <input type="radio" checked="checked" name="IsMarry" value="true">
+                                            是
+                                                    <input type="radio" name="IsMarry" value="false">
+                                            否
+                                                    @Html.HiddenFor(m => m.IsMarry, new { id = "IsMarry" })
+                                           <i>*</i>
+                            <em>  @Html.ValidationMessageFor(m => m.IsMarry)</em>
+
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>持卡人的移动电话：</label>
+                             @Html.TextBoxFor(m => m.Moble, new { id = "Moble", name = "" })
+                                      
+                            <i>*</i>
+                            <em>  @Html.ValidationMessageFor(m => m.Moble)</em>
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>持卡人的邮箱：</label>
+                             @Html.TextBoxFor(m => m.Email, new { id = "Email", name = "" })
+                                        
+                            <i>*</i>
+                            <em> @Html.ValidationMessageFor(m => m.Email)</em>
+                        </li>
+                       @* <li class="write4 clearfix">
+                        	<label>城市：</label>
+                            <select class="sele" name="">
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                            </select>
+                            <select class="sele" name="">
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                            </select>
+                            <select class="sele" name="">
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                                <option>上海</option>
+                            </select>
+                        </li>*@
+                        <li class="write2 clearfix">
+                        	<label>详细地址：</label>
+                             @Html.TextBoxFor(m => m.Address, new { id = "Address", name = "", style = "width:658px;" })
+                                           
+                            <i>*</i>
+                             <em> @Html.ValidationMessageFor(m => m.Address)</em>
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>从事职业：</label>
+                             <span id="divJobTypePicker" class="divJobTypePicker" style="margin-left: 5px; "></span>
+                                            @Html.TextBoxFor(m => m.Job, new { name = "txtJob", id = "txtJob", style = "width:0px;height:0px;float:left;margin:-1;padding:-1;position:absolute;left:-100;top:-100" })
+                                         
+                            <i>*</i>
+                             <em> @Html.ValidationMessageFor(m => m.Job)</em>
+                        </li>
+                        <li class="write2 clearfix">
+                        	<label>紧急联系人：</label>
+                             @Html.TextBoxFor(m => m.BackPerson, new { ReadOnly = "true", id = "BackPerson", name = "" })
+                                    
+                            <i>*</i>
+                             <em> @Html.ValidationMessageFor(m => m.BackPerson)</em>
+                        </li>
+                       @*  <li class="write2 clearfix">
+                        	<label>紧急联系人电话：</label>
+                             @Html.TextBoxFor(m => m.BakPersonMoble, new {  id = "BakPersonMoble", name = "" })
+                                    
+                            <i>*</i>
+                             <em> @Html.ValidationMessageFor(m => m.BakPersonMoble)</em>
+                        </li>*@
+                        
+                    </ul>
+                </div>
+                <div class="button" style="width:295px; margin:0 auto;">
+                  
+                    <a class="green" href="/account/JKAgreement">上一步</a>
+                                    <a class="huang btn-next-1" href="javascript:void(0);">下一步
+                                    </a>
+               </div>
+
+               
+
+           </div> 
+        </div>
+    </div>
+</div>
+    
+}
+
+<script>
+    //alert('@ViewBag.JobType');
+    if ('@ViewBag.JobType' != 'JBN') {
+        jobpicker = $("#divJobTypePicker").regionPicker({ companycode: '@ViewBag.JobType' });
+        if (personnum >= 2) {
+            $("#secondcardid").show();
+        }
+    }
+    else
+    {
+        jobpicker = $("#divJobTypePicker").regionPicker({ companycode: '@ViewBag.JobType', level: 2 });
+        if (personnum >= 2) {
+            $("#secondcardid").show();
+        }
+
+    }
+</script>

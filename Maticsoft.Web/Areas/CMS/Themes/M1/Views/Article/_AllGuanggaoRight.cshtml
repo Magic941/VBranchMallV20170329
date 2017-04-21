@@ -1,0 +1,13 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+
+@if (Model != null && Model.Count > 0)
+{
+    var item = Model.FirstOrDefault();
+    <div class="adimg"><a href="" title="" target="_blank"><img src="@string.Format(@item.ThumbImageUrl,"T235x1280_")" alt=""></a></div>
+}
+else
+{
+   <div class="adimg"><a href="" title="" target="_blank"><img src="/Areas/CMS/Themes/M1/Content/99jkc/images/img14.jpg" alt=""></a></div>
+    
+}

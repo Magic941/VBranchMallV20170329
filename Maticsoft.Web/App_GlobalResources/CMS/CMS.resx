@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ContentdropDraftList" xml:space="preserve">
+    <value>设为未审核</value>
+  </data>
+  <data name="ContentdropAudit" xml:space="preserve">
+    <value>设为已审核</value>
+  </data>
+  <data name="ContentdrpDraft" xml:space="preserve">
+    <value>草稿</value>
+  </data>
+  <data name="ContentdropNotApprove" xml:space="preserve">
+    <value>设为草稿</value>
+  </data>
+  <data name="ContentdrpSelect" xml:space="preserve">
+    <value>-选择批量处理类型-</value>
+  </data>
+  <data name="ContentErrorAddContent" xml:space="preserve">
+    <value>所属栏目类别不允许添加内容，请先修改所属栏目类别允许添加子类！</value>
+  </data>
+  <data name="ContentErrorAddMoreContent" xml:space="preserve">
+    <value>所属栏目为单文章模式，不允许添加多个内容！</value>
+  </data>
+  <data name="ContentErrorContentID" xml:space="preserve">
+    <value>内容编号格式不正确！</value>
+  </data>
+  <data name="ContentErrorInputInt" xml:space="preserve">
+    <value>请输入正整数</value>
+  </data>
+  <data name="ContentErrorTitleNotNull" xml:space="preserve">
+    <value>*标题不能为空！</value>
+  </data>
+  <data name="ContentfieldContentID" xml:space="preserve">
+    <value>详细</value>
+  </data>
+  <data name="ContentfieldCreatedDate" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="ContentKeywordList" xml:space="preserve">
+    <value>关键字列表</value>
+  </data>
+  <data name="ContentlblAdd" xml:space="preserve">
+    <value>您可以新增内容</value>
+  </data>
+  <data name="ContentlblAppendix" xml:space="preserve">
+    <value>附件</value>
+  </data>
+  <data name="ContentlblClass" xml:space="preserve">
+    <value>选择栏目</value>
+  </data>
+  <data name="ContentlblClassName" xml:space="preserve">
+    <value>栏目名称</value>
+  </data>
+  <data name="ContentlblClassType" xml:space="preserve">
+    <value>所属栏目类别</value>
+  </data>
+  <data name="ContentlblContentID" xml:space="preserve">
+    <value>内容编号</value>
+  </data>
+  <data name="ContentlblContentProperty" xml:space="preserve">
+    <value>内容属性</value>
+  </data>
+  <data name="ContentlblCreatedID" xml:space="preserve">
+    <value>创建者编号</value>
+  </data>
+  <data name="ContentlblCreater" xml:space="preserve">
+    <value>创建用户</value>
+  </data>
+  <data name="ContentlblDownload" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="ContentlblEyeCatching" xml:space="preserve">
+    <value>醒目</value>
+  </data>
+  <data name="ContentlblFileUrl" xml:space="preserve">
+    <value>文件地址</value>
+  </data>
+  <data name="ContentlblHotSpot" xml:space="preserve">
+    <value>热点</value>
+  </data>
+  <data name="ContentlblLastDate" xml:space="preserve">
+    <value>最后修改日期</value>
+  </data>
+  <data name="ContentlblLaster" xml:space="preserve">
+    <value>最后修改人</value>
+  </data>
+  <data name="ContentlblLinkUrl" xml:space="preserve">
+    <value>外部链接地址</value>
+  </data>
+  <data name="ContentlblList" xml:space="preserve">
+    <value>您可以新增、编辑内容</value>
+  </data>
+  <data name="ContentlblMemberOnly" xml:space="preserve">
+    <value>仅会员可见</value>
+  </data>
+  <data name="ContentlblModify" xml:space="preserve">
+    <value>您可以编辑内容</value>
+  </data>
+  <data name="ContentlblPermissions" xml:space="preserve">
+    <value>内容权限</value>
+  </data>
+  <data name="ContentlblRecommend" xml:space="preserve">
+    <value>推荐</value>
+  </data>
+  <data name="ContentlblShow" xml:space="preserve">
+    <value>您可以浏览内容信息</value>
+  </data>
+  <data name="ContentlblTop" xml:space="preserve">
+    <value>置顶</value>
+  </data>
+  <data name="ContentlblViews" xml:space="preserve">
+    <value>浏览量</value>
+  </data>
+  <data name="ContentptAdd" xml:space="preserve">
+    <value>增加内容</value>
+  </data>
+  <data name="ContentptList" xml:space="preserve">
+    <value>内容管理</value>
+  </data>
+  <data name="ContentptModify" xml:space="preserve">
+    <value>编辑内容</value>
+  </data>
+  <data name="ContentptShow" xml:space="preserve">
+    <value>内容信息</value>
+  </data>
+  <data name="ContentTooltipBatch" xml:space="preserve">
+    <value>你确定要批量处理？</value>
+  </data>
+  <data name="ContentTooltipDelete" xml:space="preserve">
+    <value>附件删除成功！</value>
+  </data>
+  <data name="ContentTooltipDeleteFail" xml:space="preserve">
+    <value>附件删除失败，请稍后再试！</value>
+  </data>
+  <data name="ContentTooltipUpload" xml:space="preserve">
+    <value>上传附件成功！</value>
+  </data>
+  <data name="ContenttoortipUrl" xml:space="preserve">
+    <value>例如：http://www.maticsoft.com</value>
+  </data>
+  <data name="CCArticleList" xml:space="preserve">
+    <value>文章列表</value>
+  </data>
+  <data name="CClassType" xml:space="preserve">
+    <value>栏目类型</value>
+  </data>
+  <data name="CContentModel" xml:space="preserve">
+    <value>内容模式</value>
+  </data>
+  <data name="CCFieldDescription" xml:space="preserve">
+    <value>栏目描述</value>
+  </data>
+  <data name="CClblAdd" xml:space="preserve">
+    <value>您可以新增栏目</value>
+  </data>
+  <data name="CCOrder" xml:space="preserve">
+    <value>顺序值</value>
+  </data>
+  <data name="CCptAdd" xml:space="preserve">
+    <value>增加栏目</value>
+  </data>
+  <data name="CCSingleArticle" xml:space="preserve">
+    <value>单文章</value>
+  </data>
+  <data name="CCTemplateName" xml:space="preserve">
+    <value>页面模板名称</value>
+  </data>
+  <data name="CCTheParent" xml:space="preserve">
+    <value>父级类别</value>
+  </data>
+  <data name="ClassErrorAddFailed" xml:space="preserve">
+    <value>添加失败，请稍后再试！</value>
+  </data>
+  <data name="ClassErrorCLassNameNull" xml:space="preserve">
+    <value>栏目类型名称不能为空!</value>
+  </data>
+  <data name="ClassErrorFormatError" xml:space="preserve">
+    <value>栏目类型格式不正确！</value>
+  </data>
+  <data name="ClassErrorNameNotNull" xml:space="preserve">
+    <value>栏目名称不能为空！</value>
+  </data>
+  <data name="ClasslblClassID" xml:space="preserve">
+    <value>类型编号</value>
+  </data>
+  <data name="ClasslblClassName" xml:space="preserve">
+    <value>类型名称</value>
+  </data>
+  <data name="ClasslblCmsClass" xml:space="preserve">
+    <value>您可以新增栏目类型</value>
+  </data>
+  <data name="ClasslblList" xml:space="preserve">
+    <value>您可以编辑栏目类型</value>
+  </data>
+  <data name="ClasslblModify" xml:space="preserve">
+    <value>您可以编辑栏目类型</value>
+  </data>
+  <data name="ClassptCmsClass" xml:space="preserve">
+    <value>新增栏目类型</value>
+  </data>
+  <data name="ClassptList" xml:space="preserve">
+    <value>类型管理</value>
+  </data>
+  <data name="ClassptModify" xml:space="preserve">
+    <value>编辑栏目类型</value>
+  </data>
+  <data name="ClasstooltipEnterName" xml:space="preserve">
+    <value>请输入类型名称！</value>
+  </data>
+  <data name="CCAddContent" xml:space="preserve">
+    <value>允许增加内容</value>
+  </data>
+  <data name="CCAddSubclass" xml:space="preserve">
+    <value>允许增加子类</value>
+  </data>
+  <data name="CColumnIndex" xml:space="preserve">
+    <value>栏目索引</value>
+  </data>
+  <data name="CCErrorAddClass" xml:space="preserve">
+    <value>您所选的父级栏目不允许添加子栏目，请先修改父级栏目！</value>
+  </data>
+  <data name="CCFieldImageUrl" xml:space="preserve">
+    <value>栏目图片</value>
+  </data>
+  <data name="CCFieldParentId" xml:space="preserve">
+    <value>上级菜单</value>
+  </data>
+  <data name="CClblAlist" xml:space="preserve">
+    <value>您可以添加、编辑、删除栏目内容</value>
+  </data>
+  <data name="CCptAlist" xml:space="preserve">
+    <value>栏目管理</value>
+  </data>
+  <data name="CCSearchMethod" xml:space="preserve">
+    <value>搜索方式</value>
+  </data>
+  <data name="CCErrorClassID" xml:space="preserve">
+    <value>栏目编号格式不正确</value>
+  </data>
+  <data name="CCExpandAll" xml:space="preserve">
+    <value>全部展开</value>
+  </data>
+  <data name="CClassID" xml:space="preserve">
+    <value>栏目编号</value>
+  </data>
+  <data name="CClassification" xml:space="preserve">
+    <value>分类名称</value>
+  </data>
+  <data name="CClblModify" xml:space="preserve">
+    <value>您可以进行栏目编辑</value>
+  </data>
+  <data name="CClblShow" xml:space="preserve">
+    <value>栏目详细信息查看</value>
+  </data>
+  <data name="CCollapseAll" xml:space="preserve">
+    <value>全部收缩</value>
+  </data>
+  <data name="CCptModify" xml:space="preserve">
+    <value>编辑栏目</value>
+  </data>
+  <data name="CCptShow" xml:space="preserve">
+    <value>栏目详细</value>
+  </data>
+  <data name="CCShowType" xml:space="preserve">
+    <value>显示模式</value>
+  </data>
+  <data name="CCTooltipNoParent" xml:space="preserve">
+    <value>无父级</value>
+  </data>
+  <data name="WMIsAvailable" xml:space="preserve">
+    <value>是否可用</value>
+  </data>
+  <data name="WMenuName" xml:space="preserve">
+    <value>菜单名称</value>
+  </data>
+  <data name="WMErrorMenuName" xml:space="preserve">
+    <value>菜单名称不能为空！</value>
+  </data>
+  <data name="WMErrorPageUrl" xml:space="preserve">
+    <value>页面地址不能为空！</value>
+  </data>
+  <data name="WMErrorSqueeze" xml:space="preserve">
+    <value>显示序号不能为空！</value>
+  </data>
+  <data name="WMlblAdd" xml:space="preserve">
+    <value>您可以新增导航菜单</value>
+  </data>
+  <data name="WMlblBlank" xml:space="preserve">
+    <value>新窗口</value>
+  </data>
+  <data name="WMlblSelf" xml:space="preserve">
+    <value>本窗口</value>
+  </data>
+  <data name="WMlblTarget" xml:space="preserve">
+    <value>打开方式</value>
+  </data>
+  <data name="WMptAdd" xml:space="preserve">
+    <value>新建导航菜单</value>
+  </data>
+  <data name="WMTitleName" xml:space="preserve">
+    <value>标题名称</value>
+  </data>
+  <data name="WMAvailable" xml:space="preserve">
+    <value>可用</value>
+  </data>
+  <data name="WMCustom" xml:space="preserve">
+    <value>用户自定义</value>
+  </data>
+  <data name="WMErrorSqueezeForm" xml:space="preserve">
+    <value>显示序号格式不正确！</value>
+  </data>
+  <data name="WMlblList" xml:space="preserve">
+    <value>您可以添加、编辑自定义网站前台顶部导航菜单</value>
+  </data>
+  <data name="WMlblModify" xml:space="preserve">
+    <value>你可以自定义网站参数</value>
+  </data>
+  <data name="WMNotAvailable" xml:space="preserve">
+    <value>不可用</value>
+  </data>
+  <data name="WMptList" xml:space="preserve">
+    <value>导航菜单管理</value>
+  </data>
+  <data name="WMptModify" xml:space="preserve">
+    <value>编辑导航菜单</value>
+  </data>
+  <data name="WMSystem" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="WMSystemMenu" xml:space="preserve">
+    <value>系统菜单</value>
+  </data>
+  <data name="TitleErrorAddContent" xml:space="preserve">
+    <value>请输入标题名称！</value>
+  </data>
+  <data name="ContentErrorAddClass" xml:space="preserve">
+    <value>请先添加栏目！</value>
+  </data>
+  <data name="ContentErrorNoContent" xml:space="preserve">
+    <value>信息已被删除或者不存在！</value>
+  </data>
+  <data name="ContentfieldPvCount" xml:space="preserve">
+    <value>浏览数</value>
+  </data>
+  <data name="ContentTooltipTitleExist" xml:space="preserve">
+    <value>已经存在同名标题的文章！</value>
+  </data>
+  <data name="FixedPageContent" xml:space="preserve">
+    <value>固定页面内容</value>
+  </data>
+  <data name="FixedPageContentEdit" xml:space="preserve">
+    <value>您可以编辑固定页面内容</value>
+  </data>
+  <data name="FixedPageName" xml:space="preserve">
+    <value>页面名称</value>
+  </data>
+  <data name="ContentClassName" xml:space="preserve">
+    <value>文章类别名称</value>
+  </data>
+  <data name="ContentRelease" xml:space="preserve">
+    <value>发布</value>
+  </data>
+  <data name="ContentReleaseNo" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="ContentReleaseYes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="ContentTitle" xml:space="preserve">
+    <value>文章标题</value>
+  </data>
+  <data name="lblContentManage" xml:space="preserve">
+    <value>您可以新增，编辑文章（新闻）内容</value>
+  </data>
+  <data name="ptContentManage" xml:space="preserve">
+    <value>文章(新闻)管理</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+</root>

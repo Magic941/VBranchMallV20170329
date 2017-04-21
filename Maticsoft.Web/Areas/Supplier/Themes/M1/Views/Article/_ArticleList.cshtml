@@ -1,0 +1,90 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.VPage.Article>
+<link href="/Areas/Supplier/Themes/M1/Content/OldCss/supplier.css" rel="stylesheet" type="text/css" />
+           @if (null != Model)
+           {
+               <table cellspacing="0" cellpadding="0" rules="all" border="0px" class="GridView"  
+               style="border-color:#CCCCCC;border-width:1px;border-style:solid;width:100%;border-collapse:collapse;">
+                   <tbody>
+                       <tr height="25px" style="background-color:#E3EFFF;height:25px;background:#FFF;text-align: center">
+                           <td class="input_middle" style="width:18px;padding-left:5px;border:1px solid #dae2e8;border-right:0px;">
+                            @*   <input id="Checkbox2" type="checkbox" onclick="CheckAll(this)">*@
+                           </td>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;text-align: center">
+                               <span href="javascript:;" style="color:#666666;">标题</span>
+                           </th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;text-align: center">
+                               <span href="javascript:;" style="color:#666666;">栏目名称</span>
+                           </th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;text-align: center">
+                               <span href="javascript:;" style="color:#666666;">创建时间</span>
+                           </th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;text-align: center">
+                               <span href="javascript:;" style="color:#666666;">状态</span>
+                           </th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;text-align: center">
+                               <span href="javascript:;" style="color:#666666;">浏览数</span>
+                           </th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;color:#666666;text-align: center">详细</th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;color:#666666;text-align: center">编辑</th>
+                           <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;color:#666666;text-align: center">删除</th>
+                       </tr>
+                       @foreach (var item in Model)
+                       {
+                           <tr>
+                           <td class="input_middle" valign="middle"  style="width:18px;padding-left:5px;height:27px;">
+                               <input adId="@item.Title" type="checkbox" >
+                           </td>
+                           <td class="Adstd">@item.</td>
+                           <td class="Adstd">@item.CreatedDate.ToString("yyyy-MM-dd HH:MM:ss")</td>
+                           <td class="Adstd"></td>
+                           <td class="Adstd">@item.Status</td>
+                           <td class="Adstd">@item.Sequence</td>
+                           <td >
+                               <a class="adDetail" href="javascript:;"  adid="@item.AdvertisementId">详细</a>
+                           </td>
+                               <td >
+                                   @*@Html.ActionLink("编辑", "AdsDetail", "SellerCenter", new { @class = "editThisAd", adid =item.AdvertisementId,viewName="AdsEdit" })*@
+                                   <a class="editThisAd" href="javascript:;" style="display:inline-block;width:50px;" adid="@item.AdvertisementId">编辑</a>
+                               </td>
+                           <td >
+                               <a  class="deleteThisAd" href="javascript:;" style="display:inline-block;width:50px;color:#1317fc;" adid="@item.AdvertisementId">删除</a>
+                           </td>
+                           </tr>
+                       }
+                   </tbody></table>
+
+           }
+           else
+           {
+                <p style="margin-top: 20px; margin-left: 20px; font-size: large;">
+        亲，您暂时还没有菜单哦</p>
+           }
+<center>
+    @Html.AjaxPager(Model, new PagerOptions
+        {
+            AlwaysShowFirstLastPageNumber = true,
+            PageIndexParameterName = "pageIndex",
+            NumericPagerItemCount = 10,
+            
+            NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+            NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+            CssClass = "in_pages",
+            SeparatorHtml = ""
+        }, new AjaxOptions { UpdateTargetId = "LoadArticleList " })
+</center>
+<script type="text/javascript">
+    $(function () {
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+
+    });
+</script>

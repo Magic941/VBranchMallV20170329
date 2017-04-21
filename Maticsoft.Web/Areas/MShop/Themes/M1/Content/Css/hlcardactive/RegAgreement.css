@@ -1,0 +1,219 @@
+﻿ul li,ol li{list-style:none}
+.fL{float:left}
+.fR{float:right}
+.clearfix,dl {*zoom: 1;}
+.clearfix:before,.clearfix:after,dl:before,dl:after{display:table;content: "";}
+.clearfix:after,dl:after{clear: both;}
+.mgL5{margin-left:5px}
+.mgL10{margin-left:10px}
+.mgL15{margin-left:15px}
+.mgL20{margin-left:20px}
+.mgR5{margin-right:5px}
+.mgR10{margin-right:10px}
+.mgR15{margin-right:15px}
+.mgR20{margin-right:20px}
+.mgT5{margin-top:5px}
+.mgT10{margin-top:10px}
+.mgT15{margin-top:15px}
+.mgT20{margin-top:20px}
+.mgT30{margin-top:30px}
+.pdL5{padding-left:5px}
+.pdL10{padding-left:10px}
+.pdL15{padding-left:15px}
+.pdL20{padding-left:20px}
+.pdR5{padding-right:5px}
+.pdR10{padding-right:10px}
+.pdR15{padding-right:15px}
+.pdR20{padding-right:20px}
+
+body{color:#333;font: 12px/1.5 '微软雅黑','Droid Sans',Arial,Verdana,sans-serif;}
+
+*{padding:0;margin:0;outline:none;list-style:none;}
+body{color:#333;font: 12px/1.5 '微软雅黑','Droid Sans',Arial,Verdana,sans-serif;}
+a{color:#333;text-decoration:none;/*-webkit-transition:all ease-in-out 0.2s;-moz-transition:all ease-in-out 0.2s;-o-transition: all ease-in-out 0.2s;transition: all ease-in-out 0.2s;*/}
+a:hover{text-decoration:none !important;color:#eb020b;}
+
+ul li,ol li{list-style:none}
+i em{font-style:normal}
+del{text-decoration: line-through;}
+dl dt,dl dd{float:left}
+abbr{font-family:Arial, Helvetica, sans-serif}
+input{ vertical-align:-1px;}
+input[type="radio"]{margin-right:5px}
+img{
+	border:none;
+	}
+
+.step{
+width:370px; height:100px;
+float:right;
+margin:10px 0 0 10px;
+background:url(/Areas/MShop/Themes/M1/Content/images/jidu_2.png) center 40px no-repeat;
+text-align:center;
+}
+.step *{
+	margin:0; padding:0;
+}
+.step ul{
+	padding:0 10px;
+}
+.activene{
+color:red;
+}
+
+.basic_inforionmat li.active a{
+	color:red;
+	display:inline-block;
+	*display:inline;zoom:1;
+	text-decoration:underline;
+	}
+.first_insured li a{
+	font-weight:bold;
+	}
+
+.step li{
+width:87px;
+float:left;
+padding:0 0px;
+font-size:12px;
+}
+.step li dt,.step li dd, .step li dl{
+	float:none;
+}
+.step li dt,.step li dd{
+font-size:12px;
+font-family:"微软雅黑"；
+}
+.step li  a{
+font-size:12px;
+font-family:"微软雅黑";
+color:#000;
+}
+.step li  a:hover{
+color:#F38790;
+}
+.gkga{
+	margin-right:53px;
+	}
+.table-border th, .table-border td{
+	border:1px solid #ccc;
+}
+/*第一步*/
+
+.big_backdrop{
+width:100%;
+margin:0 auto;
+/*padding-top:490px;*/
+padding-bottom:20px;
+/*background:url(../../../images/images/bei_03.png) center top no-repeat;*/
+}
+.white_background{
+width:90%;
+margin:0 auto;
+background:#fff;
+border:3px solid #fff;
+border-radius:30px;
+padding-bottom:60px;
+}
+.procedure_bz span{
+height:109px;
+line-height:109px;
+float:left;
+font-size:30px;
+font-family:"微软雅黑";
+}
+.agreement_pt span,.agreement_pt p,.agreement_pt em{
+	font-family:"微软雅黑";
+	font-size:12px;
+	font-style:inherit;
+	color:#666;
+	}
+.agreement_pt p{
+	text-indent:25px
+	}
+.agreement_pt em{
+	color:red;
+	}
+.steps{
+float:right;
+}
+.steps ul{
+height:109px;
+line-height:109px;
+}
+.steps li{
+float:right;
+}
+
+
+.protocol_script{
+width:88%;
+margin:0 auto;
+}
+.protocol_script span{}
+.reading_yd span{
+font-size:12px;
+font-family:"微软雅黑";
+}
+.reading_yd input{
+width:15px;
+height:15px;
+margin-top:3px;
+border:1px solid #8f8f8f;
+}
+.reading_yd{
+	width:134px;
+	height:40px;
+	}
+.reading_yd_bottom{
+	width:174px;
+	}
+.reading_yd,.reading_yd_bottom{
+margin:0 auto;
+}
+.reading_yd_bottom a{
+padding-right:20px;
+}
+.buju{
+	margin-top:20px;
+	}
+.reading_yd_bot{
+	width:225px;
+	padding-left:384px;
+	}
+/*consumer*/
+.consumer span{
+    margin-top:5px;
+	font-size:1rem;
+	text-align:center;
+	display:block;
+	}
+.protocol{
+	background:#fff;
+	border-radius:8px;
+	padding:1em;
+	}
+
+.consumer div input{
+	margin-top:0.5em;
+	}
+.peruse{
+	text-align:center;
+	padding-top:1em;
+	}
+.nextstep1{
+	width:95%;
+	margin:0 auto;
+	background:#d91c10;
+	text-align:center;
+	height:5rem;
+	border-radius:8px;
+	margin-top:2rem;
+	}
+.nextstep1 a{
+	height:5rem;
+	line-height:5rem;
+	color:#fff;
+	font-size:2rem;
+	font-weight:bold;
+	}

@@ -1,0 +1,83 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string attrvalues = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string activetype = Request.RequestContext.RouteData.Values["activetype"] != null ? Request.RequestContext.RouteData.Values["activetype"].ToString() : "0";
+}
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".modList[mod='@(mod)']").addClass("a");
+        $(".modList").click(function () {
+            var mod = $(this).attr("mod");
+           
+            location.href = $Maticsoft.BasePath + "h/@(cid)/@(brandid)/@(attrvalues)/" + mod + "/@activetype";
+        });
+    })
+</script>
+
+
+<style>
+    body {
+        background:#f2f2f2;
+    }
+    .seach_bg {
+        background:#f2f2f2;
+    }
+    .listimg {
+        
+    }
+    .products_list li {
+        overflow:hidden;
+        margin:0 auto;
+    }
+    .listimg img{
+        width:100%;
+        border:1px solid #d3d3d3;
+    }
+    .lisdimg{
+        font-size:12px;
+    }
+    .lisdimgAD {
+        float:left;
+        padding-top:10px;
+    }
+    .pro_list_lm tr td a img {
+        width:20px;
+        line-height:20px;
+    }
+
+</style>
+
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+       <span style="padding-left: 32px"> @Model.CurrentCateName</span>
+</div>
+<table width="100%" height="45" border="0" cellspacing="0" cellpadding="0" class="pro_list_lm">
+    <tr>
+        <td class="modList" mod="hot">
+            <a href="javascript:;">销量</a>
+        </td>
+        <td class="modList" mod="price">
+            <a href="javascript:;">价格</a>
+        </td>
+        <td class="modList" mod="new">
+            <a href="javascript:;">新品</a>
+        </td>
+        <td style="">
+@*             <a href="@(ViewBag.BasePath)p/@(cid)/@(brandid)/@(attrvalues)/@(mod)/0-0?viewname=IndexNew&ajaxViewName=_ProductListNew">
+                 <img src="/Areas/MShop/Themes/M1/Content/images/fl-1.png" /></a>*@
+        </td>
+    </tr>
+</table>
+<div class="search">
+     @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_Search.cshtml")
+    @*<a href="@(ViewBag.BasePath)product/Filter/@(cid)" class="btn-sift2"><span>筛选</span></a>*@
+</div>
+@{Html.RenderPartial("_ProductListAll_Image", Model);}

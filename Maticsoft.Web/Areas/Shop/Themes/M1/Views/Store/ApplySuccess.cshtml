@@ -1,0 +1,43 @@
+﻿@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SupplierApplyLayout.cshtml";
+}
+@section step{
+    <div class="wrap">
+        <ul class="step" id="step3">
+            <li class="fore1">1.填写核对商家信息<b></b></li>
+            <li class="fore2">2.选填店铺信息<b></b></li>
+            <li class="fore3">3.商家审核</li>
+        </ul>
+    </div>
+}
+<div id="checkout" class="w main">
+    <div class="m m3" id="qpay" style="margin-bottom: 0">
+        <div class="mc">
+            <s class="icon-succ02"></s>
+            <div class="fore">
+                <h3 class="ftx-02">
+                    @(Model.Name), 您的信息正在审核中..</h3>
+                <p id="p_show_info">
+                    <ul class="list-h">
+                        @if (!string.IsNullOrWhiteSpace(Model.ShopName))
+                        {
+                            <li class="fore2">您的店铺名称: <strong>@(Model.ShopName)</strong></li>
+                        }
+                    </ul>
+                    <p class="reminder" style="margin-bottom: 30px">
+                        由于审核商家需要较长时间, 请您耐心等待。
+                    </p>
+                <div class="form-btn group">
+                    <a href="javascript:;" class="btn-submit" id="back"><span>返回首页</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#back').unbind('click').bind('click', function () {
+        window.location.replace($Maticsoft.BasePath);
+        return;
+    });
+</script>

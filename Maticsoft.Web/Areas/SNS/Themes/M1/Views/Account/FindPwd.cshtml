@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnVerify").click(function () {
+            Math.random() * 24
+            $("#tImg").attr("src", "/ValidateCode.aspx?Guid=" + Math.random() * 100);
+        });
+        $("#btnOK").click(function () {
+            var email = $.trim($("#Email").val());
+            if (email == "") {
+                ShowFailTip("请填写邮箱！");
+                return;
+            }
+            $("form:first").submit();
+        });
+        $("#Email").blur(function () {
+            $("#tError").text("");
+            var email = $.trim($("#Email").val());
+            if (email == "") {
+                $("#tError").text("邮箱不能为空");
+                return;
+            }
+            if (email.search(/^\w+((-\w+)|(\.\w+))*\@@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/) == -1) {
+                $("#tError").text("邮箱格式不正确");
+                return;
+            }
+            else {
+                $.ajax({
+                    url: "@(ViewBag.BasePath)Account/HasEmail",
+                    type: 'post', dataType: 'text', timeout: 10000,
+                    data: { Action: "post", Email: email },
+                    success: function (resultData) {
+                        if (resultData == "false") {
+                            $("#btnOK").attr("disabled", "disabled");
+                            $("#tError").text("该邮箱帐号不存在");
+                        }
+                        if (resultData == "true") {
+                            $("#btnOK").removeAttr("disabled");
+                            $("#tError").text("");
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                    }
+                });
+            }
+        });
+    });
+</script>
+<div id="login">
+    <div class="named">
+        找回密码</div>
+    <div class="login_k">
+        @using (Html.BeginForm())
+        {
+                
+            <span style="text-align: left; color: Red">  @Html.ValidationMessage("Error")</span>
+            <div class="login_ks">
+                <div class="login_k_a">
+                    <div class="login_k_a1">
+                    </div>
+                    <div class="login_k_a2">
+                        @Html.TextBox("Email", ViewData["Email"], new
+                            {
+                                onblur = "if(!this.value){$(this).hide();$('[value=邮箱]').show();}",
+                                style = "display: none;"
+                            })
+                        <input type="text" value="邮箱" style="display: none;" />
+                        <script type="text/javascript">
+                            $(function () {
+                                $('[value=邮箱]').show().bind('focus', function () {
+                                    $(this).hide(); $('#Email').show().focus();
+                                });
+                            });
+                        </script>
+                    </div>
+                    <div class="login_k_a3">
+                    </div>
+                </div>
+                <div class="login_ks_a">
+                    <span style="color: Red" id="tError"></span></div>
+                <div class="clear">
+                </div>
+            </div>
+            
+            <div class="login_ks">
+                <div class="login_k_a">
+                    <div class="login_k_a1">
+                    </div>
+                    <div class="login_k_a2" style="width: 120px;">
+                        @Html.TextBox("CheckCode","", new
+                            {
+                                onblur = "if(!this.value){$(this).hide();$('[value=验证码]').show();}",
+                                style = "display: none;"
+                            })
+                        <input type="text" value="验证码" style="display: none;" />
+                        <script type="text/javascript">
+                            $(function () {
+                                $('[value=验证码]').show().bind('focus', function () {
+                                    $(this).hide(); $('#CheckCode').show().focus();
+                                });
+                            });
+                        </script>
+
+                          
+                    </div>
+                           <div class="login_k_a3">
+                    </div>
+                    <div style="padding-top: 10px; padding-left: 150px;">  <img id="tImg" alt="验证码" src="/ValidateCode.aspx"  style="height: 32px"/>
+                        <a id="btnVerify" href="javascript:void(0)" style="color: #666666">看不清楚?</a></div>
+                </div>
+                <div class="login_ks_a">
+                    <span style="color: Red" id="tError"></span></div>
+                <div class="clear">
+                </div>
+            </div>
+            
+                  <div class="login_k_e">
+                    <input type="button" name="button" id="btnOK" style="background: url(/Areas/SNS/Themes/M1/Content/images/find.jpg) no-repeat;
+                            width: 90px; height: 40px; margin: 0; padding: 0; border: 0px; cursor: pointer;" /></div>
+            <div class="clear">
+            </div>
+        }
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        if ($('#Email').val()) {
+            $('[value=邮箱]').hide(); $('#Email').show();
+        }
+    });
+</script>

@@ -1,0 +1,40 @@
+﻿@model Maticsoft.Model.Members.UsersExpModel
+ 
+
+<div class="tgoods_you_a">
+    @if (Model != null)
+    {
+           <p style="text-align: center">
+        <a href="@(ViewBag.BasePath)User/Posts/@Model.UserID" target="_blank">
+            <img style=" width:140px; height:140px" src="/Upload/User/Gravatar/@(Model.UserID).jpg" alt="@Model.NickName"></a></p>
+    <div class="tgoods_you_a1">
+        <p class="tgoods_you_a11">
+            <a href="@(ViewBag.BasePath)User/Posts/@Model.UserID">@Model.NickName</a></p>
+        <p class="tgoods_you_a12">
+            <a href="javascript:;" class="FellowUser"  UserId="@Model.UserID">
+                <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  style="display:none"  UserId="@Model.UserID" >
+                                                                                         <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+        </p>
+    </div>
+    <div class="tgoods_you_a2">
+        <ul>
+            <li><a target="_blank" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.UserID"><span
+                                                                                                class="black">@Model.FellowCount</span></a></li>
+            <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.UserID">关注</a></li>
+        </ul>
+        <ul>
+            <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserID"><span
+                                                                                              class="black">@Model.FansCount</span></a></li>
+            <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserID">粉丝</a></li>
+        </ul>
+        <ul>
+            <li><a  target="_blank" href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID"><span
+                                                                                             class="black">@Model.FavouritesCount </span></a></li>
+            <li><a  target="_blank"c href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID">喜欢</a></li>
+        </ul>
+        <div class="clear">
+        </div>
+    </div>
+    }
+ 
+</div>

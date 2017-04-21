@@ -1,0 +1,103 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<!--表单验证开始-->
+<script type="text/javascript" src="/Scripts/jquery/maticsoft.jquery.min.js"></script>
+<script type="text/javascript" src="/Areas/Supplier/Themes/M1/Content/Scripts/draw.js"></script>
+<!--表单验证结束-->
+<input type="hidden" id="Balance" value="@ViewBag.Balance"/>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>申请结算</span></h3>
+        <small class="desc"><span>您可以申请结算</span> </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="borderkuang">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            <label class="f-label">
+                                结算金额：</label>
+                        </td>
+                        <td style="width: 200px;">
+                            <input type="text" value="" maxlength="40" id="txtAmount" name="txtAmount" class="f-txt-b f-txt">
+                        </td>
+                        <td>
+                            <div id="AmountTip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <label class="f-label">
+                                帐号：</label>
+                        </td>
+                        <td>
+                            <input id="txtBankCard" name="txtBankCard" type="text" value="@ViewBag.CardNo" readonly="true" maxlength="50" class="f-txt-b f-txt">
+                        </td>
+                        <td>
+                            <div id="BankCardTip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <label class="f-label">
+                                帐号类型：</label>
+                        </td>
+                        <td>
+                            <input type="radio" name="radType" value="1" class="dan" id="rdoBank" /><label for="rdoBank">银行卡号</label>
+                            <input type="radio" name="radType" value="2" class="dan" id="rdoAlipay" /><label for="rdoAlipay">支付宝帐号</label>
+                        </td>
+                        <td>
+                            <div id="radTypeTip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bank" style="display: none;">
+                        <td class="td_class">
+                            <label class="f-label">
+                                开户行名称：</label>
+                        </td>
+                        <td class="f-input">
+                            <input id="txtBankName" name="txtBankName" type="text"  value="" maxlength="200" class="f-txt-b f-txt">
+                        </td>
+                        <td>
+                            <div id="BankNameTip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="bank" style="display: none;">
+                        <td class="td_class">
+                            <label class="f-label">
+                                开户姓名：</label>
+                        </td>
+                        <td class="f-input">
+                            <input id="txtTrueName" name="txtTrueName" type="text" value="@ViewBag.CardNo" readonly="true" maxlength="40" class="f-txt-b f-txt">
+                        </td>
+                        <td>
+                            <div id="TrueNameTip">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input class="btn btn-important-large" type="button" value="提交" id="btnDraw" onclick="gosubmit();" />
+                            </div>
+                        </td>
+                        <td>
+                            <div id="divRegTip">
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>

@@ -1,0 +1,38 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+<div class="mdetail" name="__xlN1" style="visibility: hidden;  display:inline-block" Index="{Index}">
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="mdetail-cate">
+            <div class="mdetail-cate-box">
+               @if (ViewBag.haschildren > 0)
+               {
+                   foreach (var item in Model)
+                   {
+                       <dl class="mdetail-cate-item">
+                           <dt>@item.Name</dt>
+                           @Html.Action("CategoryList", new {viewName = "_NavSecCate", top = 8, Cid = item.CategoryId})
+                       </dl>
+                   }
+               }
+               else
+               {
+                     <dl class="mdetail-cate-item" style="width:auto;"> 
+                    @foreach (var item in Model)
+                   {
+                     
+                           <dd> <a target="_blank" href="/product/@item.CategoryId"   >@item.Name</a></dd> 
+                         @* @Html.Action("CategoryList", new { viewName = "_NavSecCate", top = 8, Cid = item.CategoryId })*@
+                      
+                   }
+                    </dl>
+               }
+               
+
+            </div>
+        </div>
+    }
+    @Html.Action("BrandList", "Product", new { viewName = "_NavBrands", Cid = ViewBag.Cid, Top = 10 })
+</div>
+<script type="text/javascript">
+    $MaticsofthdMenu.initSubMenu();
+</script>

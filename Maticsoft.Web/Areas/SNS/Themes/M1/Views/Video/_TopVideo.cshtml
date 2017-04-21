@@ -1,0 +1,38 @@
+﻿@model List<Maticsoft.Model.SNS.Posts>
+<style type="text/css">
+    .blogVideo { float: left; position: relative; top: -108px; cursor: pointer; width: 40px; padding-left: 40%; }
+    .videocontent { float: left;height: 190px;}
+    .videoimage { padding: 3px; border: 1px #ccc solid; width: 180px; }
+    .videoimage .videoimg { padding: 3px; border: 0; width: 180px; }
+</style>
+<div class="tgoods_you_b">
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="Palbum" style="margin-top: 0px;">
+            <h3>
+                TA最近分享的视频</h3>
+            @foreach (var item in Model)
+            {
+                    <div class="videocontent">
+                        <div class="videoimage">
+                               <a href="@(ViewBag.BasePath)Video/Detail/@item.PostID">
+                               <img class="videoimg" src="@item.PostExUrl"
+                                    alt="@item.Description" />
+                                    </a>
+                        </div>
+                        <div style="padding-top: 8px; width: 188px">
+                                  <span title="@item.Description"><a href="@(ViewBag.BasePath)Video/Detail/@item.PostID">@Maticsoft.Common.StringPlus.SubString(item.Description, 18, "...")</a>
+                            </span>
+                        </div>
+                        <a href="@(ViewBag.BasePath)Video/Detail/@item.PostID">
+                            <img class="blogVideo" src="/Scripts/microblog/images/videoplay.png" alt="" />
+                        </a>
+                        <div class="clear">
+                        </div>
+                    </div>
+            }
+            <div class="clear">
+            </div>
+        </div>
+    }
+</div>

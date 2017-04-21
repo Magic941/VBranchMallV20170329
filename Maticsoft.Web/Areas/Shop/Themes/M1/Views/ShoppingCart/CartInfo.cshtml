@@ -1,0 +1,116 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_ShoppingLayout.cshtml";
+}
+@section step{
+    <div class="myCart-right">
+        <div class="Cartbar Cartbar1"></div>
+    </div>
+}
+@section title{
+    <span>我的购物车</span>
+}
+<script type="text/javascript">
+    $(function () {
+        //改变数量
+        $(".subtract").die("click").live("click", function () {
+            //alert("1");
+            var count = parseInt($(this).next().val());
+            if (count == 1) {
+                $(".btnDelete[ProductId=" + $(this).parent().attr("ProductId") + "]").click();
+
+            } else {
+                $(this).next().val(count - 1);
+                var itemId = $(this).parent().attr("ItemId");
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    async: false,
+                    url: "@(ViewBag.BasePath)ShoppingCart/UpdateItemCount?s=" + new Date().format('yyyyMMddhhmmssS'),
+                    data: { ItemId: itemId, Count: count - 1 },
+                    success: function (data) {
+                        if (data != "No") {
+                            $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                        } else {
+                            ShowFailTip("服务器繁忙，请稍候再试！");
+                        }
+                    }
+                });
+            }
+        });
+        $('.txtQuantity').die("blur").live("blur", function () {
+            var count = parseInt($(this).val());
+            if (Number($(this).attr("promotiontype")) == 1) {
+                if (count > Number($(this).attr("buylimit"))) {
+                    ShowFailTip("数量超过今日限购值！");
+                    $('.   ').val("1")
+                    count = 1;
+                }
+            }
+            if (count < 1) {
+                $(".btnDelete[ProductId=" + $(this).parent().attr("ProductId") + "]").click();
+                $(this).val(1);
+                return;
+            }
+            var itemId = $(this).parent().attr("ItemId");
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)ShoppingCart/UpdateItemCount?s=" + new Date().format('yyyyMMddhhmmssS'),
+                data: { ItemId: itemId, Count: count },
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+        $(".plus").die("click").live("click", function () {
+            var count = parseInt($(this).prev().val());
+
+            //判断限购值
+            if (Number($(this).attr("promotiontype")) >=0) {
+
+                if (count + Number($(this).attr("BuyCount")) >= Number($(this).attr("MaxCount"))) {
+                    ShowFailTip("已达活动限购数量！");
+                    return;
+                }
+
+                if ((count + 1) > Number($(this).attr("buylimit"))) {
+                    ShowFailTip("数量超过今日限购值！");
+                    return;
+                }
+            }
+
+            $(this).prev().val(count + 1);
+            var itemId = $(this).parent().attr("ItemId");
+
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                async: false,
+                url: "@(ViewBag.BasePath)ShoppingCart/UpdateItemCount?s=" + new Date().format('yyyyMMddhhmmss'),
+                data: { ItemId: itemId, Count: count + 1 },
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+
+    })
+</script>
+<div class="con_part_2">
+    <div class="wrap_960">
+        <div id="LoadCartList">
+            @Html.Action("CartList", "ShoppingCart")
+        </div>
+        @*@Html.Action("ProductRan", "Product", new { ViewName = "_ProductCartRec", Top = 5 })*@
+        <div class="hengxian">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+﻿@using System.Web.Mvc.Html
+@{
+    Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+    @*前台店铺模版*@
+}
+@section head{
+    @RenderSection("head", false)
+}
+@RenderBody()
+@Html.Action("Footer", "Partial", new { area = "MShop", ViewName = "_Footer" })
+@section foot{
+    @RenderSection("foot", false)
+    <script type="text/javascript">
+        $('#body').addClass('bg_bai').removeClass('seach_bg');
+    </script>
+}

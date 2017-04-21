@@ -1,0 +1,617 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Shop.ProductModel
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/css/msg,btn,form,dialog,login-pop.css">
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/btn,dialog,item,item-s,paging,score,tipsANDvi-v0-a.css">
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/StyleCommon.js"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/StyleDetail.js"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/carousel,dialog,imagezoom,swfobject,tab.js"></script>
+<link href="@Url.Content("/Areas/Shop/Themes/M1/Content/css/image.zoom.css")" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+@*<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>*@
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Common.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/Detail.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMdd"))" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/ProSaleSKU.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMdd"))" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/image.zoom.base.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+<link href="/Areas/Shop/Themes/M1/Content/Css/groupbuy/details_page.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        resizeImg('.sbox', 176, 165);
+        resizeImg('.jqzoom', 590, 590);
+        resizeImg('.pack_b_1', 570, 410);
+        resizeImg('.J_carousel_list', 115, 115);
+        $("#previewImg img").css({width:590,height:590});
+        $(".jqzoom").jqueryzoom({ xzoom: 300, yzoom: 300, offset: 20, position: "right", preload: 1, lens: 1 });
+        //$("#thumb_container").jdMarquee({ deriction: "left", width: 420, height: 70, step: 2, speed: 4, delay: 10, control: true, _front: "#spec-right", _back: "#spec-left" });
+        $("#thumb_container").find("img").bind("mouseover", function () {
+            var src = $(this).attr("jqimg");
+            var src2 = $(this).attr("jqimg2"); 
+            $("#previewImg").find("img").eq(0).attr({ ref: src.replace('T115X115_', 'T400X400_'), jqimg:src2 }).removeAttr('loaded');
+            $.scaleLoad('.jqzoom', 590, 590);
+         
+            $("#previewImg img").css({width:590,height:590});
+          
+            $(this).css({ "border": "2px solid #eb020b" });
+        }).bind("mouseout", function () {
+            $(this).css({ "border": "2px solid #ccc", "padding": "2px" });
+        });
+
+
+        //评论图片
+        $.scaleFixedLoad('.detail_proimage', 100, 100);
+    });
+</script>
+
+<style type="text/css">
+    /*.addCart {
+        background: url(/Areas/Shop/Themes/M1/Content/images/btnlikegoumai.jpg) no-repeat;
+        width: 123px;
+        height: 34px;
+        overflow: hidden;
+    }*/
+    .addCart-gray {
+        width: 134px;
+        height: 42px;
+        line-height: 40px;
+        font-size: 26px;
+        font-family: "微软雅黑";
+        color: #EFEFEF;
+        background: #808080;
+        border: 1px solid #EA4D05;
+        border: 1px solid #fff;
+    }
+
+    .addCart1 {
+        font-size: 18px;
+    }
+
+    .choiceOptions {
+        width: 248px;
+        border: 1px solid #E4ECF1;
+        border-top: none;
+        margin-left: 10px;
+    }
+</style>
+
+<input id="hfGroupBuyId" type="hidden" value="@Model.ProductInfo.GroupBuy.GroupBuyId" />
+@*<input id="hdProductId" type="hidden"  value="  @Model.ProductInfo.ProductId"/>
+<input id="hdProductName" type="hidden"  value="  @Model.ProductInfo.ProductName"/>*@
+<div class="catg-II" style="background: #f7f7f7">
+    <div class="wrapper wrap-tuan">
+
+        <div class="wrap-Tcon cent-ers clearfix">
+            <div class="W-row pdL10">
+                <a href="#"><strong>@Html.Raw(ViewBag.CategoryStr)</strong></a>>
+                    <span>@Model.ProductInfo.ProductName</span>
+            </div>
+            <div class="">
+                <div class="wrap-TconL tconl-da">
+                    <div class="TconL-box">
+                        <h1>@Model.ProductInfo.ProductName</h1>
+                        <div class="clearfix Tcon-msg clearfix">
+                            <div class="Tcon-msgL">
+                                <div class="deal_price">
+                                    <strong><em>¥</em>@Model.ProductInfo.GroupBuy.Price.ToString("0.0")</strong>
+                                    <span class="deal_old_price">
+                                        <span>价值：<em>¥@(Model.ProductInfo.MarketPrice.HasValue ? Model.ProductInfo.MarketPrice.Value.ToString("F") : "0.00")</em></span>
+                                        <div class="info_bubble discount_deal">
+                                            @((Model.ProductInfo.GroupBuy.Price / Model.ProductInfo.MarketPrice.Value * 10).ToString("F")) 折<span class="arrow_out"></span>
+                                        </div>
+                                    </span>
+                                </div>
+                                <div class="buy_infor">
+                                    <div class="buy-butn perdred clearfix">
+                                        <div class="utn1 clearfix " style="padding: 5px 0;">
+                                            <ul>
+                                                <li class="clearfix">
+                                                    @*<span>配送:&nbsp</span>
+                                                    <div class="yunfei">
+                                                        <p>&nbsp免运费&nbsp/&nbsp运费<i>6</i>元</p>
+                                                    </div>*@
+                                                </li>
+                                                <li class="clearfix"><span>累计评价:</span><em>(@ViewBag.CommentCount)次评价</em></li>
+                                                <li class="clearfix"><span>状态:&nbsp1小时内售出<i>@Model.ProductInfo.GroupBuy.BuyCount</i>件</span></li>
+
+                                            </ul>
+                                            <div class="utn_2b" style="padding-left: 7px;">
+                                                <div class="lunzhuan">
+                                                    <div class="progressbar">
+                                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/1-@(Model.ProductInfo.GroupBuy.BuyCount * 1.00 / Model.ProductInfo.GroupBuy.MaxCount * 100).png" width="87" height="86" onerror="this.src='/Areas/Shop/Themes/M1/Content/images/aaa/1-100.png'" />
+                                                    </div>                                                 
+                                                </div>
+                                                <span>已销售</span>
+                                            </div>
+                                            <div class="norms_MK" id="SKUOptions">
+                                                <!--不能缓存，主要有库存数据-->
+                                                @Html.Action("GroupDetailOptionSKU", new { ProductId = Model.ProductInfo.ProductId })
+                                                <span class="spanS" id="prompt"></span><span id="divSelectInfo" style="color: #333333;"></span>
+                                                @* <dl>
+                                                        <dt>颜色:</dt>
+                                                        <dd>
+                                                            <ul>
+                                                                <li class="active"><a href="#">蓝色</a><em></em></li>
+                                                                <li><a href="#">深灰色</a><em></em></li>
+                                                                <li><a href="#">深灰色</a><em></em></li>
+                                                                <li><a href="#">红色</a><em></em></li>
+                                                                <li><a href="#">红色</a><em></em></li>
+                                                            </ul>
+                                                        </dd>
+                                                    </dl>
+                                                    <dl>
+                                                        <dt>尺码:</dt>
+                                                        <dd>
+                                                            <ul>
+                                                                <li><a href="#">均码</a><em></em></li>
+                                                                <li class="active"><a href="#">均码</a><em></em></li>
+                                                                <li><a href="#">加大码</a><em></em></li>
+                                                            </ul>
+                                                        </dd>
+                                                 </dl>*@
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="tuan-perd perdred">
+                                    <h3><b class="txt-red 1bs">@(Model.ProductInfo.GroupBuy.GroupBase + Model.ProductInfo.GroupBuy.BuyCount)</b>人已抢购</h3>
+                                    <a class="lijiqg" id="btnAddToCart" itemid=""  groupbuyid="@Model.ProductInfo.GroupBuy.GroupBuyId" productid="@Model.ProductInfo.ProductId" href="#">立即抢购</a>
+                                    <span>
+                                        <p id="productDate" startDate="@Model.ProductInfo.GroupBuy.StartDate"  endDate="@Model.ProductInfo.GroupBuy.EndDate" class="txtenddate" curDate="@DateTime.Now" product="@Model.ProductInfo.ProductId">
+                                        </p>
+                                    </span>
+                                </div>
+                                <div class="xy" style="padding: 5px 8px;">
+                                    <div class="zhifu">
+                                        <ul class="clearfix">
+                                            <li>
+                                                <span>支付方式:</span>
+                                                <b>
+                                                    <a href="#">
+                                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy1_03.png" width="42" height="23" /></a>
+                                                    <a href="#">
+                                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/3_06.png" width="58" height="18" /></a>
+                                                </b>
+                                            </li>
+                                            <li>
+                                                <span>服务承若:</span>
+                                                <b>
+                                                    <img src="/Areas/Shop/Themes/M1/Content/images/aaa/3_03.png" width="109" height="29" />
+                                                </b>
+                                            </li>
+                                        </ul>
+                                        <div class="BaoZhang">
+                                            <dl>
+                                                <dt>正品保障</dt>
+                                                <dd>健康商城承诺在买家收货后7天内如果发现该商品不是正品,将全额退款。</dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>闪电发货</dt>
+                                                <dd>健康商城承诺在买家付款后24小时内发货。</dd>
+                                            </dl>
+                                            <dl>
+                                                <dt>七天无条件退货</dt>
+                                                <dd>健康商城承诺在买家收货后7天内,在不影响第二次销售的情况下,将全额退款。</dd>
+                                            </dl>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Tcon-img tconing clearfix">
+                                <div class="Tcon-img_g1" id="previewImg">
+                                    <div class="jqzoom" id="J_zoom">
+                                        <img wusg="test" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T400X400_")" jqimg="@Model.ProductInfo.ImageUrl"/>
+                                    </div>
+                                </div>
+                                <div class="Tcon-img_g2" id="thumb_container">
+                                    <span class="triangle_button1"><a href="#"></a></span>
+                                    <ul>
+                                        @if (Model != null && Model.ProductImages != null)
+                                        {
+                                            foreach (ProductImage productImage in Model.ProductImages)
+                                            {
+                                            <li>
+                                                <img itemprop="image" style=" margin:0 auto; " width="50" height="50" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T115X115_")" jqimg="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T400X400_")" jqimg2="@Maticsoft.Web.Components.FileHelper.GetImageUrl(productImage.ImageUrl)" alt="@ViewBag.ImageAlt" title="@ViewBag.ImageTitle">
+                                            </li>
+                                            }
+                                        }
+
+                                                @*<li><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/aaa/78_03.png" width="50" height="50" /></a></li>
+                                                <li><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/aaa/78_03.png" width="50" height="50" /></a></li>
+                                                <li><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/aaa/78_03.png" width="50" height="50" /></a></li>
+                                                <li><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/aaa/78_03.png" width="50" height="50" /></a></li>
+                                                <li class="active"><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/aaa/78_03.png" width="50" height="50" /></a></li>*@
+                                    </ul>
+                                    <span class="triangle_button2"><a href="#"></a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="colect clearfix">
+                            <div class="fL">
+                                <a href="#">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/colect.png" /></a>
+                            </div>
+                            <div class="fR">
+                                <div class="jiathis_style">
+                                    <a class="jiathis_button_qzone" title="分享到QQ空间"><span class="jiathis_txt jtico jtico_qzone"></span></a>
+                                    <a class="jiathis_button_tsina" title="分享到新浪微博"><span class="jiathis_txt jtico jtico_tsina"></span></a>
+                                    <a class="jiathis_button_tqq" title="分享到腾讯微博"><span class="jiathis_txt jtico jtico_tqq"></span></a>
+                                    <a class="jiathis_button_renren" title="分享到人人网"><span clas s="jiathis_txt jtico jtico_renren"></span></a>
+                                    <a class="jiathis_button_kaixin001" title="分享到开心网"><span class="jiathis_txt jtico jtico_kaixin001"></span></a>
+                                    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+                                    <a style="color: #131212;" href="#">更多>></a>
+                                </div>
+                                <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+                                <script type="text/javascript" src="http://v3.jiathis.com/code/plugin.client.js" charset="utf-8"></script>                              
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="xqpj" style="">
+                        <ul class="clearfix tabInfo">
+                            <li class="active xiangqin_1"><a href="javascript:void(0);" id="id-goods-info">本单详情</a></li>
+                            <li class="xiangqin_1"><a href="javascript:void(0);" id="id-buyer-comment">会员评价<span>(@ViewBag.CommentCount)</span></a></li>
+                        </ul>
+                        <div class="hislist_details">
+
+                            <div class="" style="border: 1px solid #e6e6e6;" id="product-detail">
+                                <i>产品详情</i>
+                                <div class="detaist_ME1 clearfix">
+                                    @Html.Action("OptionAttr", new { ProductId = Model.ProductInfo.ProductId })                                  
+                                </div>                              
+                                @Html.Raw(Model.ProductInfo.Description)
+
+                            </div>
+                            <div id="LoadData" class="pInfoBox mt20" loaded="true">
+                            </div>
+
+
+                            <div class="sales_status" id="groupbuylist">
+                                <span>销售情况<em>@Model.ProductInfo.GroupBuy.GroupBase</em></span>
+                                @Html.Action("GroupBuyHistory", new { groupbuyid = Model.ProductInfo.GroupBuy.GroupBuyId })
+                            </div>
+                        </div>
+                        <div class="userevaluation" style="display: none;">
+                            <span>用户评价<em>253</em></span>
+                            <ul>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                                <li class="clearfix">
+                                    <a href="#">
+                                        <img src="/Areas/Shop/Themes/M1/Content/images/aaa/xqy8_07.png" width="55" height="55" /></a>
+                                    <div class="Anonymous1">
+                                        <em>匿名用户</em>
+                                        <p>这东西很好，我很喜欢</p>
+                                    </div>
+                                    <i>2014-10-11 1:44:42</i>
+                                </li>
+                            </ul>
+                            <div class="paginal_number">
+                                <em class="Sha-yy active">上一页 </em>
+                                <a class="active" href="#">1</a>
+                                <a href="#">2</a>
+                                <em>......</em>
+                                <em class="Sha-yy">下一页> </em>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="wrap-TconR tconr-WR">
+                    <div class="TconR-tit clearfix">
+                        <h3 class="fL">团购热销TOP3</h3>
+                        <a class="fR" href="#">更多>></a>
+                    </div>
+                    <!--可以缓存-->
+                    @Html.Action("GroupRec", "Partial")
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var iscanbuy = false;
+    var issaleempty = false;
+
+    if ("@ViewBag.IsMembers"!="True"&&@Model.ProductInfo.PromotionType==1) {            
+        $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray').attr("title","此商品仅限健康卡用户购买");
+    }      
+
+    if (@Model.ProductInfo.SaleStatus != 1) {
+        $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+        $('#iteminfo #divBuyInfo').hide();
+        $('#iteminfo #divSelectInfo').empty();
+        $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已下架!");
+        $('#iteminfo #closeArrivingNotifyMess').show();
+    }
+
+    var maxCount = parseInt('@Model.ProductInfo.GroupBuy.MaxCount');
+    var buyCount = parseInt('@Model.ProductInfo.GroupBuy.BuyCount');
+    //alert(maxCount);alert(buyCount);
+    //alert(buyCount >= maxCount);
+    if (buyCount >= maxCount) {
+        issaleempty = true;
+        $("#closeArrivingNotifyMess").show();
+        $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+        $('#iteminfo #divBuyInfo').hide();
+        $('#iteminfo #divSelectInfo').empty();
+    }
+
+    $("#id-buy-guarantee").click(function () {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/images/loads.gif' ></div>");
+        $("#buy - guarantee").show();
+        $("#LoadData").empty();
+        $(".tabInfo").find("li").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#id-buy-guarantee").parent().addClass("active");
+    });
+    $("#id-goods-info").click(function () {
+        $("#product-detail").show();
+        $("#buy - guarantee").hide();
+        $("#LoadData").empty();
+        $(".tabInfo").find("li").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#id-goods-info").parent().addClass("active");
+    });
+    $("#id-buy-annal").click(function () {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+        $("#LoadData").load("@(ViewBag.BasePath)Product/SaleRecord/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".tabInfo").find("li").each(function () {
+                    $(this).removeClass("active");
+                });
+                $("#id-buy-annal").parent().addClass("active");
+            });
+        });
+
+        $("#id-buyer-leaveword").click(function () {
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+            $("#LoadData").load("@(ViewBag.BasePath)Product/ProductConsult/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".tabInfo").find("li").each(function () {
+                    $(this).removeClass("chose");
+                });
+                $("#id-buyer-leaveword").parent().addClass("chose");
+            });
+        });
+
+        //alert("0000");
+        $("#id-buyer-comment").click(function (_i,data1) {
+            //alert("111");
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+
+            $("#LoadData").load("@(ViewBag.BasePath)Product/ProductComments/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                //$("#buy - guarantee").hide();
+                $(".tabInfo").find("li").each(function (_j,data2) {
+                    $(this).removeClass("active");
+                });
+                $("#id-buyer-comment").parent().addClass("active");
+            });
+        });
+
+        $("#btnAddToCart").click(function () {
+            if(!iscanbuy) return ;
+            if ($(this).hasClass('addCart-gray')) return false;
+        
+            var sku = $('#btnAddToCart').attr('itemid');
+            // alert($('#btnAddToCart').attr('itemid'));
+            if (!sku) {
+                //$('#SKUOptions a').effect('highlight', 500);
+                ShowFailTip('请选择商品规格属性！');
+                return false;
+            }
+            var groupbuyid = $("#hfGroupBuyId").val();
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "/Product/CkeckCount",
+                async: false,
+                data: { GroupBuyId: groupbuyid },
+                success: function (data) {
+                    if (data == "Ok") {
+                        location.href = " @(ViewBag.BasePath)Order/SubmitOrder?sku=" + sku + "&g=" + groupbuyid;
+                    }
+                    else {
+                        $("#closeArrivingNotifyMess").show();
+                        $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+                        $('#iteminfo #divBuyInfo').hide();
+                        $('#iteminfo #divSelectInfo').empty();
+                    }
+                }
+            });
+        });
+        
+        $("#plus").click(function () {
+            var count = parseInt($("#productCount").val()) + 1;
+            $("#productCount").val(count);
+        });
+        $("#subtract").click(function () {
+            var count = parseInt($("#productCount").val());
+            if (count > 1) {
+                count = count - 1;
+            }
+            $("#productCount").val(count);
+        });
+        //收藏操作
+        $("#btnProductFav").click(function () {
+            if (CheckUserState()) {
+                var productId = $(this).attr("productId");
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "/UserCenter/AjaxAddFav",
+                    async: false,
+                    data: { ProductId: productId },
+                    success: function (data) {
+                        if (data == "Rep") {
+                            ShowSuccessTip('您已经收藏了该商品，请不要重复收藏');
+                        } else if (data == "True") {
+                            ShowSuccessTip('收藏商品成功');
+                        } else {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                        }
+                    }
+                });
+            }
+        });
+</script>
+<script id="sencondTemplate" type="text/x-jquery-tmpl">
+    ${title}: <span style="color: red"><span id="dayEnd">${day}</span>天<span id="hourEnd">${hour}</span>时 
+         <span id="minEnd">${minute}</span>分 <span id="secEnd">${second}</span>秒
+    </span>
+</script>
+<script>
+    $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+    $("#btnAddToCart").attr("disable","true");
+    //判断此商品是否达到限购值，一个用户一天只能买一次       
+    $.ajax({
+        url:'/ProSales/GetBuyLimit',
+        data:{productid:@Model.ProductInfo.ProductId},
+        type:'post',
+        success:function(quantity){
+            if (quantity==0) {
+                //还能买0件
+                $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray').attr("title","您对此限购商品的购买量今天已达上限,明日可继续购买");
+                $("#btnAddToCart").attr("disable","true");
+            }
+        }
+    });
+
+    var tmplObj = $('#sencondTemplate');
+
+    function render(data,productId) {
+ 
+        $(".txtenddate").empty();
+        if(issaleempty)
+        {
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $("#btnAddToCart").attr("disable","true");
+            $(this).html("抢购已售罄");
+            iscanbuy = false;
+            return ;
+        }
+
+        //按钮颜色
+        //结束后执行该指令
+        //if(data.status=-1)
+        //    $("#img_" + productId).attr("src", "/Areas/Shop/Themes/M1/Content/images/cctv_2.png");
+       
+        if(data.status==-1)
+        {
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $("#btnAddToCart").attr("disable","true");
+            $(this).html("抢购已结束");
+            iscanbuy = false;
+        }
+        if(data.status==0)
+        {
+            data.title = "准备开抢";
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $("#btnAddToCart").attr("disable","true");
+            iscanbuy = false;
+        }
+        if(data.status==1)
+        {
+            $('#btnAddToCart').removeClass('addCart-gray').addClass('addCart');
+            $("#btnAddToCart").attr("disable","false");
+            iscanbuy = true;
+        }
+
+        //购买按钮禁用
+       
+        return tmplObj.tmpl(data);
+
+    }
+
+    //产生秒表
+    function ProSecond()
+    {
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("product");
+            // alert(curDate);
+            var myclass = new CountDown();
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId:productId,
+                renderCallback:render,               
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+
+            });
+        })
+    }
+    
+    $(function () {
+    
+      //  alert(issaleempty);
+        ProSecond();
+    
+    });
+
+</script>
+
+<script>
+    lazyload();
+</script>

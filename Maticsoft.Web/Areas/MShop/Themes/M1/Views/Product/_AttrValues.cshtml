@@ -1,0 +1,47 @@
+﻿@model List<Maticsoft.Model.Shop.Products.AttributeValue>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="opt-lst attrList" id="Attr_@(Model[0].AttributeId)" style="-webkit-transform-origin: 0px 0px; opacity: 1;
+                                      -webkit-transform: scale(1, 1); display: none;">
+        <ul class="lst-comm">
+            <li class="wit33 tc valueList" ><a href="javascript:void(0)"  AttrId="@Model[0].AttributeId" valueId="0" select="true"
+                                                                 class="lnk curr  ">全部 </a></li>
+            <li class="wit33 tc valueList" >
+                <span class="bar"></span><a href="javascript:void(0)"
+                                              valueId="@Model[0].ValueId"    AttrId="@Model[0].AttributeId" class="lnk  ">@Model[0].ValueStr </a>
+            </li>
+        </ul>
+                  @for (int i = 1; i < Model.Count; i++)
+          {
+              if ( i%2 == 1)
+              {
+                  @: <ul class="lst-comm">
+                    <li class="wit33 tc valueList"  >
+                  <a href="javascript:void(0)" valueId="@Model[i].ValueId" AttrId="@Model[i].AttributeId"
+                     class="lnk  ">@Model[i].ValueStr </a>
+              </li>
+              }
+
+              if (i % 2 == 0)
+              {
+                  <li class="wit33 tc valueList"  >
+                         <span class="bar"></span>
+                      <a href="javascript:void(0)" valueId="@Model[i].ValueId" AttrId="@Model[i].AttributeId"
+                         class="lnk  ">@Model[i].ValueStr </a>
+                  </li>
+                    
+                  @: </ul>
+              }
+              if (i == Model.Count - 1 && i % 2 == 1)
+              {
+                      
+                  <li class="wit33 tc"  >
+                       <span class="bar"></span>
+                      <a href="javascript:void(0)"  class="lnk " >&nbsp;</a>
+                  </li>
+              @: </ul>
+              }
+          }
+    </div>
+}

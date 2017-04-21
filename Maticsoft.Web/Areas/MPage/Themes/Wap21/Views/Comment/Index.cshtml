@@ -1,0 +1,52 @@
+﻿ 
+@model  List<Maticsoft.Model.CMS.Comment>
+ 
+<!--评论开始 <div id="products9commt" class="page ui-page ui-body-c ui-page-active" title="comm" data-role="page" ax-type="ajax" data-url="products9commt" tabindex="0" style="min-height: 893px;">-->
+<header class="header view">
+<span class="nowposition">
+<a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');" class="ui-link">首页</a>
+<a href="javascript:;"   class="ui-link">评论</a>
+</span>
+ 
+</header>
+
+<div class="content content_view">
+<div class="formComment">
+<form id="formComment" name="infocomments_frm"  method="post" class="interactform">
+<input type="hidden" name="menuid" value="2">
+<input type="hidden" name="itemid" value="9">
+<fieldset>
+    <legend> 网友评论 </legend>
+    <input type="hidden" value="@ViewBag.contentid" item="hidid"/>
+    <input type="hidden" value="@ViewBag.typeid" item="hidtypeid"/>
+<label for="commentstopic" class="ui-input-text">用户昵称<span class="formColor_3"> *</span>
+</label>
+<br>
+<div class="ui-input-text ui-shadow-inset ui-corner-all ui-btn-shadow ui-body-c"><input type="text"  name="commentstopic" maxlength="50" value="本站网友" class="jq-ui-forms ui-input-text ui-body-c"></div>
+<br>
+<label for="commentsInfos" class="ui-input-text">评论内容<span class="formColor_3"> *</span>
+</label>
+<br>
+<textarea   name="commentsInfos" style="" class="jq-ui-forms ui-input-text ui-body-c ui-corner-all ui-shadow-inset"></textarea>请文明评论, 共创和谐互联网环境!<br>
+</fieldset>
+<input type="button" align="middle" name="add_btn" value=" 发表评论 " class="button fr commentsFormSubmit" data-role="none" >
+</form>
+</div>
+<div class="commlist">
+<div class="commentTitle"> 相关评论 <small class="count"></small>
+</div>
+    <dl id="commentlist" class="commentInfo">
+        @foreach (var item in Model)
+        {
+            <dd>@item.Description       @item.CreatedNickName</dd>
+        }
+    </dl>
+<div id="commtsnext" class="list_more">
+<a class="button pagenext"> 没有了 </a>
+</div>
+</div>
+
+</div>
+
+<!--</div>产品评论结束-->
+ 

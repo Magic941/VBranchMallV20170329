@@ -1,0 +1,11 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+
+@if(Model!=null)
+{
+    <ul>
+    @foreach(var item in Model)
+    {
+        <li><a href="/Article/Details/@item.ContentID">@item.Title</a></li>        
+    }
+  </ul>
+}

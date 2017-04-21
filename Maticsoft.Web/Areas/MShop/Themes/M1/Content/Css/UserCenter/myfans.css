@@ -1,0 +1,160 @@
+﻿ul{
+	padding:0;
+	margin:0;
+	}
+ @media (min-width: 1440px){
+
+}
+
+@media (min-width: 1330px){
+/* 1080+, Wide Screen */
+}
+
+@media (min-width: 1280px){	
+/* 1080+, Wide Screen */
+.outstanding ul{
+	width:97.7%;
+}
+.outstanding li span{
+	width:33%;
+	}
+
+}
+
+@media (min-width: 1024px){
+/* 1080+, Wide Screen */
+.outstanding ul{
+	width:97.7%;
+	margin:-15px auto;	
+}
+.outstanding li span{
+
+	}
+
+}
+@media (max-width: 980px) {
+/* 980-, Wide Mobile Or Computer */
+.outstanding ul{
+	width:96.5%;	
+}
+.outstanding li span{
+	width:32.89%;
+	}
+
+}
+
+
+@media (max-width: 979px) {
+/* 980-, Wide Mobile Or Computer */
+.outstanding ul{
+	width:96.5%;	
+}
+.outstanding li span{
+	width:32.79%;
+	}
+
+}
+@media (max-width: 800px) {
+/* 980-, Wide Mobile Or Computer */
+.outstanding ul{
+	width:96.5%;
+}
+.outstanding li span{
+	width:32.79%;
+	}
+}
+
+@media (max-width: 768px) {
+/* 768-980, General Mobile */
+.outstanding ul{
+	width:96.5%;
+}
+.outstanding li span{
+	width:32.77%;
+	}
+}
+
+@media (max-width: 640px){
+}
+
+@media (max-width: 480px) {
+/* 480-, Narrow Screen Mobile Or Net Books */
+
+}
+@media (max-width: 360px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.outstanding ul{
+	width:95%;
+	}
+.outstanding li span{
+	width:32.1%;
+	}
+.outstanding li span{
+	font-size:0.8rem;
+	}
+}
+
+@media (max-width: 345px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.outstanding ul{
+	width:95%;
+	}
+.outstanding li span{
+	font-size:0.8rem;
+	}
+.outstanding li span{
+	width:35.4%;
+	}
+
+}
+
+@media (max-width: 320px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.outstanding ul{
+	width:95%;
+	}
+.outstanding li span{
+	font-size:0.8rem;
+	}
+.outstanding li span{
+	width:35.4%;
+	}
+}
+
+.outstanding{
+	padding-top:20px;
+	}
+.outstanding ul{
+	margin:-15px auto;
+	background:#fff;
+	}
+.outstanding li span{
+	display:inline-block;
+	*display:inline;zoom:1;
+	text-align:center;
+	}
+.outstanding li{
+	border-bottom:1px solid #dcdcdc;
+	border-left:1px solid #dcdcdc;
+	border-right:1px solid #dcdcdc;
+	}
+.anding_a{
+	background:#dddddd;
+	}
+.anding_b span{
+	border-right:1px solid #dcdcdc;
+	}
+.anding_a span{
+	border-right:1px solid #e5e5e5;
+	}
+.anding_a span,.anding_b span{
+	height:45px;
+	line-height:45px;
+	}
+.outstanding li.anding_a{
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+	}
+.outstanding li span.AS_1{
+	border:none;
+	}

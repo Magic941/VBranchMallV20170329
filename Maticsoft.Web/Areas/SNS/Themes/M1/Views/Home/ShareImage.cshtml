@@ -1,0 +1,67 @@
+﻿@model   Maticsoft.ViewModel.SNS.CollectImages
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_ShareLayout.cshtml";
+}
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/shareimage.js" type="text/javascript"></script>
+<script src="/Scripts/json2.js" type="text/javascript"></script>
+<div>
+    <div class="contentShare" id="shareContent">
+        @if (Model != null)
+        {
+           
+            <div style="float: left; padding-bottom: 25px">
+                <select id="txtAlbum">
+                    <option value="-1">请选择专辑</option>
+                     @if (Model.AlbumList != null && Model.AlbumList.Count > 0)
+                     {
+                         foreach (var item in Model.AlbumList)
+                         {
+                        <option  value="@item.AlbumID">@item.AlbumName</option>
+                         }
+                     }
+                </select>
+            </div> 
+          <div class="clear">
+                </div>
+            <div>
+                <ul class="pic_edit clr clearfix pt15">
+                    @foreach (var item in Model.ImageList)
+                    {
+                        <li class="image">
+                            <div class="pic">
+                                <img src="@item.ImageUrl"  alt="@item.ImageAlt" height="156px">
+                                <a class="cancel" href="javascript:;" onclick="btnHide(this)"></a>
+                            </div>
+                            <div class="text mt5" style="padding-top: 8px">
+                                <textarea class="mb5"></textarea>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="clear">
+            </div>
+            <div>
+                <button class="sub_btn r3 share_ok" id="btnShareImage">
+                    确定</button></div>
+        }
+    </div>
+    <div class="bd" style="display: none" id="share_ok">
+        <div class="contentShare">
+            <div>
+                <img src="/Areas/SNS/Themes/M1/Content/images/ok.gif" alt="" />已成功分享到网站。<br />
+                <b><a href="@(ViewBag.BasePath)Album/Details?AlbumID=0" target="_blank" class="txtAlbum">
+                    去专辑看看</a></b><span>|</span><a class="closeCWin" href="javascript:void(0);" onclick=" window.close();">关闭窗口</a>
+            </div>
+        </div>
+    </div>
+    <div class="bd" style="display: none" id="share_error">
+        <div class="contentShare">
+            <div>
+                <img src="/Areas/SNS/Themes/M1/Content/images/error.gif" alt="" />分享过程中出现了错误。<br />
+                <b><a href="@(ViewBag.BasePath)Album/Details?AlbumID=0" target="_blank" class="txtAlbum">
+                    去专辑看看</a></b><span>|</span><a class="closeCWin" href="javascript:void(0);">关闭窗口</a>
+            </div>
+        </div>
+    </div>
+</div>

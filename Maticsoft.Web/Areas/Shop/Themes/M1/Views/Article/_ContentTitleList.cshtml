@@ -1,0 +1,17 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+       @if (Model != null && Model.Count > 0)
+       {
+           foreach (var item in Model)
+           {
+               <dd>
+                   <a class="hm-2" href="/Article/Details/@item.ContentID" target="_blank">
+                       @(Maticsoft.Common.StringPlus.SubString(item.Title, 10, ".."))</a></dd>
+
+           }
+
+       }
+       else
+       {
+           <span style="margin-left: 25px;color: gray;">暂无内容</span>
+       }
+          

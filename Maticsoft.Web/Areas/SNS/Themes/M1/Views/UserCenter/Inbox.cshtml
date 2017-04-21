@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@using Webdiyer.WebControls.Mvc;
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<input type="hidden" id="currentpage" value="span_10"/>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            我的收件箱</p>
+    </h1>
+    <div class="letters">
+
+        <div class="letters_b" id="InBoxList">
+                        @{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/UserCenter/InboxList.cshtml", Model);}
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>

@@ -1,0 +1,43 @@
+@charset "utf-8";
+/* CSS Document */
+.zixun_wl{ width:100%; height:auto; background:url(../images/zxw01.jpg) top center no-repeat; padding-top:117px;}
+.miaoz_wl{ height:auto; margin:0 auto; background:#fff;}
+.kaopu_wl{ padding-top:32px;}
+.kaopu_wl li{ width:353px; margin:0 10px 40px 30px; height:578px; float:left; background:#EEE; position:relative;}
+.kaopu_wl li a{ font-size:20px; line-height:28px; color:#333333; margin:29px 13px 0; display:block;}
+.huago_wl{ position:absolute; left:0; top:0; display:none;}
+.kaopu_wl li p{ font-size:15px; line-height:25px; color:#999; margin:28px 16px 0; }
+.kaopu_wl li span{ position:absolute; right:23px; bottom:16px; font-size:14px; background:url(../images/zxw03.png) left center no-repeat; padding-left:19px; line-height:14px; color:#C9C9C9;}
+.kaopu_wl li:hover a{ color:#FF8812;}
+.kaopu_wl li:hover .huago_wl{ display:block;}
+.fanye_wl{ width:350px; margin:0 auto; line-height:30px; text-align:center; height:30px;}
+.fanye_wl a{ display:block; width:30px; height:30px; margin-left:8px; color:#C5C5C5; cursor:pointer; font-weight:bold; font-size:15px; font-family:Arial; float:left;}
+.fanye_wl a img{ margin-top:10px;}
+.fanye_wl a:hover{ color:#010101;}
+.fanye_wl a.fen-sel_wl{ background:#ED531F; color:#FFF; border-radius:2px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

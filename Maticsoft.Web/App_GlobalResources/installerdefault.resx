@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="IDS_Button_NO" xml:space="preserve">
+    <value>不接受</value>
+  </data>
+  <data name="IDS_PageTitle" xml:space="preserve">
+    <value>Maticsoft 2012 安装向导</value>
+  </data>
+  <data name="IDS_Button_Agree" xml:space="preserve">
+    <value>接受</value>
+  </data>
+  <data name="IDS_FormField_Area" xml:space="preserve">
+    <value>&lt;textarea name="textarea" cols="65" rows="13"&gt;请仔细阅读以下最终用户许可协议（《协议》）。一旦安装 或使用随此《协议》提供的软件（“软件”），即表明您同 意本《协议》的各项条款。如果您不同意，则不要使用“软 件”。 
+  
+请仔细阅读以下最终用户许可协议（《协议》）。一旦安装或使用随此《协议》提供的软件（“软件”），即表明您同意本《协议》的各项条款。如果您不同意，则不要使用“软件”。 
+  
+本“软件产品”受中华人民共和国著作权法和其它知识产权法及条约的保护。本“软件产品”只是提供使用许可协议，而非出售。 
+  
+软件产品许可协议 
+  
+1．许可协议的授予 
+本《协议》授予您下列权利：
+本“软件产品”只允许在一台计算机上使用，不允许在两台或两台以上的计算机上同时使用。
+数据库可以放至另一台计算机上使用。 
+  
+2．其它权利和限制说明 
+对反相工程（Reverse Engineering）、反编译（Decompilation）、反汇编（Disassembly）的限制：您不得对本“软件产品”进行反相工程（reverse engineer）、反编译（decompile）或反汇编 （disassemble）。 
+各部分的分开：本“软件产品”是被当成一单一系统而被授予许可协议，不得将各部分分开在多计算机局域网上使用，及不在同一地的单台计算机上安装使用。数据库可以放到另一台计算机上使用。
+出租：不得出租或租赁本“软件产品”。
+软件的转让：您可永久转让您在本《协议》下的所有权利，但您不得保留副本，并将本“软件产品”全部转让（包括所有组成部分、媒体和印刷材料、任何更新版本以及本《协议》，若有“真实性证书”亦一并转让），且受让人须接受本《协议》的各项条件。如本“软件产品”属于更新版本，则任何转让必须包括本“软件产品”以前的所有版本。
+终止：如您未遵守本《协议》的各项条件，在不损害其它权利的情况下，Maticsoft可将本《协议》终止。如发生此种情况，则您必须销毁“软件”及其各部分的所有副本。 
+  
+3．更新版本
+如本“软件产品”属于Maticsoft产品的更新版本，则您只可根据本《协议》使用该更新版产品。 
+如本“软件产品”是一套软件包中一组成部分的更新版，而您的该软件包许可协议是将其视为一单一产品，则您只可将本“软件产品”在该软件包下使用和转让，不得将其在多工程项目的计算机上分开使用。 
+  
+4．著作权 
+本“软件产品”包括但不限于本“软件产品”中所含的任何图象、照片、动画、录像、录音、音乐、文字和附加程序（applets）、随附的印刷材料、及本“软件产品”的任何副本的产权和著作权，均由Maticsoft或其商家拥有。本“软件产品”受著作权法及国际条约条款保护。因此，您必须将本“软件产品”与任何拥有著作权的资料同样对待。 
+  
+有限担保责任 
+  
+如您是Maticsoft产品的正式用户，下列有限担保责任适用于您：
+1．Maticsoft担保如下 
+“软件”自交货后九十日内大致符合附加书面材料所述的功能。 
+  
+2．客户所享有的补偿权 
+Maticsoft对您所应负的全部责任，以及您所享有的全部补偿权以下列两者之一为限（以何种为准，由Maticsoft全权决定）：
+退还您已付的价款。 
+修正或更换不符合Maticsoft有限担保的“软件”，但应连同您所持有的收据一并退还Maticsoft。如“软件”，是因使用盗版、修改软件产品、意外事故、使用不当或错误操作所引起的，则本有限担保无效。经更换的“软件”的担保期限为原担保期限的剩余期限或三十天（以较长者为准）。 
+3．无其它担保责任 
+在相关法律所允许的最大范围内，Maticsoft不做其它明示或默许担保，其中包括（但不限于）有关“软件”及附随的产品使用手册、书面资料与硬件的适售性或符合特定使用目的的默许担保。 
+4．就间接损害不负赔偿责任 
+在相关法律所允许的最大范围内，Maticsoft或其它商家绝不就因使用或不能使用本公司产品所发生的其它损害（包括，但不限于营业利益的损失、营业中断、商业信息的遗失或其它金钱上的损失）负赔偿责任，即使是公司事先被告知该损害发生的可能性。不论任何情况，Maticsoft依本约任何条款所应负的责任总额，以您就“软件”所实际已付的价款为限。 
+本协议以中华人民共和国法律为准。 若您就本协议有任何疑问，或您因任何事情拟洽询本公司时， 请与 
+若您就本协议有任何疑问，或您因任何事情拟洽询本公司时，
+请与 http://www.maticsoft.com.cn 联系
+&lt;/textarea&gt;</value>
+  </data>
+  <data name="IDS_FormField_Label1" xml:space="preserve">
+    <value>专业B2C在线商城</value>
+  </data>
+  <data name="IDS_FormField_Label3" xml:space="preserve">
+    <value>软件最终用户许可协议</value>
+  </data>
+  <data name="IDS_FormField_Label2" xml:space="preserve">
+    <value>为企业发展赢得先机!</value>
+  </data>
+  <data name="IDS_FormField_Label4" xml:space="preserve">
+    <value>Maticsoft  © 2012</value>
+  </data>
+</root>

@@ -1,0 +1,245 @@
+﻿@model Maticsoft.ViewModel.SNS.ProductCategory
+@{
+    string cname = Request.RequestContext.RouteData.Values["cname"] != null ? Request.RequestContext.RouteData.Values["cname"].ToString() : "all";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string color = Request.RequestContext.RouteData.Values["color"] != null ? Request.RequestContext.RouteData.Values["color"].ToString() : "all";
+    string sequence = Request.RequestContext.RouteData.Values["sequence"] != null ? Request.RequestContext.RouteData.Values["sequence"].ToString() : "hot";
+    string topcid = Request.RequestContext.RouteData.Values["topcid"] != null ? Request.RequestContext.RouteData.Values["topcid"].ToString() : "0";
+    string minprice = Request.RequestContext.RouteData.Values["minprice"] != null ? Request.RequestContext.RouteData.Values["minprice"].ToString() : "0";
+    string maxprice = Request.RequestContext.RouteData.Values["maxprice"] != null ? Request.RequestContext.RouteData.Values["maxprice"].ToString() : "0";
+
+}
+<div class="shopping">
+    <div class="shopping_ta">
+        <div class="shopping_ta_is" style="width: 100px">
+            <p class="shopping_ta_is1">
+                <img src="/Areas/SNS/Themes/M1/Content/images/shop_1.jpg"></p>
+            <p class="shopping_ta_is2">@(string.IsNullOrEmpty(Model.CurrentCateName) ? "热门搜索" : Model.CurrentCateName)</p>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="shopping_fon">
+        <div class="shopping_sort">
+            <ul>
+                @* 商品分类*@
+                @if (Model.SonList != null)
+                {
+                    foreach (Maticsoft.ViewModel.SNS.SonCategory items in Model.SonList)
+                    {
+                    <li><span class="csate_a_c">@items.ParentModel.Name</span>
+                        <div class="csate_a_f">
+                            @foreach (Maticsoft.Model.SNS.Categories item in items.Grandson)
+                            {
+                                @Html.ActionLink(item.Name, "Index", new { cname = item.Name.Trim(), cid = item.CategoryId, topcid = Model.CurrentCid },
+                                new { @style = "color:" + item.FontColor + ";" })
+                            }
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </li>
+                    }
+                }
+@* 标签分类*@
+                @if (Model.TagsList != null)
+                {
+                    foreach (Maticsoft.ViewModel.SNS.CType items in Model.TagsList)
+                    {
+    
+                    <li><span class="csate_a_c">@items.MTagType.TypeName</span>
+                        <div class="csate_a_f">
+                            @foreach (Maticsoft.Model.SNS.Tags item in items.Taglist)
+                            {
+                                @Html.ActionLink(item.TagName, "Index", new { cname = item.TagName.Trim(), topcid = Model.CurrentCid })
+                            }
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </li>
+                    }
+                }
+@*热搜词系列*@
+                @if (Model.KeyWordList4For != null)
+                {
+                    for (int i = 0; i < Model.KeyWordList4For.Length; i++)
+                    {
+                    <li><span class="csate_a_c"></span>
+                        <div class="csate_a_f">
+                            @foreach (Maticsoft.Model.SNS.SearchWordTop item in Model.KeyWordList4For[i])
+                            {
+                                @Html.ActionLink(item.HotWord, "Index", new { cname = item.HotWord.Trim(), topcid = Model.CurrentCid })
+                            }
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="shopping_fon_b">
+            <div class="shopping_fon_b1">
+                <img src="/Areas/SNS/Themes/M1/Content/images/shop_2.jpg"></div>
+            <div class="shopping_fon_b2" id="shareProduct">
+                <a href="javascript:;">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/shop_3.jpg"></a></div>
+            <div class="shopping_fon_b3">
+                <img src="/Areas/SNS/Themes/M1/Content/images/shop_5.jpg"></div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div class="os">
+    <div class="os_a">@(Request.RequestContext.RouteData.Values["cname"])</div>
+    <div class="order" style="float: right; width: 670px">
+        <div class="os_b">
+            <div class="os_b_1">
+                排序:</div>
+            <div class="os_b_2">
+                <ul>
+                    <li>@Html.ActionLink("潮流", "Index", new { sequence = "popular" }, new { @id = "popular" })</li>
+                    <li>@Html.ActionLink("最新", "Index", new { sequence = "new" }, new { @id = "new" })</li>
+                    <li style="border-right: 0;">@Html.ActionLink("最热", "Index", new { sequence = "hot" }, new { @id = "hot" })</li>
+                </ul>
+            </div>
+        </div>
+        <div class="os_c">
+            <div class="os_c_1">
+                颜色:</div>
+            <div class="os_c_2">
+                <ul>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-red">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_7.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-green">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_8.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-yellow">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_9.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-blue">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_10.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-brown">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_11.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-black">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_12.jpg"></a></li>
+                    <li><a href="@(ViewBag.BasePath)Product/@cname/@cid/@topcid/@(minprice)-@(maxprice)-@(sequence)-white">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/shop_13.jpg"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="os_b">
+            <div class="os_b_1">
+                价格:</div>
+            <div class="os_b_2">
+                <ul>
+                    <li>@Html.ActionLink("全部", "Index", new { maxprice = "0", minprice = "0", sequence = Model.CurrentSequence }, new { id = "price00" })</li>
+                    <li>@Html.ActionLink("0-300元", "Index", new { maxprice = "300", minprice = "0", sequence = Model.CurrentSequence }, new { id = "price0300" })</li>
+                    <li style="border-right: 0;">@Html.ActionLink("300元以上", "Index", new
+                                            {
+                                                maxprice = "0",
+                                                minprice = "301",
+                                                sequence = Model.CurrentSequence
+                                            }, new { id = "price3010" })</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div id="shareProductWindow" style="display: none">
+    <div class="cre_a_1" style="padding-top: 20px; padding-left: 10px">
+        @*  <p class="cre_a_1a" style=" height:20px"></p>*@
+        <p class="cre_a_2a" style="height: 25px; width: 360px">
+            <input name="ProductLink" placeholder="将商品网址粘贴到这里" id="ProductLink" type="text"  style="height: 20px; line-height: 20px;
+                width: 350px; font-size: 12px" type="text" /></p>
+    </div>
+</div>
+<script type="text/javascript">
+    if ($(".os_a").text() == "all") {
+        $(".os_a").text("全部");
+    }
+    $(".color").text("");
+    $(function () {
+        $("#shareProduct").click(function () {
+            if (CheckUserState()) {
+                html = $("#shareProductWindow").html();
+                $.jBox(html, { title: "分享商品", buttons: { '确定': 1 }, submit: shareProduct, width: 400, top: 300 });
+            }
+        });
+
+    })
+    var ProductName;
+    var shareProduct = function (v, h, f) {
+        var LinkUrl = f.ProductLink + "&";
+        var urlreg = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/;
+        if (LinkUrl && LinkUrl.length > 0 &&
+                        !urlreg.test(LinkUrl)) {
+            $.jBox.tip('请输入正确的链接', 'success');
+            return false;
+        }
+        $.jBox.tip("数据努力加载中...", 'loading');
+        $.ajax({
+            url: "@(ViewBag.BasePath)profile/AjaxGetProductInfo",
+            type: 'post', dataType: 'text', timeout: 10000,
+            data: { ProductLink: LinkUrl },
+            success: function (resultData) {
+                if (resultData == "No") {
+                    $.jBox.tip('亲，获取失败，如果一直不成功，请联系管理员检查淘宝设置是否正确', 'success');
+                }
+                else {
+                    var Datas = resultData.split("|");
+                    Pid = Datas[0];
+                    ImageUrl = Datas[1];
+                    ProductName = Datas[2];
+                    CheckUserState();
+                    var url = ImageUrl;
+                    $.ajax({
+                        type: "POST",
+                        dataType: "text",
+                        url: $Maticsoft.BasePath + "Album/GetUserAlbums",
+                        success: function (data) {
+                            var Datas = $.parseJSON(data);
+                            var ResultHtml = "<select style='width:200px' id='albumid' name='albumid'>"
+                            if (data != "No") {
+                                for (var i = 0; i < Datas.length; i++) {
+                                    ResultHtml += " <option value =" + Datas[i].AlbumID + ">" + Datas[i].AlbumName + "</option>";
+                                }
+                                ResultHtml += "</select>"
+                                ResultHtml += "<input type='hidden' name='ImageUrl' value='" + ImageUrl + "' />"
+                                ResultHtml += "<input type='hidden' name='Pid' value='" + Pid + "' />"
+                                $("#albumsinfo").html(ResultHtml);
+                                $("#addtoimage").attr("src", url);
+                                var html = $("#addToablum").html().format(url);
+                                $.jBox.tip('获取成功', 'success');
+                                $.jBox(html, { title: "加入专辑", buttons: { '分享': 1 }, submit: submitAddProduct, width: 550, top: 300 });
+                            }
+                        }
+                    });
+                }
+            }
+        });
+        return true;
+    };
+    var submitAddProduct = function (v, h, f) {
+        $.ajax({
+            url: "@(ViewBag.BasePath)profile/AjaxPostAdd",
+            type: 'post', dataType: 'text', timeout: 10000,
+            data: { Type: "Product", ImageUrl: f.ImageUrl, ShareDes: f.AddAlbumscontent, AblumId: f.albumid, Pid: f.Pid, ProductName: ProductName },
+            success: function (resultData) {
+                if (resultData == "No") {
+                    ShowFailTip("操作失败，请您重试！");
+                } else if (resultData == "ProductRepeat") {
+                    ShowFailTip("同样的商品不能重复发两次！");
+                }
+                else {
+                    $.jBox.tip('分享成功', 'success');
+                }
+                return true;
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $.jBox.tip('操作失败', 'success');
+            }
+        });
+    };
+   
+</script>

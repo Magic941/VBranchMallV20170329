@@ -1,0 +1,70 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="hp-bd">
+        <div class="bs-box cf">
+            @for (int i = 0; i < Model.Count && i < 6; i++)
+            {
+                if (i == 0)
+                {
+                <div class="wb fl mr2">
+                    @*<a href="@(ViewBag.BasePath)Product/Detail/@Model[0].ProductId"
+                        title="@Model[0].ProductName" target="_blank">*@ <a href="@Model[0].SeoUrl" title="@Model[0].ProductName" target="_blank">
+                            <img width="482" height="320"  data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[0].ThumbnailUrl1, "T482X320_")"
+                            alt="@Model[0].ProductName" title="@Model[0].ProductName"></a>
+                </div>
+              
+                }
+                else if (i == 1)
+                {
+                <div class="ws fl mr2 mb2">
+                    <div class="bs-item">
+                        @* <a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                            title="@Model[i].ProductName" target="_blank">*@ <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                                <img width="158" height="158" title="@Model[i].ProductName" alt="@Model[i].ProductName" 
+                                data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")"><span
+                                    class="bs-item-desc"><span class="bs-item-sprice"><i></i><ins>@Model[i].LowestSalePrice.ToString("F")</ins></span><em
+                                        class="bs-item-tit">@Model[i].ProductName</em></span></a>
+                    </div>
+                </div>
+                }
+
+                else if (i == 2)
+                {
+                <div class="wc fl mb2">
+                    @*<a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                        title="@Model[i].ProductName" target="_blank">*@ <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                            <img width="320" height="158"  data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T320X158_")"
+                            alt="@Model[i].ProductName" title="@Model[i].ProductName"></a>
+                </div>
+                }
+                else if (i == 3 || i == 4)
+                {
+                <div class="ws fl mr2">
+                    <div class="bs-item">
+                        @* <a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                            title="@Model[i].ProductName" target="_blank">*@ <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                                <img width="158" height="158" title="@Model[i].ProductName" alt="@Model[i].ProductName" 
+                                data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")"><span
+                                    class="bs-item-desc"><span class="bs-item-sprice"><i></i><ins>@Model[i].LowestSalePrice.ToString("F")</ins></span><em
+                                        class="bs-item-tit">@Model[i].ProductName</em></span></a>
+                    </div>
+                </div>
+                }
+                else
+                {
+                <div class="ws fl">
+                    <div class="bs-item">
+                        @* <a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                            title="@Model[i].ProductName" target="_blank">*@ <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                                <img width="158" height="158" title="@Model[i].ProductName" alt="@Model[i].ProductName" 
+                                data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")"><span
+                                    class="bs-item-desc"><span class="bs-item-sprice"><i></i><ins>@Model[i].LowestSalePrice.ToString("F")</ins></span><em
+                                        class="bs-item-tit">@Model[i].ProductName</em></span></a>
+                    </div>
+                </div>
+                }
+            }
+        </div>
+    </div>
+}

@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head id="Head1" runat="server">
+        <title>商家登录</title>
+        <link href="/css/base_login.css" type="text/css" rel="stylesheet">
+        <script src="/Scripts/jquery-1.8.3.min.js" type="text/javascript"></script> 
+        <script language="JavaScript">
+                if (window != top)
+                    top.location.href = "@(ViewBag.BasePath)Account/SellerLogin";
+       </script> 
+    </head>
+    <style type="text/css">
+        div.seller_login_img img{width:323px;height:74px;}
+    </style>
+    @model Maticsoft.ViewModel.Shop.LogOnModel
+    @if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function() {
+            $('#lblMsg').text('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+        });
+    </script>
+}  
+
+    <body>
+        @using (Html.BeginForm("SupplierLogin", "Account", FormMethod.Post, new { id = "form1" }))
+        {
+            <div class="login">
+                <table width="100%" height="370" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="49%" height="312" align="center" valign="bottom">
+                            <br />
+                            <table width="375" border="0" cellspacing="0" cellpadding="0" class="bianju">
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <div style="width:323px;height:74px;" class="seller_login_img">
+                                            @Html.Action("AD", "Partial", new { AdvPositionId = 60 }) @*<img src="/images/sup_login.gif" width="323" height="74" />*@
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="51%" valign="bottom" style="padding-top: 25px">
+                            <table width="90%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>                                    
+                                    <td width="21%" height="35" align="right" style="color: #666">
+                                        用户名：
+                                    </td>
+                                    <td width="79%">
+                                        @Html.TextBoxFor(m => m.UserName, new {Class = "txt_bg", id = "txtLogin", name = "xlInput" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="35" align="right" style="color: #666">
+                                        密&nbsp;&nbsp;码：
+                                    </td>
+                                    <td height="30">
+                                        @Html.PasswordFor(m => m.Password, new { Class = "txt_bg", id = "password", name = "xlInput" }) 
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td height="35" align="right" style="color: #666">
+                                        验证码：
+                                    </td>
+                                    <td height="30">  
+                                        <input type="text" maxlength="4" class="txt_bg2 f-txt-s f-txt" id="CheckCode" name="CheckCode"/>
+                                        <img src="/ValidateCode.aspx" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" style="padding-left: 78px">
+                                        <span id="lblMsg" style="color: Red; background-color: transparent;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="35">
+                                        &nbsp;
+                                    </td>
+                                    <td height="30" align="left">
+                                        <img src="/images/login.gif" class="login_img" id="btnLogin" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </body>
+</html>
+  
+<script  type="text/javascript">
+    $(function () {
+        $('#btnLogin').click(function () {
+            if ($.trim($('#txtLogin').val()) == '') {
+                $('#lblMsg').text('请输入用户名！');
+                return false;
+            }
+            if ($.trim($('#password').val()) == '') {
+                $('#lblMsg').text('请输入密码！');
+                return false;
+            }
+            if ($.trim($('#CheckCode').val()) == '') {
+                $('#lblMsg').text('请输入验证码！');
+                return false;
+            } else {
+                if( $.trim($('#CheckCode').val()).length !=4){
+                    $('#lblMsg').text('验证码错误！');
+                    return false;
+                }
+            }
+            $('#form1').submit();
+        });
+    });
+</script>

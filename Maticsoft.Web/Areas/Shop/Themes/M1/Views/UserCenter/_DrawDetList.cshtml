@@ -1,0 +1,85 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Pay.BalanceDrawRequest>
+<table width="100%" border="0" class="user_dingdan user_balancelist" cellspacing="0" cellpadding="0">
+    <tr>
+        <th>申请时间</th>
+        <th>提现金额</th>
+        <th>开户行</th>
+        @*<th>账户类型</th>*@
+        @*<th>开户行名称</th>*@
+        <th>开户姓名</th>
+        <th>银行卡号</th>
+        <th>状态</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+        <tr>
+            <td height="40" style="width: 140px;" class="bor">
+                @item.RequestTime.ToString("yyyy-MM-dd HH:mm:ss")
+            </td>
+            <td class="bor">
+                @item.Amount.ToString("F")
+            </td>
+            <td class="bor">
+                @item.BankCard
+            </td>
+            @*<td class="bor">
+                @(item.CardTypeID == 1 ? "银行帐号" : "支付宝帐号")
+            </td>*@
+            @*<td class="bor">
+                @item.BankName
+            </td>*@
+            <td class="bor">
+                @item.TrueName
+            </td>
+            <td class="bor">
+                @item.BankCard
+            </td>
+            <td class="bor status">
+                @switch (item.RequestStatus)
+                {
+                    case 1:
+                    @:未审核
+                                  break;
+                    case 2:
+                    @:审核失败
+                                  break;
+                    case 3:
+                    @:审核通过
+                                  break;
+                }
+
+            </td>
+
+        </tr>
+        }
+    }
+
+</table>
+
+
+<!-- FansList BEGIN -->
+
+<center>
+     <!--jQuery Ajax Paging Start-->
+      @Html.AjaxPager(Model, new PagerOptions
+                    {
+                        PageIndexParameterName = "pageIndex",
+                        NumericPagerItemCount = 10,
+                        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                        CssClass = "in_pages",
+                        SeparatorHtml = ""
+                    }, new AjaxOptions { UpdateTargetId = "divdetaillist" })
+    <!--jQuery Ajax Paging End-->
+ </center>
+<script>
+    $(function () {
+        $('.status:contains("未审核")').addClass('tdstatusno');
+        $('.status:contains("审核失败")').addClass('tdstatusfail');
+        $('.status:contains("审核通过")').addClass('tdstatusok');
+    })
+</script>

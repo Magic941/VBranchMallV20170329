@@ -1,0 +1,951 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKCardActivateBaseLayout.cshtml";
+}
+
+@model Maticsoft.Model.Shop_CardType
+@section head{
+
+    <link rel="stylesheet" href="/Areas/CMS/Themes/M1/Content/99jkc/css/daterange.css" />
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/moment_min.js"></script>
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/daterange.js"></script>
+    <script src="/Scripts/jquery/validate/jquery.validate.js?v=1" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/CMS/Themes/M1/Content/Scripts/jquery.tmpl.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.jobtypepicker_1.0.js"></script>
+    
+}
+
+<style>
+    .error {
+        color: red;
+        padding-left: 5px;
+    }
+    .jobtypeSele {
+        border: solid 1px #C5C5C5;       
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+
+
+</style>
+<div id="divEdit" ng-app="activaCardApp" ng-controller="activaCardCtrl">
+    <div class="position">您所在的位置：<a href="/">主页</a> &gt; <a href="/">账号激活</a> &gt; <a href="/">填写资料</a></div>
+
+    <form class="formActivate" id="formActivate" action="" method="get" novalidate="novalidate">
+        <div class="body">
+            <div class="buzhou3"></div>
+            <div class="fuwu" style="margin-top: 20px;">
+                <!-------------biaodan------------------->
+                <!--div class="wrap"-->
+                <div class="divApplicantInfo">
+                    <div class="frm_control_group frm_ctrl_group_tit" style="">
+                        <h2>投保人信息</h2>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">姓名</label>
+                        <div class="frm_controls">
+                            <input class="frm_input name" id="txtApplicantName" name="txtApplicantName">
+                            <p class="frm_tips">请正确填写真实姓名</p>
+                        </div>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">身份证号</label>
+                        <div class="frm_controls">
+                            <input class="frm_input cardid" style="width: 300px" id="txtApplicantNameCardId" name="txtApplicantNameCardId">
+                            <p class="frm_tips">请正确填写身份证号</p>
+                        </div>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">性别</label>
+                        <div class="frm_controls">
+                            <label>
+                                <input type="radio" class="frm_ace ApplicantSex" value="1" checked="checked" name="ApplicantSex" />
+                                <span class="frm_lbl">男</span>
+                            </label>
+                            <label>
+                                <input type="radio" class="frm_ace ApplicantSex" value="0" name="ApplicantSex" />
+                                <span class="frm_lbl">女</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">出生日期</label>
+                        <div class="frm_controls">
+                            <div class="frm_input_prepend">
+                                <span class="add_on"><i class="icon_calendar"></i></span>
+                                <input type="text" class="daterangepick" id="txtApplicantBirthDay" name="txtApplicantBirthDay">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">电子邮件</label>
+                        <div class="frm_controls">
+                            <input name="txtApplicantEmail" class="frm_input email" maxlength="32" id="txtApplicantEmail" type="email">
+                            <p class="frm_tips">选填项</p>
+                        </div>
+                    </div>
+                    <div class="frm_control_group">
+                        <label class="frm_label">手机</label>
+                        <div class="frm_controls">
+                            <input type="text" name="txtApplicantMoble" class="frm_input phone" id="txtApplicantMoble">
+                            <p class="frm_tips">投保人手机号</p>
+                        </div>
+                    </div>
+
+                    <div class="frm_control_group">
+                        <label class="frm_label">联系地址</label>
+                        <div class="frm_controls">
+                            <input type="text" name="txtAddress" class="frm_input phone" style="width: 400px" id="txtAddress">
+                            <p class="frm_tips">选填项</p>
+                        </div>
+                    </div>
+                </div>
+
+                @if (Model.PersonNum > 1)
+                {
+                    <a href="javascript:void(1)" onclick="javascript:AddInsurants()">增加被保人</a>  
+                }
+
+                <div class="divInsurantInfo" id="divInsurantInfo">
+                    <div class="divInsurantItem" id="divInsurantItem1" num="1">
+                        <div class="frm_control_group frm_ctrl_group_tit" style="">
+
+                            @if (Model.PersonNum > 1)
+                            {
+                                <h2 class="insuantTitle">被保人1信息</h2>
+                            }
+                            else
+                            {
+                                <h2 class="insuantTitle">被保险人(投保人为同一人)[<a href="javascript:void(1)" onclick="javascript:CoppyApplicantInfo()">复制投保人信息</a>]</h2>
+                            }
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">与投保人关系</label>
+                            <div class="frm_controls">
+                                <select class="frm_input insuantRelationShip" style="width: 115px">
+                                    <option value="1">父亲</option>
+                                    <option value="2">母亲</option>
+                                    <option value="3">儿子</option>
+                                    <option value="4">女儿</option>
+                                    <option value="5">本人</option>
+                                    <option value="6">配偶</option>
+                                </select>
+                                <p class="frm_tips">请选择被保人与投保人的关系</p>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">姓名</label>
+                            <div class="frm_controls">
+                                <input type="text" name="insuantName" class="frm_input name insuantName">
+                                <p class="frm_tips">请填写真实姓名</p>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">证件类型</label>
+                            <div class="frm_controls">
+                                <select class="frm_input  insuantCertificateType" style="width: 115px">
+                                    <option value="1">身份证</option>
+                                    @*<option value="2">准生证</option>
+                                    <option value="3">军人证</option>*@
+                                </select>
+                                <label style="margin: 0 2em 0 4em">证件号码</label>
+                                <input type="text" class="frm_input name insuantCardId" style="width: 300px" name="txtInsurantCardid">
+                                <p class="frm_tips">请填写证件号码</p>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">性别</label>
+                            <div class="frm_controls">
+                                <label>
+                                    <input type="radio" class="frm_ace insuantSex" checked="checked" value="1" name="InsuantSex1">
+                                    <span class="frm_lbl">男</span>
+                                </label>
+                                <label>
+                                    <input type="radio" class="frm_ace insuantSex" value="0" name="InsuantSex1">
+                                    <span class="frm_lbl">女</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">出生日期</label>
+                            <div class="frm_controls">
+                                <div class="frm_input_prepend">
+                                    <span class="add_on"><i class="icon_calendar"></i></span>
+                                    <input type="text" class="daterangepick input290 insuantBirthday" id="daterangepick2" name="insuantBirthday" readonly="readonly">
+                                </div>
+                                <p class="frm_tips">请填根据您定的表单进行增加减少</p>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">职业类型</label>
+                            <div class="frm_controls">                                                                                       
+
+                                <input type="text" name="txtJobType" class="frm_input insuantJobType" style="width: 400px" id="txtJobType" ng-show="JobTypeInsuranceCompanyCode==''">
+                                <span id="divJobTypePicker" class="divJobTypePicker" style="margin-left: 5px; " name="jobtypepicker1" ng-show="JobTypeInsuranceCompanyCode!=''">
+
+                                </span> 
+                                                                   
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">电子邮件</label>
+                            <div class="frm_controls">
+                                <input type="text" name="insuantEmail" class="frm_input insuantEmail" maxlength="32">
+                                <p class="frm_tips">选填项</p>
+                            </div>
+                        </div>
+                        <div class="frm_control_group">
+                            <label class="frm_label">联系地址</label>
+                            <div class="frm_controls">
+                                <input type="text" name="" class="frm_input phone  insuantAddress" style="width: 400px">
+                                <p class="frm_tips">选填项</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--biaodan-->
+                <div class="button1" style="margin-left: 14em">
+                    <a href="javascript:void(0)" onclick="javascript: $('#formActivate').submit(); return false;">提交激活信息确认</a>
+                    <input class="submit" type="submit" value="Submit" id="btnSubmit" style="width: 0px; height: 0px; float: left; position: absolute; left: -100px; top: -100px">
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+<!---->
+<div id="divReview" style="display: none">
+    <div class="position">您所在的位置：<a href="/">主页</a> &gt; <a href="/">账号激活</a> &gt; <a href="/">确认信息</a></div>
+    <div class="body">
+        <div class="buzhou4"></div>
+        <div class="fuwu" style="margin-top: 20px;" id="divReviewContainer">          
+        </div>
+        <div id="divWait" style="margin-left: 14em"></div>
+        <div style="margin-left: 14em"><a class="button" href="javascript:void(0);" id="btnSubmitToServer" onclick="javascript:SubmitDataToServer();">提交确认激活</a><a class="button" href="javascript:void(0);" onclick="javascript:ReturnEdit()">返回修改</a></div>
+    </div>
+
+</div>
+<script id="divReviewInsurantItemTemplate" type="text/x-jquery-tmpl">
+    <div class="divReviewInsurantItem">
+        <div class="frm_control_group frm_ctrl_group_tit" style="">
+            <h2>被保人${Num}信息</h2>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">与投保人关系</label>
+            <div class="frm_infln insurantRelationShip">${RelationShipTxt}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">真实姓名</label>
+            <div class="frm_infln insurantName">${Name}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">证件号码</label>
+            <div class="frm_infln insurantCardId">${CardId}(${CertificateTypeTxt})</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">性别</label>
+            <div class="frm_infln insurantSex">${SexTxt}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">出生日期</label>
+            <div class="frm_infln insurantBirthday">${BirthDay}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">职业类型</label>
+            <div class="frm_infln insurantJobType">${JobType}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">邮箱</label>
+            <div class="frm_infln insurantEmail">${Email}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">联系地址</label>
+            <div class="frm_infln insurantAddress">${Address}</div>
+        </div>
+    </div>
+</script>
+<script id="divReviewApplicantTemplate" type="text/x-jquery-tmpl">
+    <div class="divReviewApplicant">
+        <div class="frm_control_group frm_ctrl_group_tit" style="">
+            <h2>投保人信息</h2>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">真实姓名</label>
+            <div class="frm_infln applicantName">${Name}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">证件号码</label>
+            <div class="frm_infln applicantCardId">${CardId}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">性别</label>
+            <div class="frm_infln applicantSex">
+                ${SexTxt}
+            </div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">出生日期</label>
+            <div class="frm_infln applicantBirthday">
+                ${BirthDay}
+            </div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">邮箱</label>
+            <div class="frm_infln applicantEmail">${Email}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">手机号</label>
+            <div class="frm_infln applicantMobile">${Moble}</div>
+        </div>
+        <div class="frm_control_group">
+            <label class="frm_label">联系地址</label>
+            <div class="frm_infln applicantAddress">${Address}</div>
+        </div>
+    </div>
+</script>
+
+
+<script>
+    
+    /* angularjs */
+    var app = angular.module('activaCardApp', []);
+    app.factory('GetData', ['$http', '$q', function ($http, $q) {
+        return {
+            getJobTypes: function () {
+                var deferred = $q.defer();
+                $http({ method: 'GET', url: '/CardActivate/GetJobTypes?insuranceCompanyCode=@Model.JobTypeInsuranceCompanyCode' }).
+                success(function (data, status, headers, config) {
+                    deferred.resolve(data);
+                }).
+                error(function (data, status, headers, config) {
+                    deferred.reject(data);
+                });
+                return deferred.promise;
+            }
+           
+        };
+    }]);
+
+    app.controller('activaCardCtrl', ['$scope', 'GetData', function ($scope, GetData) {
+        $scope.JobTypes = [];
+        $scope.JobTypeInsuranceCompanyCode = '@Model.JobTypeInsuranceCompanyCode';
+    
+        if ($scope.JobTypeInsuranceCompanyCode != "") {
+            //alert($scope.JobTypeInsuranceCompanyCode);
+            var promise = GetData.getJobTypes();
+            promise.then(function (data) {
+                $scope.JobTypes = data;
+              
+                $.jobpicker = $(".divJobTypePicker").regionPicker({ companycode: $scope.JobTypeInsuranceCompanyCode, jobtypedata: $scope.JobTypes });
+
+            }, function (data) {
+                $scope.JobTypes = [];
+            });
+        }
+    }]);
+
+    /**/
+
+    var cardApplicant = { Name: "", Sex: "", CardId: "", Email: "", Moble: "", Address: "", BirthDay: "", CardInsurantsTxt: "", SexTxt: "男" };
+
+    var cardInsurants = [];
+    var cardInsurantItem = { Name: "", Sex: "", CardId: "", Email: "", CertificateType: "", Address: "", BirthDay: "", RelationShip: -1, RelationShipTxt: "", CertificateTypeTxt: "",JobType: "", SexTxt: "", Num: 1 };
+
+
+    //当前样式
+    $("#liStep2").addClass("on");
+    //可激活的人数,被保人最多不能超过这个数字
+    var insuantsMaxNum = parseInt('@Model.PersonNum');
+    var curInsuantNum = 1;
+    //增加被保人,把性别组改一下就好
+    function AddInsurants() {
+
+        if (curInsuantNum >= insuantsMaxNum) {
+            alert("最多" + insuantsMaxNum + "个被保人!");
+            return;
+        }
+        curInsuantNum = curInsuantNum + 1;
+        var insuantItemNew = $("#divInsurantItem1").clone(false);
+
+        //清空克隆值
+        insuantItemNew.find(".insuantName").val("");
+        insuantItemNew.find(".insuantCardId").val("");
+        insuantItemNew.find(".insuantBirthday").val("");
+        insuantItemNew.find(".insuantEmail").val("");
+        insuantItemNew.find(".insuantAddress").val("");
+        insuantItemNew.find(".insuantCertificateType").val(1);
+        insuantItemNew.find(".insuantRelationShip").val(5);
+        insuantItemNew.find(".insuantJobType").val("");
+
+        //清除提示控件，引起冲突
+        insuantItemNew.find("label.error").remove();
+
+
+        insuantItemNew.attr("id", "divInsurantItem" + curInsuantNum);
+        insuantItemNew.attr("num", curInsuantNum);
+
+        //name编辑新值  
+        insuantItemNew.find(".insuantSex").attr("name", "InsuantSex" + curInsuantNum);
+        insuantItemNew.find(".insuantCardId").attr("name", "txtInsurantCardid" + curInsuantNum);
+
+        insuantItemNew.find(".insuantName").attr("name", "insuantName" + curInsuantNum);
+        insuantItemNew.find(".insuantEmail").attr("name", "insuantEmail" + curInsuantNum);
+        insuantItemNew.find(".insuantBirthday").attr("name", "insuantBirthday" + curInsuantNum);
+
+        insuantItemNew.find(".insuantBirthday").attr("name", "insuantBirthday" + curInsuantNum);
+
+        insuantItemNew.find(".divJobTypePicker").attr("name", "jobtypepicker" + curInsuantNum);
+
+        insuantItemNew.find(".insuantTitle").html("被保人" + curInsuantNum + "信息");
+        $("#divInsurantInfo").append(insuantItemNew);
+
+        //同步职业类型初始化
+        
+        var scope = angular.element('#divEdit').scope();
+        if (scope.JobTypeInsuranceCompanyCode != "") {
+            var n = "jobtypepicker" + curInsuantNum;
+            var p = $("#divInsurantInfo").find($("[name='" + n + "']"));
+            p.empty();
+            p.regionPicker({ companycode: scope.JobTypeInsuranceCompanyCode, jobtypedata: scope.JobTypes });
+        }
+    }
+
+
+    //复制投保人信息到被保人栏目
+    function CoppyApplicantInfo() {
+
+        GetApplicantValue();
+        $("#divInsurantItem1").find(".insuantName").val(cardApplicant.Name);
+        $("#divInsurantItem1").find(".insuantCardId").val(cardApplicant.CardId);
+        $("#divInsurantItem1").find(".insuantBirthday").val(cardApplicant.BirthDay);
+        $("#divInsurantItem1").find(".insuantEmail").val(cardApplicant.Email);
+        $("#divInsurantItem1").find(".insuantAddress").val(cardApplicant.Address);
+        $("#divInsurantItem1").find(".insuantCertificateType").val(1);
+        $("#divInsurantItem1").find(".insuantRelationShip").val(5);
+    
+        var sex = $("#divInsurantItem1").find("input.insuantSex");
+
+        $.each(sex, function (i, item) {
+            
+            if ($(item).val() == cardApplicant.Sex) {
+                $(item).attr("checked", "checked");
+                return false;
+            }
+        });
+    }
+
+    //获取投保人信息
+    function GetApplicantValue() {
+        cardApplicant.Name = $("#txtApplicantName").val();
+        cardApplicant.CardId = $("#txtApplicantNameCardId").val();
+        cardApplicant.Sex = $("input.ApplicantSex:checked").val();
+        cardApplicant.BirthDay = $("#txtApplicantBirthDay").val()
+        cardApplicant.Email = $("#txtApplicantEmail").val();
+        cardApplicant.Moble = $("#txtApplicantMoble").val();
+        cardApplicant.Address = $("#txtAddress").val();
+        
+    }
+
+    $('input.daterangepick').daterangepicker({
+        singleDatePicker: true,
+        showDropdowns: true
+    });
+
+    //比较投保人和被保人信息
+    function CompareInsuantInfo(applicantinfo,insuantinfo) {
+        var v = $("#divInsurantInfo .insuantRelationShip:first").val();
+        if(v=="5")
+        {
+            var a1 = applicantinfo.Name == insuantinfo.Name;
+            var a2 = applicantinfo.CardId == insuantinfo.CardId;
+            var a3 = applicantinfo.Sex == insuantinfo.Sex;
+            var a4 = applicantinfo.BirthDay == insuantinfo.BirthDay;
+            var a5 = applicantinfo.Email == insuantinfo.Email;
+            var a6 = applicantinfo.Address == insuantinfo.Address;
+          
+            if (a1 && a2 && a3 && a4 && a5 && a6)
+                return true;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    var ii = 0, curSubmitStatus = false;
+    //提交数据到服务器
+    function SubmitDataToServer() {
+        var h = document.body.clientHeight;
+
+        GetApplicantValue();
+        var insuantData = JSON.stringify(cardInsurants);
+        cardApplicant.CardInsurantsTxt = insuantData;
+
+        var s = $.grep(cardInsurants, function (o) { return o.Num == 1; });
+       
+        //alert(s[0].Name);
+        //检测投保人和被保人信息是否一致
+        var v = CompareInsuantInfo(cardApplicant, s[0]);
+        //alert(v);
+        if (!v)
+        {
+            alert("投保人和被保人信息不一致,请核对信息!");
+            return false;
+        }
+
+        $.ajax({
+            url: '/CardActivate/CardActivateStep2SubmitData',
+            type: 'post',
+            dataType: "json",
+            timeout: 10000,
+            data: cardApplicant,
+            beforeSend: function () {
+                if (!curSubmitStatus) {
+                    curSubmitStatus = true;
+                    $("#divWait").html("正在提交数据,请等待.....");
+                } else {
+
+                    return false;
+                }
+            },
+            success: function (data) {
+
+                if (!data.IsSuccess) {
+                    alert(data.Message);
+                }
+                else {
+                    window.location.href = "/CardActivate/CardActivateStep4";
+                }
+                curSubmitStatus = false;
+            }, error: function (XMLResponse) {
+                curSubmitStatus = false;
+                //alert(XMLResponse.responseText);
+                alert("错误");
+            }, complete: function () {
+                if (!curSubmitStatus) {
+                    $("#divWait").html("数据提交结束!");
+                }
+            }
+        });
+
+    }
+
+
+    //获取被保人信息，返回数组，js端验证通过后调用该方法
+    function GetInsurantData() {
+
+        var allInsurant = [];
+
+        var allitems = $("#divInsurantInfo").find(".divInsurantItem");
+
+        $.each(allitems, function (i, item) {
+            // var cardInsurantItem = { Name: "", Sex: "", CardId: "", Email: "", CertificateType: "", Address: "", BirthDay: "", RelationShip: -1 };          
+            var initem = jQuery.extend({}, cardInsurantItem);
+
+            initem.Name = $(item).find(".insuantName").val();
+            var scope = angular.element('#divEdit').scope();
+            if (scope.JobTypeInsuranceCompanyCode != "") {
+                var n = "jobtypepicker" + (i + 1);               
+                var p = $(item).find($("[name='" + n + "']"));
+                var v = p.regionPicker();
+                initem.JobType  = v.getValue();
+            }
+            else {
+                initem.JobType = $(item).find(".insuantJobType").val();
+            }
+
+            if (initem.JobType == "") {
+                alert("请选择职业类型！");
+                return;
+            }
+
+            initem.Sex = $(item).find(".insuantSex:checked").val();
+            initem.CardId = $(item).find(".insuantCardId").val();
+            initem.CertificateType = $(item).find(".insuantCertificateType").val();
+            initem.Address = $(item).find(".insuantAddress").val();
+            initem.BirthDay = $(item).find(".insuantBirthday").val();
+            initem.RelationShip = $(item).find(".insuantRelationShip").val();
+            initem.Email = $(item).find(".insuantEmail").val();
+            initem.Num = i + 1;
+            allInsurant.push(initem);
+        });
+
+        return allInsurant;
+    }
+
+    //返回编辑
+    function ReturnEdit() {
+
+        $("#divEdit").show();
+        $("#divReview").hide();
+
+    }
+
+    //预览
+    function Review() {
+        //处理预览模板
+        $("#divReviewContainer").empty();
+        GetApplicantValue();
+
+        cardApplicant.SexTxt = (cardApplicant.Sex == "1" ? "男" : "女");
+        $('#divReviewApplicantTemplate').tmpl(cardApplicant).appendTo('#divReviewContainer');
+
+        //所有被保人预览
+        $.each(cardInsurants, function (i, item) {
+
+            item.SexTxt = (item.Sex == "1" ? "男" : "女");
+            item.CertificateTypeTxt = GetCertificateTxt(item.CertificateType);
+            item.RelationShipTxt = GetRelationShipTxt(item.RelationShip);
+            $('#divReviewInsurantItemTemplate').tmpl(item).appendTo('#divReviewContainer');
+
+        });
+
+        $("#divEdit").hide();
+        $("#divReview").show();
+    }
+
+
+    //获取证书类型
+    function GetCertificateTxt(certificate) {
+        var item = {};
+        item["1"] = "身份证";
+        item["2"] = "准生证";
+        item["3"] = "军人证";
+        return item[certificate];
+    }
+
+    //获取身份证关系
+    function GetRelationShipTxt(relationship) {
+        var item = {};
+        item["1"] = "父亲";
+        item["2"] = "母亲";
+        item["3"] = "儿子";
+        item["4"] = "女儿";
+        item["5"] = "本人";
+        item["6"] = "配偶";
+        return item[relationship];
+    }
+
+    //通过较验后的动作
+    $.validator.setDefaults({
+        submitHandler: function () {
+            //alert("2");
+            var allinsurant = GetInsurantData();
+            cardInsurants = [];
+            cardInsurants = allinsurant;
+            Review();
+
+            //SubmitData(allinsurant);
+            return false;
+        }
+    });
+
+    // 手机号码验证 
+    $().ready(function () {
+
+        $.validator.addMethod("mobile",
+            function (value, element, param) {
+                var length = value.length;
+                var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+                return this.optional(element) || (length == 11 && mobile.test(value));
+            }, "请正确填写您的手机号码");
+
+        //身份证号
+        $.validator.addMethod("cardid",
+           function (value, element, param) {
+               var result = checkcardid(value);
+               if (result.issuccess) {
+                   //性别和日期
+                   var pele = $(element).parents('.divApplicantInfo');
+
+                   $("#txtApplicantBirthDay").val(result.date);
+                   //性别
+                   var sex = $(pele).find(".ApplicantSex");
+
+                   $.each(sex, function (i, item) {
+
+                       if ($(item).val() == result.sex) {
+                           $(item).attr("checked", "checked");
+                           return false;
+                       }
+                   });
+               }
+               return this.optional(element) || result.issuccess;
+           }, "请填写正确的身份证号");       
+
+
+        $.validator.addMethod("insurantcardid",
+            function (value, element, param) {
+                //假如用户选择的是身份证，就检查证件号的正确性             
+                var pele = $(element).parents('.divInsurantItem');
+                var s = $(pele).find(".insuantCertificateType");
+                var v = $(s).val();
+                if (v && parseInt(v) == 1) {
+                    var result = checkcardid(value);
+                    if (result.issuccess) {
+                        //设置被保人的出生日期和性别
+                        var ib = $(pele).find("input.insuantBirthday");
+                        ib.val(result.date);
+                        //性别
+                        var sex = $(pele).find("input.insuantSex");
+
+                        $.each(sex, function (i, item) {
+                            if ($(item).val() == result.sex) {
+                                $(item).attr("checked", "checked");
+                                return false;
+                            }
+                        });
+
+                    }
+                    return result.issuccess;
+                }
+
+                return true;
+
+            }, "请填写正确的被保人证件号");
+
+
+        $("#formActivate").validate({
+            rules: {
+                txtAddress: {
+                    required: true,
+                    minlength: 2
+                },
+                txtJobType: {
+                    required: true,
+                    minlength: 2
+                },
+                txtApplicantBirthDay: {
+                    required: true
+                },
+                txtApplicantNameCardId: {
+                    required: true,
+                    cardid: true
+                }, txtApplicantName: {
+                    required: true,
+                    minlength: 2
+                }, txtApplicantMoble: {
+                    required: true,
+                    mobile: true
+                },
+                txtInsurantCardid: {
+                    required: true,
+                    insurantcardid: true
+                },
+                txtInsurantCardid2: {
+                    required: true,
+                    insurantcardid: true
+                }
+                , txtInsurantCardid3: {
+                    required: true,
+                    insurantcardid: true
+                }, txtInsurantCardid4: {
+                    required: true,
+                    insurantcardid: true
+                }, txtInsurantCardid5: {
+                    required: true,
+                    insurantcardid: true
+                }, txtInsurantCardid6: {
+                    required: true,
+                    insurantcardid: true
+                }, insuantEmail: {
+                    minlength: 2,
+                    email: true
+                }, insuantEmail2: {
+
+                    minlength: 2,
+                    email: true
+                }
+                , insuantEmail3: {
+
+                    minlength: 2, email: true
+                }
+                , insuantEmail4: {
+
+                    minlength: 2, email: true
+                }, insuantEmail5: {
+
+                    minlength: 2, email: true
+                }, insuantEmail6: {
+
+                    minlength: 2, email: true
+                }, insuantName: {
+                    required: true,
+                    minlength: 2
+                }, insuantName2: {
+                    required: true,
+                    minlength: 2
+                }, insuantName3: {
+                    required: true,
+                    minlength: 2
+                }, insuantName4: {
+                    required: true,
+                    minlength: 2
+                }, insuantName5: {
+                    required: true,
+                    minlength: 2
+                }, insuantName6: {
+                    required: true,
+                    minlength: 2
+                }, insuantBirthday: {
+                    required: true
+                }, insuantBirthday2: {
+                    required: true
+                }, insuantBirthday3: {
+                    required: true
+                }, insuantBirthday4: {
+                    required: true
+                }, insuantBirthday5: {
+                    required: true
+                }, insuantBirthday6: {
+                    required: true
+                }
+            },
+            messages: {
+                txtApplicantNameCardId: {
+                    required: "投保人的身份证号不能为空"
+
+                },
+                txtApplicantName: {
+                    required: "投保人姓名不能为空",
+                    minlength: "投保人姓名最少需要2个字符"
+                }
+            }
+        });
+
+        //增加本人栏目效果,如果第一个选择了本人，则要把上面信息全带下来。保证信息的一致性。
+
+        $("#divInsurantInfo .insuantRelationShip:first").change(function () {
+
+            var v = $(this).val();
+            if (v == "5") {
+                //复制信息到本人的框里
+                CoppyApplicantInfo();
+            }           
+        });
+    });
+
+    jQuery.extend(jQuery.validator.messages, {
+        required: "必选字段",
+        remote: "请修正该字段",
+        email: "请输入正确格式的电子邮件",
+        url: "请输入合法的网址",
+        date: "请输入合法的日期",
+        dateISO: "请输入合法的日期 (ISO).",
+        number: "请输入合法的数字",
+        digits: "只能输入整数",
+        creditcard: "请输入合法的信用卡号",
+        equalTo: "请再次输入相同的值",
+        accept: "请输入拥有合法后缀名的字符串",
+        maxlength: jQuery.format("请输入一个长度最多是 {0} 的字符串"),
+        minlength: jQuery.format("请输入一个长度最少是 {0} 的字符串"),
+        rangelength: jQuery.format("请输入一个长度介于 {0} 和 {1} 之间的字符串"),
+        range: jQuery.format("请输入一个介于 {0} 和 {1} 之间的值"),
+        max: jQuery.format("请输入一个最大为 {0} 的值"),
+        min: jQuery.format("请输入一个最小为 {0} 的值")
+    });
+
+
+</script>
+
+<script>
+    //返回文本对象和获取的日期{issuccess:,date:,message:}
+    function checkcardid(cardid) {
+        var result = { issuccess: false, date: "", message: "", sex: 0 };
+        num = cardid.toUpperCase();
+        //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
+        if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
+
+            result.issuccess = false;
+            result.message = "输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X";
+
+            return result;
+        }
+        //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+        //下面分别分析出生日期和校验位
+        var len, re;
+        len = num.length;
+        if (len == 15) {
+            re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                //alert('输入的身份证号里出生日期不对！');
+                result.issuccess = false;
+                result.message = "输入的身份证号里出生日期不对";
+
+                return result;
+            }
+            else {
+                //将15位身份证转成18位
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                var nTemp = 0, i;
+                num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                num += arrCh[nTemp % 11];
+                var sex = parseInt(num.substr(14, 1));
+                var birthday = num.substring(6, 14);
+                birthday = birthday.substring(0, 4) + "-" + birthday.substring(4, 6) + "-" + birthday.substring(6);
+                result.issuccess = true;
+                result.message = "身份证合格";
+                result.date = birthday;
+                result.sex = sex % 2 == 0 ? 0 : 1;
+                return result;
+            }
+        }
+        if (len == 18) {
+            re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                result.issuccess = false;
+                result.message = "输入的身份证号里出生日期不对";
+                return result;
+            }
+            else {
+                //检验18位身份证的校验码是否正确。
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var valnum;
+                var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                var nTemp = 0, i;
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                valnum = arrCh[nTemp % 11];
+                if (valnum != num.substr(17, 1)) {
+
+                    result.issuccess = false;
+                    result.message = "18位身份证的校验码不正确";
+
+                    return result;
+                }
+                var sex = parseInt(num.substr(16, 1));
+
+                var birthday = num.substring(6, 14);
+                birthday = birthday.substring(0, 4) + "-" + birthday.substring(4, 6) + "-" + birthday.substring(6);
+                result.issuccess = true;
+                result.message = "身份证合格";
+                result.date = birthday;
+                result.sex = sex % 2 == 0 ? 0 : 1;
+                return result;
+
+            }
+        }
+        result.issuccess = false;
+        result.message = "身份证检测不合格";
+        result.date = "";
+        return result;
+    }
+
+</script>

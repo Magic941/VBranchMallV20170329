@@ -1,0 +1,15 @@
+﻿@model List<Maticsoft.ViewModel.SNS.CType>
+@foreach (var items in Model)
+{
+    <dl class="cates_cate_s" style="margin-top: 10px;">
+        <p class="cates_cate_s_a">
+            @items.MTagType.TypeName</p>
+        <p class="cates_cate_s_b">
+            @foreach (var item in items.Taglist)
+            {
+                @Html.ActionLink(item.TagName, "Index", "Product", new { cname = item.TagName, cid = 0, topcid = ViewBag.CurrentCid },
+                                                                new { target = " _blank", @class = "pink" })
+            }
+        </p>
+    </dl>
+}

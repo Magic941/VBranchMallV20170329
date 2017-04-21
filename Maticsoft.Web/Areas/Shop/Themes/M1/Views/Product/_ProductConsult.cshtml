@@ -1,0 +1,64 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model  PagedList<Maticsoft.Model.Shop.Products.ProductConsults>
+<div id="QaList">
+    <div class="bd">
+        <div class="mt10 cf">
+            <a href="javascript:void(0)" class="btn fr btn-highlight btnAddConsult"><span>我要咨询</span></a>
+            <a class="ml10 zoomfix" href="javascript:void(0)">查看全部 <span class="hl2">@ViewBag.TotalCount</span>
+                条咨询</a>
+        </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            <ul class="discusslist mb10 c6">
+                @foreach (var item in Model)
+                {
+                    <li class="discusslist-item cf">
+                        <div class="cf">
+                            <a class="fl discusslist-Item-avatar" target="_blank" href="javascript:;">
+                                <img src="/Upload/User/Gravatar/@(item.UserId).jpg" ></a>
+                            <div class="discusslist-item-con">
+                                <div class="tr c9">
+                                    <span class="fl"><a href="javascript:;" target="_blank">@item.UserName</a>提问：</span>
+                                    @item.CreatedDate
+                                </div>
+                                <p class="mt5">
+                                    @item.ConsultationText</p>
+                            </div>
+                        </div>
+                        @if (!String.IsNullOrWhiteSpace(item.ReplyText))
+                        {
+                             <div class="discusslist-back">
+                            <div class="cf mb5">
+                                <span class="fr c9">@item.ReplyDate</span><span class="h">@item.ReplyUserName：</span></div>
+                            <p>
+                                @item.ReplyText</p>
+                         </div>
+                        }
+                       
+                    </li>
+                }
+            </ul>
+            <div class="mt10 tr">
+                <a href="javascript:void(0)" class="btn btn-highlight btnAddConsult"><span>我要咨询</span></a></div>
+            <div class="scott">
+                @Html.AjaxPager(Model, new PagerOptions
+           {
+               CssClass = "in_pages",
+               ShowDisabledPagerItems = false,
+               AlwaysShowFirstLastPageNumber = false,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+               NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+               NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           }, new AjaxOptions { UpdateTargetId = "QaList" })
+            </div>
+        }
+    </div>
+</div>
+<div id="divAjaxConsults" style="display: none">
+    <div style='margin-left: 10px; margin-top: 10px; font-size: 14px; font-weight: bold;'>
+        咨询内容：
+        <textarea id="txtConsult" cols="20" rows="2" style='height: 80px; width: 260px;'></textarea>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "限时抢购";
+}
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDown.js" type="text/javascript"></script>
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+   <span style="padding-left: 32px"></span>
+</div>
+@{Html.RenderPartial("_CountDownList", Model);}
+<script type="text/javascript">
+    $(function () {
+        $(".txtenddate").each(function () {
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+            var myclass = new CountDown();
+            myclass.init({
+                id: 'txtenddate_' + productId,
+                //天数
+                day_Dom: $("#dayEnd_" + productId),
+                //小时 
+                hour_Dom: $("#hourEnd_" + productId),
+                //分钟
+                min_Dom: $("#minEnd_" + productId),
+                //秒
+                sec_Dom: $("#secEnd_" + productId),
+                endTime: endDate
+            });
+        })
+    });
+</script>
+

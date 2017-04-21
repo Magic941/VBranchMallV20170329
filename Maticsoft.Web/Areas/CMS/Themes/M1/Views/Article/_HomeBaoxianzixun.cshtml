@@ -1,0 +1,100 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+@if (Model != null && Model.Count > 0)
+{
+     <div class="hot">
+                <div class="com-title">
+                    <span>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-6.png" alt="">保险资讯</span>
+                </div>
+        @foreach (var item in Model)
+        {
+           <div class="hotbox">
+                <div class="hotimg">
+                   <div class="hotimgzz"></div>
+                        <img src="@string.Format(@item.ThumbImageUrl,"T235x1280_")" alt="@item.Title" height="165" width="250">
+                        <div class="standpoint">观点</div>
+                        <a class="zzsz" href="#" target="_blank" title="@item.Title"></a>
+                    </div>
+                    <h3><a href="/Article/Details/@item.ContentID">@item.Title</a></h3>
+                    @if(item.Summary.Length>105)
+                    {
+                       <p>@item.Summary.Substring(0,105)...</p>
+                    }
+                    else
+                    {
+                        <p>@item.Summary</p>
+                    }
+                    <span>阅读：@item.PvCount</span><span>@item.CreatedDate</span>
+           </div>
+        }
+       
+    </div>
+}
+else
+{
+      <div class="hot">
+                <div class="com-title">
+                    <span>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-6.png" alt="">保险资讯</span>
+                </div>
+                <div class="hotbox">
+                    <div class="hotimg">
+                        <div class="hotimgzz"></div>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G516310-L.jpg" alt="算法推荐阅读的冷思考——自我选择才是真正的“个性化”" height="165" width="250">
+                        <div class="standpoint">观点</div>
+                        <a class="zzsz" href="#" target="_blank" title="算法推荐阅读的冷思考——自我选择才是真正的“个性化”"></a>
+                    </div>
+                    <h3><a href="#">算法推荐阅读的冷思考——自我选择</a></h3>
+                    <p>随着互联网大数据时代的到来，不管愿意还是不愿意，大数据正在影响着我们的阅读习惯。以用户社交网络为基础和用户信息流为载体的阅读平台悄然诞生，以今日头条为代表的阅读软件在不知不觉中生长出了个性化阅读的萌芽。 不可否认，算法推荐的出现，...</p>
+                    <span>阅读：129</span><span>2015-02-07 15:16</span>
+                </div>
+                <div class="hotbox">
+                    <div class="hotimg">
+                        <div class="hotimgzz"></div>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G515560-L.jpg" alt="红包成兵家必争之地，泛滥有隐忧需发力多元化" height="165" width="250">
+                        <div class="standpoint">观点</div>
+                        <a class="zzsz" href="#" target="_blank" title="红包成兵家必争之地，泛滥有隐忧需发力多元化"></a>
+                    </div>
+                    <h3><a href="#">红包成兵家必争之地，泛滥有隐忧需</a></h3>
+                    <p>随着移动互联网及移动应用的火爆，大众的生活、工作、娱乐等方式已经被全面改变，甚至很多风俗习惯也悄然发生变化。其中，最明显的变化就是红包发放的形式。自去年微信红包发放以来，红包一词就迅速走红，能否发红包和收到红包的数量成为人们比拼的...</p>
+                    <span>阅读：185</span><span>2015-02-07 15:15</span>
+                </div>
+                <div class="hotbox">
+                    <div class="hotimg">
+                        <div class="hotimgzz"></div>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G514530-L.jpg" alt="三足鼎立，全球社交巨头三国杀时代来临" height="165" width="250">
+                        <div class="standpoint">商业</div>
+                        <a class="zzsz" href="#" target="_blank" title="三足鼎立，全球社交巨头三国杀时代来临"></a>
+                    </div>
+                    <h3><a href="#">三足鼎立，全球社交巨头三国杀时代</a></h3>
+                    <p>美团创始人王兴在《九败一胜》里，提出过一个四纵三横的理论：四纵即互联网的四大热门领域资讯、交流（社交）、娱乐、商务。在这其中，社交领域一直是互联网创业的大热门，从PC到移动端，从OICQ、MSN到QQ。等到进入移动互联网时代，随时网络和终端...</p>
+                    <span>阅读：169</span><span>2015-02-07 15:14</span>
+                </div>
+                <div class="hotbox">
+                    <div class="hotimg">
+                        <div class="hotimgzz"></div>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G513180-L.jpg" alt="“再造搜狐”空喊五年，张朝阳回归就能改变一切？" height="165" width="250">
+                        <div class="standpoint">观点</div>
+                        <a class="zzsz" href="#" target="_blank" title="“再造搜狐”空喊五年，张朝阳回归就能改变一切？"></a>
+                    </div>
+                    <h3><a href="#">“再造搜狐”空喊五年，张朝阳回归</a></h3>
+                    <p>2012年起，张朝阳进入了长达一年半与世隔绝的闭关状态，他研究很多东西，比如大脑结构、西方心理学及脑科学进展以及佛教等等，通过这些在外人看来稀奇古怪的研究来对抗抑郁症。 因精神状况闭关两年后，2014年年初，张朝阳回归疆...</p>
+                    <span>阅读：124</span><span>2015-02-07 15:12</span>
+                </div>
+                <div class="hotbox">
+                    <div class="hotimg">
+                        <div class="hotimgzz"></div>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G516310-L.jpg" alt="算法推荐阅读的冷思考——自我选择才是真正的“个性化”" height="165" width="250">
+                        <div class="standpoint">观点</div>
+                        <a class="zzsz" href="#" target="_blank" title="算法推荐阅读的冷思考——自我选择才是真正的“个性化”"></a>
+                    </div>
+                    <h3><a href="#">算法推荐阅读的冷思考——自我选择</a></h3>
+                    <p>随着互联网大数据时代的到来，不管愿意还是不愿意，大数据正在影响着我们的阅读习惯。以用户社交网络为基础和用户信息流为载体的阅读平台悄然诞生，以今日头条为代表的阅读软件在不知不觉中生长出了个性化阅读的萌芽。 不可否认，算法推荐的出现，...</p>
+                    <span>阅读：129</span><span>2015-02-07 15:16</span>
+                </div>
+
+
+            </div>
+    
+}

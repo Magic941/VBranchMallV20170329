@@ -1,0 +1,973 @@
+﻿#Indexbody
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    background: url(../images/topbg.gif) #fff repeat-x left top;
+    padding-bottom: 0px;
+    margin: 0px;
+    overflow: hidden;
+    padding-top: 0px;
+}
+A:link
+{
+    font: 12px "宋体";
+    line-height: inherit;
+    color: #1835d1;
+    text-decoration: none;
+}
+A:visited
+{
+    font: 12px "宋体";
+    color: #1835d1;
+    text-decoration: none;
+}
+A:active
+{
+    color: #f30;
+    text-decoration: underline;
+}
+A:hover
+{
+    color: #f30;
+    text-decoration: underline;
+}
+FORM
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+UL
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+LI
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+DL
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+DT
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+DD
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 0px;
+}
+UL
+{
+    list-style-type: none;
+}
+#content
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    background: url(../images/logo.png) no-repeat left top;
+    padding-bottom: 0px;
+    margin: 0px;
+    padding-top: 23px;
+    text-align: left;
+}
+#ChannelMenuItems
+{
+    overflow: hidden;
+    height: 30px;
+    margin: 0px 0px 0px 220px;
+}
+
+#ChannelMenuItems LI
+{
+    overflow: hidden;
+    height: 30px;
+    float: left;
+    margin-right: 1px;
+}
+
+#ChannelMenuItems A
+{
+    overflow: hidden;
+    height: 30px;
+    display: block;
+    background: url(../images/none_left.gif) #ffefbd no-repeat left top;
+    float: left;
+    line-height: 20px;
+    text-decoration: none;
+}
+
+
+#ChannelMenuItems A SPAN
+{
+    overflow: hidden;
+    height: 30px;
+    padding-right: 13px;
+    display: block;
+    padding-left: 13px;
+    background: url(../images/none_side.gif) no-repeat right top;
+    float: left;
+    padding-bottom: 0px;
+    cursor: pointer;
+    padding-top: 7px;
+    text-align: center;
+}
+
+
+#ChannelMenuItems LI A
+{
+    background: url(../images/digital_left.gif) #2e7bcb no-repeat left top;
+    color: #2867b1;
+}
+#ChannelMenuItems LI A SPAN
+{
+    font-weight: bold;
+    background: url(../images/digital_side.gif) no-repeat right top;
+}
+
+.digitaltext
+{
+    color: #2867b1;
+}
+
+.segtext
+{
+    color: #fff;
+}
+#ChannelMenuItems LI A SPAN#SpanChannelMenu_MenuMyDeskTop
+{
+    padding-right: 0px;
+    padding-left: 13px;
+    font-weight: bold;
+    background: none transparent scroll repeat 0% 0%;
+    padding-bottom: 0px;
+    padding-top: 7px;
+}
+#ChannelMenuItems LI A SPAN#MenuMyDeskTopMore_Triangle
+{
+    padding-right: 13px;
+    display: block;
+    padding-left: 5px;
+    background: url(../images/digital_side.gif) no-repeat right top;
+    padding-bottom: 0px;
+    padding-top: 13px;
+}
+#PE_TopQiuck
+{
+    margin: 0px auto;
+    width: 170px;
+    color: #0065b1;
+}
+#PE_TopQiuck DL
+{
+    border-right: #8da8d0 1px solid;
+    border-top: #8da8d0 1px solid;
+    display: block;
+    min-height: 250px;
+    background: url(../images/TopQuick03.gif) repeat-x left 1px;
+    border-left: #8da8d0 1px solid;
+    border-bottom: #8da8d0 1px solid;
+    height: 250px;
+}
+#PE_TopQiuck .Border
+{
+    border-right: #fff 1px solid;
+    border-left: #fff 1px solid;
+}
+#PE_TopQiuck .Title
+{
+    padding-right: 0px;
+    padding-left: 12px;
+    font-weight: bold;
+    background: url(../images/TopQuick04.gif) no-repeat center bottom;
+    padding-bottom: 0px;
+    line-height: 26px;
+    padding-top: 5px;
+    height: 26px;
+}
+#PE_TopQiuck .List
+{
+    padding-right: 8px;
+    padding-left: 8px;
+    padding-bottom: 10px;
+    padding-top: 5px;
+}
+#PE_TopQiuck .List LI
+{
+    display: block;
+    line-height: 22px;
+    height: 22px;
+}
+#PE_TopQiuck .List A
+{
+    display: block;
+    padding-left: 8px;
+    color: #4579b9;
+    line-height: 22px;
+    height: 22px;
+    text-decoration: none;
+}
+#PE_TopQiuck .List A:hover
+{
+    border-right: #e6eff8 1px solid;
+    border-top: #e6eff8 1px solid;
+    background: #f2f8fd;
+    border-left: #e6eff8 1px solid;
+    color: #c00;
+    line-height: 20px;
+    border-bottom: #e6eff8 1px solid;
+    height: 20px;
+}
+#SubMenu
+{
+    margin-left: 225px;
+    color: #fff;
+    line-height: 25px;
+    height: 25px;
+    text-align: left;
+}
+#SubMenu LI
+{
+    padding-right: 8px;
+    padding-left: 8px;
+    background: url(../images/chanli.gif) no-repeat left center;
+    float: left;
+    line-height: 25px;
+}
+#SubMenu LI A
+{
+    display: block;
+    color: #fff;
+    line-height: 25px;
+}
+.SubMenuDiv
+{
+    border-right: #9fbdd7 1px solid;
+    border-top: #9fbdd7 1px solid;
+    z-index: 2;
+    float: left;
+    visibility: hidden;
+    border-left: #9fbdd7 1px solid;
+    border-bottom: #9fbdd7 1px solid;
+    position: absolute;
+    text-align: left;
+}
+.SubMenuDiv DL
+{
+    margin: 0px;
+    text-align: left;
+}
+.SubMenuDiv DD
+{
+    margin: 0px;
+    text-align: left;
+}
+.SubMenuDiv DD
+{
+    padding-right: 1px;
+    padding-left: 1px;
+    padding-bottom: 0px;
+    width: 130px;
+    padding-top: 0px;
+}
+.SubMenuDiv DL
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    background: url(../images/SubMenuDivbg.gif) #d6e7f7 repeat-y left top;
+    padding-bottom: 1px;
+    padding-top: 1px;
+}
+#SubMenu DD A
+{
+    padding-left: 20px;
+}
+#SubMenu DD A:hover
+{
+    padding-left: 20px;
+}
+#SubMenu DD A
+{
+    color: #446592;
+}
+#SubMenu DD A:hover
+{
+    background: #e4f1fc;
+    color: #003685;
+    text-decoration: underline;
+}
+.clearbox2
+{
+    clear: both;
+    border-top: 0px;
+    margin-top: 0px;
+    font-size: 0px;
+    background: none transparent scroll repeat 0% 0%;
+    visibility: hidden;
+    overflow: hidden;
+    width: 700px;
+    height: 0px;
+}
+#Announce
+{
+    right: 5px;
+    color: #2b6ab3;
+    position: absolute;
+    top: 10px;
+}
+#Announce A
+{
+    font: 12px "宋体";
+    text-decoration: none;
+}
+#Announce A:link
+{
+    color: #2b6ab3;
+}
+#Announce A:visited
+{
+    color: #2b6ab3;
+}
+#Announce A:active
+{
+    color: #c00;
+}
+#Announce A:hover
+{
+    color: #c00;
+}
+.but
+{
+    cursor: pointer;
+}
+.popupTips
+{
+    display: none;
+    z-index: 999;
+    right: 20px;
+    background: url(../images/bg_tipsAll.gif) repeat-y left 50%;
+    width: 247px;
+    bottom: 0px;
+    position: absolute;
+}
+.popupTips DT
+{
+    padding-left: 18px;
+    font-weight: bolder;
+    background: url(../images/bg_tipsTop.gif) no-repeat left top;
+    color: #3666aa;
+    line-height: 27px;
+    height: 29px;
+}
+.popupTips DT A
+{
+    display: block;
+    float: right;
+    width: 20px;
+    cursor: pointer;
+    line-height: 27px;
+    height: 27px;
+}
+.tips_close
+{
+    background: url(../images/bt_close.gif) no-repeat left 10px;
+}
+.tips_fold
+{
+    background: url(../images/bt_fold.gif) no-repeat left 11px;
+}
+.popupTips DD
+{
+    padding-right: 5px;
+    padding-left: 25px;
+    min-height: 100px;
+    background: url(../images/bg_tipsBottom.gif) no-repeat left bottom;
+    padding-bottom: 20px;
+    padding-top: 8px;
+    height: 100px;
+}
+.popupTips DD A
+{
+    color: #3666aa;
+    line-height: 17px;
+}
+.popupTips DD A:visited
+{
+    color: #3666aa;
+    line-height: 17px;
+}
+.popupTips DD A:hover
+{
+    color: #2e82f9;
+}
+.HelpTips
+{
+    display: none;
+    z-index: 10001;
+    right: 300px;
+    width: 500px;
+    position: absolute;
+    top: 100px;
+    background-color: #e1e3e5;
+}
+.HelpTitle
+{
+    background-position: left top;
+    padding-left: 18px;
+    font-weight: bolder;
+    float: left;
+    background-image: url(../images/help_tips.gif);
+    width: 500px;
+    cursor: move;
+    color: #3666aa;
+    line-height: 27px;
+    background-repeat: repeat-x;
+    height: 29px;
+}
+.HelpTitle A
+{
+    display: block;
+    float: right;
+    width: 20px;
+    cursor: pointer;
+    line-height: 27px;
+    height: 27px;
+}
+.tips_close
+{
+    background: url(../images/bt_close.gif) no-repeat left 10px;
+    float: right;
+    width: 8px;
+    height: 7px;
+}
+.HelpInfo
+{
+    padding-right: 5px;
+    padding-left: 25px;
+    float: left;
+    padding-bottom: 20px;
+    width: 470px !important;
+    padding-top: 8px;
+    height: 250px;
+    background-color: #e1e3e5;
+}
+.HelpInfo A
+{
+    color: #3666aa;
+    line-height: 17px;
+}
+.popupTips DD A:visited
+{
+    color: #3666aa;
+    line-height: 17px;
+}
+.HelpInfo A:hover
+{
+    color: #2e82f9;
+}
+.HelpInfo UL
+{
+    list-style-type: square;
+}
+.HelpTipsb
+{
+    float: left;
+    width: 500px;
+    height: 25px;
+    background-color: #e1e3e5;
+}
+#quicknavigation
+{
+    left: 0px;
+    position: absolute;
+    top: 0px;
+}
+#ShowQuickNavigation
+{
+    left: 0px;
+    position: absolute;
+    top: 0px;
+}
+#quicknavigation
+{
+    background: #ffffff;
+    margin: 0px auto;
+    width: 170px;
+    color: #0065b1;
+}
+#quicknavigation .Topdl
+{
+    margin-top: -6px;
+}
+#quicknavigation .Top
+{
+    font-size: 0px;
+    background: url(../images/TopQuick02.gif) no-repeat left bottom;
+    height: 7px;
+}
+#quicknavigation .Content
+{
+    border-right: #8da8d0 1px solid;
+    border-top: #8da8d0 1px solid;
+    background: url(../images/TopQuick03.gif) #ffffff repeat-x left 1px;
+    border-left: #8da8d0 1px solid;
+    border-bottom: #8da8d0 1px solid;
+}
+#quicknavigation .Border
+{
+    border-right: #fff 1px solid;
+    background: none transparent scroll repeat 0% 0%;
+    border-left: #fff 1px solid;
+}
+#quicknavigation .Title
+{
+    border-right: medium none;
+    padding-right: 0px;
+    border-top: medium none;
+    padding-left: 12px;
+    font-weight: bold;
+    background: url(../images/TopQuick04.gif) no-repeat center bottom;
+    padding-bottom: 0px;
+    border-left: medium none;
+    line-height: 26px;
+    padding-top: 5px;
+    border-bottom: medium none;
+    height: 26px;
+}
+#quicknavigation .Title .UpDown
+{
+    padding-right: 10px;
+    display: none;
+    padding-left: 0px;
+    float: right;
+    padding-bottom: 0px;
+    width: 11px;
+    padding-top: 0px;
+    height: 22px;
+}
+#quicknavigation .Title .UpDown LI
+{
+    display: block;
+    font-size: 0px;
+    overflow: hidden;
+    height: 11px;
+}
+#quicknavigation .Title .UpDown LI A
+{
+    display: block;
+    background: url(../images/TopQuick02.gif) no-repeat 0px 0px;
+    width: 11px;
+    height: 9px;
+}
+#quicknavigation .Title .UpDown LI A.dn
+{
+    background-position: left -11px;
+}
+#quicknavigation .Title .UpDown LI A.dn_out
+{
+    background-position: left -11px;
+}
+#quicknavigation .Title .UpDown LI A.up_hover
+{
+    background-position: left -22px;
+}
+#quicknavigation .Title .UpDown LI A.dn_hover
+{
+    background-position: left -33px;
+}
+#quicknavigation .List
+{
+    border-right: medium none;
+    padding-right: 8px;
+    border-top: medium none;
+    padding-left: 8px;
+    padding-bottom: 10px;
+    border-left: medium none;
+    padding-top: 5px;
+    border-bottom: medium none;
+}
+#quicknavigation .List LI
+{
+    display: block;
+    line-height: 22px;
+    height: 22px;
+}
+#quicknavigation .List A
+{
+    display: block;
+    padding-left: 8px;
+    color: #4579b9;
+    line-height: 22px;
+    height: 22px;
+    text-decoration: none;
+}
+#quicknavigation .List A:hover
+{
+    border-right: #e6eff8 1px solid;
+    border-top: #e6eff8 1px solid;
+    background: #f2f8fd;
+    border-left: #e6eff8 1px solid;
+    color: #c00;
+    line-height: 20px;
+    border-bottom: #e6eff8 1px solid;
+    height: 20px;
+}
+#FrameTabs
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    background: url(../images/tab-strip-bg.gif) #d4e4f6 repeat-x 50% top;
+    padding-bottom: 1px;
+    padding-top: 2px;
+    position: relative;
+    height: 28px !important;
+}
+#FrameTabs UL
+{
+    padding-right: 4px;
+    display: block;
+    padding-left: 4px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    height: 24px;
+}
+UL.tab-strip
+{
+    display: block;
+    zoom: 1;
+}
+UL.tab-strip-top
+{
+}
+.tab-left
+{
+    display: none;
+    z-index: 10;
+    background: url(../images/scroll-left.gif) no-repeat -18px 0px;
+    left: 0px;
+    width: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    height: 23px;
+}
+.tab-left-over
+{
+    background-position: 0px 0px;
+}
+.tab-disabled
+{
+    background-position: -36px 0px;
+    cursor: default;
+}
+.tab-right
+{
+    display: none;
+    z-index: 10;
+    right: 0px;
+    background: url(../images/scroll-right.gif) no-repeat 0px 0px;
+    float: right;
+    width: 18px;
+    cursor: pointer;
+    position: absolute;
+    top: 0px;
+    height: 23px;
+}
+.tab-right-over
+{
+    background-position: -18px 0px;
+}
+.tab-strip-wrap
+{
+    overflow: hidden;
+    width: 100%;
+    zoom: 1;
+    position: relative;
+}
+.tab-strip-margin
+{
+    margin-left: 18px;
+    margin-right: 18px;
+}
+#FrameTabs LI
+{
+    background: url(../images/tabs-sprite.gif) repeat-x left -201px;
+    float: left;
+    line-height: 21px;
+    margin-right: 2px;
+    height: 21px;
+}
+#FrameTabs LI A
+{
+    display: block;
+    padding-left: 8px;
+    font-size: 12px;
+    background: url(../images/tabs-sprite.gif) no-repeat left -51px;
+    float: left;
+    color: #416aa3;
+    line-height: 21px;
+    height: 21px;
+    text-decoration: none;
+}
+#FrameTabs LI A.closeTab
+{
+    padding-right: 6px;
+    padding-left: 5px;
+    background: url(../images/tabs-sprite.gif) no-repeat right -351px;
+    padding-bottom: 6px;
+    cursor: pointer;
+    padding-top: 4px;
+    height: 11px;
+}
+#FrameTabs LI.FrameTabs_hover
+{
+    background-position: left -251px;
+}
+#FrameTabs LI.FrameTabs_hover A
+{
+    background-position: left -101px;
+}
+#FrameTabs LI.FrameTabs_hover A.closeTab
+{
+    background-position: right -401px;
+}
+#FrameTabs LI.current
+{
+    background-position: left -151px;
+    line-height: 24px;
+    height: 24px;
+}
+#FrameTabs LI.current A
+{
+    background-position: left 0px;
+    font-weight: bold;
+}
+#FrameTabs LI.current A.closeTab
+{
+    background-position: right -301px;
+}
+#FrameTabs LI#newFrameTab
+{
+    padding-left: 2px;
+    background: none transparent scroll repeat 0% 0%;
+    padding-top: 4px;
+    height: 15px;
+}
+#FrameTabs LI#newFrameTab A
+{
+    background: url(../images/FrameTabs_Add.gif) no-repeat left top;
+    width: 15px;
+    height: 15px;
+}
+#FrameTabs LI#newFrameTab A:hover
+{
+    background-position: 0px -15px;
+}
+.contextMenuEleOn
+{
+    background-color: #bfdfff;
+}
+#MasterPagebody .operatingMenu
+{
+    border-right: #868686 1px solid;
+    padding-right: 0px;
+    border-top: #868686 1px solid;
+    padding-left: 0px;
+    background: url(../images/Controls.con-bg.gif) #fafafa repeat-y left 50%;
+    padding-bottom: 2px;
+    margin: 0px auto;
+    border-left: #868686 1px solid;
+    width: 150px;
+    padding-top: 2px;
+    border-bottom: #868686 1px solid;
+}
+#MasterPagebody .operatingMenu IMG
+{
+    border-right: medium none;
+    border-top: medium none;
+    border-left: medium none;
+    border-bottom: medium none;
+}
+#MasterPagebody .operatingMenu LI
+{
+    padding-right: 0px;
+    padding-left: 0px;
+    padding-bottom: 0px;
+    margin: 0px;
+    overflow: hidden;
+    line-height: 25px;
+    padding-top: 0px;
+    height: 25px;
+}
+#MasterPagebody .operatingMenu LI UL
+{
+    display: block;
+}
+#MasterPagebody .operatingMenu LI UL LI
+{
+    line-height: 25px;
+    height: 25px;
+}
+#MasterPagebody .operatingMenu LI SPAN
+{
+    float: left;
+    cursor: pointer;
+    line-height: 25px;
+    height: 25px;
+}
+#MasterPagebody .operatingMenu LI SPAN.Picview
+{
+    padding-right: 5px;
+    padding-left: 3px;
+    padding-bottom: 0px;
+    width: 26px;
+    padding-top: 2px;
+    height: 22px;
+}
+#MasterPagebody .operatingMenu LI SPAN.Right-side
+{
+    padding-right: 8px;
+    padding-left: 0px;
+    float: right;
+    padding-bottom: 9px;
+    overflow: hidden;
+    width: 4px;
+    padding-top: 9px;
+    height: 7px;
+}
+#MasterPagebody .operatingMenu LI.menuitemhover
+{
+    background: url(../images/Controls.List-on.left.gif) no-repeat 0px 0px;
+}
+#MasterPagebody .operatingMenu LI UL LI A
+{
+    display: block;
+    font-size: 12px;
+    background: none transparent scroll repeat 0% 0%;
+    line-height: 25px;
+    text-decoration: none;
+}
+#MasterPagebody .operatingMenu LI.separator
+{
+    clear: both;
+    font-size: 0px;
+    background: url(../images/Controls.separator.gif) no-repeat left top;
+    overflow: hidden;
+    line-height: 0;
+    height: 2px;
+}
+#prompt-note
+{
+    border-right: #6493c8 1px solid;
+    border-top: #6493c8 1px solid;
+    margin-top: 10px;
+    background: #fff;
+    border-left: #6493c8 1px solid;
+    border-bottom: #6493c8 1px solid;
+}
+#prompt-note DL
+{
+    padding-right: 1px;
+    display: block;
+    padding-left: 1px;
+    min-height: 100px;
+    padding-bottom: 1px;
+    padding-top: 1px;
+    height: 100px;
+}
+#prompt-note DT.prompt-note-tit
+{
+    font-size: 12px;
+    background: url(../images/prompt-note-tit-bg.gif) repeat-x 50% top;
+    overflow: hidden;
+    line-height: 26px;
+    height: 26px;
+}
+#prompt-note DT.prompt-note-tit SPAN
+{
+    padding-right: 80px;
+    display: block;
+    padding-left: 28px;
+    font-weight: bold;
+    background: url(../images/prompt-note-ico.gif) no-repeat 10px 8px;
+    float: left;
+    padding-bottom: 0px;
+    color: #3666aa;
+    padding-top: 0px;
+}
+#prompt-note DT.prompt-note-tit A
+{
+    padding-right: 15px;
+    display: block;
+    padding-left: 15px;
+    background: url(../images/prompt-note-off.gif) no-repeat left bottom;
+    float: left;
+    padding-bottom: 0px;
+    cursor: pointer;
+    color: #999;
+    line-height: 20px;
+    padding-top: 6px;
+    height: 20px;
+    text-align: center;
+    text-decoration: none;
+}
+#prompt-note DT.prompt-note-tit A.on
+{
+    background: url(../images/prompt-note-on.gif) no-repeat left bottom;
+    color: #000;
+}
+#prompt-note DT.prompt-note-tit SPAN.right-line
+{
+    padding-right: 0px;
+    border-top: #fff 1px solid;
+    margin-top: 4px;
+    padding-left: 0px;
+    background: #d0d0d0;
+    padding-bottom: 0px;
+    width: 1px;
+    padding-top: 0px;
+    height: 21px;
+}
+#prompt-note DD.prompt-note-con
+{
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 12px;
+    padding-bottom: 10px;
+    line-height: 22px;
+    padding-top: 10px;
+}
+#prompt-note DD.prompt-note-con P
+{
+    line-height: 22px;
+}
+#prompt-note DD.prompt-note-con LI
+{
+    list-style-position: outside;
+    margin-left: 25px;
+    line-height: 22px;
+    list-style-type: disc;
+}
+

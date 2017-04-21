@@ -1,0 +1,126 @@
+﻿@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = "优惠券兑换";
+}
+<link href="/Areas/COM/Themes/Default/Content/css/admin.css" rel="stylesheet" type="text/css">
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+@if (ViewBag.HasPerm)
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#btnUserId").click(function () {
+                var userId = $("#txtUserId").val();
+                if (userId == "") {
+                    ShowFailTip("请填写用户编号");
+                    return;
+                }
+                $("#txtUserCard").val("");
+                $("#txtCoupon").val("");
+                $("#userinfo").load("/COM/Admin/UserInfo", { UserId: userId }, function () {
+
+                });
+                $("#couponList").load("/COM/Admin/CouponList", { UserId: userId }, function () {
+
+                });
+            })
+            $("#btnUserCard").click(function () {
+                var userCard = $("#txtUserCard").val();
+                if (userCard == "") {
+                    ShowFailTip("请填写会员卡号");
+                    return;
+                }
+                $("#txtUserId").val("");
+                $("#txtCoupon").val("");
+                $("#userinfo").load("/COM/Admin/UserInfo", { UserCard: userCard }, function () {
+
+                });
+                $("#couponList").load("/COM/Admin/CouponList", { UserCard: userCard }, function () {
+
+                });
+            })
+
+            $("#btnCoupon").click(function () {
+                var coupon = $("#txtCoupon").val();
+                if (coupon == "") {
+                    ShowFailTip("请填写优惠券卡号");
+                    return;
+                }
+                $("#txtUserId").val("");
+                $("#txtUserCard").val("");
+                $("#userinfo").load("/COM/Admin/UserInfo", { Coupon: coupon }, function () {
+
+                });
+                $("#couponInfo").load("/COM/Admin/GetCoupon", { Coupon: coupon }, function () {
+
+                });
+            })
+
+
+        })
+    </script>
+    <style>
+        input
+        {
+            width: 120px;
+        }
+    </style>
+    <div class="mar30">
+        <div class="contenttitle2">
+            <h3>
+                优惠券兑换管理</h3>
+            <small class="desc">您可以对用户的优惠券进行兑换操作</small>
+        </div>
+        <div style="background-color: #ffffff; border: 1px solid #CCC; margin-right: 12px">
+            <table style="width: 100%;" cellpadding="2" cellspacing="1">
+                <tr>
+                    <td class="tdbg">
+                        <table cellspacing="0" cellpadding="3" width="100%" border="0" class="border form">
+                            <tr>
+                                <td class="td_class">
+                                    用户编号：
+                                </td>
+                                <td height="25">
+                                    <input type="text" id="txtUserId" />
+                                    <input type="button" id="btnUserId" value="确定" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    会员卡：
+                                </td>
+                                <td height="25">
+                                    <input type="text" id="txtUserCard" maxlength="40" />
+                                    <input type="button" id="btnUserCard" value="确定" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    优惠券码：
+                                </td>
+                                <td height="25">
+                                    <input type="text" id="txtCoupon" maxlength="40" />
+                                    <input type="button" id="btnCoupon" value="确定" />
+                                </td>
+                            </tr>
+                        </table>
+                        <div id="userinfo">
+                        </div>
+                        <div id="couponList">
+                        </div>
+                        <div id="couponInfo">
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div style="font-size: 16px; color: red; padding-left: 18px; font-weight: bold; background-color: #ffffff;
+        border: 1px solid #CCC; padding: 8px; margin-top: 18px">
+        您没有权限查看此页面，请联系网站管理员。
+    </div>
+     
+}

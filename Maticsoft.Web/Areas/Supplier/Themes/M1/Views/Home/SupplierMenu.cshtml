@@ -1,0 +1,113 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#LoadMenuList").load($Maticsoft.BasePath + "Home/LoadMenu", { viewName: "_MenuList" });
+        $("#btnAddtwo").click(function () {
+            window.location = $Maticsoft.BasePath + "Home/AddMenu";
+        });
+    });
+</script>
+<script type="text/javascript">
+    function GetDeleteM() {
+        $("[id$='btnDelete']").click();
+    }
+
+    function GetAdd() {
+        window.location = 'add.aspx';
+    }
+
+        
+</script>
+<div class="contenttitle2 mar30">
+    <h3>
+        <span>导航菜单管理</span></h3>
+    <small class="desc"><span>您可以添加、编辑自定义网站前台顶部导航菜单。</span> </small>
+</div>
+<!--Title end -->
+<!--Add  -->
+<!--Add end -->
+<!--Search -->
+<div class="newslistabout">
+    <div class="field shuru shuru1">
+        @*<table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td width="1%" height="30" bgcolor="#FFFFFF" class="newstitlebody">*@
+        <img src="/Areas/Supplier/Themes/M1/Content/images/list.gif" />
+        @* </td>
+            <td height="35" bgcolor="#FFFFFF" class="newstitlebody">*@ <span>关键字</span>
+        <input type="text" id="txtKeyword" class="admininput_1" />
+        <input type="button" id="btnSearch" value="搜索" />
+    </div>
+</div>
+<!--Search end-->
+<br />
+<!--Toolbar -->
+<div class="newslist">
+    <div class="newsicon">
+        <ul>
+            <li style="background: url(/Areas/Supplier/Themes/M1/Content/images/icon8.gif) no-repeat 5px 3px">
+               @* <input type="button" id="btnAddtwo" value="添加" />*@
+               <a href="javascript:;" id="btnAddtwo">添加</a>
+            </li>
+            <li style="background: url(/Areas/Supplier/Themes/M1/Content/images/cross.png) no-repeat 5px 3px">
+                @*<input type="button" id="btnDeletetwo" value="批量删除" />*@
+                 <a href="javascript:;" id="btnDeletetwo">批量删除</a>
+            </li>
+        </ul>
+    </div>
+    <!--Toolbar end -->
+    <div id="LoadMenuList">
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var idlist = "";
+        $("#btnDeletetwo").click(function () {
+            var $checkBoxList = $(".itemcheck:checked"); //$("input[type='checkbox']:checked");
+            if ($checkBoxList.length == 0) {
+                ShowFailTip("请选择要删除的菜单！");
+                return false;
+            } else {
+                if (!confirm('您确定要删除吗？')) {
+                    return false;
+                }
+                $checkBoxList.each(function () {
+                    idlist += $(this).attr("menuId") + ",";
+                });
+                $.post($Maticsoft.BasePath + "Home/DeleteMenus", { idList: idlist }, function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("删除成功");
+                        window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+                    } else {
+                        ShowFailTip("删除失败！");
+                    }
+                });
+            }
+        });
+        $(".deleteThisMenu").die('click').live('click', function () {
+            if (!confirm("您确定要删除吗？")) {
+                return false;
+            }
+            $.post($Maticsoft.BasePath + "Home/DeleteAMenu", { menuId: $(this).attr("menuid") }, function (data) {
+                if (data == "ok") {
+                    ShowSuccessTip("删除成功");
+                    window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+                } else {
+                    ShowFailTip("删除失败！");
+                }
+            });
+        });
+        $(".editThisMenu").die('click').live('click', function () {
+            window.location = $Maticsoft.BasePath + "Home/EditMenu/" + $(this).attr("menuid");
+        });
+        $("#btnSearch").click(function () {
+            if ($("#txtKeyword").val().length == 0) {
+                $("#LoadMenuList").load($Maticsoft.BasePath + "Home/LoadMenu", { viewName: "_MenuList" });
+            }
+            $("#LoadMenuList").load($Maticsoft.BasePath + "Home/SearchMenu", { keyword: $("#txtKeyword").val() });
+        });
+    });
+</script>

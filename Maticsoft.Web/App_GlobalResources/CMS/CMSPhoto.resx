@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ErrorImageNameNull" xml:space="preserve">
+    <value>图片名称不能为空！</value>
+  </data>
+  <data name="ErrorIntroductionNull" xml:space="preserve">
+    <value>简介不能为空！</value>
+  </data>
+  <data name="ErrorLabel" xml:space="preserve">
+    <value>标签不能为空！</value>
+  </data>
+  <data name="ErrorOrderFormat" xml:space="preserve">
+    <value>顺序格式错误！</value>
+  </data>
+  <data name="lblabel" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="lblAddPhoto" xml:space="preserve">
+    <value>您可以上传相片</value>
+  </data>
+  <data name="lblAddPhotoInfo" xml:space="preserve">
+    <value>您可以编辑图片信息</value>
+  </data>
+  <data name="lblAlbum" xml:space="preserve">
+    <value>相册</value>
+  </data>
+  <data name="lblAlbumID" xml:space="preserve">
+    <value>相册ID</value>
+  </data>
+  <data name="lblAlbumType" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="lblArtworkName" xml:space="preserve">
+    <value>原图文件名（大）</value>
+  </data>
+  <data name="lblChooseAlbum" xml:space="preserve">
+    <value>选择相册</value>
+  </data>
+  <data name="lblClassification" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="lblComments" xml:space="preserve">
+    <value>评论数</value>
+  </data>
+  <data name="lblCreateData" xml:space="preserve">
+    <value>创建日期</value>
+  </data>
+  <data name="lblCreateDate" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="lblCreater" xml:space="preserve">
+    <value>创建用户</value>
+  </data>
+  <data name="lblCreaterID" xml:space="preserve">
+    <value>创建用户ID</value>
+  </data>
+  <data name="lblFrontCover" xml:space="preserve">
+    <value>当前封面</value>
+  </data>
+  <data name="lblIsRecommend" xml:space="preserve">
+    <value>是否推荐</value>
+  </data>
+  <data name="lblList" xml:space="preserve">
+    <value>您可以对图片进行管理</value>
+  </data>
+  <data name="lblNormal" xml:space="preserve">
+    <value>正常图（中）</value>
+  </data>
+  <data name="lblPageViews" xml:space="preserve">
+    <value>浏览量</value>
+  </data>
+  <data name="lblPictureClass" xml:space="preserve">
+    <value>图片分类</value>
+  </data>
+  <data name="lblRecommend" xml:space="preserve">
+    <value>推荐</value>
+  </data>
+  <data name="lblSetToCover" xml:space="preserve">
+    <value>设为封面</value>
+  </data>
+  <data name="lblThumbnails" xml:space="preserve">
+    <value>缩略图（小）</value>
+  </data>
+  <data name="lblViewOriginal" xml:space="preserve">
+    <value>查看原图</value>
+  </data>
+  <data name="PrictureName" xml:space="preserve">
+    <value>图片名称</value>
+  </data>
+  <data name="ptAddPhoto" xml:space="preserve">
+    <value>上传相片</value>
+  </data>
+  <data name="ptAddPhotoInfo" xml:space="preserve">
+    <value>编辑图片信息</value>
+  </data>
+  <data name="ptList" xml:space="preserve">
+    <value>图片管理</value>
+  </data>
+  <data name="ptPrictureShow" xml:space="preserve">
+    <value>图片信息</value>
+  </data>
+  <data name="TooltipAddSucceed" xml:space="preserve">
+    <value>上传图片成功！</value>
+  </data>
+  <data name="TooltipAddFail" xml:space="preserve">
+    <value>上传图片失败，请重试！</value>
+  </data>
+  <data name="TooltipEditedSuccess" xml:space="preserve">
+    <value>编辑成功！</value>
+  </data>
+  <data name="TooltipLabel" xml:space="preserve">
+    <value>多个标签，请用“，”分割！</value>
+  </data>
+  <data name="TooltipSetCpver" xml:space="preserve">
+    <value>设置封面</value>
+  </data>
+  <data name="TooltipSetToCoverFail" xml:space="preserve">
+    <value>设置封面失败！</value>
+  </data>
+  <data name="TooltipSetToCoverSuccess" xml:space="preserve">
+    <value>设置封面成功！</value>
+  </data>
+  <data name="ErrorAlbumNull" xml:space="preserve">
+    <value>相册名称不能为空！</value>
+  </data>
+  <data name="ErrorClassNameNull" xml:space="preserve">
+    <value>类别名称不能为空！</value>
+  </data>
+  <data name="ErrorClassRepeat" xml:space="preserve">
+    <value>类别名称已经存在，请重新输入！</value>
+  </data>
+  <data name="lblAddAlbum" xml:space="preserve">
+    <value>您可以添加相册</value>
+  </data>
+  <data name="lblAddPrictureClass" xml:space="preserve">
+    <value>您可以添加图片分类</value>
+  </data>
+  <data name="lblAlbumList" xml:space="preserve">
+    <value>您可以对相册进行管理，包括添加，删除等。</value>
+  </data>
+  <data name="lblAlbumModify" xml:space="preserve">
+    <value>您可以编辑相册信息</value>
+  </data>
+  <data name="lblAlbumName" xml:space="preserve">
+    <value>相册名称</value>
+  </data>
+  <data name="lblClassList" xml:space="preserve">
+    <value>您可以对图片类别进行管理</value>
+  </data>
+  <data name="lblClassModify" xml:space="preserve">
+    <value>您可以编辑图片分类</value>
+  </data>
+  <data name="lblCoverPictures" xml:space="preserve">
+    <value>相册封面</value>
+  </data>
+  <data name="lblLastDate" xml:space="preserve">
+    <value>最后更新日期</value>
+  </data>
+  <data name="lblParentsClass" xml:space="preserve">
+    <value>上级类别</value>
+  </data>
+  <data name="lblPrivacy" xml:space="preserve">
+    <value>隐私</value>
+  </data>
+  <data name="lblUrl" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="lblVisibility" xml:space="preserve">
+    <value>可见性</value>
+  </data>
+  <data name="ptAddAlbum" xml:space="preserve">
+    <value>添加相册</value>
+  </data>
+  <data name="ptAddPrictureClass" xml:space="preserve">
+    <value>添加图片分类</value>
+  </data>
+  <data name="ptAlbumList" xml:space="preserve">
+    <value>相册管理</value>
+  </data>
+  <data name="ptAlbumModify" xml:space="preserve">
+    <value>编辑相册</value>
+  </data>
+  <data name="ptAlbumShow" xml:space="preserve">
+    <value>相册信息</value>
+  </data>
+  <data name="ptClassList" xml:space="preserve">
+    <value>图片类别管理</value>
+  </data>
+  <data name="ptClassModify" xml:space="preserve">
+    <value>编辑图片分类</value>
+  </data>
+  <data name="ptClassShow" xml:space="preserve">
+    <value>图片分类信息</value>
+  </data>
+  <data name="lblGoodTypeClass" xml:space="preserve">
+    <value>商品分类</value>
+  </data>
+  <data name="ptAddGoodTypeClass" xml:space="preserve">
+    <value>添加商品分类</value>
+  </data>
+  <data name="lblGoodTypeList" xml:space="preserve">
+    <value>您可以对商品类别进行管理</value>
+  </data>
+  <data name="ptGoodTypeList" xml:space="preserve">
+    <value>商品类别管理</value>
+  </data>
+</root>

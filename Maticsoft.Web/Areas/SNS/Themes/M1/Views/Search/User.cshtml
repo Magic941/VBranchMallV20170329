@@ -1,0 +1,48 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Members.UsersExpModel>
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    //string q = Request.RequestContext.RouteData.Values["q"] != null ? Request.RequestContext.RouteData.Values["q"].ToString() : "";
+}
+ @section head{
+ <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script> 
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+ }
+<script type="text/javascript">
+    $(function () {
+        var tkeyword = $.getUrlParam("keyword") == null ? "" : $.getUrlParam("keyword");
+        $("#u_keyword").val(tkeyword);
+        $(".searchbtn").click(function (e) {
+            e.preventDefault();
+            var keyword = $("#u_keyword").val();
+            if (keyword) {
+                window.location = "@(ViewBag.BasePath)Search/User?keyword=" + escape(keyword);
+            }
+            else {
+                window.location = "@(ViewBag.BasePath)Search/User";
+            }
+        });
+        $(".btnSendMessage").click(function () {
+            if (CheckUserState()) {
+                var name = $(this).attr("name");
+                window.location = "@(ViewBag.BasePath)UserCenter/SendMessage?name=" + name;
+            }
+        });
+    })
+
+</script>
+
+<div class="search_bk">
+<div class="search_bk_1">
+     <div class="search_bk_1_a"><input name="" type="" value=""  id="u_keyword"></div>
+     <div class="search_bk_1_b"><a href="javascript:;" class="searchbtn"><img src="/Areas/SNS/Themes/M1/Content/images/search_1.jpg"></a></div>
+  </div>
+   <div class="search_bk_2"><a class="btnProduct"  href="javascript:void(0)">宝贝</a> <a  class="btnPhoto" href="javascript:void(0)">图片</a> <a class="btnAlbums"  href="javascript:void(0)">专辑</a> <a class="btnUser" href="javascript:void(0)"><span>用户</span></a><a class="btnGroups2" href="javascript:void(0)">
+小组</a>　</div>
+<div class="clear"></div>
+</div>
+<div class="user_cont">
+
+<div id="MaticsoftFellows">
+@{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Search/UserList.cshtml", Model);}
+</div> 
+</div>

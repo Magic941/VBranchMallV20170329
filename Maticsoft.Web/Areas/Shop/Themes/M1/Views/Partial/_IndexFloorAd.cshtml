@@ -1,0 +1,40 @@
+﻿@model List<Maticsoft.Model.Settings.Advertisement>
+<div class="side-AD side-AD3" id="side-AD-2">
+    <!--首页楼层右边的广告  200*300的图片-->
+    <ul class="side-AD-img">
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <li><a target="_blank" href="@item.NavigateUrl">
+                <img src="@(Maticsoft.Web.Components.FileHelper.GetImageUrl(item.FileUrl))" style="height:300px;width:200px"/>
+                </a>
+            </li>
+            }
+
+        }
+        else
+        {
+            <li><a target="_blank" href="/ld/mazhuang.html">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/2f-1.jpg"></a></li>
+        }
+    </ul>
+    <div class="AD-glide_trigger" id="AD-glide_trigger-2">
+        @if (Model != null)
+        {
+            int  i=0;
+            foreach (var item in Model)
+            { 
+                if(i==0)
+                {
+                 <i class="glide_on">•</i>
+                }
+                else
+                {
+                  <i class="">•</i>
+                }
+                i=i+1;
+            }
+        }     
+    </div>
+</div>

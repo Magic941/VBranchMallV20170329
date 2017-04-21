@@ -1,0 +1,138 @@
+﻿<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)Partial/GetCurrentUser",
+            success: function (data) {
+                if (data == "No") {
+                    $("#noUserInfo").show();
+                    $(".login").show();
+                    $("#hasUserInfo").hide();
+                }
+                else {
+                    $("#noUserInfo").hide();
+                    $("#hasUserInfo").show();
+                    var i = 0;
+                    if (data.split("|")[2] == 0 || data.split("|")[2] == undefined) {
+                        $("#txtsys").hide();
+                        i++;
+                    } else {
+                        $("#syscount").text(data.split("|")[2]);
+                    }
+                    if (data.split("|")[3] == 0 || data.split("|")[3] == undefined) {
+                        $("#txtprivate").hide();
+                        i++;
+                    } else {
+                        $("#privatecount").text(data.split("|")[3]);
+                    }
+                    if (data.split("|")[4] == 0 || data.split("|")[4] == undefined) {
+                        $("#txtrefere").hide();
+                        i++;
+                    } else {
+                        $("#referecount").text(data.split("|")[4]);
+                    }
+                    if (i == 3) {
+                        $(".layer_message_box ").hide();
+                    }
+                    $("#userImage").attr("src", "/Upload/User/Gravatar/" + data.split("|")[1] + ".jpg");
+                    $("#userImage").attr("alt", data.split("|")[0]);
+                    $("#usernick").text(data.split("|")[0]);
+                }
+            }
+        });
+    })
+</script>
+
+<div class="headers" id="noUserInfo" >
+    <div class="header">
+        <div class="logo">
+            <a href="@ViewBag.BasePath" >
+                <img src="@ViewBag.Logo" width="232" height="54" alt="@(ViewBag.SiteName)">
+            </a></div>
+        <script type="text/javascript">$.scaleLoad('.logo', 232, 54);</script>
+        <div class="login" style=" display:none">
+            <ul>
+                <li><a href="/social/sina">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/sin.jpg"></a></li>
+                <li><a href="/social/sina">新浪微博</a></li>
+            </ul>
+            <ul style="display: none">
+                <li><a href="http://open.denglu.cc/transfer/tencent?appid=@ViewBag.APPID">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/tengxun.jpg"></a></li>
+                <li><a href="http://open.denglu.cc/transfer/tencent?appid=@ViewBag.APPID">腾讯微博</a></li>
+            </ul>
+            <ul>
+                <li><a href="/social/qq">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/qq.jpg"></a></li>
+                <li><a href="/social/qq">QQ登录</a></li>
+            </ul>
+            <ul>
+                <li><a href="/Account/Login">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/login.jpg"></a></li>
+            </ul>
+            <ul>
+                <li><a href="/Account/Register">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/reg.jpg"></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="hasUserInfo" style=" display:none">
+  <link href="/Areas/SNS/Themes/M1/Content/Css/jquery.message.css" rel="stylesheet" type="text/css" />
+ <script src="/Scripts/PointMsg/Scripts/jquery.message.js" type="text/javascript"></script>
+<script type="text/javascript">
+ $(function () {
+        $('#appear').unbind('hover').hover(function () {
+            $('#conceal').show();
+        }, function () {
+            $('#conceal').hide();
+        });
+    });
+    //绑定
+    $(function () {
+        $(".layer_message_box").smartFloat();
+        $(".W_close_color").click(function () {
+            $(this).parents(".layer_message_box").hide();
+        });
+    });
+
+</script>
+<div class="layer_message_box" >
+    <ul>
+          <li id="txtsys"><span id="syscount">0</span>条系统消息，<a target="_top" action-type="bp-link" bpfilter="main" href="/UserCenter/SysInfo">查看消息</a></li>
+          <li id="txtprivate"><span id="privatecount">0</span>条最新私信，<a target="_top" action-type="bp-link" bpfilter="main" href="/UserCenter/Inbox">查看私信</a></li>
+          <li id="txtrefere"><span id="referecount">0</span>条新@提到我，<a target="_top" action-type="bp-link" bpfilter="main" href="/Profile/Posts?type=referme">查看@@我</a></li>
+      </ul>
+    <a class="W_close_color" href="javascript:void(0);" action-type="closeTip"></a>
+</div>
+<div class="headers">
+    <div class="header">
+        <div class="logo">
+            <a href="/"><img src="@ViewBag.Logo" width="232" height="54" alt="@(ViewBag.SiteName)"></a></div>
+            <script type="text/javascript">$.scaleLoad('.logo', 232, 54);</script>
+        <div class="user_login">
+            <div id="appear">
+                <p class="appear_z">
+                    <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">
+                        <img style=" width:30px; height:30px" src="/Upload/User/Gravatar/1.jpg" alt="" id="userImage"></a></p>
+                <p class="appear_y">
+                    <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow" id="usernick"></a><img src="/Areas/SNS/Themes/M1/Content/images/user_3.jpg"></p>
+                <div id="conceal" style="display: none;">
+                    <ul>
+                        <li><a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">我的主页</a></li>
+                        <li><a href="/UserCenter">帐号设置</a></li>
+                       @* <li><a href="@(ViewBag.BasePath)UserCenter/Inbox"><span>我的私信</span></a></li>*@
+                        <li style="border-bottom: none;"><a href="@(ViewBag.BasePath)Account/Logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="appear" style="background: none; width: 50px; margin-left: 10px;">
+                <p class="appear_y">
+                    <a href="/UserCenter/Inbox">消息</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

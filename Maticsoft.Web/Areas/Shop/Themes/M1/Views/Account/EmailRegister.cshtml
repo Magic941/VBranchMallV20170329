@@ -1,0 +1,88 @@
+﻿@model Maticsoft.ViewModel.Shop.RegisterModel
+@{
+    Layout = null;
+}
+@*<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/css/login/login.css" />*@
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/EmailRegister.js"></script>
+<script>
+    $(function () {
+        //点击回复触发
+        $("#aUserAgreement").click(function () {
+            $("#divUserAgreement").dialog(dialogOpts); //弹出‘用户协议’层  
+        });
+
+        //dialog层中项的设置
+        var dialogOpts = {
+            title: "用户注册协议",
+            width: 700,
+            height: 600,
+            modal: true,
+            buttons: {
+                "同意": function () {
+                    $("#Chk").attr("checked", "checked"); //选中同意
+                    $(this).dialog("close"); //关闭层
+                },
+                "取消": function () {
+                    $(this).dialog("close"); //关闭层
+                }
+            }
+        };
+    })
+</script>
+
+@Html.HiddenFor(m => m.NickName, new { id = "NickName" })
+@Html.HiddenFor(m => m.Password, new { Value = "111111" })
+@Html.HiddenFor(m => m.ConfirmPassword, new { Value = "111111" })
+<div class="mem_ber_pu">
+    <a href="#">
+        <img src="/Areas/Shop/Themes/M1/Content/images/images/login/register1.jpg" width="492" height="160" /></a>
+</div>
+<div class="mem_ber_potl">
+    <ul>
+        <li class="clearfix">
+            <label>输入邮箱</label>
+            <div class="regi_ster">
+                @Html.TextBoxFor(m => m.UserName, new { id = "UserName" })
+            </div>
+            <i>请您输入您的邮箱</i>
+            <div class="Tip" id="emailTip"></div>
+        </li>
+        <li>
+            <div class="regi_ster_mv">
+                <input type="checkbox" id="Chk" name="sex" />
+                <span><a id="aUserAgreement" style="cursor: pointer; text-decoration: none;">《健康用户协议》</a></span>
+            </div>
+        </li>
+        <li class="user_tt clearfix">
+            <a href="javascript:;" class="agr_ee" id="reg_base">同意用户协议，注册</a>
+            <input type="submit" id="submit" style="display: none" />
+            <a href="/Account/Login" class="dir_ect">已有账号，我要登录</a>
+        </li>
+    </ul>
+</div>
+<div class="pop_up">
+</div>
+<div class="step">
+    <ul class="clearfix">
+        <li class="active">
+            <dl>
+                <dt>第一步</dt>
+                <dd>输入邮箱</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第二步</dt>
+                <dd>设置密码</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第三步</dt>
+                <dd>完成注册</dd>
+            </dl>
+        </li>
+    </ul>
+</div>

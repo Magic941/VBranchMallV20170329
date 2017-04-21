@@ -1,0 +1,40 @@
+﻿@*
+团购详情页 右侧 列表
+*@
+
+@model List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+
+@{
+    List<Maticsoft.Model.Shop.PromoteSales.GroupBuy> GrouBuyList = Model.Take(3).ToList() as List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>;
+    }
+@*<style type="text/css">
+    .btn {
+        background-color:red; 
+        color:white; 
+        font-weight:bold;
+        border-color:red;
+    }
+</style>*@
+<div class="TconR-W">
+    <ul>
+        @if (Model != null)
+        {
+            foreach (var item in GrouBuyList)
+	        {
+                <li>
+                    <a class="TconR-WM" href="/Product/GroupBuyDetail/@item.GroupBuyId">
+                        <img src='@(Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("PicServerUrl")+ item.GroupBuyImage)' width="220" height="220" /></a>
+                    <div class="fast_buy clearfix">
+                        <a href="/Product/GroupBuyDetail/@item.GroupBuyId">
+                            <p>@item.ProductName</p>
+                            <span class="txt-red price fL">现价¥@item.Price.ToString("F")</span>
+                            
+                        </a>
+                        <a href="/Product/GroupBuyDetail/@item.GroupBuyId" >
+                             <span class="fR"><em href="#">立即抢购</em></span></a>
+                    </div>
+                </li>
+	        }
+        }
+    </ul>
+</div>

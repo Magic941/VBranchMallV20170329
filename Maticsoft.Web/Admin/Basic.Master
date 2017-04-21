@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Basic.master.cs" Inherits="Maticsoft.Web.Admin.Basic" %>
+<%@ Register Src="~/Controls/copyright.ascx" TagName="copyright" TagPrefix="uc1" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title></title>
+    <link href="/admin/css/Guide.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="/admin/css/index.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="/admin/css/MasterPage<%=Session["Style"] %>.css" type="text/css" rel="stylesheet" charset="utf-8" />
+    <link href="/admin/css/xtree.css" type="text/css" rel="stylesheet" charset="utf-8"/>
+    <link href="/admin/css/admin.css" type="text/css" rel="stylesheet" charset="utf-8">
+    <script src="/admin/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <link type="text/css" href="/admin/js/msgbox/css/msgbox.css" rel="stylesheet" charset="utf-8"/>
+    <script type="text/javascript" src="/admin/js/msgbox/script/msgbox.js"></script>
+    <link href="/admin/js/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+   <%-- <script src="/admin/js/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>--%>
+    <script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+    <script src="/admin/js/colorbox/jquery.colorbox.js" type="text/javascript"></script>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    
+    </asp:ContentPlaceHolder>
+</head>
+<body >
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">        
+        </asp:ContentPlaceHolder>
+    </div>
+    <uc1:copyright ID="Copyright1" runat="server" />   
+    <asp:ContentPlaceHolder ID="ContentPlaceCheckright" runat="server">        
+     </asp:ContentPlaceHolder>
+    </form>
+</body>
+</html>

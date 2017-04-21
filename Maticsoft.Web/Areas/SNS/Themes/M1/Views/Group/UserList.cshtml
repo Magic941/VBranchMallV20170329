@@ -1,0 +1,125 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.GroupInfo
+  <script src="/Areas/SNS/Themes/M1/Content/Scripts/GroupRoleSet.js" type="text/javascript"></script>
+<div id="UserListDiv" class="content" style="display: block">
+    <p class="content_members">
+        成员列表</p>
+    @if (Model.AdminUserList != null && Model.AdminUserList.Count > 0 && Model.AdminUserList[0].Role == 2)
+    {
+        for (int i = 0; i < Model.AdminUserList.Count; i++)
+        {
+            if (i == 0)
+            {
+        <div class="content_members_lea">
+            <h1>
+                组长</h1>
+            <dl class="members">
+                <dl class="members_tu">
+                    <dt class="members_tu_1">
+                        <a href="@(ViewBag.BasePath)User/Posts/@(Model.AdminUserList[i].UserID)">
+                        <img width="64px" height="64px" src="/Upload/User/Gravatar/@(Model.AdminUserList[i].User.UserID).jpg" alt="@Model.AdminUserList[i].User.NickName" /></a>
+                    </dt>
+                    <dd class="members_tu_2" style="display: none;">
+                        <a href="javascript:void(0)" class="UserTip" userid="@Model.AdminUserList[i].User.UserID">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_23.jpg" /></a></dd>
+                </dl>
+                <dl class="members_wen">
+                    <p>
+                        <a href="javascript:void(0)" class="members_wen_a UserTip" userid="@Model.AdminUserList[i].User.UserID">@Model.AdminUserList[i].User.NickName</a>
+
+                                <a href="javascript:;" class="FellowUser" userid="@Model.AdminUserList[i].User.UserID">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png"></a> <a href="javascript:;" class="UnFellowUser" style="display:none" userid="@Model.AdminUserList[i].User.UserID">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png"></a>
+                        </p>
+                    <p>
+                        粉丝 <a href="javascript:void(0)" class="members_wen_b">@Model.AdminUserList[i].User.FansCount</a> 
+                        分享 <a href="javascript:void(0)" class="members_wen_b">@Model.AdminUserList[i].User.ShareCount</a>
+                        宝贝 <a href="javascript:void(0)" class="members_wen_b">@Model.AdminUserList[i].User.ShareCount</a></p>
+                </dl>
+            </dl>
+            <div class="clear">
+            </div>
+        </div>
+            }
+            else
+            {
+                if (i == 1)
+                {
+                    @: <div class="content_members_lea"> <h1> 管理员</h1>
+                }
+                <dl class="members_tu" style="margin-right: 30px;">
+                    <dt class="members_tu_1">
+                        <a href="@(ViewBag.BasePath)User/Posts/@(Model.AdminUserList[i].UserID)"  class="UserTip" userid="@(Model.AdminUserList[i].UserID)">
+                            <img width="64px" height="64px" src="/Upload/User/Gravatar/@(Model.AdminUserList[i].UserID).jpg" alt="@Model.AdminUserList[i].NickName" />
+                        </a>
+                    </dt>
+                    <dd class="members_adm">
+                        <a href="@(ViewBag.BasePath)User/Posts/@(Model.AdminUserList[i].UserID)" class="UserTip" userid="@(Model.AdminUserList[i].UserID)">@(Model.AdminUserList[i].NickName)</a> </dd>
+                        
+                      @if (ViewBag.IsCreator ==true)
+                        {
+                       
+                                <a  href="javascript:void(0)" class="cancAdmin" style=" color:#BA55D3" data-gid="@(Model.AdminUserList[i].GroupID)"    data-uid="@(Model.AdminUserList[i].UserID)">
+                                    取消管理员</a>
+                 
+                                <a  href="javascript:void(0)"  class="setAdmin"  style=" display:none;color:#BA55D3" style="display:none" data-gid="@(Model.AdminUserList[i].GroupID)"  data-uid="@(Model.AdminUserList[i].UserID)">
+                                    设为管理员</a>
+                           
+                       }
+             
+                </dl>
+            
+                
+                
+                if (i == Model.AdminUserList.Count - 1)
+                { <div class="clear"> </div>
+                    @:</div>
+                }
+            }
+        }
+    }
+    @if (Model.UserList != null && Model.UserList.Count > 0)
+    {
+        <div class="content_members_lea">
+            <h1>
+                成员</h1>
+                @for (int i = 0; i < Model.UserList.Count; i++)
+                {
+                    <dl class="members_tu" style="margin-right: 30px;">
+                        <dt class="members_tu_1"><a href="@(ViewBag.BasePath)User/Posts/@(Model.UserList[i].UserID)"  class="UserTip" userid="@(Model.UserList[i].UserID)">
+                         <img width="64px" height="64px" src="/Upload/User/Gravatar/@(Model.UserList[i].UserID).jpg" alt="@Model.UserList[i].NickName" /></a></dt>
+                        <dd class="members_adm">
+                            <a href="@(ViewBag.BasePath)User/Posts/@(Model.UserList[i].UserID)"  class="UserTip" userid="@(Model.UserList[i].UserID)">@Model.UserList[i].NickName</a></dd>
+                        @if (ViewBag.IsCreator ==true)
+                        {
+                           
+            
+                                <a href="javascript:void(0)" class="cancAdmin" style="display:none;color:#BA55D3" data-gid="@(Model.UserList[i].GroupID)"    data-uid="@(Model.UserList[i].UserID)">
+                                    取消管理员</a>
+                 
+                                <a  href="javascript:void(0)"  class="setAdmin" style="color:#BA55D3"   data-gid="@(Model.UserList[i].GroupID)"  data-uid="@(Model.UserList[i].UserID)">
+                                    设为管理员</a>
+               
+                            
+                       }
+                    </dl>
+                }
+        <div class="clear">
+        </div>
+    </div>
+    }
+    <div class="content_pages" style="background-image: none;">
+        @Html.AjaxPager(Model.UserList, new PagerOptions
+   {
+       CssClass = "in_pages",
+       ShowDisabledPagerItems = false,
+       AlwaysShowFirstLastPageNumber = false,
+       PageIndexParameterName = "page",
+       NumericPagerItemCount = 10,
+       CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       SeparatorHtml = ""
+   }, new AjaxOptions { UpdateTargetId = "UserListDiv" })
+    </div>
+</div>

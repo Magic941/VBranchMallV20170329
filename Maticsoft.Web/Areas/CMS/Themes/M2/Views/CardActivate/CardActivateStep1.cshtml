@@ -1,0 +1,143 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKCardActivateBaseLayout.cshtml";
+    var isDisplayTiaokuan = false;
+}
+
+@model Maticsoft.Model.Shop_CardType
+
+@section head{
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/jihuo.css" rel="stylesheet" type="text/css" />   
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/hcalendar.css" rel="stylesheet" type="text/css" />     
+}
+@{
+    
+    isDisplayTiaokuan = !string.IsNullOrEmpty(Model.InsurantClauseFileName1) || !string.IsNullOrEmpty(Model.InsurantClauseFileName2) || !string.IsNullOrEmpty(Model.InsurantClauseFileName3) || !string.IsNullOrEmpty(Model.InsurantClauseFileName4);
+    
+ }
+
+<div class="w1200 liuc_wl">    
+    <div class="yy_jh_one">
+    	<p>
+        	<span class="sel_yuan">1</span><span class="sel_xian"></span>
+            <span class="yuan">2</span><span class="xian"></span>
+            <span class="yuan">3</span><span class="xian"></span>
+            <span class="yuan">4</span>
+        </p>
+        <h3>
+        	<span style="margin-left:-10px;">阅读条款</span>
+            <span style="margin-left:150px;">填写详细资料</span>
+            <span style="margin-left:152px;">确认信息</span>
+            <span style="margin-left:170px;">激活成功</span>
+        </h3>
+    </div>
+    <div style="height:50px; clear:both;"></div>
+    <div class="ankang_wl">
+    	<div class="kangka_wl">
+        	<h1>@Model.TypeName</h1>
+            <div class="tiaok_wl">
+              @Html.Raw(Model.Agreement)	
+            </div>
+           
+            <div class="baoxian_wl"> 
+                @if( isDisplayTiaokuan )
+                {
+            	<h2>保险条款</h2>
+                <ul class="yuedu_wl">
+                  
+                  @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName1))
+                  {
+                     
+                      <li class="chkAgreement">
+                    	<span>已阅读</span>
+                        <a href=" @Model.InsurantClauseFileName1" target="_blank"><p> @Model.InsurantClauseFileName1.Substring(@Model.InsurantClauseFileName1.LastIndexOf('/')+1)<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw19.jpg" /></p></a>
+                    </li>
+                      
+                 }
+                	 @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName2))
+                  {
+                     
+                      <li class="chkAgreement">
+                    	<span>已阅读</span>
+                         <a href=" @Model.InsurantClauseFileName2" target="_blank"><p>@Model.InsurantClauseFileName2.Substring(@Model.InsurantClauseFileName2.LastIndexOf('/')+1)<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw19.jpg" /></p></a>
+                    </li>
+                        
+                 }
+                     @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName3))
+                     {
+                          
+                      <li class="chkAgreement">
+                    	<span>已阅读</span>
+                         <a href=" @Model.InsurantClauseFileName3" target="_blank"><p>@Model.InsurantClauseFileName3.Substring(@Model.InsurantClauseFileName3.LastIndexOf('/')+1)<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw19.jpg" /></p></a>
+                    </li>
+                          
+                 }
+                  @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName4))
+                 {
+                    
+                     <li class="chkAgreement">
+                    	<span>已阅读</span>
+                        <a href=" @Model.InsurantClauseFileName4" target="_blank"> <p>@Model.InsurantClauseFileName4.Substring(@Model.InsurantClauseFileName4.LastIndexOf('/')+1)<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw19.jpg" /></p></a>
+                    </li>
+                     
+                 }
+                </ul>
+               
+                    <ul class="quanxuan_wl">
+                	    <li><span>全选</span></li>
+                    </ul>
+                }
+                <h3>声明与授权</h3>
+                <p>投保人本人已阅读本激活卡内容和条款内容，贵公司已对条款内容履行了说明义务，并对责任免除条款、 特别约定条款、职业除外条款履行了明确说明义务，本人同意接受并遵守上述内
+                      容 ，自愿投保。本人谨此授权凡知道或拥有任何有关本人健康及其它情况的任何医生、医院、保险 公司、其他机构人士，均可将有关资料提供给贵公司。 </p>
+				<ul class="shengming_wl">
+                	<li class="chkAgreement"><span>已阅读</span></li>
+                </ul>
+                <p class="baoqian_wl" style="display:none" id="divErrorMsg">很抱歉：您尚未阅读条款，请您阅读并理解本激活卡内容和条款内容，否则无法继续投保流程。 </p>
+                <a class="nextbu_wl" href="javascript:void(0)" onclick="javascript:next();">下一步</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    var cardtypenum = parseInt('@Model.CardTypeNum');
+    function next() {
+        var ischk = true;
+        $.each($(".chkAgreement"), function () {
+            if (!$(this).hasClass("xuanzhong_wl")) {
+                ischk = false;
+                return false;
+            }         
+        });
+
+        if (!ischk) {
+            $("#divErrorMsg").show();
+            setTimeout(function () { $("#divErrorMsg").hide(); }, 10000);
+            return;
+        }
+        else {
+            if(cardtypenum==1)
+                window.location.href = "/CardActivate/CardActivateStep2";
+            else
+                window.location.href = "/CardActivate/CardActivateStep21";
+        }
+    }
+
+    //当前样式
+    $("#liStep1").addClass("on");
+</script>
+<script>
+$(document).ready(function(){
+	$(".yuedu_wl li span").click(function(){
+		$(this).parent("li").toggleClass("xuanzhong_wl");
+	});
+	$(".quanxuan_wl li span").click(function(){
+		$(".yuedu_wl li").toggleClass("xuanzhong_wl");
+		$(this).parent("li").toggleClass("xuanzhong_wl");
+	});
+	$(".shengming_wl li span").click(function(){
+		$(this).parent("li").toggleClass("xuanzhong_wl");
+	});
+});
+ </script>

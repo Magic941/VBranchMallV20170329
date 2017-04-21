@@ -1,0 +1,166 @@
+﻿@model Maticsoft.ViewModel.Shop.ShippingAddressModel
+
+<script type="text/javascript">
+    //$(function(){
+    //    $(".btn-submit").click(function(){
+    //        Save_Consignee($(this));
+    //    })
+    //})
+</script>
+<div class="check-infor-Box">
+    <div id="consignee" class="sbox-wrap">
+        <h3>收货人信息</h3>
+        <div class="modi-info">
+            <div id="consignee-list" name="consignee-list">
+                @if (Model.ListAddress != null && Model.ListAddress.Count > 0)
+                {
+                    foreach (Maticsoft.Model.Shop.Shipping.ShippingAddress item in Model.ListAddress)
+                    {
+                    <div class="item">
+                        <input type="radio" class="hookbox" name="consignee_radio" id="consignee_radio_@(item.ShippingId)" value="@(item.ShippingId)" onclick="chose_Consignee('@(item.ShippingId)')">
+                        <label for="consignee_radio_@(item.ShippingId)" onclick="chose_Consignee('@(item.ShippingId)')">
+                            <b>@(item.ShipName)</b>&nbsp; @(item.RegionFullName)
+                            @(Maticsoft.Common.StringPlus.SubString(item.Address, 25, ".."))
+                            &nbsp; @(item.CelPhone)
+                            &nbsp;
+                        </label>
+                        <span class="item-action" style="display: none;"><a href="javascript:;" onclick="show_ConsigneeDetail('@(item.ShippingId)')">编辑</a> &nbsp; <a href="javascript:;" style="display: none" onclick="delete_Consignee('@(item.ShippingId)')">删除</a>&nbsp; </span>
+                    </div>
+                    }
+                }
+            </div>
+            <div class="item" id="use-new-address">
+                <a name="editConsignee"></a>
+                <input type="radio" onclick="use_NewConsignee()" class="hookbox" name="consignee_radio" id="consignee_radio_new">
+                <label for="consignee_radio_new">
+                    使用新地址
+                </label>
+                <span id="addNumLimitNote" class="status error" style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 当前地址数量已达上限，若要继续添加新地址，请先删除部分收货地址。</span>
+            </div>
+            @using (Html.BeginForm("SubmitAddressInfo", "Order", FormMethod.Post, new { id = "FormSubmitAddress" }))
+            {
+                <input type="hidden" id="IsModify" name="IsModify" value="@ViewBag.IsModify" />
+                @Html.HiddenFor(m => m.CurrentAddress.ShippingId)
+                @Html.HiddenFor(m => m.CurrentAddress.UserId)
+                
+                <div class="new-msg mgT10" id="consignee-form" style="padding-left: 12px; display: none;">
+                    
+                    <dl>
+                        <dt><span class="txt-red">*</span>收货人：</dt>
+                        <dd>
+                            @Html.TextBoxFor(m => m.CurrentAddress.ShipName, new { maxlength = "20", @class = "w200" })</dd>
+                    </dl>
+                    <dl id="area_div">
+                        <dt><span class="txt-red">*</span>所在地区：</dt>
+                        <dd>
+                            <span id="span_area">
+                                @Html.HiddenFor(m => m.CurrentAddress.RegionId, new { id = "hfSelectedNode", handle = "/RegionHandle.aspx", isnull = "true" })
+                                <script src="/Scripts/jquery/maticsoft.selectregion.js" type="text/javascript"></script>
+                            </span><span style="display: none;" class="form-tip">标“*”的为支持货到付款的地区,<a style="color: #005EA7" target="_blank" href="javascript:;">查看货到付款地区</a></span>
+                        </dd>
+                    </dl>
+                    <dl id="address_div">
+                        <dt><span class="txt-red">*</span>详细地址：</dt>
+                        <dd>
+                            @Html.TextBoxFor(m => m.CurrentAddress.Address, new { maxlength = "50", Height="100px", @class = "w500" })</dd>
+                    </dl>
+                    <dl  id="call_div">
+                            	<dt><span class="txt-red">*</span>手机号码：</dt>
+                                <dd>@Html.TextBoxFor(m => m.CurrentAddress.CelPhone, new { maxlength = "11", @class = "w150" })<span class="mgL20">或固定电话：</span><input class="w150" name="" onblur=" check_Consignee('call_phone_div')>" type="text" /></dd>
+                            </dl>
+                    <dl  id="email_div">
+                        <dt>邮箱：</dt>
+                        <dd>
+                            @Html.TextBoxFor(m => m.CurrentAddress.Zipcode, new {@class = "w200" })<span class="mgL10">用来接受订单提醒邮件，便于您及时了解订单状态</span></dd>
+                    </dl>
+                </div>
+                    <a href="#none" class="btn-save-Consignee" onclick="Save_Consignee(this)"><span>&nbsp;&nbsp;确认收货地址</span></a>
+                @*<div style="display: none">
+                    <input id="consignee_form_reset" name="" type="reset">
+                </div>*@
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function use_NewConsignee() {
+        var $target = $('#step-1');
+        //Status_Editing($target);
+        $target.load($Maticsoft.BasePath + 'Order/AddressInfo', { addressId: 0, IsModify: false });
+    }
+
+    function show_ConsigneeDetail(addressId) {
+        var $target = $('#step-1');
+        //Status_Editing($target);
+        $target.load($Maticsoft.BasePath + 'Order/AddressInfo', { addressId: addressId, IsModify: true });
+    }
+
+    function chose_Consignee(addressId) {
+        $('.item-action').hide();
+        $('#consignee-list .item').removeClass('new').find('input[type=radio]').prop('checked', false);
+        $('#use-new-address').removeClass('new').find('input[type=radio]').prop('checked', false);
+        $('#consignee-form').hide();
+        $('#consignee-list .item #consignee_radio_' + addressId).prop('checked', true).parent().addClass('new').find('.item-action').show();
+        $('#CurrentAddress_ShippingId').val(addressId);
+    }
+
+    if ($('#IsModify').val() == "True") {
+        //编辑模式
+        chose_Consignee($('#CurrentAddress_ShippingId').val());
+        $('#consignee-form').show();
+    } else {
+        if (parseInt($('#CurrentAddress_ShippingId').val()) < 1) {
+            //新增模式
+            $('.item-action').hide();
+            $('#consignee-list .item').removeClass('new').find('input[type=radio]').prop('checked', false);
+            $('#consignee-form').show();
+            $('#use-new-address').addClass('new').find('input[type=radio]').prop('checked', true);
+        } else {
+            //默认模式
+            chose_Consignee($('#CurrentAddress_ShippingId').val());
+        }
+    }
+
+    function Save_Consignee(sender) {
+        if ($('#consignee-form').is(':visible')) {
+            var shipName = $("#CurrentAddress_ShipName").val();
+            if (shipName == "") {
+                ShowFailTip("请填写收货人");
+                return;
+            }
+            var regionId = parseInt($("#hfSelectedNode").val());
+            if (regionId == 0 || $("#hfSelectedNode").val() == "") {
+                ShowFailTip("请选择所在地区");
+                return;
+            }
+            var address = $("#CurrentAddress_Address").val();
+            if (address == "") {
+                ShowFailTip("请填写详细地址");
+                return;
+            }
+            var celPhone = $("#CurrentAddress_CelPhone").val();
+            if (celPhone == "") {
+                ShowFailTip("请填写手机号码");
+                return;
+            }
+            var reg = /^[1][3|5|8][0-9]\d{8}$/;
+            if (!reg.exec(celPhone)) {
+                ShowFailTip("输入有效的手机号码");
+                return;
+            }
+        }
+        $(sender).hide();
+        $(sender).next().show();
+        var form = $('#FormSubmitAddress');
+        $.post(
+            form.get(0).action,
+            form.serialize(),
+            function (data) {
+                $('#step-1').html(data);
+                Status_None();
+                //window.location.hash = "consigneeFocus";
+                Edit_Payment(null, true);
+            }
+        );
+    }
+</script>

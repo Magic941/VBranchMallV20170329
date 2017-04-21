@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@model List<Maticsoft.Model.CMS.Content>
+<div class="main newslist">
+    <!--左侧-->
+    <div class="listl list2">
+        <div class="listview">新闻动态</div>
+        <ul>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                     <li>
+                        <div class="viewimg">
+                            <div class="hotimgzz"></div>
+                            <a href="#" class="zzsz"></a><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">
+                                <img src="@item.ThumbImageUrl" alt="@item.Title" width="250" height="165">
+                            </a>
+                            <div class="standpoint"><a href="#">新闻动态</a></div>
+                        </div>
+                        <h3><a href="#" target="_blank" title="算法推荐阅读的冷思考——自我选择才是真正的“个性化”">@item.Title</a></h3>
+                        <p>@item.Description</p>
+                        <span>@item.CreatedDate</span>
+                    </li>
+                }
+
+            }
+            else
+            {
+              <li>  暂无内容</li>
+            }
+        </ul>
+    </div>
+</div>

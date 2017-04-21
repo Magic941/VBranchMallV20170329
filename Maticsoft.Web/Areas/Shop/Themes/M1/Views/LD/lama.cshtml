@@ -1,0 +1,681 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+
+<style >
+*{ padding:0; margin:0; }
+
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+    background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+
+h1 {
+    font-size: 1em;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+    border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*! update normalize.css by joenix */
+.clearfix{
+	*zoom:1;
+}
+.clearfix:before,
+.clearfix:after{
+	display:table;
+	content:'';
+	line-height:0;
+}
+.clearfix:after{
+	clear:both;
+}
+
+section, .section{
+	margin:0 auto;
+}
+
+form{
+	border:none;
+}
+input, button{
+	vertical-align:top;
+}
+
+li{
+	list-style:none;
+}
+
+html{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+a         {text-decoration:none;outline:none;color:#333;background-color:transparent;} /* 未添加的链接 */
+a:link    {} /* 未访问的链接 */
+a:visited {} /* 已访问的链接 */
+a:hover   {color:#E62222} /* 鼠标悬停链接 */
+a:focus   {color:#E62222; outline:none;} /* 焦点选择链接 */
+a:active  {color:#E62222} /* 被选择的链接 */
+a{
+	display:inline-block; 
+	*display:inline; zoom:1;
+	}
+.UL_TWO li{
+	float:left;
+	}
+.UL_TWO li a{
+	width:584px;
+	height:557px;
+	display:block;
+	}
+.UL_two li{
+	float:left;
+	}
+.UL_two li a{
+	width:585px;
+	height:302px;
+	}
+</style>
+
+
+<div class="" style=" height:950px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0001.jpg) center no-repeat;"></div>
+<div class="" style="background:#fae1ab; padding-bottom:20px;">
+	<div class="" style=" width:1194px; margin:0 auto; height:478px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0002.jpg) center no-repeat;">
+    	<a href="http://zhenhaolin.com/Product/Detail/9810" style="width:1194px;height:478px;display:block;"></a>
+    </div>
+    <div class="" style="width:1194px; margin:0 auto; height:570px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0003.jpg) no-repeat;">
+    	<a href="http://zhenhaolin.com/Product/Detail/9808" style="width:583px; height:557px; margin:5px 0 0 3px;"></a>
+        <a href="http://zhenhaolin.com/Product/Detail/12078" style="width:583px; height:557px; margin:5px 0 0 16px;"></a>	
+    </div>
+    <div class="" style="width:1194px; margin:0 auto; height:482px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0004.jpg) no-repeat;"></div>
+    <div class="" style="width:1194px; margin:0 auto; height:481px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0005.jpg) no-repeat;">
+    	<a href="http://zhenhaolin.com/Product/Detail/8955" style="width:1194px;height:481px; display:block;"></a>
+    </div>
+    <div class="" style="width:1194px; margin:0 auto; height:1749px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0006.jpg) no-repeat;">
+    	<ul class="UL_TWO">
+        	<li style="padding:17px 0 0 2px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/6911"></a>
+            </li>
+            <li style="padding:17px 0 0 23px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/10903"></a>
+            </li>
+            <li style="padding:20px 0 0 2px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9821"></a>
+            </li>
+            <li style="padding:20px 0 0 23px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9822"></a>
+            </li>
+            <li style="padding:20px 0 0 2px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9871"></a>
+            </li>
+            <li style="padding:20px 0 0 23px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9779"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="" style=" width:1241px; margin:0 auto; height:1706px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0007.jpg) no-repeat;">
+    	<ul class="UL_two">
+        	<li style="padding:113px 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9797"></a>
+            </li>
+            <li style="padding:113px 0 0 0;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155437"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/7790"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1155417"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155079"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9803"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155120"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9794"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155076"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1155096"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="" style="width:1241px; margin:0 auto; height:1707px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0008.jpg) no-repeat;">
+    	<ul class="UL_two">
+        	<li style="padding:113px 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155778"></a>
+            </li>
+            <li style="padding:113px 0 0 0;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155791"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155789"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1157097"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155585"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1155489"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155587"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1155517"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155610"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/7589"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="" style="width:1241px; margin:0 auto; height:1709px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0009.jpg) no-repeat;">
+    	<ul class="UL_two">
+        	<li style="padding:113px 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/8530"></a>
+            </li>
+            <li style="padding:113px 0 0 0;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9254"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/8788"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9408"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1704"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/8537"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155589"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/10897"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9426"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/8533"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="" style="width:1241px; margin:0 auto; height:1705px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0010.jpg) no-repeat;">
+    	<ul class="UL_two">
+        	<li style="padding:113px 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9621"></a>
+            </li>
+            <li style="padding:113px 0 0 0;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9173"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/7802"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1155578"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155573"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9162"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9036"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9168"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/8945"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/11336"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="" style="width:1241px; margin:0 auto;height:1687px; background:url(/Areas/Shop/Themes/M1/Content/ld/lama/images/0011.jpg) no-repeat;">
+    	<ul class="UL_two">
+        	<li style="padding:113px 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155443"></a>
+            </li>
+            <li style="padding:113px 0 0 0;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155433"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155431"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/10981"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9340"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/9417"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/1155235"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/1154309"></a>
+            </li>
+            <li style="padding:0 0 0 35px;">
+            	<a href="http://zhenhaolin.com/Product/Detail/9432"></a>
+            </li>
+            <li>
+            	<a href="http://zhenhaolin.com/Product/Detail/725"></a>
+            </li>
+        </ul>
+     </div>
+</div>

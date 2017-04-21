@@ -1,0 +1,18 @@
+﻿  @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "个人中心-收件箱";
+  }
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/UserCenter/SendSiteMsg.js" type="text/javascript"></script>
+  <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<div class="top"> <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"></div>
+<div class="index_h1">收件箱</div>
+     <div style="margin:20px 20px 20px 20px;float:right;"><a href="@(ViewBag.BasePath)u/SendMessage" class="u-btn">发信息</a> </div>
+<div id="InBoxList">
+  @Html.Action("InboxList","UserCenter","MShop")
+</div>

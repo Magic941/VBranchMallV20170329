@@ -1,0 +1,17 @@
+﻿   @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "个人中心-发件箱";
+   }
+   @using Webdiyer.WebControls.Mvc;
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+           <link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+   <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<div class="top"> <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"></div>
+<div class="index_h1">发件箱</div>
+
+ <div   id="OutBoxList">
+            @{Html.RenderPartial("~/Areas/MShop/Themes/M1/Views/UserCenter/_OutboxList.cshtml", Model);}
+        </div>

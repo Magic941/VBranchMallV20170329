@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+@*商家后台模版*@
+}
+@section head{
+  
+   <link href="/Areas/Supplier/Themes/M1/Content/css/admin.css" rel="stylesheet" type="text/css">
+    @RenderSection("head", false)
+}
+ 
+    @RenderBody()
+ 
+@section foot{
+    @RenderSection("foot", false)
+} 

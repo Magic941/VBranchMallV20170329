@@ -1,0 +1,18 @@
+﻿
+/*投票CSS*/
+*{ margin:0px; padding:0px;}
+body{ font-family:"宋体"; background:url(/Content/themes/base/com/images/v1.jpg);}
+div,dl,dt,dd,p,h1,h2,h3,h4,h5,h6,p,table,input,form,ul,li{ margin:0px; padding:0px;}
+img{ border:0px;}
+ul,li{ list-style-type:none;}
+.main{width:960px; height:auto !important; background:#fff; margin:0 auto; padding-top:60px; padding-bottom:20px;}
+.main_a{width:960px;height:50px;background:url(/Content/themes/base/com/images/v2.jpg) repeat-x;}
+.main_b{width:920px; height:auto !important; padding:30px 20px;}
+.main_b h1{ color:#333; font-size:24px; text-align:center; line-height:28px; font-family:"微软雅黑"; padding-bottom:15px; font-weight:normal;}
+.main_b p{ color:#333; text-align:right; font-size:12px;}
+.main_c{width:920px; height:auto !important; border-bottom:#ddd 1px dashed; padding-top:20px; padding-bottom:15px; overflow:hidden; }
+.main_c h2{ font-size:15px; color:#5e9019; padding-bottom:8px;}
+.main_c ul li{ color:#333; font-size:12px; line-height:24px; float:left; display:block; margin-right:20px;}
+.main_d{width:78px; height:21px; text-align:center; margin:0 auto; margin-top:30px;}
+.main_c ul li input{ vertical-align:middle;}
+.label{vertical-align:middle;margin-left:3px;}

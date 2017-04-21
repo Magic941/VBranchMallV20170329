@@ -1,0 +1,13 @@
+﻿@model List<Maticsoft.Model.Settings.Advertisement>
+@if (Model != null && Model.Count > 0)
+{
+    for (int i = 0; i < Model.Count && i < 3; i++)
+    {
+    <a href="@Model[i].NavigateUrl"
+                                title="@Model[i].AdvertisementName" target="_blank">
+        <img class="fl bb" width="198" height="98" src="@Model[i].FileUrl"
+                                       alt="@Model[i].AdvertisementName" title="@Model[i].AdvertisementName">
+    </a>
+    }
+
+}

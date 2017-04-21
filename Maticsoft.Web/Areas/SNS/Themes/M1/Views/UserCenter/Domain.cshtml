@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@model Maticsoft.Model.Members.UsersExpModel
+@if (null != Model)
+{
+    <input id="hfHomePage" type="hidden" value="@Model.HomePage"  />
+}
+<script type="text/javascript">
+    $(function () {
+        var homepage = $("[id$='hfHomePage']").val();
+        if (homepage) {
+            $("[id$='txtDomain']").attr("disabled", "disabled");
+            $("[id$='txtDomain']").val(homepage); 
+        }
+    });
+
+    function SaveUserDomain() {
+        if ($("[id$='txtDomain']").attr("disabled") == "disabled") {
+            ShowServerBusyTip("保存后就不能修改了！");
+            return false;
+        }
+        var domain = $("[id$='hfHomePage']").val();
+        $.ajax({
+            url: $Maticsoft.BasePath + "UserCenter/UpdateUserDomain",
+            type: 'post', dataType: 'json', timeout: 10000,
+            data: { Action: "post", Domain: domain },
+            success: function (JsonData) {
+                switch (JsonData.STATUS) {
+                    case "SUCC":
+                        ShowSuccessTip("修改成功！");
+                        break;
+                    case "FAIL":
+                        ShowFailTip("修改失败！");
+                        break;
+                    default:
+                        break;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                ShowServerBusyTip("服务器繁忙，请稍候再试！");
+            }
+
+        });
+    }
+
+</script>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            个人域名</p>
+    </h1>
+    <div class="amend">
+        <div class="domain_a">
+            记得自己的@(ViewBag.SiteName)地址是什么吗？设置个性域名，让朋友更容易记住！</div>
+        <div class="domain_b">
+            <p class="domain_b1">
+                设置个性化域名</p>
+            <p class="domain_b2">
+                http://@(Request.Url.Authority)/
+                <input name="txtDomain" id="txtDomain" type="text" />
+            </p>
+        </div>
+        <div class="domain_c">
+            <p class="domain_c1">
+                <a href="javascript:void(0);" title="保存" onclick="SaveUserDomain();">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/domain_1.jpg" /></a></p>
+            <p class="domain_c2">
+                保存后就不能修改了。</p>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>

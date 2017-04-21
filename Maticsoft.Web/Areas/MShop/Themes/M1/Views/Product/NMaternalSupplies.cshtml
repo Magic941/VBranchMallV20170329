@@ -1,0 +1,374 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "母婴用品";
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+<style>
+    .Wechat_baf a img {
+        height: 165px;
+    }
+
+    .Popularity {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+        .Popularity a, .Popularity a img {
+            width: 100%;
+        }
+
+    .bag_classify {
+        width: 95%;
+        margin: 0 auto;
+        padding: 5px 0 8px 0;
+    }
+
+        .bag_classify dl {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .bag_classify dt {
+            width: 4rem;
+            height: 2rem;
+            line-height: 2rem;
+            float: left;
+            background: #d91047;
+            text-align: center;
+            color: #fff;
+        }
+
+        .bag_classify dd {
+            float: right;
+            margin: 0;
+        }
+
+            .bag_classify dd a {
+                height: 2rem;
+                line-height: 2rem;
+                border: 1px solid #d1d1d1;
+                display: inline-block;
+                *display: inline;
+                zoom: 1;
+                text-align: center;
+                padding: 0 8px;
+                margin-bottom: 10px;
+            }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="background: #fff">
+    <div class="boutique_cn">
+        <a href="javascript:void(0)">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/011.png" />
+        </a>
+    </div>
+    <div class="bag_classify">
+         <div class="bag_classify">
+            <dl class="bag_classifyfore">
+                <dd style="width: 100%">
+                    <a href="@(ViewBag.BasePath)h/190"  target="_blank">尿布/湿巾</a>
+                    <a href="@(ViewBag.BasePath)h/192"  target="_blank">营养辅食</a>
+                    <a href="@(ViewBag.BasePath)h/194"  target="_blank">喂养用品</a>
+                    <a href="@(ViewBag.BasePath)h/191"  target="_blank">奶粉</a>
+                </dd>
+            </dl>
+            <dl>
+                <dd style="width: 100%">
+                    <a href="@(ViewBag.BasePath)h/195"  target="_blank">孕妈专区</a>
+                    <a href="@(ViewBag.BasePath)h/196"  target="_blank">幼儿服饰</a>
+                    <a href="@(ViewBag.BasePath)h/198"  target="_blank">儿童玩具</a>
+                    @*<a href="@(ViewBag.BasePath)"  target="_blank">商务包</a>
+                    <a href="@(ViewBag.BasePath)"  target="_blank">单肩/斜挎包</a>*@
+                </dd>
+            </dl>
+        </div>   
+    </div>
+
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/012.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156686/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/baby01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156686/0/0">纯棉新生儿婴儿宝宝有机彩棉衣服内衣礼盒套装</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156776/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/baby02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156776/0/0">爱得利 A111宽口实感高硼硅玻璃奶瓶150+260ml</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 63.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10897/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/baby03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10897/0/0">日本原装尤尼佳日版妈咪宝贝moony纸尿裤男XL38（1*4）</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 129.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10884/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/baby04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10884/0/0">迪米熊 一段DHA益生元配方米粉</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 78.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/013.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155121/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155121/0/0">银珊瑚 双层SHF006 防辐射孕妇装，防辐射马甲+银纤维肚兜</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 249.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156520/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156520/0/0">最新韩版孕妇气质连衣裙束领衬衫裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 65.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156518/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156518/0/0">明星款 孕妇装孕妇衬衫 欧美风 孕妇职业装 上衣 雪纺衬衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 65.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156538/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156538/0/0">最新韩版孕妇装 孕妇裙 夏款加长孕妇裙8862</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 65.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156555/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156555/0/0">孕妇打底裤春秋孕妇春装春夏孕妇装纯棉托腹孕妇裤孕妇打底裤</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 69.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156545/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156545/0/0">最新韩版孕妇打底衫玫瑰印花孕妇打底衫拉链款</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 49.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156340/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156340/0/0">韩版新款夏装孕妇裙 孕妇连衣裙棉麻孕妇裙 大码民族风裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 75.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156335/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/ym08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156335/0/0">春装新款韩国时尚孕妇装大码胖MM宽松荷叶边俏女郎卫衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 66.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/014.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155420/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155420/0/0">呵宝 童车高景观 5点式安全带双向推车 铝合金 适龄0-36个月 坐趟一体式 双向推行</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 1666.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/11263/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/11263/0/0">medela美德乐 SNS辅助哺乳系统</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 279.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10903/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10903/0/0">金宝仕乳钙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 110.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12072/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12072/0/0">迪米熊 三段大骨高钙配方米粉</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 78.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10885/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10885/0/0">迪米熊 二段核桃菠菜配方米粉</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 78.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156891/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156891/0/0">婴侍卫婴儿摇铃系列欢乐摇铃九件套C126</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 69.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156887/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156887/0/0">婴侍卫电动玩具系列卡通音乐滚轮车（音乐/闪光/万向）C132</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 49.00</em>
+                </div>
+
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/9420/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/9420/0/0">雀氏柔薄乐动婴儿纸尿裤XL36片</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 85.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/8786/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/8786/0/0">安儿乐超能吸棉柔干爽婴儿纸尿裤48片中码*2包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 146.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157056/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/maternal/yc10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157056/0/0">贝贝利安BA5629精棉可拆胆多用抱被</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 169.00</em>
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</div>

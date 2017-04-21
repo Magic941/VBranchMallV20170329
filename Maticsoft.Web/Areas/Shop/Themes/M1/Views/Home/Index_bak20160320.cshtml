@@ -1,0 +1,152 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+
+    <link href="/Areas/Shop/Themes/M1/Content/Css/main-catg.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/revision.css" rel="stylesheet" />
+
+}
+<style>
+    * {
+        padding:0;
+        margin:0;
+    }
+.Poster_page{
+	height:620px;
+	position:relative;
+	background:url(/Areas/Shop/Themes/M1/Content/images/hb.jpg) center top no-repeat;
+	}
+.Poster_page1{
+	height:53px;
+	width:232px;
+	position:absolute;
+	bottom:30px;
+	left:27%;
+	}
+.Poster_page1 a{
+	text-align:center;
+	height:53px;
+	line-height:53px;
+	font-family:"微软雅黑";
+	font-size:28px;
+	color:#fcf011;
+	display:block;
+	border:2px solid #fcf011;
+	border-radius:30px;
+	}
+.Poster_page2{
+	position:absolute;
+	top:0;
+	right:10%;
+	}
+.Poster_page2 a{
+	width:30px;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	color:#aa3c7e;
+	background:#7f1d58;
+	display:block;
+	font-family:"微软雅黑";
+	font-size:28px;
+	}
+
+.tog_contact{height:620px; width:100%;position:absolute;z-index:10000;display:none;}
+.t_con_box{margin:0 auto;height:620px;position:relative;}
+</style>
+<script type="text/javascript">
+    $(function () {
+
+        $(".divOpenAct").click(function () {
+            var tip = $(this).children().text();
+            if (tip == "展开") {
+                $(this).children().text("收起");
+            } else {
+                $(this).children().text("展开");
+            }
+            $(".divContent").toggle();
+        });
+
+        //$("body").prepend("<div class='tog_contact'><div class='t_con_box'><div class='Poster_page'><div class='Poster_page1'><a href='/ld/weixin.html' target='_blank'>查看详情</a></div></div></div></div>");
+        //$('.tog_contact').slideDown(1500);
+        //setTimeout(function () {
+        //    $('.tog_contact').slideUp(1500);
+        //}, 10000);
+    })
+</script>
+@*顶部广告条*@
+@Html.Action("TopAD")
+
+
+@*顶部大图片展示区*@
+@Html.Action("MainMsg")
+<div class="main_cont" id="main_cont">
+    <div class="wrapper">
+         @*进口商品*@
+        @Html.Action("ActiveTitle", new { viewName = "_jinkou" } )
+        <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/dh.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/1fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+        @*一楼*@
+        @Html.Action("Floor1")
+        <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/dh.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/1fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+        @*二楼*@
+        @Html.Action("Floor2")
+        <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/xdx.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/2fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+          @*三楼*@
+        @Html.Action("Floor3")
+           <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/zb.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/3fa.jpg" width="1200" height="60" /></a>
+            </div>
+           </div>
+         @*四楼楼*@
+        @Html.Action("Floor4")
+        <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/kh.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/4fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+        @*五楼*@
+        @Html.Action("Floor5")
+        <div class="BT-af">
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/3c.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/5fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+        @*六楼*@
+        @Html.Action("Floor6")      
+        <div class="BT-af">
+            
+            <div class="wrapper">
+                <a href="http://www.zhenhaolin.com/ld/nh.html" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/index/6fa.jpg" width="1200" height="60" /></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.min.js"></script>*@
+@*<script src="/Areas/Shop/Themes/M1/Content/Scripts/topmenu.js"></script>*@
+@*<script>
+    lazyload("main_cont");
+</script>*@
+

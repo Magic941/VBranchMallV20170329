@@ -1,0 +1,147 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+    bool chkNoMsg = Maticsoft.Common.Globals.SafeBool(ViewBag.ChkNoMsg, false);
+    bool chkSubscribe = Maticsoft.Common.Globals.SafeBool(ViewBag.ChkSubscribe, false);
+    string WCAppId = ViewBag.WCAppId;
+    string WCOriId = ViewBag.WCOriId;
+    string WCAppSercet = ViewBag.WCAppSercet;
+    string WCEmail = ViewBag.WCEmail;
+}
+<script src="/Scripts/zclip/jquery.zclip.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".btncopy").zclip({
+            path: '/Scripts/zclip/ZeroClipboard.swf',
+            copy: $(this).prev().text(),
+            beforeCopy: function () {
+            },
+            afterCopy: function () {
+                $(this).css('color', 'purple');
+                $(this).next('.check').show();
+            }
+        });
+
+    })
+</script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            微信开放接口设置
+        </h3>
+        <small class="desc">设置微信的开放接口信息，实现更多的扩展功能。 </small>
+    </div>
+    @using (Html.BeginForm())
+    {
+        <table style="width: 100%; padding-top: 10px" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <div class="newsadd_title" id="div1">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang"
+                            style="margin-bottom: 20px">
+                            <tr>
+                                <td bgcolor="#FFFFFF" class="newstitle" colspan="2">
+                                    <span class="newstitle">邮件通知</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td height="35" bgcolor="#FFFFFF" class="newstitlebody">
+                                    @Html.CheckBox("ChkNoMsg", chkNoMsg) 系统默认消息邮件
+                                    @Html.CheckBox("ChkSubscribe", chkSubscribe) 用户关注消息邮件
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    接收邮件邮箱
+                                </td>
+                                <td>
+                                    @Html.TextBox("WCEmail", WCEmail, new { style = "width:400px;height:32px" })
+                                    该邮箱用来接收默认消息邮件和用户关注消息邮件通知
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang"
+                            style="margin-bottom: 20px">
+                            <tr>
+                                <td bgcolor="#FFFFFF" class="newstitle" colspan="2">
+                                    <span class="newstitle">公众帐号接口设置</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    原始ID：
+                                </td>
+                                <td>
+                                    @Html.TextBox("WCOriId", WCOriId, new { style = "width:400px;height:32px" })
+                                    请输入自己的微信帐号的原始ID&nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    AppId：
+                                </td>
+                                <td>
+                                    @Html.TextBox("WCAppId", WCAppId, new { style = "width:400px;height:32px" })
+                                    请输入自己申请的微信AppId&nbsp;&nbsp;<a href="https://mp.weixin.qq.com/cgi-bin/loginpage?t=wxm2-login&lang=zh_CN?s=maticsoft"
+                                        target="_blank" style="color: Blue"> 点击申请</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    AppSercet：
+                                </td>
+                                <td>
+                                    @Html.TextBox("WCAppSercet", WCAppSercet, new { style = "width:400px;height:32px" })
+                                    请输入自己申请的微信AppSercet
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    接口URL：
+                                </td>
+                                <td>
+                                    <div style="width: 405px; height: 32px; font-size: 14px; float: left; color: #06C">
+                                        @ViewBag.WeChatUrl</div>
+                                    <img class="btncopy" src="/images/copy.png" style="cursor: pointer; display: none"
+                                        title="复制此值" />
+                                    <span style="color: grey">请将此值填写到微信公众平台接口配置URL文本框中 </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    接口Token：
+                                </td>
+                                <td>
+                                    <div style="width: 405px; height: 32px; font-size: 14px; float: left; color: #06C">
+                                        @ViewBag.WCToken</div>
+                                    <img class="btncopy" src="/Images/copy.png" style="cursor: pointer; display: none"
+                                        title="复制此值" />
+                                    <span style="color: grey">请将此值填写到微信公众平台接口配置Token文本框中 </span>
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 20px">
+                            <tr>
+                                <td class="tdbg">
+                                    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                                        <tr>
+                                            <td class="td_class">
+                                            </td>
+                                            <td height="25">
+                                                <div class="form stdform">
+                                                    <input id="btnSave" type="submit" value="保存" class="adminsubmit_short" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+</div>

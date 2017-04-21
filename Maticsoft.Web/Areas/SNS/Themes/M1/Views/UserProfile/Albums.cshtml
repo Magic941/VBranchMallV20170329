@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Maticsoft.ViewModel.SNS.AlbumIndex>
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserProfileLayOut.cshtml";
+}
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowAlbum.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/CreateAblum.js" type="text/javascript"></script>
+@if (ViewBag.IsCurrentUser)
+{
+
+    <div class="dong" style="width: 900px">
+        <ul>
+            <li><a href="@(ViewBag.BasePath)Profile/Albums" @(ViewBag.IsFav == true ? "class=dong2" : "class=dong3")>我的专辑</a></li>
+            <li><a href="@(ViewBag.BasePath)Profile/Albums?IsFav=true"@(ViewBag.IsFav == true ? "class=dong3" : "class=dong2")>我收藏的</a></li>
+        </ul>
+        <span class="creat2" id="createAlbum"><a class="M_btn_c" href="javascript:;" action-type="album_add">创建专辑</a></span>
+    </div>
+}
+@foreach (var item in Model)
+{
+    <!--专辑-->   
+    <div class="main_album_bl_f" style="margin-right: 10px;">
+        <h1>
+            <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">@Maticsoft.Common.StringPlus.SubString(item.AlbumName,11,"..")</a><span class="nub"> (@item.PhotoCount)</span></h1>
+        <ul style="height: 210px">
+            @for (int n = 0; n < @item.TopImages.Count; n++)
+            {
+                <li style="margin-right: 4px; margin-bottom: 4px"><a target="_blank" href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">
+                    <img src="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.TopImages[n], "T60x60_"))" style="width:62px; height:62px"/></a></li>
+            }
+        </ul>
+        <div class="clear">
+        </div>
+        <div class="inside">
+            @if (ViewBag.IsFav == true)
+            {
+
+                <div class="album_anniu">
+                    <a href="javascript:;" class="FellowAlbum"  style="display:none" AlbumId=@item.AlbumID  autotest="false">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowAlbum"  AlbumId=@item.AlbumID  >
+                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                </div>
+        
+            }
+            else if (ViewBag.IsCurrentUser)
+            {
+                <a class="btn albumbtn" href="@(ViewBag.BasePath)Profile/AlbumEdit/@item.AlbumID"  target="_blank">设 置</a>
+            }
+            else
+            {
+                <div class="album_anniu">
+                    <a href="javascript:;" class="FellowAlbum"  AlbumId=@item.AlbumID>
+                        <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowAlbum"  style="display:none" AlbumId=@item.AlbumID  >
+                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                </div>
+            }
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <!--专辑end-->
+}

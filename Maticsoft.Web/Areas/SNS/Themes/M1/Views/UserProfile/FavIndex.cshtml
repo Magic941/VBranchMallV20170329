@@ -1,0 +1,13 @@
+﻿@using Maticsoft.ViewModel.SNS
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.PhotoList
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserProfileLayOut.cshtml";
+}
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+ <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+@{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/UserProfile/FavList.cshtml", Model);}
+ @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")

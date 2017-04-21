@@ -1,0 +1,52 @@
+﻿@model Maticsoft.ViewModel.Shop.PayAndShip
+<a name="payAndShipFocus"></a>
+<div class="step-title">
+    <div id="save-consignee-tip" class="step-right">
+    </div>
+    <strong>支付及配送方式</strong> <span class="step-action" id="payment-ship_edit_action"><a href="#none" onclick="Edit_Payment(this, false)">[修改]</a></span>
+</div>
+<div class="step-content">
+    <div id="payment-ship" class="sbox-wrap" style="position: relative;">
+        <div class="sbox">
+            <div class="s-content payment-info">
+                @if (Model.CurrentPaymentMode != null)
+                {
+                    <div class="payment-selected">
+                        @Model.CurrentPaymentMode.Name <span class="easyPayWarning"></span>
+                    </div>
+                    <input type="hidden" id="PaymentModeId" value="@Model.CurrentPaymentMode.ModeId" />
+                }
+                @if (Model.CurrentShippingType != null)
+                {
+                    <div class="way-list">
+                        <div class="way-item">
+                            @Model.CurrentShippingType.Name @*&nbsp;&nbsp;中小件商品&nbsp;&nbsp;<font color="#FF6600;">工作日、双休日与假日均可送货</font> <span id="promise_jd_message">&nbsp;&nbsp;<font color="red">6月19日（周三）9:00-15:00</font></span>*@
+                        </div>
+                    </div>
+                    <input type="hidden" id="ShippingTypeId" value="@Model.CurrentShippingType.ModeId" />
+                }
+@*<input type="hidden" id="orderPricePayAndShip" value="">
+                <input type="hidden" id="canReplacement" value="" />
+                <input type="hidden" id="useReplacement" value="" />
+                <input type="hidden" id="replacementDiscount" value="" />
+                <div class="hide">
+                    <input id="hidden_pay_couponDiscount" hidden="" type="text" value="0.00" />
+                    <input id="hidden_pay_gift" hidden="" type="text" value="0.00" />
+                    <input id="hidden_pay_periodFee" hidden="" type="text" value="0.00" />
+                    <input id="hidden_payPrice" hidden="" type="text" value="524.00" />
+                    <input id="hidden_pay_leaveBalance" hidden="" type="text" value="0.00" />
+                    <input id="hidden_pay_usedBalance" hidden="" type="text" value="0.00" />
+                    <input id="hidden_pay_freight" hidden="" type="text" value="0.00" />
+                </div>*@
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#freightPriceId').text('￥@(ViewBag.Freight.ToString("F"))');
+        var totalprice = (parseFloat($('#payPriceId').attr('BasePrice')) + @(ViewBag.Freight)).toFixed(2);
+        $('#payPriceId').text('￥' + totalprice);
+        $("#payPriceId").attr("TotalPrice", totalprice);
+    });
+</script>

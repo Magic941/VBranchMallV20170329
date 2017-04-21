@@ -1,0 +1,124 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--新闻资讯-->
+<div class="xinwen">
+    <div class="news w1200 c m">
+        <div class="jiankang_top">
+            <h3>新闻资讯</h3>
+            <p><span>NEWS INFORMATION</span><font></font></p>
+        </div>
+        <div class="news_list">
+
+            @if (Model != null && Model.Count > 0)
+            {
+                <div class="news_left">
+                        @{                
+                for (int i = 1; i <= Model.Count&&i<=3; i++)
+                {
+                    var item = Model[i - 1];
+                    <div class="news_one">
+                        <div class="news_a">
+                            <p>
+                                <font>@item.CreatedDate.Day</font>
+                                <br />
+                                <span>@item.CreatedDate.Year.@item.CreatedDate.Month</span>
+                            </p>
+                        </div>
+                        <div class="news_b">
+                            <a href="Article/Details/@item.ContentID">
+                                <img src="@string.Format(@item.ThumbImageUrl, "T235x1280_")" /></a>
+                        </div>
+                        <div class="news_c">
+                            <h3><a href="Article/Details/@item.ContentID">@item.Title.Substring(0, 16) </a></h3>
+                            <p>@item.Summary</p>
+                        </div>
+                    </div>
+                }
+                var lastItem = Model.Last();    
+              
+              }
+                </div>
+                <div class="news_right">
+                    <div class="news_two">
+                        <h3><a href="#">@lastItem.Title</a></h3>
+                        <h4>@lastItem.CreatedDate.ToString("yyyy.MM.dd")</h4>
+                        <h5><a href="#">
+                            <img src="@string.Format(@lastItem.ThumbImageUrl, "T235x1280_")" /></a></h5>
+                         <p>@lastItem.Summary</p>
+                    </div>
+                </div>
+                  
+            }
+            else
+            {
+
+                <div class="news_left">
+                    <div class="news_one">
+                        <div class="news_a">
+                            <p>
+                                <font>12</font>
+                                <br />
+                                <span>2016.03</span>
+                            </p>
+                        </div>
+                        <div class="news_b">
+                            <a href="#">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_09.jpg" /></a>
+                        </div>
+                        <div class="news_c">
+                            <h3><a href="#">国务院正式发文：城乡医保合二为一！</a></h3>
+                            <p>整合城镇居民基本医疗保险（以下简称城镇居民医保）和新型农村合作医疗（以下简称新农合）两项制度，建立统一的城乡居民基本医疗保险（以下简称城乡居民医保）制度，是推进医药卫生体制改革、实现城乡居民公平享有基本医疗保险权益、促进社会公平正义、增进人民福祉的重大举措，对促进城乡经济社会协调发展、全面建成小康社会具有重要意义。在总结城镇居民医保和新农合运行情况以及地方探索实践经验的基础上，现就整合建立城乡居民医保制度提出如下意见。</p>
+                        </div>
+                    </div>
+                    <div class="news_one">
+                        <div class="news_a">
+                            <p>
+                                <font>12</font>
+                                <br />
+                                <span>2016.03</span>
+                            </p>
+                        </div>
+                        <div class="news_b">
+                            <a href="#">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_09.jpg" /></a>
+                        </div>
+                        <div class="news_c">
+                            <h3><a href="#">国务院正式发文：城乡医保合二为一！</a></h3>
+                            <p>整合城镇居民基本医疗保险（以下简称城镇居民医保）和新型农村合作医疗（以下简称新农合）两项制度，建立统一的城乡居民基本医疗保险（以下简称城乡居民医保）制度，是推进医药卫生体制改革、实现城乡居民公平享有基本医疗保险权益、促进社会公平正义、增进人民福祉的重大举措，对促进城乡经济社会协调发展、全面建成小康社会具有重要意义。在总结城镇居民医保和新农合运行情况以及地方探索实践经验的基础上，现就整合建立城乡居民医保制度提出如下意见。</p>
+                        </div>
+                    </div>
+                    <div class="news_one">
+                        <div class="news_a">
+                            <p>
+                                <font>12</font>
+                                <br />
+                                <span>2016.03</span>
+                            </p>
+                        </div>
+                        <div class="news_b">
+                            <a href="#">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_09.jpg" /></a>
+                        </div>
+                        <div class="news_c">
+                            <h3><a href="#">国务院正式发文：城乡医保合二为一！</a></h3>
+                            <p>整合城镇居民基本医疗保险（以下简称城镇居民医保）和新型农村合作医疗（以下简称新农合）两项制度，建立统一的城乡居民基本医疗保险（以下简称城乡居民医保）制度，是推进医药卫生体制改革、实现城乡居民公平享有基本医疗保险权益、促进社会公平正义、增进人民福祉的重大举措，对促进城乡经济社会协调发展、全面建成小康社会具有重要意义。在总结城镇居民医保和新农合运行情况以及地方探索实践经验的基础上，现就整合建立城乡居民医保制度提出如下意见。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="news_right">
+                    <div class="news_two">
+                        <h3><a href="#">改善中国卒中防治现状要从基层医院做起</a></h3>
+                        <h4>2016.03.30</h4>
+                        <h5><a href="#">
+                            <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_10.jpg" /></a></h5>
+                        <p>整合城镇居民基本医疗保险（以下简称城镇居民医保）和新型农村合作医疗（以下简称新农合）两项制度，建立统一的城乡居民基本医疗保险（以下简称城乡居民医保）制度，是推进医药卫生体制改</p>
+                    </div>
+                </div>
+      
+    
+            }
+        </div>
+        <div class="jiankang_bom c m">
+            <a href="/Article/ArticleList?classid=43&viewName=JKNewsList">MORE</a>
+        </div>
+    </div>
+</div>

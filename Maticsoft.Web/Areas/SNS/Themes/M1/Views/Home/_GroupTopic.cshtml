@@ -1,0 +1,14 @@
+﻿@model List<Maticsoft.Model.SNS.GroupTopics>
+  @if (Model != null && Model.Count > 0)
+  {
+      <div class="cg_bbsshow">
+          <ul>
+              @foreach (var item in Model)
+              {
+                   <li><a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID" title="@item.Title" target="_blank"><em>[话题]</em>@Maticsoft.Common.StringPlus.SubString(item.Title,14,"...") </a>
+              </li>
+              }
+          </ul>
+                    </div>
+  }
+

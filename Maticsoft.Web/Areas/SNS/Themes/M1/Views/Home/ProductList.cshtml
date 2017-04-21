@@ -1,0 +1,24 @@
+﻿@model List<Maticsoft.Model.SNS.Products>
+        <div class="cate_list">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <dl class="cate_list_cad">
+                        <dt class="CategoryDetailPart juzhong">
+                            <dl class="juzhong_i">
+                                <a class="pic_load" target="_blank" href="@item.StaticUrl">
+                                    <img  ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@item.ShareDescription" /></a></dl>
+                        </dt>
+                        <dl class="cate_list_cad_Y">
+                            <dt class="cate_list_cad_YA"></dt>
+                            <dt class="cate_list_cad_YB"><a  target="_blank" href="@item.StaticUrl">@(item.ProductName.Length < 10 ?
+                            item.ProductName : item.ProductName.Substring(0, 9))</a></dt>
+                        </dl>
+                    </dl>
+                }
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>

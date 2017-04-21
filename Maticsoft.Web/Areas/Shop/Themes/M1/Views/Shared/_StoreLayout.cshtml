@@ -1,0 +1,38 @@
+﻿ @{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+@*店铺模版*@
+ }
+ @section head{
+   <link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/storestyle.css" type="text/css" />
+     <script src="/Scripts/jquery-1.8.3.min.js"></script>
+    @RenderSection("head", false)
+ }
+<div id="hd">
+    
+    @Html.Action("Header", "Partial", new { area = "Shop" })
+
+    @Html.Action("Search", "Partial", new { area = "Shop" })
+   
+    @Html.Action("Navigation", "Partial", new { area = "Shop" })
+
+</div>
+
+<script type="text/javascript">
+    var sid = '@ViewContext.RouteData.Values["suppId"].ToString()';
+    $(function () {
+        $.post("/Store/GetStoreInfo", { suppId: sid }, function (data) {
+            if (data["BGType"] == true)
+                $("#main").css("background-color", data["Background"]);
+            else
+                $("#main").css("background-image", "url('/Partial/SuppLogo?id=" + sid + "&size=T200X600')");
+        });
+    });
+</script>
+<div id="main">
+@Html.Action("Header", "Store", new { area = "Shop" })
+@RenderBody()
+    </div>
+@Html.Action("Footer", "Partial", new { area = "Shop" })
+@section foot{
+    @RenderSection("foot", false)
+}

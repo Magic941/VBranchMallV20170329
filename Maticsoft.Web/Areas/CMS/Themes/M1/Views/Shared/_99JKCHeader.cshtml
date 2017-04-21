@@ -1,0 +1,29 @@
+﻿<!--网站公共头部-->
+@{
+    
+    Maticsoft.BLL.SysManage.WebSiteSet WebSiteSetShop = new Maticsoft.BLL.SysManage.WebSiteSet(Maticsoft.Model.SysManage.ApplicationKeyType.Shop);
+    var Logo = WebSiteSetShop.LogoPath;
+    var WebName = WebSiteSetShop.WebName;
+    
+  }
+<div class="topbar" style="clear:both;line-height:60px">
+    <div class=" wrapper">
+        <div class="logo"><a href="/" title="@WebName"> <img src="@Logo" /></a></div>       
+
+        <ul class="nav">
+            <li><strong><a href="/" title="" target="_self"><span class="glyphicon glyphicon-home"></span>&nbsp;&nbsp;网站首页</a></strong></li>
+            <li><strong><a href="/Article/ArticleList?classid=43&viewName=JKNewsList" title="" target="_blank"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;健康新闻</a></strong></li>
+            <li><strong><a href="/Article/ArticleList?classid=42&viewName=JKZhiShiList" title="" target="_blank"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;健康知识</a></strong></li>
+            @*<li><strong><a href="/Shop/" title="" target="_self"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;健康商城</a></strong></li>*@
+           
+            <li><strong><a href="/Article/ArticleList?classid=44&viewName=BXZiXunList" title="" target="_blank"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;保险资讯</a></strong></li>
+            <li><strong><a href="/About/Index" title="" target="_self"><span class="glyphicon glyphicon-book"></span>&nbsp;&nbsp;加盟合作</a></strong>
+               
+            </li>
+        </ul>
+        <div class="action">
+            <a href="/CardActivate/Index" class="n1" target="_blank" title="兑换中心">激活中心</a>
+        </div>
+    </div>
+</div>
+<!--网站公共头部-->

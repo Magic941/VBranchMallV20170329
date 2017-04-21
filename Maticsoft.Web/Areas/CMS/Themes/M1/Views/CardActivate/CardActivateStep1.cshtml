@@ -1,0 +1,80 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKCardActivateBaseLayout.cshtml";
+}
+
+@model Maticsoft.Model.Shop_CardType
+<div class="position">您所在的位置：<a href="/">主页</a> &gt; <a href="/">账号激活</a> &gt; <a href="/">激活步骤</a></div>
+<div class="body">
+    <div class="fuwu">
+        <div class="buzhou2">
+        </div>
+        <div class="fuwu2">
+            @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName1))
+            {
+                <a href="@Model.InsurantClauseFileName1" target="_blank" title="点击下载查看">
+                    <div class="fuwu3 fuwuactive mr30">@Model.InsurantClauseFileName1.Substring(@Model.InsurantClauseFileName1.LastIndexOf('/'))</div>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName2))
+            {
+                <a href="@Model.InsurantClauseFileName2" target="_blank" title="点击下载查看">
+                    <div class="fuwu4">@Model.InsurantClauseFileName2.Substring(@Model.InsurantClauseFileName2.LastIndexOf('/'))</div>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName3))
+            {
+                <a href="@Model.InsurantClauseFileName3" target="_blank" title="点击下载查看">
+                    <div class="fuwu5 mr30">
+                        @Model.InsurantClauseFileName3.Substring(@Model.InsurantClauseFileName3.LastIndexOf('/'))
+                    </div>
+                </a>
+            }
+            @if (!string.IsNullOrEmpty(Model.InsurantClauseFileName4))
+            {
+                <a href="@Model.InsurantClauseFileName4" target="_blank" title="点击下载查看">
+                    <div class="fuwu6">@Model.InsurantClauseFileName4.Substring(@Model.InsurantClauseFileName4.LastIndexOf('/'))</div>
+                </a>
+            }
+            <div class="clear"></div>
+
+        </div>
+        <div class="fuwu">
+            <div class="frm_control_group frm_ctrl_group_tit" style="padding-left: 10px">
+                <h2>激活协议</h2>
+            </div>
+            <div style="width: 930px; height: 500px; margin-bottom: 20px; padding: 14px; box-shadow: none!important; border: 1px solid #AAA; resize: none; background: #FCFCFC; overflow: scroll; overflow-x: hidden;">@Html.Raw(Model.Agreement)</div>
+            @if (string.IsNullOrEmpty(Model.ActivatePrompt))
+            {
+            
+                <div>Model.ActivatePrompt </div>
+            }
+            else
+            {
+                <div>同意协议才能进入下一步</div>
+            }
+            <div class="frm_control_group">
+                <input type="checkbox" name="" id="chkAgreement" /><label style="margin-left: 10px">同意协议</label>
+            </div>
+        </div>
+        <div class="button buttondisable"><a href="javascript:void(0)" onclick="javascript:next();">提交进入下一步</a></div>
+    </div>
+</div>
+
+<script>
+    var cardtypenum = parseInt('@Model.CardTypeNum');
+    function next() {
+        if (!$("#chkAgreement").attr("checked")) {
+            alert("同意激协议才能进入下一步");
+            return;
+        }
+        else {
+            if(cardtypenum==1)
+                window.location.href = "/CardActivate/CardActivateStep2";
+            else
+                window.location.href = "/CardActivate/CardActivateStep21";
+        }
+    }
+
+    //当前样式
+    $("#liStep1").addClass("on");
+</script>

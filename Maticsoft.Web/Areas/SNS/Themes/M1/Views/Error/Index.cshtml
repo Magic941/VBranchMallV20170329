@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+
+<div class="clear"></div>
+<div class="error">
+  <div class="error_r"></div>
+  <div class="error_w">
+     <p class="error_w_a">HI! 逛进死胡同啦，迷路了么？</p>
+     <p class="error_w_b">我们会重新带你回到之前的浏览的页面，您还可以：</p>
+     <p class="error_w_b">1.<a href="@ViewBag.BasePath">返回首页</a>;</p>
+     <p class="error_w_b">2.去其他的地方逛逛：<a href="@(ViewBag.BasePath)ShareGoods">晒货</a>、<a href="@(ViewBag.BasePath)Star/Pioneer">达人</a>、<a href="@(ViewBag.BasePath)Group">小组</a>、<a href="@(ViewBag.BasePath)Collocation">搭配</a>、<a href="@(ViewBag.BasePath)Album">专辑</a>.</p>
+  </div>
+</div>
+

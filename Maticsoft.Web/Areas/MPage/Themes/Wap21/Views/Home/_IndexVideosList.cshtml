@@ -1,0 +1,18 @@
+﻿@model  List<Maticsoft.Model.CMS.Video>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+      <a onclick="pageload('Videos','videoDetail@(item.VideoID)','@item.Title','VideoDetail', 'VideoDetail','-1','-1','-1',-1,@item.VideoID)" title="@item.Title" class="ui-link">
+                            <div class="img" style="background-image: url(@("/Admin/CMS/Video/Upload"+item.ImageUrl));">
+                                <img src="@("/Admin/CMS/Video/Upload" + item.ImageUrl)">
+                            </div>
+                            <div class="title">
+                                <h3>@item.Title</h3>
+                                <time pubdate="pubdate" datetime="@item.CreatedDate.ToString("yyyy-MM-dd")"> 发布时间 @item.CreatedDate.ToString("yyyy-MM-dd")</time>
+                            </div>
+                        </a>
+    }
+  
+}
+  

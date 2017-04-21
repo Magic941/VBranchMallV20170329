@@ -1,0 +1,167 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Shop.ProductModel
+<link href="/Scripts/PhotoSwipe/photoswipe.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/PhotoSwipe/klass.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Areas/MShop/Themes/M1/Content/Css/productdetail.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/productdetail.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/SKU.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/timeCountDown.js" type="text/javascript"></script>
+<script src="/Scripts/PhotoSwipe/photoswipe.jquery.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function() {
+        var myPhotoSwipe = $(".view-photo a").photoSwipe({
+           enableMouseWheel: true, 
+           enableKeyboard: true,
+					autoStartSlideshow:true,
+            captionAndToolbarOpacity:1
+        });
+    })
+</script>
+  @Html.Action("HeadDoor", "Partial", new { ViewName = "_HeadDoor" })
+<div class="top">
+    <a href="javascript:;" onclick="history.go(-1)"><span>&lt;返回</span></a>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@if (Model != null)
+{
+    <div id="iteminfo" data-role="page" data-add-back-btn="true">
+       <input id="hfProSaleId" type="hidden" value="@Model.ProductInfo.CountDownId" />
+        <div class="productshow_title">
+            @Model.ProductInfo.ProductName</div>
+        <div class="view-photo tc">
+            @* <a href="javascript:void(0)" id="i_pre" class="btn-prev">上一个</a> *@
+          <li class="mid-img" id="div_img"><a href="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T300X390_")"  rel="external" >
+                                                 <img  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T175X228_")"  alt="@Model.ProductInfo.ProductName" />
+                                             </a>
+                <br />
+            </li>
+            @if (Model != null && Model.ProductImages != null)
+            {
+                foreach (ProductImage productImage in Model.ProductImages)
+                {
+                    <li class="mid-img" style="display: none"><a href="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T300X390_")" rel="external" >
+                                                                  <img  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T175X228_")"   alt="@Model.ProductInfo.ProductName" />
+                                                              </a></li>
+                }
+            }
+        </div>
+        @*     <a id="i_next" href="javascript:void(0)" class="btn-next">下一个</a>*@
+         @Html.Action("StoreLayer", "Partial", new { suppId = Model.ProductInfo.SupplierId })
+        <div class="productshow_jiage">
+            市场价：<span>￥@(Model.ProductInfo.MarketPrice.HasValue?Model.ProductInfo.MarketPrice.Value.ToString("F"):"0")</span><br />
+            @*销售价：<strong>￥<span id="stylePrice">@Model.ProductSkus[0].SalePrice.ToString("F")</span></strong>*@
+            抢购价：<strong>￥<span >@Model.ProductInfo.ProSalesPrice.ToString("F")</span></strong>
+            </div>
+        <div id="divBuyInfo" class="proshow_pl" style="background:none;">
+            <label id="productDate" date="@Model.ProductInfo.ProSalesEndDate">
+                <span class="fl">剩余时间：</span></label>
+            <div class="txtenddate"><span><span id="dayEnd">0</span>天<span id="hourEnd">0</span>时 
+                                        <span id="minEnd">0</span>分 <span id="secEnd">0</span>秒
+                                    </span></div>
+        </div>
+                    <div class="proshow_pl" id="closeActivity" style="background:none;margin-right: 10px;display: none;">
+                        <p class="tipsOrg loud dib">
+                            非常抱歉, 该活动已过期!</p>
+                    </div>
+                    <div class="proshow_pl" id="closeArrivingNotifyMess" style="background:none;margin-right: 10px;display: none;">
+                        <p class="tipsOrg loud dib">
+                            非常抱歉, 此商品已售罄!</p>
+                    </div>
+        <div class="proshow_pl">
+            @*<a href="@(ViewBag.BasePath)product/Comments/@Model.ProductInfo.ProductId"><small>商品评论：</small> （@ViewBag.CommentCount）</a>*@</div>
+        <div class="choiceOptions c6">
+            <div id="SKUOptions" class="proshowlxtext  " style="float: left">
+                @Html.Action("OptionSKU", "Product", new { ProductId = Model.ProductInfo.ProductId, viewName = "_OptionSKU" })
+            </div>
+        </div>
+        <div class="sku-selected-title mt15 c9" style="min-height: 18px; clear: left; padding-left: 8px;"
+             id="divSelectInfo">
+        </div>
+        <div class="productshow_sl" style="display: none;">
+            购买件数：<a href="javascript:;" class="redu" id="subtract">-</a>
+            <input type="text" size="4" value="1" name="num" id="productCount" class="common-input" />
+            <a href="javascript:;" id="plus" class="add">+</a> <span style="display: none">（库存@(Model.ProductSkus[0].Stock)件）</span></div>
+        <div class="producshow_but">
+            <div class="btn-section">
+                <span class="btn-tbl-cell"><a class="btn-attention link" productId="@Model.ProductInfo.ProductId" id="btnProductFav">
+              
+                    <span class="icon">关注</span></a></span> 
+                    <span class="btn-tbl-cell" style="display: none">
+
+                    <a class="btn-add-cart link" id="btnQukBuy"   itemid="" countdownid="@Model.ProductInfo.CountDownId">
+                        加入购物车</a></span> 
+
+                <span class="btn-tbl-cell" >
+                    @*btn-quk-buy*@
+                    <a class=" btn-add-cart link" id="btnAddToCart" DefaultText="立刻购买"  itemid="" countdownid="@Model.ProductInfo.CountDownId">
+                        立刻购买</a>
+                </span>
+            </div>
+        </div>
+    </div>
+}
+<div class="productshow_a">
+    <ul>
+        <li><a href="@(ViewBag.BasePath)product/productdesc/@Model.ProductInfo.ProductId">商品详情</a></li>
+        <li style="display:none"><a href="@(ViewBag.BasePath)product/Consults/@Model.ProductInfo.ProductId">商品咨询</a></li>
+    </ul>
+</div>
+<div class="proshowlxtext">
+    相关商品</div>
+@Html.Action("ProductRelation", "Product", new { id = Model.ProductInfo.ProductId, Top = 3, viewName = "_ProductRelation" })
+
+<script type="text/javascript">
+    $(function() {
+        var myclass = new CountDown();
+        var endDate = $("#productDate").attr("date");
+        var dateEnd = new Date(endDate);
+        var dateNow = new Date();
+        var dateCount = dateEnd.getTime() - dateNow.getTime();
+        if (dateCount > 0) {
+            myclass.init({
+                id: 'txtenddate',
+                //天数
+                day_Dom: $("#dayEnd"),
+                //小时
+                hour_Dom: $("#hourEnd"),
+                //分钟
+                min_Dom: $("#minEnd"),
+                //秒
+                sec_Dom: $("#secEnd"),
+                endTime: endDate
+            });
+        } else {
+            $("#closeActivity").show();
+            $('#iteminfo').parent().find('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $('#iteminfo #divBuyInfo').hide();
+            $('#iteminfo #divSelectInfo').empty();
+        }
+        if (@Model.ProductInfo.SaleStatus !== 1) {
+            $('#iteminfo').parent().find('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $('#iteminfo #divBuyInfo').hide();
+            $('#iteminfo #divSelectInfo').empty();
+            $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已下架!");
+            $('#iteminfo #closeArrivingNotifyMess').show();
+        }
+
+        $("#btnAddToCart").unbind('click').bind('click',function () {
+            if ($(this).hasClass('addCart-gray')) return false;
+            var sku = $(this).attr('itemid');
+            if (!sku) {
+                $('#iteminfo,#iteminfo a').effect('highlight', 500);
+                 ShowFailTip('请选择商品规格属性！');
+                return false;
+            }
+            var prosaleId = $("#hfProSaleId").val();
+            location.href = " @(ViewBag.BasePath)Order/SubmitOrder?sku=" + sku + "&c=" + prosaleId;
+        });
+    })
+</script>

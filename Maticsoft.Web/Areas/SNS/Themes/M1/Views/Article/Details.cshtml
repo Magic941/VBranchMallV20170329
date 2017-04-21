@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Common;
+@model Maticsoft.Model.CMS.Content
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        var maticsoftid = "@ViewBag.ArticleId";
+        if (maticsoftid != "") {
+            $("#maticsoft" + maticsoftid).addClass("babout");
+        }
+    });
+
+</script>
+<!-----about us begin------>
+<div class="about">
+    <div class="about_sub">
+        <div class="about_sub_t">
+        </div>
+        <div class="about_sub_z">
+            <p class="help">
+                  @Html.Action("Column", "Article")</p>
+            <ul>
+                @Html.Action("ArticleLeft", "Article")
+            </ul>
+        </div>
+        <div class="about_sub_w">
+        </div>
+    </div>
+    <div class="about_con">
+        @if (Model != null)
+        {
+            <div class="about_con_a">
+                @Html.Raw(Globals.HtmlDecode(Model.Title))</div>
+            <div class="about_con_b">
+                <p>
+                    @Html.Raw(Maticsoft.BLL.Settings.SEORelationManage.FilterStr(Model.Description, true, true, false, false, false, Model.ContentID, "CMSDescription"))</p>
+            </div>
+        }
+        else
+        {
+            <div class="about_con_a">
+            </div>
+            <div class="about_con_b">
+                <p>
+                </p>
+            </div>
+        }
+        <div class="about_con_c">
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>
+<!-----about us ending---->

@@ -1,0 +1,91 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-我的好粉";
+}
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Team.AppMember> 
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/myfans.css" rel="stylesheet" type="text/css" />
+<style>
+    .wieft {
+        width: 10rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .wieft span {
+            display: block;
+        }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#search").click(function () {
+            $("#searchForm").submit();
+        });
+
+    });
+</script>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+    <span style="padding-left: 32px">我的好粉</span>
+</div>
+
+<div style="width:95%; margin:0 auto;">&nbsp;</div>
+    @using (Html.BeginForm("MyFans", "u", FormMethod.Post, new { id = "searchForm" }))
+    {
+        <div>
+            <ul style="list-style-type:none;">
+                <li style="float:left; list-style-type:none; border:0px;">手机号：</li>
+                <li style="float:left; border:0px;"><input name="mobile" id="mobile" type="text" /></li>
+                <li style="float:left; border:0px;">&nbsp;<input id="search" type="button" value="查询"  style="cursor:pointer; background-color:red; border:0px; padding:3px 10px; color:white;"/></li>
+            </ul>
+            <div style="clear:both;">&nbsp;</div>
+        </div>
+    }
+
+<div class="outstanding" id="outstanding">
+    <div class="index_h1">我的好粉共计 : <span style="color: red">@ViewBag.Count</span> </div>
+    <ul style="width:100%; margin:0;">
+        @if (Model != null && Model.Count > 0)
+        {
+            <li class="anding_a">
+                <span class="anding_hjhj" style="display: inline-block; *display: inline; zoom: 1; width: 27%; border-right: 1px solid #dcdcdc;">姓名</span>
+                <span class="anding_hjhl" style="display: inline-block; *display: inline; zoom: 1; width: 43%; border-right: 1px solid #dcdcdc;">电话号码</span>
+                <span class="anding_hjhp" style="display: inline-block; *display: inline; zoom: 1; width: 25%;">入粉日期</span>
+            </li>
+            foreach (var item in Model)
+            {
+            <li class="anding_b">
+                <span class="anding_hjhj" style="display: inline-block; *display:inline;zoom:1; width:27%;border-right:1px solid #dcdcdc;">@Maticsoft.Common.StringPlus.SubString(item.Name, "", 8, false)</span>
+                    <span class="anding_hjhl" style="display: inline-block; *display:inline;zoom:1;  width:43%;border-right:1px solid #dcdcdc;">@item.Mobel</span>
+                    <span class="anding_hjhp AS_1" style="display: inline-block; *display:inline;zoom:1;  width:25%;">@item.JoinDate.ToString("yyyy-MM-dd")</span>
+            </li>
+            }
+            <center>
+                @Html.AjaxPager(Model, new PagerOptions
+                    {
+                        PageIndexParameterName = "pageIndex",
+                        NumericPagerItemCount = 3,
+                        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                        CssClass = "in_pages_m",
+                        SeparatorHtml = ""
+                    }, new AjaxOptions { UpdateTargetId = "outstanding" })
+            </center>
+        }
+        else
+        {
+             <div class="wieft">
+                <span>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/isnull.png" style="width: 130px; height: 130px;margin-top:18%" />
+                </span>
+                <span style="color: #333333; font-size: 15px; font-family: 微软雅黑;margin-top:18%">暂时还没有好粉信息</span>
+            </div>
+        }
+    </ul>
+</div>
+
+
+
+

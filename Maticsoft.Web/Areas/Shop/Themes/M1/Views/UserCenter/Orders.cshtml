@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#attention").slideDown(2000);
+        $("#LoadOrderList").load("@(ViewBag.BasePath)UserCenter/OrderList/_OrderList");
+        //支付按钮
+        $(".btnPayOrder").die("click").live("click", function () {
+            var id = $(this).attr("itemid");
+            if (id) {
+                window.location.replace($Maticsoft.BasePath + 'Order/SubmitSuccess/' + id);
+               // window.location = '/pay/certification' + id + '/' + $Maticsoft.CurrentArea;
+            }
+        });
+        // 退货按钮
+        $(".btnReturnGoods").die("click").live("click", function () {
+            var _self = $(this);
+            var id = $(this).attr("itemid");
+            if (id) {
+                window.location.href = "@(ViewBag.BasePath)UserCenter/ReturnApply/" + id;
+            }
+        });
+        $(".btnOrderCancel").die("click").live("click", function () {
+            var _self = $(this);
+            var orderId = _self.attr("itemid");
+            var r = confirm("您确认取消订单吗？");
+            if (r == true) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    timeout: 0,
+                    url: "@(ViewBag.BasePath)UserCenter/CancelOrder",
+                    data: { OrderId: orderId },
+                    success: function (data) {
+                        if (data == "True") {
+                            _self.parent().prev().prev().text("取消订单");
+                            _self.closest("tr").find('.btnPayOrder').remove();
+                            _self.closest("tr").find('.btnReturnGoods').remove();
+                            _self.remove();
+                        } else {
+                            ShowFailTip("取消失败，请您刷新一下再试！");
+                        }
+                    }
+                });
+            }
+        });
+
+        $(".btnOrderComplete").die("click").live("click", function () {
+            var _self = $(this);
+            var orderId = _self.attr("itemid");
+            if (confirm("您确认完成订单吗？")) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    timeout: 0,
+                    url: "@(ViewBag.BasePath)UserCenter/CompleteOrder",
+                    data: { OrderId: orderId },
+                    success: function (data) {
+                        if (data == "True") {
+                            _self.parent().prev().prev().text("已完成");
+                            _self.closest("tr").find('.btnReturnGoods').remove();
+                            _self.parent().append('<a href="' + $Maticsoft.BasePath + 'UserCenter/PReview/' + orderId + '" >评论</a>  <br /> ');
+                            _self.remove();
+                        } else {
+                            ShowFailTip("操作失败，请您刷新一下再试！");
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+    <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<input type="hidden" id="currentpage" value="span_6" />
+<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">订单中心</h3>
+        </div>
+    </div>
+    <div class="Orders">
+        <div id="LoadOrderList" class="Orders-msg clearfix">
+        </div>
+    </div>
+</div>
+@*<div id="attention" style="width:300px;height:500px;border:solid 2px black;bottom:0;position:fixed;right:0%"></div>*@
+
+

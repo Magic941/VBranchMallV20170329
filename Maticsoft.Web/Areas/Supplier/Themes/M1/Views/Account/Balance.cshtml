@@ -1,0 +1,60 @@
+﻿ @{
+     Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+ }
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>商家结算</span></h3>
+        <small class="desc"><span>您可以进行商家结算操作</span> </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="borderkuang">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            <span>未结算金额：</span>
+                        </td>
+                        <td>
+                            ￥@(ViewBag.Balance.ToString("F"))
+                        </td>
+                    </tr>
+                    <tr id="balanceDraw" style="display:none;">
+                        <td class="td_class">
+                            <span>正在结算金额：</span>
+                        </td>
+                        <td >
+                            ￥<span id="labbalanceDraw">@ViewBag.BalanceDraw.ToString("F")</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input style="margin-left: 0;width: 80px !important;" type="button" value="立即结算" id="btnDraw" class="reset radius2 btn_style" />
+                                <input style="display: none;" type="button" value="充值" id="btnRecharge" class="reset radius2" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        //如果提现金额大于0就显示 提现金额
+        if (parseFloat($('#labbalanceDraw').text()) > 0) {
+            $('#balanceDraw').css('display', 'table-row');
+        }
+
+        $('#btnRecharge').bind('click', function () {
+            window.location = '@(ViewBag.BasePath)Account/Recharge';
+        });
+        $('#btnDraw').bind('click', function () {
+            window.location = '@(ViewBag.BasePath)Account/Draw';
+        });
+    }); 
+</script>

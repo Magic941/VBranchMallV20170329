@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link href="/Areas/MShop/Themes/M1/Content/Css/shopc2.css" rel="stylesheet" type="text/css" />
+<div class="w main">
+    <div class="m m3" id="qpay">
+        <div class="mc">
+            <s class="icon-succ02"></s>
+            <div class="fore">
+                <h3 class="ftx-02">
+                    您已成功支付，请注意查看您的账户余额。</h3>
+                <ul class="list-h">
+                    <li class="fore2">充值号：@(ViewBag.RechargeId)</li>
+                     <li class="fore2">充值金额：@(ViewBag.RechargeBlance.ToString("F"))</li>
+                </ul>
+                <p class="reminder">
+                    <span class="fenzi"></span><a href="@(ViewBag.BasePath)UserCenter/Balance">查看您的余额</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.RechargeId" id="RechargeId"/>

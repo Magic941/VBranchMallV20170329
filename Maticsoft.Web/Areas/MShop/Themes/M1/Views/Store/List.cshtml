@@ -1,0 +1,86 @@
+﻿ @using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Shop.Products.ProductInfo>
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string suppid = Request.RequestContext.RouteData.Values["suppid"] != null ? Request.RequestContext.RouteData.Values["suppid"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+    string ky = Request.RequestContext.RouteData.Values["ky"] != null ? Request.RequestContext.RouteData.Values["ky"].ToString() : "";
+    string pvn = Request.RequestContext.RouteData.Values["pvn"] != null ? Request.RequestContext.RouteData.Values["pvn"].ToString() : "0";
+    ViewBag.Title = "店铺商品列表";
+}
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $(".modList[mod='@(mod)']").addClass("a");
+        $(".modList").click(function () {
+            var mod = $(this).attr("mod");
+            location.href = $Maticsoft.BasePath + "Store/list/@suppid/@cid/" + mod + '/@pvn/@ky';
+        });
+      
+            $("#btnSearch").click(function () {
+                var keyword = $("#txtKeyWord").val();
+                if (keyword == "") {
+                    ShowFailTip('请输入关键字！');
+                    return false;
+                }
+                location.href = $Maticsoft.BasePath + "Store/list/@suppid/@cid/@mod/@pvn/" + keyword;
+            });
+    })
+</script>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)Store/@suppid">&lt;返回</a></span>
+   <div class="header-btn fr"> <a href="@(ViewBag.BasePath)u" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                                           <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/Images/avatar.png">
+                                       </a>
+               <a href="@(ViewBag.BasePath)sc/ci" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                   <img src="/Areas/MShop/Themes/M1/Content/Images/cart.png" width="22" height="21" > 
+               </a>
+          </div>
+   <span style="padding-left: 32px"> @*@Model.CurrentCateName*@</span>
+</div>
+<table width="100%" height="55" border="0" cellspacing="0" cellpadding="0" class="pro_list_lm">
+    <tr>
+        <td class="modList" mod="hot">
+            <a href="javascript:;">销量</a>
+        </td>
+        <td class="modList" mod="pricedesc">
+            <a href="javascript:;">价格</a>
+        </td>
+        <td class="modList" mod="new">
+            <a href="javascript:;">新品</a>
+        </td>
+        <td style="background: none;">
+            @if (pvn == "1")
+            {   <a href="@(ViewBag.BasePath)Store/list/@suppid/@cid/@mod/0/@ky">
+                <img src="/Areas/MShop/Themes/M1/Content/images/pro_img_02.gif" />
+            </a>
+    
+            }
+            else
+            {
+             <a href="@(ViewBag.BasePath)Store/list/@suppid/@cid/@mod/1/@ky">
+                    <img src="/Areas/MShop/Themes/M1/Content/images/pro_img.gif" />
+                </a>
+            }     
+        </td>
+    </tr>
+</table>
+<div class="search">
+  <input name="keyword" id="txtKeyWord"  value="@ky" class="keyword" style="color: #999999;">
+    <input type="button" value="搜商品" id="btnSearch" class="search-button" style=" float: right">
+</div>
+<div id="ProductListDiv">
+    @if (pvn == "1")
+    {
+        Html.RenderPartial("_PageProdList_Image", Model);
+    }
+    else
+    {
+        Html.RenderPartial("_PageProductList", Model);
+    }
+    
+</div>
+
+ 

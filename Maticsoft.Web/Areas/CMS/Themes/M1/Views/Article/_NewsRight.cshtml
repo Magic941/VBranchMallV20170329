@@ -1,0 +1,48 @@
+﻿<!--右侧-->
+<div class="listr">
+    
+     @Html.Action("HomePartial", "Article", new { classid = 51,viewName="_AllGuanggaoRight",top=1,isRec=true  }) 
+    <!--精彩导读-->
+    <div class="read read2">
+        <div class="com-title">
+            <span>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-3.png" alt="" style="margin-bottom: 1px;">精彩导读</span>
+        </div>      
+        
+       @Html.Action("HomePartial", "Article", new { classid = 43,viewName="_NewsRightJCDD",top=5 })      
+    </div>
+   @* <div class="adimg3">
+        <!-- 广告位_02 -->
+        <a href="" title="" target="_blank">
+            <img src="images/img14.jpg" alt=""></a>
+        <!-- 广告位_02 -->
+    </div>
+    <div class="adimg2">
+        <!-- 广告位_03 -->
+        <a href="" title="" target="_blank">
+            <img src="images/img14.jpg" alt=""></a>
+        <!-- 广告位_03 -->
+    </div>*@
+    <!--科技快报-->
+    <div class="viewpoint hotlist">
+        <div class="com-title">
+            <span>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-13.png" alt="">热门资讯</span>
+        </div>      
+       @Html.Action("HomePartial", "Article", new { classid = 43,viewName="_NewsRightHot",top=5,isHot=true }) 
+    </div>
+    <div class="floatfix"></div>
+  @*  <div class="follow">
+        <div class="com-title">
+            <span>
+                <img src="images/symbol-5.png" alt="">关注我们</span>
+        </div>
+        <div class="followcon followcon2">
+            <span>关注微信公众号，了解最新精彩内容</span>
+            <p class="">
+                <img src="images/qr1.jpg" alt="">
+                <img src="images/qr2.jpg" alt="">
+            </p>
+        </div>
+    </div>*@
+</div>

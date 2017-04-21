@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Maticsoft.ShoppingCart</name>
+    </assembly>
+    <members>
+        <member name="T:Maticsoft.ShoppingCart.Handler.SubmitOrderHandlerBase">
+            <summary>
+            提交订单基础Handler
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Model.CartItemType">
+            <summary>
+            购物车项目类型
+            </summary>
+        </member>
+        <member name="F:Maticsoft.ShoppingCart.Model.CartItemType.Product">
+            <summary>
+            商品
+            </summary>
+        </member>
+        <member name="F:Maticsoft.ShoppingCart.Model.CartItemType.Gift">
+            <summary>
+            礼品
+            </summary>
+        </member>
+        <member name="F:Maticsoft.ShoppingCart.Model.CartItemType.Package">
+            <summary>
+            打包
+            </summary>
+        </member>
+        <member name="F:Maticsoft.ShoppingCart.Model.CartItemType.Countdown">
+            <summary>
+            计时抢购
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Core.CookieProvider`2">
+            <summary>
+            Cookie购物车类
+            </summary>
+            <remarks>虚实现购物车基础功能</remarks>
+            <typeparam name="TCartInfo">购物车对象</typeparam>
+            <typeparam name="TCartItemInfo">项对象</typeparam>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Core.ICartProvider`2">
+            <summary>
+            购物车处理接口
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.ClearShoppingCart">
+            <summary>
+            清空购物车
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.GetShoppingCart">
+            <summary>
+            获取购物车
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.GetShoppingCart4Selected">
+            <summary>
+            获取已选内容的购物车
+            </summary>
+            <remarks>提交订单页面专用</remarks>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.AddItem(`1)">
+            <summary>
+            添加新项
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.RemoveItem(System.Int32)">
+            <summary>
+            删除指定项
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.UpdateItemQuantity(System.Int32,System.Int32)">
+            <summary>
+            更新指定项的数量
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.ICartProvider`2.SaveShoppingCart(`0)">
+            <summary>
+            保存购物车到Cookie
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.#ctor(System.Int32)">
+            <summary>
+            构造Cookie购物车
+            </summary>
+            <param name="userId">用户Id 未登录时为-1</param>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.LoadShoppingCart(System.Int32)">
+            <summary>
+            将未登录的购物车加载到当前用户下
+            </summary>
+            <param name="userId">用户Id</param>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.AddItem(`1)">
+            <summary>
+            添加指定项
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.ClearShoppingCart">
+            <summary>
+            清空购物车
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.ResolveCartItemCookie(System.Web.HttpCookie,System.Action{System.Web.HttpCookie})">
+            <summary>
+            解析CookieItem数据
+            </summary>
+            <param name="cookieIndex">cookieIndex对象</param>
+            <param name="methodProcessCartItem">处理每项的方法</param>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.GetCookie(System.String)">
+            <summary>
+            获取Cookie 以Response为主
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.GenerateLastItemId(System.Int32)">
+            <summary>
+            获取购物车NextItemId
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.GetShoppingCart">
+            <summary>
+            获取购物车
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.GetShoppingCart4Selected">
+            <summary>
+            获取已选内容的购物车
+            </summary>
+            <remarks>提交订单页面专用</remarks>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.GetShoppingCart(System.Web.HttpCookie)">
+            <summary>
+            获取购物车
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.RemoveItem(System.Int32)">
+            <summary>
+            删除指定项
+            </summary>
+            <param name="itemId"></param>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.SaveShoppingCart(`0)">
+            <summary>
+            保存购物车到Cookie
+            </summary>
+        </member>
+        <member name="M:Maticsoft.ShoppingCart.Core.CookieProvider`2.UpdateItemQuantity(System.Int32,System.Int32)">
+            <summary>
+            更新指定项数量
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Core.DatabaseProviderBase">
+            <summary>
+            购物车抽象类
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Core.DatabaseProviderBase`2">
+            <summary>
+            DB购物车抽象类
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Core.IDataProvider`2">
+            <summary>
+            DB购物车数据处理接口
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Model.CartInfo`1">
+            <summary>
+            购物车对象接口
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartInfo`1.Items">
+            <summary>
+            项目集合对象
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartInfo`1.Quantity">
+            <summary>
+            商品总数
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartInfo`1.Item(System.Int32)">
+            <summary>
+            项目 索引器
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartInfo`1.Item(System.String)">
+            <summary>
+            SKU 索引器
+            </summary>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Model.CartItemInfo">
+            <summary>
+            购物车项目接口
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.ItemId">
+            <summary>
+            购物车Id
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.SKU">
+            <summary>
+            SKU
+            </summary>
+            <remarks>商品SKU</remarks>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.ItemType">
+            <summary>
+            项目类型
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.Quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.ProductId">
+            <summary>
+            商品Id
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.ThumbnailsUrl">
+            <summary>
+            缩略图
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.CostPrice">
+            <summary>
+            成本价
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.CostPrice2">
+            <summary>
+            第二成本价
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.SellPrice">
+            <summary>
+            原价
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.MarketPrice">
+            <summary>
+            市场价
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.CartItemInfo.Selected">
+            <summary>
+            是否被选中
+            </summary>
+            <remarks>购物车环节使用 默认true 已选中</remarks>
+        </member>
+        <member name="T:Maticsoft.ShoppingCart.Model.IUserInfo">
+            <summary>
+            用户信息接口
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.IUserInfo.UserId">
+            <summary>
+            用户ID
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.IUserInfo.Email">
+            <summary>
+            Email
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.IUserInfo.Name">
+            <summary>
+            名称 - 用户名/真实姓名
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.IUserInfo.TelPhone">
+            <summary>
+            座机
+            </summary>
+        </member>
+        <member name="P:Maticsoft.ShoppingCart.Model.IUserInfo.CellPhone">
+            <summary>
+            手机
+            </summary>
+        </member>
+    </members>
+</doc>

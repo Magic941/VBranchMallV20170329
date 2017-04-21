@@ -1,0 +1,12 @@
+﻿@model List<Maticsoft.Model.SNS.Categories>
+  @foreach (var item in Model)
+                            {
+                                @Html.ActionLink(item.Name, "Index", "Product", new
+                           {
+                               cname = item.Name,
+                               topcid = item.Path.Split('|')[0],
+                               cid = item.CategoryId,
+                               minprice = 0,
+                               maxprice = 0,sequence = "new"
+                           }, new { target = " _blank", @class = "pink" })
+                            }

@@ -1,0 +1,84 @@
+﻿
+
+ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "微信用户绑定";
+ }
+ @model Maticsoft.ViewModel.Shop.RegisterModel
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        //微信新用户绑定
+        $("#btnRegBind").click(function () {
+            var nick = $("#nickname").val();
+            var returnUrl = $("#hfReturn").val();
+            if (nick == "") {
+                ShowFailTip("请输入用户昵称！");
+                return;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "Account/AjaxRegBind",
+                type: 'post',
+                dataType: 'text',
+                timeout: 10000,
+                async: false,
+                data: {
+                    Action: "post", NickName: nick
+                },
+                success: function (resultData) {
+                    if (resultData == "1") {
+                        ShowSuccessTip("绑定用户成功！");
+                        if (returnUrl != "") {
+                            location.href = returnUrl;
+                            return;
+                        }
+                        else {
+                            location.href = $Maticsoft.BasePath + "u";
+                            return;
+                        }
+                    }
+                    if (resultData == "2") {
+                        ShowFailTip("该微信帐号已经绑定！");
+                        if (returnUrl == "") {
+                            location.href = $Maticsoft.BasePath + "u";
+                            return;
+                        }
+                        else {
+                            location.href = returnUrl;
+                            return;
+                        }
+                    }
+                    if (resultData == "0") {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器繁忙，请稍候再试！");
+                }
+
+            });
+        });
+    })
+</script>
+<div class="top"> <span>微信用户绑定</span>
+  <div class="header-btn fr"> <a href="@ViewBag.BasePath" style="margin:8px 2px 8px 0;padding-top:8px;height:22px">   <img src="/Areas/MShop/Themes/M1/Content/images/home.png" width="20" height="18" > </a> </div>
+</div>
+<div class="yy"><span id="diverror" style="margin-left:10px;margin-top:10px;" class="txterror"></span></div>
+<div class="logincontent">
+    <input id="hfReturn" type="hidden"  value="@ViewBag.ReturnUrl"/>
+    <input id="chkAgreement"  type="checkbox" checked="checked" style="display: none"/>
+         <span  class="tipClass"> &nbsp; </span>
+        
+        <div> @Html.TextBoxFor(m => m.NickName, new { id = "nickname", Class = "logininput", placeholder = "请输入昵称" }) <br />
+            <div id="divNicknameTip"  class="txterror tipClass" >
+                <span   class="txterror">&nbsp; @Html.ValidationMessageFor(m => m.NickName) @ViewBag.hasnickname</span>
+            </div></div>
+        
+        
+        <div><input  type="button" value="微信登录" id="btnRegBind" class="sub_btn"></div>
+ 
+ 
+  
+ 
+</div>
+ 

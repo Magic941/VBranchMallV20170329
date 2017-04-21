@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/admin/js/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $("#txtStartDate").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("#txtEndDate").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#txtEndDate").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("#txtStartDate").datepicker("option", "maxDate", selectedDate);
+                $("#txtEndDate").val($(this).val());
+            }
+        });
+    })
+</script>
+<script src="/FusionCharts/FusionCharts.js" type="text/javascript"></script>
+<form action="" method="post">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            用户统计
+        </h3>
+        <small class="desc">您可以查看用户的统计信息 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                    <tr>
+                            <td style="width: 610px; float: left; height: 38px; line-height: 38px;">
+                                开始时间：@*<asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>*@<input type="text"
+                                name="StartDate" id="txtStartDate" value="@ViewBag.StartDate" />
+                                &nbsp;&nbsp;结束时间：@*<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>*@
+                                <input type="text" name="EndDate" value="@ViewBag.EndDate" id="txtEndDate" />
+                                @*<asp:RadioButtonList ID="rdoMode" runat="server" RepeatDirection="Horizontal" style="float: right;height: 38px;line-height: 38px;" >
+                                    <asp:ListItem Text="天" Value="0" ></asp:ListItem>
+                                    <asp:ListItem Text="月" Value="1" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="年" Value="2"></asp:ListItem>
+                                </asp:RadioButtonList>*@
+                                @if (ViewBag.Mode == "Day")
+                                {
+                                    <input type="radio" name="rdoMode" value="0" checked /><label>天</label>
+                                    <input type="radio" name="rdoMode" value="1" /><label>月</label>
+                                    <input type="radio" name="rdoMode" value="2" /><label>年</label>
+                                }
+                                else if (ViewBag.Mode == "Year")
+                                {
+                                    <input type="radio" name="rdoMode" value="0" /><label>天</label>
+                                    <input type="radio" name="rdoMode" value="1" /><label>月</label>
+                                    <input type="radio" name="rdoMode" value="2" checked /><label>年</label>
+                                                                               
+                                }
+                                else
+                                {
+                                    <input type="radio" name="rdoMode" value="0" /><label>天</label>
+                                    <input type="radio" name="rdoMode" value="1" checked /><label>月</label>
+                                    <input type="radio" name="rdoMode" value="2" /><label>年</label>
+                                }
+                            </td>
+                            <td style="float: left; height: 38px; line-height: 38px;">
+                                &emsp;&emsp;@*<asp:Button ID="btnReStatistic" runat="server" Text="统计" 
+                                    class="adminsubmit" onclick="btnReStatistic_Click"/>*@
+                                <input type="submit" name="btnReStatistic" id="btnReStatistic" value="统计" class="sub"/>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>@Html.Raw(ViewBag.litChart)</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>
+</form>

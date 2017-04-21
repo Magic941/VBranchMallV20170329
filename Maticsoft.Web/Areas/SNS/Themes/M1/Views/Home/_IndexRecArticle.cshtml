@@ -1,0 +1,36 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<div class="module mod-club-column mod-club-founder">
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="cell-hd">
+            <h2>
+                <a href="@(ViewBag.BasePath)Article/Index/@Model[0].ClassID" style="color: #666" target="_blank">@Model[0].ClassName</a></h2>
+        </div>
+        <div class="cell-bd">
+            <div class="unit-article-figure">
+                <a class="figure" href="@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[0].ContentID" target="_blank">
+                    @if (!String.IsNullOrWhiteSpace(Model[0].ImageUrl))
+                    {
+                            <img src="@Model[0].ImageUrl"
+                         alt="@Model[0].Title" />
+                    <em>@Model[0].Title</em> 
+                    }
+                
+                </a>
+                <blockquote class="detail">
+                    <span>@Maticsoft.Common.StringPlus.SubString(Model[0].Summary, 35, "...")</span>
+                    <a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[0].ContentID"
+                                                                                                       title="@Model[0].Title" style=" color: #39C" target="_blank">[详细] </a>
+                </blockquote>
+            </div>
+            <!-- success -->
+            <ul class="unit-article-list">
+                @for (int i = 1; i < Model.Count; i++)
+                {
+                    <li><a href='@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[i].ContentID' target="_blank"
+                           title="@Model[i].Title">@Model[i].Title</a> </li>   
+                }
+            </ul>
+        </div>
+    }
+</div>

@@ -1,0 +1,21 @@
+﻿@model List<Maticsoft.Model.Shop.Coupon.CouponRule>
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="form search-01" style="margin-bottom: 10px">
+    
+        <ul class="list-h">
+            @foreach (var item in Model)
+            {
+                <li>
+                    <input type="radio" class="radExc radio" name="RadioGroup1" value="@item.CouponPrice" ruleId="@item.RuleId" point="@item.NeedPoint"  >@(item.Name)(需@(item.NeedPoint)积分)</li>
+            }
+             <a href="javascript:;"   id="btnExchange"  class="u-btn" >兑换</a>
+        </ul>
+</div>
+}           
+<style>
+    .list-h li{
+   padding-bottom: 10px;
+}
+</style>

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/admin/css/admin.css" type="text/css" rel="stylesheet" charset="utf-8" />
+<link href="/Admin/js/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+<script src="/admin/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<link href="/Scripts/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#LoadCommandList").load("@(ViewBag.BasePath)WeChat/CommandList", { viewName: "_WCCommandList" });
+
+        //搜索
+        $('#btnSearch').click(function () {
+            var txtKeyWord = $("#txtKeyWord").val();
+            var ddStatus = $("#ddStatus").val();
+            $("#LoadContentList").load("@(ViewBag.BasePath)WeChat/LoadContent", { txtKeyWord: txtKeyWord, ddStatus: ddStatus });
+
+        });
+        $("#cboxClose").click(function () {
+            window.location.reload();
+        });
+    });
+</script>
+<div class="mar30 contenttitle2">
+    <h3>
+        微信导航菜单管理
+    </h3>
+    <small class="desc">微信导航菜单管理 </small>
+</div>
+<div class="newslistabout">
+    <div class="field shuru shuru1">
+        <img src="/Admin/Images/icon-1.gif" width="19" height="19" />
+        状态：
+        <select id="ddStatus" name="ddStatus" style="width: 200px" class="myselect">
+            <option value="">--全部--</option>
+            <option value="0">不可用</option>
+            <option value="1">可用</option>
+        </select>
+        &nbsp;&nbsp;关键字：
+        <input type="text" name="txtKeyWord" id="txtKeyWord" value="" />
+        <input type="button" name="btnSearch" id="btnSearch" value="搜索" class="adminsubmit_short" />
+    </div>
+</div>
+<br />
+<div class="newslist">
+    <div class="newsicon">
+        <ul>
+            <li style="background: url(/images/icon8.gif) no-repeat 5px 3px" id="liAdd" runat="server">
+                <a class="various" href="@(ViewBag.BasePath)WeChat/AddCommand">添加</a> <b>|</b>
+            </li>
+        </ul>
+    </div>
+    <div id="LoadCommandList">
+    </div>
+</div>
+<div class="form stdform">
+    <input type="button" name="btnDelete" id="btnDelete" value="批量删除" class="adminsubmit" />
+</div>

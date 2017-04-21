@@ -1,0 +1,176 @@
+﻿@model   Maticsoft.Model.SNS.UserBlog
+@{
+    //ViewBag.Title = Model.Group.GroupName+"-"+Model.Topic.Title+"查看主题";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+<link href="/Scripts/Pagination/pagination.css" rel="stylesheet" type="text/css" />@*分页控件的css*@
+<script type="text/javascript" src="/Scripts/Pagination/jquery.pagination.js"></script>@*分页控件的javascript*@
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/BlogDetail.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/slides.min.jquery.js"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>@*上传图片的要引用的js*@
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+}
+<!------Single group-------->
+<div class="clear">
+</div>
+<input type="hidden"  id="CommentPageSize" value="3" />
+<input type="hidden"  id="TargetId" value="@(Model.BlogID)" />
+<div class="single_bk">
+    <div class="single_bk_F">
+        <div class="single_bk_FA">
+            <div class="single_CF">
+                <div class="single_CF_s">
+                    <dl class="single_detailed">
+                        <dl class="single_detailed_tu">
+                            <dt class="single_detailed_tus"><a href="@(ViewBag.BasePath)User/Posts/@Model.UserID">
+                                <img  src="/Upload/User/Gravatar/@(Model.UserID).jpg" alt="@Model.UserName" width="45px;" height="45px;"/></a></dt>
+                            <dd class="single_detailed_tub">
+                                <p class="acde">@Model.UserName</p>
+                                <p class="acdf">
+                                    创建于：@Model.CreatedDate  阅读： <span class="txtBlogPvCount">0</span></p>
+                            </dd>
+                        </dl>
+                        @* <dl class="chunk"><a href="javascript:;">@Model.Topic.ReplyCount</a></dl>*@
+                        <div class="clear">
+                        </div>
+                    </dl>
+                    <div class="single_cont">
+                        <dt class="single_cont_a" style="text-align: center; font-size: 16px">@Model.Title</dt>
+                        <dt class="single_cont_a">
+                             @Html.Raw(Maticsoft.BLL.Settings.SEORelationManage.FilterStr(Maticsoft.ViewModel.ViewModelBase.ReplaceFace(Model.Description), true, false , false, true, false, Model.BlogID, "SNSDescription"))
+                        </dt>
+                        
+                        <div class="tgoods_rep_a" style="margin-top: 10px">
+                    <div class="shangpin_a">
+                        <dl class="tgoods_det_b11">
+                            <dt class="tgoods_det_b11_a"><a href="javascript:;" id="btnBlogFav" >
+                                <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg"></a></dt>
+                            <dd class="tgoods_det_b11_b">
+                                <a href="javascript:;" id="favouritecount">0</a></dd>
+                        </dl>
+                        
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                        <div class="clear">
+                        </div>
+                    <div class="tgoods_rep" style="margin-top: 10px">
+                    <div class="shangpin">
+                    <div class="shangpin_b">
+                            <div class="tgoods_rep_b" style="width: 350px;">
+                                <p class="tgoods_rep_b1" style="width: 60px;">
+                                    浏览<span class="txtBlogPvCount"> </span>|</p>
+                                <p class="tgoods_rep_b1" style="width: 60px;">
+                                    评论&nbsp;<span  id="CommentCount">0 </span>|</p>
+                                @Html.Action("BaiduShare", "Partial")
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                </div>
+                        <div class="tgoods_rep_sa">
+                            <div class="tgoods_rep_sa1">
+                            </div>
+                            <div class="tgoods_rep_sa2">
+                                <div class="tgoods_rep_sa2_t">
+                                    <dl class="tgoods_rep_sa2_a">
+                                        <textarea name="" id="CommentContent" cols="" rows=""></textarea></dl>
+                                    <dl class="tgoods_rep_sa2_b">
+                                        <dl class="tgoods_rep_sa2_b1" id="biaoqingshow">
+                                            <dt class="tgoods_rep_sa2_b11"><a href="javascript:;">
+                                                                               <img src="/Areas/SNS/Themes/M1/Content/images/detailed_14.jpg"></a></dt>
+                                            <dd class="tgoods_rep_sa2_b11" style="position: relative;">
+                                                <a href="javascript:;">表情</a>
+                                                <div class="cbiaoqing" style="top: 10px; display: none; left: -20px" id="tbiaoqing">
+                                                    @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing.cshtml")
+                                                </div>
+                                            </dd>
+                                        </dl>
+                                        <dl class="tgoods_rep_sa2_b3" style="display: none">
+                                            <dt class="tgoods_rep_sa2_b31">
+                                                <input name="" type="checkbox" value=""></dt>
+                                            <dd class="tgoods_rep_sa2_b31">
+                                                同时转发到我的分享</dd>
+                                        </dl>
+                                        <dl class="tgoods_rep_sa2_b2">
+                                            <a href="javascript:;" id="AddCommentBtn" >
+                                                <img src="/Areas/SNS/Themes/M1/Content/images/tgoods_10.jpg"></a></dl>
+                                         
+                                        @Html.Action("WeiBoBind", "Partial")
+                                    </dl>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                                <div class="tgoods_rep_sa2_r">
+                                    <div id="CommentArea">
+                                    </div>
+                                    <div id="Pagination" class="pagination" style="width: 500px">
+                                    </div>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                        <div class="clear">
+                </div>
+            </div>
+                </div>
+                <!------右侧内容------->
+                <div class="single_CF_t">
+                    <dl class="single_newest">
+                        <h1>
+                            Ta发表的文章</h1>
+                        @Html.Action("BlogPart", "Blog", new { userId = Model.UserID, BlogId = Model.BlogID, Top = 15 })
+                    </dl>
+                     <dl class="single_newest">
+                        <h1>
+                            热门文章</h1>
+                        @Html.Action("HotBlog", "Blog", new { Top = 15, ViewName = "_BlogPart" })
+                    </dl>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+</div>
+<!------Single group end----->
+<div id="inputReplyTemplete" style="display: none; margin-left: 10px">
+    <dd class="answer_a_wn_c pinglunkuang">
+        <dl class="answer_a_wn_c1">
+        </dl>
+        <dl class="answer_a_wn_c2">
+            <input type="text" value="">
+        </dl>
+        <dl class="answer_a_wn_c3">
+        </dl>
+        <dl class="answer_a_wn_d">
+            <dt class="answer_a_wn_d1" style="position: absolute;"><a href="javascript:void(0)"
+                class="cbiaoqingshow">
+                <img src="/Areas/SNS/Themes/M1/Content/images/detailed_26.jpg"></a>
+                <div class="cbiaoqing" style="top: 10px; display: none; left: -20px">
+                    @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing4Comment.cshtml");
+                </div>
+            </dt>
+            <dl class="tgoods_rep_sa2_b3">
+                <dt class="tgoods_rep_sa2_b31">@*<input name="" type="checkbox" value=""></dt>
+                           <dd class="tgoods_rep_sa2_b31">同时转发到我的分享</dd>*@
+            </dl>
+            <dd class="answer_a_wn_d2">
+                <a href="javascript:void(0)" class="btnReply">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/detailed_22.jpg"></a></dd>
+            @*  @Html.Action("WeiBoBind", "Partial")*@
+        </dl>
+    </dd>
+</div>

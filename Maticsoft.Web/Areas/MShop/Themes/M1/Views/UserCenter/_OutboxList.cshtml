@@ -1,0 +1,29 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+@if (null != Model)
+{   
+    foreach (var item in Model)
+    {
+        <div class="home_newlist">
+            <div class="home_newtitle"><span>发给： @item.ReceiverUserName</span> <small>@(item.SendTime.HasValue ? item.SendTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : "")</small></div>
+            <div class="home_newcontent">@(string.IsNullOrEmpty(item.Title) ? "" : item.Title + "：") @item.Content</div>
+        </div>
+   
+    }
+
+}
+<!-- FansList BEGIN -->
+ 
+    <!--jQuery Ajax Paging Start-->
+    @Html.AjaxPager(Model, new PagerOptions()
+{
+    CssClass = "in_pages_m",
+    PageIndexParameterName = "page",
+    NumericPagerItemCount = 3,
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+}, new AjaxOptions() { UpdateTargetId = "OutBoxList" })
+    <!--jQuery Ajax Paging End-->
+ 
+

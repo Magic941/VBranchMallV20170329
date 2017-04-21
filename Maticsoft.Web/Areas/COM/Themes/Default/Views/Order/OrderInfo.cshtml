@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "~/Areas/Com/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+  
+}
+@section head{
+    <link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("body").addClass("body_bai");
+        })
+    </script>
+}
+@model Maticsoft.Model.Shop.Order.OrderInfo
+<div class="con_part_2" style="margin-top: 20px">
+    <div class="wrap_960">
+        <div class="douwuche">
+            <h1>
+                订单详情
+            </h1>
+        </div>
+        <div class="hengxian">
+        </div>
+        <div class="peisongdizhi addressList">
+            <h3>
+                配送地址
+            </h3>
+            <div class="fanhuidingdan">
+                <div class="psdz">
+                    <span class="xxdizhi">@Model.ShipAddress </span><span class="shoujianren">（@Model.ShipName 收）</span> <span class="lianxidianhua">@Model.ShipCellPhone </span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div class="hengxian">
+        </div>
+        <div class="peisongdizhi addressList">
+            <h3>
+                物流信息
+            </h3>
+            <div class="fanhuidingdan">
+                <div class="psdz">
+                    <span class="xxdizhi">配送方式：@Model.RealShippingModeName </span><span class="shoujianren">物流单号：@(string.IsNullOrWhiteSpace(Model.ShipOrderNumber) ? "无" : Model.ShipOrderNumber)</span>
+                </div>
+            </div>
+            <br />
+        </div>
+        <div class="hengxian">
+        </div>
+        @if (Model != null && Model.OrderItems.Count > 0)
+        {
+            <div class="p12">
+                商品列表</div>
+            foreach (var item in Model.OrderItems)
+            {
+            <div class="gouwuchelist">
+                <div class="wupin w60">
+                    <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">
+                        <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T128X130_")" width="61" height="61" /></a>
+                    <h2>
+                        <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">@item.Name</a></h2>
+                </div>
+                <div class="shuliang top10 ">
+                    数量：@item.Quantity</div>
+                <div class="xiaoji top10">
+                    ￥@((item.SellPrice * item.Quantity).ToString("F"))</div>
+            </div>
+            <div class="hengxian">
+            </div>
+            }
+            <div class="gouwuchelist">
+                <div class="wupin w60">
+                    <a href="javascript:;">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/xiaoqiche.jpg" width="71" height="59" /></a>
+                    <h2>
+                        <a href="javascript:;">运费</a></h2>
+                </div>
+                <div class="shuliang top10 ">
+                </div>
+                <div class="xiaoji top10">
+                    ￥@(Model.Freight.HasValue ? Model.Freight.Value.ToString("F") : "0.00")
+                </div>
+            </div>
+            <div class="hengxian">
+            </div>
+            <div class="fanhuidingdan">
+                <div class="fanhuiggc">
+                </div>
+                <div class="yunfei">
+                   应付:<strong>￥@Model.Amount.ToString("F")</strong></div>
+            </div>
+        }
+        <div style="float: right;margin-top: 20px; margin-bottom: 20px;">
+            <a style="float: right; line-height: 50px; color: #fff; display: block; background-color: #f35c78; text-align: center; width: 120px;" href="/Shop/UserCenter/Orders">返回我的订单</a></div>
+        <div class="hengxian">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="part_1">
+<div class="">
+
+<div class="clear"></div>
+<div class="xinpinlist">
+<ul>
+   @if (Model != null && Model.Count > 0)
+   {
+       foreach (var item in Model)
+       {
+           <li class="m_r_10"><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"><img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")" width="230" height="316"></a>
+               <div class="chanpin_title"><h2><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">@Maticsoft.Common.StringPlus.SubString(item.ProductName, 10, "...")</a></h2><span class="jiage">￥ @(item.LowestSalePrice.ToString("F"))</span></div></li>
+       }
+   }
+        </ul>
+
+</div>
+
+</div>
+
+</div>

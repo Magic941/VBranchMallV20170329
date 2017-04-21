@@ -1,0 +1,17 @@
+﻿@{
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "";
+}
+  <script type="text/javascript">
+      $(function () {
+          $("#btnSearch").click(function () {
+              var keyword = $("#txtKeyWord").val();
+              if (keyword == "") {
+                  ShowFailTip('请输入关键字！');
+                  return;
+              }
+              location.href = $Maticsoft.BasePath +"s/0/0/default/0-0/" + keyword;
+          });
+      })
+</script>
+  <input name="keyword" id="txtKeyWord"  value="@(keyword)" class="keyword" style="color: #999999;">
+    <input type="button" value="搜商品" id="btnSearch" class="search-button" style=" float: right">

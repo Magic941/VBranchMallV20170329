@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "申请个人微店流程";
+    Maticsoft.Model.Members.UsersExpModel UserInfo = ViewBag.UserInfo;
+   
+}
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.Model.Members.UsersExpModel 
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/ApplyAgent.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/hlcard.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/ApplyShop.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="">
+    
+    <div class="present_cent">
+        <ul>
+            @if (Model.UserOldType.HasValue || Model.IsAppUserType == true)
+            {
+                if (!Model.UserOldType.HasValue)
+                {
+                    Model.UserOldType = 0;
+                }
+                if (Model.UserOldType.Value == 2)
+                { 
+                <li><a href="javascript:void(0)" id="ed">您已经是个人微店了</a></li>
+                }
+                else if (Model.UserOldType.Value == 3)
+                {
+                <li><a href="javascript:void(0)" id="ed">您已申请分销店</a></li>
+                }
+                else if (Model.UserOldType.Value == 4)
+                {
+                <li><a href="javascript:void(0)" id="ed">您已申请服务店</a></li>
+                }
+                else
+                {
+                    if (Model.IsAppUserType == true)
+                    {
+                        if (Model.UserStatus == 0)
+                        {
+                            //处理中
+                          <li><a href="javascript:void(0)" id="ed">已申请,等待审核</a></li>
+                        }
+                        if (Model.UserStatus == 2)
+                        {
+                            //未通过
+                         <li><a href="javascript:void(0)" id="ed">您未通过审核</a></li>
+                        }
+                    }
+                    else
+                    {
+                    @*  <li><a href="@(ViewBag.BasePath)u/ApplyAgentHao" id="Applyid">我要申请好代</a></li>*@
+               
+                        Response.Redirect(ViewBag.BasePath+"u/ApplyAgentHao");
+                      //  Html.("ApplyAgentHao", "UserCenter");
+                    }
+                }
+            }
+            else
+            {
+               @* <li><a href="@(ViewBag.BasePath)u/ApplyAgentHao" id="Applyid">我要申请好代</a></li>*@
+                Response.Redirect(ViewBag.BasePath + "u/ApplyAgentHao");
+            }
+        </ul>
+    </div>
+</div>
+<div style="clear: both; height: 0; overflow: hidden;"></div>
+<script type="text/javascript">
+    function onload() {
+        debugger
+        var url = window.location.href;
+        url = url.replace("MShop", "Shop");
+    }
+</script>
+
+<script type="text/javascript">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+</script>
+
+<script type="text/javascript">
+    if (window.navigator.userAgent.indexOf('Maticsoft_Shop_APP') == -1) {
+        //非手机APP访问
+        $('.footer,.top').show();
+    }
+</script>
+

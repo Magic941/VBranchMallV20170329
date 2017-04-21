@@ -1,0 +1,24 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null && Model.Count > 0)
+{
+    <ul class="clearfix">
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="remai-pic">
+                    <a href="@ViewBag.BasePath/Product/Detail/@item.ProductId">
+                        <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T158X158_")" /></a>
+                </div>
+                <div class="Tit"><a href="@item.SeoUrl">@item.ProductName</a></div>
+                <div class="remai-pc"><span>参考价：<del><abbr>&yen;</abbr>@item.MarketPrice</del></span></div>
+                <div class="remai-p clearfix">
+                    <div class="jiage">
+                        <abbr>&yen;</abbr>@item.LowestSalePrice.ToString("F")
+                    </div>
+                    <div class="goumai"><a href="/Product/Detail/@item.ProductId">立即购买>></a></div>
+                </div>
+            </li>
+        }
+    </ul>
+}
+@*<a href="_Navigation.cshtml">_Navigation.cshtml</a>*@

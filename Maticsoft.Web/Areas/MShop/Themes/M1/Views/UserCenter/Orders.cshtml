@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-我的订单";
+}
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#LoadOrderList").load($Maticsoft.BasePath + "UserCenter/OrderList/_OrderList?type=@ViewBag.orderType");
+        $(".btnPayOrder").die("click").live("click", function () {
+            var id = $(this).attr("itemid");
+            if (id) {
+                // window.location = '/pay/certification' + id + '/' + $Maticsoft.CurrentArea;
+                window.location = $Maticsoft.BasePath + 'Order/SubmitSuccess/' + id;
+            }
+        });
+        // 退货按钮
+        $(".btnReturnGoods").die("click").live("click", function () {
+            var _self = $(this);
+            var id = $(this).attr("itemid");
+            if (id) {
+                window.location.href = $Maticsoft.BasePath + "UserCenter/ReturnApply/" + id;
+            }
+        });
+        //取消订单
+        $(".btnOrderCancel").die("click").live("click", function () {
+            var _self = $(this);
+            var orderId = _self.attr("itemid");
+            var r = confirm("您确认取消订单吗？");
+            if (r == true) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    timeout: 0,
+                    url: $Maticsoft.BasePath + "UserCenter/CancelOrder",
+                    data: { OrderId: orderId },
+                    success: function (data) {
+                        if (data == "True") {
+                            _self.parent().prev().find('strong').text("取消订单");
+                            _self.parent().find('.btnPayOrder').remove();
+                            _self.remove();
+                            $("#LoadOrderList").load($Maticsoft.BasePath + "UserCenter/OrderList/_OrderList?type=@ViewBag.orderType");
+                        } else {
+                            ShowFailTip("取消失败，请您刷新一下再试！");
+                        }
+                    }
+                });
+            }
+        });
+        //完成订单
+        $(".btnOrderComplete").die("click").live("click", function () {
+            var _self = $(this);
+            var orderId = _self.attr("itemid");
+            if (confirm("您确定要确定收货吗？")) {
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    timeout: 0,
+                    url: "@(ViewBag.BasePath)UserCenter/CompleteOrder",
+                    data: { OrderId: orderId },
+                    success: function (data) {
+                        if (data == "True") {
+                            _self.parent().prev().find('strong').text("已完成");
+                            _self.remove();
+                            $("#LoadOrderList").load($Maticsoft.BasePath + "UserCenter/OrderList/_OrderList?type=@ViewBag.orderType");
+                        } else {
+                            ShowFailTip("操作失败，请您刷新一下再试！");
+                        }
+                    }
+                });
+            }
+        });
+    })
+</script>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"></div>
+@*<div class="index_h1">@(ViewBag.orderType == "all" ? "我的订单" : "我的未付款订单")</div>*@
+<div class="seach_but" style="display: none;"><a href="javascript:;" class="a">近一个月的订单</a> <a href="javascript:;">一个月前的订单</a> </div>
+<div id="LoadOrderList" style="background:#f2f2f2;">
+</div>
+

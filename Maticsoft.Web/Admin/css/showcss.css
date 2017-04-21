@@ -1,0 +1,8 @@
+@charset "utf-8";
+/* CSS Document */
+body { margin:0px; background:#eeeeee;}
+a:link {color: #000;text-decoration: none;}
+a:visited {text-decoration: none;color: #000;}
+a:hover {text-decoration: underline;color: #F00;}
+a:active {text-decoration: none;color: #000;}
+li { list-style:none;}

@@ -1,0 +1,44 @@
+﻿@{
+    Layout = null;
+}
+@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+@if (null != Model)
+{
+    foreach (var item in Model)
+    {
+    <div class="letters_bs">
+        <div class="letters_bs_a">
+            <a >
+                <img src="/Areas/SNS/Themes/M1/Content/images/admin.jpg" width="48px" height="48px" /></a></div>
+        <div class="letters_bs_b">
+            <p class="letters_bs_b1">
+                <a >@item.SenderUserName</a></p>
+            <p class="letters_bs_b2">
+                    @(string.IsNullOrEmpty(item.Title)?"":item.Title+":")@item.Content<a href="javascript:;"></a></p>
+            <div class="letters_bs_b3">
+                <p class="letters_bs_b31">
+                    @item.SendTime.Value.ToString("yyyy-MM-dd HH:mm:ss")
+                <p class="letters_bs_b32" style="display:none;">
+                    <a href="javascript:;">回复</a></p>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+    }
+}
+<!-- FansList BEGIN -->
+<center>
+    <!--jQuery Ajax Paging Start-->
+    @Html.AjaxPager(Model, new PagerOptions()
+{
+    CssClass = "in_pages",
+    PageIndexParameterName = "page",
+    NumericPagerItemCount = 5,
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+}, new AjaxOptions() { UpdateTargetId = "SysInfoList" })
+    <!--jQuery Ajax Paging End-->
+</center>

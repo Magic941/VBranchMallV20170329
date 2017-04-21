@@ -1,0 +1,61 @@
+﻿@model List<Maticsoft.Model.Shop.Products.AttributeInfo> 
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string attrvalues = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "new";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+
+}
+<script type="text/javascript">
+    $(function () {
+        var attrvalues = '@attrvalues';
+        var attrvalue_attr = new Array();
+        var count = $("#propretyArea").attr("count");
+        if (attrvalues == '0') {
+            for (var i = 0; i < count; i++) {
+                attrvalue_attr[i] = "0";
+            }
+        }
+        else {
+            attrvalue_attr = attrvalues.split('-');
+        }
+        $(".proTypeBox").each(function () {
+            var _self = $(this);
+            var index1 = _self.attr("index");
+            _self.find(".attrvalue").each(function () {
+                var valuestr = $(this).attr("valueid");
+                if (attrvalue_attr[index1] == valuestr) {
+                    $(this).addClass("cur");
+                }
+            });
+        });
+        $(".attrvalue").click(function () {
+            var attrId = $(this).attr("attrId");
+            var valueid = $(this).attr("valueid");
+            var index = $("#attr_" + attrId).attr("index");
+            attrvalue_attr[index] = valueid;
+            var values_str = attrvalue_attr.join("-");
+            location.href = "/product/@cid/@brandid/" + values_str + "/@mod/@price";
+        });
+    })
+</script>
+@if (Model != null && Model.Count > 0)
+{
+    for (int i = 0; i < Model.Count; i++)
+    {
+    <dl class="clearfix" name="pro_brand" id="attr_@(Model[i].AttributeId)" index="@i">
+        <dt title="@Model[i].AttributeName">
+            <div class="tit-L">@Model[i].AttributeName:</div>
+        </dt>
+        <dd class="rps">
+            <div class="pinpai clearfix">
+                @Html.Action("AttrValues", new { AttrId = Model[i].AttributeId, viewName = "_AttrValues" })
+            </div>
+            @*<div class="slt-more">
+                <a class="btn-more" href="#">多选</a>
+            </div>*@
+        </dd>
+    </dl>
+    }
+}

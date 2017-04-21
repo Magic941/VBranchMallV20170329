@@ -1,0 +1,246 @@
+﻿@{
+      Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+      }
+@model Maticsoft.ViewModel.UserCenter.UserBindList
+<script type="text/javascript">
+    $(function () {
+     
+    });
+    function CancelBind(Id) {
+        $.ajax({
+            url: $Maticsoft.BasePath + "UserCenter/CancelBind",
+            type: 'post',
+            data: { Action: "post", BindId: Id },
+            dataType: 'text',
+            success: function (resultData) {
+                if (resultData == "success") {
+                    window.location = " /UserCenter/UserBind";
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("请求错误！")
+            }
+        });
+    }
+    function SetCheck(control) {
+        if ($(control).attr("checked")) {
+            $(control).removeAttr("checked");
+            alert($(control).attr("checked"));
+        }
+        else {
+            $(control).attr("checked", 'checked');
+        }
+    }
+
+    function btnSet(type, Id) {
+        alert(type);
+        $("." + type + "[checked]").each(function () {
+            var str = $(this).val();
+            alert(str);
+        })
+        //        $.ajax({
+        //            url: $Maticsoft.BasePath + "UserCenter/CancelBind",
+        //            type: 'post',
+        //            data: { Action: "post", BindId: Id },
+        //            dataType: 'text',
+        //            success: function (resultData) {
+        //                if (resultData == "success") {
+        //                    window.location = " /UserCenter/UserBind";
+        //                }
+        //            },
+        //            error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //                alert("请求错误！")
+        //            }
+        //        });
+    }
+</script>
+<div class="material_con">
+<input type="hidden" id="currentpage" value="span_12" />
+    <h1>
+        <p class="material_con_a">
+            绑定帐号</p>
+    </h1>
+    <div class="bangding">
+        @if (Model.Sina != null)
+        {
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/bangding1.jpg" /></div>
+                <div class="zhanghu_b">
+                    <div class="zhanghu_b_c">
+                        <dl class="zhanghu_b_c1">
+                            你已绑定新浪微博：@Model.Sina.MediaNickName</dl>
+                        <dl class="zhanghu_b_c2">
+                            <a href="javascript:void(0)" onclick="CancelBind(@Model.Sina.BindId)">取消绑定</a></dl>
+                    </div>
+                    <div class="zhanghu_b_d">
+                        <dl class="zhanghu_b_d1 ">
+                            <dt>
+                                @if (Model.Sina.Comment)
+                                {
+                                    <input name="" type="checkbox" value="comment" checked="checked" class="sina"  onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="comment" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                 
+                                评论</dt>
+                            <dt>
+                               @* <input name="" type="checkbox" value="topic"   class="sina" onclick="SetCheck(this)"/>*@
+                                @if (Model.Sina.GroupTopic)
+                                {
+                                    <input name="" type="checkbox" value="topic" checked="checked" class="sina"  onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="topic"   class="sina" onclick="SetCheck(this)"/>
+                                }
+                          
+                                主题</dt>
+                            <dt>
+                                @if (Model.Sina.iHome)
+                                {
+                                    <input name="" type="checkbox" value="home" checked="checked" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="home" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                我的首页</dt>
+                  @*          <dt>
+                                <input name="" type="button"  onclick="btnSet('sina',@Model.Sina.BindId)" value="同步设置" /></dt>*@
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/bangding1.jpg" /></div>
+                <div class="zhanghu_b">
+                    <p>
+                        你的新浪微博（未绑定）</p>
+                    <div class="zhanghu_b_a">
+                        <a style="color: #fff;" href="/Account/ToBind?pName=Sina">绑定并关注@(ViewBag.SiteName)</a></div>
+                </div>
+            </div>
+        }
+
+         @if (Model.QZone != null)
+         {
+              <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/bangding3.jpg" /></div>
+                <div class="zhanghu_b">
+                    <div class="zhanghu_b_c">
+                        <dl class="zhanghu_b_c1">
+                            你已绑定QQ空间：@Model.QZone.MediaNickName</dl>
+                        <dl class="zhanghu_b_c2">
+                            <a   href="javascript:void(0)" onclick="CancelBind(@Model.QZone.BindId)">取消绑定</a></dl>
+                    </div>
+                    <div class="zhanghu_b_d">
+                        <dl class="zhanghu_b_d1">
+                            <dt>
+                                <input name="" type="checkbox" value="" checked="checked" />评论</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>主题</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>我的首页</dt>
+                      @*      <dt style="width: 120px">
+                                <input name="" type="button" onclick="btnSet()" value="同步设置" /></dt>*@
+                        </dl>
+                    </div>
+                </div>
+            </div>
+         }
+         else
+         {
+                <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/SNS/Themes/M1/Content/images/bangding3.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的QQ空间帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a style="color: #fff;"  href="/Account/ToBind?pName=QZone">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+         }
+         
+          @*       @if (Model.TenCent != null)
+        {
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/bangding2.jpg" /></div>
+                <div class="zhanghu_b">
+                    <div class="zhanghu_b_c">
+                        <dl class="zhanghu_b_c1">
+                            你已绑定腾讯微博：@Model.TenCent.MediaNickName</dl>
+                        <dl class="zhanghu_b_c2">
+                            <a href="javascript:void(0)" onclick="CancelBind(@Model.TenCent.BindId)">取消绑定</a></dl>
+                    </div>
+                    <div class="zhanghu_b_d">
+                        <dl class="zhanghu_b_d1">
+                            <dt>
+                                <input name="" type="checkbox" value="" checked="checked" />评论</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>主题</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>我的首页</dt>
+                
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+              
+            
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/bangding2.jpg" /></div>
+                <div class="zhanghu_b">
+                    <p>
+                        你的腾讯微博（未绑定）</p>
+                    <div class="zhanghu_b_a">
+                        <a style="color: #fff;"  href="/Account/ToBind?pName=Tencent">绑定并关注@(ViewBag.SiteName)</a></div>
+                </div>
+            </div>
+        }*@
+
+        <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/SNS/Themes/M1/Content/images/bangding4.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的人人帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a  style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+        <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/SNS/Themes/M1/Content/images/bangding5.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的豆瓣帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+        <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/SNS/Themes/M1/Content/images/bangding6.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的淘宝帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a  style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+    </div>
+</div>

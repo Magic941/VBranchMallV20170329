@@ -1,0 +1,30 @@
+﻿@model  List<Maticsoft.Model.SNS.Photos>
+<div class="hp-hd-sub" style="width: 968px">
+    <h2>
+        社区分享秀</h2>
+    <div class="hp-more-sub" style="float: right">
+        <a href="/SNS/Photo/Index/-1/0/all/hot" target="_blank">更多社区分享秀</a>
+    </div>
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="hp-bd-sub cf">
+        @foreach (var item in Model)
+        {
+            <div class="x-item">
+                <a href="/SNS/Photo/Detail/@item.PhotoID" title="@item.Description "
+                   target="_blank">
+                    <img class="x-item-pic" width="175" height="228" title="@item.Description  " alt="@item.Description  "
+                          data-lazy="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T225x350_")"><span
+                             class="x-item-desc"> <em class="x-item-tit">@item.Description </em></span>
+                </a>
+                <div class="x-item-state">
+                    <i class="ico-triangle"></i>
+                    <img width="50" height="50" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg"><p>
+                        <em>@item.CreatedNickName：</em>@item.Description
+                    </p>
+                </div>
+            </div>
+        }
+    </div>
+}

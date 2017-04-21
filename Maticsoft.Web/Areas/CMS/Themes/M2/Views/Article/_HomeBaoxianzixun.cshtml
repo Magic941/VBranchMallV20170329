@@ -1,0 +1,83 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--保险资讯-->
+<div class="bxzx">
+    <div class="baoxian w1200 c m">
+        <div class="jiankang_top">
+            <h3>保险资讯</h3>
+            <p><span>INSURANCE INFORMATION</span><font></font></p>
+        </div>
+        <div class="baoxian_list">
+
+            <!--首页头部新闻-->
+            @if (Model != null && Model.Count > 0)
+            {
+                <ul>
+                    @foreach (var item in Model)
+                    {
+                      
+            
+                        <li class="mr40">
+                            <a href="/Article/Details/@item.ContentID">
+                                <img src='@string.Format(@item.ThumbImageUrl, "T235x1280_")' />
+                                <span></span>
+                                <h3>@item.Title</h3>
+                                @if (item.Summary.Length > 105)
+                                {
+                                    <p>@item.Summary.Substring(0, 105)...</p>
+                                }
+                                else
+                                {
+                                    <p>@item.Summary</p>
+                                }
+                            </a>
+                        </li>
+                    }
+
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li class="mr40">
+                        <a href="#">
+                            <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_05.jpg" />
+                            <span></span>
+                            <h3>多险企涉足养老医疗 不乏公墓等另类投资</h3>
+                            <p>2月16日讯：从举牌上市公司到成立电商子公司，从养老医疗到海外投资。近年来，伴随投资渠道的拓宽，险资在"其他投资"方面动作不断，也逐渐成为大众关注的焦点。那么，掌控着上亿资产的险企究竟更钟爱哪些领域呢？</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_06.jpg" />
+                            <span></span>
+                            <h3>公务员不再特殊 养老金并轨悄悄来临</h3>
+                            <p>2月16日讯：从举牌上市公司到成立电商子公司，从养老医疗到海外投资。近年来，伴随投资渠道的拓宽，险资在"其他投资"方面动作不断，也逐渐成为大众关注的焦点。那么，掌控着上亿资产的险企究竟更钟爱哪些领域呢？</p>
+                        </a>
+                    </li>
+                    <li class="mr40">
+                        <a href="#">
+                            <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_07.jpg" />
+                            <span></span>
+                            <h3>保监会发防范和处置非法集资通知险企设立打非小组负责人任组长</h3>
+                            <p>2月16日讯：从举牌上市公司到成立电商子公司，从养老医疗到海外投资。近年来，伴随投资渠道的拓宽，险资在"其他投资"方面动作不断，也逐渐成为大众关注的焦点。那么，掌控着上亿资产的险企究竟更钟爱哪些领域呢？</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_08.jpg" />
+                            <span></span>
+                            <h3>保险行业飞速发展未来监管有望加码险资举牌驱动蓝筹行情难持续</h3>
+                            <p>2月16日讯：从举牌上市公司到成立电商子公司，从养老医疗到海外投资。近年来，伴随投资渠道的拓宽，险资在"其他投资"方面动作不断，也逐渐成为大众关注的焦点。那么，掌控着上亿资产的险企究竟更钟爱哪些领域呢？</p>
+                        </a>
+                    </li>
+                </ul>
+
+    
+            }
+            <div class="c"></div>
+        </div>
+        <div class="jiankang_bom c m">
+            <a href="/Article/ArticleList?classid=44&viewName=BXZiXunList">MORE</a>
+        </div>
+    </div>
+</div>

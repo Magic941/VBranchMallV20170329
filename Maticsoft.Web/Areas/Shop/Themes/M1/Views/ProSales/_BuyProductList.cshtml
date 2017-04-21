@@ -1,0 +1,82 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+
+<div id="ProductListDiv">
+    <script type="text/javascript">
+        $(function () {
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)ProSales/BuyListWaterfall"
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "J_lazyload",
+                //列数
+                ColumnNumber: 0, RowNumber: 4
+            });
+            $.lazyFixedLoadImg('.list-n4', 175, 228);
+        });
+    </script>
+    @if (Model.ProductPagedList != null)
+    {
+        <div ajaxcontent="1" class="filterbox cf mb20" name="">
+            <div id="Sort">
+            </div>
+        </div>
+        <div ajaxcontent="1" class="itemmain mb20 relative" name="__FLLB002">
+            <ul class="list list-n4" id="J_lazyload">
+                @foreach (var item in Model.ProductPagedList)
+                {
+                    <li styleid="product_@(item.ProductId)" class="item item-sale"><a target="_blank" href="@(ViewBag.BasePath)Product/GroupBuyDetail/@item.GroupBuy.GroupBuyId"
+                                                            title="@item.ProductName" class="item-desc ForSkuLink">
+                                                                                   <img title="@item.ProductName" alt="@item.ProductName" width="175" height="228" ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T175X228_")">
+                                                                                      <span class="item-title" style="width: 180px;float: left">
+                            @item.ProductName </span></a>
+                        <span style="float: left;color: grey">团购价：</span><span class="item-price" style="float: left"><em>@(item.GroupBuy.Price.ToString("F"))</em></span>
+                        @if (item.MarketPrice.HasValue)
+                        {
+                            <del style="padding-left: 128px; padding-top: 4px;">@(item.MarketPrice.Value.ToString("F"))</del>
+                        }
+                            <p class="item-brand " style="color: #333" >
+                            团购满足数量：@item.GroupBuy.GroupCount
+                        </p>
+                     
+                    </li>
+                }
+            </ul>
+            <div class="loadingmask">
+                <div class="loadingmask-bg">
+                </div>
+                <div class="loadingmask-txt fixtop">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/loading-pink.gif" class="mr10" style="vertical-align: middle"></div>
+            </div>
+        </div>
+        <div>
+            @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = true,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 10,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+            <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+            <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+        </div>
+    }
+</div>

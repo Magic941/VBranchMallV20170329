@@ -1,0 +1,52 @@
+﻿@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.SNS.GroupTopics>
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string q = Request.RequestContext.RouteData.Values["q"] != null ? Request.RequestContext.RouteData.Values["q"].ToString() : "";
+}
+ @section head{
+ <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script> 
+ <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+ }
+<script type="text/javascript">
+    $(function () {
+        $("#@(ViewBag.sequence)").addClass("c");
+        resizeImg('#target', 80, 80);
+        $(".searchbtn").click(function (e) {
+            e.preventDefault();
+            if ($(this).parent().prev().find("input").val()) {
+                window.location = "@(ViewBag.BasePath)Search/Topics/newreply/" + $(this).parent().prev().find("input").val() + "";
+            }
+            else {
+                window.location = "@(ViewBag.BasePath)Search/Topics/newreply";
+            }
+        });
+    })
+</script>
+<div class="search_bk">
+    <div class="search_bk_1">
+        <div class="search_bk_1_a">
+            <input name="" type="" value="@(q)"></div>
+        <div class="search_bk_1_b">
+            <a href="javascript:;" class="searchbtn">
+                <img src="/Areas/SNS/Themes/M1/Content/images/search_1.jpg"></a></div>
+    </div>
+      <div class="search_bk_2"><a class="btnProduct"  href="javascript:void(0)">宝贝</a> <a  class="btnPhoto" href="javascript:void(0)">图片</a> <a class="btnAlbums"  href="javascript:void(0)">专辑</a> <a class="btnUser" href="javascript:void(0)">用户</a> <a class="btnGroups" href="javascript:void(0)">
+<span>小组</span></a>　</div>
+    <div class="clear">
+    </div>
+</div>
+<div class="user_cont">
+    @Html.Action("Groups", new { q =q})
+    <div class="search_topic_result" id="topic_result">
+        <h3 class="all_group_result">
+            与"@(q)"相关的主题结果
+        </h3>
+        <div class="result_p">
+            <span>排序：</span> @Html.ActionLink("最近发表", "Topics", new { sequence = "newpost", q =q }, new { @id = "newpost"})  
+            @Html.ActionLink("最近回应", "Topics", new { sequence = "newreply", q =q }, new { @id = "newreply"})  
+        </div>
+        <div id="MaticsoftToplist">
+            @{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Search/TopicList.cshtml", Model);}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,2391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Utilty_OrderStatus_TRADE_FINISHED" xml:space="preserve">
+    <value>成功交易订单</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountPending_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="Exception_StoreDisabled" xml:space="preserve">
+    <value>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Site Temporarily Disabled&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;center&gt;
+    &lt;table height="70%" width="90%"&gt;
+      &lt;tr&gt;
+        &lt;td align="center" valign="middle"&gt;
+	  &lt;h1&gt;网店临时关闭&lt;/h1&gt;
+          &lt;b&gt;站点管理员临时关闭了网店&lt;/b&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;/center&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>提交成功</value>
+  </data>
+  <data name="IDS_RowContent_OneNumberAndPassword" xml:space="preserve">
+    <value>一行一个卡号和密码</value>
+  </data>
+  <data name="IDS_Message_Eidt_TryPassword_Success" xml:space="preserve">
+    <value>交易密码修改成功</value>
+  </data>
+  <data name="IDS_UserSendMessage_Message_Success_SendMessages" xml:space="preserve">
+    <value>消息发送成功</value>
+  </data>
+  <data name="IDS_Message_Create_Success" xml:space="preserve">
+    <value>成功添加了一个会员</value>
+  </data>
+  <data name="IDS_CommonField_Nothing" xml:space="preserve">
+    <value>暂无</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_PrivateMessageNotification_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$SiteName$:网站名称,$MessageSubject$:站内信主题,$MessageBody$:站内信内容</value>
+  </data>
+  <data name="IDS_ProductType_Subscribe" xml:space="preserve">
+    <value>订阅服务</value>
+  </data>
+  <data name="IDS_Favorites_PageTitle" xml:space="preserve">
+    <value>商品收藏夹</value>
+  </data>
+  <data name="IDS_UploadImageMessageLabel_Text" xml:space="preserve">
+    <value>请选择有效的图片类型文件，为了提高前台网页的打开速度，建议将图片文件的大小限制在200KB以内。</value>
+  </data>
+  <data name="Utilty_ShippingStatus_Delivered" xml:space="preserve">
+    <value>已发货</value>
+  </data>
+  <data name="Utility_CurrentTime_formatGMT" xml:space="preserve">
+    <value>[GMT {0}]</value>
+  </data>
+  <data name="IDS_MyBalanceFreezeDetails_PageTitle" xml:space="preserve">
+    <value>冻结金额明细</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ChangedPassword" xml:space="preserve">
+    <value>修改登陆密码</value>
+  </data>
+  <data name="Utilty_RefundStatus_Requested" xml:space="preserve">
+    <value>已申请退款</value>
+  </data>
+  <data name="IDS_Message_UpdatePayment" xml:space="preserve">
+    <value>成功修改了订单的支付方式</value>
+  </data>
+  <data name="MemberSettings_ActivateMode_Admin" xml:space="preserve">
+    <value>管理员审核激活</value>
+  </data>
+  <data name="MemberSettings_ActivateMode_Email" xml:space="preserve">
+    <value>电子邮件激活</value>
+  </data>
+  <data name="Exception_DataStoreUnavailable" xml:space="preserve">
+    <value>&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Critical Error: [DATASTOREEXCEPTION]&lt;/title&gt;
+    &lt;style type="text/css"&gt;
+&lt;!--
+.STYLE2 {color: #663300}
+--&gt;
+    &lt;/style&gt;
+&lt;/head&gt;
+  &lt;body&gt;
+    &lt;center&gt;
+    &lt;table height="70%" width="90%"&gt;
+      &lt;tr&gt;
+        &lt;td align="center" valign="middle"&gt;
+	  &lt;h1&gt;数据访问错误: 无法连接到数据库&lt;/h1&gt;
+          &lt;b&gt;
+          &lt;P&gt;
+          请确定数据库是否运行正常并且Web.config文件中数据库连接字符串设置是否正确
+          &lt;/b&gt;
+          &lt;p&gt;
+&lt;br&gt;
+&lt;table width="100%"&gt;
+  &lt;tr&gt;
+    &lt;td align="left" colspan="2"&gt;
+          修改链接字符串:
+            &lt;P&gt;
+1.	使用记事本打开网站根目录下的Web.config文件
+            &lt;P&gt;
+2.	在打开的Web.config文件中找到如下connectionStrings配置节:
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;&amp;nbsp; &amp;nbsp;&lt;/td&gt;
+    &lt;td align="left" bgcolor="#CCCCCC"&gt;      &lt;pre class="STYLE2"&gt;
+
+    &lt;font face="LucidiaConsole"&gt;&lt;b&gt;&amp;lt;connectionStrings&amp;gt;
+
+        &amp;lt;add name="MaticsoftSqlServer" connectionString="&lt;i&gt;[在这里输入数据库链接字符串]&lt;/i&gt;"
+          providerName=&amp;quot;System.Data.SqlClient&amp;quot; &amp;gt;
+
+    &amp;lt;/connectionStrings&amp;gt;&lt;/b&gt;&lt;/font&gt;&lt;font face="LucidiaConsole"&gt;&lt;b&gt;
+
+&lt;/b&gt;&lt;/font&gt;&lt;/pre&gt;    &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td colspan="2"&gt;&lt;p&gt;3.修改connectionString属性并保存&lt;/p&gt;
+      &lt;p&gt;格式如下：&lt;br&gt; 
+        connectionString = "server=.;database=Maticsoft;uid=csSystem;pwd=pa$$word12"&lt;/p&gt;
+      &lt;font face="LucidiaConsole"&gt;&amp;nbsp; &lt;/font&gt;&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+&lt;P&gt;
+        &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+    &lt;/center&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="IDS_Message_Eidt_Account_Success" xml:space="preserve">
+    <value>成功修改了当前会员的基本信息</value>
+  </data>
+  <data name="AccountStatus_ApprovalPending" xml:space="preserve">
+    <value>等待审核</value>
+  </data>
+  <data name="IDS_Message_Eidt_Password_Success" xml:space="preserve">
+    <value>成功修改了当前会员的密码</value>
+  </data>
+  <data name="IDS_ErrorMessage_MemberRankDelete" xml:space="preserve">
+    <value>删除会员等级失败，会员等级下有会员或为默认等级不能删除</value>
+  </data>
+  <data name="IDS_ErrorMessage_DeleteIsDefault" xml:space="preserve">
+    <value>不能删除默认的会员等级</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_OrderAutoComplete" xml:space="preserve">
+    <value>订单自动完成以后的通知邮件</value>
+  </data>
+  <data name="MemberSettings_RecoveryMode_QuestionAndAnswer" xml:space="preserve">
+    <value>安全问题</value>
+  </data>
+  <data name="IDS_ErrorMessage_Eidt_Account_Error" xml:space="preserve">
+    <value>当前会员的账户信息失败失败</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_CONFIRM_PAY" xml:space="preserve">
+    <value>卖家确认收款</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenDealPassword_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$ChangePassWordUrl$:修改密码的url地址,$ChangePassWordSecurityUrl$:修改密码的安全链接地址</value>
+  </data>
+  <data name="Utilty_AdvPositionType_AdvHtml" xml:space="preserve">
+    <value>自定义广告位</value>
+  </data>
+  <data name="IDS_UploadOption_SaveToDatabase" xml:space="preserve">
+    <value>保存到数据库</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Delete_Error" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="Operate_LookOver" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="IDS_PayInterface_ChinaPay" xml:space="preserve">
+    <value>银联电子支付</value>
+  </data>
+  <data name="IDS_OrderStatus_GatewayNotFound" xml:space="preserve">
+    <value>操作已经停止&lt;br/&gt;名称为[{0}]的支付接口可能已经从系统中删除，系统无法验证支付接口的返回信息！</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ChangedPassword_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="IDS_AgentManageMembers_ErrorMessage_Save_No_Check" xml:space="preserve">
+    <value>请先选择要保存的会员信息</value>
+  </data>
+  <data name="Utilty_RegularExpression_EnglishAndNum" xml:space="preserve">
+    <value>大小写英文和数字</value>
+  </data>
+  <data name="IDS_MyCoupons_Message_AddSucess" xml:space="preserve">
+    <value>成功的添加了优惠券到你的账户</value>
+  </data>
+  <data name="IDS_Wednesday" xml:space="preserve">
+    <value>星期三</value>
+  </data>
+  <data name="IDS_Sunday" xml:space="preserve">
+    <value>星期日</value>
+  </data>
+  <data name="Utility_NavigationSearch_AllCategory" xml:space="preserve">
+    <value>全部分类</value>
+  </data>
+  <data name="Exception_UrlReWriteProvider" xml:space="preserve">
+    <value>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Critical Error: DataProvider&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;center&gt;
+            &lt;table height="40%" width="90%"&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="middle"&gt;
+						&lt;h1&gt;Url重写错误: UrlReWriteProvider&lt;/h1&gt;
+                        &lt;b&gt;无法加载Url重写的实现&lt;/b&gt;
+                        &lt;p&gt;
+                            请联系您的站点管理员解决此问题.&lt;/p&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr&gt;
+                  &lt;td align="left"&gt;&amp;nbsp;&lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/center&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="IDS_ErrorMessage_UserName" xml:space="preserve">
+    <value>用户名由字母(不区分大小写)、数字、下划线和汉字组成，必须以汉字或字母开头，且长度必须在2-20个字符之间</value>
+  </data>
+  <data name="Utilty_RegularExpression_All_Value" xml:space="preserve">
+    <value>(.){4,64}</value>
+  </data>
+  <data name="IDS_UserOrders_litOrderTotal" xml:space="preserve">
+    <value>截至{0}，您共有{1}张订单完成交易，累计消费{2}元。</value>
+  </data>
+  <data name="IDS_ErrorMessage_PassWord_NotNull" xml:space="preserve">
+    <value>请输入交易密码</value>
+  </data>
+  <data name="IDS_PromoteTypeCheckBox_Discount" xml:space="preserve">
+    <value>满额打折</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_BalanceRequest_Fail" xml:space="preserve">
+    <value>预付款余额不足,请重新输入提现金额</value>
+  </data>
+  <data name="Font_Largest" xml:space="preserve">
+    <value>最大</value>
+  </data>
+  <data name="Utilty_OnlineServiceShowType_Float" xml:space="preserve">
+    <value>浮动</value>
+  </data>
+  <data name="Utilty_OnlineServiceType_QQ" xml:space="preserve">
+    <value>QQ</value>
+  </data>
+  <data name="Location_PrivateArea" xml:space="preserve">
+    <value>Private Area</value>
+  </data>
+  <data name="IDS_MassageError_EmailEffective" xml:space="preserve">
+    <value>邮箱地址必须为有效格式</value>
+  </data>
+  <data name="IDS_ErrorMessage_Balance_Fail" xml:space="preserve">
+    <value>最小的提现金额为:{0}</value>
+  </data>
+  <data name="MailPriority_Normal" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_PassWord_Fail" xml:space="preserve">
+    <value>交易密码不正确,请重新输入</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Add_ReName" xml:space="preserve">
+    <value>地址已经在，请重新输入一次再试</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountPending_EmailDesc" xml:space="preserve">
+    <value>注册成功以后，并且账号激活的方式是AdminApproval</value>
+  </data>
+  <data name="Utilty_OrderStatus_WAIT_SELLER_SEND_GOODS" xml:space="preserve">
+    <value>等待发货订单</value>
+  </data>
+  <data name="IDS_DiscountValueTypeCheckBoxList_Amount" xml:space="preserve">
+    <value>优惠金额</value>
+  </data>
+  <data name="IDS_OrderStatus_CallBack" xml:space="preserve">
+    <value>订单支付没有完成，有如下几种可能：&lt;br/&gt;1:此页面在支付接口回调之前到达，订单状态还未更新，您可以稍后再查询订单状态来确认支付是否成功。&lt;br/&gt;2:系统在处理订单的过程中产生错误终止了操作，您可以联系商家确认是否已支付成功。</value>
+  </data>
+  <data name="Utilty_UploadSaveTypeDropDownList_Database" xml:space="preserve">
+    <value>上传到数据库</value>
+  </data>
+  <data name="IDS_ErrorMessage_TranPassword" xml:space="preserve">
+    <value>密码长度在6-20个字符之间</value>
+  </data>
+  <data name="IDS_UserPoints_PageTitle" xml:space="preserve">
+    <value>我的积分</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_OrderPay" xml:space="preserve">
+    <value>订单付款</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoOrderId" xml:space="preserve">
+    <value>订单编号不能为空</value>
+  </data>
+  <data name="IDS_Search_special" xml:space="preserve">
+    <value>特价</value>
+  </data>
+  <data name="IDS_ProductImages_PageTitle" xml:space="preserve">
+    <value>商品展示</value>
+  </data>
+  <data name="Utilty_OrderStatus_REFUND_CLOSE" xml:space="preserve">
+    <value>退款关闭订单</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_NotPayAndCanceled" xml:space="preserve">
+    <value>用户已取消</value>
+  </data>
+  <data name="IDS_CardSendInfo" xml:space="preserve">
+    <value>发卡信息</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_PrivateMessageNotification" xml:space="preserve">
+    <value>站内信(用户之间)</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoChoise" xml:space="preserve">
+    <value>请先选择要删除的会员等级</value>
+  </data>
+  <data name="AutomatedEmail" xml:space="preserve">
+    <value>"{0} - 系统自动发送的邮件" &amp;lt;{1}&amp;gt;</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenPassword_EmailDesc" xml:space="preserve">
+    <value>用户找回密码，找回密码的方式为Reset或QuestionAndAnswer</value>
+  </data>
+  <data name="ResourceObject_ProductCategory" xml:space="preserve">
+    <value>商品分类</value>
+  </data>
+  <data name="IDS_MassageError_LeaveComments_Content" xml:space="preserve">
+    <value>留言内容为必填项，长度限制在300字符以内</value>
+  </data>
+  <data name="Utilty_OrderStatus_REFUND_SUCCESS" xml:space="preserve">
+    <value>退款成功订单</value>
+  </data>
+  <data name="Utilty_RegularExpression_All" xml:space="preserve">
+    <value>支持所有字符</value>
+  </data>
+  <data name="IDS_ErrorMessage_UnKnowError" xml:space="preserve">
+    <value>操作失败,未知错误</value>
+  </data>
+  <data name="Utilty_OrderStatus_WAIT_BUYER_PAY" xml:space="preserve">
+    <value>等待付款订单</value>
+  </data>
+  <data name="IDS_AuctionType_PackageSales" xml:space="preserve">
+    <value>捆绑销售</value>
+  </data>
+  <data name="IDS_PayInterface_AdvanceAccount" xml:space="preserve">
+    <value>预付款账户</value>
+  </data>
+  <data name="Utilty_String_Month" xml:space="preserve">
+    <value>月</value>
+  </data>
+  <data name="IDS_UserOrders_PageTitle" xml:space="preserve">
+    <value>我的订单</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_NewUserAccountRejected" xml:space="preserve">
+    <value>用户注册(管理员审核拒绝)</value>
+  </data>
+  <data name="IDS_Login" xml:space="preserve">
+    <value>重新登陆</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoProduct" xml:space="preserve">
+    <value>商品不存在，请确定商品ID是有效的</value>
+  </data>
+  <data name="IDS_Button_OpenImageGallery" xml:space="preserve">
+    <value>从图片仓库选择</value>
+  </data>
+  <data name="IDS_Massage_ConfirmGoods_Error" xml:space="preserve">
+    <value>你已经确认过了的订单收货</value>
+  </data>
+  <data name="IDS_Message_ProductWeight" xml:space="preserve">
+    <value>{0} g</value>
+  </data>
+  <data name="IDS_ErrorMessage_SentPayment" xml:space="preserve">
+    <value>订单当前状态不能支付</value>
+  </data>
+  <data name="IDS_UserProfile_Edit_Success" xml:space="preserve">
+    <value>成功的修改了用户的个人资料</value>
+  </data>
+  <data name="IDS_InpourStatus_Unknow" xml:space="preserve">
+    <value>未知状态，请不要手工修改此页面地址！</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_VIEW_DETAILS" xml:space="preserve">
+    <value>买家查看明细</value>
+  </data>
+  <data name="IDS_Product_UnDestined" xml:space="preserve">
+    <value>团购结束,停止预定</value>
+  </data>
+  <data name="Utilty_MailPriorityLabel_Text1" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="Utilty_MailPriorityLabel_Text2" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="Utilty_MailPriorityLabel_Text3" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_UserNameNull" xml:space="preserve">
+    <value>请输入用户名称</value>
+  </data>
+  <data name="AccountStatus_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="IDS_MassageError_RegistUser_Email" xml:space="preserve">
+    <value>请输入有效的邮箱地址，长度限制在200字符以内</value>
+  </data>
+  <data name="Utility_Pager_firstButton" xml:space="preserve">
+    <value>&amp;#171; 首页</value>
+  </data>
+  <data name="ResourceObject_OrderOption" xml:space="preserve">
+    <value>订单可选项</value>
+  </data>
+  <data name="IDS_AuctionType_GroupPurchase" xml:space="preserve">
+    <value>团购</value>
+  </data>
+  <data name="IDS_Literal_CloseOrder" xml:space="preserve">
+    <value>当前订单：{0}；订单总金额为{1}；</value>
+  </data>
+  <data name="IDS_RequestBalanceDrawConfirm_ErrorMessage_Destined_Fail" xml:space="preserve">
+    <value>申请提现过程中出现未知错误</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_CONFIRM_GOODS" xml:space="preserve">
+    <value>买家确认收货</value>
+  </data>
+  <data name="IDS_Button_Collection" xml:space="preserve">
+    <value>收藏</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountRejected_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="IDS_Label_blog2" xml:space="preserve">
+    <value>分享展示这款产品？</value>
+  </data>
+  <data name="IDS_Label_blog1" xml:space="preserve">
+    <value>在Blog或论坛上</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ChangedDealPassword_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="IDS_Message_DuplicateUsername" xml:space="preserve">
+    <value>已经在存相同的用户名</value>
+  </data>
+  <data name="ResourceObject_AgentialRank" xml:space="preserve">
+    <value>代理等级</value>
+  </data>
+  <data name="IDS_SelectModeDropDownList_SingleButton" xml:space="preserve">
+    <value>单选按钮</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F5" xml:space="preserve">
+    <value>MM/dd/yyyy</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F4" xml:space="preserve">
+    <value>MM-dd-yyyy</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F1" xml:space="preserve">
+    <value>yyyy年MM月dd日</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F3" xml:space="preserve">
+    <value>yyyy/MM/dd</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F2" xml:space="preserve">
+    <value>yyyy-MM-dd</value>
+  </data>
+  <data name="IDS_PayInterface_AlipayAssure" xml:space="preserve">
+    <value>支付宝担保交易（1.5%）</value>
+  </data>
+  <data name="IDS_Label_Login" xml:space="preserve">
+    <value>登陆</value>
+  </data>
+  <data name="Utilty_OnlineServiceType_WangWang" xml:space="preserve">
+    <value>旺旺</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F5Text" xml:space="preserve">
+    <value>Month/Day/Year (05/01/2003)</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F4Text" xml:space="preserve">
+    <value>Month-Day-Year (05-01-2003)</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F3Text" xml:space="preserve">
+    <value>Year/Month/Day (2003/05/01)</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F2Text" xml:space="preserve">
+    <value>Year-Month-Day (2003-05-01)</value>
+  </data>
+  <data name="Utility_DateFormatDropDownList_F1Text" xml:space="preserve">
+    <value>年-月-日 (2003年05月01日)</value>
+  </data>
+  <data name="Exception_DataProvider" xml:space="preserve">
+    <value>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;数据访问错误&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;center&gt;
+            &lt;table height="40%" width="90%"&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="middle"&gt;
+                        &lt;h1&gt;数据访问错误&lt;/h1&gt;
+                        &lt;b&gt;数据访问提供者类 "[DATAPROVIDERCLASS]" 没有成功加载.&lt;/b&gt;
+                        &lt;p&gt;
+                            请联系您的网站管理员解决此问题.&lt;/p&gt;
+                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/center&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="IDS_Label_CategoryProductResult" xml:space="preserve">
+    <value>总共有&lt;span class="productName"&gt;{0}&lt;/span&gt;件商品,&lt;span class="productName"&gt;{1}&lt;/span&gt;件商品为一页,共&lt;span class="productName"&gt;{2}&lt;/span&gt;页					当前第 &lt;span class="shopgonggao"&gt;{3}&lt;/span&gt; 页&lt;span class="blueFontStyle"&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="IDS_Search_new" xml:space="preserve">
+    <value>最新</value>
+  </data>
+  <data name="IDS_Search_Hot" xml:space="preserve">
+    <value>热卖</value>
+  </data>
+  <data name="Utility_AttributeDataType_LookupItem" xml:space="preserve">
+    <value>可选值列表</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_Requested" xml:space="preserve">
+    <value>申请退款订单</value>
+  </data>
+  <data name="IDS_RefundOrdersConfirmPageTitle" xml:space="preserve">
+    <value>确认退款</value>
+  </data>
+  <data name="IDS_MassageError_ProductReview_UserName" xml:space="preserve">
+    <value>用户昵称为必填项，长度限制在20字符以内</value>
+  </data>
+  <data name="IDS_Button_CreateReport" xml:space="preserve">
+    <value>生成报表</value>
+  </data>
+  <data name="Utilty_OrderStatus_PREPARE_GOODS" xml:space="preserve">
+    <value>配货中订单</value>
+  </data>
+  <data name="IDS_PromoteSaleProductTypesRadioButtonList_Out" xml:space="preserve">
+    <value>包含列表中除外的商品</value>
+  </data>
+  <data name="Utility_Pager_lastButton" xml:space="preserve">
+    <value>末页 &amp;#187;</value>
+  </data>
+  <data name="IDR_ImgPathIsNull" xml:space="preserve">
+    <value>图片不存在</value>
+  </data>
+  <data name="IDS_Msg_CloseRoderReasons_Success" xml:space="preserve">
+    <value>成功关闭了订单</value>
+  </data>
+  <data name="Utilty_GroupPurchaseStatusLabel_Text3" xml:space="preserve">
+    <value>团购已结束</value>
+  </data>
+  <data name="Utilty_GroupPurchaseStatusLabel_Text2" xml:space="preserve">
+    <value>还差{0}件</value>
+  </data>
+  <data name="Utilty_GroupPurchaseStatusLabel_Text1" xml:space="preserve">
+    <value>团购已成立</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_REJECT_REFUND" xml:space="preserve">
+    <value>卖家拒绝退款</value>
+  </data>
+  <data name="IDS_AgentManageMembers_Message_Save_Profile_Success" xml:space="preserve">
+    <value>成功保存了选择的会员信息</value>
+  </data>
+  <data name="IDS_SearchResult_PageTitle" xml:space="preserve">
+    <value>商品搜索</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountCreated_EmailDesc" xml:space="preserve">
+    <value>注册成功以后，并且账号激活的方式是Email或者Automatic</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_Login_Error" xml:space="preserve">
+    <value>登陆失败</value>
+  </data>
+  <data name="IDS_ValidateOrderOption_ItemRequired" xml:space="preserve">
+    <value>请为每一个订单可选项选择一个值</value>
+  </data>
+  <data name="IDS_FromField_litOrderTotal" xml:space="preserve">
+    <value>截至{0}，您的下属会员共有{1}张订单完成交易，累计消费{2}元。</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_NewUserAccountApproved" xml:space="preserve">
+    <value>用户注册(管理员审核通过)</value>
+  </data>
+  <data name="IDS_Button_Reply" xml:space="preserve">
+    <value>回复</value>
+  </data>
+  <data name="Tags_Common_ViewProduct_OddTime" xml:space="preserve">
+    <value>剩余时间：{D}天{H}时{M}分{S}秒</value>
+  </data>
+  <data name="IDS_Tuesday" xml:space="preserve">
+    <value>星期二</value>
+  </data>
+  <data name="IDS_ProductType_RechargeableCard" xml:space="preserve">
+    <value>卡密</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_YetPayNotShip" xml:space="preserve">
+    <value>已付款未发货订单</value>
+  </data>
+  <data name="IDS_PresentType_All" xml:space="preserve">
+    <value>全部赠送</value>
+  </data>
+  <data name="IDS_ProductSearch_PageTitle" xml:space="preserve">
+    <value>商品搜索</value>
+  </data>
+  <data name="IDS_MassageError_ProductReview_Content" xml:space="preserve">
+    <value>评论内容为必填项，长度限制在200字符以内</value>
+  </data>
+  <data name="IDS_Search_recommend" xml:space="preserve">
+    <value>推荐</value>
+  </data>
+  <data name="IDS_MyCoupons_IsNot_Exit" xml:space="preserve">
+    <value>你输入的优惠券申明号码无效，请重试</value>
+  </data>
+  <data name="Utilty_CloseOrder_BuyerHavGoods" xml:space="preserve">
+    <value>买家不想购物了</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_tryPassword_Success" xml:space="preserve">
+    <value>你已经成功的修改了交易密码</value>
+  </data>
+  <data name="IDS_PresentType_Single" xml:space="preserve">
+    <value>任选其一</value>
+  </data>
+  <data name="IDS_SaveAgentSettings_Success" xml:space="preserve">
+    <value>成功修改了代理商的基本设置</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoPayMode" xml:space="preserve">
+    <value>无法充值,因为后台没有添加支付方式</value>
+  </data>
+  <data name="ChangePassword_InvalidContent" xml:space="preserve">
+    <value>密码包含的特殊字符太少, 最少要包含 {0} 个特殊字符</value>
+  </data>
+  <data name="ResourceObject_Affiche" xml:space="preserve">
+    <value>公告</value>
+  </data>
+  <data name="ResourceObject_EmailTemplate" xml:space="preserve">
+    <value>邮件模板</value>
+  </data>
+  <data name="IDS_Label_LoginOut" xml:space="preserve">
+    <value>退出</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_tryPassword_Error" xml:space="preserve">
+    <value>修改交易密码失败</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_LockedOut" xml:space="preserve">
+    <value>你已经被管理员锁定</value>
+  </data>
+  <data name="ResourceObject_ArticleCategory" xml:space="preserve">
+    <value>文章分类</value>
+  </data>
+  <data name="IDS_UserSendMessage_Message_Error_SendMessages" xml:space="preserve">
+    <value>消息发送失败</value>
+  </data>
+  <data name="IDS_Label_NotLogin" xml:space="preserve">
+    <value>您好，欢迎光临商城！</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_TextOther" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="ResourceObject_OnlineService" xml:space="preserve">
+    <value>在线客服</value>
+  </data>
+  <data name="Utilty_AdvPositionType_Vertical" xml:space="preserve">
+    <value>纵向平铺</value>
+  </data>
+  <data name="IDS_AgentSendMessageSelectUser_Message_NoUsers_SendMessages" xml:space="preserve">
+    <value>没有要发送的对象</value>
+  </data>
+  <data name="IDS_Button_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="IDS_Message_Delete_Success" xml:space="preserve">
+    <value>已经成功删除选择的会员等级</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text6" xml:space="preserve">
+    <value>消费</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text7" xml:space="preserve">
+    <value>提现</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text4" xml:space="preserve">
+    <value>转出</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text5" xml:space="preserve">
+    <value>提成</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text2" xml:space="preserve">
+    <value>后台加款</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text3" xml:space="preserve">
+    <value>转入</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text1" xml:space="preserve">
+    <value>自助充值</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_Text8" xml:space="preserve">
+    <value>订单退款</value>
+  </data>
+  <data name="IDS_PromoteTypeDropDownList_PromoteType_QuantityDiscount" xml:space="preserve">
+    <value>批发打折</value>
+  </data>
+  <data name="IDS_PayInterface_AliPayDirect" xml:space="preserve">
+    <value>支付宝即时到帐交易</value>
+  </data>
+  <data name="IDS_Message_NoSuccessCfirmGoods" xml:space="preserve">
+    <value>对订单 "{0}" 确认收货失败</value>
+  </data>
+  <data name="AccountStatus_Approved" xml:space="preserve">
+    <value>通过审核</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_ACCEPT_REFUND" xml:space="preserve">
+    <value>卖家接受退款</value>
+  </data>
+  <data name="IDS_PromoteTypeDropDownList_PromoteType_Give" xml:space="preserve">
+    <value>买几送几</value>
+  </data>
+  <data name="IDS_ErrorMessage_DisallowedUsername" xml:space="preserve">
+    <value>用户名被禁止注册</value>
+  </data>
+  <data name="Gender_Male" xml:space="preserve">
+    <value>男性</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_NewUserAccountPending" xml:space="preserve">
+    <value>用户注册(等待管理员审核)</value>
+  </data>
+  <data name="MemberSettings_ActivateMode_Automatic" xml:space="preserve">
+    <value>注册后自动激活</value>
+  </data>
+  <data name="IDS_Button_ChaXun" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="IDS_ErrorMessage_Number" xml:space="preserve">
+    <value>验证码输入错误</value>
+  </data>
+  <data name="IDS_Button_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="IDS_Massage_ConfirmGoods_Success" xml:space="preserve">
+    <value>成功确认订单已经收货</value>
+  </data>
+  <data name="Utilty_ShippingStatus_Packing" xml:space="preserve">
+    <value>配货中</value>
+  </data>
+  <data name="IDS_PromoteTypeCheckBox_Give" xml:space="preserve">
+    <value>买几送几</value>
+  </data>
+  <data name="Utilty_ActivityStatus_Successed" xml:space="preserve">
+    <value>已完成</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_NotPay" xml:space="preserve">
+    <value>未付款订单</value>
+  </data>
+  <data name="IDS_Message_DuplicateEmailAddres" xml:space="preserve">
+    <value>电子邮件地址已经存在</value>
+  </data>
+  <data name="Font_Normal" xml:space="preserve">
+    <value>中</value>
+  </data>
+  <data name="Operate_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="ResourceObject_PriceTemplate" xml:space="preserve">
+    <value>价格模板</value>
+  </data>
+  <data name="IDS_ProductType_Common" xml:space="preserve">
+    <value>实物</value>
+  </data>
+  <data name="Utility_Pager_nextButton" xml:space="preserve">
+    <value>&amp;#187;</value>
+  </data>
+  <data name="IDS_UserLoginDisabled_Error" xml:space="preserve">
+    <value>用户登陆已关闭</value>
+  </data>
+  <data name="IDS_PromoteTypeCheckBox_QuantityDiscount" xml:space="preserve">
+    <value>批发打折</value>
+  </data>
+  <data name="ResourceObject_HotKeyword" xml:space="preserve">
+    <value>热门关键字</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_MODIFY_SHIPPING_MODE" xml:space="preserve">
+    <value>买家修改配送方式</value>
+  </data>
+  <data name="IDS_Label_CheckAll" xml:space="preserve">
+    <value>全部选定</value>
+  </data>
+  <data name="IDS_AgentManageMembers_ErrorMessage_Save_Profile_Fail1" xml:space="preserve">
+    <value>保存成功{0}个会员；保存失败{1}个会员,不能将会员的等级设置为空</value>
+  </data>
+  <data name="IDS_Message_TryPassword_Close" xml:space="preserve">
+    <value>交易密码关闭成功</value>
+  </data>
+  <data name="IDS_Saturday" xml:space="preserve">
+    <value>星期六</value>
+  </data>
+  <data name="IDS_Message_Update" xml:space="preserve">
+    <value>成功修改了订单的配送方式</value>
+  </data>
+  <data name="ResourceObject_Member" xml:space="preserve">
+    <value>会员</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_AccountBanned" xml:space="preserve">
+    <value>用户被禁止</value>
+  </data>
+  <data name="Gender_Female" xml:space="preserve">
+    <value>女性</value>
+  </data>
+  <data name="IDS_PayInterface_IPSExpress" xml:space="preserve">
+    <value>环迅易捷支付</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_SendCoupon" xml:space="preserve">
+    <value>发送优惠券</value>
+  </data>
+  <data name="IDS_AttributeUseageModeRadioButtonList_Query" xml:space="preserve">
+    <value>供客户查看</value>
+  </data>
+  <data name="IDS_AttributeUseageModeRadioButtonList_Write" xml:space="preserve">
+    <value>供客户填写</value>
+  </data>
+  <data name="IDS_ErrorMessage_OldTranPassword" xml:space="preserve">
+    <value>请输入旧交易密码</value>
+  </data>
+  <data name="IDS_OrderStatus_fail" xml:space="preserve">
+    <value>系统在处理订单支付的过程中产生错误，请联系商家确认是否已经支付成功！</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_Refund" xml:space="preserve">
+    <value>已退款订单</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_Reject" xml:space="preserve">
+    <value>拒绝退款订单</value>
+  </data>
+  <data name="IDS_PayInterface_AliPayStandard" xml:space="preserve">
+    <value>支付宝标准双接口</value>
+  </data>
+  <data name="IDS_ErrorMessage_MerchantCodeHead_Fail" xml:space="preserve">
+    <value>请输入账号信息</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoOrder" xml:space="preserve">
+    <value>没有找到符合要求的订单信息</value>
+  </data>
+  <data name="ResourceObject_Coupon" xml:space="preserve">
+    <value>优惠券</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ChangedPassword_EmailDesc" xml:space="preserve">
+    <value>用户登陆密码修改以后</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoEmail" xml:space="preserve">
+    <value>电子邮件地址不能为空</value>
+  </data>
+  <data name="IDS_ErrorMessage_InValidPassWord" xml:space="preserve">
+    <value>无效的密码</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F4Text" xml:space="preserve">
+    <value>24小时制-长时间格式(15:08)</value>
+  </data>
+  <data name="IDS_ClientValidator_RequiredMessage" xml:space="preserve">
+    <value>此项为必填项</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F2Text" xml:space="preserve">
+    <value>12小时制-长时间格式(03:08 PM)</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F3Text" xml:space="preserve">
+    <value>24小时制-短时间格式(03:08)</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F1Text" xml:space="preserve">
+    <value>12小时制-短时间格式(3:08 PM)</value>
+  </data>
+  <data name="IDS_Label_CheckReverse" xml:space="preserve">
+    <value>反向选择</value>
+  </data>
+  <data name="Utilty_CloseOrder_NoGoods" xml:space="preserve">
+    <value>没有货了，交易无法完成</value>
+  </data>
+  <data name="IDS_Label_CurrentUser" xml:space="preserve">
+    <value>您好，</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Add_Success" xml:space="preserve">
+    <value>成功的添加了一个收货地址</value>
+  </data>
+  <data name="IDS_UserConsultations_PageTitle" xml:space="preserve">
+    <value>咨询/回复</value>
+  </data>
+  <data name="AccountStatus_Banned" xml:space="preserve">
+    <value>禁止</value>
+  </data>
+  <data name="Utilty_MailPriorityLabel_TextOther" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountApproved_EmailDesc" xml:space="preserve">
+    <value>注册成功以后，管理员在后台将账号的状态改为Approved</value>
+  </data>
+  <data name="IDS_Message_NoSuccess" xml:space="preserve">
+    <value>您好{0},只有匿名用户和会员才能在本站上购物;代理商和管理员不能在本站上购物</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_Balance_Fail" xml:space="preserve">
+    <value>最小的提现金额为:{0}</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenPasswordWithToken_EmailDesc" xml:space="preserve">
+    <value>用户找回密码，找回密码的方式为SecureLink</value>
+  </data>
+  <data name="IDS_MassageError_ProductConsultation_Content" xml:space="preserve">
+    <value>咨询内容为必填项，长度限制在200字符以内</value>
+  </data>
+  <data name="IDS_Message_SortTimeUp" xml:space="preserve">
+    <value>按时间升序排序</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_MODIFY_TRADE" xml:space="preserve">
+    <value>卖家修改订单金额</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_NotPayPacking" xml:space="preserve">
+    <value>未付款配货中订单</value>
+  </data>
+  <data name="IDS_VoteTypeDropDownList_VoteType_MoreCheck" xml:space="preserve">
+    <value>多选</value>
+  </data>
+  <data name="IDS_ErrorMessage_NotTheSameReply" xml:space="preserve">
+    <value>不能提交和前次内容相同的留言且同一时刻只能提交一次</value>
+  </data>
+  <data name="Operate_Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="IDS_Literal_ConfirmGoods" xml:space="preserve">
+    <value>当前订单：{0}；订单总金额为{1}；</value>
+  </data>
+  <data name="IDS_UserDefault_PageTitle" xml:space="preserve">
+    <value>会员中心</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_Successed" xml:space="preserve">
+    <value>已完成订单</value>
+  </data>
+  <data name="Utilty_RefundStatus_None" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="IDS_InpourStatus_CallBack" xml:space="preserve">
+    <value>充值操作没有完成，有如下几种可能：&lt;br/&gt;1:您使用的是中介支付，要完成充值您必须登陆支付系统确认付款。&lt;br/&gt;2:此页面在支付接口回调之前到达，充值状态还未更新，您可以查询您的预付款明细来确认充值是否成功。&lt;br/&gt;3:系统在处理充值的过程中产生错误终止了操作，您可以联系商家确认是否已支付成功。</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_7" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_6" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_5" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_4" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="IDS_Favorites_Edit_Null" xml:space="preserve">
+    <value>没有修改你要修改的内容</value>
+  </data>
+  <data name="IDS_ValidateOrderOption_InputContentRequired" xml:space="preserve">
+    <value>请输入{0}</value>
+  </data>
+  <data name="Utilty_CloseOrder_BuyerGigeMeMoney" xml:space="preserve">
+    <value>买家已经通过网上银行直接汇款给我了</value>
+  </data>
+  <data name="IDS_UserProfile_Edit_Error" xml:space="preserve">
+    <value>修改用户个人资料失败</value>
+  </data>
+  <data name="Gender_NotSet" xml:space="preserve">
+    <value>保密</value>
+  </data>
+  <data name="IDS_UserProductReviews_PageTitle" xml:space="preserve">
+    <value>我参与的评论</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_PageTitle" xml:space="preserve">
+    <value>我的收货地址</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_Password_Success" xml:space="preserve">
+    <value>你已经成功的修改了登陆密码</value>
+  </data>
+  <data name="Utility_AttributeDataType_String" xml:space="preserve">
+    <value>字符串类型</value>
+  </data>
+  <data name="IDS_UserProfile_PageTitle" xml:space="preserve">
+    <value>个人信息</value>
+  </data>
+  <data name="Utilty_String_Year" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_SendEmail_EmailDesc" xml:space="preserve">
+    <value>用户在网站内通过网站提供的邮件功能给其他用户发送邮件</value>
+  </data>
+  <data name="IDS_UploadOption_SaveToFileSystem" xml:space="preserve">
+    <value>上传到网站空间</value>
+  </data>
+  <data name="IDS_Message_Refund_Success" xml:space="preserve">
+    <value>成功提交了订单的退款申请</value>
+  </data>
+  <data name="IDS_Message_AddMemberRank_Fail" xml:space="preserve">
+    <value>已经超过了允许的会员等级数量，创建失败</value>
+  </data>
+  <data name="IDS_Button_Upload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="IDS_Button_Update" xml:space="preserve">
+    <value>更新</value>
+  </data>
+  <data name="Utilty_OrderStatus_WAIT_SELLER_CONFIRM_TRADE" xml:space="preserve">
+    <value>等待确认订单</value>
+  </data>
+  <data name="Utilty_FreezeTypeDropDownList_Text2" xml:space="preserve">
+    <value>团购</value>
+  </data>
+  <data name="Utilty_FreezeTypeDropDownList_Text1" xml:space="preserve">
+    <value>提现</value>
+  </data>
+  <data name="IDS_OrderStatus_success" xml:space="preserve">
+    <value>订单编号为[{0}]的订单已经支付成功，支付金额为：{1}</value>
+  </data>
+  <data name="Utilty_RefundOrders_OrderRefundNo" xml:space="preserve">
+    <value>部分退款</value>
+  </data>
+  <data name="IDS_OrderStatus_OrderNotFound" xml:space="preserve">
+    <value>系统没有找到订单编号为[{0}]的订单信息，此订单可能已经删除！</value>
+  </data>
+  <data name="IDS_EmailSend_Success" xml:space="preserve">
+    <value>成功的发送了一封电子邮件给你的好友</value>
+  </data>
+  <data name="Utilty_PriceTypes_MarketPrice" xml:space="preserve">
+    <value>市场价</value>
+  </data>
+  <data name="IDS_InpourStatus_VerifyFaild" xml:space="preserve">
+    <value>操作已经停止&lt;br/&gt;从支付接口返回的支付信息没有通过签名验证！</value>
+  </data>
+  <data name="IDS_Button_Confirm" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="IDS_PayInterface_Hexun" xml:space="preserve">
+    <value>和讯</value>
+  </data>
+  <data name="ResourceObject_Article" xml:space="preserve">
+    <value>文章</value>
+  </data>
+  <data name="IDS_ErrorMessage_UnKownError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text3" xml:space="preserve">
+    <value>支付失败</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text2" xml:space="preserve">
+    <value>已在别处购买</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text1" xml:space="preserve">
+    <value>忘选特惠品</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text7" xml:space="preserve">
+    <value>等待太久</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text6" xml:space="preserve">
+    <value>更换商品</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text5" xml:space="preserve">
+    <value>有缺货商品</value>
+  </data>
+  <data name="Utilty_CloseOrderReasonsRadioButtonList_Text4" xml:space="preserve">
+    <value>价格太贵</value>
+  </data>
+  <data name="Operate_Update" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ChangedDealPassword_EmailDesc" xml:space="preserve">
+    <value>用户交易密码修改以后</value>
+  </data>
+  <data name="IDS_Button_Search" xml:space="preserve">
+    <value>搜索</value>
+  </data>
+  <data name="IDS_Product_UnPanic" xml:space="preserve">
+    <value>抢购结束</value>
+  </data>
+  <data name="IDS_ErrorMessage_Password" xml:space="preserve">
+    <value>密码长度在6-20个字符之间</value>
+  </data>
+  <data name="ResourceObject_IPBanning" xml:space="preserve">
+    <value>封存IP地址</value>
+  </data>
+  <data name="Exception_SiteUrlData" xml:space="preserve">
+    <value>&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Critical Error: DataProvider&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;center&gt;
+            &lt;table height="40%" width="90%"&gt;
+                &lt;tr&gt;
+                    &lt;td align="center" valign="middle"&gt;
+						&lt;h1&gt;加载文件出错: SiteUrls.config&lt;/h1&gt;
+                        &lt;b&gt;包含站点链接地址配置的文件无法加载.&lt;/b&gt;
+                        &lt;p&gt;
+                            请联系您的网站管理员解决此问题.&lt;/p&gt;                    &lt;/td&gt;
+                &lt;/tr&gt;
+            &lt;/table&gt;
+        &lt;/center&gt;
+    &lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="IDS_ErrorMessage_DuplicateEmailAddress" xml:space="preserve">
+    <value>您输入的电子邮件地址已经被注册使用</value>
+  </data>
+  <data name="IDS_Label_MyAccount" xml:space="preserve">
+    <value>我的账户</value>
+  </data>
+  <data name="Utilty_ArithmeticOperate_Multiplication" xml:space="preserve">
+    <value>*</value>
+  </data>
+  <data name="Utility_CurrentTime_dateFormat" xml:space="preserve">
+    <value>yyyy-MM-dd  hh:mm</value>
+  </data>
+  <data name="Utilty_RemailTimeStatusLabel_Text1" xml:space="preserve">
+    <value>剩余时间不多了</value>
+  </data>
+  <data name="Utilty_RemailTimeStatusLabel_Text2" xml:space="preserve">
+    <value>刚刚开始</value>
+  </data>
+  <data name="Utilty_RemailTimeStatusLabel_Text3" xml:space="preserve">
+    <value>最后机会</value>
+  </data>
+  <data name="Utilty_RemailTimeStatusLabel_Text4" xml:space="preserve">
+    <value>抢购结束</value>
+  </data>
+  <data name="Utilty_RemailTimeStatusLabel_Text5" xml:space="preserve">
+    <value>正在抢购中</value>
+  </data>
+  <data name="IDS_LeaveComments_ReferFail" xml:space="preserve">
+    <value>留言失败</value>
+  </data>
+  <data name="IDS_ErrorMessage_Balance_No" xml:space="preserve">
+    <value>请输入大于0的提现金额且金额整数位数在1到10之间</value>
+  </data>
+  <data name="Utility_CurrentPage_text" xml:space="preserve">
+    <value>共有{0}条记录  {1}页</value>
+  </data>
+  <data name="IDS_ErrorMessage_ClauseNotAgree" xml:space="preserve">
+    <value>不同意协议不能注册</value>
+  </data>
+  <data name="IDS_ProductType_OnlineService" xml:space="preserve">
+    <value>在线服务</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_OrderSendGoods" xml:space="preserve">
+    <value>订单发货</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ManagerSaving" xml:space="preserve">
+    <value>后台加款成功以后的通知邮件</value>
+  </data>
+  <data name="IDS_CardPassWord" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Utilty_OrderStatus_CONFIRM_GOODS" xml:space="preserve">
+    <value>已发货订单</value>
+  </data>
+  <data name="Utilty_PriceTypes_CostPrice" xml:space="preserve">
+    <value>成本价</value>
+  </data>
+  <data name="Utilty_CloseOrder_NoContactBuyer" xml:space="preserve">
+    <value>长时间联系不到买家，交易不成功</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Utilty_OrderStatus_BUYER_REFUND" xml:space="preserve">
+    <value>要退款订单</value>
+  </data>
+  <data name="IDS_Button_Confirm_Title" xml:space="preserve">
+    <value>操作确认</value>
+  </data>
+  <data name="IDS_ButtonText_Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="IDS_Update_Success" xml:space="preserve">
+    <value>修改成功</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_TextOther" xml:space="preserve">
+    <value>其他类型</value>
+  </data>
+  <data name="ResourceObject_Currency" xml:space="preserve">
+    <value>交易货币</value>
+  </data>
+  <data name="IDS_ShoppingCarPageTitle" xml:space="preserve">
+    <value>我的购物车</value>
+  </data>
+  <data name="ResourceObject_AD" xml:space="preserve">
+    <value>广告</value>
+  </data>
+  <data name="IDS_Message_SortPriceDown" xml:space="preserve">
+    <value>按价格降序排序</value>
+  </data>
+  <data name="IDS_AuctionType_Common" xml:space="preserve">
+    <value>销售价</value>
+  </data>
+  <data name="Utilty_Search_PageSize" xml:space="preserve">
+    <value>页面大小</value>
+  </data>
+  <data name="Utilty_PaymentStatus_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="IDS_SendCouponsTypeRadioButtonList_UserId" xml:space="preserve">
+    <value>发送到指定用户的会员中心</value>
+  </data>
+  <data name="Utilty_Search_ToDate" xml:space="preserve">
+    <value>终止时间</value>
+  </data>
+  <data name="ChangePassword_InvalidLength" xml:space="preserve">
+    <value>密码太短，最少需要 {0} 个字符</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_MODIFY_PAYMENT_MODE" xml:space="preserve">
+    <value>买家修改支付方式</value>
+  </data>
+  <data name="ManageNames_RegExWildcardReplacement" xml:space="preserve">
+    <value>[a-zA-Z0-9]*</value>
+  </data>
+  <data name="MailPriority_Low" xml:space="preserve">
+    <value>低</value>
+  </data>
+  <data name="Utilty_TradeTypeDropDownList_TextOther" xml:space="preserve">
+    <value>其他</value>
+  </data>
+  <data name="IDS_Label_HashStock" xml:space="preserve">
+    <value>库存充足</value>
+  </data>
+  <data name="IDS_PayInterface_Chinabank" xml:space="preserve">
+    <value>网银在线</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_CLOSE_TRADE" xml:space="preserve">
+    <value>卖家取消订单</value>
+  </data>
+  <data name="IDS_Logout_ReturnHome" xml:space="preserve">
+    <value>返回首页</value>
+  </data>
+  <data name="IDS_DeductDetails_PageTitle" xml:space="preserve">
+    <value>推荐提成明细</value>
+  </data>
+  <data name="IDS_IDS_AgentTakePercentageRecords_PageTitle_PageTitle" xml:space="preserve">
+    <value>查看提成记录</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="IDS_Favorites_Delete_CheckNum_Error" xml:space="preserve">
+    <value>请先选择要从收藏夹删除的商品</value>
+  </data>
+  <data name="IDS_ErrorMessage_PassWord_Fail" xml:space="preserve">
+    <value>交易密码不正确,请重新输入</value>
+  </data>
+  <data name="IDS_Message_NoSiteName" xml:space="preserve">
+    <value>请设置网站名称</value>
+  </data>
+  <data name="IDS_ErrorMessage_NotAllowNewUserRegist" xml:space="preserve">
+    <value>网店暂时关闭了新用户注册功能</value>
+  </data>
+  <data name="IDS_MyBalanceDrawRequest_PageTitle" xml:space="preserve">
+    <value>提现申请明细</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountCreated_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="IDS_Message_InValidPassWord" xml:space="preserve">
+    <value>无效的密码</value>
+  </data>
+  <data name="IDS_PayInterface_Qpay" xml:space="preserve">
+    <value>Qpay</value>
+  </data>
+  <data name="IDS_PayInterface_Xpay" xml:space="preserve">
+    <value>易付通</value>
+  </data>
+  <data name="IDS_PayInterface_Bank" xml:space="preserve">
+    <value>银行汇款</value>
+  </data>
+  <data name="IDS_PayInterface_Epay" xml:space="preserve">
+    <value>易付支付</value>
+  </data>
+  <data name="IDS_PayInterface_Npay" xml:space="preserve">
+    <value>中国联合在线支付网</value>
+  </data>
+  <data name="IDS_PayInterface_Ipay" xml:space="preserve">
+    <value>中国在线支付网</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_PrivateMessageNotification_EmailDesc" xml:space="preserve">
+    <value>站内信，用户给其他用户发送站内信</value>
+  </data>
+  <data name="MailPriority_High" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_CONFIRM_TRADE" xml:space="preserve">
+    <value>卖家确认订单</value>
+  </data>
+  <data name="IDS_Brand_PageTitle" xml:space="preserve">
+    <value>品牌专卖</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_MODIFY_DELIVER_ADDRESS" xml:space="preserve">
+    <value>买家修改收货地址</value>
+  </data>
+  <data name="IDS_ErrorMessage_txtWord" xml:space="preserve">
+    <value>留言不能为空或者不能超过1000字符</value>
+  </data>
+  <data name="Utility_Pager_previousButton" xml:space="preserve">
+    <value>&amp;#171;</value>
+  </data>
+  <data name="Utilty_OnlineServiceType_MSN" xml:space="preserve">
+    <value>MSN</value>
+  </data>
+  <data name="IDS_MassageError_EmailLength" xml:space="preserve">
+    <value>邮箱不能为空，长度限制在200字符以内</value>
+  </data>
+  <data name="IDS_InpourStatus_WaitConfirm" xml:space="preserve">
+    <value>请继续完成充值操作&lt;br/&gt;您使用的是中介支付，请登陆相应的支付系统确认付款，款项到达商户账号以后，系统会自动为您完成充值！</value>
+  </data>
+  <data name="IDS_ErrorMessage_Balance" xml:space="preserve">
+    <value>请输入大于0的充值金额且金额整数位数在1到10之间</value>
+  </data>
+  <data name="IDS_PromoteTypeDropDownList_PromoteType_Present" xml:space="preserve">
+    <value>满额赠送</value>
+  </data>
+  <data name="Utilty_AdvPositionType_FrashUpdate" xml:space="preserve">
+    <value>交替更新</value>
+  </data>
+  <data name="IDS_UnKnowError" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="IDS_Message_Eidt_Profile_Success" xml:space="preserve">
+    <value>成功修改了当前会员的个人资料</value>
+  </data>
+  <data name="IDS_PayInterface_99Bill" xml:space="preserve">
+    <value>快钱</value>
+  </data>
+  <data name="IDS_MyBalanceDetails_PageTitle" xml:space="preserve">
+    <value>预付款账户明细</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_CANCEL" xml:space="preserve">
+    <value>买家取消订单</value>
+  </data>
+  <data name="IDS_Login_Error" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="IDS_Email_Body" xml:space="preserve">
+    <value>{0}，您好！&lt;br/&gt;我在{1}网站上看到{2}，快点出手吧 ，棒极了！你去看看吧！这个东东的网址是：&lt;br/&gt;{3}&lt;br/&gt;{4}</value>
+  </data>
+  <data name="MemberSettings_RecoveryMode_Reset" xml:space="preserve">
+    <value>重新生成</value>
+  </data>
+  <data name="IDS_Logout_Title" xml:space="preserve">
+    <value>退出登陆</value>
+  </data>
+  <data name="Exception_SiteIDUnavailable" xml:space="preserve">
+    <value>&lt;html&gt;
+	&lt;head&gt;
+		&lt;title&gt;Critical Error: Unknown Site&lt;/title&gt;
+	&lt;/head&gt;
+	&lt;style class="text/css"&gt;
+		h1
+		{
+			margin-top: 5px;
+			margin-bottom: 5px;
+		}
+		
+		#Message
+		{
+			margin-left: 50px;
+			margin-right: 50px;
+			font-family: Arial, Helvetica;
+			font-size: &lt;%= Formatter.FormatFontSize(1.0) %&gt;;
+			padding:2px; 
+		}
+
+		#Error
+		{
+			font-weight: bold;
+			background-color:#FDE8E9;
+			border:2px solid #9E0B0E;
+			color: #9E0B0E;
+		}
+		
+		#Status
+		{
+			padding-top: 20px;
+		}
+
+	&lt;/style&gt;
+	&lt;body&gt;
+		&lt;div id="Message"&gt;
+		  &lt;div id="Error"&gt;
+				&lt;h1&gt;运行错误: 未知的Maticsoft网店&lt;/h1&gt;
+			  &lt;b&gt;没有找到指定的Maticsoft网店： "[MissingSettingsID]"&lt;/b&gt;&lt;/div&gt;
+			
+			&lt;div id="Status"&gt;
+					Maticsoft网店系统支持在同一数据库中使用多个网店，每一个网店必须单独安转和配置
+					  &lt;P&gt;如果您还没有配置任何站点，您可以使用&amp;quot;新建网店向导&amp;quot;来配置一个站点
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/body&gt;
+&lt;/html&gt;</value>
+  </data>
+  <data name="IDS_ErrorMessage_BalanceRequest_Fail" xml:space="preserve">
+    <value>预付款余额不足,请重新输入提现金额</value>
+  </data>
+  <data name="IDS_VoteTypeDropDownList_VoteType_SingleCheck" xml:space="preserve">
+    <value>单选</value>
+  </data>
+  <data name="IDS_Message_InValidEmail" xml:space="preserve">
+    <value>无效的电子邮件地址</value>
+  </data>
+  <data name="IDS_UserOrderDetailsPageTitle" xml:space="preserve">
+    <value>订单详细页</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenPassword_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$ChangePassWordUrl$:修改密码的url地址,$ChangePassWordSecurityUrl$:修改密码的安全链接地址</value>
+  </data>
+  <data name="Utilty_AdvPositionType_AdRotator" xml:space="preserve">
+    <value>层叠显示</value>
+  </data>
+  <data name="IDS_PromoteSaleProductTypesRadioButtonList_In" xml:space="preserve">
+    <value>包含列表中的所有商品</value>
+  </data>
+  <data name="IDS_AttributeUseageModeRadioButtonList_Choose" xml:space="preserve">
+    <value>客户可选规格</value>
+  </data>
+  <data name="IDS_ErrorMessage_DuplicateUsername" xml:space="preserve">
+    <value>您输入的用户名已经被注册使用</value>
+  </data>
+  <data name="IDS_ErrorMessage_ConditionRequired" xml:space="preserve">
+    <value>请填写搜索条件</value>
+  </data>
+  <data name="IDS_ErrorMessage_PayMode" xml:space="preserve">
+    <value>选择要充值使用的支付方式</value>
+  </data>
+  <data name="Utilty_CalculateMode_Fixedrate" xml:space="preserve">
+    <value>固定金额</value>
+  </data>
+  <data name="IDS_RefreshVerifyCode" xml:space="preserve">
+    <value>看不清字符？点击这里换一张图片</value>
+  </data>
+  <data name="IDS_Message_MaxVote" xml:space="preserve">
+    <value>最多能投票：</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_SEND_GOODS" xml:space="preserve">
+    <value>卖家发货</value>
+  </data>
+  <data name="IDS_PayInterface_TenpayAssure" xml:space="preserve">
+    <value>财付通担保交易</value>
+  </data>
+  <data name="IDS_Favorites_ErrorMessage_RemarkLength" xml:space="preserve">
+    <value>修改商品收藏信息失败，备注信息的长度限制在500个字符以内</value>
+  </data>
+  <data name="IDS_Massage_MondifySuccess" xml:space="preserve">
+    <value>成功修改了订单的收货地址</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_NotPayYetShip" xml:space="preserve">
+    <value>未付款已发货订单</value>
+  </data>
+  <data name="IDS_PromoteTypeDropDownList_PromoteType_Discount" xml:space="preserve">
+    <value>满额打折</value>
+  </data>
+  <data name="IDS_ErrorMessage_Eidt_Password_Error" xml:space="preserve">
+    <value>密码修改失败</value>
+  </data>
+  <data name="IDS_Header_Options" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountRejected_EmailDesc" xml:space="preserve">
+    <value>注册成功以后，管理员在后台将账号的状态改为Disapproved</value>
+  </data>
+  <data name="Utilty_CalculateMode_Percentage" xml:space="preserve">
+    <value>购物车金额百分比</value>
+  </data>
+  <data name="IDS_AgentManageMembers_ErrorMessage_Save_Profile_Fail" xml:space="preserve">
+    <value>一个都没保存成功</value>
+  </data>
+  <data name="IDS_ErrorMessage_UploadImage" xml:space="preserve">
+    <value>图片上传失败，您选择的不是图片类型的文件，或者网站的虚拟目录没有写入文件的权限</value>
+  </data>
+  <data name="IDS_Email_Subject" xml:space="preserve">
+    <value>您的好友{0}给您推荐了一个好宝贝</value>
+  </data>
+  <data name="IDS_Message_SiteLicenser" xml:space="preserve">
+    <value>[商业授权用户]</value>
+  </data>
+  <data name="Utilty_RefundStatus_Refund" xml:space="preserve">
+    <value>已退款</value>
+  </data>
+  <data name="Utilty_RefundStatus_Reject" xml:space="preserve">
+    <value>拒绝退款</value>
+  </data>
+  <data name="Utilty_Search_FromDate" xml:space="preserve">
+    <value>起始时间</value>
+  </data>
+  <data name="IDS_GiftTypeRadioButtonList_GiftType_Digit" xml:space="preserve">
+    <value>卡密</value>
+  </data>
+  <data name="Exception_SkinNotFound" xml:space="preserve">
+    <value>样式文件:"{0}" 没有找到，请确定文件是否存在</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ForgottenDealPassword" xml:space="preserve">
+    <value>找回交易密码(仅支持安全链接)</value>
+  </data>
+  <data name="IDS_Massage_AddMemberMoreAgentPrice" xml:space="preserve">
+    <value>您添加的会员等对应的商品等级价有低于您自己进价的情况，请重试</value>
+  </data>
+  <data name="Utilty_ArithmeticOperate_Divisio" xml:space="preserve">
+    <value>/</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_pwdNull" xml:space="preserve">
+    <value>请输入登陆密码</value>
+  </data>
+  <data name="Utility_PasswordFormatDropDownList_Hashed" xml:space="preserve">
+    <value>SHA1哈希</value>
+  </data>
+  <data name="Utilty_PaymentStatus_Prepaid" xml:space="preserve">
+    <value>已支付</value>
+  </data>
+  <data name="IDS_Label_PleaseWait" xml:space="preserve">
+    <value>请稍候...</value>
+  </data>
+  <data name="Utilty_RegularExpression_EnglishAndNumAndLine" xml:space="preserve">
+    <value>大小写英文和数字下划线</value>
+  </data>
+  <data name="IDS_PromoteTypeDropDownList_PromoteType_Fee" xml:space="preserve">
+    <value>满额免费用</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_BalanceDrawComplete" xml:space="preserve">
+    <value>提现申请成功以后的通知邮件</value>
+  </data>
+  <data name="IDS_Product_Note" xml:space="preserve">
+    <value>到货通知 </value>
+  </data>
+  <data name="IDS_Label_SearchResult1" xml:space="preserve">
+    <value>共搜索到{0}条相关的结果</value>
+  </data>
+  <data name="Utilty_AdvPositionType_Horizontal" xml:space="preserve">
+    <value>横向平铺</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Edit_ReName" xml:space="preserve">
+    <value>地址已经在，请重新输入一次再试</value>
+  </data>
+  <data name="IDS_AuctionType_PanicBuying" xml:space="preserve">
+    <value>限时抢购</value>
+  </data>
+  <data name="IDS_Button_DeleteCheck" xml:space="preserve">
+    <value>删除选定</value>
+  </data>
+  <data name="ResourceObject_BalanceAccount" xml:space="preserve">
+    <value>预付款</value>
+  </data>
+  <data name="Utilty_RegularExpression_EnglishAndNumAndLine_Value" xml:space="preserve">
+    <value>[a-zA-Z]+[a-zA-Z_0-9]*</value>
+  </data>
+  <data name="IDS_ErrorMessage_PasswordAgain" xml:space="preserve">
+    <value>两次输入的密码不一致，请重新输入</value>
+  </data>
+  <data name="IDS_Favorites_ErrorMessage_TagLength" xml:space="preserve">
+    <value>修改商品收藏信息失败，标签信息的长度限制在100个字符以内</value>
+  </data>
+  <data name="ResourceObject_Promote" xml:space="preserve">
+    <value>促销活动</value>
+  </data>
+  <data name="ResourceObject_Product" xml:space="preserve">
+    <value>商品</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ForgottenPassword" xml:space="preserve">
+    <value>找回登陆密码(重设密码)</value>
+  </data>
+  <data name="IDS_ErrorMessage_Eidt_TryPassword_Error" xml:space="preserve">
+    <value>交易密码修改失败</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_SendEmail_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$SiteName$:网站名称,$MessageSubject$:站内信主题,$MessageBody$:站内信内容</value>
+  </data>
+  <data name="IDS_Label_Word" xml:space="preserve">
+    <value>插入这段代码，可以在你的博客中显示“{0}”的文字链接</value>
+  </data>
+  <data name="Utilty_ShoppingCart_StockEnough" xml:space="preserve">
+    <value>充足</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_VIEW_DETAILS" xml:space="preserve">
+    <value>卖家查看明细</value>
+  </data>
+  <data name="IDS_PayInterface_AliPayDigit" xml:space="preserve">
+    <value>支付宝虚拟商品交易</value>
+  </data>
+  <data name="IDS_Message_AddMemberRank_Success" xml:space="preserve">
+    <value>成功添加了一个会员等级</value>
+  </data>
+  <data name="IDS_PayInterface_AgencyTenpay" xml:space="preserve">
+    <value>财付通中介支付</value>
+  </data>
+  <data name="Utilty_OnlineServiceShowType_Static" xml:space="preserve">
+    <value>固定</value>
+  </data>
+  <data name="IDS_Label_AddMemberRankTitle" xml:space="preserve">
+    <value>添加会员等级</value>
+  </data>
+  <data name="IDS_MessageError_NoDeleteSelect" xml:space="preserve">
+    <value>当前没有选择要删除的记录</value>
+  </data>
+  <data name="IDS_Label_SearchResultPage" xml:space="preserve">
+    <value>总共有{0}件商品,{1}件商品为一页,共{2}页第 {3}页</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_PACK_GOODS" xml:space="preserve">
+    <value>卖家配货</value>
+  </data>
+  <data name="IDS_Message_ReplySucess" xml:space="preserve">
+    <value>提交成功</value>
+  </data>
+  <data name="IDS_Message_SortTimeDown" xml:space="preserve">
+    <value>按时间降序排序</value>
+  </data>
+  <data name="ResourceObject_ShippingMethod" xml:space="preserve">
+    <value>配送方式</value>
+  </data>
+  <data name="IDS_Favorites_Delete_CheckNum_Seccess" xml:space="preserve">
+    <value>成功删除了选择的收藏商品</value>
+  </data>
+  <data name="IDS_SelectModeDropDownList_DropDownList" xml:space="preserve">
+    <value>下拉列表</value>
+  </data>
+  <data name="Utilty_ArithmeticOperate_Addition" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="IDS_ClientValidator_RequiredAlt" xml:space="preserve">
+    <value>必填</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_YetPayYetShip" xml:space="preserve">
+    <value>已付款已发货订单</value>
+  </data>
+  <data name="IDS_SaleStatisticsTypeRadioButtonList_Totals" xml:space="preserve">
+    <value>交易额</value>
+  </data>
+  <data name="ResourceObject_Summary" xml:space="preserve">
+    <value>摘要信息</value>
+  </data>
+  <data name="IDS_LeaveComments_PageTitle" xml:space="preserve">
+    <value>客户留言</value>
+  </data>
+  <data name="AccountStatus_Disapproved" xml:space="preserve">
+    <value>未通过审核</value>
+  </data>
+  <data name="IDS_MyAccountSummary_PageTitle" xml:space="preserve">
+    <value>预付款账户</value>
+  </data>
+  <data name="IDS_Greeting_Date" xml:space="preserve">
+    <value>，今天是：{0}&amp;nbsp;</value>
+  </data>
+  <data name="Utilty_OrderStatus_TRADE_CLOSE" xml:space="preserve">
+    <value>交易中途关闭订单</value>
+  </data>
+  <data name="IDS_Header_Check" xml:space="preserve">
+    <value>选择</value>
+  </data>
+  <data name="IDS_RechargeRequest_PageTitle" xml:space="preserve">
+    <value>预付款充值</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_1" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_2" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_3" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="IDS_PromoteTypeCheckBox_Fee" xml:space="preserve">
+    <value>满额免费用</value>
+  </data>
+  <data name="Utilty_OrderActions_SELLER_FINISH_TRADE" xml:space="preserve">
+    <value>卖家确认完成交易</value>
+  </data>
+  <data name="IDS_Product_Destined" xml:space="preserve">
+    <value>预定</value>
+  </data>
+  <data name="IDS_RowContent_OnePassword" xml:space="preserve">
+    <value>一行一个密码</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ChangedDealPassword" xml:space="preserve">
+    <value>修改交易密码</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_PageTitle" xml:space="preserve">
+    <value>申请提现</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_SendEmail" xml:space="preserve">
+    <value>发送邮件(网站提供的邮件功能)</value>
+  </data>
+  <data name="Utilty_ShippingStatus_NotYet" xml:space="preserve">
+    <value>未发货</value>
+  </data>
+  <data name="IDS_InpourStatus_RequestNotFound" xml:space="preserve">
+    <value>系统没有找到流水号为[{0}]的充值请求，此充值请求可能已经处理完毕！</value>
+  </data>
+  <data name="Exception_SkinNotSet" xml:space="preserve">
+    <value>没有设置皮肤文件</value>
+  </data>
+  <data name="IDS_PayInterface_Openpay" xml:space="preserve">
+    <value>台湾里在线支付</value>
+  </data>
+  <data name="IDS_Label_SearchResult" xml:space="preserve">
+    <value>共搜索到{0} 条与“{1}”相关的结果</value>
+  </data>
+  <data name="IDS_MassageError_ProductConsultation_UserName" xml:space="preserve">
+    <value>用户昵称为必填项，长度限制在20字符以内</value>
+  </data>
+  <data name="IDS_AgentManageMembers_ErrorMessage_No_Check" xml:space="preserve">
+    <value>请先选择要删除的会员账号</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_REFUND" xml:space="preserve">
+    <value>买家申请退款</value>
+  </data>
+  <data name="IDS_Register_PageTitle" xml:space="preserve">
+    <value>会员注册</value>
+  </data>
+  <data name="Utilty_ActivityStatus_InProgress" xml:space="preserve">
+    <value>正在进行中</value>
+  </data>
+  <data name="IDS_Button_Add" xml:space="preserve">
+    <value>添加</value>
+  </data>
+  <data name="IDS_Button_Set" xml:space="preserve">
+    <value>设置</value>
+  </data>
+  <data name="IDS_ErrorMessage_Eidt_Profile_Error" xml:space="preserve">
+    <value>当前会员的个人信息修改失败</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_CANCEL_REFUND" xml:space="preserve">
+    <value>买家取消退款申请</value>
+  </data>
+  <data name="IDS_Message_SortPriceUp" xml:space="preserve">
+    <value>按价格升序排序</value>
+  </data>
+  <data name="IDS_Logout_Status" xml:space="preserve">
+    <value>您已经退出{0}.</value>
+  </data>
+  <data name="Utilty_RefundOrders_OrderRefundYes" xml:space="preserve">
+    <value>全部退款</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_NewUserAccountApproved_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$SiteName$:网站名称,$LoginUrl$:登陆的url地址,$ChangePassWordUrl$:修改密码的url地址</value>
+  </data>
+  <data name="ResourceObject_Agent" xml:space="preserve">
+    <value>代理商</value>
+  </data>
+  <data name="ResourceObject_Brand" xml:space="preserve">
+    <value>品牌</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_Balance_No" xml:space="preserve">
+    <value>请输入大于0的提现金额且金额整数位数在1到10之间</value>
+  </data>
+  <data name="ResourceObject_Order" xml:space="preserve">
+    <value>订单</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ForgottenPasswordWithToken" xml:space="preserve">
+    <value>找回登陆密码(安全链接)</value>
+  </data>
+  <data name="IDS_Button_Confirm_Text" xml:space="preserve">
+    <value>确定要执行该删除操作吗？删除后将不可以恢复！</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_PasswordAnswer_Success" xml:space="preserve">
+    <value>成功修改了密码答案</value>
+  </data>
+  <data name="IDS_RechargeConfirm_PageTitle" xml:space="preserve">
+    <value>充值确认</value>
+  </data>
+  <data name="IDS_GiftTypeRadioButtonList_GiftType_General" xml:space="preserve">
+    <value>实物</value>
+  </data>
+  <data name="IDS_AgentBalanceDetails_PageTitle" xml:space="preserve">
+    <value>预付款明细</value>
+  </data>
+  <data name="Utility_AttributeDataType_Integer" xml:space="preserve">
+    <value>整型值</value>
+  </data>
+  <data name="IDS_PayInterface_Tenpay" xml:space="preserve">
+    <value>财付通即时交易</value>
+  </data>
+  <data name="Utilty_OrderActions_BUYER_PAY" xml:space="preserve">
+    <value>买家付款</value>
+  </data>
+  <data name="IDS_ErrorMessage_PasswordCompare" xml:space="preserve">
+    <value>输入的两次密码不一致</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_Expires" xml:space="preserve">
+    <value>你的代理权限已经到期,请与管理员联系</value>
+  </data>
+  <data name="IDS_CardNumero" xml:space="preserve">
+    <value>卡号</value>
+  </data>
+  <data name="IDS_Hour" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="IDS_Message_UnknownFailure" xml:space="preserve">
+    <value>未知错误</value>
+  </data>
+  <data name="Utilty_ArithmeticOperate_Subtration" xml:space="preserve">
+    <value>-</value>
+  </data>
+  <data name="IDS_Button_Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="IDS_Button_Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="IDS_Button_Back" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="IDS_Button_Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="ResourceObject_HelpCategory" xml:space="preserve">
+    <value>帮助分类</value>
+  </data>
+  <data name="IDS_MassageError_MemberRankForAgent_Point" xml:space="preserve">
+    <value>已经存在相同积分的等级，每个会员等级的积分不能相同</value>
+  </data>
+  <data name="IDS_Favorites_Delete_Error" xml:space="preserve">
+    <value>删除失败</value>
+  </data>
+  <data name="IDS_PromoteTypeCheckBox_Present" xml:space="preserve">
+    <value>满额赠送</value>
+  </data>
+  <data name="IDS_ErrorMessage_InValidEmail" xml:space="preserve">
+    <value>无效的电子邮件地址</value>
+  </data>
+  <data name="IDS_LeaveComments_ReferSuccess" xml:space="preserve">
+    <value>留言成功，管理员回复后即可显示</value>
+  </data>
+  <data name="Exception_UserNotFound" xml:space="preserve">
+    <value>没找到用户：{0}</value>
+  </data>
+  <data name="IDS_Thursday" xml:space="preserve">
+    <value>星期四</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenPasswordWithToken_TagDesc" xml:space="preserve">
+    <value>$UserName$:用户名,$Password$:密码,$ChangePassWordUrl$:修改密码的url地址,$ChangePassWordSecurityUrl$:修改密码的安全链接地址</value>
+  </data>
+  <data name="IDS_PayInterface_PayPal" xml:space="preserve">
+    <value>贝宝中国</value>
+  </data>
+  <data name="Utilty_ShippingStatus_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_InvalidCredentials" xml:space="preserve">
+    <value>用户名或密码错误</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_ProductNotify" xml:space="preserve">
+    <value>到货通知</value>
+  </data>
+  <data name="ResourceObject_MemberRank" xml:space="preserve">
+    <value>会员等级</value>
+  </data>
+  <data name="IDS_Message_NoSiteLicenser" xml:space="preserve">
+    <value>[非授权用户(免费)]</value>
+  </data>
+  <data name="IDS_Message_Success_bak" xml:space="preserve">
+    <value>返回订单管理页</value>
+  </data>
+  <data name="IDS_EmailTypeLabel_ForgottenDealPassword_EmailDesc" xml:space="preserve">
+    <value>用户找回密码，交易找回密码的方式仅支持SecureLink</value>
+  </data>
+  <data name="IDS_Message_Success" xml:space="preserve">
+    <value>对订单 "{0}" 确认收货成功</value>
+  </data>
+  <data name="IDS_Label_UpdateMemberRankTitle" xml:space="preserve">
+    <value>修改会员等级</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_Text1" xml:space="preserve">
+    <value>处理中</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_Text3" xml:space="preserve">
+    <value>失败</value>
+  </data>
+  <data name="Utilty_RequestStatusDropDownList_Text2" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="Utilty_Search_Title" xml:space="preserve">
+    <value>查询条件</value>
+  </data>
+  <data name="IDS_InpourStatus_Success" xml:space="preserve">
+    <value>充值操作已经完成，本次充值金额为：{0}</value>
+  </data>
+  <data name="IDS_FormField_Admin" xml:space="preserve">
+    <value>管理员</value>
+  </data>
+  <data name="Utilty_UploadSaveTypeDropDownList_FtpServer" xml:space="preserve">
+    <value>上传到FTP服务器</value>
+  </data>
+  <data name="IDS_RowContent_OneNumber" xml:space="preserve">
+    <value>一行一个卡号</value>
+  </data>
+  <data name="IDS_ErrorMessage_Refund_Fail" xml:space="preserve">
+    <value>申请退款过程中出现未知错误,申请失败</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_Number" xml:space="preserve">
+    <value>验证码输入有误</value>
+  </data>
+  <data name="Utility_AttributeDataType_Memo" xml:space="preserve">
+    <value>备注型</value>
+  </data>
+  <data name="IDS_ArticleCategoryAll_Main" xml:space="preserve">
+    <value>主分类</value>
+  </data>
+  <data name="Utilty_ActivityStatus_Closed" xml:space="preserve">
+    <value>已关闭</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_PassWord_NotNull" xml:space="preserve">
+    <value>请输入交易密码</value>
+  </data>
+  <data name="Utilty_UploadSaveTypeDropDownList_HttpServer" xml:space="preserve">
+    <value>上传到网站虚拟目录</value>
+  </data>
+  <data name="Utilty_CloseOrder_BuyerNotBuer" xml:space="preserve">
+    <value>买家购物意向不明确，取消交易</value>
+  </data>
+  <data name="Utilty_PaymentStatus_NotYet" xml:space="preserve">
+    <value>未支付</value>
+  </data>
+  <data name="IDS_Greeting" xml:space="preserve">
+    <value>欢迎回来&lt;b&gt;{0}&lt;/b&gt;</value>
+  </data>
+  <data name="IDS_SaleStatisticsTypeRadioButtonList_Counts" xml:space="preserve">
+    <value>交易量</value>
+  </data>
+  <data name="IDS_PayInterface_YeePay" xml:space="preserve">
+    <value>易宝支付</value>
+  </data>
+  <data name="IDS_DiscountValueTypeCheckBoxList_Percent" xml:space="preserve">
+    <value>折扣率</value>
+  </data>
+  <data name="Utility_PasswordFormatDropDownList_Encrypted" xml:space="preserve">
+    <value>MD5哈希</value>
+  </data>
+  <data name="IDS_UserIsNotMember" xml:space="preserve">
+    <value>匿名用户或非会员不能编辑</value>
+  </data>
+  <data name="Utilty_EmailTypeLabel_NewUserAccountCreated" xml:space="preserve">
+    <value>用户注册(自动激活)</value>
+  </data>
+  <data name="IDS_RequestBalanceDraw_ErrorMessage_MerchantCodeHead_Fail" xml:space="preserve">
+    <value>请输入账号信息</value>
+  </data>
+  <data name="Font_Large" xml:space="preserve">
+    <value>较大</value>
+  </data>
+  <data name="IDS_ProductType_Download" xml:space="preserve">
+    <value>数字文件下载</value>
+  </data>
+  <data name="Font_Small" xml:space="preserve">
+    <value>较小</value>
+  </data>
+  <data name="IDS_SaleStatisticsTypeRadioButtonList_Profits" xml:space="preserve">
+    <value>利润</value>
+  </data>
+  <data name="IDS_PayInterface_Cncard" xml:space="preserve">
+    <value>云网支付</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F4" xml:space="preserve">
+    <value>HH:mm</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F1" xml:space="preserve">
+    <value>h:mm tt</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F2" xml:space="preserve">
+    <value>hh:mm tt</value>
+  </data>
+  <data name="Utility_TimeFormatDropDownList_F3" xml:space="preserve">
+    <value>H:mm</value>
+  </data>
+  <data name="Utility_AttributeDataType_Boolean" xml:space="preserve">
+    <value>布尔值</value>
+  </data>
+  <data name="IDS_InpourStatus_Fail" xml:space="preserve">
+    <value>系统在处理充值的过程中产生错误，请联系商家确认是否已经支付成功！</value>
+  </data>
+  <data name="Utilty_PriceTypes_AgentCostPrice" xml:space="preserve">
+    <value>代理价</value>
+  </data>
+  <data name="Utilty_CloseOrder_HasTrade" xml:space="preserve">
+    <value>风城交易，已经当面完成了交易</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_AccountDisapproved" xml:space="preserve">
+    <value>用户账号没有被批准</value>
+  </data>
+  <data name="IDS_DefaultTermsOfService" xml:space="preserve">
+    <value>&lt;div&gt;&lt;p&gt;尊敬的用户，欢迎您注册成为本网站用户。在注册前请您仔细阅读如下服务条款：&lt;/p&gt;
+&lt;div&gt;　　本服务协议双方为本网站与本网站用户，本服务协议具有合同效力。&lt;/div&gt;
+&lt;div&gt;　　您确认本服务协议后，本服务协议即在您和本网站之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向本网站咨询。&lt;/div&gt;
+&lt;div&gt;　　无论您事实上是否在注册之前认真阅读了本服务协议，只要您点击协议正本下方的&amp;quot;注册&amp;quot;按钮并按照本网站注册程序成功注册为用户，您的行为仍然表示您同意并签署了本服务协议。&lt;/div&gt;
+&lt;div&gt;1．本网站服务条款的确认和接纳&lt;/div&gt;
+&lt;div&gt;　　本网站各项服务的所有权和运作权归本网站拥有。&lt;/div&gt;
+&lt;div&gt;2．用户必须：&lt;/div&gt;
+&lt;div&gt;　　(1)自行配备上网的所需设备， 包括个人电脑、调制解调器或其他必备上网装置。&lt;/div&gt;
+&lt;div&gt;　　(2)自行负担个人上网所支付的与此服务有关的电话费用、 网络费用。&lt;/div&gt;
+&lt;div&gt;3．用户在本网站上交易平台上不得发布下列违法信息：&lt;/div&gt;
+&lt;div&gt;(1)反对宪法所确定的基本原则的；&lt;/div&gt;
+&lt;div&gt;(2).危害国家安全，泄露国家秘密，颠覆国家政权，破坏国家统一的；&lt;/div&gt;
+&lt;div&gt;(3).损害国家荣誉和利益的；&lt;/div&gt;
+&lt;div&gt;(4).煽动民族仇恨、民族歧视，破坏民族团结的；&lt;/div&gt;
+&lt;div&gt;(5).破坏国家宗教政策，宣扬邪教和封建迷信的；&lt;/div&gt;
+&lt;div&gt;(6).散布谣言，扰乱社会秩序，破坏社会稳定的；&lt;/div&gt;
+&lt;div&gt;(7).散布淫秽、色情、赌博、暴力、凶杀、恐怖或者教唆犯罪的；&lt;/div&gt;
+&lt;div&gt;(8).侮辱或者诽谤他人，侵害他人合法权益的；&lt;/div&gt;
+&lt;div&gt;(9).含有法律、行政法规禁止的其他内容的。&lt;/div&gt;
+&lt;div&gt;4． 有关个人资料&lt;/div&gt;
+&lt;div&gt;用户同意：&lt;/div&gt;
+&lt;div&gt;(1) 提供及时、详尽及准确的个人资料。&lt;/div&gt;
+&lt;div&gt;(2).同意接收来自本网站的信息。&lt;/div&gt;
+&lt;div&gt;(3) 不断更新注册资料，符合及时、详尽准确的要求。所有原始键入的资料将引用为注册资料。&lt;/div&gt;
+&lt;div&gt;(4)本网站不公开用户的姓名、地址、电子邮箱和笔名，以下情况除外：&lt;/div&gt;
+&lt;div&gt;　　（a）用户授权本网站透露这些信息。&lt;/div&gt;
+&lt;div&gt;　　（b）相应的法律及程序要求本网站提供用户的个人资料。如果用户提供的资料包含有不正确的信息，本网站保留结束用户使用本网站信息服务资格的权利。&lt;/div&gt;
+&lt;div&gt;5. 用户在注册时应当选择稳定性及安全性相对较好的电子邮箱，并且同意接受并阅读本网站发往用户的各类电子邮件。如用户未及时从自己的电子邮箱接受电子邮件或因用户电子邮箱或用户电子邮件接收及阅读程序本身的问题使电子邮件无法正常接收或阅读的，只要本网站成功发送了电子邮件，应当视为用户已经接收到相关的电子邮件。电子邮件在发信服务器上所记录的发出时间视为送达时间。&lt;/div&gt;
+&lt;div&gt;6． 服务条款的修改&lt;/div&gt;
+&lt;p&gt;&lt;span style="font-size: 10.5pt"&gt;　　本网站有权在必要时修改服务条款，本网站服务条款一旦发生变动，将会在重要页面上提示修改内容。如果不同意所改动的内容，用户可以主动取消获得的本网站信息服务。如果用户继续享用本网站信息服务，则视为接受服务条款的变动。本网站保留随时修改或中断服&lt;/span&gt;&lt;/p&gt;&lt;/div&gt;&lt;/div&gt;</value>
+  </data>
+  <data name="IDS_Msg_CloseRoderReasons_Error" xml:space="preserve">
+    <value>取消订单失败</value>
+  </data>
+  <data name="Currency_TWD" xml:space="preserve">
+    <value>新台币</value>
+  </data>
+  <data name="Currency_USD" xml:space="preserve">
+    <value>美元</value>
+  </data>
+  <data name="Currency_SGD" xml:space="preserve">
+    <value>新加坡元</value>
+  </data>
+  <data name="Currency_RUR" xml:space="preserve">
+    <value>卢布</value>
+  </data>
+  <data name="Currency_MOP" xml:space="preserve">
+    <value>澳门元</value>
+  </data>
+  <data name="Currency_HKD" xml:space="preserve">
+    <value>港币</value>
+  </data>
+  <data name="Currency_KRW" xml:space="preserve">
+    <value>韩元</value>
+  </data>
+  <data name="Currency_NZD" xml:space="preserve">
+    <value>新西兰元</value>
+  </data>
+  <data name="Currency_GBP" xml:space="preserve">
+    <value>英镑</value>
+  </data>
+  <data name="Currency_JPY" xml:space="preserve">
+    <value>日元</value>
+  </data>
+  <data name="Currency_EUR" xml:space="preserve">
+    <value>欧元</value>
+  </data>
+  <data name="Currency_CNY" xml:space="preserve">
+    <value>人民币</value>
+  </data>
+  <data name="Currency_CAD" xml:space="preserve">
+    <value>加拿大元</value>
+  </data>
+  <data name="Currency_AUD" xml:space="preserve">
+    <value>澳大利亚元</value>
+  </data>
+  <data name="IDS_OrderStatus_Unknow" xml:space="preserve">
+    <value>未知状态，请不要手工修改此页面地址！</value>
+  </data>
+  <data name="IDS_Friday" xml:space="preserve">
+    <value>星期五</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_PasswordAnswer_Error" xml:space="preserve">
+    <value>修改密码答案失败</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Add_Many" xml:space="preserve">
+    <value>最多只能添加{0}个收货地址</value>
+  </data>
+  <data name="IDS_PayInterface_COD" xml:space="preserve">
+    <value>货到付款</value>
+  </data>
+  <data name="IDS_PayInterface_NPS" xml:space="preserve">
+    <value>NPS</value>
+  </data>
+  <data name="IDS_PayInterface_IPS" xml:space="preserve">
+    <value>环迅(IPS v3.0)</value>
+  </data>
+  <data name="MemberSettings_RecoveryMode_Link" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="IDS_Monday" xml:space="preserve">
+    <value>星期一</value>
+  </data>
+  <data name="IDS_Product_Buy" xml:space="preserve">
+    <value>加入购物车</value>
+  </data>
+  <data name="IDS_RequestBalanceDrawConfirm_PageTitle" xml:space="preserve">
+    <value>确认申请提现</value>
+  </data>
+  <data name="ResourceObject_Area" xml:space="preserve">
+    <value>配送地区</value>
+  </data>
+  <data name="ResourceObject_Gift" xml:space="preserve">
+    <value>礼品</value>
+  </data>
+  <data name="ResourceObject_Help" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="ResourceObject_Vote" xml:space="preserve">
+    <value>投票调查</value>
+  </data>
+  <data name="ResourceObject_Stat" xml:space="preserve">
+    <value>统计分析</value>
+  </data>
+  <data name="IDS_AgentSendMessageSelectUser_Message_Success_SendMessages" xml:space="preserve">
+    <value>成功给选择的用户发送了消息.</value>
+  </data>
+  <data name="Utilty_OrderStatusForSearch_YetPayPacking" xml:space="preserve">
+    <value>已付款配货中订单</value>
+  </data>
+  <data name="Utilty_ActivityStatus_All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="ResourceObject_FriendlyLink" xml:space="preserve">
+    <value>友情链接</value>
+  </data>
+  <data name="IDS_SendCouponsTypeRadioButtonList_Email" xml:space="preserve">
+    <value>发送到指定的Email地址</value>
+  </data>
+  <data name="IDS_Message_DisallowedUsername" xml:space="preserve">
+    <value>用户名禁止注册</value>
+  </data>
+  <data name="Utilty_PriceTypes_SalePrice" xml:space="preserve">
+    <value>销售价</value>
+  </data>
+  <data name="IDS_PayInterface_Allbuy" xml:space="preserve">
+    <value>AllBuy</value>
+  </data>
+  <data name="IDS_ErrorMessage_DeleteMemberRank" xml:space="preserve">
+    <value>不能删除选择的会员等级，有会员属于此会员等级</value>
+  </data>
+  <data name="IDS_MassageError_LeaveComments_Title" xml:space="preserve">
+    <value>标题为必填项，长度限制在100字符以内</value>
+  </data>
+  <data name="IDS_Massage_MemberMoreAgentPrice" xml:space="preserve">
+    <value>您调整等级价有低于您自己进价的情况，请重试</value>
+  </data>
+  <data name="IDS_ErrorMessage_ReplyFail" xml:space="preserve">
+    <value>提交失败</value>
+  </data>
+  <data name="IDS_Login_PageTitle" xml:space="preserve">
+    <value>用户登陆</value>
+  </data>
+  <data name="IDS_OrderStatusDetails_PageTitle" xml:space="preserve">
+    <value>订单查询</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Delete_Success" xml:space="preserve">
+    <value>成功的删除了你要删除的记录</value>
+  </data>
+  <data name="Utilty_CloseOrder_BuyerToMeMoney" xml:space="preserve">
+    <value>买家没有网上银行，已经通过银行汇款给我了</value>
+  </data>
+  <data name="IDS_Favorites_Edit_Success" xml:space="preserve">
+    <value>成功的修改了收藏夹的信息</value>
+  </data>
+  <data name="IDS_UpdatePassword_Edit_Member_Password_Error" xml:space="preserve">
+    <value>当前登陆密码输入错误</value>
+  </data>
+  <data name="IDS_MassageError_LeaveComments_UserName" xml:space="preserve">
+    <value>用户名为必填项，长度限制在20字符以内</value>
+  </data>
+  <data name="IDS_InpourStatus_GatewayNotFound" xml:space="preserve">
+    <value>操作已经停止&lt;br/&gt;名称为[{0}]的支付接口可能已经从系统中删除，系统无法验证支付接口的返回信息！</value>
+  </data>
+  <data name="IDS_UpdatePassword_PageTitle" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="IDS_OrderStatus_VerifyFaild" xml:space="preserve">
+    <value>操作已经停止&lt;br/&gt;从支付接口返回的支付信息没有通过签名验证！</value>
+  </data>
+  <data name="IDS_UserShippingAddresses_Edit_Success" xml:space="preserve">
+    <value>成功的修改了一个收货地址</value>
+  </data>
+  <data name="IDS_Message_NoProductWeight" xml:space="preserve">
+    <value>无</value>
+  </data>
+  <data name="IDS_OrderLeavePageTitle" xml:space="preserve">
+    <value>会员订单留言</value>
+  </data>
+  <data name="ResourceObject_Supplier" xml:space="preserve">
+    <value>商家</value>
+  </data>
+  <data name="Utilty_RegularExpression_EnglishAndNum_value" xml:space="preserve">
+    <value>[a-zA-Z0-9]</value>
+  </data>
+  <data name="IDS_Favorites_Delete_Success" xml:space="preserve">
+    <value>成功删除了选择的收藏商品</value>
+  </data>
+  <data name="IDS_Massage_MondifyError" xml:space="preserve">
+    <value>修改订单收货地址失败</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_AccountPending" xml:space="preserve">
+    <value>该账户信息正在审核中, 请联系管理员</value>
+  </data>
+  <data name="ResourceObject_PaymentMethod" xml:space="preserve">
+    <value>支付方式</value>
+  </data>
+  <data name="IDS_Button_Adscription" xml:space="preserve">
+    <value>归属</value>
+  </data>
+  <data name="IDS_Label_SuppAccount" xml:space="preserve">
+    <value>我的家饰汇</value>
+  </data>
+  <data name="IDS_SupplierDefault_PageTitle" xml:space="preserve">
+    <value>我的家饰汇</value>
+  </data>
+  <data name="IDS_Message_DuplicateDecorationName" xml:space="preserve">
+    <value>已经在存相同的家装公司名</value>
+  </data>
+  <data name="IDS_Message_DuplicateSupplierName" xml:space="preserve">
+    <value>已经在存相同的商家名</value>
+  </data>
+  <data name="IDS_Message_EmptyDecorationName" xml:space="preserve">
+    <value>请输入家装公司名称</value>
+  </data>
+  <data name="IDS_Message_EmptySupplierName" xml:space="preserve">
+    <value>请输入商家名称</value>
+  </data>
+  <data name="IDS_Message_EmptyDecorationContaceEmail" xml:space="preserve">
+    <value>家装公司联系邮箱为空</value>
+  </data>
+  <data name="IDS_Message_EmptyDecorationSelectedRegion" xml:space="preserve">
+    <value>请输入所在地</value>
+  </data>
+  <data name="IDS_Message_EmptySupplierSelectedRegion" xml:space="preserve">
+    <value>请输入所在地</value>
+  </data>
+  <data name="IDS_Message_EmptySupplierSupplierClass" xml:space="preserve">
+    <value>商家企业分类为空</value>
+  </data>
+  <data name="IDS_Message_EmptyDecorationCellPhone" xml:space="preserve">
+    <value>请输入手机号码</value>
+  </data>
+  <data name="IDS_Message_EmptySupplierCellPhone" xml:space="preserve">
+    <value>请输入手机号码</value>
+  </data>
+  <data name="IDS_Login_ErrorMessage_NoEnterpriseID" xml:space="preserve">
+    <value>您的账号存在问题，企业信息丢失，请联系管理员</value>
+  </data>
+  <data name="IDS_Button_ApproleCheck" xml:space="preserve">
+    <value>批准通过</value>
+  </data>
+  <data name="Utilty_PriceTypes_MarketPrice_NoPrice" xml:space="preserve">
+    <value>议价</value>
+  </data>
+  <data name="DuplicateSupplierName" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IDS_Message_DuplicateEmailAddress" xml:space="preserve">
+    <value>电子邮箱已存在</value>
+  </data>
+  <data name="IDS_Message_EmptyUserEmail" xml:space="preserve">
+    <value>用户邮箱为空</value>
+  </data>
+  <data name="IDS_Message_EmptyUserName" xml:space="preserve">
+    <value>用户名为空</value>
+  </data>
+  <data name="IDS_Message_EmptySupplierContaceEmail" xml:space="preserve">
+    <value>商家联系邮箱为空</value>
+  </data>
+  <data name="IDS_ErrorMessage_NoPayment" xml:space="preserve">
+    <value>您所选择的支付方式不存在, 请重新选择支付方式.</value>
+  </data>
+</root>

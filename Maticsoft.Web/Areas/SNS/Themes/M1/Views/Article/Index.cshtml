@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayOut.cshtml";
+}
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.CMS.Content>
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+}
+<div class="clubnews_w960">
+    <div class="club-newslist">
+        <h3>
+            @ViewBag.ClassName</h3>
+        <div class="club_newslisttitle">
+            <span>标题</span><small>发表人</small><em>回复/浏览</em><u>发表时间</u>
+        </div>
+        @{Html.RenderPartial("/Areas/SNS/Themes/M1/Views/Article/ArticleList.cshtml", Model);}
+    </div>
+    <div class="club_newsright">
+        <h3>
+            热门文章</h3>
+        @Html.Action("HotArticle", "Article", new { Top = 15, ViewName = "_ArticlePart2" })
+    </div>
+    <div class="clear">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="club_newsright">
+        <h3>
+            @ViewBag.ClassName</h3>
+                @Html.Action("HotComment", "Article", new { ClassId = Model[0].ClassID, Top = 10 })
+    </div>
+    }
+    
+</div>

@@ -1,0 +1,307 @@
+@import url("base.css");
+.Messenger-activation{
+	height:464px;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/jh_01_01.png) center no-repeat;
+	}
+/* Password */
+.Messenger_setting{
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_16.png) center no-repeat;
+	padding:50px 0 50px 0;
+	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  
+	-moz-background-size:100% 100%;  
+    background-size:100% 100%;  
+		}
+.Password{
+	border:1px solid #f12163;
+	background:#fff;
+	}
+.Password_content{
+	width:865px;
+	margin:0 auto;
+	padding-top:35px;
+	}
+.Password_nav li{
+	float:left;
+	padding-right:185px;
+	position:relative;
+	}
+.Password_nav li em{
+	width:12px;
+	height:7px;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_11_04.png) no-repeat;
+	display:block;
+	position:absolute;
+	bottom:-1px;
+	left:40px;
+	}
+.Password_nav li span{
+	height:40px;
+	line-height:40px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	display:block;
+	color:#ff2164;
+	padding-left:20px;
+	}
+.Password_Progressbar{
+	width:865px;
+	height:10px;
+	border:1px solid #d5d5d5;
+	background:#e2e2e2;
+	border-radius:20px;
+	position:relative;
+	}
+.Password_Progressbar span{
+	height:10px;
+	position:absolute;
+	top:0;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_12.png) repeat-x;
+	display:block;
+	border-radius:20px;
+	}
+.Password_message{
+	padding-top:50px;
+	padding-left:160px;
+	}
+.Password_message li{
+	padding-bottom:15px;
+	}
+.Password_message li label{
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#666666;
+	}
+.Password_message li span{
+	height:50px;
+	line-height:50px;
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#666666;
+	}
+.Password_message li em{
+	height:50px;
+	line-height:50px;
+	font-style:normal;
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#ff265f;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_16_03.png)  left center no-repeat;
+	padding-left:15px;
+	}
+.message_a1 label{
+	height:50px;
+	line-height:50px;
+	width:7em;
+	float:left;
+	text-align:right;
+	}
+.message_a1 input{
+	width:280px;
+	height:50px;
+	line-height:50px;
+	border-radius:5px;
+	}
+.message_b1{
+	border:1px solid #e77ea6;
+	}
+.message_b2{
+	border:1px solid #e77ea6;
+	/*background:#faffbd;*/
+	}
+.message_a2,.message_a3{
+	padding-left:85px;
+	}
+.message_a2 input{
+	margin-top:4px;
+	display:inline-block;
+	*display:inline;zoom:1;
+	}
+.message_a2 a{
+	color:#ff2164;
+	display:inline-block;
+	*display:inline;
+	zoom:1;
+	text-decoration:underline;
+	}
+.message_a3 a{
+	width:138px;
+	height:55px;
+	line-height:55px;
+	font-family:"微软雅黑";
+	font-size:28px;
+	text-align:center;
+	border-radius:5px;
+	display:inline-block;
+	*display:inline;zoom:1;
+	color:#fff;
+	}
+.message_a3 a.pt_1{
+	background:#ff2164;
+	}
+.message_a3 a.pt_2{
+	background:#25dec6;
+	}
+/* Password end */
+
+/*基本资料*/
+.basic_data{
+	width:865px;
+	padding-bottom:30px;
+	}
+.basic_data dl dt{
+	padding-bottom:20px;
+	position:relative;
+	}
+.basic_data dl dt span{
+	height: 50px;
+    line-height: 50px;
+	font-family:"微软雅黑";
+	font-size:16px;
+	color:#ff2164;
+	border-bottom:3px solid #ff2667;
+	display:block;
+	}
+.basic_data dl dt em{
+	width:13px;
+	height:5px;
+	display:block;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_15_03.png) no-repeat;
+	position:absolute;
+	top:45px;
+	left:43px;
+	}
+.basic_data dl dd{
+	width:865px;
+	}
+.basic_data dl dd li{
+	font-family:"微软雅黑";
+	font-size:14px;
+	color:#231815;
+	padding-bottom:10px;
+	} 
+.basic_data dl dd li label{
+	width:7em;
+	float:left;
+	text-align:right;
+	}
+.basic_data dl dt{
+	width:100px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	}
+.basic_data dl dt.active{
+	border-bottom:3px solid #ff2a6a;
+	}
+.basic_data dl dd label em{
+	color:#e26594;
+	font-style:normal;
+	}
+.Second_a1 label{
+	height:45px;
+	line-height:45px;
+	}
+.Second_a1 input{
+	width:257px;
+	height:45px;
+	line-height:45px;
+	border:1px solid #e26594;
+	border-radius:5px;
+	}
+.Second_a2{
+	padding-left:98px;
+	padding-top:10px;
+	}
+.Second_a2 input{
+	width:405px;
+	height:40px;
+	line-height:40px;
+	border:1px solid #e26594;
+	border-radius:5px;
+	}
+.Second_b1 select{
+	width:95px;
+	height:21px;
+	line-height:21px;
+	border:1px solid #c4a7b1;
+	background:#fcf3f7;
+	}
+.Thefirst_a1{
+	}
+.Thefirst_a1 label{
+	height:45px;
+	line-height:45px;
+	} 
+.Thefirst_a1 input{
+	width:193px;
+	height:45px;
+	line-height:45px;
+	border:1px solid #e26594;
+	border-radius:5px;
+	}
+.Second_b1{
+	padding:10px 0;
+	}
+.Thefirst_a2{
+	padding-left:98px;
+	}
+.Thefirst_a2 input{
+	width:797px;
+	height:40px;
+	line-height:40px;
+	border:1px solid #e26594;
+	border-radius:5px;
+	}
+.Thefirst_b1{
+	padding:10px 0;
+	}
+.Thefirst_b2{
+	padding-left:83px;
+	}
+
+/*成功激活*/
+.Successful_tip{
+	padding: 40px 0 45px 160px;
+	}
+.Successful_tip em{
+	width:72px;
+	height:72px;
+	display:block;
+	float:left;
+	background:url(/Areas/Shop/Themes/M1/Content/images/xinke/icon_13.png) no-repeat;
+	}
+.Prompt_script{
+	float:left;
+	padding:20px 0 0 30px;
+	}
+.Prompt_script p{
+	font-family:"微软雅黑";
+	font-size:16px;
+	color:#f01d60;
+	}
+.hint_button{
+	padding-left:260px;
+	padding-bottom:30px;
+	}
+.hint_button a,.fastener a{
+	width:105px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	background:#ff2164;
+	font-family:"微软雅黑";
+	font-size:20px;
+	border-radius:5px;
+	display:inline-block;
+	*display:inline; zoom:1;
+	color:#fff;
+	}
+.xy_2{
+	font-family:"微软雅黑";
+	font-size:12px;
+	}
+.fastener{
+	 width:235px;
+	padding:20px 0 30px 0; 
+	margin:0 auto;
+	}

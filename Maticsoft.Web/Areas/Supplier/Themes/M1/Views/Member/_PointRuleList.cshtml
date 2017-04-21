@@ -1,0 +1,105 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.ViewModel.Member.PointsRuleExt> 
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridView">
+    <tr class="head1">
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">规则码 </span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">规则名称 </span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">条件限制</span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">影响分数</span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">规则描述</span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">编辑 </span>
+        </th>
+        <th width="10%" bgcolor="#FFFFFF">
+            <span style="color: #666666;">删除 </span>
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+                   
+        <tr>
+            <td>
+                @item.ActionName
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.LimitName
+            </td>
+            <td>
+                @item.Score
+            </td>
+            <td>
+                @item.Description
+            </td>
+            <td>
+                <a href="@(ViewBag.BasePath)Member/UpdateRule/@item.RuleId">编辑</a>&nbsp;&nbsp;
+            </td>
+            <td>
+                @*<a href="@(ViewBag.BasePath)Member/DeleteRule/@item.RuleId" class="delete">删除</a>*@
+                <a href="javascript:;" class="delete" ruleID="@item.RuleId">
+                        删除</a>&nbsp;&nbsp;
+            </td>
+        </tr>
+        }
+    }
+    <tr height="27px" style="background: #FFF">
+        <div class="abc">
+            <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                <tr>
+                    <td width="32" style="padding-left: 12px;">
+                    </td>
+                    <td width="5%">
+                        &nbsp;
+                    </td>
+                    <td width="5%">
+                        &nbsp;
+                    </td>
+                    <td width="30%">
+                        @Html.Pager(Model, new PagerOptions
+                             {
+                                 ShowDisabledPagerItems = false,
+                                 AlwaysShowFirstLastPageNumber = true,
+                                 PageIndexParameterName = "pageIndex",
+                                 NumericPagerItemCount = 10,
+                                 CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+                                 NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                                 NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+                                 CssClass = "page",
+                                 SeparatorHtml = ""
+                             })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </tr>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+        
+
+    });
+</script>

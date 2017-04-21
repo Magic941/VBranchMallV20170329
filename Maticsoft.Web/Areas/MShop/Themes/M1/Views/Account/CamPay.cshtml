@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "校园创业卡校验";
+
+    IList<Maticsoft.Payment.Model.PaymentModeInfo> lstPaymentModeInfo = ViewBag.PaymentModes;
+}
+@model Maticsoft.Model.Shop.Order.OrderInfo
+<link href="/Areas/MShop/Themes/M1/Content/Css/hlcard.css" rel="stylesheet" />
+<link href="/Areas/MShop/Themes/M1/Content/style.css" rel="stylesheet" />
+<script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/Pay/SubmitOrder.js"></script>
+<div class="top">
+    <span>核对支付信息</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<input type="hidden" id="hfOrderId" value="@(Model.OrderId)" />
+<div class="mem_ber_pur">
+    <ul class="back" style="background-image: none; padding: 0 1em;">
+        <li class="card_a">
+            校验成功，请尽快完成付款！
+        </li>
+        <li class="card_a">
+            卡号:@ViewBag.CardNo
+            <br />
+            订单号：@Model.OrderCode
+            <br />
+            应付金额：<strong class="ftx-01">@(Model.Amount.ToString("F2"))元</strong>
+        </li>
+    </ul>
+    <ul>
+        <li><p><strong>支付方式:</strong></p></li>
+        <li>
+            @{
+                if (null != lstPaymentModeInfo && lstPaymentModeInfo.Count > 0)
+                {
+                    foreach (Maticsoft.Payment.Model.PaymentModeInfo paymentModeInfo in lstPaymentModeInfo)
+                    {
+                        <input type="radio" id="payment_@(paymentModeInfo.ModeId)" name="radPaymentModeId" value="@(paymentModeInfo.ModeId)" style="vertical-align:top;" />
+                        <label for="payment_@(paymentModeInfo.ModeId)">
+                            <img style="height:30px;" src="@paymentModeInfo.Logo" alt="@paymentModeInfo.Name" title="@paymentModeInfo.Name" /></label>
+                        @:&nbsp;
+                    }
+                }
+            }
+        </li>
+        <li>
+            <button id="order-submit" class="btn-impay" onclick="javascript:void(0);">立即支付</button>
+        </li>
+    </ul>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        // 支付方式默认选择支付宝
+        $("input:radio[id^='payment_']:first").attr("checked", true);
+        // 选中支付方式
+        $("input:radio[id^='payment_']").change(function () {
+            var orderId = parseInt($("#hfOrderId").val());
+            var paymentId = parseInt($(this).val());
+            Immediatepayment(orderId, paymentId);
+        });
+        // 提交按钮
+        $("#order-submit").unbind("click").bind("click", function () {
+            var cardNo = $("#txtCardNo").val();
+            var orderId = $("#hfOrderId").val();
+            var paymentModeId = $("input:radio[name='radPaymentModeId']:checked").val();
+            // 清空提示信息
+            // 请选择支付方式
+            if (!paymentModeId) {
+                ShowFailTip("请选择支付方式!");
+                return;
+            }
+            // 提交
+            Pay(orderId);
+        });
+        // 更新支付方式
+        Immediatepayment(parseInt($("#hfOrderId").val()), parseInt($("input:radio[id^='payment_']:checked").val()));
+    });
+    </script>

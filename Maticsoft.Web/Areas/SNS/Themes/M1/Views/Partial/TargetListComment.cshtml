@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Maticsoft.Model.SNS.Comments>
+@foreach (Maticsoft.Model.SNS.Comments comitem in Model)
+{ 
+    <div class="search_iss_a">
+        <div class="search_iss_a1">
+            <a href="@(ViewBag.BasePath)User/Posts/@(comitem.CreatedUserID)">
+                <img style=" width:35px; height:35px" alt="@comitem.CreatedNickName" src="/Upload/User/Gravatar/@(comitem.CreatedUserID).jpg"></a></div>
+        <div class="search_iss_a2">
+            <dl class="search_iss_a21">
+                <p style="float: left; line-height: 20px; color: #666; font-weight: normal">
+                    <a href="@(ViewBag.BasePath)User/Posts/@(comitem.CreatedUserID)">@comitem.CreatedNickName
+                    </a>
+                     <span  title="@Html.Raw(Maticsoft.ViewModel.ViewModelBase.ReplaceFace(comitem.Description))">:
+                                                    @Maticsoft.Common.StringPlus.SubString(Maticsoft.Common.InjectionFilter.HtmlFilter(comitem.Description), 20, "...")</span>
+                   </p>
+                @*  <p style="float: left; margin-left: 5px;">
+                                                    <a href="javascript:;">
+                                                        <img src="/Areas/SNS/Themes/M1/Content/images/detailed_18.jpg"></a></p>*@
+                <div class="clear">
+                </div>
+            </dl>
+            @*  <dl class="search_iss_a22">@Html.Raw(comitem.Description)</dl>*@
+        </div>
+    </div>
+}

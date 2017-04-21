@@ -1,0 +1,189 @@
+﻿@using Webdiyer.WebControls.Mvc
+@{
+    List<Maticsoft.Model.Shop.Products.GoodsType> goodsModel = ViewBag.bannerImag;
+}
+
+@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string attrvalues = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+}
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+@*<link href="/Scripts/PhotoSwipe/photoswipe.css" rel="stylesheet" type="text/css" />*@
+<script src="/Scripts/PhotoSwipe/klass.min.js" type="text/javascript"></script>
+<script src="/Scripts/PhotoSwipe/photoswipe.jquery.min.js" type="text/javascript"></script>
+<link href="/Scripts/PhotoSwipe/styles.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $(".modList[mod='@(mod)']").addClass("a");
+        $(".modList").click(function () {
+            var mod = $(this).attr("mod");
+
+            location.href = $Maticsoft.BasePath + "p/@(cid)/@(brandid)/@(attrvalues)/" + mod;
+        });
+    })
+</script>
+
+<script type="text/javascript">
+    (function (window, $, PhotoSwipe) {
+        $(document).ready(function () {
+            var delay = 3000;
+            var autoStartSlideshow = true;
+            var instance, indicators;
+            indicators = $("#PhotoSwipeTarget").parents('.index-ads:eq(0)').find('#Indicators span img');
+            if (indicators.length < 1) return;
+            instance = PhotoSwipe.attach(
+            indicators,
+                {
+                    target: $("#PhotoSwipeTarget"),
+                    preventHide: true,
+                    autoStartSlideshow: autoStartSlideshow,
+                    preventDefaultTouchEvents: false,
+                    allowUserZoom: false,
+                    captionAndToolbarHide: true,
+                    slideshowDelay: delay,
+                    imageScaleMethod: "zoom",
+                    enableUIWebViewRepositionTimeout: true,//检查设备的方向是否改变
+                    uiWebViewResetPositionDelay: 400,//定时检查设备的方向是否改变的时间
+                    swipeTimeThreshold: 250,  //定义触发swipe(滑动)手势的最大毫秒数,太慢了则不会触发滑动，只会拖动当前照片的位置. 默认 = 250  
+                    mouseWheelSpeed: 500, //响应鼠标滚轮的灵敏度. 默认 = 500(毫秒) 
+                    enableDrag: true,//允许拖动上一张/下一张图片到当前界面
+                    swipeThreshold: 50,//手指滑动多少像素才触发一个  swipe 手势事件. 默认 = 50  
+                    getImageSource: function (obj) {
+                        return $(obj).attr("src");
+                    },
+                    getImageCaption: function (obj) {
+                        return $(obj).attr("alt");
+                    },
+                    getImageMetaData: function (el) {
+
+                        return {
+                            longDescription: el.getAttribute('alt'),
+                            relatedUrl: el.getAttribute('href')
+                        };
+
+                    }
+                }
+            );
+            instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function (e) {
+                $(e.currentTarget.originalImages).parent().removeClass();
+                $(e.currentTarget.originalImages[e.index]).parent().addClass('current');
+            });
+            instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function (e) {
+                if (e.action === 'tap') {
+                    var relatedUrl = this.getCurrentImage().metaData.relatedUrl;
+                    if (relatedUrl && relatedUrl != 'http://') window.open(relatedUrl);
+                }
+            });
+            instance.show(0);
+        });
+    }(window, window.jQuery, window.Code.PhotoSwipe));
+
+</script>
+
+<style>
+    body {
+        background: #f2f2f2;
+    }
+
+    .seach_bg {
+        background: #f2f2f2;
+    }
+
+    .listimg {
+    }
+
+    .products_list li {
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .listimg img {
+        width: 100%;
+        border: 1px solid #d3d3d3;
+    }
+
+    .lisdimg {
+        font-size: 12px;
+    }
+
+    .lisdimgAD {
+        float: left;
+        padding-top: 10px;
+    }
+
+    .pro_list_lm tr td a img {
+        width: 20px;
+        line-height: 20px;
+    }
+    .pro_list_lm tr {
+        
+    }
+</style>
+
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+    <span style="padding-left: 32px">@Model.CurrentCateName</span>
+</div>
+
+@if (goodsModel != null && goodsModel.Count > 0)
+{
+    foreach (var item in goodsModel)
+    {
+    <div class="index-ads w" style="display: block; height: 185px;">
+        <div id="PhotoSwipeTarget" style="margin-top: 0px; height: 185px;">
+        </div>
+        <div id="Indicators" style="margin-top: 0px; height: 185px;">
+            @if (item.BannerPicPath != null && item.BannerPicPath != "")
+            {
+                foreach (var item2 in item.BannerPicPath.Split('|'))
+                {
+                <span title="@item2">
+                    <img src="@item2" alt="@item2" class="imageList" height="185" >
+                </span>
+                }
+            }
+            else
+            {
+                <span>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/1img_02.png" class="imageList">
+                </span>
+            }
+        </div>
+        <table width="100%" height="45" border="0" cellspacing="0" cellpadding="0" class="pro_list_lm">
+            <tr>
+                <td class="modList" mod="hot">
+                <a href="javascript:;">销量</a>
+                </td>
+                <td class="modList" mod="price">
+                    <a href="javascript:;">价格</a>
+                </td>
+                <td class="modList" mod="new">
+                    <a href="javascript:;">新品</a>
+                </td>
+                <td style="">
+                   @* <a href="@(ViewBag.BasePath)p/@(cid)/@(brandid)/@(attrvalues)/@(mod)/0-0?viewname=IndexNew&ajaxViewName=_ProductListNew">
+                        <img src="/Areas/MShop/Themes/M1/Content/images/fl-1.png" /></a>*@
+                </td> 
+            </tr>
+        </table>
+    </div>
+                if (item.BgColor != "" && item.BgColor != null)
+                {
+                <div id="ProductListDiv" style="margin-top:45px; background:@item.BgColor">
+                    @{Html.RenderPartial("_ProductList_Image", Model);}
+                </div>
+                }
+                else
+                { 
+                <div id="ProductListDiv" style="margin-top: 45px; background: #d21349;">
+                    @{Html.RenderPartial("_ProductList_Image", Model);}
+                </div>
+                }
+    }
+}

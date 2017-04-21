@@ -1,0 +1,252 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = " 微信营销-刮刮卡";
+}
+@model Maticsoft.WeChat.Model.Activity.ActivityInfo 
+<script src=" /Scripts/jquery.Scratch/wScratchPad.js" type="text/javascript"></script><script
+    src="/Scripts/jquery.alertify/src/alertify.js" type="text/javascript"></script>
+<link href="/Scripts/jquery.alertify/themes/alertify.core.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/jquery.alertify/themes/alertify.default.css" rel="stylesheet"
+    type="text/css" />
+<style>
+    .cover
+    {
+        width: 320px;
+        max-width: 480px;
+        margin: 0 auto;
+        position: relative;
+    }
+    .cover img
+    {
+        width: 320px;
+    }
+    #scratchpad, #prize
+    {
+        position: absolute;
+        width: 150px;
+        height: 40px;
+        top: 110px;
+        right: 50px;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 40px;
+    }
+    .btn-cont
+    {
+        position: absolute;
+        bottom: 3px;
+        right: 3px;
+        display: none;
+    }
+    .content
+    {
+        margin-top: 20px;
+        padding: 0 15px;
+    }
+    .content .desc
+    {
+        font-weight: bold;
+        border-bottom: 1px dashed #000;
+        padding: 12px 0px;
+    }
+    p
+    {
+        margin: 0 0 10px;
+        font-size: 14px;
+    }
+    .loading-mask
+    {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: rgba(0,0,0,0.6);
+        z-index: 100;
+        left: 0px;
+        top: 0px;
+    }
+</style>
+<script type="text/javascript">
+    function loading(canvas, options) {
+        this.canvas = canvas;
+        if (options) {
+            this.radius = options.radius || 12;
+            this.circleLineWidth = options.circleLineWidth || 4;
+            this.circleColor = options.circleColor || 'lightgray';
+            this.moveArcColor = options.moveArcColor || 'gray';
+        } else {
+            this.radius = 12;
+            this.circelLineWidth = 4;
+            this.circleColor = 'lightgray';
+            this.moveArcColor = 'gray';
+        }
+    }
+    loading.prototype = {
+        show: function () {
+            var canvas = this.canvas;
+            if (!canvas.getContext) return;
+            if (canvas.__loading) return;
+            canvas.__loading = this;
+            var ctx = canvas.getContext('2d');
+            var radius = this.radius;
+            var me = this;
+            var rotatorAngle = Math.PI * 1.5;
+            var step = Math.PI / 6;
+            canvas.loadingInterval = setInterval(function () {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                var lineWidth = me.circleLineWidth;
+                var center = { x: canvas.width / 2, y: canvas.height / 2 };
+                ctx.beginPath();
+                ctx.lineWidth = lineWidth;
+                ctx.strokeStyle = me.circleColor;
+                ctx.arc(center.x, center.y + 20, radius, 0, Math.PI * 2);
+                ctx.closePath();
+                ctx.stroke();
+                //在圆圈上面画小圆   
+                ctx.beginPath();
+                ctx.strokeStyle = me.moveArcColor;
+                ctx.arc(center.x, center.y + 20, radius, rotatorAngle, rotatorAngle + Math.PI * .45);
+                ctx.stroke();
+                rotatorAngle += step;
+            }, 100);
+        },
+        hide: function () {
+            var canvas = this.canvas;
+            canvas.__loading = false;
+            if (canvas.loadingInterval) {
+                window.clearInterval(canvas.loadingInterval);
+            }
+            var ctx = canvas.getContext('2d');
+            if (ctx) ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    };   
+</script>
+<input id="hfChange" type="hidden"  value="@ViewBag.HasChange"/>
+@if (Model != null)
+{
+    if (ViewBag.HasChange)
+    {
+    
+    <div class="loading-mask">
+        <div style="position: absolute; left: 50%; margin-left: -150px; text-align: center;">
+            <canvas id="loading" style="width: 300px; height: 150px;">loading</canvas>
+            <div style="color: white; font-size: 20px;">
+                正在努力加载中...</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var loadingObj = new loading(document.getElementById('loading'), { radius: 20, circleLineWidth: 8 });
+        loadingObj.show();   
+    </script>
+    <div class="cover">
+        <img src="/Areas/MShop/Themes/M1/Content/images/Scratch.jpg" />
+        <div id="prize">
+        </div>
+        <div id="scratchpad">
+        </div>
+    </div>
+    <div class="content">
+        <p class="desc">
+            兑奖说明<span style="color: red;">（亲，中奖后请点击此处"<a href="javascript:;" id="btnGetAward">我要领奖</a>"输入您的手机号或牢记您的SN码，否则可能无法领奖喔！）</span></p>
+        @Html.Action("AwardList", new { cid = Model.ActivityId, viewName = "_AwardList" })
+    </div>
+    <div style="clear: both;">
+    </div>
+    <script type="text/javascript">
+        window.sncode = "null";
+        window.prize = "谢谢参与";
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideOptionMenu');
+        });
+
+        $(function () {
+            var useragent = window.navigator.userAgent.toLowerCase();
+
+            //获取SN码
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                url: $Maticsoft.BasePath + "Activity/GetSNCode",
+                data: { ActivityId: @Model.ActivityId},
+                success: function (data) {
+                  if(data.STATUS=="True")
+                  {
+                      if(data.Data!="NoData")
+                      {
+                        $("#prize").html("<a  href='javascript:;' class='snCode' code='"+data.SNCode+"' style=''> "+data.Data+"</a>")
+                      }
+                  }
+                }
+            });
+
+            $("#scratchpad").wScratchPad({
+                width: 150,
+                height: 40,
+                image:null,
+                color: "#a9a9a7",
+                scratchMove: function(e, percent){ alert("123"); },
+                scratchDown: function(e, percent){ alert("123"); }
+            });
+
+            $("#btnGetAward").click(function(){
+                    var code= $("#prize").find("a").attr("code");
+                    var disabled=$(this).attr("disabled");
+                    if(disabled)
+                    {
+                     alertify.alert("亲，请不要重复领奖！");
+                     return;
+                    }
+                    if(code)
+                            {
+                            alertify.prompt("您的中奖SN码是：<span style='font-size: 16px;font-weight: bold;'>"+code+"</span><br/>请输入您的手机号码", function (e, str) {
+                                if (e) {
+                                  $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "Activity/BindSNCode",
+                data: { SNCode: code,Phone:str},
+                success: function (data) {
+                    if(data=="True")
+                    {
+                     ShowSuccessTip('领取奖品成功！');
+                     $("#btnGetAward").attr("disabled","disabled");
+                    }
+                    else
+                    {
+                     ShowFailTip('服务器繁忙，请稍候再试！');
+                    }
+                }
+            });    
+                                } 
+                          }, "");
+                    }
+                    else
+                    {
+                         alertify.alert("继续加油哦！");
+                    }
+            })
+         
+            $("#prize").html("谢谢参与");
+            loadingObj.hide();
+            $(".loading-mask").remove();
+            // Windows Phone
+            if ((navigator.userAgent.indexOf('WP7') > -1) || (navigator.userAgent.indexOf('Windows Phone OS') > -1)) {
+                $(".btn-cont").show();
+            }
+        });
+    </script>
+    }
+    else
+    {
+    <script type="text/javascript">
+        alertify.alert("您已经参与过该活动。");
+    </script>
+    }
+}
+else
+{
+        <script type="text/javascript">
+            alertify.alert("亲，该活动不存在或者已经过期了。");
+    </script>
+}
+

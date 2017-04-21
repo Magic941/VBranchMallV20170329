@@ -1,0 +1,6 @@
+.msgNormal{background:url(validate_normal.gif) no-repeat;padding-left:25px;width:350px;padding-top:5px;padding-bottom:3px;color:#999999; }
+.msgOnFocus{background:#E9F0FF url(validate_waring.gif) no-repeat; width:350px; padding-left:25px;padding-top:5px;padding-bottom:3px;border: #00a8ff 1px solid;}
+.msgError{background:#FFF2E9 url(validate_error.gif) no-repeat; width:350px; padding-left:25px;padding-top:5px;padding-bottom:3px;border: #f60 1px solid;}
+.msgError a{color:red;}
+.msgOK{background:#E9FFEB url(validate_success.gif) no-repeat; width:350px; padding-left:25px;padding-top:5px;padding-bottom:3px;border: #00be00 1px solid; }
+.msgAjaxing{background:#E9FFEB url(spinner.gif) no-repeat 3px 3px; padding-left:25px;padding-top:5px;padding-bottom:3px;} 

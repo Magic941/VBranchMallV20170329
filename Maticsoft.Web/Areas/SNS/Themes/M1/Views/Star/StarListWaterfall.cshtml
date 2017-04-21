@@ -1,0 +1,53 @@
+﻿@model Maticsoft.ViewModel.SNS.Stars
+@if (Model == null) { return; }
+@{
+    foreach (var item in Model.StarList)
+    {
+    <div class="i_w_y StarListImage">
+        <div id="emerge" class="emerge">
+            <p>
+                <a class="pic_load" href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                    <img ref="@item.UserGravatar" alt="@item.NickName" /></a></p>
+            @*   <div id="dodge" class="dodge">
+                <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>*@
+        </div>
+        <div class="search_com">
+            <div class="srcoll_a">
+                <p class="srcoll_a_s">
+                    <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.NickName</a></p>
+                <p class="srcoll_a_f">
+                    <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                        @Html.Action("StarDPI", "Partial", new { UserId = @item.UserID })
+                    </a>
+                </p>
+            </div>
+            <div class="srcoll_b">
+                @*   <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_7.jpg" /></a>*@
+                @if (item.IsFellow == false)
+                {
+                    <a href="javascript:;" class="FellowUser"  UserId="@item.UserID"  autotest="false">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.UserID"  >
+                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                }
+                else
+                {
+                    <a href="javascript:;" class="FellowUser"  UserId="@item.UserID" style="display:none"  autotest="false">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser"  UserId="@item.UserID"  >
+                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                }
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="srcoll_d">
+            粉丝：<span>@item.FansCount</span> 喜欢：<span>@item.FavouritesCount</span> 宝贝：<span>@item.ProductsCount</span></div>
+        @if (!String.IsNullOrWhiteSpace(item.Singature))
+        {
+            <div class="srcoll_c">
+                @item.Singature</div>
+        }
+    </div>
+    }
+}

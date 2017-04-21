@@ -1,0 +1,20 @@
+﻿
+@model Maticsoft.ViewModel.CMS.Photo
+ @foreach (Maticsoft.Model.CMS.Photo item in Model.PhotoListWaterfall)
+        {
+              <div class="i_w_y" >
+                    <div id="emerge" class="emerge">
+                        <p><a href="@item.ImageUrl"  target="_blank" class="pic_load"><img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T235x1280_"))"/></a></p>
+                       <div id="dodge">
+                          <div class="dodge_a"></div>
+                          <div class="dodge_b">
+                          <p class="dodge_b1"><a  target="_blank" href="@item.ImageUrl">@(Maticsoft.Common.StringPlus.SubString(item.PhotoName,20,".."))</a></p>
+                             <div class="dodge_b_s">
+                                   <p class="dodge_b_s1">@item.CreatedDate</p>
+                                   <p class="dodge_b_s2 like" style="cursor: pointer"><img src="/Areas/CMS/Themes/M1/Content/images/like.png"/>  <span>@item.FavouriteCount</span></p>
+                             </div>
+                          </div>
+                       </div>
+                   </div>
+              </div>
+        }

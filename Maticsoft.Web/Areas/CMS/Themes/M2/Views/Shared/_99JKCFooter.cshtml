@@ -1,0 +1,21 @@
+﻿@{
+    
+    Maticsoft.BLL.SysManage.WebSiteSet WebSiteSetShop = new Maticsoft.BLL.SysManage.WebSiteSet(Maticsoft.Model.SysManage.ApplicationKeyType.Shop);
+    var WebPowerBy = WebSiteSetShop.WebPowerBy;
+    var WebName = WebSiteSetShop.WebName;
+    
+}
+<div class="footer c m">
+    <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/footer.png" /></div>
+<div class="foot c">
+    <p>@Html.Raw(WebPowerBy)  @WebName </p>
+    <div class="c foot_nav">
+        <a href="/About/Index">关于我们</a>
+        <a href="/Article/ArticleList?classid=43&viewName=JKZhiShiList">新闻动态</a>
+        <a href="/Article/ArticleList?classid=42&viewName=JKZhiShiList">健康服务</a>
+        @* <a href="http://union.xyz.cn/union/showProd?uid=132056&sid=8eNXvnWy2J5g&currentPage=1">保险超市</a>*@
+        <a href="#">健康商城</a>
+        <a href="/Article/Details/73">联系我们</a>
+        <a href="/SalesCardsSearch/Index">管理中心</a>
+    </div>
+</div>

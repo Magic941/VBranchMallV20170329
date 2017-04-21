@@ -1,0 +1,97 @@
+﻿ @{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/hlcardactive/activestep2.css" rel="stylesheet" />
+
+<script>
+    $(window).load(function () {
+      
+        $("#btn-next-2").live('click', function () {
+
+            if (!$("#Chk2").attr("checked")) { alert("请同意保险协议！"); return }
+            var html = $(".reading_yd_bot").html();
+            $(".reading_yd_bot").fadeOut("fast", function () {
+                $(".reading_yd_bot").html("<div  style=\"background-color:#f7e688;border:solid 1px #8e2626;width:150px;height:25px;padding-top:5px;\"><span id='wait'>正在提交,请稍等......<span></div>").fadeIn("slow");
+
+                setInterval(function () { $("#wait").fadeIn("slow", function () { $("#wait").fadeOut("slow"); }) }, 1000);
+            })
+            $.ajax({
+                cache: true,
+                type: "POST",
+                url: '/Account/CardUserInfo',
+                async: true,
+                success: function (data) {
+                    if (data) {
+                        if (data == "1") {
+                            location.href = "/Account/ActiveSuccess"
+                        } else {
+                            ShowFailTip(data);
+                            $(".reading_yd_bot").html(html);
+                        }
+                    }
+                },
+                error: function (request) {
+                    ShowFailTip("网络连接错误！");
+                    $(".reading_yd_bot").html(html);
+                }
+            });
+
+        });
+
+    });
+</script>
+<body>
+    <div class="big_backdrop">
+        <div class="white_background">
+            <div class="protocol_script ">
+                <div class="procedure_bz clearfix">
+                    <span>保险协议</span>
+                    <div class="step buju">
+                        <ul class="clearfix">
+                            <li>
+                                <dl>
+                                    <dt>第一步</dt>
+                                    <dd>验证卡号及密码</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>第二步</dt>
+                                    <dd>基本资料</dd>
+                                </dl>
+                            </li>
+                            <li class="active">
+                                <dl>
+                                    <dt>第三步</dt>
+                                    <dd>确认协议</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>第四步</dt>
+                                    <dd>成功激活</dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+
+                <div class="agreement_pt" id="agreement">
+                    @Html.Raw(@ViewBag.Agreement)
+                </div>
+                <div class="reading_yd">
+                    <input type="checkbox" id="Chk2" style="float: left" name="sex" />
+                    <span id="agreement_pr">@ViewBag.ActivatePrompt</span>
+                </div>
+                <div class="reading_yd_bot">
+                    <a href="javascript:;">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/images/shang_1_03.png" onclick="javascript:history.go(-1);" width="65" height="29" /></a>
+
+                    <a href="javascript:void(0);;" id="btn-next-2">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/images/jihuo_1_07.png" width="80" height="29" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

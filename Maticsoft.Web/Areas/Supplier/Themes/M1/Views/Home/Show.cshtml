@@ -1,0 +1,358 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+<style type="text/css">
+    .style1
+    {
+        width: 150px;
+        text-align: right;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        height: 25px;
+    }
+    .style2
+    {
+        height: 25px;
+    }
+</style>
+<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+@using (Html.BeginForm("Modify", "Home", FormMethod.Post))
+{
+    <div class="mar30">
+        <div class="contenttitle2">
+            <h3>
+                商家信息</h3>
+            <small class="desc">您可以查看商家详细信息 </small>
+        </div>
+        <div style="background-color: #ffffff; border: 1px solid #CCC;">
+            <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+                <tr>
+                    <td class="tdbg">
+                        <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    商家编号 ：
+                                </td>
+                                <td height="25">
+                                    @Model.SupplierId
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    商家名称 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Name
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    店铺名称 ：
+                                </td>
+                                <td height="25">
+                                    @Model.ShopName
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    商家介绍 ：
+                                </td>
+                                <td height="25">
+                                    @Html.Raw(Model.Introduction)
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    注册资本 ：
+                                </td>
+                                <td height="25">
+                                    <label style="width: 150px; font-size: 12px">@ViewBag.RegisteredCapital</label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    账户余额 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Balance
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    电话 ：
+                                </td>
+                                <td height="25">
+                                    @Model.TelPhone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    手机 ：
+                                </td>
+                                <td height="25">
+                                    @Model.CellPhone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    联系邮箱 ：
+                                </td>
+                                <td height="25">
+                                    @Model.ContactMail
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    省/市/县：
+                                </td>
+                                <td height="25">
+                                    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                                    <input type="hidden" id="123hfSelectedNode" value="@Model.RegionId"/>
+                                    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx"
+                                        isnull="true" type="text/javascript"></script>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    注册地 ：
+                                </td>
+                                <td height="25">
+                                    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                                    <input type="hidden" id="456hfSelectedNode" value="@Model.EstablishedCity"/>
+                                    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx"
+                                        isnull="true" type="text/javascript"></script>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    地址 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Address
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    备注 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Remark
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    联系人 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Contact
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    用户名 ：
+                                </td>
+                                <td height="25">
+                                    @Model.UserName
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="style1">
+                                    成立时间 ：
+                                </td>
+                                <td class="style2">
+                                    <label style="width: 150px; font-size: 12px">@ViewBag.EstablishedDate</label>
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    标志 ：
+                                </td>
+                                <td height="25">
+                                    <img id="imagelogourl" src="@Model.LOGO" style="width:500px;height:50px;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    传真 ：
+                                </td>
+                                <td height="25">
+                                    @Model.Fax
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    邮编 ：
+                                </td>
+                                <td height="25">
+                                    @Model.PostCode
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    主页 ：
+                                </td>
+                                <td height="25">
+                                    @Model.HomePage
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    法人 ：
+                                </td>
+                                <td height="25">
+                                    @Model.ArtiPerson
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    商家等级 ：
+                                </td>
+                                <td height="25">
+                                    @ViewBag.EnteRank
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    商家分类 ：
+                                </td>
+                                <td height="25">
+                                    @ViewBag.EnteClassName
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    公司性质：
+                                </td>
+                                <td height="25">
+                                    @ViewBag.CompanyType
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    营业执照 ：
+                                </td>
+                                <td height="25">
+                                    @Model.BusinessLicense
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    税务登记 ：
+                                </td>
+                                <td height="25">
+                                    @Model.TaxNumber
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    开户银行 ：
+                                </td>
+                                <td height="25">
+                                    @Model.AccountBank
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    账号信息 ：
+                                </td>
+                                <td height="25">
+                                    @Model.AccountInfo
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    客服电话 ：
+                                </td>
+                                <td height="25">
+                                    @Model.ServicePhone
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    QQ ：
+                                </td>
+                                <td height="25">
+                                    @Model.QQ
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    MSN ：
+                                </td>
+                                <td height="25">
+                                    @Model.MSN
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    状态 ：
+                                </td>
+                                <td height="25">
+                                    @ViewBag.Status
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    代理商ID ：
+                                </td>
+                                <td height="25">
+                                    @Model.AgentId
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    创建日期 ：
+                                </td>
+                                <td height="25">
+                                    @Model.CreatedDate
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    创建用户 ：
+                                </td>
+                                <td height="25">
+                                    @Model.CreatedUserId
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    更新日期 ：
+                                </td>
+                                <td height="25">
+                                    <label style="width: 150px; font-size: 12px">@ViewBag.UpdatedDate</label>
+                                </td>
+                            </tr>
+                            <tr style="display: none;">
+                                <td class="td_class">
+                                    更新用户 ：1
+                                </td>
+                                <td height="25">
+                                    @ViewBag.UpdatedUserId
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td height="25">
+                                    <div class="form stdform">
+                                        <input type="button" name="name" value="修改" id="update" style="margin-left: 200px " class="btn_style reset radius2" />
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        $("select").attr("disabled", "disabled");
+        $("#update").click(function () {
+            window.location.href = $Maticsoft.BasePath + 'Home/Modify';
+        });
+    });
+</script>

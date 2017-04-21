@@ -1,0 +1,232 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Model.Shop.Order
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Shop.Order.OrderReturnGoodsItem>
+@{
+    Maticsoft.BLL.Shop.Products.ProductInfo bllProductInfo = new Maticsoft.BLL.Shop.Products.ProductInfo();
+    Func<long, Maticsoft.Model.Shop.Products.ProductInfo> GetProductInfo = productId => {
+        return bllProductInfo.GetModel(productId);
+    };
+}
+<style>
+    body {
+        font-size:14px;
+    }
+    .returns_goods li {
+        border-top:none;
+    }
+    .returns_goods li div {
+        float:left;
+    }
+    .returns_a  span{
+        height:40px;
+        line-height:40px;
+        text-align:center;
+        float:left;
+        display:block;
+    }
+ .returns1 {
+        width:150px;
+        text-align:center;
+    }
+.returns2 {
+        width:230px;
+        text-align:center;
+    }
+.returns3{
+        width:100px;
+        text-align:center;
+    }
+.returns4 {
+        width:80px;
+        text-align:center;
+    }
+.returns5{
+        width:150px;
+        text-align:center;
+    }
+.user_dingdan tr td{
+        border-right:1px solid #eeeeee;
+    }
+.returns6{
+        text-align:center;
+    }
+.returns7{
+     text-align:center;
+    }
+</style>
+
+<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">退货中心</h3>
+        </div>
+    </div>
+    <div class="my_order_right" style="margin-top:10px;">
+        <div class="heading_right" style="display:none;"><span>退货单</span></div>
+        <div class="returns_goods">
+            <form id="PostForm" method="post">
+                <table width="100%" border="0" class="user_dingdan" cellspacing="0" cellpadding="0">
+                    <tr class="returns_a clearfix" style="border:1px solid #ccc;">
+                        <th class="returns1">退货单号</th>
+                        <th class="returns2">商品</th>
+                        <th class="returns3">规格</th>
+                        <th class="returns4">数量</th>
+                        <th class="returns4">金额</th>
+                        <th class="returns5">申请时间</th>
+                        <th class="returns6">状态</th>
+                        <th class="returns7">操作</th>
+                    </tr>
+                    @foreach (Maticsoft.Model.Shop.Order.OrderReturnGoodsItem item in Model)
+                    {
+
+                        string status = "等待审核";
+                        if (item.OrderReturnGood != null)
+                        {
+                            status = @Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetMainStatusStr(item.OrderReturnGood.ReturnGoodsType, item.OrderReturnGood.Status, item.OrderReturnGood.RefundStatus, item.OrderReturnGood.LogisticStatus);
+                        }
+                        <tr class="returns_b clearfix">
+                            <td height="40" class="returns1 "><em>@item.OrderReturnGood.ReturnOrderCode</em></td>
+                            @*<input type="hidden" id="@item.Id" />*@
+                            <td class="returns2 bor">
+                                <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"  class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                                    <img title="@item.ProductName" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(GetProductInfo.Invoke(item.ProductId ?? 0).ThumbnailUrl1, "T115X115_")" width="100" />
+                                </a>
+                            </td>
+                            <td class="returns3 bor">
+                                <p>@item.Attribute </p>
+                                <i>SKU号（@item.SKU）</i>
+                            </td>
+                            <td class="returns4 bor">
+                                <em>@item.Quantity.Value</em>
+                            </td>
+                            <td class="returns4 bor">
+                                <em>@Math.Round(item.Quantity.Value * item.AdjustedPrice.Value, 2)</em>
+                            </td>
+                            <td class="returns5 bor"><i>@item.CreateTime</i></td>
+
+                            <td class="returns6 bor"><i>@status</i></td>
+                            <td class="returns7 bor" style="border-right:none;">
+                                <a class="reimburse1" href="/UserCenter/ReturnDetail/@item.Id">详情</a>
+
+                                @if (item.OrderReturnGood.ReturnGoodsType == 1)
+                                {
+                                    if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.RefundStatus == 0 && item.OrderReturnGood.LogisticStatus.Value == 0)
+                                    { 
+                                    <div class="returns8"><a class="reimburse1" href="/UserCenter/ReturnShippingInfo/@item.Id">(退货)发货</a></div>
+                                    }
+                                    @*if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.RefundStatus == 0 && item.OrderReturnGood.LogisticStatus == 3)
+                                    {
+                                    <div class="returns8">
+                                        <input type="button" class="reimburse2" ItemId="@item.ReturnId"  value="收货" />
+                                    </div>
+                                    }*@
+                                }
+                                else if (item.OrderReturnGood.ReturnGoodsType == 2)
+                                {
+
+                                }
+                                else if (item.OrderReturnGood.ReturnGoodsType == 3)
+                                {
+                                    if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.LogisticStatus.Value == 0)
+                                    { 
+                                    <div class="returns8"><a class="reimburse1" href="/UserCenter/ReturnShippingInfo/@item.Id">(调货)发货</a></div>
+                                    }
+                                    if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.RefundStatus == 0 && item.OrderReturnGood.LogisticStatus == 3)
+                                    {
+                                    <div class="returns8">
+                                        <input class="reimburse2" ItemId="@item.ReturnId" type="button" value="收货" />
+                                    </div>
+                                    }
+                                }
+                                else if (item.OrderReturnGood.ReturnGoodsType == 4)
+                                {
+                                    if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.LogisticStatus.Value == 0)
+                                    { 
+                                    <div class="returns8"><a class="reimburse1" href="/UserCenter/ReturnShippingInfo/@item.Id">(维修)发货</a></div>
+                                    }
+                                    if (item.OrderReturnGood.Status == 1 && item.OrderReturnGood.RefundStatus == 0 && item.OrderReturnGood.LogisticStatus == 3)
+                                    {
+                                    <div class="returns8">
+                                        <input class="reimburse2" type="button" ItemId="@item.ReturnId" value="收货"/>
+                                    </div>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </form>
+        </div>
+
+        <center>
+        @Html.AjaxPager(Model, new PagerOptions
+               {
+                   PageIndexParameterName = "pageIndex",
+                   NumericPagerItemCount = 10,
+                   NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                   NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                   CssClass = "in_pages",
+                   SeparatorHtml = ""
+               }, new AjaxOptions { UpdateTargetId = "returns_goods" })
+        </center>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $(".reimburse2").die("click").live("click", function () {
+            var _self = $(this);
+            var orderId = _self.attr("ItemId");
+            var r = confirm("您确认要确认收货吗？");
+            if (r == true) {
+                $.ajax({
+                    url: $Maticsoft.BasePath + "UserCenter/SubReceipt",
+                    type: "POST",
+                    dataType: 'json',
+                    timeout: 10000,
+                    async: false,
+                    dataType: "text",
+                    timeout: 0,
+                    data: { OrderId: orderId },
+                    success: function (JsonData) {
+        
+                        var JsonDatas = eval("(" + JsonData + ")")
+                        alert("结果:" + JsonDatas.STATUS);
+                        switch (JsonDatas.STATUS) {
+                            case "SUCC":
+                                ShowSuccessTip("收货成功！");
+                                location.href = "/UserCenter/ReturnInfos";
+                                break;
+                            case "FAIL":
+                                ShowFailTip("提交失败！");
+                                break;
+                            default:
+                                ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                                break;
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                    }
+                });
+            }
+        });
+    });
+
+</script>
+
+<div style="color: #f00; text-align: left; margin-top:20px;">
+    <label>(1)退货需要把商品发回总部     发货->公司确定收货->退款->退款完成</label>
+</div>
+<div style="color: #f00; text-align: left">
+    <label>(2)调货物需要把商品发回总部   发货->公司确定收货->配货中->公司发货->客户确定收货->调货完成</label>
+</div>
+<div style="color: #f00; text-align: left">
+    <label>(3)维修需要把商品发回总部     发货->公司确定收货->维修中->公司发货->客户确定收货->维修完成</label>
+</div>
+<div style="color: #f00; text-align: left">
+    <label>(4)退款->等待退款->已退款</label>
+</div>

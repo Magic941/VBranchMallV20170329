@@ -1,0 +1,35 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.Model.Shop.Products.ProductInfo
+<script type="text/javascript" src="/Scripts/jquery/maticsoft.img.min.js"></script> 
+<script type="text/javascript">
+    $(function () {
+        var width = $(window).width();
+        $.scaleLoad('.detail', width, 0);
+    });
+</script>  
+<div class="top">
+    <a href="javascript:;" onclick="history.go(-1)"> <span>&lt;返回</span></a>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@if (Model != null)
+{
+    <div class="productshow_title">@Model.ProductName</div>
+
+<div class="sift-tab">
+  <ul class="tab-lst">
+    <li><a href="javascript:void(0)" value="wareInfo" class="on">商品介绍</a></li>
+@*    <li><a href="javascript:void(0)" value="wareStandard"><span class="bar"></span>规格参数</a></li>
+    <li><a href="javascript:void(0)" value="warePack"><span class="bar"></span>包装清单</a></li>
+    <li><a href="javascript:void(0)" value="wareService"><span class="bar"></span>售后服务</a></li>*@
+  </ul>
+</div>
+
+<div class="detail">
+  @Html.Raw(Model.Description) 
+</div>
+
+}
+

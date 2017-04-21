@@ -1,0 +1,54 @@
+/*######################### 以下部分是网站的整体构架部分 #######################################*/
+
+body,div,ul,li {
+	margin: 0px;
+	padding: 0px;
+}
+
+li {list-style-type: none;}
+
+a {text-decoration: none; color: #000000;font-family:"Microsoft Yahei";}
+
+.clear {width: 0px; height: 0px; overflow: hidden; clear: both;}
+
+form {margin: 0px;}
+
+
+body {
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	font-size: 12px; 
+	font-family:"微软雅黑";/*这个样式是异常重要的，她使火狐系列的空格宽度和字体保持与IE同步*/
+}
+
+
+#headbg1 {
+	width: 1004px;
+	height: 65px;
+	float:left;
+}
+
+
+#box{
+	width: 1004px;
+	height:auto;
+	overflow: hidden;
+	float:left;
+	
+}
+
+#zhong{
+	width: 1004px;
+	float:left;
+	overflow: hidden;
+	 margin-top:12px;
+}
+
+
+
+
+
+
+
+

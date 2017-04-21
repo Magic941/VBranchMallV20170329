@@ -1,0 +1,38 @@
+﻿      @model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+            @{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "0-0";
+
+            }
+<script type="text/javascript">
+    $(function () {
+        var currentcid = '@cid';
+        $(".catelist").each(function() {
+            var cateId = $(this).attr("cateId");
+            if (cateId == currentcid) {
+                $(this).addClass("cur");
+            }
+        });
+    })
+</script>
+      @if (Model != null && Model.Count > 0)
+      {
+          <div class="hd">
+                <h2>
+                    <a href="/search/@ViewBag.Cid/@brandid/@mod/@price/@keyword">@ViewBag.CateName</a></h2>
+            </div>
+            <div class="bd">
+                <ul class="submenu">
+                    @foreach (var item in Model)
+                    {
+                         <li><a title="@item.Name" class="catelist"  cateId="@item.CategoryId" href="/search/@item.CategoryId/@brandid/@mod/@price/@keyword"><span>
+                                                                                                          @item.Name</span></a> </li>
+                    }
+                </ul>
+            </div>
+      }
+       
+

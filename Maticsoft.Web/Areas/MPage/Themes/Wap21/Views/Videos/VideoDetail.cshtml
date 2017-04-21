@@ -1,0 +1,42 @@
+﻿@model Maticsoft.Model.CMS.Video
+
+<header class="header view">
+<span class="nowposition">
+<a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');" class="ui-link">首页</a>
+<a href="javascript:;" onclick="pageloadByPage('Videos','videosList_page1','视频','VideosList', 'VideosList','-1','1')" class="ui-link">视频</a>
+</span>
+</header>
+<div class="content content_view">
+    @if (Model != null)
+    {
+    <h2 class="view_title">@Model.Title</h2>
+    <div class="view_infos"> * 发布作者 : @Model.CreatedUserName *  发布时间 : @Model.CreatedDate.ToString("yyyy-MM-dd") </div>
+        <video width="90%" controls="controls" class="view_img">
+        <source src="@Model.VideoUrl" type="video/mp4"> 
+    </video>
+            <!--<source src="@Model.VideoUrl" type="video/mp4"> -->
+        <input type="hidden" value="@(Model.VideoUrl)" class="hidsoucrce" />
+        <div class="articleComment" id="videos1commlist">
+            <div class="commentTitle"> 相关评论 <small class="count">(@Model.TotalComment)</small>
+                <small class="showAll">
+                    <a onclick="pageloadComment('Comment','commenttype2_@(Model.VideoID)','@Model.Title','Index', 'Index','@Model.VideoID','2','6')"> 查看全部 </a>
+                </small>
+            </div>
+            <dl class="commentInfo">
+            </dl>
+            <a onclick="pageloadComment('Comment','commenttype2_@(Model.VideoID)','@Model.Title','Index', 'Index','@Model.VideoID','2','6')" class="publishComment button"> 发表评论 </a>
+        </div>     
+        <script type="text/javascript">
+            getyoukump4url($('.hidsoucrce').last().val(), $('source').last());
+        </script>
+    }
+</div>
+<div class="pagePrevNext controlgroup" style="display:none;">
+<span>
+<a   class="ui-link"> </a>
+</span>
+<span>
+<a   class="ui-link"> </a>
+</span>
+</div>
+ 

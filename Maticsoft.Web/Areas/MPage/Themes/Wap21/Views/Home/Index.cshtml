@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "/Areas/MPage/Themes/Wap21/Views/Shared/_SiteLayout.cshtml";
+}
+<div id="jQUi">
+    <div id="content" class="ui-mobile-viewport ui-overlay-c">
+        <div class="ui-loader ui-corner-all ui-body-a ui-loader-default">
+            <span class="ui-icon ui-icon-loading"></span>
+            <h1>loading</h1>
+        </div>
+        <!--内容-->
+
+    </div>
+    <!--页面底部导航-->
+    @Html.Action("FooterNav", "Partial", new { area = "MPage", ViewName = "_FooterNav" })
+    @Html.Action("NavBar", "Partial", new { viewName = "_NavBar" })
+    <!--页面底部导航-->
+</div>

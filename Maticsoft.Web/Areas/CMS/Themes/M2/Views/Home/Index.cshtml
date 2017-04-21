@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@section head{
+
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+}
+
+ <!--滚动-->
+ @Html.Action("HomePartial", "Article", new { classid = 60,viewName="_HomeHeaderHot",top=4 })         
+ <!--健康知识-->
+ @Html.Action("HomePartial", "Article", new { classid = 42,viewName="_HomeJKZhiShi",top=4})
+<!-- 保险资讯 -->
+ @Html.Action("HomePartial", "Article", new { classid = 44,viewName="_HomeBaoxianzixun",top=4 })
+
+<!--新闻资讯-->
+ @Html.Action("HomePartial", "Article", new { classid = 43,viewName="_HomeJKNews",top=4 })     
+       
+<!--合作伙伴-->
+<div class="hezuo">
+	<!--<div class="w1200 c m huoban">
+    	<p>Cooperative partner</p>
+        <h3>合作伙伴</h3>
+    </div>-->
+</div>
+<div class="w1200 c m hezuo_list">
+	<ul>
+    	<li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he1.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he2.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he3.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he4.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he5.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he6.jpg" /></a></li>
+        <li class="mr16"><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he7.jpg" /></a></li>
+        <li><a href="#"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/he8.jpg" /></a></li>
+    </ul>
+</div>
+
+
+
+

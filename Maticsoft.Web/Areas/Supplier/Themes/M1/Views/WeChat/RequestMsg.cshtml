@@ -1,0 +1,121 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@* @model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.WeChat.Model.Core.User> *@
+@model Maticsoft.WeChat.Model.Core.RequestMsg
+<script src="/Scripts/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<link href="/Scripts/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<link href="/Admin/js/select2-2.1/select2.css" rel="stylesheet" type="text/css" />
+<script src="/Admin/js/select2-2.1/select2.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $("#LoadRequestMsgList").load("@(ViewBag.BasePath)WeChat/LoadMsgContent", { viewName: "_MsgList" });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".iframe").colorbox({ iframe: true, width: "600", height: "290", overlayClose: false });
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $("#txtFrom").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("#txtTo").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("#txtTo").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("#txtFrom").datepicker("option", "maxDate", selectedDate);
+                $("#txtTo").val($(this).val());
+            }
+        });
+
+
+    });
+</script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            微信用户消息管理
+        </h3>
+        <small class="desc">微信用户消息管理 </small>
+    </div>
+    @Html.Action("GetAllGroup", "WeChat")
+    <div class="newslistabout">
+        <div class="field shuru shuru1">
+            <img src="/Areas/Supplier/Themes/M1/Content/images/icon-1.gif" width="19" height="19" />
+            关注时间：
+            <input type="text" name="txtFrom" id="txtFrom" style="width: 90px" />
+            --
+            <input type="text" name="txtTo" id="txtTo" style="width: 90px" />
+            关键字：
+            <input type="text" name="txtKeyWord" id="txtKeyWord" class="admininput_1" />
+            <input type="checkbox" name="chkShowEvent" id="chkShowEvent" />显示事件消息
+            <input type="button" name="btnSearch" id="btnSearch" value="搜索" class="adminsubmit_short" />
+        </div>
+    </div>
+    <br />
+    <div class="newslist">
+        <div class="newsicon">
+        </div>
+        <div id="LoadRequestMsgList">
+        </div>
+    </div>
+    <div class="form stdform">
+        <input type="button" name="btnDelete" id="btnDelete" value="批量删除" class="reset radius2" />
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#btnSearch').click(function () {
+                var txtFrom = $("#txtFrom").val();
+                var txtTo = $("#txtTo").val();
+                var txtKeyWord = $("#txtKeyWord").val();
+                var chkShowEvent = "";
+                if ($("#chkShowEvent").attr("checked") == "checked") {
+                    chkShowEvent = "true";
+                } else {
+                    chkShowEvent = "false";
+                }
+                $("#LoadRequestMsgList").load("@(ViewBag.BasePath)WeChat/LoadMsgContent", { txtFrom: txtFrom, txtTo: txtTo, isEvent: chkShowEvent, txtKeyWord: txtKeyWord });
+
+            });
+
+
+            $("#btnSend").click(function () {
+                if ($("#msgs").val().trim().length < 1) {
+                    ShowFailTip("请输入消息内容！");
+                    return false;
+                }
+                var groupid = $("#ddlGroup").val();
+                var msg = $("#msgs").val();
+                $.post($Maticsoft.BasePath + "WeChat/SendGroupMsg", { group: groupid, msgs: msg }, function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("发送成功！");
+                    }
+                    if (data == "error") {
+                        ShowFailTip("获取微信授权失败！请检查您的微信API设置和对应的权限！");
+                    } if (data == "noperson") {
+                        ShowFailTip("该分组下无用户！");
+                    }
+                    else {
+                        ShowFailTip("发送失败！");
+                    }
+                });
+            });
+        });
+    </script>
+</div>

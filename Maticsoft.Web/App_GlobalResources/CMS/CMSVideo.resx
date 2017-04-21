@@ -1,0 +1,468 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AlbumAndCategory" xml:space="preserve">
+    <value>专辑与分类</value>
+  </data>
+  <data name="All" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="hfUploadFails" xml:space="preserve">
+    <value>上传失败！</value>
+  </data>
+  <data name="hfUploadSuccess" xml:space="preserve">
+    <value>上传成功！</value>
+  </data>
+  <data name="ID" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="IsRecommend" xml:space="preserve">
+    <value>是否推荐</value>
+  </data>
+  <data name="LocalVideo" xml:space="preserve">
+    <value>本地视频</value>
+  </data>
+  <data name="ltlAlbum" xml:space="preserve">
+    <value>专辑</value>
+  </data>
+  <data name="ltlAttachment" xml:space="preserve">
+    <value>附件</value>
+  </data>
+  <data name="ltlCancelUpload" xml:space="preserve">
+    <value>取消上传</value>
+  </data>
+  <data name="ltlCategory" xml:space="preserve">
+    <value>分类</value>
+  </data>
+  <data name="ltlCreatedDate" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="ltlCreatedUser" xml:space="preserve">
+    <value>创建者</value>
+  </data>
+  <data name="ltlDomain" xml:space="preserve">
+    <value>域名</value>
+  </data>
+  <data name="ltlDownload" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="ltlDuration" xml:space="preserve">
+    <value>时长</value>
+  </data>
+  <data name="ltlFormat" xml:space="preserve">
+    <value>格式</value>
+  </data>
+  <data name="ltlGrade" xml:space="preserve">
+    <value>评分</value>
+  </data>
+  <data name="ltlHours" xml:space="preserve">
+    <value>时</value>
+  </data>
+  <data name="ltlImageUrl" xml:space="preserve">
+    <value>截图</value>
+  </data>
+  <data name="ltlLastUpdateDate" xml:space="preserve">
+    <value>最后编辑时间</value>
+  </data>
+  <data name="ltlLastUpdateUser" xml:space="preserve">
+    <value>最后编辑者</value>
+  </data>
+  <data name="ltlMinutes" xml:space="preserve">
+    <value>分</value>
+  </data>
+  <data name="ltlNormalImageUrl" xml:space="preserve">
+    <value>备选缩略图</value>
+  </data>
+  <data name="ltlPrivacy" xml:space="preserve">
+    <value>隐私</value>
+  </data>
+  <data name="ltlPvCount" xml:space="preserve">
+    <value>浏览量</value>
+  </data>
+  <data name="ltlReference" xml:space="preserve">
+    <value>分享数</value>
+  </data>
+  <data name="ltlRemark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="ltlSeconds" xml:space="preserve">
+    <value>秒</value>
+  </data>
+  <data name="ltlSequence" xml:space="preserve">
+    <value>顺序</value>
+  </data>
+  <data name="ltlSite" xml:space="preserve">
+    <value>网址</value>
+  </data>
+  <data name="ltlSiteTip" xml:space="preserve">
+    <value>粘贴视频播放页地址(支持优酷、酷六)</value>
+  </data>
+  <data name="ltlTags" xml:space="preserve">
+    <value>标签</value>
+  </data>
+  <data name="ltlTagsTip" xml:space="preserve">
+    <value>*多个标签之间用逗号','分隔。</value>
+  </data>
+  <data name="ltlThumbImageUrl" xml:space="preserve">
+    <value>缩略图</value>
+  </data>
+  <data name="ltlTitle" xml:space="preserve">
+    <value>标题</value>
+  </data>
+  <data name="ltlTotalComment" xml:space="preserve">
+    <value>评论数</value>
+  </data>
+  <data name="ltlTotalFav" xml:space="preserve">
+    <value>收藏数</value>
+  </data>
+  <data name="ltlTotalUp" xml:space="preserve">
+    <value>顶数</value>
+  </data>
+  <data name="ltlType" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="ltlUpload" xml:space="preserve">
+    <value>上传</value>
+  </data>
+  <data name="ltlUploadVideo" xml:space="preserve">
+    <value>上传视频</value>
+  </data>
+  <data name="NotYetReleased" xml:space="preserve">
+    <value>已审核未发布</value>
+  </data>
+  <data name="OnlineVideo" xml:space="preserve">
+    <value>网络视频</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>对所有人公开</value>
+  </data>
+  <data name="Operation" xml:space="preserve">
+    <value>操作</value>
+  </data>
+  <data name="PendingReview" xml:space="preserve">
+    <value>待审核</value>
+  </data>
+  <data name="Private" xml:space="preserve">
+    <value>仅自己可见</value>
+  </data>
+  <data name="ptVideoAdd" xml:space="preserve">
+    <value>新增视频信息</value>
+  </data>
+  <data name="ptVideoAddTip" xml:space="preserve">
+    <value>您可以新增信息</value>
+  </data>
+  <data name="ptVideoList" xml:space="preserve">
+    <value>视频信息管理</value>
+  </data>
+  <data name="ptVideoListTip" xml:space="preserve">
+    <value>您可以新增、删除、编辑、查看视频信息</value>
+  </data>
+  <data name="ptVideoModify" xml:space="preserve">
+    <value>编辑视频信息</value>
+  </data>
+  <data name="ptVideoModifyTip" xml:space="preserve">
+    <value>您可以编辑信息</value>
+  </data>
+  <data name="ptVideoShow" xml:space="preserve">
+    <value>查看视频信息</value>
+  </data>
+  <data name="ptVideoShowTip" xml:space="preserve">
+    <value>您可以查看信息</value>
+  </data>
+  <data name="Publish" xml:space="preserve">
+    <value>已发布</value>
+  </data>
+  <data name="Recommend" xml:space="preserve">
+    <value>推荐</value>
+  </data>
+  <data name="Screen" xml:space="preserve">
+    <value>被屏蔽</value>
+  </data>
+  <data name="SemiOpen" xml:space="preserve">
+    <value>仅好友观看</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="StatisticalInfo" xml:space="preserve">
+    <value>统计信息</value>
+  </data>
+  <data name="TranscodingFail" xml:space="preserve">
+    <value>转码失败</value>
+  </data>
+  <data name="TurnCode" xml:space="preserve">
+    <value>转码中</value>
+  </data>
+  <data name="Video" xml:space="preserve">
+    <value>视频</value>
+  </data>
+  <data name="IDS_Message_AlbumName_Description" xml:space="preserve">
+    <value>名称不能为空,长度限制在100个字符以内！</value>
+  </data>
+  <data name="IDS_Message_Title_Description" xml:space="preserve">
+    <value>标题不能为空,长度限制在200个字符以内！</value>
+  </data>
+  <data name="IDS_Message_VideoClassName_Description" xml:space="preserve">
+    <value>名称不能为空,长度限制在100个字符以内！</value>
+  </data>
+  <data name="Album" xml:space="preserve">
+    <value>专辑</value>
+  </data>
+  <data name="CategoryName" xml:space="preserve">
+    <value>分类名称</value>
+  </data>
+  <data name="CollapseAll" xml:space="preserve">
+    <value>全部收缩</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>全部展开</value>
+  </data>
+  <data name="ltlCoverVideo" xml:space="preserve">
+    <value>封面</value>
+  </data>
+  <data name="ltlDepth" xml:space="preserve">
+    <value>层级</value>
+  </data>
+  <data name="ltlPath" xml:space="preserve">
+    <value>路径</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="Normal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="NotAudit" xml:space="preserve">
+    <value>未审核</value>
+  </data>
+  <data name="ParentClass" xml:space="preserve">
+    <value>父类</value>
+  </data>
+  <data name="ptVideoAlbumAdd" xml:space="preserve">
+    <value>新增视频专辑</value>
+  </data>
+  <data name="ptVideoAlbumAddTip" xml:space="preserve">
+    <value>您可以新增专辑信息</value>
+  </data>
+  <data name="ptVideoAlbumList" xml:space="preserve">
+    <value>视频专辑管理</value>
+  </data>
+  <data name="ptVideoAlbumListTip" xml:space="preserve">
+    <value>您可以新增、删除、编辑、查看视频专辑</value>
+  </data>
+  <data name="ptVideoAlbumModify" xml:space="preserve">
+    <value>编辑视频专辑</value>
+  </data>
+  <data name="ptVideoAlbumModifyTip" xml:space="preserve">
+    <value>您可以编辑专辑信息</value>
+  </data>
+  <data name="ptVideoAlbumShow" xml:space="preserve">
+    <value>视频专辑信息</value>
+  </data>
+  <data name="ptVideoAlbumShowTip" xml:space="preserve">
+    <value>您可以查看专辑信息</value>
+  </data>
+  <data name="ptVideoClassAdd" xml:space="preserve">
+    <value>新增视频分类</value>
+  </data>
+  <data name="ptVideoClassAddTip" xml:space="preserve">
+    <value>您可以新增、删除、编辑、查看视频分类</value>
+  </data>
+  <data name="ptVideoClassList" xml:space="preserve">
+    <value>视频分类管理</value>
+  </data>
+  <data name="ptVideoClassListTip" xml:space="preserve">
+    <value>您可以新增、删除、编辑、查看视频分类</value>
+  </data>
+  <data name="ptVideoClassModify" xml:space="preserve">
+    <value>编辑视频分类</value>
+  </data>
+  <data name="ptVideoClassModifyTip" xml:space="preserve">
+    <value>您可以编辑分类信息</value>
+  </data>
+  <data name="ptVideoClassShow" xml:space="preserve">
+    <value>查看视频分类</value>
+  </data>
+  <data name="ptVideoClassShowTip" xml:space="preserve">
+    <value>您可以查看分类信息</value>
+  </data>
+  <data name="ptVideoQuickPreview" xml:space="preserve">
+    <value>视频快速预览</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>排序</value>
+  </data>
+  <data name="NoCategory" xml:space="preserve">
+    <value>暂无分类</value>
+  </data>
+  <data name="LineVideoPreview" xml:space="preserve">
+    <value>网络视频预览</value>
+  </data>
+  <data name="LocalVideoPreview" xml:space="preserve">
+    <value>本地视频预览</value>
+  </data>
+  <data name="OriginalVideo" xml:space="preserve">
+    <value>查看原视频</value>
+  </data>
+  <data name="PackUp" xml:space="preserve">
+    <value>收起</value>
+  </data>
+  <data name="ErrorClassNameNull" xml:space="preserve">
+    <value>分类名称不能为空！</value>
+  </data>
+  <data name="ErrorNoVideo" xml:space="preserve">
+    <value>未上传视频！</value>
+  </data>
+  <data name="ErrorOrderFormat" xml:space="preserve">
+    <value>顺序格式错误！</value>
+  </data>
+  <data name="ErrorPrivacyFormed" xml:space="preserve">
+    <value>隐私格式错误！</value>
+  </data>
+  <data name="ErrorStartFormat" xml:space="preserve">
+    <value>状态格式错误！</value>
+  </data>
+  <data name="ErrorTitleNull" xml:space="preserve">
+    <value>标题不能为空！</value>
+  </data>
+  <data name="ErrorVideoNameNull" xml:space="preserve">
+    <value>名称不能为空！</value>
+  </data>
+  <data name="ErrorVideoTitleNull" xml:space="preserve">
+    <value>视频标题不能为空！</value>
+  </data>
+  <data name="ErrorVideoType" xml:space="preserve">
+    <value>视频类型格式错误！</value>
+  </data>
+  <data name="TooltipFillWebsite" xml:space="preserve">
+    <value>请先填写网址！</value>
+  </data>
+  <data name="TooltipSwitchType" xml:space="preserve">
+    <value>请先选择类型！</value>
+  </data>
+  <data name="TooltipSwitchVideo" xml:space="preserve">
+    <value>请先上传视频！</value>
+  </data>
+  <data name="TooltipVideoUrl" xml:space="preserve">
+    <value>您输入的视频播放页地址有误！</value>
+  </data>
+</root>

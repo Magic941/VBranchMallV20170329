@@ -1,0 +1,26 @@
+﻿ @model List<Maticsoft.Model.SNS.AlbumType>
+  <div>
+ <div id="CreateAlbums">
+        <div class="cre_a">
+            <div class="cre_a_1">
+                <p class="cre_a_1a" style="height: 20px">
+                    标题：</p>
+                <p class="cre_a_2a" style="height: 20px">
+                    <input name="AlbumName" style="height: 20px; line-height: 20px; font-size: 12px"
+                        onfocus="this.value=''" onblur="if(this.value==''){this.value='20个字以内'}" type="text"
+                        value="20个字以内" /></p>
+            </div>
+            <div class="cre_a_2">
+                <div class="cre_a_1a">
+                    分类：</div>
+                <div class="cre_a_2b" id="AlumbsType" style="width: 300px">
+                    @foreach (var item in Model)
+                    { 
+                        <p>
+                            <input name='albumtype' type='radio' value="@item.ID"/>@item.TypeName</p>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

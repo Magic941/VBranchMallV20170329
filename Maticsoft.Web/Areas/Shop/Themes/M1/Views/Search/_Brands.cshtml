@@ -1,0 +1,39 @@
+﻿@model List<Maticsoft.Model.Shop.Products.BrandInfo>
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "0-0";
+}
+<script type="text/javascript">
+    $(function () {
+        $(".brandlist").each(function () {
+            var value = $(this).attr("brandId");
+            if (value == @brandid) {
+                $(this).css("background-color", "#ccc");
+            }
+        });
+    })
+</script>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="prop-item branditem pr10" name="__PPSX0011">
+        <dl class="cf">
+            <dt title="品牌">品牌： </dt>
+            <dd class="cf">
+                <a canajax="1" anchor="Filter" href="/search/@cid/0/@mod/@price/@keyword" title="全部" class="allbtn ">
+                    全部</a>
+                <ul class="cf brandBox">
+                    @foreach (var item in Model)
+                    {
+                        <li style="">
+                                <a canajax="1"  title="@item.BrandName" anchor="Filter" href="/search/@cid/@item.BrandId/@mod/@price/@keyword">
+                                        <img alt="@item.BrandName" src="@item.Logo" width="113" height="48" /></a>
+                        </li>
+                    }
+                </ul>
+            </dd>
+        </dl>
+    </div>
+}

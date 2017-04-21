@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Maticsoft.ShoppingCart.Core.CookieProvider&lt;TCartInfo, TCartItemInfo&gt;" BaseTypeListCollapsed="true">
+    <Position X="0.75" Y="5.25" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="Maticsoft.ShoppingCart.Core.CookieProvider&lt;TCartInfo, TCartItemInfo&gt;.MethodProcessCartItemCookie" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Core\CookieProvider.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAQCAAAAIAAACAIAAAAAMAAAgAAAABAEAAAIgAhACAA=</HashCode>
+      <FileName>Core\CookieProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Maticsoft.ShoppingCart.Core.DatabaseProvider" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAAAAAMAAAgAAAAAAEAAAAAAAACAA=</HashCode>
+      <FileName>Core\DatabaseProvider.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Interface Name="Maticsoft.ShoppingCart.Core.IDataProvider">
+    <Position X="1" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIAAAAAEAAAAAAAAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Core\IDataProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="Maticsoft.ShoppingCart.Core.ICartProvider">
+    <Position X="1.25" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAMAAAgAAAAAAEAAAAAAAACAA=</HashCode>
+      <FileName>Core\ICartProvider.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Maticsoft.ShoppingCart.Model.CartItemType">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Model\CartItemType.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

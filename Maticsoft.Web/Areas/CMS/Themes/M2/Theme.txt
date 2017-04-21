@@ -1,0 +1,4 @@
+﻿Name: M1
+Author: Maticsoft
+Language:Chinese
+Description: 动软框架社区门户模板

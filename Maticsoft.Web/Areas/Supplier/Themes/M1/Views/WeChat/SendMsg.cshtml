@@ -1,0 +1,89 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model List<Maticsoft.WeChat.Model.Core.User>
+<div class="newslistabout">
+    <div class="newslist_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitle">
+                    <span>微信用户绑定管理</span>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitlebody">
+                    <span>您可以进行绑定网站用户操作</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td class="td_class">
+                用户：
+            </td>
+            <td height="25">
+                <select id="selectUser">
+                    @if (null != Model&&Model.Count>0)
+                    {
+                        foreach (var item in Model)
+                        {
+                            <option value="@item.UserName"></option>
+                        }
+
+                    }
+                    else
+                    {
+                       <option value="0" selected="selected" >暂时无可发消息的用户</option>
+                    }
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_class">
+                内容 ：
+            </td>
+            <td height="25">
+                <textarea id="msg" style="width: 440px;" rows="5"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td class="td_class">
+            </td>
+            <td >
+                <input type="button" id="btnSend" style="height: 33px;width: 68px;" value="发送"/>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#selectUser").val("@ViewBag.currentUser");
+        $("#btnSend").click(function () {
+            if ($("#selectUser").val() == "0") {
+                ShowFailTip("没有可以发送的用户！");
+            } else {
+                var msg = $("#msg").val();
+                if (msg.length < 1) {
+                    ShowFailTip("请输入消息内容后重试！");
+                }
+                var username = $("#selectUser").val();
+                $.post($Maticsoft.BasePath + "WeChat/MsgSubmit", { username: username, msg: msg }, function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("发送成功！");
+                    }
+                    if (data == "error") {
+                        ShowFailTip("获取微信授权失败！请检查您的微信API设置和对应的权限");
+                    }
+                    else {
+                        ShowFailTip("发送失败，请稍后重试！");
+                    }
+                    setTimeout(function () {
+                        window.parent.location.reload();
+                    }, 2000);
+                });
+            }
+        });
+    });
+</script>

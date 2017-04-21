@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "我的业绩";
+}
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/myperformance.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="outstanding" id="outstanding">
+    @Html.Action("MyPerformance", "UserCenter", "MShop")
+</div>

@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-我的专属二维码";
+}
+<script src="/Scripts/jquery-1.10.2.js.js"></script>
+<script src="/Scripts/jquery.qrcode.js"></script>
+<script src="/Scripts/base64.js"></script>
+<script src="/Scripts/canvas2image.js"></script>
+
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div id="container" style="margin:30px auto; text-align:center;">
+    <img id="tImg" src="/QRCode.aspx?Url=@ViewBag.MyQRCode"  style="width:250px; height:250px; text-align:center;"/>
+</div>

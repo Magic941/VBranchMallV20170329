@@ -1,0 +1,63 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_CMSLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Common;
+@model PagedList<Maticsoft.Model.CMS.Content>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#maticsoftFooter").show();
+    });
+</script>
+<div class="main">
+    <!--MainMenu BEGIN-->
+    @Html.Action("MainMenu", "Partial")
+    <!--MainMenu End-->
+    <div class="main_container">
+        <div class="container_sidebar" id="Article">
+            <!--ArticleList-->
+            @{Html.RenderPartial("~/Areas/CMS/Themes/M1/Views/Partial/UCjQueryArticleList.cshtml", Model); }
+            <!--ArticleList-->
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="container_rightside">
+            <!--无觅热门文章插件 -->
+            <div class="articles">
+                <h3>
+                    热门文章</h3>
+                <div style="margin-left: 5px; margin-right: 8px; margin-top: 10px;">
+                    <!-- UY BEGIN -->
+                    <iframe width="100%" height="305" frameborder="0" scrolling="no" src="http://app.wumii.com/ext/widget/hot?prefix=http%3A%2F%2Fwww.dukeji.com&num=9&t=1">
+                    </iframe>
+                    <!-- UY END -->
+                </div>
+            </div>
+            <!--无觅热门文章插件end -->
+            <!--Hot Articles BEGIN-->
+            @Html.Action("HotArticles", "Partial")
+            <!--Hot Articles End-->
+            <!--AD BEGIN-->
+            <div class="ad">
+                @Html.Action("AD", "Partial", new { AdvPositionId = 9 })
+            </div>
+            <!--AD End-->
+            @Html.Action("Comments", "Partial", new { Top = 5 })
+            <!--AD BEGIN-->
+            <div class="ad">
+                @Html.Action("AD", "Partial", new { AdvPositionId = 10 })
+            </div>
+            <!--AD End-->
+            <!--FriendLink BEGIN-->
+            @Html.Action("FriendLink", "Partial")
+            <!--FriendLink End-->
+            <div class="ad">
+                @Html.Action("ADDefindCode", "Partial", new { AdvPositionId = 16 })
+            </div>
+        </div>
+        <div style="clear: both">
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+</div>

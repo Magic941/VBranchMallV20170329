@@ -1,0 +1,28 @@
+﻿@model List<Maticsoft.ViewModel.Shop.ProductComment>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        <li class="comment-item">
+            @if (item.ProductInfo != null)
+            {
+                   <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductInfo.ProductId"
+               title="@item.ProductInfo.ProductName" target="_blank">
+                <img class="comment-pic" width="50" height="65" alt="@item.ProductInfo.ProductName" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ProductInfo.ThumbnailUrl1, "T50X65_")"></a>
+            }
+         
+            @if (item.Comment != null)
+            {
+                <div class="comment-info">
+                    <p class="cf">
+                        <a href="@(ViewBag.BasePath)User/Posts/@item.Comment.UserId"
+                           target="_blank" class="fl">@item.Comment.UserName</a></p>
+                    <p class="comment-txt">
+                        <a href="http://product.maticsoft.com/p-F125242.htm#rel=syrmpl01" title="@item.Comment.ReviewText"
+                           target="_blank">@Maticsoft.Common.StringPlus.SubString(item.Comment.ReviewText, 25, "...")</a></p>
+                </div>
+            }
+            
+        </li>
+    }
+}

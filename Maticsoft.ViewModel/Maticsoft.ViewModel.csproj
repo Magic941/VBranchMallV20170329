@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2882C80A-B5DD-49D4-983E-E728E09CB26D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.ViewModel</RootNamespace>
+    <AssemblyName>Maticsoft.ViewModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Accounts">
+      <HintPath>..\Lib\Maticsoft.Accounts.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.Common">
+      <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.ShoppingCart">
+      <HintPath>..\Lib\Maticsoft.ShoppingCart.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.WeChat">
+      <HintPath>..\Lib\Maticsoft.WeChat.dll</HintPath>
+    </Reference>
+    <Reference Include="MvcPager">
+      <HintPath>..\Lib\MvcPager.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MVC3DLL\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CMS\AccountModels.cs" />
+    <Compile Include="CMS\Photo.cs" />
+    <Compile Include="Member\AccountModel.cs" />
+    <Compile Include="Member\PointsRuleExt.cs" />
+    <Compile Include="Order\OrderInfoExPage.cs" />
+    <Compile Include="Order\SupplierFreight.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop\AccountModels.cs" />
+    <Compile Include="Shop\CardModel.cs" />
+    <Compile Include="Shop\ExpressModel.cs" />
+    <Compile Include="Shop\FavoProdModel.cs" />
+    <Compile Include="Shop\OrderDetailModel.cs" />
+    <Compile Include="Shop\PayAndShip.cs" />
+    <Compile Include="Shop\ProdCompareModel.cs" />
+    <Compile Include="Shop\ProductAccessorie.cs" />
+    <Compile Include="Shop\ProductComment.cs" />
+    <Compile Include="Shop\ProductListModel.cs" />
+    <Compile Include="Shop\ProductModel.cs" />
+    <Compile Include="Shop\SaleRecord.cs" />
+    <Compile Include="Shop\ProductSKUModel.cs" />
+    <Compile Include="Shop\ShippingAddressModel.cs" />
+    <Compile Include="Shop\ShoppingCartModel.cs" />
+    <Compile Include="SNS\AccountModels.cs" />
+    <Compile Include="SNS\Album.cs" />
+    <Compile Include="SNS\Category.cs" />
+    <Compile Include="SNS\Favourite.cs" />
+    <Compile Include="SNS\GroupSearch.cs" />
+    <Compile Include="SNS\Photo.cs" />
+    <Compile Include="SNS\Posts.cs" />
+    <Compile Include="SNS\PostsPage.cs" />
+    <Compile Include="SNS\Group.cs" />
+    <Compile Include="SNS\Products.cs" />
+    <Compile Include="SNS\ProfileLeft.cs" />
+    <Compile Include="SNS\Star.cs" />
+    <Compile Include="SNS\StarRanks.cs" />
+    <Compile Include="SNS\TargetDetail.cs" />
+    <Compile Include="SNS\TopicReply.cs" />
+    <Compile Include="Supplier\CommandAction.cs" />
+    <Compile Include="Supplier\ProductsStationMode.cs" />
+    <Compile Include="Supplier\RuleKeyValue.cs" />
+    <Compile Include="Supplier\SupplierComm.cs" />
+    <Compile Include="Supplier\WeChatCusMsg.cs" />
+    <Compile Include="Supplier\WeChatMenu.cs" />
+    <Compile Include="Supplier\WeChatUser.cs" />
+    <Compile Include="UserCenter\UserBind.cs" />
+    <Compile Include="ViewModelBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maticsoft.Model\Maticsoft.Model.csproj">
+      <Project>{0988c03e-f019-40c3-b24e-476a6da1bc60}</Project>
+      <Name>Maticsoft.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maticsoft.Payment\Maticsoft.Payment.csproj">
+      <Project>{f441a3ed-f88e-4862-8648-d8a4c37e13c8}</Project>
+      <Name>Maticsoft.Payment</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

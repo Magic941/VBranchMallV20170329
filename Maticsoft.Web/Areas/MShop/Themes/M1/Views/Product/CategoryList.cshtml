@@ -1,0 +1,389 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "商品分类";
+    ViewBag.Keywords = "商品分类";
+    ViewBag.Description = "商品分类";
+    var ParentId = ViewBag.Cid;
+}
+@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+
+
+<script type="text/javascript">
+    $(function () {
+        $(".CategoryList").click(function () {
+            $(this).next().toggle();
+        });
+        $(".complete_assortment dt").toggle(function () {
+            $(this).next().show();
+            var _top = $(this).offset().top;
+            $(document.documentElement).animate({ scrollTop: _top }, 200);
+            $(document.body).animate({ scrollTop: _top }, 200);
+            //支持chrome
+        }, function () { $(this).next().hide(); });
+
+        //$("#goto-top").click(function(e){
+        //   // e.preventDefault();
+        //    var _top = $('#hear140').offset().top;
+        //    $(document.documentElement).animate({scrollTop: _top},200);
+        //    //支持chrome
+        //    $(document.body).animate({ scrollTop: _top }, 200);
+        //});
+        var cid=@ParentId;
+        if (cid > 0)
+        {
+           
+            var _self=$("#hear"+cid);
+            _self.parent().click();
+            //var _top = _self.offset().top;
+            //$(document.documentElement).animate({ scrollTop: _top }, 200);
+            //$(document.body).animate({ scrollTop: _top }, 200);
+        }
+
+    })
+</script>
+
+<div class="top">
+@*    @if (ViewBag.ParentId > -1)
+    {
+        <a href="@(ViewBag.BasePath)p/t/@ViewBag.ParentId"><span>@ViewBag.CurrentName</span></a>
+    }
+    else
+    {
+        <span>全部分类</span>
+    }*@
+    <span>全部分类</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@*<div class="yy">
+</div>*@
+@*@if (Model != null && Model.Count > 0)
+{
+    <div class="fl_home">
+        <ul>
+            @foreach (var item in Model)
+            {
+                if (item.HasChildren)
+                {
+                <li class="CategoryList" style="text-align:center"><a href="javascript:;"><span class="icon"></span><span>@item.Name</span>
+                </a></li>
+                
+                @Html.Action("CategoryListOLd", "Product", new { parentId = item.CategoryId, viewName = "_SecCateList" })     
+                }
+                else
+                {
+                <li><a href="@(ViewBag.BasePath)h/@item.CategoryId"><span class="icon"></span><span>@item.Name</span>
+                </a></li>
+                }
+
+            }
+        </ul>
+    </div>
+}*@
+<style>
+    .seach_bg {
+        /*background:#dddddd;*/
+    }
+
+    dl {
+        margin: 0;
+    }
+
+    ul {
+        padding: 0;
+    }
+
+    dd {
+        margin: 0;
+    }
+
+    .complete_assortment dt {
+        background: #fff;
+    }
+
+        .complete_assortment dt a {
+            padding: 10px 15px;
+            overflow: hidden;
+            display: block;
+        }
+
+        .complete_assortment dt em {
+            width: 4rem;
+            height: 4rem;
+            float: left;
+            padding-right: 10px;
+        }
+
+            .complete_assortment dt em img {
+                width: 100%;
+            }
+
+    .assort {
+        width: 74%;
+        float: left;
+    }
+
+        .assort span, .assort i {
+            display: block;
+            font-style: normal;
+            font-size: 0.8rem;
+            padding-top: 5px;
+            color: #666666;
+        }
+
+        .assort span {
+            color: #000000;
+            font-size: 1.3rem;
+            padding-top: 6px;
+        }
+
+    .complete_assortment dd {
+        /*background:#dddddd;*/
+    }
+
+        .complete_assortment dd span {
+            height: 3rem;
+            line-height: 3rem;
+            font-size: 1.2rem;
+            color: #d91c10;
+            display: block;
+            text-decoration: none;
+        }
+
+        .complete_assortment dd a {
+            /*width:31%;*/
+            height: 2rem;
+            line-height: 2rem;
+            background: #fff;
+            display: inline-block;
+            *display: inline;
+            zoom: 1;
+            text-align: center;
+            color: #666;
+            /*border:1px solid #b1b1b1;*/
+            margin-bottom: 5px;
+            font-size: 0.8rem;
+            padding: 0 10px;
+        }
+
+        .complete_assortment dd a {
+            text-decoration: underline;
+            background-color: #fff;
+        }
+
+            .complete_assortment dd a:hover {
+                background-color: #ff6a00;
+                text-decoration: underline;
+                color:#fff;
+            }
+
+        .complete_assortment dd ul {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+    .bottomsmp {
+         height:2px;
+         background-color:#ccc;
+    }
+
+    .cate {
+        background-color: #fff;
+    }
+</style>
+<div class="complete_assortment">
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear137">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/01.jpg" /></em>
+                <div class="assort">
+                    <span>家电、厨电、汽车</span>
+                    <i>热水器  微波炉  电吹风 </i>
+                </div>
+            </a>
+
+        </dt>
+
+        <dd class="cate" style="display: none; background: #fff;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 137, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+   
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear138">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/02.jpg" /></em>
+                <div class="assort">
+                    <span>零食、粮油、生鲜</span>
+                    <i>饮料 休闲零食 葡萄酒</i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 138, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear139">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/03.jpg" /></em>
+                <div class="assort">
+                    <span>服饰、内衣、鞋靴</span>
+                    <i>针织衫 保暖内衣 打底裤 </i>
+                </div>
+            </a>
+        </dt>
+        <dd style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 139, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+     
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear140">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/04.jpg" /></em>
+                <div class="assort">
+                    <span>保健、器械、计生</span>
+                    <i>传统滋补 按摩枕/垫 </i>
+                </div>
+            </a>
+        </dt>
+        <dd style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 140, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear132" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/05.jpg" /></em>
+                <div class="assort">
+                    <span>电脑、平板、办公</span>
+                    <i>笔记本 苹果电脑 U盘 </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 132, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear141" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/06.jpg" /></em>
+                <div class="assort">
+                    <span>母婴、玩具、孕妇</span>
+                    <i>婴儿尿裤 婴幼奶粉 日常护理 </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 141, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+   
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear135" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/07.jpg" /></em>
+                <div class="assort">
+                    <span>厨卫、居家、家具</span>
+                    <i>保鲜盒 储物/收纳/置物架  </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 135, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear131" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/08.jpg" /></em>
+                <div class="assort">
+                    <span>手机、数码、配件</span>
+                    <i>手机 数码相机  </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 131, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear136" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/09.jpg" /></em>
+                <div class="assort">
+                    <span>个护、美妆、清洁</span>
+                    <i>卫生巾 洗发水 洗护套装  </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 136, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+    
+    <dl>
+        <dt style="border-bottom: 2px solid #ccc;">
+            <a href="javascript:void(0)" id = "hear142">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/cate/10.jpg" /></em>
+                <div class="assort">
+                    <span>箱包、珠宝饰品、钟表</span>
+                    <i>手提包 商务公文包 </i>
+                </div>
+            </a>
+        </dt>
+        <dd class="cate" style="display: none;">
+            <ul>
+                @Html.Action("CategoryListOLd", "Product", new { parentId = 142, viewName = "_SecCateListB" })
+            </ul>
+        </dd>
+        <dd class="bottomsmp"></dd>
+    </dl>
+
+</div>
+@*<div id="goto-top">置顶</div>*@
+

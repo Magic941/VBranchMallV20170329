@@ -1,0 +1,11 @@
+﻿  @model List<Maticsoft.Model.CMS.Content>
+   @if(Model!=null&&Model.Count>0)
+    {
+        <ul>
+            @foreach (var item in Model)
+            {
+                   <li><a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@item.ContentID" title="@item.Title">@Maticsoft.Common.StringPlus.SubString(item.Title,12,"...")</a></li>
+            }
+        </ul>
+    }
+   

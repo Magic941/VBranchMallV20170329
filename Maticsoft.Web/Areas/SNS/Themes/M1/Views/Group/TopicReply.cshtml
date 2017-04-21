@@ -1,0 +1,296 @@
+﻿@model   Maticsoft.ViewModel.SNS.TopicReply
+@{
+    //ViewBag.Title = Model.Group.GroupName+"-"+Model.Topic.Title+"查看主题";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/slides.min.jquery.js"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>@*上传图片的要引用的js*@
+     <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/CheckUserIsJoinGroup.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/TopicReply.js" type="text/javascript"></script>
+      <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+}
+<input type="hidden" id="TopicId" type="hidden" value="@Model.Topic.TopicID" />
+<input type="hidden" id="GroupId" type="hidden" value="@Model.Topic.GroupID" />
+<!------Single group-------->
+<div class="clear"></div>
+<div class="single_bk">
+  <div class="single_bk_F">
+    <div class="single_bk_FA">
+     <div class="singe_aba">
+      <div class="single_Tf">
+         <dl class="single_Tf_A"></dl>
+         <dl class="single_Tf_B">
+            <p class="single_Tf_B_a"><a  style="color:#FF3188" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.Topic.GroupID">@Model.Group.GroupName</a></p>
+            <p class="single_Tf_B_b">创建于@(Model.Topic.CreatedDate)</p>
+         </dl>
+      </div>
+      <div class="singe_aba_a"><a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.Topic.GroupID">返回该小组首页</a></div>
+      <div class="clear"></div>
+      </div>
+      <div class="single_CF">
+        <div class="single_CF_s">
+             <dl class="single_detailed">
+                <dl class="single_detailed_tu">
+                   <dt class="single_detailed_tus"><a href="javascript:;"><img  src="/Upload/User/Gravatar/@(Model.Topic.CreatedUserID).jpg" alt="@Model.Topic.CreatedNickName" width="45px;" height="45px;"/></a></dt>
+                   <dd class="single_detailed_tub">
+                      <p class="acde">@Model.Topic.CreatedNickName</p>
+                      <p class="acdf">创建于：@Model.Topic.CreatedDate 楼主 <span>阅读： @Model.Topic.PvCount</span></p>
+                     
+                   </dd>
+                </dl>
+               @* <dl class="chunk"><a href="javascript:;">@Model.Topic.ReplyCount</a></dl>*@
+              <div class="clear"></div>
+             </dl>
+             <dl class="single_cont">
+                  <dt class="single_cont_a" style=" text-align:center; font-size:16px">@Model.Topic.Title</dt>
+                <dt class="single_cont_a">@Html.Raw(Maticsoft.ViewModel.ViewModelBase.ReplaceFace(Model.Topic.Description))</dt>
+                @if (!string.IsNullOrEmpty(Model.Topic.ImageUrl) && string.IsNullOrEmpty(Model.Topic.ProductLinkUrl))
+                {
+                <dd class="single_cont_p" style="margin-top:8px;"><a href="javascript:void(0)" class="pic_load"><img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.Topic.ImageUrl, "T400x1280_"))" alt="@Model.Topic.Title"/></a>
+                   <dl class="single_cont_p_s">
+                      <dd class="single_cont_p_s2"><a href="javascript:;" class="addalbum" imageurl=@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.Topic.ImageUrl, "T116x170_")) imagetype="@(Model.Topic.Type == (int)Maticsoft.Model.SNS.EnumHelper.PostContentType.Photo ? "Photo" : "Product")" targetid="@Model.Topic.TargetID"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_5.jpg"/></a></dd>
+                   </dl>
+                </dd>
+                <dd class="single_cont_s">
+                   <div class="search_com_a">
+                                <p class="search_com_a1">
+                                    <a href="javascript:void(0)" class="favourite" topicid="@Model.Topic.TopicID" imagetype="@(Model.Topic.Type == (int)Maticsoft.Model.SNS.EnumHelper.PostContentType.Photo ? "Photo" : "Product")" targetid="@Model.Topic.TargetID">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg"></a></p>
+                                <p class="search_com_a2">
+                                    <a href="javascript:;">@Model.Topic.FavCount</a></p>
+                            </div>
+                               <dl class="single_cont_s_3"  style="margin-left:20px"><a href="javascript:void(0)" class="AddTopicToFav" topicid="@Model.Topic.TopicID"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_7.jpg"/></a></dl>
+          @*       <dl class="single_cont_s_3"><a href="javascript:void(0)" class="AddTopicToFav" topicid="@Model.Topic.TopicID"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_7.jpg"/></a></dl>*@
+                  
+                </dd>
+                }
+                else if (!string.IsNullOrEmpty(Model.Topic.ImageUrl) && !string.IsNullOrEmpty(Model.Topic.ProductLinkUrl))
+                {
+                    <li class="pic_b_f r5 goods_b_f" style="display: block;" ttype="bigMode" type="goods"
+                        iid="1yj5b0">
+                        <div class="pic_b_bd" style="cursor: default;">
+                            <a href="javascript:;" class="add_to_album_btn" style="display: none;"></a><a href="@Model.Topic.ProductLinkUrl"
+                                target="_blank"  class="pic_load">
+                                <img ref="@Model.Topic.ImageUrl" style=" height:100px; width:100px"
+                                    alt="@Model.Topic.ProductName">
+                            </a>
+                        </div>
+                        <div class="goods_info">
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@Model.Topic.ProductLinkUrl"
+                                    class="mg_slink ofh">@Model.Topic.ProductName</a></p>
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@Model.Topic.ProductLinkUrl"
+                                    class="g_price"><span>¥@Model.Topic.Price.Value.ToString("F")</span> </a>
+                            </p>
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@Model.Topic.ProductLinkUrl"
+                                    class="buy_link">去淘宝看详情 </a>
+                            </p>
+                        </div>
+                          <dl class="single_cont_s_3"  style="margin-left:20px; width:103px"><a href="javascript:void(0)" class="AddTopicToFav" topicid="@Model.Topic.TopicID"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_7.jpg"/></a></dl>
+                    </li>
+                }
+                else
+                {    <dl class="single_cont_s_3" style=" margin-left:0px"><a href="javascript:void(0)" class="AddTopicToFav" topicid="@Model.Topic.TopicID"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_7.jpg"/></a></dl>}
+                         <div class="fenxiang">
+                                       @Html.Action("BaiduShare","Partial")
+                        </div>
+              <div class="clear"></div>
+             </dl>
+             <div class="single_rep">
+               <div class="whole">
+                  <dl class="whole_com">
+                     <dt class="whole_com_a">评论</dt>
+                     <dd class="whole_com_b"></dd>
+                  </dl>
+                  <dl class="whole_fom">
+                     <dl class="whole_fom_a">
+                        <dt class="whole_fom_a1"></dt>
+                        <dt class="whole_fom_a2"><textarea id="contentTopic"></textarea></dt>
+                        <dt class="whole_fom_a3"><a href="javascript:void(0)" id="PostReply"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_13.jpg"/></a></dt>
+                     </dl>
+                     <dl class="whole_fom_b">
+                           <div class="published_v1"style=" position:relative">
+                  <p><a href="javascript:;" class="biaoqingshow"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_14.jpg"/></a></p>
+                  <p ><a href="javascript:;" class="biaoqingshow">表情</a></p>
+                  <div class="cbiaoqing" style="top:10px;display:none; left:-20px;z-index:999" id="tbiaoqing"> 
+                       @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing.cshtml")
+                     </div>
+               </div>
+               <div class="published_v1" id="UploadProduct" style=" position:relative">
+                  <div id="LoadUrlShow"><p><a href="javascript:void(0)"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_15.jpg"/></a></p>
+                  <p><a href="javascript:void(0)">商品</a></p></div>
+                  <div class="yshopp" id="LoadProductWindow" style=" display:none">
+                  <div class="biaoqing_a"></div>
+                     <div class="biaoqing_b">
+                        <div class="biaoqing_b1" id="LoadUrlClose" style=" cursor:pointer">
+                           <div class="yshopp_g"><img src="/Areas/SNS/Themes/M1/Content/images/biao2.jpg"/></div>
+                        </div>
+                        <div class="yshopp_d">
+                             <div class="yshopp_d1">
+                                <dl class="yshopp_d1_a"><input onfocus="this.value=''" onblur="if(this.value==''){this.value='将商品网址粘贴到这里'}" id="ProductLink" type="text" value="将商品网址粘贴到这里"/></dl>
+                                <dl class="yshopp_d1_b"><a href="javascript:void(0)" id="addProduct"><img src="/Areas/SNS/Themes/M1/Content/images/yshop1.jpg"/></a></dl>
+                             </div>
+                             <div class="yshopp_d2" style=" ">
+                                <ul>
+                                  <li>已支持以下网站：
+                                 <li><a target="_blank" href="http://www.taobao.com/">淘宝</a>
+                                  <li><a target="_blank" href="http://www.tmall.com/">天猫</a>
+                          
+                                </ul>
+                             </div>
+                        </div>
+                     </div>
+                   </div>
+               </div>
+               <div class="published_v1" id="UploadPhoto" >
+                  <p><a href="javascript:;"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_16.jpg"/></a></p>
+                  <p><a href="javascript:;">图片</a></p>
+               </div>
+                    @Html.Action("WeiBoBind", "Partial")
+
+                     </dl>
+
+                     <div class="published_h" style="margin-left: 10PX;margin-top: 40PX; display:none" id="yulanImage">
+                 <div class="xyu">
+                     <div class="xyu_b" style="float:right">
+                         <a href="javascript:;" >
+                             <img src="/Areas/SNS/Themes/M1/Content/images/xyu1.png" id="CancelImage" /></a></div>
+                     <div class="xyu_a">
+                         <img src="/Areas/SNS/Themes/M1/Content/images/xyu.jpg"  id="yulantu" style="height:137px"/></div>
+                 </div>
+             </div>
+                  <div class="clear"></div>
+                  </dl>
+               </div>
+               <div class="answer" id="MaticsoftTopicReply">
+               @Html.Partial("~/Areas/SNS/Themes/M1/Views/Group/TopicReplyList.cshtml", Model)
+               </div>
+             <div class="clear"></div>
+             </div>
+          </div> 
+      <!------右侧内容------->
+          <div class="single_CF_t">
+                <div id="example">
+          <div id="slides">
+          <div class="slides_container">
+                    <div class="slide">
+                        <a href="javascript:;" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                        <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">我要快乐</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:;" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b2.jpg" align="b1 2"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">世外桃源</div>
+                        </div></div>
+                    <div class="slide">
+                        <a href="javascript:;" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">花花世界</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:;"  target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b2.jpg" align="b1 2"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">五彩缤纷</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:;"  target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">天上人间</div>
+                        </div>
+                    </div>
+             </div>
+           </div>
+          </div>
+               <dl class="single_newest">
+                    <h1>Ta发表的主题</h1>
+                       <ul>
+                       @if (Model.UserPostTopics != null)
+                       {
+                           foreach (var item in Model.UserPostTopics)
+                           {
+                              <li><a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 15)</a>(@item.ReplyCount)</li>
+                           }
+                       }
+                       </ul>
+               </dl>
+               <dl class="single_join">
+                  <h1>Ta加入的小组</h1>
+                  @if (Model.UserJoinGroups != null)
+                  {
+                      foreach (var item in Model.UserJoinGroups)
+                      {
+                  <div class="single_join_fir">
+                     <div class="firbar"><a target="_blank" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID"><img style="width:64px; height:64px" src="@item.GroupLogo"/></a></div>
+                     <div class="firsub">
+                        <p><a target="_blank" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">@item.GroupName</a></p>
+                       <p>帖子(@item.TopicCount)</p>
+                        <p>用户(@item.GroupUserCount)</p>
+                     </div>
+                  <div class="clear"></div>
+                  </div>
+                      }
+                  }
+         
+               <div class="clear"></div>
+               </dl>
+               
+
+                <dl class="single_newest">
+                    <h1>最热话题</h1>
+                       <ul>
+                       @foreach (var item in Model.HotTopic)
+                       {
+                          <li><a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 12)</a>(@item.ReplyCount)</li>
+                     
+                       }
+                       </ul>
+               </dl>
+
+          </div>
+          <div class="clear"></div>  
+      </div>
+    <div class="clear"></div>
+    </div>
+  </div>
+</div>
+<!------Single group end----->
+<div id="inputReplyTemplete"  style=" display:none; margin-left:10px" >
+<dd class="answer_a_wn_c pinglunkuang" >
+                          <dl class="answer_a_wn_c1"></dl>
+                          <dl class="answer_a_wn_c2">
+                             <input   type="text" value="">
+                          </dl>
+                          <dl class="answer_a_wn_c3"></dl>
+                          <dl class="answer_a_wn_d">
+                            <dt class="answer_a_wn_d1" style="position: absolute;"><a href="javascript:void(0)" class="cbiaoqingshow"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_26.jpg"></a>
+                              <div class="cbiaoqing" style="top:10px;display:none; left:-20px"> 
+                       @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing4Comment.cshtml");
+                     </div>
+                            </dt>
+                            <dl class="tgoods_rep_sa2_b3">
+                           <dt class="tgoods_rep_sa2_b31">@*<input name="" type="checkbox" value=""></dt>
+                           <dd class="tgoods_rep_sa2_b31">同时转发到我的分享</dd>*@
+                        </dl>  
+                            <dd class="answer_a_wn_d2"><a href="javascript:void(0)" class="btnReply"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_22.jpg"></a></dd>
+                            @*  @Html.Action("WeiBoBind", "Partial")*@
+                       </dl>
+                          
+
+                       </dd>
+
+</div>

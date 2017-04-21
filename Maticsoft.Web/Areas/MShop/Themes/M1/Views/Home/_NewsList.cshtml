@@ -1,0 +1,13 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+  @if (Model != null && Model.Count > 0)
+  {
+      <div class="newsshow">
+          <ul>
+              @foreach (var item in Model)
+              { 
+                <li><a href="@(ViewBag.BasePath)Article/Details/@item.ContentID" target="_blank">@Maticsoft.Common.StringPlus.SubString(item.Title,10,"...")</a></li>
+              }
+              <li><a href="@(ViewBag.BasePath)Article/ArticleList?classid=9" target="_blank">更多>></a></li>
+          </ul>
+</div>
+  } 

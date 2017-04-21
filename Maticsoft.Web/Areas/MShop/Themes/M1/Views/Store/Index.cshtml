@@ -1,0 +1,89 @@
+﻿ @model List<Maticsoft.Model.Shop.Products.ProductInfo>  
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_StoreLayout.cshtml";
+    ViewBag.Title = "电子商务解决方案-店铺首页";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+    string suppid = Request.RequestContext.RouteData.Values["suppid"] != null ? Request.RequestContext.RouteData.Values["suppid"].ToString() : "0";
+}
+@section head{
+ <link href="/Areas/MShop/Themes/M1/Content/Css/style-20131107.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/searchlist.css" rel="stylesheet" type="text/css" />
+ <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+ <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+}
+
+<div class="bg_bai"> 
+       <div class="top">
+         <div class="back_button"><a href="javascript:;" onclick="history.go(-1);"><img src="/Areas/MShop/Themes/M1/Content/Images/back.png" width="13" height="14" /></a></div>
+         <h1 class="lanmu_title">商家主页</h1>
+         <div class="header-btn fr"> <a href="@(ViewBag.BasePath)u" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                                           <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/Images/avatar.png">
+                                       </a>
+               <a href="@(ViewBag.BasePath)sc/ci" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                   <img src="/Areas/MShop/Themes/M1/Content/Images/cart.png" width="22" height="21" > 
+               </a>
+          </div>
+        </div>
+<div class="blank20"></div>
+    <!--店铺信息-->
+      @Html.Action("Header", "Store", new { suppid = suppid })
+<!--店铺信息-->
+
+<div class="clear"></div>  
+<!--推荐的商品-->
+@Html.Action("RecProd", "Store", new { suppid = suppid, type = 0,top = 10})
+<!--推荐的商品-->
+    <div class="fenlei_list fenlei_list_1" id="divprodorderby">
+    <a href="@(ViewBag.BasePath)Store/list/@suppid/@cid/hot"  mod="hot" class="fenlei_list_current">销量</a>
+    <a href="@(ViewBag.BasePath)Store/list/@suppid/@cid/pricedesc"  mod="pricedesc" >价格</a> 
+    <a href="javascript:;" style="display:none;"  >好评度</a>
+    <a href="@(ViewBag.BasePath)Store/list/@suppid/@cid/new"  mod="new" >上架时间</a>
+</div>
+
+<div class="baobeilist">
+    <ul>
+    @if (Model != null && Model.Count > 0)
+    {
+        for (int i = 0; i < Model.Count; i++)
+        {
+            if (i%2 == 0)
+            {
+                <li class="mr10"><a href="@(ViewBag.BasePath)p/d/@Model[i].ProductId">
+                                     <img width="145" onerror="this.onerror='';this.src='/Content/themes/base/images/404/142.jpg'" height="145" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")" />
+                                     <h2>
+                                         @Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 8, "...")</h2>
+                                     <p>
+                                         <span class="hongzi">￥@Model[i].LowestSalePrice.ToString("F")</span> <span class="huizi">￥@(Model[i].MarketPrice.HasValue?Model[i].MarketPrice.Value.ToString("F"):"")</span></p>
+                                 </a></li>
+            }
+            else
+            { <li ><a href="@(ViewBag.BasePath)p/d/@Model[i].ProductId">
+                                     <img width="145" height="145"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")" onerror="this.onerror='';this.src='/Content/themes/base/images/404/142.jpg'" />
+                                     <h2>
+                                         @Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 8, "...")</h2>
+                                     <p>
+                                         <span class="hongzi">￥@Model[i].LowestSalePrice.ToString("F")</span> <span class="huizi">￥@(Model[i].MarketPrice.HasValue ? Model[i].MarketPrice.Value.ToString("F") : "")</span></p>
+                                 </a></li>
+            }
+
+        }
+   
+    }
+</ul>
+</div>
+<div class="clear"></div>
+<div class="pagebox">
+						<a id="getMorePage" class="btnpage"  href="@(ViewBag.BasePath)Store/list/@suppid/@cid/">查看更多…</a>
+					</div>
+<div class="clear"></div>  
+   <div class="ding"  id="divding"><a href="javascript:;">回顶部</a></div>
+</div> 
+<script>
+    $(function() {
+        $("#divding").click(function (e) {
+            //以1秒的间隔返回顶部
+             $('body,html').animate({scrollTop:0},1000);
+     });
+    });
+</script>

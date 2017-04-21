@@ -1,0 +1,427 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Shop.ProductModel
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/css/msg,btn,form,dialog,login-pop.css">
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/btn,dialog,item,item-s,paging,score,tipsANDvi-v0-a.css">
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/StyleCommon.js"></script>*@
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/StyleDetail.js"></script>*@
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/carousel,dialog,imagezoom,swfobject,tab.js"></script>
+<link href="@Url.Content("/Areas/Shop/Themes/M1/Content/css/image.zoom.css")" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+@*<script src="/Areas/Shop/Themes/M1/Content/Scripts/Common.js" type="text/javascript"></script>*@
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/Detail.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/ProSaleSKU.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/image.zoom.base.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js" type="text/javascript"></script>
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/groupby/groupbydetails.css" rel="stylesheet" />
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        resizeImg('.sbox', 176, 165);
+        resizeImg('.jqzoom', 300, 390);
+        resizeImg('.pack_b_1', 570, 410);
+        resizeImg('.J_carousel_list', 50, 65);
+        $(".jqzoom").jqueryzoom({ xzoom: 300, yzoom: 300, offset: 10, position: "right", preload: 1, lens: 1 });
+        $("#thumb_container").jdMarquee({ deriction: "left", width: 420, height: 70, step: 2, speed: 4, delay: 10, control: true, _front: "#spec-right", _back: "#spec-left" });
+        $("#thumb_container").find("img").bind("mouseover", function () {
+            var src = $(this).attr("src");
+            $("#preview").find("img").eq(0).attr({ ref: src.replace('T50X65_', 'T300X390_'), jqimg: src.replace('T50X65_', 'T300X390_') }).removeAttr('loaded');
+            $.scaleLoad('.jqzoom', 350, 350);
+            $(this).css({ "border": "1px solid #ff6600" });
+        }).bind("mouseout", function () {
+            $(this).css({ "border": "1px solid #ccc", "padding": "1px" });
+        });
+    });
+</script>
+<style type="text/css">
+    /*.addCart {
+        background: url(/Areas/Shop/Themes/M1/Content/images/btnlikegoumai.jpg) no-repeat;
+        width: 123px;
+        height: 34px;
+        overflow: hidden;
+    }*/
+
+    .addCart-gray {
+        width: 134px;
+        height: 42px;
+        font-size: 26px;
+        font-family: "微软雅黑";
+        color: #EFEFEF;
+        background: #808080;
+        border: 1px solid #EA4D05;
+        margin: 21px 0 23px 54px;
+        border: 1px solid #fff;
+    }
+
+    .addCart1 {
+        font-size: 18px;
+    }
+
+    .choiceOptions {
+        width: 248px;
+        border: 1px solid #E4ECF1;
+        border-top: none;
+        margin-left: 10px;
+    }
+</style>
+
+<input id="hfGroupBuyId" type="hidden" value="@Model.ProductInfo.GroupBuy.GroupBuyId" />
+<input id="hdProductId" type="hidden"  value="  @Model.ProductInfo.ProductId"/>
+<input id="hdProductName" type="hidden"  value="  @Model.ProductInfo.ProductName"/>
+
+<div class="content clearfix">
+    <div class="content_top clearfix">
+        <h2><a href="/">首页</a></h2>
+        <div class="catalog">
+            <a href="#">@Html.Raw(ViewBag.CategoryStr)</a>
+            <a href="#">@Model.ProductInfo.ProductName</a>
+        </div>
+    </div>
+    <div class="clearfix">
+        <!-- content_left -->
+        <div class="content_left">
+            <div id="iteminfo">
+                <div class="oils">
+                    <div class="oils_title">
+                        <span>@Model.ProductInfo.ProductName</span>
+                        <p><b>@Model.ProductInfo.Subhead</b></p>
+                    </div>
+                    <div class="oils_content clearfix">
+
+                        <div class="buy_to">
+                            <div class="buy_to_title clearfix">
+                                <span><bdo>￥</bdo>@Model.ProductInfo.GroupBuy.Price.ToString("0.0")</span>
+                                <div class="price"><i>价值：</i><s>¥@(Model.ProductInfo.MarketPrice.HasValue ? Model.ProductInfo.MarketPrice.Value.ToString("F") : "0.00")</s><bdo></bdo></div>
+                            </div>
+                            <div class="sec-cont choiceOptions" style="border-bottom: none" id="SKUOptions">
+                                @Html.Action("GroupDetailOptionSKU", new { ProductId = Model.ProductInfo.ProductId })
+                                <span class="spanS" id="prompt"></span><span id="divSelectInfo" style="color: #333333;"></span>
+                            </div>
+                            <div class="buy_to_p">
+                                <ul>
+                                    <li>
+                                        <input type="submit" class="addCart addCart1"  id="btnAddToCart" itemid=""  groupbuyid="@Model.ProductInfo.GroupBuy.GroupBuyId" productid="@Model.ProductInfo.ProductId" value="立即抢购" style="cursor:pointer" />
+                                    </li>
+                                    <li>
+                                        <div class="buy_to_pl">
+
+                                            <a href="javascript:void(0);"><b>@ViewBag.Groupbase</b>人已团购</a>
+
+                                            <p id="productDate" startDate="@Model.ProductInfo.GroupBuy.StartDate"  endDate="@Model.ProductInfo.GroupBuy.EndDate" curDate="@DateTime.Now" class="txtenddate">
+                                                @* <span style="color:red"><span id="dayEnd">0</span>天<span id="hourEnd">0</span>时 
+                                                    <span id="minEnd">0</span>分 <span id="secEnd">0</span>秒
+                                                </span>*@
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li class="clearfix">
+                                        <div class="buy_to_pj">
+                                            <a href="javascript:void(0);">
+                                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/tuangou_3_7.png" width="61" height="59" /></a>
+                                            <b><a href="#">厂家正品保证</a></b>
+                                        </div>
+                                        <div class="buy_to_pw">
+                                            <a href="javascript:void(0);">
+                                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/tuangou_4_9.png" width="81" height="51" /></a>
+                                            <b><a href="#">购物满百免运费</a></b>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="buy_to_t">
+                            <img width="536" height="347" src="@(Model.ProductInfo.GroupBuy.GroupBuyImage)" jqimg="@Model.ProductInfo.ImageUrl" />
+                        </div>
+                    </div>
+                    <div class="share_it">
+                        <div class="share_it_dt">
+                            @*屏蔽收藏按钮*@
+                            @*<input class="collect" type="submit" value="收藏本单" />*@
+                        </div>
+                        <ul>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/icon_7_14.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/icon_6_16.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/icon_6_18.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/icon_6_20.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/icon_7_22.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/twr4_6.png" /></a></li>
+                            <li><a href="#">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/images/tuangou/twr3_3.png" /></a></li>
+                            <li><a href="/ProSales/GroupBuy"><span>更多</span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="detail_ol">
+                <dl>
+                    <dt class="detail_gh">
+                        <ul class="clearfix tabInfo">
+                            <li class="active"><a href="javascript:void(0);" id="id-goods-info">本单详情</a></li>
+                            <li><a href="javascript:void(0);" id="id-buyer-comment">会员评价<span>(@ViewBag.CommentCount)</span></a></li>
+                        </ul>
+                    </dt>
+                    <dd>
+                        <div class="tab1body cf" id="product-detail">
+                            @Html.Action("OptionAttr", new { ProductId = Model.ProductInfo.ProductId })
+                            @Html.Raw(Model.ProductInfo.Description)
+                        </div>
+                        <div id="LoadData" class="pInfoBox mt20" loaded="true">
+                        </div>
+                    </dd>
+                </dl>
+                <div class="substa"></div>
+            </div>
+        </div>
+        <!-- end content_left -->
+        <!-- content_right -->
+        <div class="content_right">
+            <div class="content_right_nav">
+                @*<span>看过本单的用户还看了</span>*@
+                <span>团购热销TOP3</span>
+                <a href="#">更多>></a>
+            </div>
+            @Html.Action("GroupRec", "Partial")
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+
+    if (parseInt('@Model.ProductInfo.SaleStatus') != 1) {
+        $('#SKUOptions').parent().find('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+        $('#iteminfo #divBuyInfo').hide();
+        $('#iteminfo #divSelectInfo').empty();
+        $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已下架!");
+        $('#iteminfo #closeArrivingNotifyMess').show();
+    }
+
+    $("#id-buy-guarantee").click(function () {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/images/loads.gif' ></div>");
+        $("#buy - guarantee").show();
+        $("#LoadData").empty();
+        $(".tabInfo").find("li").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#id-buy-guarantee").parent().addClass("active");
+    });
+    $("#id-goods-info").click(function () {
+        $("#product-detail").show();
+        $("#buy - guarantee").hide();
+        $("#LoadData").empty();
+        $(".tabInfo").find("li").each(function () {
+            $(this).removeClass("active");
+        });
+        $("#id-goods-info").parent().addClass("active");
+    });
+
+    $("#id-buy-annal").click(function () {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+        $("#LoadData").load("@(ViewBag.BasePath)Product/SaleRecord/@Model.ProductInfo.ProductId", function () {
+            $("#product-detail").hide();
+            $("#buy - guarantee").hide();
+            $(".tabInfo").find("li").each(function () {
+                $(this).removeClass("active");
+            });
+            $("#id-buy-annal").parent().addClass("active");
+        });
+    });
+
+    $("#id-buyer-leaveword").click(function () {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+        $("#LoadData").load("@(ViewBag.BasePath)Product/ProductConsult/@Model.ProductInfo.ProductId", function () {
+            $("#product-detail").hide();
+            $("#buy - guarantee").hide();
+            $(".tabInfo").find("li").each(function () {
+                $(this).removeClass("chose");
+            });
+            $("#id-buyer-leaveword").parent().addClass("chose");
+        });
+    });
+
+    $("#id-buyer-comment").click(function (_i, data1) {
+        $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+        $("#LoadData").load("@(ViewBag.BasePath)Product/ProductComments/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".tabInfo").find("li").each(function (_j, data2) {
+                    $(this).removeClass("active");
+                });
+                $("#id-buyer-comment").parent().addClass("active");
+            });
+        });
+
+        $("#btnAddToCart").click(function () {
+           
+            if ($(this).hasClass('addCart-gray')) return false;
+            var sku = $(this).attr('itemid');
+            if (!sku) {
+                $('#SKUOptions,#SKUOptions a').effect('highlight', 500);
+                ShowFailTip('请选择商品规格属性！');
+                return false;
+            }
+            var groupbuyid = $("#hfGroupBuyId").val();
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "/Product/CkeckCount",
+                async: false,
+                data: { GroupBuyId: groupbuyid },
+                success: function (data) {
+                    //alert(data);
+                    if (data == "Ok") {
+                        //location.href = " @(ViewBag.BasePath)ShoppingCart/AddCart?sku=" + sku + "&g=" + groupbuyid;
+                        $.ajax({
+                            url: '@(ViewBag.BasePath)ShoppingCart/ProSaleAddCart',
+                            type: 'post',
+                            data: { sku: sku, g: groupbuyid },
+                            success: function (data) {
+                               // alert(data);
+                                var obj = eval("(" + data + ")")
+                                if (obj.result == "True") {
+                                    location = obj.Msg;
+                                }
+                                else {
+                                    ShowFailTip(obj.Msg);
+                                }
+                            },
+                            error: function (err) {
+                                ShowFailTip(err);
+                            }
+                        })
+
+                    }
+                    else {
+                        $("#closeArrivingNotifyMess").show();
+                        $('#SKUOptions').parent().find('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+                        $('#iteminfo #divBuyInfo').hide();
+                        $('#iteminfo #divSelectInfo').empty();
+                    }
+                },
+                error: function (err) {
+                    alert(err);
+                    ShowFailTip(err);
+                }
+                
+            });
+
+
+        });
+
+        $("#plus").click(function () {
+            var count = parseInt($("#productCount").val()) + 1;
+            $("#productCount").val(count);
+        });
+        $("#subtract").click(function () {
+            var count = parseInt($("#productCount").val());
+            if (count > 1) {
+                count = count - 1;
+            }
+            $("#productCount").val(count);
+        });
+        //收藏操作
+        $("#btnProductFav").click(function () {
+            if (CheckUserState()) {
+                var productId = $(this).attr("productId");
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "/UserCenter/AjaxAddFav",
+                    async: false,
+                    data: { ProductId: productId },
+                    success: function (data) {
+                        if (data == "Rep") {
+                            ShowSuccessTip('您已经收藏了该商品，请不要重复收藏');
+                        } else if (data == "True") {
+                            ShowSuccessTip('收藏商品成功');
+                        } else {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                        }
+                    }
+                });
+            }
+        });
+
+</script>
+
+<script id="sencondTemplate" type="text/x-jquery-tmpl">
+    ${title}: <span style="color: red"><span id="dayEnd">${day}</span>天<span id="hourEnd">${hour}</span>时 
+                                                    <span id="minEnd">${minute}</span>分 <span id="secEnd">${second}</span>秒
+    </span>
+</script>
+<script>
+
+    var maxCount = parseInt('@Model.ProductInfo.GroupBuy.MaxCount');
+    var buyCount = parseInt('@Model.ProductInfo.GroupBuy.BuyCount');
+
+    //if (buyCount >= maxCount) {
+    //    $("#closeArrivingNotifyMess").show();
+    //    $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+    //    $('#iteminfo #divBuyInfo').hide();
+    //    $('#iteminfo #divSelectInfo').empty();
+    //}
+    function render(data, productId) {
+
+        if (data.status == -1) {
+            $(this).html("团购活动已结束");
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $("#btnAddToCart").attr("disable", "true");
+        }
+        if (data.status == 0) {
+            data.title = "距离团购";
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $("#btnAddToCart").attr("disable", "true");
+        }
+        if (data.status == 1) {
+            $('#btnAddToCart').removeClass('addCart-gray').addClass('addCart');
+            $("#btnAddToCart").attr("disable", "false");
+        }
+
+        return $('#sencondTemplate').tmpl(data);
+
+    }
+
+    //产生秒表
+    function ProSecond() {
+
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("product");
+
+            var myclass = new CountDown();
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: render,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+
+            });
+        })
+    }
+
+    if (maxCount > buyCount)
+        ProSecond();
+    else {
+        $(".txtenddate").html("已售磬");
+        $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+        $("#btnAddToCart").attr("disable", "true");
+    }
+
+
+</script>

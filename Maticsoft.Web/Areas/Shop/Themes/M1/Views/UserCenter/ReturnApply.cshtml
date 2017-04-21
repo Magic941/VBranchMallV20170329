@@ -1,0 +1,194 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+@model  Maticsoft.Model.Shop.Order.OrderItems
+@{
+    Maticsoft.BLL.Shop.Order.Orders OrderInfoBll = new Maticsoft.BLL.Shop.Order.Orders();
+    Maticsoft.Model.Shop.Order.OrderInfo orderInfo = OrderInfoBll.GetModel(Model.OrderId);
+    Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType returnType = Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Goods;
+    if (orderInfo.PaymentStatus == (int)Maticsoft.Model.Shop.Order.EnumHelper.PaymentStatus.Paid && orderInfo.ShippingStatus == (int)Maticsoft.Model.Shop.Order.EnumHelper.ShippingStatus.UnShipped)
+    {
+        //已支付未发货的时候=申请退款
+        returnType = Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Money;
+    }
+    else if (orderInfo.PaymentStatus == (int)Maticsoft.Model.Shop.Order.EnumHelper.PaymentStatus.Paid && (orderInfo.ShippingStatus == (int)Maticsoft.Model.Shop.Order.EnumHelper.ShippingStatus.Shipped || orderInfo.ShippingStatus == (int)Maticsoft.Model.Shop.Order.EnumHelper.ShippingStatus.ConfirmShip))
+    {
+        //已支付已发货(已收货但不满意)的时候=申请退货
+        returnType = Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Goods;
+    }
+    else
+    {
+        //维修  或者  调休
+        returnType = Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.ExchangeGoods;
+    }
+}
+<style>
+ .returned_purchase dt li span{
+        width:7em;
+        float:left;
+        text-align:right;
+    }
+.returned_purchase dt li div {
+        float:left;
+        padding-left:10px;
+    }
+.purchase4 em{
+        width:20px;
+        height:20px;
+        line-height:20px;
+        display:inline-block;
+        *display:inline;zoom:1;
+        text-align:center;
+        border:1px solid #ccc;
+        padding-bottom:2px;
+    }
+.purchase6 i{
+        display:block;
+    }
+.purchase4 input {
+        width:20px;
+        height:20px;
+        line-height:20px;
+        text-align:center;
+    }
+ .returned_purchase dt li,.return_rmation li {
+        padding-top:10px;
+    }
+.return_rmation li label {
+        width:7em;
+        float:left;
+        text-align:right;
+    }
+.return_rmation li textarea {
+        width:600px;
+    }
+   #allReturnAmount {
+       font-size:24px;
+       display:block;
+       color:#eb020b;
+    }
+.submit_cancel {
+    padding-left:250px;
+    }
+.submit_cancel a {
+        width:100px;
+        height:30px;
+        line-height:30px;
+        text-align:center;
+        display:inline-block;
+        *display:inline;zoom:1;
+        color:#fff;
+        border-radius:3px;
+    }
+</style>
+ <!--SWF图片上传开始-->
+    <link href="/admin/js/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet" type="text/css" />
+    <script src="/admin/js/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+    <script src="/admin/js/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="@Url.Content("/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/returnApply.js")"></script>
+
+ <div class="my_order_right">
+     <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">申请退货/款</h3>
+        </div>
+    </div>
+
+      @if(Model!=null){
+          <form method="post" id="Formmy" action="/UserCenter/SubReturnApply" enctype="multipart/form-data">
+          <input type="hidden" name="orderId" value="@Model.OrderId" />
+          <input type="hidden" name="orderItemId" value="@Model.ItemId" />
+          <input type="hidden" name="productId" value="@Model.ProductId" />
+            <div class="returned_purchase">
+            	<dl>
+                	<dt>
+                    	<ul class="clearfix">
+                        	<li class="purchasel clearfix">
+                            	<span>商品名称：</span>
+                                <div class="purchase6">
+                        	        <p>@Model.Name</p>
+                                    <em>@Model.Attribute</em>
+                                    <i>商品编号：@Model.SKU</i>
+                                </div>
+                            </li>
+                            <li class="purchase3 clearfix">
+                            	<span>价格：</span>
+                                <div class="purchase3">
+                                    <em>@Math.Round(Model.AdjustedPrice, 2)</em>
+                                </div>
+                            </li>
+                            <li class="purchase4 clearfix">
+                            	<span>数量：</span>
+                                <div class="purchase4">
+                                    @if (Model.ReturnOrderType != (int)Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Money)
+                                    { 
+                        	        <em class="reduceprice">-</em>
+                                    <input type="text" name="quantity" readonly="true" data-price="@Model.AdjustedPrice" data-max="@(Model.Quantity - Model.ReturnQty)" value="@(Model.Quantity - Model.ReturnQty)"/>	
+                                    <em class="increaseprice">+</em>
+                                    }
+                                    else
+                                    { 
+                                    <input type="text" name="quantity" readonly="true" data-price="@Model.AdjustedPrice" data-max="@(Model.Quantity - Model.ReturnQty)" value="@(Model.Quantity - Model.ReturnQty)"/>
+                                    }
+                                </div>
+                            </li>
+                            <li class="purchase5 clearfix">
+                            	<span>优惠：</span>
+                                <div class="purchase5">
+                        	        <em>@Math.Round(Model.SellPrice-Model.AdjustedPrice,2)</em>
+                                </div>
+                            </li>
+                        </ul>
+                    </dt>
+@*                    <dd class="clearfix">
+                        
+                    </dd>*@
+                </dl>
+            </div>
+
+          
+            <div class="return_rmation">
+            	<ul>
+                	<li>
+                    	<label>原因：</label>
+                        <select class="sele" name="returnReason">
+                            <option value="质量问题">质量问题</option>
+                            <option value="缺货">缺货</option>
+                            <option value="调货">调货</option>
+                        </select>
+                    </li>
+                    <li>
+                    	<label>问题描述：</label>
+                        <textarea rows="6" name="returnDescription"></textarea>                        
+                    </li>
+                    <li>
+                    	<label style="padding-top:10px;">退款金额：</label>
+                        <input value="@Model.AdjustedPrice"  id="productAdjustedPrice"  type="hidden"/>
+                        <em id="allReturnAmount">￥@Math.Round(Model.Quantity*Model.AdjustedPrice,2)</em>
+                    </li>
+                    @if (returnType != Maticsoft.Model.Shop.Order.EnumHelper.ReturnGoodsType.Money)
+                    { 
+                    @*<li>
+                    	 <label>退回地址：</label>
+                         <span> @Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("ReturnAddress") </span>
+                    </li>*@
+                    <li class="annex clearfix">
+                    	<label>上传附件：</label>
+                        <div class="annexa" id="uploadfileNamShow">                       
+                        </div>
+                    </li>
+                    <li class="add_file">
+                    	<label style="width:100px;">&nbsp;</label>
+                        <a href="javascript:void(0);" id="uploadify" >添加文件</a>
+                        <i>仅支持rar、zip、jpg、png、bmp格式，文件不能超过2M</i>
+                    </li>
+                    }
+                </ul>
+            </div>
+            <div class="submit_cancel" style="margin:20px auto 10px auto;">
+            	<a style="background:#eb020b;" class="submit_ad" href="javascript:;" id="submit_ad">提交</a>
+                <a style=" background:#7db365;" class="cancel_ad" href="javascript:;" id="cancel_ad" >取消</a>
+            </div>
+              </form>
+      }
+ </div>

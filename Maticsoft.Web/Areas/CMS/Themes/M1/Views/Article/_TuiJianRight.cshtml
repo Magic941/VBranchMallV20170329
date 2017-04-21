@@ -1,0 +1,68 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+
+@if (Model != null && Model.Count > 0)
+{  
+    <div class="recommend">
+        <div class="com-title" style="margin-bottom: 10px;"><span>
+            <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-7.png" alt="编辑推荐">编辑推荐</span></div>
+        <ul class="ulfix">           
+            @foreach (var item in Model)
+            {
+                if (item.Title.Length >= 18)
+                {
+                <li>
+                    <img src="@string.Format(@item.ThumbImageUrl,"T235x1280_")" alt="@item.Title" width="150" height="98">
+                    <p>
+                        <a href="#" target="_blank" title="@item.Title">@item.Title.Substring(0, 17)...</a>
+                    </p>
+                </li>
+                }
+                else
+                {
+                <li>
+                    <img src="@string.Format(@item.ThumbImageUrl,"T235x1280_")" alt="@item.Title" width="150" height="98">
+                    <p>
+                        <a href="#" target="_blank" title="@item.Title">@item.Title</a>
+                    </p>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+    
+}
+else
+{
+    <div class="recommend">
+        <div class="com-title" style="margin-bottom: 10px;"><span>
+            <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-7.png" alt="编辑推荐">编辑推荐</span></div>
+        <ul class="ulfix">
+            <li>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/13.jpg" alt="潘石屹拜访30多家互联网公司的背后——传统企业转型刻不容缓" width="150" height="98">
+                <p>
+                    <a href="#" target="_blank" title="潘石屹拜访30多家互联网公司的背后——传统企业转型刻不容缓">潘石屹拜访30多家互联网公司的背后——传统企</a>
+                </p>
+            </li>
+            <li>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/12.jpg" alt="裁判员和运动员的双重角色，腾讯在开放与封闭中来回纠结" width="150" height="98">
+                <p>
+                    <a href="#" target="_blank" title="裁判员和运动员的双重角色，腾讯在开放与封闭中来回纠结">裁判员和运动员的双重角色，腾讯在开放与封闭</a>
+                </p>
+            </li>
+            <li>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/10.jpg" alt="TFBOYS效应，三个十几岁的小鲜肉为什么会红？" width="150" height="98">
+                <p>
+                    <a href="#" target="_blank" title="TFBOYS效应，三个十几岁的小鲜肉为什么会红？">TFBOYS效应，三个十几岁的小鲜肉为什么会红？</a>
+                </p>
+            </li>
+            <li>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/11.jpg" alt="连接一切的背后是控制一切，微信卡在了自我构筑的高墙上" width="150" height="98">
+                <p>
+                    <a href="#" target="_blank" title="连接一切的背后是控制一切，微信卡在了自我构筑的高墙上">连接一切的背后是控制一切，微信卡在了自我构</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+    
+}

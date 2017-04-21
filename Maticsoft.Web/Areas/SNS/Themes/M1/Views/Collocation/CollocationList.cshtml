@@ -1,0 +1,110 @@
+﻿@using Maticsoft.Model.SNS
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.PhotoList
+<!-- 照片列表-->
+<div id="PhotoListDiv">
+    <script type="text/javascript">
+        $(function() {
+            $('.emerge').unbind('hover').hover(function() {
+                $(this).find('#dodge').show();
+            }, function() {
+                $(this).find('#dodge').hide();
+            });
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    Params: { orderby: '@Html.ViewContext.RouteData.Values["orderby"]' },
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Collocation/CollocationWaterfall",
+                    Success: function () {
+                        resizeImg('.imagewalls', 211, 1280);
+                    }
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.search_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "col_",
+                //列数
+                ColumnNumber: 4
+            });
+            resizeImg('.imagewalls', 211, 1280);
+        });
+    </script>
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+    <div class="imagewalls">
+        @{
+            for (int i = 0; i < Model.PhotoList4FourCol.Length; i++)
+            {
+            <div id="col_@(i)" class="col1" @(i == 3 ? "style=margin-right:0px;" : "")>
+                @foreach (PostContent item in Model.PhotoList4FourCol[i])
+                {
+                    <div class="i_w_y">
+                        <div id="emerge" class="emerge">
+                            <p>
+                                <a class="pic_load" href="@item.StaticUrl">
+                                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))"  alt="@item.TargetDescription"/></a></p>
+                            <div id="dodge">
+                                <a href="javascript:void(0)" class="addalbum" imagetype="Photo"  targetid=@item.TargetId imageurl="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T116x170_"))">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>
+                        </div>
+                        <div class="search_com">
+                            <div class="search_com_a">
+                                <p class="search_com_a1">
+                                    <a href="javascript:void(0)" class="favourite" imagetype="Photo" targetid=@item.TargetId>
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" /></a></p>
+                                <p class="search_com_a2">
+                                    <a href="javascript:;">@item.FavouriteCount</a></p>
+                            </div>
+                                       <div class="search_com_b" style="cursor: pointer">
+                                <p class="search_com_b1">
+                                    <a href="javascript:;">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                                <p class="search_com_b2">
+                                    <span class="commentcount">@item.CommentCount</span>评论</p> 
+                                    <input class="TargetId" type="hidden" value="@item.TargetId" imagetype="Photo"/>
+                            </div>
+                           
+                            <div class="clear">
+                            </div>
+                        </div>
+                           <div class="search_iss">
+                        @{if (item.CommentCount > 0 && item.CommentList.Count > 0)
+                          {
+                              Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", item.CommentList);
+
+                          }}  <div class="clear">
+                                </div>
+                         </div>   
+                    </div>
+                }
+            </div>
+            }
+        }
+    </div>
+    <div class="clear">
+    </div>
+    <div class="search_pages" style="background-image: none;">
+        @Html.AjaxPager(Model.PhotoPagedList, new PagerOptions
+        {
+            CssClass = "in_pages",
+            ShowDisabledPagerItems = false,
+            AlwaysShowFirstLastPageNumber = false,
+            PageIndexParameterName = "pageIndex",
+            NumericPagerItemCount = 10,
+            CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+            NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+            NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+            SeparatorHtml = ""
+        }, new AjaxOptions { UpdateTargetId = "PhotoListDiv" })
+    </div>
+</div>
+<!-- 照片列表end-->

@@ -1,0 +1,38 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@{
+    
+@*    <script type="text/javascript">
+        $(function () {
+            $.lazyFixedLoadImg('.item', 175, 228);
+        });
+    </script>*@
+
+
+    if (Model != null)
+    {
+  
+            foreach (var item in Model)
+            {
+                <ul>
+                    <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4" class="listimg">
+                        <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  width="100"/></a>
+                    <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4">
+                        <h3>
+                            @item.ProductName
+                        </h3>
+                        <small class="zeng">￥@item.LowestSalePrice.ToString("F")
+                        </small>@*<span class="valuation-star">
+                                     <span class="mu-star">
+                                         <span class="mu-starv" style="width: 80%"></span>
+                                     </span>
+                                     <span
+                                         class="txt-star">已有103人评价
+                                     </span>
+                                 </span>*@ </a>
+                </ul>
+            }
+           
+   
+    }
+
+}

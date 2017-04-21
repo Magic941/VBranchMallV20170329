@@ -1,0 +1,15 @@
+﻿@model List<Maticsoft.Model.Shop.Products.AttributeInfo> 
+
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+    <h2 class="h-h2 attrValue">
+        <a href="javascript:void(0)" class="link-tit">@item.AttributeName</a>
+    </h2>
+    <div>
+        @Html.Action("AttrValues", new { AttrId = item.AttributeId, viewName = "_AttrValues" })
+    </div>
+    }
+}

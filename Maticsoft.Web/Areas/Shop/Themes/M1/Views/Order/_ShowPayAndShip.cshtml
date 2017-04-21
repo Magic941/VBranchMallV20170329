@@ -1,0 +1,60 @@
+﻿@model Maticsoft.ViewModel.Shop.PayAndShip
+
+@{
+    string options = "<select onchange =\"changeFreight(this)\"  class=\"mgL5 w150\" name=\"\">";
+    if (Model.ListShippingType != null && Model.ListShippingType.Count > 0)
+    {
+        foreach (Maticsoft.Model.Shop.Shipping.ShippingType item in Model.ListShippingType)
+        {
+            options += "<option value=\"" + item.ModeId + "\">" + item.Name + "</option>";
+        }
+        options += "</select>";
+    }
+    string freightinfo = (string)ViewBag.FreightFeeList == null ? "0.00" : (string)ViewBag.FreightFeeList;
+    
+}
+<script type="text/javascript">
+    var tag;
+    $(function () {
+        $(".ddl_Freight").html('@Html.Raw(@options)');
+        var totalFreightFee = 0;
+        var FreightFeeList = $("#FreightFeeList").val();
+        if (FreightFeeList!="") {
+            var obj = eval("(" + FreightFeeList + ")");
+            
+            for (var i = 0; i < obj.length; i++) {
+                $("#freightPriceId" + obj[i].supplier).text('￥' + obj[i].fee);
+                $("#freightPriceHidden" + obj[i].supplier).val(obj[i].fee);
+                $("#priceEvrShop" + obj[i].supplier).text((parseFloat(obj[i].fee) + parseFloat($("#xiaoji" + obj[i].supplier).val())));
+                totalFreightFee += obj[i].fee;
+            }
+        }
+        
+        $("#NeedPay").text("￥" + (parseFloat(totalFreightFee) + parseFloat($("#totalPrice").val()))); 
+        $("#totalNeedPay").val((parseFloat(totalFreightFee) + parseFloat($("#totalPrice").val())));
+
+        if (tag!=1) {
+            Edit_Payment($("#PaymentEdit"), false);
+            tag = 1;
+        }
+        
+    });
+</script>
+<h3>支付方式<span id="payment-ship_edit_action"><a href="#none" id="PaymentEdit" onclick="Edit_Payment(this, false)">[修改]</a></span></h3>
+<div class="step-content">
+    <div id="payment-ship" class="sbox-wrap" style="position: relative;">
+        <div class="msg">
+            <div>
+                @if (Model.CurrentPaymentMode != null)
+                {
+                    <div>
+                        @Model.CurrentPaymentMode.Name <span class="easyPayWarning"></span>
+                    </div>
+                    <input type="hidden" id="PaymentModeId" value="@Model.CurrentPaymentMode.ModeId" />
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" id="FreightFeeList" value="@freightinfo" />
+

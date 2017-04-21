@@ -1,0 +1,26 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="cf">
+    <div class="hd">
+        <div class="pl30 pr10 cf rel">
+            <span class="fb f14 c6 ml10">相关商品</span>
+        </div>
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="bd">
+            <ul class="list hotitem">
+                @foreach (var item in Model)
+                {
+                    <li class="item">
+                    @*<a target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"
+                                title="@item.ProductName" class="item-desc">*@
+                                <a href="@item.SeoUrl" target="_blank" title="@item.ProductName" class="item-desc">
+                        <img title="@item.ProductName" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T175X228_")"
+                                      alt="" width="175" height="228">
+                        <span class="item-price"><em>@item.LowestSalePrice.ToString("F")</em></span> <span
+                            class="item-title">@item.ProductName</span> </a></li>
+                }
+            </ul>
+        </div>
+    }
+</div>

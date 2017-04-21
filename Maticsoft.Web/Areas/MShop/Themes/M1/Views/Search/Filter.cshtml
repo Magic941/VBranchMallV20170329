@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@{
+    string cid = Request.RequestContext.RouteData.Values["id"] != null ? Request.RequestContext.RouteData.Values["id"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "";
+}
+<script type="text/javascript">
+    $(function () {
+        //点击属性
+        $(".cate_list").click(function () {
+            $(".categoryList").toggle();
+        });
+        //点击品牌
+        $(".brand").click(function () {
+            $(".brandList").toggle();
+        });
+        //重置筛选条件
+        $(".btn-reset").click(function () {
+            $("#hfBrand").val("0");
+            $("#hfCateId").val("@(cid)");
+            $(".brandList").find(".brandValues").find("a").removeClass("curr");
+            $(".brandList").find(".brandValues").find("a[BrandId='0']").addClass("curr");
+            $(".categoryList").find(".cateValues").find("a").removeClass("curr");
+        });
+        //选中品牌值
+        $(".brandValues").click(function () {
+            $(".brandList").find(".brandValues").find("a").removeClass("curr");
+            $(this).find("a").addClass("curr");
+            var value = $(this).find("a").attr("BrandId");
+            $("#hfBrand").val(value);
+        });
+        //选中分类
+        $(".cateValues").click(function () {
+            $(".categoryList").find(".cateValues").find("a").removeClass("curr");
+            $(this).find("a").addClass("curr");
+            var value = $(this).find("a").attr("CateId");
+            $("#hfCateId").val(value);
+        });
+        //应用本次筛选条件
+        $(".btn-goset").click(function () {
+            var brandId = $("#hfBrand").val();
+            var cateId = $("#hfCateId").val();
+            location.href = $Maticsoft.BasePath +"s/" + cateId + "/" + brandId + "/hot/0-0/@(keyword)";
+        });
+    })
+</script>
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+      @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="good-sift">
+    <input id="hfBrand" type="hidden" value="0" />
+    <input id="hfCateId" type="hidden" value="@cid" />
+    <div class="sift-btn">
+        <ul class="btn-lst">
+            <li><a href="javascript:;" class="btn-reset">重置条件</a></li>
+            <li><a href="javascript:;" class="btn-goset">应用本次筛选</a></li>
+        </ul>
+    </div>
+    <h2 class="h-h2 brand">
+        <a href="javascript:void(0)" class="link-tit on ">品牌</a>
+    </h2>
+    <!--品牌-->
+    @Html.Action("BrandList","Product", new { Cid = cid, Top = -1 })
+    <!--分类-->
+     @Html.Action("ProductCategory", new { Cid = cid, Top = -1, ViewName = "_CategoryList" })
+    <div class="sift-btn">
+        <ul class="btn-lst">
+            <li><a href="javascript:;" class="btn-reset">重置条件</a></li>
+            <li><a href="javascript:;" class="btn-goset">应用本次筛选</a></li>
+        </ul>
+    </div>
+</div>

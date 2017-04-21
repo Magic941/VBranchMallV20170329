@@ -1,0 +1,30 @@
+﻿@model  List<Maticsoft.Model.Shop.Supplier.SupplierInfo>
+            
+      <div class="w980">
+        <div class="hp-box bigsale">
+            <div class="hp-hd" style="margin-bottom: 6px;">
+                <h1>
+                    <a href="javascript:void(0)" title="精品店铺"
+                       target="_blank" style="color: black;font-weight: bold;font-size: x-large;">精品店铺</a></h1>
+            </div>
+            @if (Model != null && Model.Count > 0)
+            {
+                <div class="hp-bd">
+                    @foreach (var item in Model)
+                    {
+                        <a href="@(ViewBag.BasePath)Store/@item.SupplierId"  title="@item.ShopName" target="_blank">
+                            <img width="187" height="187" alt="@item.ShopName"   src="/Partial/SuppLogo?id=@(item.SupplierId)&size=T200X200" onerror="this.onerror=null;this.src='/Content/themes/base/images/404/404_200X200.jpg'"   class="fl mr10" style="margin-right: 5px">
+                        </a> 
+                    }
+                  
+                </div>
+                
+                
+                
+            }
+            
+        </div>
+    </div>
+      
+            
+

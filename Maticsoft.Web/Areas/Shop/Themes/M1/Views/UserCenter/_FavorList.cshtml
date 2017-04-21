@@ -1,0 +1,79 @@
+﻿ @using Maticsoft.Model.Shop.Products
+@using Webdiyer.WebControls.Mvc
+ @model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.ViewModel.Shop.FavoProdModel> 
+
+ @if (Model != null)
+ {
+     <table width="100%" border="0" class="user_dingdan" cellspacing="0" cellpadding="0">
+         <tr>
+             <th>商品图片</th>
+             <th>商品信息</th>          
+             <th style="width: 100px;">操作</th>
+         </tr>
+
+         @foreach (var item in Model)
+         {
+             if (item.SaleStatus == (int) ProductSaleStatus.OnSale) 
+             {
+                 <tr>
+                     <td class="bor">  
+                         <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank"><img title="" width="115px" height="115px"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  onerror="this.onerror='';this.src='/Content/themes/base/Shop/images/none.png'" ></a></td>
+                     <td class="bor" style="text-align: left;padding-left: 20px;" ><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank">@item.ProductName</a></td>
+                     @*<td class="bor" ><strong>￥@item.SellPrice.ToString("F")</strong></td>*@
+                     <td align="center" style="width: 100px;">  <a href="javascript:;"  class="btnDelete"  itemid="@item.FavoriteId">取消收藏</a></td>             
+                 </tr>
+             }
+             else
+             {
+                 <tr style="background-color: ghostwhite;">
+                     <td class="bor" >  
+                          <img width="102px" title="此商品已下架" height="100px"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  onerror="this.onerror='';this.src='/Content/themes/base/Shop/images/none.png'" > </td>
+                     <td class="bor" style="text-align: left;padding-left: 20px;" title="此商品已下架"> @item.ProductName  </td>
+                   @* <td class="bor" ><strong>￥@item.SellPrice.ToString("F")</strong></td> *@
+                     <td align="center" style="width: 100px;">  <a href="javascript:;"    class="btnDelete"  itemid="@item.FavoriteId">取消收藏</a></td>
+             
+                 </tr>
+             }
+
+
+         }     
+     </table>
+
+     <script type="text/javascript">
+         $(".btnDelete").click(function () {
+             var itemId = $(this).attr("itemid");
+             $.ajax({
+                 type: "POST",
+                 dataType: "text",
+                 url: "@(ViewBag.BasePath)UserCenter/RemoveFavorItem",
+                 data: { ItemId: itemId },
+                 success: function (data) {
+                     if (data == "Ok") {
+                         $("#divmyfavorlist").load("@(ViewBag.BasePath)UserCenter/FavorList");
+                     } else {
+                         ShowFailTip("服务器繁忙，请稍候再试！");
+                     }
+                 }
+             });
+         });
+     </script>
+     
+      @Html.AjaxPager(Model, new PagerOptions
+ {
+     PageIndexParameterName = "pageIndex",
+     NumericPagerItemCount = 6,
+     NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+     NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+     CssClass = "in_pages",
+     SeparatorHtml = ""
+ }, new AjaxOptions { UpdateTargetId = "divmyfavorlist" })
+ }
+ else
+ {
+     <p style="margin-top:20px;margin-left:20px;font-size: large;">
+     <span>亲，您暂时还没有收藏商品哦</span><br />
+     <span>去<a href="@(ViewBag.BasePath)Product" target="_blank" >商品频道</a>挑选喜欢的商品</span> </p>
+ }
+
+
+

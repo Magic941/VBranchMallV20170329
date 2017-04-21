@@ -1,0 +1,319 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+<link href="/Areas/Shop/Themes/M1/Content/card/css/style.css" rel="stylesheet" />
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#HLactive").click(function () {
+            $(this).addClass("chose");
+            $("#MyHLcard").removeClass("chose");
+            $("#MyActiveOther").removeClass("chose");
+            $(".card-Method").show();
+            $(".cardother-Method").hide();
+            $(".Orders").hide();
+        });
+        $("#MyHLcard").click(function () {
+            $(this).addClass("chose");
+            $("#HLactive").removeClass("chose");
+            $("#MyActiveOther").removeClass("chose");
+            $(".card-Method").hide();
+            $(".cardother-Method").hide();
+            $("#LoadData").load("/UserCenter/HlCardList")
+        });
+        $("#MyActiveOther").click(function () {
+            $(this).addClass("chose");
+            $("#HLactive").removeClass("chose");
+            $("#MyHLcard").removeClass("chose");
+            $(".card-Method").hide();
+            $(".cardother-Method").show();
+            $(".Orders").hide();
+        });
+
+        $(".btn_active").click(function () {
+            if (!$("#agreement").attr("checked")) { alert("请同意注册协议！"); return }
+
+            $("#onloading").show();
+            $(".btn-jihuo").hide();
+            var cardNum = $("#CardNum").val();
+            var cardPwd = $("#CardPwd").val();
+            if (cardNum == "") {
+                ShowFailTip("请填写卡号");
+                $("#onloading").hide();
+                $(".btn-jihuo").show();
+                return;
+            }
+            if (cardPwd == "") {
+                ShowFailTip("请填写密码");
+                $("#onloading").hide();
+                $(".btn-jihuo").show();
+                return;
+            }
+            $.ajax({
+                url: '/HlCardReq.aspx',
+                type: 'post', dataType: 'text', timeout: 10000,
+                async: false,
+                data: { action: "ACTIVE", CardNum: cardNum, CardPwd: cardPwd },
+                success: function (data) {
+                    var obj = eval("(" + data + ")");
+                    if (obj.STATUS) {
+                        ShowFailTip("卡激活异常，请联系客服。");
+                        $("#onloading").hide();
+                        $(".btn-jihuo").show();
+                        return;
+                    }
+                    if (obj.msg == "" && obj.result == "") {
+                        return;
+                    }
+                    if (obj.msg) {
+                        ShowFailTip(obj.msg);
+                        $("#onloading").hide();
+                        $(".btn-jihuo").show();
+                    }
+                    else {
+
+                        //location.href = "/Account/JKAgreement";
+                        location.href = "/Shop/Account/JKCardActive";
+                    }
+                }
+            });
+        });
+
+
+        //$("#CardNum").val("HL2000YAA444000003");
+        //$("#CardPwd").val("89761475");
+    })
+</script>
+
+@*<div class="mem_ber_pu">
+    <a href="#">
+        <img src="/Areas/Shop/Themes/M1/Content/images/images/zhuce/den_3_3.png" width="492" height="160" /></a>
+</div>
+<div class="mem_ber_pur">
+    <ul>
+        <li class="card_a">
+            <label>健康卡卡号：</label>
+            <div class="us_er">
+         
+                <bdo></bdo>
+            </div>
+        </li>
+        <li class="card_a">
+            <label>健康卡密码：</label>
+            <div class="secret_code">
+                
+                <bdo></bdo>
+            </div>
+        </li>
+        <li class="card_b"><em><span id="onloading" style="display: none">
+            <img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span></em></li>
+        <li class="regi_stra_ti_on clearfix">
+            <a href="#" class="red_den btn_active">去激活</a>
+            <a href="/Account/Login" class="my_zhu">我要登录</a>
+        </li>
+      
+    </ul>
+</div>
+<div class="step buju">
+    <ul class="clearfix">
+        <li class="active">
+            <dl>
+                <dt>第一步</dt>
+                <dd>验证卡号及密码</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第二步</dt>
+                <dd>基本资料</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第三步</dt>
+                <dd>确认协议</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第四步</dt>
+                <dd>成功激活</dd>
+            </dl>
+        </li>
+    </ul>
+</div>*@
+
+
+
+<div class="header">
+    <div class="wrapper">
+        <h1 class="logo">
+            <a href="/"> </a>
+        </h1>
+    </div>
+</div>
+<div class="container" style="height: 700px;">
+    <div class="wrapper">
+        <div class="activation">
+            <div class="activation_nav">
+                <ul class="clearfix">
+                    <li class="active">
+                        <b>1</b>
+                        <span>激活</span>
+                    </li>
+                    <li>
+                        <b>2</b>
+                        <span>提交激活卡</span>
+                    </li>
+                    <li>
+                        <b>3</b>
+                        <span>保险协议</span>
+                    </li>
+                    <li>
+                        <b>4</b>
+                        <span>激活成功</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="register clearfix">
+                <div class="register_left">
+                    <div class="prompt"></div>
+                    <div class="registration">
+                        <ul>
+                            <li class="card">
+                                <label>激活卡号：</label>
+                                <input type="text" id="CardNum" name="acc" style="font-size: 25px" />
+                                <bdo></bdo>
+
+                            </li>
+
+                            <li class="cipher">
+                                <label>激活密码：</label>
+                                <input type="password" id="CardPwd" name="pwd" style="font-size: 25px" />
+                                <bdo></bdo>
+                                <em></em>
+                            </li>
+                            <li>
+                                <input style="margin-top: 15px; width: 15px; height: 15px; margin-left: 10px; float: left;" type="checkbox" name="agreement" id="agreement" />
+                                <span style="float: left; margin-left: 5px;"><a href="javascript:void(1);" onclick="javascript:viewagremment();">同意并已阅读此说明【查看协议】</a></span>
+
+                            </li>
+                            <li class="button">
+                                <a class="green btn_active" href="javascript:void(0)">开始激活</a>
+                                @*  <a class="huang" href="#">下一步</a>*@
+                                <a class="gold" href="/Account/Login">VIP会员登陆</a>
+                            </li>
+                            <li class="card_b"><em><span id="onloading" style="display: none">
+                                <img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span></em></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="register_right">
+                    <img src="/Areas/Shop/Themes/M1/Content/card/images/img_01.png" width="367" height="304" />
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<script>
+    function viewagremment() {
+
+        $("#divAgreement").dialog("open");
+
+
+    }
+
+
+    $(window).load(function () {
+
+        $("#divAgreement").dialog({
+            bgiframe: true,
+            resizable: false,
+            height: 600,
+            modal: true,
+            width: 700
+        });
+
+        $("#divAgreement").dialog("close");
+
+
+    });
+
+</script>
+
+
+<!--会员卡激活服务说明-->
+<div id="divAgreement">
+    <div class="content_frame">
+        <span style="display: block; text-align: center;">用户注册协议</span>
+       @* <textarea style="width: 100%; height: 530px; border: 0px" readonly="readonly"> 
+                         中国人寿保险股份有限公司
+                        国寿绿舟意外伤害保险（2013 版）利益条款
+第一条 保险合同构成 国寿绿舟意外伤害保险（2013 版）合同（以下简称本合同）由保险单及所附国寿绿舟意外伤害保险（2013 版）利益条款（以下简称本合同利益条款）、短期保险基本条款（以下简称本 合同基本条款）、批注、附贴批单、投保单，以及与本合同有关的投保文件、声明和其他书面协 议共同构成。
+第二条 投保范围 六十五周岁以下身体健康者，均可作为被保险人，由本人或对其具有保险利益的其他人作为投保人向本公司投保本保险。
+第三条 保险期间和续保 本合同的保险期间最长为一年；除另有约定外，自本合同生效之日起至约定终止日二十四时止，由投保人在投保时与本公司协商确定。 投保人可于保险期间届满之前或在本合同约定的交费宽限期内，经本公司同意后，向本公司交付续保保险费，本合同于保险期间届满的次日起延续有效。本合同可按上述方式续保至被 保险人年满七十周岁后的第一个生效对应日。本公司保留终止本合同续保的权利，并有权调整保险费收费标准。
+第四条 保险责任 在本合同保险期间内，本公司依下列约定承担保险责任：
+一、被保险人遭受意外伤害，并自该意外伤害发生之日起一百八十日内因该意外伤害导致 身故的，本公司按本合同约定的保险金额扣除已给付伤残保险金后的余额给付身故保险金，本 合同终止。
+二、被保险人遭受意外伤害，并自该意外伤害发生之日起一百八十日内因该意外伤害导致 身体伤残的，本公司根据《人身保险伤残评定标准（行业标准）》（以下简称《标准》，见附表） 的规定，按本合同约定的保险金额乘以该处伤残的伤残等级所对应的保险金给付比例给付伤残 保险金。当同一保险事故导致两处或两处以上伤残时，本公司仅按其中一处的伤残等级给付伤残保 险金：如果各处的伤残等级不完全相同且最重的伤残等级所对应的伤残只有一处，本公司按最 重的伤残等级所对应的保险金给付比例给付伤残保险金；如果各处的伤残等级完全相同或最重 的伤残等级所对应的伤残有两处或两处以上，本公司将该伤残等级在原基础上晋升一级（但最 高晋升至第一级），并按晋升后的伤残等级所对应的保险金给付比例给付伤残保险金。同一部位 和性质的伤残，不能采用《标准》条文两条以上或者同一条文两次以上进行评定。
+三、本公司给付的保险金以保险金额为限，一次或累计给付的保险金达到本合同的保险金 额时，本合同终止。
+第五条 责任免除 因下列情形之一，导致被保险人身故或伤残的，本公司不承担给付保险金的责任： 
+  一、保险单中特别约定本公司不承担保险责任的事项； 
+  二、投保人对被保险人的故意杀害、故意伤害； 
+  三、被保险人故意犯罪或抗拒依法采取的刑事强制措施； 
+  四、被保险人自杀或故意自伤，但被保险人自杀或故意自伤时为无民事行为能力人的除外； 
+  五、被保险人猝死，但另有约定的除外；
+      国寿绿舟意外伤害保险（2013 版）利益条款（第一页）
+  六、被保险人斗殴、醉酒，服用、吸食或注射毒品； 
+  七、被保险人酒后驾驶、无合法有效驾驶证驾驶或驾驶无有效行驶证的机动车； 
+  八、被保险人未遵医嘱私自使用或服用药物，但按使用说明的规定使用非处方药不在此限； 
+  九、被保险人参加潜水、跳伞、攀岩、驾乘滑翔机或滑翔伞、探险、摔跤、武术比赛、特技表演、赛马、赛车等高风险运动； 
+  十、被保险人的产前产后检查、妊娠（含宫外孕）、流产（含人工流产）、分娩（含剖腹产）、避孕、绝育手术、治疗不孕不育症以及上述原因引起的并发症； 
+  十一、被保险人的精神和行为障碍； 
+  十二、战争、军事冲突、暴乱或武装叛乱； 
+  十三、核爆炸、核辐射或核污染。
+   发生以上任何情形，导致被保险人身故的，本合同终止。未发生保险金给付的，本公司向 投保人退还本合同的现金价值，但投保人对被保险人故意杀害或伤害造成被保险人身故的，本 公司退还本合同的现金价值，作为被保险人遗产处理；已发生保险金给付的，本公司不退还现 金价值。
+第六条 保险金额 本合同的保险金额由投保人在投保时与本公司协商确定并在保险单上载明。
+第七条 保险费 本合同的保险费由投保人在投保或续保时一次交清。保险期间为一年的，投保人也可以按本合同约定的分期交付方式交付保险费。 分期交付分为半年交、季交和月交三种方式，保险费到期日分别为本合同半年、季和月的生效对应日。分期交付保险费的，第一期以后的保险费应在保险费到期日前或在交费宽限期内 交付。发生保险金给付时，本公司有权扣除该保单年度投保人应交而未交付的保险费。
+第八条 交费宽限期 分期交付保险费的，除另有约定外，每个保险费到期日的次日起六十日或保险期间为一年的，保险期间届满日的次日起六十日为交费宽限期。在交费宽限期内发生保险事故，本公司仍 承担保险责任，但有权从给付的保险金中扣除该保单年度投保人应交而未交付的保险费。超过 交费宽限期投保人仍未交付保险费的，本合同效力自交费宽限期届满的次日起终止。
+第九条 职业或工种变更 被保险人变更其职业或工种时，投保人或被保险人应于十日内以书面形式通知本公司。 被保险人所变更的职业或工种，依照本公司职业分类其危险程度降低时，本公司自接到通
+       知之日起按其差额向投保人退还未满期净保险费；其危险程度增加时，本公司于接到通知后， 自其职业变更之日起，按其差额增收未满期保险费。对于分期交付保险费的，本公司将按照被 保险人变更后的职业或者工种收取以后各期保险费。
+       被保险人所变更的职业或工种，依照本公司职业分类其危险程度增加，但未依前项约定通 知本公司并交付增收的保险费而发生保险事故的，本公司按其原交保险费与应交保险费的比例 计算并给付保险金。
+第十条 伤残程度鉴定 被保险人因意外伤害造成身体伤残的，应在治疗结束后，由二级以上（含二级）医院、本公司认可的其他医疗机构或鉴定机构出具能够证明被保险人伤残程度的资料。若本合同任何一 方对伤残程度的认定有异议，则以司法鉴定机构的鉴定结果为准。被保险人自遭受意外伤害之日起一百八十日内治疗仍未结束的，应按第一百八十日的身体 情况出具资料或进行司法鉴定。
+                
+                中国人寿保险股份有限公司
+        国寿附加绿洲意外住院定额给付团体医疗保险条款
+第一条 保险合同构成 国寿附加绿洲意外住院定额给付团体医疗保险合同（以下简称本附加合同）是中国人寿保险股份有限公司（以下简称本公司）特定团体人身保险合同(以下简称主合同)的附加合同，依 主合同投保人的申请，经本公司同意而订立。本附加合同由保险单及所附条款、批注、附贴批单、投保单，以及与本附加合同有关的投 保文件、声明和其他书面协议构成。
+第二条 投保范围 本附加合同的投保范围与主合同相同。
+第三条 保险期间 本附加合同的保险期间与主合同相同。
+第四条 保险责任 在本附加合同保险期间内，被保险人遭受意外伤害，并因该意外伤害在二级以上（含二级）医院或本公司认可的其他医疗机构住院治疗，本公司按本附加合同约定的住院日定额给付金额 乘以实际住院日数给付保险金，但对每次住院的给付日数以九十日为限。被保险人多次住院的， 累计给付日数以一百八十日为限。若被保险人本次住院治疗与前次住院原因相同，并且前次出 院与本次入院间隔不超过三十日，则本次住院与前次住院视为同一次住院。
+第五条 责任免除 因下列情形之一，导致被保险人住院治疗的，本公司不承担给付保险金责任： 一、被保险人的洗牙、牙齿美白、正畸、烤瓷牙、种植牙或镶牙等牙齿保健和修复； 二、主合同列明的其他责任免除事项。
+第六条 住院日定额给付金额和保险费 本附加合同被保险人的住院日定额给付金额由投保人在投保时与本公司协商确定并在保险单上载明。本附加合同的保险费依据被保险人的职业类别等因素计算。保险费的交付方式、保险费到期日与主合同相同。
+第七条 受益人 除本附加合同另有指定外，医疗保险金的受益人为被保险人本人。
+第八条 保险金的申请与给付 
+    一、在本附加合同保险期间内，被保险人因意外伤害住院治疗的，由受益人作为申请人，填写保险金给付申请书，并凭下列证明和资料向本公司申请给付保险金：
+       1．保险单或投保人证明； 
+       2．申请人的法定身份证明；
+       3．二级以上（含二级）医院或本公司认可的其他医疗机构出具的诊断证明（含相关的诊断 依据）、病历、住院及出院证明文件等资料；
+       4．若由代理人代为申请，则还应提供授权委托书、代理人法定身份证明等文件； 
+       5．本公司要求的申请人所能提供的与确认保险事故的性质、原因、伤害程度等有关的其他证明和资料。 
+    二、上述证明和资料不完整的，本公司将及时一次性通知申请人补充提供有关证明和资料。 
+    三、本公司收到申请人的保险金给付申请书及本条第一款所列的证明和资料后，将及时作出核定；情形复杂的，将在三十日内作出核定，但本附加合同另有约定的除外。经核定后确定 
+
+       国寿附加绿洲意外住院定额给付团体医疗保险条款（第一页）
+       中国人寿保险股份有限公司
+       国寿附加绿舟住院费用补偿医疗保险利益条款
+第一条 保险合同的构成 国寿附加绿舟住院费用补偿医疗保险合同（以下简称本附加合同）是本公司特定个人人身保险合同（以下简称主合同）的附加合同，依主合同投保人的申请，经本公司审核同意而订立。 本附加合同由保险单及所附国寿附加绿舟住院费用补偿医疗保险利益条款（以下简称本附 加合同利益条款）、短期保险基本条款（以下简称本附加合同基本条款）、批注、附贴批单、投保单，以及与本附加合同有关的投保文件、声明和其他书面协议共同构成。
+第二条 投保范围 六十周岁以下、身体健康者，均可作为被保险人，由主合同投保人向本公司投保本保险。
+第三条 保险期间和续保 本附加合同的保险期间为一年，除另有约定外，自本附加合同生效之日起至约定终止日二十四时止，由投保人在投保时与本公司协商确定。 本附加合同的续保与主合同相同。
+第四条 保险责任 在本附加合同保险期间内，被保险人遭受意外伤害或在本附加合同生效九十日（按照本公司相关规定续保的，不受前述九十日的限制）后因疾病在二级以上（含二级）医院或本公司认 可的其他医疗机构住院诊疗，对被保险人实际支出的、符合当地社会基本医疗保险支付范围的 住院医疗费用，本公司按 80％比例给付保险金。若被保险人已从当地社会基本医疗保险、公费 医疗或其他途径获得补偿或给付，本公司对剩余未获补偿或给付的部分按上述规定给付保险金。 保险期间届满被保险人治疗仍未结束的，本公司承担给付保险金责任的期限，自保险期间届满 次日起至出院之日止，但最长不超过九十日。本公司给付的保险金以保险金额为限，一次或累计给付的保险金达到本附加合同的保险金 额时，本附加合同终止。
+第五条 责任免除 因下列情形之一，导致被保险人支出住院医疗费用的，本公司不承担给付保险金的责任： 一、保险单中特别约定本公司不承担保险责任的疾病； 二、被保险人在本附加合同生效前的未愈疾病； 三、被保险人的遗传性疾病，先天性畸形、变形或染色体异常； 四、被保险人患性病； 五、被保险人的洗牙、牙齿美白、正畸、烤瓷牙、种植牙或镶牙等牙齿保健和修复； 六、被保险人的视力矫正手术或变性手术； 七、被保险人非因意外伤害导致的整容或矫形手术； 八、被保险人在台湾、香港、澳门地区或中国境外治疗； 九、主合同列明的其他责任免除事项。
+第六条 保险金额 本附加合同的保险金额由投保人在投保时与本公司协商确定并在保险单上载明。
+第七条 保险费 本附加合同保险费的交付方式、保险费到期日与主合同相同
+</textarea>*@
+
+    </div>
+</div>

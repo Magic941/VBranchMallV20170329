@@ -1,0 +1,91 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+<style type="text/css">
+    .project_title span {
+        height: 40px;
+        line-height: 40px;
+        font-family: "微软雅黑";
+        font-size: 18px;
+        padding-left: 20px;
+    }
+
+    .tglist dd {
+        position: relative;
+    }
+
+    .Sold_out {
+        position: absolute;
+        top: -298px;
+        left: 66px;
+    }
+
+    .tglist dd b {
+        float: right;
+    }
+</style>
+
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+        var GroupNum = item.BuyCount + item.GroupBase;
+    <dl class="tglist clearfix">
+        <dt>
+            <a href="/Product/GroupBuyDetail?id=@item.GroupBuyId&Groupbase=@GroupNum" tracknum="1" target="_blank">
+                <img width="290px" height="175px" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.GroupBuyImage, "T175X228_")" alt="@item.ProductName"></a>
+            <h4 style="height: 60px">@if (item.Subhead != null)
+                                     {
+                @Maticsoft.Common.StringPlus.SubString(item.Subhead, 50, "...")
+                                     }</h4>
+            <div style="height: 36px;"><a href="/Product/GroupBuyDetail?id=@item.GroupBuyId&Groupbase=@GroupNum" tracknum="1" target="_blank" title="@item.ProductName">@Maticsoft.Common.StringPlus.SubString(@item.ProductName, 50, "...")</a></div>
+
+            <p class="item-brand txtenddate" style="color:#808080;" startDate="@item.StartDate"  endDate="@item.EndDate" Product="@item.ProductId" curDate="@DateTime.Now" id="txtenddate_@(item.ProductId)" >
+              <span style="color: #808080;">0</span>天<span style="color: #808080;">0</span>时<span style="color: #808080;">0</span>分 <span style="color: #808080;">0</span>秒
+            </p>
+        </dt>
+        <dd><span><a href="/Product/GroupBuyDetail?id=@item.GroupBuyId&Groupbase=@GroupNum">
+            @if (@item.BuyCount >= item.MaxCount)
+            {
+                <div class="Sold_out">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/ai.png">
+                </div>
+                <img src="/Areas/Shop/Themes/M1/Content/images/cctv_2.png" />
+            }
+            else
+            {
+                <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/qg.png" />
+            }
+        </a></span>
+            <samp>￥@(item.Price.ToString("F"))</samp><b style="font-family: SimSun; text-decoration: line-through; vertical-align: middle;">￥@(item.MarketPrice.ToString("F")) </b></dd>
+
+        <dd><span><i></i><em><strong>@GroupNum</strong></em>人团购</span></dd>
+
+
+    </dl>
+       
+    }
+    <div class="clr"></div>
+  <div class="page">
+                           <script>
+
+                               function handleSuccess(data, xhr, status) {
+                                   // alert('onsuccess事件引发，返回的数据如下：' + data + '\r\n返回的 http请求代码：' + xhr.status + '，状态代码：' + status);
+                                   ProSecond();
+                               }
+                           </script>
+                           @Html.AjaxPager(Model, new PagerOptions
+                               {
+                                   ShowDisabledPagerItems = true,
+                                   AlwaysShowFirstLastPageNumber = true,
+                                   PageIndexParameterName = "pageIndex",
+                                   NumericPagerItemCount = 6,
+                                   CurrentPagerItemWrapperFormatString = "<a class=\"current\" >{0}</a>",
+                                   CssClass = "page",
+                                   SeparatorHtml = ""
+                               }, new AjaxOptions { UpdateTargetId = "ProductListDiv", OnSuccess = "handleSuccess" })
+                           <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+                           <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+                       </div>
+}
+
+

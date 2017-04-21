@@ -1,0 +1,285 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "健康卡激活";
+ }
+
+<link href="/Areas/MShop/Themes/M1/Content/Css/hlcard.css" rel="stylesheet" />
+<link href="/Areas/MShop/Themes/M1/Content/style.css" rel="stylesheet" />
+<style>
+   mem_ber_pur .back {
+        background:#F2F2F2;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("#HLactive").click(function () {
+            $(this).addClass("chose");
+            $("#MyHLcard").removeClass("chose");
+            $("#MyActiveOther").removeClass("chose");
+            $(".card-Method").show();
+            $(".cardother-Method").hide();
+            $(".Orders").hide();
+        });
+        $("#MyHLcard").click(function () {
+            $(this).addClass("chose");
+            $("#HLactive").removeClass("chose");
+            $("#MyActiveOther").removeClass("chose");
+            $(".card-Method").hide();
+            $(".cardother-Method").hide();
+            $("#LoadData").load("/UserCenter/HlCardList")
+        });
+        $("#MyActiveOther").click(function () {
+            $(this).addClass("chose");
+            $("#HLactive").removeClass("chose");
+            $("#MyHLcard").removeClass("chose");
+            $(".card-Method").hide();
+            $(".cardother-Method").show();
+            $(".Orders").hide();
+        });
+
+        $(".btn_active").click(function () {
+            $("#onloading").show();
+            $(".btn-jihuo").hide();
+            var cardNum = $("#CardNum").val();
+            var cardPwd = $("#CardPwd").val();
+            if (cardNum == "" || cardPwd == "") {
+                ShowFailTip("请填写卡号密码");
+                $("#onloading").hide();
+                $(".btn-jihuo").show();
+                return;
+            }
+            $.ajax({
+                url: '/HlCardReq.aspx',
+                type: 'post', dataType: 'text', timeout: 10000,
+                async: false,
+                data: { action: "ACTIVE", CardNum: cardNum, CardPwd: cardPwd },
+                success: function (data) {
+                    var obj = eval("(" + data + ")");
+                    if (obj.STATUS) {
+                        ShowFailTip("卡激活异常，请联系客服。");
+                        $("#onloading").hide();
+                        $(".btn-jihuo").show();
+                        return;
+                    }
+                    if (obj.msg == "" && obj.result == "") {
+                        return;
+                    }
+                    if (obj.msg) {
+                        ShowFailTip(obj.msg);
+                        $("#onloading").hide();
+                        $(".btn-jihuo").show();
+                    }
+                    else {
+                        @*//location.href = "@(ViewBag.BasePath)UserCenter/HLCardActive?type=" + obj.result + "&SalesName=" + obj.SalesName + "&CardNum=" + cardNum + "&CardSysId=" + obj.CardSysId;
+                        var form = document.createElement("form");
+                        form.action = "@(ViewBag.BasePath)Account/HLCardActive";
+                        form.method = "post";
+                        form.id = "cardactive";
+                        var input_type = document.createElement("input");
+                        input_type.type = "hidden";
+                        input_type.name = "type";
+                        input_type.value = obj.result;
+                        form.appendChild(input_type);
+                        var input_SalesName = document.createElement("input");
+                        input_SalesName.type = "hidden";
+                        input_SalesName.name = "SalesName";
+                        input_SalesName.value = obj.SalesName;
+                        form.appendChild(input_SalesName);
+                        var input_CardNum = document.createElement("input");
+                        input_CardNum.type = "hidden";
+                        input_CardNum.name = "CardNum";
+                        input_CardNum.value = cardNum;
+                        form.appendChild(input_CardNum);
+                        var input_CardSysId = document.createElement("input");
+                        input_CardSysId.type = "hidden";
+                        input_CardSysId.name = "CardSysId";
+                        input_CardSysId.value = obj.CardSysId;
+                        form.appendChild(input_CardSysId);
+                        var input_Pwd = document.createElement("input");
+                        input_Pwd.type = "hidden";
+                        input_Pwd.name = "password";
+                        input_Pwd.value = $("#CardPwd").val();
+                        form.appendChild(input_Pwd);
+                        document.body.appendChild(form);
+                        form.submit();*@
+                        location.href = "@(ViewBag.BasePath)Account/HLRegAgreement";
+                    }
+                }
+            });
+        });
+
+        $(".activeother").click(function () {
+            $("#o_onloading").show();
+            $(".btn-jihuo").hide();
+            var cardNum = $("#O_CardNum").val();
+            var cardPwd = $("#O_CardPwd").val();
+            if (cardNum == "" || cardPwd == "") {
+                ShowFailTip("请填写卡号密码");
+                $("#o_onloading").hide();
+                $(".btn-jihuo").show();
+                return;
+            }
+            $.ajax({
+                url: '/HlCardReq.aspx',
+                type: 'post', dataType: 'text', timeout: 10000,
+                async: false,
+                data: { action: "ACTIVE", CardNum: cardNum, CardPwd: cardPwd },
+                success: function (data) {
+                    var obj = eval("(" + data + ")");
+                    if (obj.STATUS) {
+                        ShowFailTip("卡激活异常，请联系客服。");
+                        $("#o_onloading").hide();
+                        $(".btn-jihuo").show();
+                        return;
+                    }
+                    if (obj.msg == "" && obj.result == "") {
+                        return;
+                    }
+                    if (obj.msg) {
+                        ShowFailTip(obj.msg);
+                        $("#o_onloading").hide();
+                        $(".btn-jihuo").show();
+                    }
+                    else {
+                        //location.href = "@(ViewBag.BasePath)UserCenter/HLCardActive?type=" + obj.result + "&SalesName=" + obj.SalesName + "&CardNum=" + cardNum + "&CardSysId=" + obj.CardSysId;
+                        if (obj.result == "simple") {
+                            ShowFailTip("此卡不能代激活。");
+                            $("#o_onloading").hide();
+                            $(".btn-jihuo").show();
+                            return;
+                        }
+                        var form = document.createElement("form");
+                        form.action = "@(ViewBag.BasePath)UserCenter/HLCardActiveInstead";
+                        form.method = "post";
+                        form.id = "cardactive";
+                        var input_SalesName = document.createElement("input");
+                        input_SalesName.type = "hidden";
+                        input_SalesName.name = "SalesName";
+                        input_SalesName.value = obj.SalesName;
+                        form.appendChild(input_SalesName);
+                        var input_CardNum = document.createElement("input");
+                        input_CardNum.type = "hidden";
+                        input_CardNum.name = "CardNum";
+                        input_CardNum.value = cardNum;
+                        form.appendChild(input_CardNum);
+                        var input_CardSysId = document.createElement("input");
+                        input_CardSysId.type = "hidden";
+                        input_CardSysId.name = "CardSysId";
+                        input_CardSysId.value = obj.CardSysId;
+                        form.appendChild(input_CardSysId);
+                        var input_Pwd = document.createElement("input");
+                        input_Pwd.type = "hidden";
+                        input_Pwd.name = "password";
+                        input_Pwd.value = $("#O_CardPwd").val();
+                        form.appendChild(input_Pwd);
+                        document.body.appendChild(form);
+                        form.submit();
+                    }
+                }
+            });
+        });
+        //$("#CardNum").val("HL2000YAA444000003");
+        //$("#CardPwd").val("89761475");
+    })
+</script>
+<div class="top"> <span>健康卡激活</span>
+@Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="mem_ber_pur" >
+    <ul class="back" style="background-image:none; padding:0 1em;" >
+        <li class="card_a">
+            <label>健康卡卡号：</label>
+            <div class="us_er">
+                <input type="text" id="CardNum" name="acc" />
+                @*<bdo></bdo>*@
+            </div>
+        </li>
+        <li class="card_a">
+            <label>健康卡密码：</label>
+            <div class="secret_code">
+                <input style="background:#cacaca;" type="password" id="CardPwd" name="pwd" />
+                @*<bdo></bdo>*@
+            </div>
+        </li>
+        <li class="card_b"><em><span id="onloading" style="display: none">
+            <img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span></em></li>
+        <li class="regi_stra_ti_on clearfix">
+            
+           
+        </li>
+        @*<li></li>*@
+    </ul>
+    <div class="" style="padding:0 2rem 2rem 2rem">
+        <a href="#" class="red_den btn_active" style="color:#FFFFFF">立即激活</a>
+         @*<a href ="@(ViewBag.BasePath)Account/HLRegAgreement">测试激活</a>*@
+        &nbsp;
+        <a href="@(ViewBag.BasePath)Account/Login" class="my_zhu" style="color:#DF486E;">我要登录</a>
+    </div>
+</div>
+
+<div class="step buju">
+    <ul class="clearfix">
+        <li class="active">
+            <dl>
+                <dt>第一步</dt>
+                <dd>验证卡密</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第二步</dt>
+                <dd>基本资料</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第三步</dt>
+                <dd>确认协议</dd>
+            </dl>
+        </li>
+        <li>
+            <dl>
+                <dt>第四步</dt>
+                <dd>成功激活</dd>
+            </dl>
+        </li>
+    </ul>
+</div>
+
+
+@*<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的健康卡</h3>
+        </div>
+        <div class="Order-head clearfix">
+            <div class="hd1 hd1-in chose" style="cursor: pointer" id="HLactive">
+                <h3>健康卡激活</h3>
+            </div>
+            <div class="hd1 hd1-in" style="cursor: pointer" id="MyHLcard">
+                <h3>我的健康卡</h3>
+            </div>
+            <div class="hd1 hd1-in" style="cursor: pointer" id="MyActiveOther">
+                <h3>健康卡代激活</h3>
+            </div>
+        </div>
+        <div class="card-Method">
+            <p><span class="txt-red">“健康卡激活”</span>请按提示输入您的健康卡号及密码，点击<span class="txt-red">“激活”</span>按钮。激活成功，您可以使用您的健康卡内的优惠券及各项福利。</p>
+            <p>
+                健康卡号：<input class="w150" name="" id="CardNum" type="text" />&nbsp;&nbsp;健康卡密码：<input id="CardPwd" style="border:solid 1px #dedede" class="w150" name="" type="password" />
+                <span id="loading"><span id="onloading" style="display:none"><img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span><a class="btn-jihuo btn_active" href="#"></a></span>
+            </p>
+            <p class="txt-gray"><i class="tip-ico"></i>温馨提示：健康卡可购买健康商城内直营的所有实体商品，入驻商家、商品及虚拟商品不能使用。具体请参阅<span class="txt-blue">健康卡使用规则</span>。</p>
+        </div>
+        <div class="cardother-Method" style="display:none">
+            <p><span class="txt-red">“健康卡激活”</span>请按提示输入您的健康卡号及密码，点击<span class="txt-red">“激活”</span>按钮。激活成功，您可以使用您的健康卡内的优惠券及各项福利。</p>
+            <p>
+                健康卡号：<input class="w150" name="" id="O_CardNum" type="text" />&nbsp;&nbsp;健康卡密码：<input id="O_CardPwd" style="border:solid 1px #dedede" class="w150" name="" type="password" />
+                <span id="o_loading"><span id="o_onloading" style="display:none"><img src='/Areas/Shop/Themes/M1/Content/images/load.gif'>正在请求数据，请稍等......</span><a class="btn-jihuo activeother" href="#"></a></span>
+            </p>
+            <p class="txt-gray"><i class="tip-ico"></i>温馨提示：健康卡可购买健康商城内直营的所有实体商品，入驻商家、商品及虚拟商品不能使用。具体请参阅<span class="txt-blue">健康卡使用规则</span>。</p>
+        </div>
+        <div id="LoadData"></div>
+    </div>
+
+</div>*@

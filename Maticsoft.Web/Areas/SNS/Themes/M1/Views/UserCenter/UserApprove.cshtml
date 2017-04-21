@@ -1,0 +1,192 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@model Maticsoft.Model.Members.UsersApprove
+@section head{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery/maticsoft.jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Areas/SNS/Themes/M1/Content/Scripts/userApprovehelper.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            Upload("#idCardPFile", 1);
+            Upload("#idCardFFile", 0);
+        });
+
+        function Upload(control, actiontype) {
+            $(".btn-success").find("input").css("height", "28px");
+            var uploadbutton = $(control).html();
+            var templatehtml = '<div class="qq-uploader span12">' +
+                '<pre class="qq-upload-drop-area span12"><span>{dragZoneText}</span></pre>' +
+                '<div class="qq-upload-button btn-success" style="width: auto;padding-top: 0px;background:#fff;">{uploadButtonText}</div>' +
+                '<span class="qq-drop-processing"><span>{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
+                '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center; "></ul>' +
+                '</div>';
+            var uploader = new qq.FineUploader({
+                element: $(control)[0],
+                request: {
+                    endpoint: '/Upload/UploadApproveImage.aspx'
+                },
+                text: {
+                    uploadButton: uploadbutton,
+                    waitingForResponse: "\r处理中",
+                    dragZone: "上传",
+                    dropProcessing: "正在上传，请稍候..."
+                },
+                multiple: false,
+                template: templatehtml,
+                validation: {
+                    allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                    sizeLimit: 10485760 // 10M = 10 * 1024*1024 bytes
+                },
+                callbacks: {
+                    onComplete: function (id, fileName, responseJSON) {
+                        $(".btn-success").find("input").css("height", "28px");
+                        if (responseJSON.success) {
+                            $(".qq-upload-list").hide();
+                            $.jBox.tip('上传成功', 'success');
+                            $(".btn-success").css("overflow", "");
+                            if (actiontype == 1) {
+                                $("#hiddenIdCardPreImage").val(responseJSON.data);
+                                $("#idCardPTip").empty();
+                                $("#idCardPTip").append(succTip.format(""));
+                            } else {
+                                $("#hiddenIdCardNeImage").val(responseJSON.data);
+                                $("#idCardFTip").empty();
+                                $("#idCardFTip").append(succTip.format(""));
+                            }
+                        } else {
+                            ShowFailTip("服务器没有返回数据，可能服务器忙，请稍候再试：");
+                        }
+                    }
+                }
+            });
+        }
+    </script>
+}
+<input type="hidden" id="currentpage" value="span_7" />
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            实名认证</p>
+    </h1>
+    <div class="approve">
+        <div class="approve_nav">
+            <img src="/Areas/SNS/Themes/M1/Content/images/approve1.jpg" /></div>
+        <div class="approve_c">
+            <div class="approve_c_a">
+                @if (Model != null)
+                {
+                    <table width="470" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="89" height="60" align="right">
+                                真实姓名：
+                            </td>
+                            <td width="221">
+                                <input id="txtTrueName" name="txtTrueName" type="text" style="color: rgb(153, 153, 153);width: 200px;" class="g-ipt" value="@Model.TrueName" />
+                            </td>
+                            <td width="163">
+                                @*<span>！请填写真实姓名</span>*@
+                                <div id="trueNameTip" style="width: 163px; margin: 0px; padding: 0px; background-color: transparent;
+                                    background-position: initial; background-repeat: initial;">
+                                    <!--提示信息开始-->
+                                    <!--提示信息结束-->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="60" align="right">
+                                身份证号：
+                            </td>
+                            <td>
+                                <input id="txtIdCard" name="txtIdCard" type="text" style="color: rgb(153, 153, 153);width: 200px;" class="g-ipt"  value="@Model.IDCardNum" />
+                            </td>
+                            <td>
+                                @*<span>！请正确输入身份证号码</span>*@
+                                <div id="idCardTip" style="width: 163px; margin: 0px; padding: 0px; background-color: transparent;
+                                    background-position: initial; background-repeat: initial;">
+                                    <!--提示信息开始-->
+                                    <!--提示信息结束-->
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="60" align="right">
+                                上传身份证：
+                            </td>
+                            <td>
+                                <a  id="idCardPFile" href="javascript:void(0);" class="btn_addPic"><span><em>+</em>身份证正面照</span>
+                                <input
+                                    tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" name="pic"
+                                    class="filePrew" type="file"/></a>
+                                <input type="hidden"  id="hiddenIdCardPreImage"  value="@Model.FrontView" />
+                            </td>
+                            <td>
+                                <div id="idCardPTip" style="width: 163px; margin: 0px; padding: 0px; background-color: transparent;
+                                    background-position: initial; background-repeat: initial;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="60" align="right">
+                            </td>
+                            <td>
+                                <a  id="idCardFFile"href="javascript:void(0);" class="btn_addPic"><span><em>+</em>身份证背面照</span><input
+                                    tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" name="pic" 
+                                    class="filePrew" type="file"/></a>
+                                <input type="hidden"  id="hiddenIdCardNeImage" value="@Model.RearView" />
+                            </td>
+                            <td>
+                                <div id="idCardFTip" style="width: 163px; margin: 0px; padding: 0px; background-color: transparent;
+                                    background-position: initial; background-repeat: initial;">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="30">
+                                &nbsp;
+                            </td>
+                            <td colspan="2">
+                                <p>
+                                    <span>证件需清晰有效且为原件数码照，发现虚假将封账户并信用减半！</span><br />
+                                    <p class="scll">
+                                        仅支持.jpg .jpeg .png .bmp .gif 的图片格式，图片大小不超过500K</p>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td height="80">
+                                &nbsp;
+                            </td>
+                            <td>
+                                <a href="javascript:;" onclick="submit();">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/approve3.jpg" /></a>
+                            </td>
+                            <td>
+                                &nbsp;
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+            <div class="approve_c_b">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="approve_d">
+            <p>
+                认证前需要准备</p>
+            <ul>
+                <li>1.个人身份证件的清晰照片，无遮挡，无修改</li>
+                <li>2.证件在有效期范围内</li>
+            </ul>
+            <p class="app">
+                说明</p>
+            <ul>
+                <li>1.实名认证通过后获得标志<img src="/Areas/SNS/Themes/M1/Content/images/approve6.jpg" />大家更信赖认证过的帐户。</li>
+                <li>2.认证是免费的，但认证后不可取消。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>

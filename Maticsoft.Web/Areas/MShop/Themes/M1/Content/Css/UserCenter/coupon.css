@@ -1,0 +1,250 @@
+﻿ul{
+	padding:0;
+	margin:0;
+	}
+ @media (min-width: 1440px){
+
+}
+
+@media (min-width: 1330px){
+/* 1080+, Wide Screen */
+}
+
+@media (min-width: 1280px){	
+/* 1080+, Wide Screen */
+.coupon_nav ul{
+	width:94%;
+	height:2.7rem;
+	}
+.coupon_nav ul li{
+	height:2.7rem;
+	}
+.coupon_nav ul li a{
+	height:2.7rem;
+	line-height:2.7rem;
+	font-size:1.3rem;
+	}
+ .voucher li span {
+     font-size:16px;
+    }
+
+}
+
+@media (min-width: 1024px){
+/* 1080+, Wide Screen */
+.coupon_nav ul{
+	width:94%;
+	height:2.7rem;
+	}
+.coupon_nav ul li{
+	height:2.7rem;
+	}
+.coupon_nav ul li a{
+	height:2.7rem;
+	line-height:2.7rem;
+	font-size:1.3rem;
+	}
+ .voucher li span {
+     font-size:16px;
+    }
+
+}
+
+
+@media (max-width: 979px) {
+/* 980-, Wide Mobile Or Computer */
+.coupon_nav ul{
+	width:91%;
+	height:2.5rem;
+	}
+.coupon_nav ul li{
+	height:2.5rem;
+	}
+.coupon_nav ul li a{
+	height:2.5rem;
+	line-height:2.5rem;
+	font-size:1.2rem;
+	}
+ .voucher li span {
+     font-size:14px;
+    }
+
+}
+@media (max-width: 800px) {
+/* 980-, Wide Mobile Or Computer */
+.coupon_nav ul{
+	width:91%;
+	height:2.5rem;
+	}
+.coupon_nav ul li{
+	height:2.5rem;
+	}
+.coupon_nav ul li a{
+	height:2.5rem;
+	line-height:2.5rem;
+	font-size:1.2rem;
+	}
+ .voucher li span {
+     font-size:14px;
+    }
+}
+
+@media (max-width: 768px) {
+/* 768-980, General Mobile */
+.coupon_nav ul{
+	width:90%;
+	height:2.5rem;
+	}
+.coupon_nav ul li{
+	height:2.5rem;
+	}
+.coupon_nav ul li a{
+	height:2.5rem;
+	line-height:2.5rem;
+	font-size:1.2rem;
+	}
+ .voucher li span {
+     font-size:14px;
+    }
+
+}
+
+@media (max-width: 640px){
+     .voucher li span {
+     font-size:14px;
+    }
+}
+
+@media (max-width: 480px) {
+/* 480-, Narrow Screen Mobile Or Net Books */
+ .voucher li span {
+     font-size:14px;
+    }
+
+}
+@media (max-width: 360px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.coupon_nav ul{
+	width:85%;
+	height:2rem;
+	}
+.coupon_nav ul li{
+	height:2rem;
+	}
+.coupon_nav ul li a{
+	height:2rem;
+	line-height:2rem;
+	font-size:1rem;
+	}
+.voucher li span{
+	font-size:0.8rem;
+	}
+ .voucher li span {
+     font-size:12px;
+    }
+
+
+
+}
+
+@media (max-width: 345px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.voucher li span{
+	font-size:0.8rem;
+	}
+ .voucher li span {
+     font-size:11px;
+    }
+
+}
+
+@media (max-width: 320px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.coupon_nav ul{
+	width:85%;
+	height:2rem;
+	}
+.coupon_nav ul li{
+	height:2rem;
+	}
+.coupon_nav ul li a{
+	height:2rem;
+	line-height:2rem;
+	font-size:1rem;
+	}
+.voucher li span{
+	font-size:0.8rem;
+	}
+ .voucher li span {
+     font-size:11px;
+    }
+
+
+}
+.coupon_nav{
+	padding-top:20px;
+	}
+.coupon_nav ul{
+	border:2px solid #F5C7CA;
+	border-radius:8px;
+	background:#fff;
+	overflow:hidden;
+	padding:0;
+	margin:0 auto;
+	}
+.coupon_nav ul li{
+	float:left;
+	width:50%;
+	text-align:center;
+	}
+.coupon_nav li.avt{
+	background:#FFFFFF;
+	}
+.coupon_nav li.avt2{
+	background:#FCF3EE;
+	}
+.coupon_nav li.avt a{
+	color:#D2392B;
+	}
+.coupon_nav ul li a{
+	color:#D2392B;
+	}
+.voucher{
+	padding-top:20px;
+	}
+.voucher li{
+	/*width:100%;*/
+	}
+.voucher li span{
+	/*width:32%;*/
+	display:inline-block;
+	font-style:normal;
+	text-align:center;
+	}
+.voucher li span i{
+	font-style:normal;
+	color:#d91047;
+	}
+.voucher_1{
+	background:#c2c2c2;
+	}
+.voucher_1 span{
+	height:35px;
+	line-height:35px;
+	}
+.voucher_2{
+	/*height:45px;
+	line-height:45px;*/
+	/*border-bottom:1px dashed #000000;*/
+	}
+.voucher ul{
+    width:95%;
+    margin:0 auto;
+    background:#ccc;
+    padding:10px 0;
+    border-radius:10px;
+
+}
+.voucher ul li {
+        padding:0 10px;
+    }

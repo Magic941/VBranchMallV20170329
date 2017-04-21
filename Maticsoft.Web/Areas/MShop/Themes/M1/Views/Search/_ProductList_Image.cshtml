@@ -1,0 +1,32 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+<div id="ProductListDiv">
+@if (Model.ProductPagedList != null)
+{
+    <div class="products_list_image">
+     <ul>
+        @foreach (var item in Model.ProductPagedList)
+        {
+           
+            <Li><a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4"><img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T158X158_")" title="@item.ProductName"  width="158"/></a>
+            <small>￥@item.LowestSalePrice.ToString("F")</small></Li>
+        }
+         </ul>
+        <div>
+            @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = false,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 5,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+        </div>
+    </div>
+}
+</div>
+

@@ -1,0 +1,102 @@
+﻿@model List<Maticsoft.Model.Settings.Advertisement>
+<link href="/Scripts/PhotoSwipe/photoswipe.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/PhotoSwipe/klass.min.js" type="text/javascript"></script>
+<script src="/Scripts/PhotoSwipe/photoswipe.jquery.min.js" type="text/javascript"></script>
+<link href="/Scripts/PhotoSwipe/styles.css" rel="stylesheet" type="text/css" />
+
+
+
+<script type="text/javascript">
+    //$(function ()
+    //{
+     
+    //    var imgweight = $("#PhotoSwipeTarget").width();
+    //    $(".imageList").each(function () {
+    //        $(this).width(imgweight);
+    //        $(this).height(600);
+    //    });
+    //});
+
+    (function (window, $, PhotoSwipe) {
+        $(document).ready(function () {
+                var delay = 3000;
+                var autoStartSlideshow = true;
+                var instance, indicators;
+                indicators = $("#PhotoSwipeTarget").parents('.index-ads:eq(0)').find('#Indicators span img');
+                if (indicators.length < 1) return;
+                instance = PhotoSwipe.attach(
+				indicators,
+					{
+					    target: $("#PhotoSwipeTarget"),
+					    preventHide: true,
+					    autoStartSlideshow: autoStartSlideshow,
+					    preventDefaultTouchEvents: false,
+					    allowUserZoom: false,
+					    captionAndToolbarHide: true,
+					    slideshowDelay: delay,
+					    imageScaleMethod: "zoom",
+					    enableUIWebViewRepositionTimeout: true,//检查设备的方向是否改变
+					    uiWebViewResetPositionDelay: 400,//定时检查设备的方向是否改变的时间
+					    swipeTimeThreshold: 250,  //定义触发swipe(滑动)手势的最大毫秒数,太慢了则不会触发滑动，只会拖动当前照片的位置. 默认 = 250  
+					    mouseWheelSpeed: 500, //响应鼠标滚轮的灵敏度. 默认 = 500(毫秒) 
+					    enableDrag: true,//允许拖动上一张/下一张图片到当前界面
+					    swipeThreshold: 50,//手指滑动多少像素才触发一个  swipe 手势事件. 默认 = 50  
+					    getImageSource: function (obj) {
+					        return $(obj).attr("src");
+					    },
+					    getImageCaption: function (obj) {
+					        return $(obj).attr("alt");
+					    },
+					    getImageMetaData: function (el) {
+
+					        return {
+					            longDescription: el.getAttribute('alt'),
+					            relatedUrl: el.getAttribute('href')
+					        };
+
+					    }
+					}
+				);
+                // onDisplayImage - set the current indicator
+                instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function (e) {
+                    $(e.currentTarget.originalImages).parent().removeClass();
+                    $(e.currentTarget.originalImages[e.index]).parent().addClass('current');
+                });
+                instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function (e) {
+                    if (e.action === 'tap') {
+                        var relatedUrl = this.getCurrentImage().metaData.relatedUrl;
+                        if (relatedUrl && relatedUrl != 'http://') window.open(relatedUrl);
+                    }
+                });
+                instance.show(0);
+        });
+    } (window, window.jQuery, window.Code.PhotoSwipe));
+   
+
+</script>
+<style type="text/css">
+    div.ps-document-overlay
+    {
+        background: white;
+    }
+</style>
+<div class="index-ads w">
+    <div id="PhotoSwipeTarget" style="margin-top: 0px">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <div id="Indicators" style="margin-top: 0px;">
+            @foreach (var item in Model)
+            {
+                <span title="@item.AdvertisementName">
+                    <img src="@Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("PicServerUrl")/@item.FileUrl"  style="display: none" href="@item.NavigateUrl"
+                         alt="@item.AdvertisementName" class="imageList">
+                </span>
+            }
+        </div>
+                
+    }
+</div>
+
+
+

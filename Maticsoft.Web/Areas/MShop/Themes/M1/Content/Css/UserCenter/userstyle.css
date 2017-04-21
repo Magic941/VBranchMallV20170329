@@ -1,0 +1,246 @@
+
+/* CSS Document */
+
+
+/****提示错误信息****/
+.txterror {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/****注册错误提示****/
+.tipClass {
+    /*min-height: 32px;*/
+    height: auto;
+    color: #7b7b7b;
+}
+
+.red {
+    min-height: 32px;
+    height: auto;
+}
+
+/****按钮样式***/
+.u-btn {
+    display: block;
+    position: relative;
+    width: 60px;
+    cursor: pointer;
+    line-height: 25px;
+    text-align: center;
+    color: #f97f04;
+    font-size: .7em;
+    /*background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e2d7c5));
+    background:-moz-linear-gradient(top,#fff,#e2d7c5);*/
+    /*background:#fde197;*/
+    /*border:1px solid #baac9d;*/
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+}
+
+.home_order a {
+    float: left;
+    margin-left: 18px;
+    text-align: center;
+    display: inline-block;
+    *display: inline;
+    zoom: 1;
+    color: #fb7d02;
+    font-size: 14px;
+}
+
+.home_order span {
+    float: left;
+    padding: 5px;
+    font-size: 14px;
+}
+
+
+/*****分页****/
+.in_pages_m {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    line-height: 26px;
+    overflow: hidden;
+}
+
+    .in_pages_m p {
+        margin-right: 4px;
+        text-align: center;
+        color: red;
+        font-family: "微软雅黑";
+        display: inline-block;
+        *display: inline;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+        .in_pages_m p a {
+            color: red;
+            display: inline-block;
+            *display: inline;
+            background: #E8F0EF;
+            border: #E8F0EF 1px solid;
+            padding: 2px 8px 2px 8px;
+        }
+
+            .in_pages_m p a:hover {
+                padding: 2px 8px 2px 8px;
+                background: #fff;
+                color: orange;
+                display: inline-block;
+                *display: inline;
+                background: #fff;
+                border: #E8F0EF 1px solid;
+            }
+
+    .in_pages_m .in_s {
+        padding: 2px 8px 2px 8px;
+        background: #fff;
+        color: orange;
+        display: inline-block;
+        *display: inline;
+        background: #fff;
+        border: #E8F0EF 1px solid;
+    }
+
+
+/*****我的收藏*****/
+.favor_list {
+    overflow: hidden;
+    width: 100%;
+}
+
+    .favor_list ul { /*height:100px;*/
+        border-bottom: solid 1px #ccc;
+        margin: 0;
+        padding: 0px 0 0 0;
+    }
+
+.favor_listimg {
+    width: 50px;
+    overflow: hidden; /*padding:10px;*/
+    float: left;
+    padding: 10px 0;
+}
+
+.favor_list h3 { /*margin:20px 0 0 10px;*/
+    padding: 0;
+    color: #5c5b5b;
+    font-size: 16px;
+    line-height: 25px;
+    font-weight: normal;
+    font-size: 0.8rem;
+}
+
+.favor_list ul span a {
+    width: 6rem; /*float:right;*/ /*margin-top:20px;*/
+    display: block;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center; /*margin-left:39%;*/
+    float: right;
+    background-color: #ff6900;
+    color: #fff;
+}
+
+
+/****覆盖jqueryUi的样式  Dia弹层的样式****/
+.ui-widget-header {
+    background: #E66;
+    color: #FFF;
+    font-size: 14px;
+}
+
+.ui-widget-content {
+    border: 8px solid #CCC;
+    color: #988;
+    font-size: 14px;
+}
+
+
+/*****404*****/
+.error_w_a {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #c33;
+    font-family: "微软雅黑";
+}
+
+.error_w_b {
+    font-size: 14px;
+    color: #333;
+    line-height: 26px;
+}
+
+    .error_w_b a {
+        color: #0081bf;
+    }
+
+.btnPayOrder {
+    background: #d91c10;
+    color: #fff;
+}
+
+.btnOrderCancel {
+    background: #fde197;
+    color: #fb7d02;
+}
+
+.home_piclist {
+    margin-top: 0;
+}
+
+body {
+    background: #fff;
+}
+
+.ddnum_shijian em {
+    color: #C2C2C2;
+}
+
+.ddnjnm {
+    float: left;
+}
+
+.ddnjnk {
+    width: 18%;
+    float: right;
+}
+
+    .ddnjnk span {
+        display: block;
+    }
+
+.home_piclist {
+    border: 1px solid #dfdfdf;
+}
+
+.home_order {
+    background: #f0f0f0;
+}
+
+.ddnum ul {
+    padding: 0;
+}
+
+.ddnum li {
+    padding-left: 10px;
+}
+
+.home_piczt span {
+    padding-left: 10px;
+}
+
+.wieft {
+    width: 10rem;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    .wieft span {
+        display: block;
+    }

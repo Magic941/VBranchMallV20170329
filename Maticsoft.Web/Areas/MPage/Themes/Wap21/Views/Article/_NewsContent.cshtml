@@ -1,0 +1,13 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+           @if (Model != null)
+           { 
+               foreach (var item in Model)
+               { 
+                    <li href="javascript:;" onclick="pageload('Article','newsDetail_@(item.ContentID)','@item.Title','NewsDetail', 'NewsDetail','-1','@item.ContentID')">@item.Title</li>
+               }
+           }
+           else 
+           { 
+               <span> 暂无内容</span>
+           }
+

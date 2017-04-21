@@ -1,0 +1,79 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKIIBaseLayout.cshtml";
+    
+}
+@section head{
+
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>   
+ <link rel="stylesheet" type="text/css" href="/Areas/CMS/Themes/M1/Content/99jkc/css/login.css" />
+    <link href="/Areas/CMS/Themes/M1/Content/99jkc/css/home.css?v=2" rel="stylesheet" type="text/css" />
+}
+
+<div class="wrap">
+    <div class="banner-show">
+        <div class="cell bns-02">
+            <div class="con"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="register-box">
+            <div class="reg-slogan">营销员健康卡激活管理平台</div>
+            <div class="reg-form" id="js-form-mobile">
+                <br>
+                <br>
+                <div class="cell">
+                    <label for="js-mobile_ipt"></label>
+                    <input type="text" name="Card" placeholder="营销员账号" id="txtUserName" class="text" />
+                </div>
+                <div class="cell">
+                    <label for="js-mobile_pwd_ipt"></label>
+                    <input type="password" name="passwd" placeholder="营销员密码" id="txtPwd" class="text" />
+                </div>
+                <!-- !短信验证码 -->
+                <div class="bottom"><a id="js-mobile_btn" href="javascript:void(0);" class="button btn-green" onclick="javascript:login()" >立即登录</a></div>                
+            </div>
+        </div>
+    </div>     
+
+</div>
+
+<script>
+    //开始激活请求卡
+    function login()
+    {        
+        var username = $("#txtUserName").val();
+        var pwd = $("#txtPwd").val();
+
+        if (username == "")
+        {
+            alert("请输入营销员账号!");
+            return;
+        }
+        if (pwd == "") {
+            alert("请输入营销员密码!");
+            return;
+        }
+
+        $.ajax({
+            url: '/SalesCardsSearch/Login',
+            type: 'post', dataType: 'json', timeout: 10000,
+            async: false,
+            data: { userName: username, pwd: pwd },
+            success: function (data) {
+                if (!data.IsSuccess)
+                {
+                    alert(data.Message);
+                    return false;
+                }
+                else {                  
+                    window.location.href = "/SalesCardsSearch/ActivatedCardReport";
+                }
+            }
+        });
+    }
+   
+</script>
+
+
+
+

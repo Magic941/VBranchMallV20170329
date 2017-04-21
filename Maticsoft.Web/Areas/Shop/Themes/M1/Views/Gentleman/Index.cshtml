@@ -1,0 +1,1028 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/ml-min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+    <link href="/Areas/Shop/Themes/M1/Content/Css/main-catg.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/revision.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/template/man/Css/manbase.css" rel="stylesheet" />
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery-1.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.js?v=1" charset="utf-8"></script>
+    <script src="/Areas/Shop/Themes/M1/Content/template/man/jscript/jquery.min.js"></script>
+        <link href="/Areas/Shop/Themes/M1/Content/template/man/css/style.css" rel="stylesheet" />
+    <script src="Scripts/json2.js"></script>
+    <script src="Scripts/jquery-ui-1.8.11.min.js"></script>
+}
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".divOpenAct").click(function () {
+            var tip = $(this).children().text();
+            if (tip == "展开") {
+                $(this).children().text("收起");
+            } else {
+                $(this).children().text("展开");
+            }
+            $(".divContent").toggle();
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(function () {
+        //第一个切换图片广告
+        function SwitchAd(bannerobj, banner_ulobj, bannerbtnobj, prevBtnclassname) {
+            var $banner = bannerobj;
+            var $banner_ul = banner_ulobj;
+            var $btn = bannerbtnobj;
+            var $btn_a = $btn.find('a');
+
+            //  var v_width=$banner.width();
+            var v_width = $banner_ul.width();
+
+
+            var page = 1;
+
+            var timer = null;
+            var btnClass = null;
+
+            var page_count = $banner_ul.find('li').length;//把这个值赋给小圆点的个数
+
+            var banner_cir = "<li class='selected' href='#'><a></a></li>";
+            for (var i = 1; i < page_count; i++) {
+                //动态添加小圆点
+                banner_cir += "<li><a href='#'></a></li>";
+            }
+            $('.banner-circle').append(banner_cir);
+
+            var cirLeft = $('.banner-circle').width() * (-0.5);
+            $('.banner-circle').css({ 'marginLeft': cirLeft });
+
+            $banner_ul.width(page_count * v_width);
+
+            function move(obj, classname) {
+                //手动及自动播放
+                if (!$banner_ul.is(':animated')) {
+                    if (classname == prevBtnclassname) {
+                        if (page == 1) {
+                            $banner_ul.animate({ left: -v_width * (page_count - 1) });
+                            page = page_count;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '+=' + v_width }, "slow");
+                            page--;
+                            cirMove();
+                        }
+                    }
+                    else {
+                        if (page == page_count) {
+                            $banner_ul.animate({ left: 0 });
+                            page = 1;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '-=' + v_width }, "slow");
+                            page++;
+                            cirMove();
+                        }
+                    }
+                }
+            }
+
+            function cirMove() {
+                //检测page的值，使当前的page与selected的小圆点一致
+                $('.banner-circle li').eq(page - 1).addClass('selected').siblings().removeClass('selected');
+            }
+
+            $banner.mouseover(function () {
+                $btn.css({ 'display': 'block' });
+                clearInterval(timer);
+            }).mouseout(function () {
+                $btn.css({ 'display': 'none' });
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+            }).trigger("mouseout");//激活自动播放
+
+            $btn_a.mouseover(function () {
+                //实现透明渐变，阻止冒泡
+                $(this).animate({ opacity: 0.6 }, 'fast');
+                $btn.css({ 'display': 'block' });
+                return false;
+            }).mouseleave(function () {
+                $(this).animate({ opacity: 0.3 }, 'fast');
+                $btn.css({ 'display': 'none' });
+                return false;
+            }).click(function () {
+
+                //手动点击清除计时器
+                btnClass = this.className;
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+                move($(this), this.className);
+            });
+
+
+            $('.banner-circle li').live('click', function () {
+                var index = $('.banner-circle li').index(this);
+                $banner_ul.animate({ left: -v_width * index }, 'slow');
+                page = index + 1;
+                cirMove();
+            });
+
+        }
+        var $banner = $('.banner');
+        var $banner_ul = $('.banner-img');
+        var $btn = $('.banner-btn');
+        SwitchAd($banner, $banner_ul, $btn, 'prevBtn');
+
+        var $banner1 = $('.New_winter_nan');
+        var $banner_ul1 = $('.banner_ul');
+        var $btn1 = $('.butdiv');
+        var btnaobj = $('.butdiv span')
+        SwitchAd2($banner1, $banner_ul1, $btn1, btnaobj, 'nan_arrow1');
+
+        function SwitchAd2(bannerobj, banner_ulobj, bannerbtnobj, btnaobj, prevBtnclassname) {
+            var $banner = bannerobj;
+            var $banner_ul = banner_ulobj;
+            var $btn = bannerbtnobj;
+            var $btn_a = btnaobj;
+
+            //  var v_width=$banner.width();
+            var v_width = $banner_ul.width();
+
+
+            var page = 1;
+
+            var timer = null;
+            var btnClass = null;
+
+            var page_count = $banner_ul.find('li').length / 3;//把这个值赋给小圆点的个数
+
+
+
+            $banner_ul.width(page_count * v_width);
+
+            function move(obj, classname) {
+                //手动及自动播放
+                if (!$banner_ul.is(':animated')) {
+                    if (classname == prevBtnclassname) {
+                        if (page == 1) {
+                            $banner_ul.animate({ left: -v_width * (page_count - 1) });
+                            page = page_count;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '+=' + v_width }, "slow");
+                            page--;
+                            cirMove();
+                        }
+                    }
+                    else {
+                        if (page == page_count) {
+                            $banner_ul.animate({ left: 0 });
+                            page = 1;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '-=' + v_width }, "slow");
+                            page++;
+                            cirMove();
+                        }
+                    }
+                }
+            }
+
+            function cirMove() {
+                //检测page的值，使当前的page与selected的小圆点一致
+                $('.banner-circle li').eq(page - 1).addClass('selected').siblings().removeClass('selected');
+            }
+
+            $banner.mouseover(function () {
+                //$btn.css({ 'display': 'block' });
+                clearInterval(timer);
+            }).mouseout(function () {
+                $btn.css({ 'display': 'none' });
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+            }).trigger("mouseout");//激活自动播放
+
+            $btn_a.mouseover(function () {
+                //实现透明渐变，阻止冒泡
+                $(this).animate({ opacity: 0.6 }, 'fast');
+                //$btn.css({ 'display': 'block' });
+                return false;
+            }).mouseleave(function () {
+                $(this).animate({ opacity: 0.3 }, 'fast');
+                //$btn.css({ 'display': 'none' });
+                return false;
+            }).click(function () {
+
+                //手动点击清除计时器
+                btnClass = this.className;
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+                move($(this), this.className);
+            });
+
+
+            $('.banner-circle li').live('click', function () {
+                var index = $('.banner-circle li').index(this);
+                $banner_ul.animate({ left: -v_width * index }, 'slow');
+                page = index + 1;
+                cirMove();
+            });
+        }
+    });
+</script>
+
+<div class="main_cont" id="main_cont">
+    <div class="wrapper">
+        <div class=" clearfix">
+            <div class="gentleman_Menu" style="width: 198px; float: left;">
+                <span>绅士港</span>
+                <div class="gentleman—menu_1">
+                    <dl>
+                        <dt class="OO_A1"><em>男装</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/633" target="_blank">衬衫</a>
+                            <a href="http://www.zhenhaolin.com/product/634" target="_blank">针织衫</a>
+                            <a href="http://www.zhenhaolin.com/product/640" target="_blank">夹克</a>
+                            <a href="http://www.zhenhaolin.com/product/641" target="_blank">风衣</a>
+                            <a href="http://www.zhenhaolin.com/product/642" target="_blank">大衣</a>
+                            <a href="http://www.zhenhaolin.com/product/643" target="_blank">西服</a>
+                            <a href="http://www.zhenhaolin.com/product/644" target="_blank">羽绒服/棉服</a>
+                            <a href="http://www.zhenhaolin.com/product/646" target="_blank">休闲裤</a>
+                            <a href="http://www.zhenhaolin.com/product/637" target="_blank">卫衣</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A2"><em>男包</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/813" target="_blank">钱包/卡包</a>
+                            <a href="http://www.zhenhaolin.com/product/814" target="_blank">男士手包</a>
+                            <a href="http://www.zhenhaolin.com/product/815" target="_blank">商务公文包</a>
+                            <a href="http://www.zhenhaolin.com/product/816" target="_blank">双肩包</a>
+                            <a href="http://www.zhenhaolin.com/product/817" target="_blank">单肩/斜挎包</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A3"><em>男鞋</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/713" target="_blank">商务休闲鞋</a>
+                            <a href="http://www.zhenhaolin.com/product/714" target="_blank">正装鞋</a>
+                            <a href="http://www.zhenhaolin.com/product/715" target="_blank">休闲鞋</a>
+                            <a href="http://www.zhenhaolin.com/product/723" target="_blank">帆布鞋</a>
+                            <a href="http://www.zhenhaolin.com/product/717" target="_blank">男靴</a>
+                            <a href="http://www.zhenhaolin.com/product/719" target="_blank">拖鞋/人字拖</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A4"><em>皮具</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/829" target="_blank">真皮皮带</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A5"><em>个护</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/438" target="_blank">剃须</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A6"><em>钟表</em></dt>
+                        <dd>
+                            <a href="http://www.zhenhaolin.com/product/859" target="_blank">男表</a>
+                        </dd>
+                    </dl>
+                    @*<dl>
+                        <dt class="OO_A7"><em>服饰</em></dt>
+                        <dd>
+                            <a href="#">洁面乳</a>
+                            <a href="#">洁面乳</a>
+                            <a href="#">洁面乳</a>
+                            <a href="#">洁面乳</a>
+                        </dd>
+                    </dl>*@
+                </div>
+            </div>
+            <div class="banner_screen">
+                <div class="banner" style="position: relative;">
+                    @*  <div class="banner-btn" >
+		                <a href="javascript:;" class="prevBtn"><i></i></a>
+		                <a href="javascript:;" class="nextBtn"><i></i></a>
+	                </div>*@
+
+                    <ul class="banner-img">
+                        <li><a href="http://www.zhenhaolin.com/product/644/29868/0/default/" target="_blank">
+                            <img alt="1" src=" /Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/jdt1.jpg" width="796" height="282" /></a></li>
+
+                        <li><a href="http://www.zhenhaolin.com/product/817" target="_blank">
+                            <img alt="2" src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/jdt2.jpg" width="796" height="282" /></a></li>
+                        <li><a href="http://www.zhenhaolin.com/product/438" target="_blank">
+                            <img alt="3" src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/jdt3.jpg" width="796" height="282" /></a></li>
+                        @* <li><a href="#">
+                            <img alt="4" src="/Areas/Shop/Themes/M1/Content/template/man/images/advert1_03.png" width="796" height="282" /></a></li>*@
+                    </ul>
+                </div>
+                <div class="New_winter_nan">
+                    <ul class="banner_ul clearfix" style="height: 173px;">
+                        <li style="margin-left: 8px;"><a href="http://www.zhenhaolin.com/Product/Detail/1154319" target="_blank">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/11.jpg" width="250" height="173" /></a></li>
+                        <li><a href="http://www.zhenhaolin.com/Product/Detail/11488" target="_blank">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/22.jpg" width="250" height="173" /></a></li>
+                        <li><a href="http://www.zhenhaolin.com/Product/Detail/9736" target="_blank">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/33.jpg" width="250" height="173" /></a></li>
+                        @* <li><a href="#">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na2_20.png" width="256" height="173" /></a></li>
+                        <li><a href="#">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/n1.png" width="256" height="173" /></a></li>
+                        <li><a href="#">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na2_20.png" width="256" height="173" /></a></li>*@
+                    </ul>
+                    <div class="butdiv">
+                        <span class="nan_arrow1"><a href="#"></a></span>
+                        <span class="nan_arrow2"><a href="#"></a></span>
+                    </div>
+
+                </div>
+            </div>
+            <div class="quality_ofmen">
+                <span>品质男装 精致生活</span>
+                <ul class="Ofmen">
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/13644" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/1.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/13668" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/2.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/12719" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/3.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/9367" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/4.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/10307" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/5.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                    <li><a class="Quality" href="http://www.zhenhaolin.com/Product/Detail/9681" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/6.jpg" width="400" height="71" />
+                    </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wrapper clearfix">
+    <div class="caballero1">
+        <div class="products_nan clearfix">
+            <span>
+                <a href="javascript:;">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/Men_wear.jpg" width="139" height="26" /></a>
+            </span>
+            <div class="products_jiem">
+            </div>
+        </div>
+        <div class="">
+            <div class="Mens_Boutique1">
+                <ul class="clearfix Man_FuShiOne">
+                    <li class="PT" style="width: 238px;">
+                        <div class="relian_one">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-01.jpg" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/13134" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-01_1.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="Menswear_selling MAN-fl2">
+                            <dl>
+                                <dt>热卖</dt>
+                                <dd>
+                                    <a href="http://www.zhenhaolin.com/product/633" target="_blank">衬衫</a>
+                                    <a style="color: red;" href="http://www.zhenhaolin.com/product/640">夹克</a>
+                                    <a href="http://www.zhenhaolin.com/product/641" target="_blank">风衣</a>
+                                    <a style="color: red;" href="http://www.zhenhaolin.com/product/634">针织衫</a>
+                                </dd>
+                            </dl>
+                            <dl>
+                                <dt>特色</dt>
+                                <dd>
+                                    <a href="http://www.zhenhaolin.com/product/642" target="_blank">大衣</a>
+                                    <a href="http://www.zhenhaolin.com/product/643" target="_blank">西服</a>
+                                    <a style="color: red;" href="http://www.zhenhaolin.com/product/644" target="_blank">羽绒服/棉服</a>
+                                    <a style="color: red;" href="http://www.zhenhaolin.com/product/646" target="_blank">休闲裤</a>
+                                    <a style="color: red;" href="http://www.zhenhaolin.com/product/637" target="_blank">卫衣</a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="PT" style="width: 238px;">
+                        <div class="relian_Two">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-02.jpg" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/1154312" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-02_1.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relian_Four">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-04.jpg" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/12519" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-04_1.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="PT" style="width: 238px;">
+                        <div class="relian_Three">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-03.jpg" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/1154317" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-03_1.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relian_Five">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-08.jpg" width="238" height="242" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/9887" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-08_1.jpg" width="238" height="242" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="PT">
+                        <div class="relian_Five">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-06.jpg" width="238" height="242" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/1154315" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-06_1.jpg" width="238" height="242" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relian_Five">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-09.jpg" width="238" height="242" />
+                                    <a href="http://zhenhaolin.com/Product/Detail/1154750" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-09_1.jpg" width="238" height="242" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="PT">
+                        <div class="relian_Five">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-07.jpg" width="238" height="242" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/11827" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-07_1.jpg" width="238" height="242" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relian_Five">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-05.jpg" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/12677" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-05_1.jpg" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="PT" style="width:479px;">
+                        <div class="relian_Eight">
+                            <div class="one_zhuang">
+                                <div class="pic2">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-10.jpg" width="479" height="242" />
+                                    <a href="http://www.zhenhaolin.com/Product/Detail/11838" target="_blank">
+                                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/fushi-10_1.jpg" width="479" height="242" />
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="Mens_Boutique2">
+                <ul class="clearfix">
+                    @* <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                    <li><a href="#">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>*@
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="caballero2">
+        <div class="products_nan clearfix">
+            <span>
+                <a href="javascript:;">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/Men_bags.jpg" width="139" height="26" /></a>
+            </span>
+            <div class="products_jiem">
+                @*  <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>*@
+            </div>
+
+        </div>
+        <div class="kklp">
+            <ul class="clearfix">
+                <li class="fg_NAN">
+                    <a href="http://www.zhenhaolin.com/Product/Detail/5953" target="_blank">
+                        <img src=" /Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-01.jpg" width="480" height="237" />
+
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.zhenhaolin.com/Product/Detail/6456" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-04.jpg" width="238" height="237" />
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.zhenhaolin.com/Product/Detail/6469" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-05.jpg" width="238" height="237" />
+                    </a>
+                </li>
+                <li>
+                    <a href="http://www.zhenhaolin.com/Product/Detail/6704" target="_blank">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-06.jpg" width="238" height="237" />
+                    </a>
+                </li>
+            </ul>
+            <ul class="clearfix">
+                <li class="fg_NAN"><a href="http://www.zhenhaolin.com/Product/Detail/6748" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-011.jpg" width="238" height="237" />
+                </a>
+                </li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6755" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-010.jpg" width="238" height="237" />
+                </a>
+                </li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6039" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-02.jpg" width="480" height="237" />
+                </a>
+                </li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6005" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-07.jpg" width="238" height="237" />
+                </a>
+                </li>
+            </ul>
+            <ul class="clearfix">
+                <li class="fg_NAN">
+                    <div class="Menswear_selling FEN_LEI">
+                        <dl>
+                            <dt>经典男包</dt>
+                            <dd>
+                                <a href="http://www.zhenhaolin.com/product/814" target="_blank">男士手包</a>
+                                <a style="color: red;" href="http://www.zhenhaolin.com/product/815" target="_blank">商务公文包</a>
+                                <a style="color: red;" href="http://www.zhenhaolin.com/product/816" target="_blank">双肩包</a>
+                                <a style="color: red;" href="http://www.zhenhaolin.com/product/817" target="_blank">单肩/斜挎包</a>
+                                @*  <a href="#">羽绒装</a>
+                                <a href="#">衬衫</a>
+                                <a href="#">羽绒装</a>
+                                <a href="#">衬衫</a>
+                                <a href="#">羽绒装</a>
+                                <a href="#">衬衫</a>
+                                <a class="YRF" href="#">羽绒装</a>
+                                <a href="#">衬衫</a>
+                                <a href="#">衬衫</a>*@
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt>时尚皮具</dt>
+                            <dd>
+                                <a style="color: red;" href="http://www.zhenhaolin.com/product/813" target="_blank">钱包/卡包</a>
+                                <a style="color: red;" href="http://www.zhenhaolin.com/product/829" target="_blank">真皮皮带</a>
+                                @* <a href="#">羽绒装</a><a href="#">衬衫</a>
+                                <a href="#">羽绒装</a><a href="#">衬衫</a>
+                                <a href="#">羽绒装</a><a href="#">衬衫</a>
+                                <a href="#">羽绒装</a><a href="#">衬衫</a>
+                                <a href="#">羽绒装</a><a href="#">衬衫</a>*@
+                            </dd>
+                        </dl>
+                    </div>
+                </li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6754" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-09.jpg" width="238" height="237" /></a></li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6758" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-03.jpg" width="480" height="237" /></a></li>
+                <li><a href="http://www.zhenhaolin.com/Product/Detail/6217" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/pijuxiangbao-08.jpg" width="238" height="237" /></a></li>
+            </ul>
+        </div>
+        <div class="Mens_Boutique2">
+            <ul class="clearfix">
+                @*  <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>
+                <li><a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/na3_19.png" width="91" height="46" /></a></li>*@
+            </ul>
+        </div>
+    </div>
+    <div class="caballero2">
+        <div class="products_nan clearfix">
+            <span>
+                <a href="javascript:;">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/Men_shoes.jpg" width="139" height="26" /></a>
+            </span>
+            <div class="products_jiem">
+                @*  <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>*@
+            </div>
+
+        </div>
+        <div class="Mens_jewelry">
+            <ul>
+                <li class="PT">
+                    <div class="relian_XieOne">
+                        <div class="one_zhuang">
+                            <div class="pic2">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-01.jpg" />
+                                <a href="http://www.zhenhaolin.com/Product/Detail/1154405" target="_blank">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-01_1.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="PT">
+                    <div class="relian_XieOne">
+                        <div class="one_zhuang">
+                            <div class="pic2">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-02.jpg" />
+                                <a href="http://www.zhenhaolin.com/Product/Detail/1154402" target="_blank">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-02_1.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="PT">
+                    <div class="relian_XieOne">
+                        <div class="one_zhuang">
+                            <div class="pic2">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-03.jpg" />
+                                <a href="http://www.zhenhaolin.com/Product/Detail/1154400" target="_blank">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-03_1.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="PT">
+                    <div class="relian_XieOne">
+                        <div class="one_zhuang">
+                            <div class="pic2">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-04.jpg" />
+                                <a href="http://www.zhenhaolin.com/Product/Detail/1154395" target="_blank">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-04_1.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="PT">
+                    <div class="relian_XieOne">
+                        <div class="one_zhuang">
+                            <div class="pic2">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-05.jpg" />
+                                <a href="http://www.zhenhaolin.com/Product/Detail/1154407" target="_blank">
+                                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/nanxie-05_1.jpg" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+    <div class="caballero2">
+        <div class="products_nan clearfix">
+            <span>
+                <a href="javascript:;">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/Men_nurse.jpg" width="139" height="26" /></a>
+            </span>
+            <div class="products_jiem">
+                @*  <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>*@
+            </div>
+
+        </div>
+        <div class=" clearfix">
+            <div class="" style="float: left;">
+                <a href="http://www.zhenhaolin.com/Product/Detail/1735" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-01.jpg" width="240" height="428" /></a>
+            </div>
+            <div class="Afamily_man" style="/*border-bottom: 2px solid #ccc; */">
+                <ul class="clearfix">
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/1756" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-02.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/1756" target="_blank">锋速3突破刀架 (2刀头) JL008</a>
+                            <b>￥67.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/1998" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-03.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/1998" target="_blank">吉列锋速3刀片(4刀头) JL004</a>
+                            <b>￥95.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2000" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-04.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2000" target="_blank">吉列锋隐刀架（1刀头） JL002</a>
+                            <b>￥95.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/5168" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-05.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/5168" target="_blank">正品 光科5085三刀头水洗剃须刀</a>
+                            <b>￥129.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/5171" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-06.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/5171" target="_blank">飞科充电式双刀头剃须刀（FS812）</a>
+                            <b>￥34.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7780" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-07.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7780" target="_blank">飞科剃须刀 刮胡刀 FS821黑色</a>
+                            <b>￥77.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2002" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-08.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2002" target="_blank">吉列剃须泡清新柠檬型210g JL007</a>
+                            <b>￥24.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7800" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-09.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7800" target="_blank">飞科（FLYCO）FS7806电动鼻毛修剪器(银色)</a>
+                            <b>￥29.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2003" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-10.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/2003" target="_blank">吉列剃须泡温和型（适用于敏感肌肤）210g JL006</a>
+                            <b>￥26.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7782" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/gehu-11.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7782" target="_blank">飞科（FLYCO）FS325充电式三刀头电动剃须刀（银色）</a>
+                            <b>￥77.00</b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="caballero2">
+        <div class="products_nan clearfix">
+            <span>
+                <a href="javascript:;">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/Men_watches.jpg" width="139" height="26" /></a>
+            </span>
+            <div class="products_jiem">
+                @*<a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>|<a href="#">洁面乳</a>|
+                    <a href="#">洁面乳</a>*@
+            </div>
+
+        </div>
+        <div class=" clearfix">
+            <div class="" style="float: left;">
+                <a href="http://www.zhenhaolin.com/Product/Detail/6992" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-01.jpg" width="240" height="428" /></a>
+            </div>
+            <div class="Afamily_man" style="/*border-bottom: 2px solid #ccc; */">
+                <ul class="clearfix">
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7023" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-02.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7023" target="_blank">西铁城CITIZEN-机械系列机械男表NH7500-53E</a>
+                            <b>￥2160.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7030" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-03.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7030" target="_blank">西铁城CITIZEN-机械系列机械男表NH8330-56A</a>
+                            <b>￥2880.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/6994" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-04.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/6994" target="_blank">西铁城Citizen-光动能系列男士光动能表BM7290-51A</a>
+                            <b>￥1850.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7072" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-05.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7072" target="_blank">卡文克莱（CK）时尚石英计时日历男表K2G275C6</a>
+                            <b>￥2565.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7096" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-06.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7096" target="_blank">卡文克莱（CK）时尚石英男表K3Z211C6</a>
+                            <b>￥2160.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7102" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-07.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7102" target="_blank">卡文克莱（CK）时尚石英男表K4B384B3</a>
+                            <b>￥2745.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7204" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-08.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7204" target="_blank">卡西欧正品EDIFICE系列太阳能电波时尚男手表EQW-M1000D-1ADR</a>
+                            <b>￥3063.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7175" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-09.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7175" target="_blank">CASIO卡西欧经典时尚男款手表EFR-518SCBJ-1ADF</a>
+                            <b>￥1901.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7212" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-10.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7212" target="_blank">卡西欧(CASIO)手表 G-SHOCK大表盘双显运动男表GA-100LG-8ADR</a>
+                            <b>￥988.00</b>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7244" target="_blank">
+                                <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/zhongbiao-11.jpg" width="165" height="165" /></a>
+                        </div>
+                        <div class="Skin_care">
+                            <a href="http://www.zhenhaolin.com/Product/Detail/7244" target="_blank">卡西欧电波运功30周年限量版GW-9330A-4DR</a>
+                            <b>￥2648.00</b>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="wrapper">
+        @* <a href="#">
+            <img src="/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/bnner1_18.png" width="1200" height="91" />
+        </a>*@
+    </div>
+</div>
+
+
+
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.min.js"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/topmenu.js"></script>*@
+<script>
+    $(".PT > div").hover(function () {
+        $(this).find('.pic2').stop().animate({ top: -$(this).find(".pic2 > img").height() }, 200);
+    }, function () {
+        $(this).find('.pic2').stop().animate({ top: '0' }, 200);
+    });
+</script>
+

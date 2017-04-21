@@ -1,0 +1,13 @@
+﻿@model List<Maticsoft.Model.Shop.Products.AttributeValue>
+
+@if (Model != null && Model.Count > 0)
+{
+        <a canajax="1" anchor="Filter"  href="javascript:void(0)" attrId="@Model[0].AttributeId" valueid="0" title="全部" class="attrvalue allbtn">全部</a>
+        <ul class="cf" typeid="7">
+            @foreach (var item in Model)
+            {
+                <li style=""><a  class="attrvalue" anchor="Filter" href="javascript:void(0)"  attrId="@item.AttributeId"
+                    valueid="@item.ValueId" title="@item.ValueStr" class="">@item.ValueStr</a> </li>
+            }
+        </ul>
+}

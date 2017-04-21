@@ -1,0 +1,82 @@
+﻿<script type="text/javascript">
+    $(function () {
+        
+        $("#btnMallSearch").click(function () {
+            var keyword = $("#txtMallKeyWord").val();
+            if (keyword == "") {
+                ShowFailTip('请输入关键字！');
+                return;
+            }
+            location.href = "search/0/0/default/0-0/" + keyword;
+        });
+
+        $('#txtMallKeyWord').keydown(StartSearch);
+
+       
+    });
+
+    //开始搜索
+    function StartSearch(e) {
+       
+            var e=e||event;
+            var currKey=e.keyCode||e.which||e.charCode;
+            if((currKey>7&&currKey<14)||(currKey>31&&currKey<47))
+            {
+                if (currKey == 13) {
+                    var keyword = $("#txtMallKeyWord").val();
+                    location.href = "search/0/0/default/0-0/" + keyword;
+                    return false;
+                }
+                else {                  
+
+                }             
+                keystring += keyName;               
+            }           
+      
+    }
+</script>
+<style>
+    .vklj_PP {       
+        margin:0 auto;
+        padding-bottom:20px;        
+    }
+</style>
+<div class="ic_header vklj_PP">
+    <div class="wrapper clearfix">
+        <div class="logo_area fL">
+            <a href="/Home/index">              
+               <img src="@ViewBag.Logo" style="height:60px;width:auto" />               
+            </a>
+        </div>
+        <div class="search_area fR clearfix">
+            <div class="hot_tel fR">
+               @*<a href="#" target="_blank">                   
+                    <img src="/Areas/Shop/Themes/M1/Content/card/images/jk_01.jpg" />
+               </a>*@
+            </div>
+            <div class="search_cont">
+                <p>
+                    关键字：<a href="search/0/0/default/0-0/厨房">厨房</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/水杯">水杯</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/包包">包包</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/三星">三星</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/女装">女装</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/四件套">四件套</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/鞋子">鞋子</a>、<a href="@(ViewBag.BasePath)search/0/0/default/0-0/零食">零食</a>
+                </p>
+                <div class="search_box">
+                    <div class="s-put">
+                        <form>
+                            <input class="s-put_text" id="txtMallKeyWord" type="text" />
+                           
+                        </form>`    
+                    </div>
+                    <div class="s-mor">
+                        <span id="search_condition">健康商城<i class="def"></i></span>
+                        <ul>
+                            <li>健康商城</li>                          
+                        </ul>
+                    </div>
+                    <div class="s-txt">
+                        <a style="" href="javascript:void(0);" id="btnMallSearch">搜索</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--搜索关键词维护-->

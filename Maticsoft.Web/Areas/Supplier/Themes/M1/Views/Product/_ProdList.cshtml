@@ -1,0 +1,221 @@
+﻿ @using Webdiyer.WebControls.Mvc 
+ @model PagedList<Maticsoft.Model.Shop.Products.ProductInfo>
+
+<script type="text/javascript">
+    $(function () {
+        var trs = $('table.GridViewTyle tr');
+        for (var i = 0; i < trs.length; i++) {
+            if (i % 2 != 0) {
+                trs.eq(i).addClass('eventrcolor');
+            }
+        }
+        $("table.GridViewTyle tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+
+        //批量删除
+        $('[name="btnDelete"]').click(function () {
+            if (!confirm('你确定要放入回收站吗？要还原商品请到回收站找回！')) {
+                return false;
+            }
+            var status = $('#hidSaleStatus').val();
+            if (status != '0') {
+                if (!parseInt(status)) {
+                    ShowFailTip("请刷新页面重试！");
+                    return false;
+                }
+            }
+            var itemcbVal = '';
+            $("input[name='ItemCheckBox']:checked").each(function (i, d) {
+                itemcbVal += d.value + ",";
+            });
+            if (itemcbVal == '' || itemcbVal.length <= 1) {
+                ShowFailTip("请选择要删除的商品！");
+                return false;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "Product/Batch",
+                type: 'post',
+                dataType: 'text',
+                async: false,
+                timeout: 10000,
+                data: { action: "del", saleStatus: status, ids: itemcbVal },
+                success: function (resultData) {
+                    switch (resultData) {
+                        case "OK":
+                            ShowFailTip("删除成功！");
+                            window.location.reload();
+                            break;
+                        case "NULL":
+                            ShowFailTip("请选择要删除的商品！");
+                            break;
+                        default:
+                            ShowFailTip("删除失败！");
+                            break;
+                    }
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                }
+            });
+
+        });
+
+
+        //批量上下架
+        $('[name="btnInverseApprove"]').click(function () {
+            var status = $('#hidSaleStatus').val();
+            if (status != '0') {
+                if (!parseInt(status)) {
+                    ShowFailTip("请刷新页面重试！");
+                    return false;
+                }
+            }
+            var itemcbVal = '';
+            $("input[name='ItemCheckBox']:checked").each(function (i, d) {
+                itemcbVal += d.value + ",";
+            });
+            if (itemcbVal == '' || itemcbVal.length <= 1) {
+                ShowFailTip("请选择要操作的商品！");
+                return false;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "Product/Batch",
+                type: 'post',
+                dataType: 'text',
+                async: false,
+                timeout: 10000,
+                data: { action: "sale", saleStatus: status, ids: itemcbVal },
+                success: function (resultData) {
+                    switch (resultData) {
+                        case "OK":
+                            ShowSuccessTip("操作成功！");
+                            setTimeout(function () {
+                                window.location.reload();
+                            }, 2000);
+                            break;
+                        case "NULL":
+                            ShowFailTip("请选择要删除的商品！");
+                            break;
+                        default:
+                            ShowFailTip("操作失败！");
+                            break;
+                    }
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                }
+            });
+        });
+        $("#checkAll").click(function () {
+            $("input[name='ItemCheckBox']").prop('checked',$(this).prop('checked'));
+        });
+    }); 
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridViewTyle" >
+ 
+    <tr height="35px" style="background-color:#E3EFFF;background:#FFF">
+        <td width="5%" height="23" align="center" bgcolor="#FFFFFF"" style="padding-left: 5px;"> <input type="checkbox"  style="float: left;" id="checkAll"/></td>
+        <td width="10%" bgcolor="#FFFFFF">商品图片</td>
+        <td width="10%" bgcolor="#FFFFFF">
+            <a href="javascript:;" style="color:#666666;">商品名称</a>
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">
+            <a href="javascript:;" style="color:#666666;">市场价</a>
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">
+            <a href="javascript:;" style="color:#666666;">销售价</a>
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">所在商城分类</td>
+        <td width="10%" bgcolor="#FFFFFF">所在店铺分类</td>
+        <td width="10%" bgcolor="#FFFFFF" style="display:none">
+            <a href="javascript:;" style="color:#666666;">浏览</a>
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">库存</td>
+        <td width="10%" bgcolor="#FFFFFF">
+            <a href="javascript:;" style="color:#666666;">发布时间</a>
+        </td>
+        <td width="10%" bgcolor="#FFFFFF" align=center>编辑</td>
+    </tr>
+             @if (Model != null && Model.Count>0)
+             {
+                 foreach (var item in Model)
+                 {
+                     <tr class="oddtrcolor" height="27px"  >
+                         <td class="input_middle" valign="middle" height="27px" style="width:18px;padding-left:5px;height:27px;">
+		              <input type="checkbox" name="ItemCheckBox" value="@item.ProductId">
+		          </td>
+                         <td align="center" height="27px" style="padding-left:5px;height:27px;">
+                             <div class="borderImage"> <a href="/Product/Detail/@item.ProductId" target="_blank">
+                                                           <img  width="80px" height="80px" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T400X400_")" onerror="this.src='/Content/themes/base/images/404/80.jpg'" style="display: inline;">
+                                                       </a></div>
+                         </td><td align="left" height="27px" style="padding-left:5px;height:27px;">
+                                  <a href="/Product/Detail/@item.ProductId" target="_blank">
+                                      <p id="p_872" class="autobrake">
+                                          @item.ProductName
+                                      </p>
+                                  </a>
+                              </td><td align="center" height="27px" style="padding-left:5px;height:27px;">
+                                       <span id="MarketPrice_872">￥@(item.MarketPrice.HasValue?item.MarketPrice.Value.ToString("F"):"")</span>
+                            
+                                   </td><td align="center" height="27px" style="padding-left:5px;height:27px;">
+                                            <span style="color: #f60;font-family:tahoma;font-weight:700" id="LowestSalePrice_872">￥@item.LowestSalePrice.ToString("F")</span>
+                               
+                                        </td><td align="left" height="27px" style="padding-left:5px;height:27px;">
+                                                 @Html.Raw(item.CategoryName) <br>
+                                             </td><td align="left" height="27px" style="padding-left:5px;height:27px;">
+                                                      @item.SuppCategoryName
+                                                  </td><td align="center" height="27px" style="padding-left:5px;height:27px;display:none;"  >
+                                                           @item.VistiCounts
+                                                       </td><td align="center" height="27px" style="padding-left:5px;height:27px;">
+                                                                <span id="StockNum_872"> @item.StockNum</span>
+                                                            </td><td align="center" height="27px" style="padding-left:5px;height:27px;">
+                                                                     @item.AddedDate.ToString("yyy-MM-dd HH:mm:ss")
+                                                                 </td><td align="center" height="27px" style="padding-left:5px;height:27px;">
+                                                                          <a target="mainFrame" href="@(ViewBag.BasePath)Product/ProductModify?pid=@item.ProductId">编辑</a>
+                                                                      </td>
+                     </tr>
+                 }
+                 
+                 <tr height="27px" style="background:#FFF">
+			 <div class="abc">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                        <tr>
+                            <td width="5%" style="padding-left: 12px;">
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="50%">
+			                        
+			                                  @Html.AjaxPager(Model, new PagerOptions
+                                {
+                                    ShowDisabledPagerItems = false,
+                                    AlwaysShowFirstLastPageNumber = true,
+                                    PageIndexParameterName = "p",
+                                    NumericPagerItemCount = 10,
+                                    MorePagerItemWrapperFormatString = "<span>{0}</span>",
+                                    CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+                                    NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                                    NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+                                    CssClass = "page",
+                                    
+                                    SeparatorHtml = ""
+                                }, new AjaxOptions { UpdateTargetId = "instockProdList" }) 
+			                             </td>
+                        </tr>
+                    </table>
+                </div>
+			                         
+		</tr>
+             }
+
+     </table>

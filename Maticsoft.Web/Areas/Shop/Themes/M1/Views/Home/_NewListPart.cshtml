@@ -1,0 +1,15 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<ul style="display: block; float: left; height: 289px">
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <li>@*<a target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"
+               title="@item.ProductName">*@
+               <a href="@item.SeoUrl" target="_blank" title="@item.ProductName">
+            <img data-large="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350__")" alt="@item.ProductName"
+                      data-lazy-custom="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T175x228_")"
+                     width="175" height="228"></a> </li>
+        }
+    }
+</ul>

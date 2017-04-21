@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model List<Maticsoft.Model.Members.Users>
+<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<link href="/Admin/js/select2-2.1/select2.css" rel="stylesheet" type="text/css" />
+<script src="/Admin/js/select2-2.1/select2.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#btnSave").click(function () {
+            var id = $("#UserID").val();
+            $.ajax({
+
+                url: ($Maticsoft.BasePath + "WeChat/BindUser?timestamp={0}").format(new Date().getTime()),
+                type: 'POST',
+                dataType: 'json',
+                timeout: 10000,
+                async: false,
+                data: { id: id },
+                success: function (resultData) {
+                    if (resultData["Result"] == "OK") {
+                        ShowSuccessTip("操作成功!");
+                        setTimeout("DelayTime()", 2000);
+                    } else {
+                        ShowFailTip("操作失败!");
+                    }
+                }, error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    ShowFailTip(xmlHttpRequest.responseText);
+                }
+            });
+        });
+    });
+    function DelayTime() {
+        window.parent.location.reload();
+    }
+</script>
+<form action="" method="post" id="BindUserForm">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            微信用户绑定管理
+        </h3>
+        <small class="desc">您可以进行绑定网站用户操作 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            网站用户：
+                            <input type="hidden" name="name" id="UserID" value="@ViewBag.ID" />
+                        </td>
+                        <td height="25">
+                            @*<asp:DropDownList ID="ddUser" runat="server">
+                            </asp:DropDownList>*@
+                            @{
+                                   
+                                <select id="ddUser" name="ddUser">
+                                    @foreach (var item in Model)
+                                    {
+                                        <option value="@item.UserID">@item.UserName</option>
+                                    }
+                                </select>
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                        <div class="form stdform">
+                            @*<asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Site, btnSaveText %>"
+                                    OnClick="btnSave_Click" class="adminsubmit_short"></asp:Button>*@
+                            <input type="button" name="name" value="保存" id="btnSave" class="adminsubmit_short" />&nbsp;&nbsp;
+                         </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+</form>

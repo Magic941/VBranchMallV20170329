@@ -1,0 +1,678 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnNextText" xml:space="preserve">
+    <value>发送</value>
+  </data>
+  <data name="btnSetupPerm" xml:space="preserve">
+    <value>设置功能权限</value>
+  </data>
+  <data name="btnSetupText" xml:space="preserve">
+    <value>设置权限</value>
+  </data>
+  <data name="btnTestSend" xml:space="preserve">
+    <value>测试发送</value>
+  </data>
+  <data name="btnUpdateText" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="dropBackendAgent" xml:space="preserve">
+    <value>代理商后台</value>
+  </data>
+  <data name="dropBackendEnterprise" xml:space="preserve">
+    <value>企业后台</value>
+  </data>
+  <data name="dropBackendSystem" xml:space="preserve">
+    <value>系统后台</value>
+  </data>
+  <data name="dropBackendUser" xml:space="preserve">
+    <value>用户后台</value>
+  </data>
+  <data name="EmailBodyTemplate" xml:space="preserve">
+    <value>这是{0}在为您发出的测试邮件</value>
+  </data>
+  <data name="EmailSubjectTemplate" xml:space="preserve">
+    <value>{0}发出的测试邮件</value>
+  </data>
+  <data name="ErrorCheckedCheckBox1" xml:space="preserve">
+    <value>根目录不能选择同步创建权限，请您手动创建！</value>
+  </data>
+  <data name="ErrorContentNotNull" xml:space="preserve">
+    <value>内容不能为空！</value>
+  </data>
+  <data name="ErrorIDFormalError" xml:space="preserve">
+    <value>编号格式不正确</value>
+  </data>
+  <data name="ErrorIDNotNull" xml:space="preserve">
+    <value>编号不能为空</value>
+  </data>
+  <data name="ErrorInputPassword" xml:space="preserve">
+    <value>请输入密码</value>
+  </data>
+  <data name="ErrorKeyNameNotNull" xml:space="preserve">
+    <value>KeyName不能为空!</value>
+  </data>
+  <data name="ErrorNameNotNull" xml:space="preserve">
+    <value>名称不能为空</value>
+  </data>
+  <data name="ErrorPermission" xml:space="preserve">
+    <value>权限类别不能做权限使用</value>
+  </data>
+  <data name="ErrorRoleIsNull" xml:space="preserve">
+    <value>角色为空，不能保存！</value>
+  </data>
+  <data name="ErrorSubjectNotNull" xml:space="preserve">
+    <value>主题不能为空！</value>
+  </data>
+  <data name="ErrorUserInexistence" xml:space="preserve">
+    <value>该用户信息不存在！</value>
+  </data>
+  <data name="ErrorValueNotNull" xml:space="preserve">
+    <value>Value不能为空!</value>
+  </data>
+  <data name="fieldActionID" xml:space="preserve">
+    <value>行为编号</value>
+  </data>
+  <data name="fieldActivity" xml:space="preserve">
+    <value>是否生效</value>
+  </data>
+  <data name="fieldBDescription" xml:space="preserve">
+    <value>描述信息</value>
+  </data>
+  <data name="fieldBrowser" xml:space="preserve">
+    <value>浏览器</value>
+  </data>
+  <data name="fieldcomment" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="fieldDescription" xml:space="preserve">
+    <value>描述</value>
+  </data>
+  <data name="fieldEmployeeID" xml:space="preserve">
+    <value>员工编号</value>
+  </data>
+  <data name="fieldFeedback_bSolved" xml:space="preserve">
+    <value>是否已经解决</value>
+  </data>
+  <data name="fieldFeedback_cContent" xml:space="preserve">
+    <value>反馈内容</value>
+  </data>
+  <data name="fieldFeedback_cResult" xml:space="preserve">
+    <value>解决结果</value>
+  </data>
+  <data name="fieldFeedback_dateCreate" xml:space="preserve">
+    <value>提交时间</value>
+  </data>
+  <data name="fieldID" xml:space="preserve">
+    <value>错误编号</value>
+  </data>
+  <data name="fieldLoginfo" xml:space="preserve">
+    <value>错误信息</value>
+  </data>
+  <data name="fieldMailaddress" xml:space="preserve">
+    <value>邮件地址</value>
+  </data>
+  <data name="fieldMultiLang_cField" xml:space="preserve">
+    <value>字段</value>
+  </data>
+  <data name="fieldMultiLang_cLang" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="fieldMultiLang_cValue" xml:space="preserve">
+    <value>字段值</value>
+  </data>
+  <data name="fieldMultiLang_iPKValue" xml:space="preserve">
+    <value>外键值</value>
+  </data>
+  <data name="fieldNodeEnable" xml:space="preserve">
+    <value>启用菜单</value>
+  </data>
+  <data name="fieldNodeID" xml:space="preserve">
+    <value>菜单ID</value>
+  </data>
+  <data name="fieldNodeName" xml:space="preserve">
+    <value>菜单名称</value>
+  </data>
+  <data name="fieldNodeType" xml:space="preserve">
+    <value>菜单类型</value>
+  </data>
+  <data name="fieldOPInfo" xml:space="preserve">
+    <value>信息</value>
+  </data>
+  <data name="fieldOPTime" xml:space="preserve">
+    <value>记录时间</value>
+  </data>
+  <data name="fieldOrder" xml:space="preserve">
+    <value>顺序</value>
+  </data>
+  <data name="fieldOSName" xml:space="preserve">
+    <value>操作系统</value>
+  </data>
+  <data name="fieldPageUrl" xml:space="preserve">
+    <value>操作地址</value>
+  </data>
+  <data name="fieldParent" xml:space="preserve">
+    <value>父菜单</value>
+  </data>
+  <data name="fieldPermission" xml:space="preserve">
+    <value>权限</value>
+  </data>
+  <data name="fieldPermissionID" xml:space="preserve">
+    <value>权限编号</value>
+  </data>
+  <data name="fieldSessionID" xml:space="preserve">
+    <value>Session编号</value>
+  </data>
+  <data name="fieldText" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="fieldUrl" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="fieldUserIP" xml:space="preserve">
+    <value>用户IP</value>
+  </data>
+  <data name="lblActionExplain" xml:space="preserve">
+    <value>添加、修改、删除功能行为数据，该数据为系统初始化数据，仅开发人员可以添加。</value>
+  </data>
+  <data name="lblActionManage" xml:space="preserve">
+    <value>功能行为管理</value>
+  </data>
+  <data name="lblAddBackendMenu" xml:space="preserve">
+    <value>您可以新增网站后台菜单</value>
+  </data>
+  <data name="lblAddMultiLang" xml:space="preserve">
+    <value>增加多语言数据</value>
+  </data>
+  <data name="lblAddNavigationMenu" xml:space="preserve">
+    <value>新建导航菜单</value>
+  </data>
+  <data name="lblAddNewMenu" xml:space="preserve">
+    <value>您可以进行新增导航菜单操作</value>
+  </data>
+  <data name="lblAddNewUserOperate" xml:space="preserve">
+    <value>您可以进行新增用户操作</value>
+  </data>
+  <data name="lblAddPermissions" xml:space="preserve">
+    <value>增加权限数据：</value>
+  </data>
+  <data name="lblAddPermissionsClass" xml:space="preserve">
+    <value>增加权限类别：</value>
+  </data>
+  <data name="lblAddUser" xml:space="preserve">
+    <value>新增用户</value>
+  </data>
+  <data name="lblAddUserTypeOperate" xml:space="preserve">
+    <value>您可以进行增加用户类别操作</value>
+  </data>
+  <data name="lblCanClearCache" xml:space="preserve">
+    <value>您可以清除缓存</value>
+  </data>
+  <data name="lblChangePassword" xml:space="preserve">
+    <value>您可以对密码进行修改</value>
+  </data>
+  <data name="lblChoisePermissionsClass" xml:space="preserve">
+    <value>选择权限类别：</value>
+  </data>
+  <data name="lblClearSucceed" xml:space="preserve">
+    <value>清除成功！</value>
+  </data>
+  <data name="lblConfigSystem" xml:space="preserve">
+    <value>系统关键参数配置。该数据为系统初始化数据，仅开发人员可以添加和编辑。</value>
+  </data>
+  <data name="lblConfiguringMailbox" xml:space="preserve">
+    <value>您可以配置邮箱</value>
+  </data>
+  <data name="lblConfiguringWebsiteEmails" xml:space="preserve">
+    <value>您可以对网站邮件进行配置</value>
+  </data>
+  <data name="lblConsultErrorlog" xml:space="preserve">
+    <value>您可以查看整个网站的错误日志</value>
+  </data>
+  <data name="lblConsultOperatelog" xml:space="preserve">
+    <value>您可以查看整个网站的操作日志</value>
+  </data>
+  <data name="lblCustomerFeedbackManage" xml:space="preserve">
+    <value>您可以对客户反馈的信息进行管理</value>
+  </data>
+  <data name="lblCustomFavoritesMenu" xml:space="preserve">
+    <value>定制收藏</value>
+  </data>
+  <data name="lblCustomShortcutMenu" xml:space="preserve">
+    <value>您可以自定义后台快捷菜单</value>
+  </data>
+  <data name="lblDeleteBeforeOneDay" xml:space="preserve">
+    <value>删除日期之前</value>
+  </data>
+  <data name="lblEditUserinfo" xml:space="preserve">
+    <value>您可以编辑用户信息</value>
+  </data>
+  <data name="lblEnableFalse" xml:space="preserve">
+    <value>已禁用</value>
+  </data>
+  <data name="lblEnableTrue" xml:space="preserve">
+    <value>正在使用</value>
+  </data>
+  <data name="lblEnterpriseName" xml:space="preserve">
+    <value>企业名称：</value>
+  </data>
+  <data name="lblFeedbackList" xml:space="preserve">
+    <value>客户反馈管理</value>
+  </data>
+  <data name="lblFeedbackListShow" xml:space="preserve">
+    <value>客户反馈信息查看</value>
+  </data>
+  <data name="lblFrozenAccount" xml:space="preserve">
+    <value>冻结账号</value>
+  </data>
+  <data name="lblGroupMail" xml:space="preserve">
+    <value>邮件群发</value>
+  </data>
+  <data name="lblKeshiPublicText" xml:space="preserve">
+    <value>作为部门内部公有部分出现</value>
+  </data>
+  <data name="lblLookUpUserinfo" xml:space="preserve">
+    <value>您可以查看用户信息</value>
+  </data>
+  <data name="lblMenuList" xml:space="preserve">
+    <value>菜单项目</value>
+  </data>
+  <data name="lblMenuShow" xml:space="preserve">
+    <value>您可以进行菜单信息</value>
+  </data>
+  <data name="lblMessageContent" xml:space="preserve">
+    <value>消息内容</value>
+  </data>
+  <data name="lblMessageSubject" xml:space="preserve">
+    <value>消息主题</value>
+  </data>
+  <data name="lblModifUser" xml:space="preserve">
+    <value>编辑用户信息</value>
+  </data>
+  <data name="lblModifUserOperate" xml:space="preserve">
+    <value>您可以进行编辑用户信息操作</value>
+  </data>
+  <data name="lblModifyBackendMenu" xml:space="preserve">
+    <value>您可以编辑网站后台菜单</value>
+  </data>
+  <data name="lblModuledeptText" xml:space="preserve">
+    <value>未归属任何部门</value>
+  </data>
+  <data name="lblModuleText" xml:space="preserve">
+    <value>未归属任何模块</value>
+  </data>
+  <data name="lblMultiLanguage" xml:space="preserve">
+    <value>您可以进行多语言管理</value>
+  </data>
+  <data name="lblNoChangePasswpord" xml:space="preserve">
+    <value>(留空将不改变原密码)</value>
+  </data>
+  <data name="lblOnlineUser" xml:space="preserve">
+    <value>您可以查看当前时间在线活动的用户</value>
+  </data>
+  <data name="lblPageTitle" xml:space="preserve">
+    <value>页面标题</value>
+  </data>
+  <data name="lblParentMenu" xml:space="preserve">
+    <value>按父级菜单位置</value>
+  </data>
+  <data name="lblPermissionText" xml:space="preserve">
+    <value>没有权限限制</value>
+  </data>
+  <data name="lblPOPServer" xml:space="preserve">
+    <value>POP服务器</value>
+  </data>
+  <data name="lblPOPServerPort" xml:space="preserve">
+    <value>POP服务器端口</value>
+  </data>
+  <data name="lblRightsManagement" xml:space="preserve">
+    <value>您可以进行权限管理操作</value>
+  </data>
+  <data name="lblRoleAssignmentOperate" xml:space="preserve">
+    <value>您可以进行角色分配操作</value>
+  </data>
+  <data name="lblRoleManageOperate" xml:space="preserve">
+    <value>您可以进行角色管理操作</value>
+  </data>
+  <data name="lblRoleRedactOperate" xml:space="preserve">
+    <value>您可以进行角色编辑操作</value>
+  </data>
+  <data name="lblSearch" xml:space="preserve">
+    <value>信息检索，您可以有选择的选取相应条件进行检索，不填写表示不加以限制。</value>
+  </data>
+  <data name="lblSearchCriteria" xml:space="preserve">
+    <value>搜索选项</value>
+  </data>
+  <data name="lblSendMail" xml:space="preserve">
+    <value>您可以自己定义邮件内容，并将邮件发送给符合查询条件的所有会员或代理商</value>
+  </data>
+  <data name="lblSendMailToUser" xml:space="preserve">
+    <value>发送给单个用户</value>
+  </data>
+  <data name="lblSendMailToUsers" xml:space="preserve">
+    <value>群发给多个用户</value>
+  </data>
+  <data name="lblSendTo" xml:space="preserve">
+    <value>发送对象</value>
+  </data>
+  <data name="lblSMTPMail" xml:space="preserve">
+    <value>SMTP邮箱</value>
+  </data>
+  <data name="lblSMTPPassword" xml:space="preserve">
+    <value>SMTP用户密码</value>
+  </data>
+  <data name="lblSMTPServer" xml:space="preserve">
+    <value>SMTP服务器</value>
+  </data>
+  <data name="lblSMTPServerPort" xml:space="preserve">
+    <value>SMTP服务器端口</value>
+  </data>
+  <data name="lblSMTPUsername" xml:space="preserve">
+    <value>SMTP用户名</value>
+  </data>
+  <data name="lblSSl" xml:space="preserve">
+    <value>安全连接(SSL)</value>
+  </data>
+  <data name="lblState" xml:space="preserve">
+    <value>状态：</value>
+  </data>
+  <data name="lblStyleOne" xml:space="preserve">
+    <value>风格一</value>
+  </data>
+  <data name="lblStyleTwo" xml:space="preserve">
+    <value>风格二</value>
+  </data>
+  <data name="lbltreeList" xml:space="preserve">
+    <value>您可以对网站的菜单进行管理</value>
+  </data>
+  <data name="lblUpdateUserOperate" xml:space="preserve">
+    <value>您可以进行用户更新操作</value>
+  </data>
+  <data name="lblUserinfoOperate" xml:space="preserve">
+    <value>您可以进行新增、编辑、删除用户信息操作</value>
+  </data>
+  <data name="lblUserTypeManageOperate" xml:space="preserve">
+    <value>您可以编辑用户类别数据。该数据为系统初始化数据，仅开发人员可以添加。</value>
+  </data>
+  <data name="lblWebsiteApprove" xml:space="preserve">
+    <value>网站备案号</value>
+  </data>
+  <data name="lblWebSiteConfig" xml:space="preserve">
+    <value>你可以自定义网站参数</value>
+  </data>
+  <data name="lblWebSiteCopyright" xml:space="preserve">
+    <value>网站版权信息</value>
+  </data>
+  <data name="lblWebSiteDescribe" xml:space="preserve">
+    <value>站点描述</value>
+  </data>
+  <data name="lblWebSiteDomain" xml:space="preserve">
+    <value>网站域名</value>
+  </data>
+  <data name="lblWebSiteKeywords" xml:space="preserve">
+    <value>站点关键字</value>
+  </data>
+  <data name="lblWebSiteLogo" xml:space="preserve">
+    <value>网站 Logo</value>
+  </data>
+  <data name="lblWebSiteName" xml:space="preserve">
+    <value>网站名称</value>
+  </data>
+  <data name="lblCompanyName" xml:space="preserve">
+    <value>公司名称</value>
+  </data>
+  <data name="lblCompanyAddress" xml:space="preserve">
+    <value>公司地址</value>
+  </data>
+  <data name="lblCompanyTelephone" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="lblCompanyFax" xml:space="preserve">
+    <value>传真</value>
+  </data>
+  <data name="lblCompanyMail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="lblWerSitePrompt" xml:space="preserve">
+    <value>为了提高前台网页的打开速度，建议将图片文件的大小限制在200KB以内。</value>
+  </data>
+  <data name="ListItemAll" xml:space="preserve">
+    <value>全部</value>
+  </data>
+  <data name="listTargetOne" xml:space="preserve">
+    <value>全部菜单</value>
+  </data>
+  <data name="listTargetTwo" xml:space="preserve">
+    <value>根目录</value>
+  </data>
+  <data name="lstDefaultUser" xml:space="preserve">
+    <value>（关联用户）</value>
+  </data>
+  <data name="ptAdjustmentMenuOrder" xml:space="preserve">
+    <value>菜单顺序调整</value>
+  </data>
+  <data name="ptClearCache" xml:space="preserve">
+    <value>清除缓存</value>
+  </data>
+  <data name="ptConfigSystem" xml:space="preserve">
+    <value>系统配置</value>
+  </data>
+  <data name="ptConfigurationAdd" xml:space="preserve">
+    <value>添加配置</value>
+  </data>
+  <data name="ptErrorlog" xml:space="preserve">
+    <value>错误日志</value>
+  </data>
+  <data name="ptFeedbackList" xml:space="preserve">
+    <value>客户反馈</value>
+  </data>
+  <data name="ptFeedbackListShow" xml:space="preserve">
+    <value>客户反馈信息</value>
+  </data>
+  <data name="ptGroupEmail" xml:space="preserve">
+    <value>邮件群发页</value>
+  </data>
+  <data name="ptMailSendSettings" xml:space="preserve">
+    <value>邮件发送设置</value>
+  </data>
+  <data name="ptMenuAdd" xml:space="preserve">
+    <value>新建菜单</value>
+  </data>
+  <data name="ptMenuManage" xml:space="preserve">
+    <value>菜单管理</value>
+  </data>
+  <data name="ptMenuModify" xml:space="preserve">
+    <value>菜单编辑</value>
+  </data>
+  <data name="ptMenuShow" xml:space="preserve">
+    <value>菜单信息</value>
+  </data>
+  <data name="ptMultiLanguage" xml:space="preserve">
+    <value>多语言管理</value>
+  </data>
+  <data name="ptOnlineUser" xml:space="preserve">
+    <value>在线用户</value>
+  </data>
+  <data name="ptptMailSettings" xml:space="preserve">
+    <value>邮件配置</value>
+  </data>
+  <data name="ptSearch" xml:space="preserve">
+    <value>信息检索</value>
+  </data>
+  <data name="ptSetPass" xml:space="preserve">
+    <value>设置用户密码</value>
+  </data>
+  <data name="ptTreeFavorite" xml:space="preserve">
+    <value>菜单定制</value>
+  </data>
+  <data name="ptUserLog" xml:space="preserve">
+    <value>用户日志</value>
+  </data>
+  <data name="ptWebSiteConfig" xml:space="preserve">
+    <value>网站设置</value>
+  </data>
+  <data name="TooltipAddContinue" xml:space="preserve">
+    <value>连续添加</value>
+  </data>
+  <data name="tooltipCheckedCheckBox1" xml:space="preserve">
+    <value>选择该选项,将创建同名权限,并自动绑定.注意:如果父类为根目录则不能使用该设置</value>
+  </data>
+  <data name="TooltipCreatSamePerm" xml:space="preserve">
+    <value>创建同名的权限</value>
+  </data>
+  <data name="TooltipMenuID" xml:space="preserve">
+    <value>菜单编号</value>
+  </data>
+  <data name="TooltipNoteToCheck" xml:space="preserve">
+    <value>测试邮件发送成功，请注意查收！</value>
+  </data>
+  <data name="TooltipPOPSSl" xml:space="preserve">
+    <value>发送检索邮件时是否使用SSL</value>
+  </data>
+  <data name="TooltipRetryAfter" xml:space="preserve">
+    <value>测试邮件发送失败，请稍后再试！</value>
+  </data>
+  <data name="TooltipRoleAssignForuser" xml:space="preserve">
+    <value>请为用户选择角色</value>
+  </data>
+  <data name="TooltipSentFailed" xml:space="preserve">
+    <value>邮件发送失败！</value>
+  </data>
+  <data name="TooltipSentSuccessfully" xml:space="preserve">
+    <value>邮件发送成功！</value>
+  </data>
+  <data name="TooltipSMTPSSL" xml:space="preserve">
+    <value>发送邮件时是否使用SSL</value>
+  </data>
+  <data name="TooltiptxtDescription" xml:space="preserve">
+    <value>菜单说明的关键字</value>
+  </data>
+  <data name="TooltipTxtName" xml:space="preserve">
+    <value>菜单名称关键字</value>
+  </data>
+  <data name="TooltipUpdateFail" xml:space="preserve">
+    <value>更新用户信息时发生错误，更新失败！</value>
+  </data>
+  <data name="TooltipUpdateSucceed" xml:space="preserve">
+    <value>用户信息更新成功！</value>
+  </data>
+  <data name="TooltipUserRoleAssignForuser" xml:space="preserve">
+    <value>请为用户分配可用角色</value>
+  </data>
+</root>

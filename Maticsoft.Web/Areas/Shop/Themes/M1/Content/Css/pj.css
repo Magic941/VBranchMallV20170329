@@ -1,0 +1,612 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+.comment-box {
+    background: none repeat scroll 0 0 #FCFFFA;
+    border: 1px solid #D0E4C2;
+    display: none;
+    margin: 0 -6px 5px;
+    padding: 10px 0 0 30px;
+    position: relative;
+    text-align: left;
+}
+.comment-box .msg-text {
+    float: right;
+}
+.comment-box .box-t {
+    background:url(../images/cicon.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    height: 12px;
+    position: absolute;
+    right: 185px;
+    top: -11px;
+    width: 21px;
+}
+.comment-box .btn:hover {
+    color: #333333;
+}
+.comment-box .commstar {
+    background: url(../images/commstar.jpg) repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 20px;
+    margin-top: 5px;
+    position: relative;
+    width: 105px;
+}
+.comment-box .commstar a {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20%;
+}
+.comment-box .commstar a:hover, .comment-box .commstar .active {
+    background: url(../images/commstar.jpg) repeat-x scroll left top rgba(0, 0, 0, 0);
+}
+.comment-box .commstar .star1 {
+    width: 20%;
+    z-index: 9;
+}
+.comment-box .commstar .star2 {
+    width: 40%;
+    z-index: 8;
+}
+.comment-box .commstar .star3 {
+    width: 60%;
+    z-index: 7;
+}
+.comment-box .commstar .star4 {
+    width: 80%;
+    z-index: 6;
+}
+.comment-box .commstar .star5 {
+    width: 100%;
+    z-index: 5;
+}
+.comment-box .tips-list {
+    display: block;
+    width: 580px;
+}
+.comment-box .tips-list:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .comment-box .tips-list {
+    height: 1%;
+}
+* + html .comment-box .tips-list {
+    min-height: 1%;
+}
+.comment-box .tips-list li {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    cursor: pointer;
+    float: left;
+    line-height: 18px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 6px 9px;
+    white-space: nowrap;
+}
+.comment-box .tips-list li s.f-check {
+    background:  url(../images/cicon.png) repeat scroll -38px 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 13px;
+    margin-right: 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 13px;
+}
+.comment-box .tips-list li s.f-input {
+    background: url(../images/cicon.png) repeat scroll -53px 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 14px;
+    margin-right: 5px;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 12px;
+}
+.comment-box .tips-list li.select {
+    border: 2px solid #CC0000;
+    padding: 5px 8px;
+}
+.comment-box .tips-list li.select s.f-check {
+    background-position: -23px 0;
+}
+.comment-box .tips-list li .fore1 {
+    float: left;
+}
+.comment-box .tips-list li.list-last {
+    position: relative;
+}
+.comment-box .tips-list li.list-last .btn-9 {
+    margin-left: 5px;
+    margin-top: 2px;
+    position: absolute;
+}
+.comment-box .tips-list li.list-last .itxt {
+    padding: 5px;
+    width: 86px;
+}
+.comment-box .tips-list li.list-last-input {
+    border: 2px solid #CC0000;
+    padding: 0;
+}
+.comment-box .tips-list li.list-last-input .itxt {
+    border: 0 none;
+    width: 80px;
+}
+.comment-box dl.club-share {
+    display: inline-block;
+    line-height: 30px;
+    vertical-align: middle;
+}
+.comment-box dl.club-share dt, .comment-box dl.club-share dd {
+    float: left;
+}
+.comment-box dl.club-share .icon {
+    background:url(../images/share.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 15px;
+    margin: -3px 5px 0 0;
+    overflow: hidden;
+    vertical-align: middle;
+    width: 15px;
+}
+.comment-box dl.club-share .icon-weibo {
+    background-position: 0 -17px;
+}
+.comment-box dl.club-share .icon-weibo-on {
+    background-position: 0 0;
+}
+.comment-box dl.club-share .icon-qzone {
+    background-position: -17px -17px;
+}
+.comment-box dl.club-share .icon-qzone-on {
+    background-position: -17px 0;
+}
+.comment-box dl.club-share .icon-qqweibo {
+    background-position: -34px -17px;
+}
+.comment-box dl.club-share .icon-qqweibo-on {
+    background-position: -34px 0;
+}
+.comment-box dl.club-share .icon-renren {
+    background-position: -51px -17px;
+}
+.comment-box dl.club-share .icon-renren-on {
+    background-position: -51px 0;
+}
+.comment-box dl.club-share .icon-kaixin {
+    background-position: -68px -17px;
+}
+.comment-box dl.club-share .icon-kaixin-on {
+    background-position: -68px 0;
+}
+.comment-box dl.club-share .icon-douban {
+    background-position: -85px -17px;
+}
+.comment-box dl.club-share .icon-douban-on {
+    background-position: -85px 0;
+}
+.comment-box .tit {
+    float: left;
+    width: 370px;
+}
+.comment-box .cont {
+    float: left;
+    width: 602px;
+}
+.comment-box .area {
+    height: 88px;
+    width: 590px;
+}
+.comment-box .area01 {
+    color: #CCCCCC;
+}
+.comment-box .itxt2 {
+    width: 58px;
+}
+.comment-box .itxt-time {
+    width: 92px;
+}
+.comment-box label {
+    cursor: pointer;
+}
+.comment-box .msg-error-01 {
+    background: none repeat scroll 0 0 #FFEBEB;
+    border: 1px solid #FFBDBE;
+    color: #E4393C;
+    float: left;
+    line-height: 24px;
+    padding: 2px 6px;
+}
+.service-box .mc {
+    border: 1px solid #E9EAEC;
+}
+.service-box .service-lcol {
+    background: none repeat scroll 0 0 #F5F5F5;
+    float: left;
+    height: 164px;
+    overflow: visible;
+    padding: 30px 0 0 140px;
+    position: relative;
+    width: 195px;
+}
+.service-box .service-rcol {
+    float: left;
+    height: 164px;
+    margin-left: 30px;
+    padding-top: 30px;
+    position: relative;
+    width: 440px;
+}
+.service-box .s-star {
+    background: url("i/star-s.png") repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 15px;
+    margin-top: -3px;
+    vertical-align: middle;
+    width: 75px;
+}
+.service-box .s-star.sa5 {
+    background-position: 0 0;
+}
+.service-box .s-star.sa4 {
+    background-position: -15px 0;
+}
+.service-box .s-star.sa3 {
+    background-position: -30px 0;
+}
+.service-box .s-star.sa2 {
+    background-position: -45px 0;
+}
+.service-box .s-star.sa1 {
+    background-position: -60px 0;
+}
+.service-box .shopper-img {
+    left: 20px;
+    position: absolute;
+    top: 30px;
+}
+.service-box .shopper-name {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.service-box .service-arr {
+    border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #F5F5F5;
+    border-style: dashed dashed dashed solid;
+    border-width: 16px;
+    display: block;
+    font-size: 0;
+    height: 0;
+    margin-top: -16px;
+    overflow: hidden;
+    position: absolute;
+    right: -32px;
+    top: 50%;
+    width: 0;
+}
+.service-box dl {
+    display: block;
+    margin-bottom: 20px;
+}
+.service-box dl:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .service-box dl {
+    height: 1%;
+}
+* + html .service-box dl {
+    min-height: 1%;
+}
+.service-box dl .degree-text {
+    border: 1px solid #DDDDDD;
+    color: #999999;
+    height: 18px;
+    line-height: 18px;
+    margin-left: 10px;
+    padding: 1px 3px;
+    vertical-align: middle;
+}
+.service-box dl .degree-text.d3, .service-box dl .degree-text.d4 {
+    border-color: #F8B600;
+    color: #F8B600;
+}
+.service-box dl .degree-text.d5 {
+    border-color: #FF6600;
+    color: #FF6600;
+}
+.service-box dl .commstar {
+    background:url(../images/commstar.jpg) repeat-x scroll 0 -21px rgba(0, 0, 0, 0);
+    display: inline-block;
+    float: left;
+    height: 20px;
+    position: relative;
+    width: 105px;
+}
+.service-box dl .commstar a {
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 20%;
+}
+.service-box dl .commstar a:hover, .service-box dl .commstar .active {
+    background: url(../images/commstar.jpg) repeat-x scroll left top rgba(0, 0, 0, 0);
+}
+.service-box dl .commstar .star1 {
+    width: 20%;
+    z-index: 9;
+}
+.service-box dl .commstar .star2 {
+    width: 40%;
+    z-index: 8;
+}
+.service-box dl .commstar .star3 {
+    width: 60%;
+    z-index: 7;
+}
+.service-box dl .commstar .star4 {
+    width: 80%;
+    z-index: 6;
+}
+.service-box dl .commstar .star5 {
+    width: 100%;
+    z-index: 5;
+}
+.service-box dt, .service-box dd {
+    float: left;
+}
+.service-box dt {
+    width: 120px;
+}
+.service-box .score {
+    float: left;
+    width: 300px;
+}
+.service-box .service-txt {
+    float: left;
+    width: 170px;
+}
+.service-box .service-txt .more {
+    display: block;
+    padding-top: 40px;
+}
+.service-box .service-txt .hide {
+    display: none;
+}
+.service-box .service-txt .area {
+    border: 1px solid #71B247;
+    height: 80px;
+    padding: 5px;
+    width: 140px;
+}
+.service-box .score-succ {
+    left: 30%;
+    margin-top: -24px;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+}
+.service-box .score-succ h3 {
+    font-family: "microsoft yahei";
+    font-size: 18px;
+}
+.service-box .score-succ .icon-02 {
+    background: url("i/icon48.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    display: inline-block;
+    height: 48px;
+    margin-right: 10px;
+    vertical-align: middle;
+    width: 48px;
+}
+.mod-main .service-score {
+    margin: 20px 0 0 100px;
+    overflow: hidden;
+}
+.pro-info {
+    display: block;
+}
+.pro-info:after {
+    clear: both;
+    content: ".";
+    display: block;
+    height: 0;
+    visibility: hidden;
+}
+* html .pro-info {
+    height: 1%;
+}
+* + html .pro-info {
+    min-height: 1%;
+}
+.pro-info li {
+    float: left;
+    margin-top: 10px;
+    vertical-align: middle;
+    width: 122px;
+}
+.pro-info li.fore1 {
+    margin: 0;
+    width: 430px;
+}
+.p-info {
+    overflow: hidden;
+    width: 400px;
+}
+.p-info .p-name {
+    height: 3em;
+    line-height: 1.5em;
+    margin-left: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+    text-align: left;
+    width: 330px;
+}
+.tb-line td {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: -moz-use-text-color -moz-use-text-color #F2F2F2;
+    border-image: none;
+    border-style: none none solid;
+    border-width: 0 0 1px;
+}
+.tb-line a:hover {
+    color: #E4393C;
+}
+.extra-main .mt {
+    padding-left: 0;
+}
+.extra-main .mt .extra-l li {
+    padding: 0 20px 0 0;
+}
+.selt {
+    border: 1px solid #CCCCCC;
+    float: right;
+    padding: 2px;
+}
+.mc .list-h {
+    overflow: hidden;
+}
+.mc .list-h li {
+    border: 1px solid #E1E1E1;
+    float: left;
+    height: 50px;
+    margin-right: 10px;
+    width: 50px;
+}
+.mc .list-h li.last-more {
+    line-height: 25px;
+    text-align: center;
+}
+.mc .list-h li.last-more .icon-elli {
+    background-image: url("i/more.png");
+    display: block;
+    font-size: 0;
+    height: 8px;
+    line-height: 0;
+    margin: 4px auto 0;
+    overflow: hidden;
+    width: 34px;
+}
+.Jcalendar {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #DDDDDD;
+    box-shadow: 0 0 5px #DDDDDD;
+    float: left;
+    left: 0;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+}
+.Jcal {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-collapse: collapse;
+    font: 12px verdana;
+    width: 240px;
+}
+.Jcal tbody td {
+    color: #005EA7;
+    cursor: pointer;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+}
+.Jcal thead th {
+    height: 24px;
+    line-height: 24px;
+    padding-bottom: 5px;
+    text-align: center;
+}
+.Jcal .selectMonth {
+    padding: 0 5px 0 20px;
+}
+.Jcal thead th a.ctrl-prev, .Jcal thead th a.ctrl-next {
+    background-image: url("i/J-cal.png");
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.Jcal .prevYear {
+    background-position: 0 -50px;
+}
+.Jcal .prevMonth {
+    background-position: 0 -100px;
+}
+.Jcal .nextYear {
+    background-position: 0 -75px;
+}
+.Jcal .nextMonth {
+    background-position: 0 -125px;
+}
+.Jcal thead th a.ctrl-prev:hover, .Jcal thead th a.ctrl-next:hover {
+    background-color: #EEEEEE;
+    text-decoration: none;
+}
+.Jcal .selectMonth, .Jcal .slecteYear {
+    float: left;
+}
+.Jcal .ctrl-prev {
+    float: left;
+}
+.Jcal .ctrl-next {
+    float: right;
+}
+.Jcal .ctrl-prev, .Jcal .ctrl-next {
+    height: 25px;
+    line-height: 10000px;
+    text-align: center;
+    width: 25px;
+}
+.Jcal thead .days {
+    background: none repeat scroll 0 0 #E5E5E5;
+}
+.Jcal thead .days th {
+    border: 1px solid #E5E5E5;
+}
+.Jcal td {
+    border: 1px solid #E5E5E5;
+    padding: 2px 0;
+}
+.Jcal td.chosen {
+    background: none repeat scroll 0 0 #E4393C;
+    color: #FFFFFF;
+}
+.Jcal .over {
+    background: none repeat scroll 0 0 #EEEEEE;
+}
+.Jcal .today {
+    color: #005EA7;
+    display: block;
+    font-weight: 700;
+    padding: 4px 0;
+    text-align: center;
+}
+.Jcal .J-sun, .Jcal .J-sat {
+    color: #E4393C;
+}
+.Jcalendar .close {
+    display: none;
+}
+.J-inp-cal {
+    background: url("i/J-cal.png") no-repeat scroll right -1px rgba(0, 0, 0, 0);
+    border: 1px solid #CCCCCC;
+    height: 21px;
+    line-height: 21px;
+    padding: 1px 26px 1px 2px;
+}

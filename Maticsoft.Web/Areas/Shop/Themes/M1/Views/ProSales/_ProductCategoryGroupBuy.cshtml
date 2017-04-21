@@ -1,0 +1,62 @@
+﻿@model System.Data.DataSet
+<script type="text/javascript">
+    $(function () {
+        var currentcid = '';
+        $(".catelist").each(function () {
+            var cateId = $(this).attr("cateId");
+            if (cateId == currentcid) {
+                $(this).addClass("cur");
+            }
+        });
+    })
+</script>
+@{
+    System.Data.DataTable dtmax = Model.Tables[0];
+    System.Data.DataTable dtsmall = Model.Tables[1];
+}
+@if (Model != null && dtmax.Rows.Count > 0)
+{
+    foreach (System.Data.DataRow item in dtmax.Rows)
+    {
+        
+    <ul>
+        <li class="listCont-B">
+            @*<h3><i class="ss"></i><a href="/product/@ViewBag.Cid/@brandid/@attrvalues/@mod/@price">@item.Name</a></h3>*@
+            <h3><i class="ss"></i><a href="javascript:;">@item["Name"]</a></h3>
+            @{
+        System.Data.DataRow[] Children = dtsmall.Select("ParentCategoryId=" + item["CategoryId"]);
+        System.Data.DataRow[] dr = dtsmall.Select("CategoryId=" + ViewBag.Cid);
+        var flag = false;
+        if (dr.Length<=0)
+        {
+            if (ViewBag.Cid == int.Parse(item["CategoryId"].ToString()))
+            {
+                flag = true;
+            }
+        }
+        else
+        {
+
+
+            if (int.Parse(dr[0]["ParentCategoryId"].ToString()) == int.Parse(item["CategoryId"].ToString()))
+            {
+                flag = true;
+            }
+            
+        }
+              
+            }
+            <div class="listCont-BL" style='display:@(flag==true ? "block" : "none")'>
+                <ul>
+                    @foreach (var child in Children)
+                    {
+                        
+                        <li><a cateId=@child["CategoryId"] href="/ProSales/@(ViewBag.IsForMembers==true?"SalesForMembers":"GroupBuy")/0/@child["CategoryId"]">@child["Name"]</a></li>
+                    }
+                </ul>
+            </div>
+        </li>
+    </ul>
+    }
+
+}

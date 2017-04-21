@@ -1,0 +1,176 @@
+﻿@using Maticsoft.Model;
+
+@using Maticsoft.BLL.Shop.Card;
+@using Maticsoft.Accounts.Bus
+@{
+    User u = Session["UserInfo"] as User;
+    Maticsoft.BLL.Shop_CardUserInfo cardInfoBLL = new Maticsoft.BLL.Shop_CardUserInfo();
+    string defaultCard = cardInfoBLL.GetDefaultCardNo(u.UserName);
+    
+}
+
+@model List<Shop_CardUserInfo>
+<script>
+    $(function () {
+        $(".SetDefault").click(function () {
+
+            $.ajax({
+                url: '/UserCenter/SetDefaultCard',
+                data: { cardNo: $(this).attr("cardNO") },
+                type: 'post',
+                success: function (data) {
+                    ShowFailTip(data ? "设置成功" : "设置失败");
+                    $("#LoadData").load("/UserCenter/HlCardList");
+                }
+            })
+        });
+        $(".RowT").each(function (index, $this) {
+            $(".txt-blue", this).toggle(function (_i, d1) {
+                $(".t_detail").each(function (_j, d2) {
+                    if (index == _j) {
+                        $(this).show();
+                    }
+                    else {
+                        $(this).hide();
+                    }
+                });
+                $.ajax({
+                    url: '/HlCardReq.aspx',
+                    type: 'post', dataType: 'text', timeout: 10000,
+                    data: { action: "GETAGREEMENT", cardTypeNo: $(this).attr("typeID") },
+                    success: function (data) {
+                        if (data.indexOf("msg:") >= 0) {
+                            var obj = eval("(" + data + ")");
+                            if (obj.msg) {
+                                ShowFailTip(obj.msg);
+                            }
+                        }
+                        else {
+                            var obj = eval("(" + data + ")");
+                            
+                            $("#baoxian",$($this).next()).html(obj.Agreement);
+                            if (obj.IsMorePerson) {
+                                if (obj.PersonNum >= 2) {
+                                    $(".First").show();
+                                }
+                                if (obj.PersonNum >= 3) {
+                                    $(".Second").show();
+                                }
+                            }
+                            else {
+                                $(".First").hide();
+                                $(".Second").hide();
+                            }
+                        }
+                    }
+                });
+            }, function () {
+                $(this).parent().parent().next().hide();
+                $("#baoxian").html("");
+            })
+        })
+    })
+</script>
+<div class="Orders" style="display: block">
+    @if (Model != null)
+    {
+        <div class="border-out">
+            <table class="card-msg" width="100%" border="1" cellspacing="0" cellpadding="0">
+
+                <tr>
+                    <th width="18%">健康卡号</th>
+                    <th width="14%">激活时间</th>
+                    @*<th width="13%">有效期</th>*@
+                    <th width="15%">紧急联系人</th>
+                    <th width="10%">状态 </th>
+                    <th width="16%">操作</th>
+                </tr>
+                @foreach (Shop_CardUserInfo item in Model)
+                {
+                    <tr class='RowT'>
+                        <td><a href="javascript:;" class="txt-blue" typeID="@item.CardTypeNo">@item.CardNo</a></td>
+                        <td>@item.ActiveDate</td>
+                        @*<td>2015-05-01</td>*@
+                        <td>@item.BackPerson</td>
+                        <td>@item.UserInfoStatus</td>
+                        <td>@*<a class="txt-blue"  href="#">注销</a>&nbsp;&nbsp;
+                                |&nbsp;&nbsp;
+                                <a class="txt-blue" href="#">续费</a><br />*@
+                            @if (defaultCard != item.CardNo)
+                            { <a class="SetDefault" href="javascript:;" cardNO ="@item.CardNo">设置为默认卡</a>}
+                        </td>
+                    </tr>
+                    <tr style="display: none" class="t_detail">
+                        <td colspan="5">
+                            <table frame="void" class="card-detail" width="100%" border="1" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <th colspan="4">客户信息</th>
+                                </tr>
+                                <tr>
+                                    <td width="16%" class="bg1">卡号：</td>
+                                    <td width="34%">@item.CardNo</td>
+                                    <td width="16%" class="bg1">用户名：</td>
+                                    <td width="34%">@item.CREATER</td>
+                                </tr>
+                                <tr>
+                                    <td class="bg1">姓名：</td>
+                                    <td>@item.Name</td>
+                                    <td class="bg1">性别：</td>
+                                    <td><span>@Html.Raw(item.Sex.Trim() == "1" ? "男" : item.Sex == "0" ? "女" : item.Sex)</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="bg1">邮箱：</td>
+                                    <td>@item.Email</td>
+                                    <td class="bg1">紧急联系人：</td>
+                                    <td>@item.BackPerson</td>
+                                </tr>
+                                <tr>
+                                    <td class="bg1">地址:</td>
+                                    <td>@item.Address</td>
+                                    <td class="bg1">身份证：</td>
+                                    <td>@item.CardId</td>
+                                </tr>
+                                <tr class="First" style="display: none">
+                                    <th colspan="4">第二投保人信息</th>
+                                </tr>
+                                <tr class="First" style="display: none">
+                                    <td class="bg1">姓名：</td>
+                                    <td>@item.NameOne</td>
+                                    <td class="bg1">与客户关系：</td>
+                                    <td>@item.RelationshipOne</td>
+                                </tr>
+                                <tr class="First" style="display: none">
+                                    <td class="bg1">身份证：</td>
+                                    <td colspan="3">@item.NameOneCardId</td>
+                                </tr>
+                                <tr class="Second" style="display: none">
+                                    <th colspan="4">第三投保人信息</th>
+                                </tr>
+                                <tr class="Second" style="display: none">
+                                    <td class="bg1">姓名：</td>
+                                    <td>@item.NameTwo</td>
+                                    <td class="bg1">与客户关系：</td>
+                                    <td>@item.RelationshipTwo</td>
+                                </tr>
+                                <tr class="Second" style="display: none">
+                                    <td class="bg1">身份证：</td>
+                                    <td colspan='3'>@item.NameTwoCardId</td>
+                                </tr>
+                                <tr >
+                                    <td style="text-align:left" colspan="4"><div id="baoxian"></div></td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    
+                }
+            </table>
+
+        </div>
+    }
+    else
+    {
+        <h4>暂无健康卡信息</h4>
+    }
+</div>

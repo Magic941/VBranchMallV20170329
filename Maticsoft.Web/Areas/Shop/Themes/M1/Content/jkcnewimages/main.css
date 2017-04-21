@@ -1,0 +1,143 @@
+/*######################### 以下部分是网站的具体构架部分，需要频繁调整 #######################################*/
+/********************  logo  *********************/
+#logo {width: 275px; height:60px;float:left; }
+#quick {width: 130px; height:30px;float:right;margin-top:30px;color:#000;}
+.lx{width:59px; height:16px; float:left;color:#aaa;}
+.lx:hover{color:#fff;font-family:"微软雅黑";background:url(hover.png) no-repeat center;}
+/*********************  headbg2  *****************/
+#headbg2{width:1004px; height:41px;float:left;}
+#title{ width:756px; height:41px; float:right;  background:url(banner.png) no-repeat center top;}
+#link {width: 1004px;height: 41px; float:left;overflow:hidden; }
+#link li {height: 41px;overflow: hidden;float: left; }
+#link li.LNo1{width:30px;}
+#link li.LNo2 {width:85px; font-size:15px; color:#000; font-weight:100;line-height:40px;  text-align: center;}
+#link li.LNo2:hover{ color:#fff;}
+#link li.LNo3 { width:4px; height:41px;background:url(jian.png) no-repeat center; }
+#link li.LNo4 {width: 0px; height: 0px; overflow: hidden; clear: both;}
+
+
+
+
+
+/*********************flash部分*****************/
+#flash {width: 1004px;height: 284px;overflow: hidden; float:left;margin-top:10px; }
+
+/******************************side部分**************************/
+#side{width: 210px;overflow: hidden;float: left; }
+#side_tit1 {width: 210px;height:47px; float:left;overflow: hidden;background:url(../images/listtop.png) no-repeat center top;}
+#side_txt1 {width: 210px; float:left; height:auto; overflow:hidden;background:url(../images/listbg.jpg) repeat-y;}
+#listb{width: 210px;height:20px; float:left;overflow: hidden;background:url(../images/listb.jpg) no-repeat;}
+#ProList {width: 210px;overflow: hidden;padding-top: 3px;float:left; border-bottom:1px #efe9e1 solid; }
+#ProList li {width: 100px;height: 27px; float:left; margin:0px auto; text-align:center;overflow:hidden; padding-bottom:2px; padding-left:5px;}
+#side_tit2 {width: 249px;height:37px;overflow: hidden;float:left;  margin-top:12px;}
+#side_txt2 {width: 200px;overflow: hidden;float:right;text-align:left; font-size:14px; padding-right:5px; line-height:38px;}
+#side_tit3 {width: 268px;height:36px;overflow: hidden; float:left;background:url(../images/side3.jpg) no-repeat;}
+#side_txt3 {width: 268px; float:left; overflow:hidden;}
+#side4{ width:268px; height:226px; float:left; overflow:hidden;}
+
+/***************************** top1 ********************************/
+#top1{ width:1004px; height:auto;float:left; overflow:hidden;}
+#denglu{width:249px; height:302px; float:left;background:url(denglu.jpg) no-repeat; }
+#company{width:517px; height:256px; float:left;background:url(../images/company.jpg) no-repeat; margin-left:10px; }
+#company_tit{width:517px; height:32px; }
+#company_txt{width:500px; height:auto; padding-top:20px; margin:0px auto; text-align:left; line-height:25px;}
+#news{width:217px; height:258px; float:left;background:url(../images/news.jpg) no-repeat;}
+#news_tit{width:217px; height:32px;float:left; }
+#news_txt{width:215px; height:auto;text-align:left;  }
+#news_txt2{width:200px; height:auto; margin:0px auto; padding-top:3px;}
+
+#news1{width:246px; height:224px; float:left;}
+#news_tit1{width:246px; height:32px; background:url(../images/honor.jpg) no-repeat;}
+#news_txt1{width:246px; height:196px; float:left; text-align:left; line-height:27px; background:#fff;}
+#news_txt1{width:246px; height:196px; margin:0px auto; padding-top:1px;}
+
+#si{width:740px; height:auto; float:left; text-align:left; font-size:13px; }
+#fen{width:354px; height:237px; float:left;background:url(bg.jpg) no-repeat; margin-bottom:9px;}
+#tit{width:209px; height:37px; float:left;background:url(title.jpg) no-repeat;margin-left:10px; margin-top:10px;}
+.jiankang{font-size:16px; line-height:35px; text-align:left;color:#fff; padding-left:40px;font-family:"Microsoft Yahei";}
+/***************************** top2 ********************************/
+#top2{ width:710px; float:left; overflow:hidden; padding-top:12px;}
+#gcal_tit{ width:710px; height:35px; float:left; background:url(../images/duo.jpg) no-repeat;}
+#gcal_txt{ width:710px; height:180px; float:left; text-align:left;}
+
+
+/*****************************  product  ************************************/
+
+#product{width:1004px; height:117px; float:left;background:url(photo.jpg) no-repeat left; margin-top:15px; float:left}
+#product_tit{width:158px; height:117px; float:left; }
+#product_txt{width:785px; height:auto; float:left;}
+
+#product1{width:736px; float:left;  margin-top:15px;}
+#product_tit1{width:736px; height:32px; background:url(../images/duo.jpg) no-repeat; float:left}
+#product_txt1{width:736px; height:192px; float:left;}
+
+/*****************************  内页  ************************************/
+#main {width:783px;overflow: hidden;float: right;}
+#main_tit {width: 783px;height: 40px;overflow: hidden;background: url(../images/main.jpg) no-repeat;}
+#main_txt{width: 780px;overflow: hidden;margin-top:15px;}
+#neirong{width:710px;margin:5px auto;overflow:hidden; text-align:left; line-height:25px;}
+
+#zide{width:210px; height:30px; float:left; font-size:14px; color:#663e1e; text-align:left; padding-left:20px;padding-top:10px;}
+
+
+
+#main1 {width:1004px; height:auto;overflow: hidden;float: left;display:inline; }
+
+
+/*********************网站尾部部分****************************/
+#foot {width: 984px;overflow: hidden;height:53px;float:left;color: #000;line-height: 55px;background:url(foot.jpg) no-repeat;margin-top:15px;margin-bottom:15px; font-size:13px; font-weight:bold;}
+
+/*######################### 以上部分是网站的具体构架部分，需要频繁调整 #######################################*/
+
+.zpmenu{width:1004px;display:inline;float:left;height:284px;overflow:hidden;}
+.zpmenu dl{width:1004px;float:left;height:281px;_width:1004px;}
+.zpmenu dt{width:44px;float:left;height:281px}
+.zpmenu dt img{width:44px;display:block;float:left;height:281px;cursor:pointer}
+.zpmenu dd{width:782px;display:block;float:left;height:281px;overflow:hidden; margin:0px;}
+div.zpmenu dl#slider2 dd div.zpinfor{padding:0px;width:782px;display:inline;float:left;height:281px;overflow:hidden;}
+
+
+
+
+
+
+/*######################### 以下部分是网站的细节表现部分，需要频繁调整 #######################################*/
+.more{font-size:12px; float:right; margin-right:10px; margin-top:12px;}
+.more1{font-size:12px; float:right; margin-right:10px; }
+
+.afoot {color: #000000;}.afoot:hover{ color:#000000;text-decoration: underline;}/*网站尾部文本超链接样式*/
+
+.a_logo {color: #982000;}.a_logo:hover{text-decoration: underline; color:#fff;}/*网站Logo部分文本超链接样式*/
+
+.a_fanhui {color: #569b0a;}.a_fanhui:hover{text-decoration: none;color: #000;}/*网站main部分“返回”文本超链接样式*/
+
+.a_text {color: #000000;}.a_text:hover{ color:#000000; text-decoration: underline;}/*网站整体基调的文本超链接样式*/
+.a_right1 {color: #fff; float:right; padding-right:10px; line-height:37px;}.a_right1:hover{ color:#000; text-decoration: none;}
+.a_right {color: #569b0a; float:right; padding-right:10px; line-height:40px;}.a_right:hover{ color:#b52831; text-decoration: none;}
+
+.a_left { line-height:28px; text-align:left;color:#663e1e;}.a_left:hover{color: #f96701; font-weight:100; }/*网站左侧导航的的文本超链接样式*/
+
+.a_link {color: #ffffff; font-size:14px;}.a_link:hover{ color:#000;}/*网站头部导航的的文本超链接样式*/
+
+.a_indexproduct {color: #333;} .a_indexproduct:hover{ color:#333; text-decoration: underline;}/*网站首页展品展示的文本超链接样式*/
+
+.p_foot {margin-top:10px;}
+
+
+.span{color:#ffffff;}
+
+.span1 {margin-left: 45px; font-size: 14px; font-weight: bold; color: #FFFFFF; line-height: 36px;}
+
+.span2 {color: #ffffff; font-size: 14px; font-weight: bold;}
+
+.span_ntit {float: left; margin-left:50px; font-size: 14px; font-weight: bold; color: #569b0a; line-height:40px;}/*内页main部分的标题*/
+
+.span_nfanhui {float: right; margin-right:10px; font-size: 12px; color: #569b0a; line-height: 40px;}/*内页main部分的“返回”*/
+
+/*######################### 以上部分是网站的细节表现部分，需要频繁调整 #######################################*/
+
+
+
+
+a { color:#000; font-size:9pt; text-decoration:none; }
+a:hover { color:#f60; }

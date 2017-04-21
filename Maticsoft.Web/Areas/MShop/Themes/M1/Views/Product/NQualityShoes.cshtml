@@ -1,0 +1,356 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "品质男女鞋";
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+<style>
+    .Wechat_baf a img {
+        height: 165px;
+    }
+
+    .Popularity {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+        .Popularity a, .Popularity a img {
+            width: 100%;
+        }
+
+    .bag_classify {
+        width: 95%;
+        margin: 0 auto;
+        padding: 5px 0 8px 0;
+    }
+
+        .bag_classify dl {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .bag_classify dt {
+            width: 4rem;
+            height: 2rem;
+            line-height: 2rem;
+            float: left;
+            background: #d91047;
+            text-align: center;
+            color: #fff;
+        }
+
+        .bag_classify dd {
+            float: right;
+            margin: 0;
+        }
+
+            .bag_classify dd a {
+                height: 2rem;
+                line-height: 2rem;
+                border: 1px solid #d1d1d1;
+                display: inline-block;
+                *display: inline;
+                zoom: 1;
+                text-align: center;
+                padding: 0 8px;
+                margin-bottom: 10px;
+            }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="background: #fff">
+    <div class="boutique_cn">
+        <a href="javascript:void(0)">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/031.png" />
+        </a>
+    </div>
+    <div class="bag_classify">
+       <div class="bag_classify">
+            <dl>
+                <dt>女鞋</dt>
+                <dd>
+                    <a href="@(ViewBag.BasePath)h/693"  target="_blank">单鞋</a>
+                    <a href="@(ViewBag.BasePath)h/696"  target="_blank">女靴</a>
+                    <a href="@(ViewBag.BasePath)h/698"  target="_blank">拖鞋</a>
+                    <a href="@(ViewBag.BasePath)h/694"  target="_blank">休闲鞋</a>
+                      <a href="@(ViewBag.BasePath)h/692"  target="_blank">高跟鞋</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>男鞋</dt>
+                <dd>
+                    <a href="@(ViewBag.BasePath)h/715"  target="_blank">休闲鞋</a>
+                    <a href="@(ViewBag.BasePath)h/717"  target="_blank">男靴</a>
+                </dd>
+            </dl>
+        </div> 
+    </div>
+
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/032.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10113/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/rq01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10113/0/0">亿淘鞋 韩版通勤浅口鞋甜美糖果鞋平底鞋内增高单鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 84.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10175/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/rq02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10175/0/0">亿淘鞋 2015春季新款 低跟马丁靴甜美百搭短靴通勤简约系带女靴</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 77.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156106/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/rq03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156106/0/0">古奇天伦男鞋2015春季真皮运动单鞋韩版潮流鞋子男士皮鞋休闲鞋男</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 228.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154393/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/rq04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154393/0/0">牛仔巨人 春季新款 真皮透气 耐磨休闲 工装时尚 潮男鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 140.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/033.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155313/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155313/0/0">万恒 2015 春季新款实木跟松紧激光雕花女鞋 侧拉链骑士女靴 爆款</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 66.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155312/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155312/0/0">万恒 2015秋季新款时尚经典大牌休闲粗中跟尖头系带小单鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 66.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10120/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10120/0/0">亿淘鞋 韩版秋季甜美印花尖头单鞋浅口平底鞋内增高女鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 84.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10104/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10104/0/0">亿淘鞋 韩版时尚秋季网纱深口女靴细跟甜美克罗心高跟鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 105.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10102/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10102/0/0">亿淘鞋 韩版秋季亮面高跟鞋水钻深口女鞋手工串珠细跟鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 110.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10115/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/xk06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10115/0/0">亿淘鞋 韩版深口单鞋粗跟女鞋松紧带懒人鞋中跟大码鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/034.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157261/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157261/0/0">新款男式豆豆鞋男懒人鞋真皮透气休闲潮流时尚驾车鞋男鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 139.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156111/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156111/0/0">2015新款古奇天伦5680商务休闲皮鞋头层牛皮男鞋套脚低帮鞋子</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 259.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157262/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157262/0/0">新款头层真皮品牌男鞋透气运动休闲鞋潮板鞋单鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 135.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156108/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156108/0/0">古奇天伦2015秋冬季新款反毛皮男鞋真皮登山鞋低帮户外休闲运动鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 278.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156103/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156103/0/0">古奇天伦 新款布洛克男鞋 真皮皮鞋子 日常休闲鞋子</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 238.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154390/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154390/0/0">牛仔巨人 新款擦色 布洛克雕花 休闲商务 真皮 耐磨轻质增高鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 150.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154889/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154889/0/0">山石 2015新款春夏秋季韩版真皮流行休闲男士皮鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 115.00</em>
+                </div>
+
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/6859/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/6859/0/0">LY19006M深蓝红时尚休闲男鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 109.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154389/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154389/0/0">牛仔巨人 新款布洛克 雕花英伦潮流 商务真皮休闲鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154387/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/shoes/jp10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154387/0/0">牛仔巨人 新款流行 英伦透气反绒真皮运动休闲鞋 潮板鞋</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 120.00</em>
+                </div>
+
+            </li>
+             
+
+        </ul>
+    </div>
+</div>

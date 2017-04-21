@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    
+}
+<style type="text/css">
+    p{
+	margin:0;
+	}
+.Card-activation{
+	width:16.2rem;
+	margin:0 auto;
+	overflow:hidden;
+	padding:70px 0 50px 0;
+	}
+.activation-left{
+	width:2.5rem;
+	height:2.5rem;
+	float:left;
+	}
+.activation-left img{
+	width:100%;
+	display:block;
+	}
+.activation-right{
+	width:13rem;
+	float:left;
+	padding:0 0 0 10px;
+	}
+.activation-right b{
+	font-size:1rem;
+	display:block;
+	color:#333333;
+	}
+.activation-right p{
+	font-size:0.8rem;
+	color:#333333;
+	}
+.activation-bottom a{
+	width:80%;
+	height:2rem;
+	line-height:2rem;
+	text-align:center;
+	display:block;
+	margin:0 auto;
+	margin-top:30px;
+	text-decoration:none;
+	color:#666666;
+	border-radius:5px;
+	}
+
+</style>
+<div class="top"> 
+@Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="Card-activation">
+	<div class="activation-left"><img src="/Areas/MShop/Themes/M1/Content/img/app_1_03.png" /></div>
+    <div class="activation-right">
+    	<b>恭喜您成功激活健康卡！</b>
+        <p>您已成为我们健康商城尊贵的会员，赶紧来我们商城体验一下吧</p>
+    </div>
+</div>
+<div class="activation-bottom">
+	<a href="@(ViewBag.BasePath)UserCenter/index" style="border:1px solid #3dce97;">去个人中心</a>
+    <a href="@(ViewBag.BasePath)" style="border:1px solid #d91047;">立即去购物</a>
+</div>

@@ -1,0 +1,449 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_ShoppingLayout.cshtml";
+  
+}
+@section head{
+    <link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+    <style type="text/css">
+        .progress {
+            display: none;
+            float: left;
+            width: 1px;
+            height: 14px;
+            color: white;
+            font-size: 12px;
+            overflow: hidden;
+            background-color: navy;
+            padding-left: 5px;
+        }
+        
+
+    </style>
+}
+
+@section step{
+    <div class="myCart-right">
+        <div class="Cartbar Cartbar2"></div>
+    </div>
+}
+@model Maticsoft.Model.Shop.Products.ShoppingCartInfo
+@using Maticsoft.Model.Shop.Shipping;
+
+@{
+    var SupplierList = Model.Items.GroupBy(m => m.SupplierId).ToList();
+    var shipTypeList = ViewBag.shipTypeList as List<ShippingType>;
+
+    var infoModelList = (ViewBag.infoModelList) as List<Maticsoft.Model.Shop.Coupon.CouponInfo>;
+}
+
+
+@section title{
+    <span>填写核对订单信息</span>
+}
+
+@section foot{
+    <script src="/Scripts/jqueryui/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryui/maticsoft.jqueryui.dialog.min.js" type="text/javascript"></script>
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/Pay/SubmitOrder.js?ver=@DateTime.Now.ToString("yyyyMMddHH")" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            var group = '@ViewBag.Group';
+            
+
+            $(".ico-server").hover(function () {
+                $(".poptip", $(this).parent()).show();
+            }, function () { $(".poptip", $(this).parent()).hide(); })
+        
+            $("#useMoney").blur(function () {
+                var balance = parseFloat($("#h_Balance").val());
+                var useMoney = $("#useMoney").val();
+
+                if (useMoney > balance) {
+                    ShowFailTip("余额不足！");
+                    $("#useMoney").val("0").blur();
+
+                    return;
+                }
+                if (useMoney>$("#totalPrice").val()) {
+                    ShowFailTip("最多使用：￥"+$("#totalPrice").val()+"进行抵用支付！");
+                    $("#useMoney").val("0").blur();
+                    return;
+                }
+                $("#Balance").text(balance - useMoney);totalPrice
+                $("#NeedPay").text($("#totalPrice").val()-useMoney);
+            });
+
+
+
+            $("#txtcoupon").bind("change", function (){
+                var code =$(this).children('option:selected').val();
+
+                var shipId = $("option:selected", sender).val();
+                var addressId = $('#step-1 .msg').attr("addressId");
+                if (!addressId) addressId = 0;
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: $Maticsoft.BasePath + "Order/AjaxGetCoupon",
+                    data: { ConponCode: code,
+                            TotalPrice: $("#totalNeedPay").val(),
+                            payId: $('#step-2 :radio:checked').val(),
+                            shipId: shipId,
+                            addrId: addressId
+                            },
+                    success: function (data) {
+                        if (data == "False") {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                            $("#hfcoupon").val('');
+                            $("#NeedPay").$("#totalPrice").val();
+                            return;
+                        }
+                        else if (data == "No") {
+                            ShowFailTip('您输入的优惠券不存在或已过期！');
+                            $("#hfcoupon").val('');
+                            $("#txtcoupon option:selected").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else if (data == "Used") {
+                            ShowFailTip('您输入的优惠券已使用！');
+                            $("#hfcoupon").val('');
+                            $("#txtcoupon option:selected").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else if (data == "Limit") {
+                            ShowFailTip('您输入的优惠券不满足最低消费金额！');
+                            $("#hfcoupon").val('');
+                            $("#txtcoupon option:selected").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $("#txtcoupon option").eq(0).attr("selected",true);
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else {
+                            $("#NeedPay").text("￥" + data.split("|")[1]);//优惠后的价格
+                            $("#Prefer").text("￥"+Number(parseFloat(data.split("|")[0])+parseFloat($("#Prefer").attr("price"))).toFixed(2));
+                        }
+                    }
+                
+                })
+            });
+
+            $("#entityCouponId").click(function () {
+                var code = $("#txtcoupon option:selected").val();
+                var totalPrice = $("#payPriceId").attr("TotalPrice");
+                if (code == "") {
+                    ShowFailTip("请输入优惠券卡号！");
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: $Maticsoft.BasePath + "Order/AjaxGetCoupon",
+                    data: { ConponCode: code, TotalPrice: $("#totalNeedPay").val() },
+                    success: function (data) {
+                        if (data == "False") {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                            $("#hfcoupon").val('');
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        }
+                        else if (data == "No") {
+                            ShowFailTip('您输入的优惠券不存在或已过期！');
+                            $("#hfcoupon").val('');
+                            $("#txtcoupon option:selected").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else if (data == "Used") {
+                            ShowFailTip('您输入的优惠券已使用！');
+                            $("#hfcoupon").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else if (data == "Limit") {
+                            ShowFailTip('您输入的优惠券不满足最低消费金额！');
+                            $("#hfcoupon").val('');
+                            $("#couponPriceId").text("-￥0.00");
+                            $('#payPriceId').text('￥' + (parseFloat($('#payPriceId').attr('TotalPrice'))).toFixed(2));
+                            return;
+                        } else {
+                            $("#NeedPay").text("￥" + data.split("|")[1]);
+                        }
+                    }
+                });
+            });
+
+            if(group!=-1)
+            {
+                $("#txtcoupon").attr("disabled",true); 
+                $("#entityCouponId").unbind();
+                $("#alert").text(" 优惠券不能参与团购商品！");
+            }
+        });
+
+        //20141003
+        //如果团购只能有一个,不能同时购买两个团购,只能是一个团购结合其它普通商品
+        function submitorder1(thisObj){    
+            var addressId = $('#step-1 .msg').attr("addressId");
+            if (!addressId || addressId < 1) {
+                $.alertEx('请修改收货人信息!', function () {
+                    $('#step-1').effect('highlight', 1000);
+                    //$('#step-1').effect('shake');
+                });
+                return false;
+            }
+            var payId = $('#step-2').find('#PaymentModeId').val();
+            if (!payId || payId < 1) {
+                $.alertEx('请修改支付方式后提交订单!', function () {
+                    $('#step-2').effect('highlight', 1000);
+                });
+                return false;
+            }
+            var shipId = "";;
+            $("option:selected", $(".ddl_Freight")).each(function (_index, data) {
+                shipId += data.value + ","
+            });
+            shipId = shipId.substr(0, shipId.length - 1);
+            var conpon = $("#txtcoupon option:selected").val();
+              
+            /*商家对应的运送方式*/
+            var supplierFreight = "[";
+            $(".ddl_Freight").each(function (_i, data) {
+                var supplier = $(this).attr("supplierId");
+                var shipId = $("option:selected", $(this)).val();
+                supplierFreight += "{\"SupplierId\":" + supplier + ",\"ShippingTypeID\":" + shipId + ",\"Remark\":'" + $(".remark", $(this).parent().prev()).val()+"'},";
+
+            });
+            supplierFreight = supplierFreight.substr(0, supplierFreight.length - 1);
+            supplierFreight += "]";
+           
+            SubmitOrder(addressId, shipId, payId, conpon, supplierFreight);
+        }
+
+        function changeFreight(sender) {
+            var supplierId = $(sender).parent().attr("supplierId");
+
+            var shipId = $("option:selected", sender).val();
+            var addressId = $('#step-1 .msg').attr("addressId");
+            if (!addressId) addressId = 0;
+
+            var skuStr = $.getUrlParam('sku');
+            var count = $.getUrlParam('count');
+            var c = $.getUrlParam('c');
+            var g = $.getUrlParam('g');
+            $.ajax({
+                url: $Maticsoft.BasePath + 'Order/getFreight',
+                type: "POST",
+                data: {
+                    payId: $('#step-2 :radio:checked').val(),
+                    shipId: shipId,
+                    addrId: addressId,
+                    sku: skuStr ? skuStr : null,
+                    count: count ? count : 1,
+                    c: c ? c : null,
+                    g: g ? g : null,
+                    supplierId: supplierId
+                },
+                success: function (data) {
+                    if (data) {
+                        var obj = eval("(" + data + ")");
+                        //运费
+                        $('#freightPriceId' + obj.supplier).text('￥' + obj.freight);
+                        $('#freightPriceHidden' + obj.supplier).val(obj.freight);
+                        //小计
+                        $("#priceEvrShop" + obj.supplier).text(( parseFloat(obj.freight) + parseFloat($("#xiaoji" + obj.supplier).val())));
+                        //总价
+                        var totalFreight = 0;
+                        $(".hiddenPr").each(function (_i, data) {
+                            totalFreight += $(this).val();
+                        });
+                        var totalprice = parseFloat($("#totalPrice").val()) + parseFloat(totalFreight);
+                        $("#NeedPay").text("￥" + totalprice); 
+                        $("#totalNeedPay").val(totalprice);
+                    }
+                }
+            });
+        }
+
+        function query_coupons() {
+            $("#orderCouponId").toggle();
+        }
+        function query_remark() {
+            $("#orderRemarkId").toggle();
+        }
+        if (@(infoModelList.Count)==0) {
+            $("#coupon").html("暂无优惠券");
+        }
+    </script>
+}
+
+<input id="totalPrice" type="hidden" value="@Model.TotalAdjustedPrice" />
+<input id="totalNeedPay" type="hidden" value="" />
+<input id="TotalFreightPrice" type="hidden" value="" />
+
+<div class="main_cont">
+    <div class="wrapperMy">
+        <div class="check-infor">
+            <div id="step-1">
+                @Html.Action("ShowAddress", "Order")
+            </div>
+            <div id="step-2" style="display:none;">
+                @Html.Action("ShowPayAndShip", "Order")
+            </div>
+
+        </div>
+        <div class="Confirm">
+            <div class="clearfix Confirm-hd">
+                <h3 class="fL">确认订单信息</h3>
+                <p class="fR"><a class="txt-red back-Cart" href="@(ViewBag.BasePath)ShoppingCart/CartInfo"><i></i>返回购物车</a></p>
+            </div>
+            @foreach (var item in SupplierList)
+            {
+                var SupplierName = item.Where(m => m.SupplierId == item.Key).First().SupplierName;
+                var PreferentialType = 0;
+                var UnitValue = 0M;
+                var RateValue = 0M;
+                string ActiveName = "";
+                var TotalPrice = 0M;
+                decimal SupplierPreferentialPrice = 0;
+                var s_model = Model.SupplierPriceList.Where(m => m.SupplierId == item.Key && (m.PreferentialType == 1 || m.PreferentialType == 2)).ToList();
+                if (s_model.Count != 0)
+                {
+                    PreferentialType = s_model.First().PreferentialType;
+                    UnitValue = s_model.First().AMDUnitValue;
+                    RateValue = s_model.First().AMDRateValue;
+                    ActiveName = "满" + UnitValue + (PreferentialType == 1 ? "打" + RateValue / 10 + "折" : "减" + RateValue);
+                    TotalPrice = Model.SupplierPriceList.Where(m => m.SupplierId == item.Key).First().TotalAdjustedPrice;
+                    SupplierPreferentialPrice = PreferentialType == 1 ? TotalPrice / (RateValue / 100) - TotalPrice : RateValue;
+                }
+                else
+                {
+                    TotalPrice = Model.Items.Where(m => m.SupplierId == item.Key).Sum(m => m.AdjustedPrice*m.Quantity);
+                }
+                
+                <table class="Confirm-con" width="100%" border="0">
+                    <tr>
+                        <th colspan="2">商品名称</th>
+                        <th width="13%">单价(无)</th>
+                        <th width="8%">数量</th>
+                        <th width="10%">小计(元)</th>
+                    </tr>
+                    <tr>
+                        <td colspan="6">
+                            <div class="fL"><b>@Model.Items.Where(m => m.SupplierId == item.Key).First().SupplierName</b></div>
+                            <div class="fL" style='position: relative;display:@(PreferentialType == 0 ? "none" : "block")'>
+                                <a class="ico-server" href="#" style="height:24px;width:30px;text-align:center;color:white;display:inherit;background-image:url(/Areas/Shop/Themes/M1/Content/images/images/activity/activity_@(PreferentialType).png)">
+                                    @(PreferentialType==1?"满折":"满减")</a>
+                                <div class="poptip tag-pop"  style="display:none;color: #333; width: 100px; top: -3px; left: 35px">
+                                    <span class="poptip-arrow poptip-arrow-left"><em>◆</em><i>◆</i></span>
+                                    <a href="/Store/@item.Key" >@ActiveName</a>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    @foreach (var rec in item)
+                    {
+                        <tr>
+                            <td width="10%" class="W-img"><a href="#">
+                                <img width="150" height="150" src='@Maticsoft.Web.Components.FileHelper.GeThumbImage(rec.ThumbnailsUrl, "T158X158_")' /></a></td>
+                            <td class="tit" width="34%"><a  href="@(ViewBag.BasePath)Product/Detail/@rec.ProductId" target="_blank" title="@rec.Name">@Maticsoft.Common.StringPlus.SubString(@rec.Name, 50, "...")</a><br />
+                                @if (rec.SkuValues != null && rec.SkuValues.Length > 0)
+                                {
+                                    <ul class="sku-size-select AttrItems">
+                                        @foreach (string val in rec.SkuValues)
+                                        {
+                                            <li class="SkuItems"><a href="javascript:;">@val</a> </li>
+                                        }
+                                    </ul>
+                                }</td>
+                            <td>@rec.AdjustedPrice.ToString("0.00")</td>
+                            <td>@rec.Quantity</td>
+
+                            <td>@((rec.AdjustedPrice * rec.Quantity).ToString("0.00"))</td>
+                        </tr>
+                    }
+
+                    <tr>
+                        <td class="Invoice" colspan="6">
+                            <div class="clearfix mgT10">
+                                <dl class="clearfix">
+                                    <dt><b>发票信息：</b></dt>
+                                    <dd>
+                                        <input supplier="@(item.Key)" class="w200 remark" name="" type="text" />
+                                    </dd>
+                                </dl>
+                                <br />
+                                <dl id="Freight@(item.Key)" class="clearfix">
+                                    <dt style="display:none" ><b>运送方式：</b></dt>
+                                    <dd style="display:none" class="ddl_Freight" supplierId="@item.Key">
+                                    </dd>
+                                    <dd>运费：<span id="freightPriceId@(item.Key)" class="txt-red mgL20"></span><input type="hidden" class="hiddenPr" value="" id="freightPriceHidden@(item.Key)" /></dd>
+                                </dl>
+
+                                <p class="fR mgR20 mgT30"><b>店铺合计含运费：</b>￥<strong id="priceEvrShop@(item.Key)">@TotalPrice.ToString("0.00")</strong></p>
+                                <p style='display:@(PreferentialType == 0 ? "none" : "block")'  class="fR mgR20 mgT30"><b>店铺优惠总额：</b>￥<strong>@SupplierPreferentialPrice</strong></p>
+                                <input type="hidden" id="xiaoji@(item.Key)" value="@TotalPrice.ToString("0.00")" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            }
+        </div>
+        <div>
+            <div class="pay-style">
+                <h4><a href="#"><i class="add"></i></a>使用优惠券抵消部分总额</h4>
+                <div class="youhui">
+                    <h3>可用优惠券<span class="txt-red">(@infoModelList.Count)</span><p></p>
+                    </h3>
+                    <div class="youhui-con">
+                        <div class="bd-bom" style="padding: 2px 0 6px 0">此订单暂无可用优惠券.您可以<a class="txt-red" href="#">查看所有优惠券</a>了解使用限制。<a class="txt-red" href="#">[了解健康优惠券规则]</a></div>
+                        <div class="bd-bom clearfix" style="padding: 10px 0;">
+                            <div class="fL" style="line-height: 28px">
+                                <span>有优惠券兑换码？</span>
+                            </div>
+                            <div class="fL mgL10" id="coupon" style="position: relative; width:80%">
+                                <select id="txtcoupon" class="Ticket">
+                                    <option value="0">请选择优惠券</option>
+                                    @foreach (var item in infoModelList)
+                                    {
+                                        <option value="@item.CouponCode">@item.CouponCode（@item.CouponName）需满足金额:@item.LimitPrice.ToString("0.00")</option>
+                                    }
+                                </select><label id="alert"></label>
+                                <a class="btn-diyong mgL10" id="entityCouponId" href="javascript:;"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pay-style" style="display: none">
+                <h4><a href="#"><i class="reduce"></i></a>使用余额来进行购买或抵消部分总额</h4>
+                <div class="youhui">
+                    <div class="youhui-con sinBox clearfix">
+                        <p class="fL">用户的账号 您好，您的账户余额为<span id="Balance" class="txt-red">@ViewBag.Balance</span>元</p>
+                        <input type="hidden" id="h_Balance" value="@ViewBag.Balance" />
+                        <p class="fR">本次使用<input class="mgL10 mgR10 w50" id="useMoney" value="0" name="" type="text" />元进行支付@*<a class="btn-sureUse mgL5" href="javascript:;"></a>*@</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix mgT30">
+            <div class="fR">
+                <div class="sure-Box">
+                    <div class="sure-Box-con">
+                        <p><em>优惠总额:</em><b class="txt-red" id="Prefer" price="@Model.SupplierPriceList.Sum(m=>m.PreferentialValue)">￥@Model.SupplierPriceList.Sum(m=>m.PreferentialValue).ToString("0.00")</b></p>
+                        <p><em>实付款:</em><b class="txt-red" id="NeedPay">0.00</b></p>
+                        <p><em> 寄送至:</em><span id="addres"></span></p>
+                        <p><em>收货人:</em><span id="Consignee"></span></p>
+                    </div>
+                </div>
+                <div style="text-align: right; margin-top: 2px"><a id="order-submit" class="btn-tjdd checkout-submit" href="javascript:submitorder1(this);"></a></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+

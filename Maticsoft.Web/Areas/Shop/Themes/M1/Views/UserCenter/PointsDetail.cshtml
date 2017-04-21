@@ -1,0 +1,71 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+    Maticsoft.Model.Members.UsersExpModel UserInfo = ViewBag.UserInfo;
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.PointsDetail>
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/UserCenterStyle.css" rel="stylesheet" type="text/css" />
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+    <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<div class="U-R">
+
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+        我的积分<div style="float: right; margin-right: 50px;">
+            您当前的积分:<span class="integral_a1">@UserInfo.Points</span>
+        </div>
+            </div>
+    </div>
+
+    <table width="100%" border="0" class="user_dingdan" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>积分日期</th>
+            <th>积分类型</th>
+            <th>积分</th>
+            <th>说明</th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <tr align="center">
+                <td height="40" class="bor" style="padding: 0 0 0 0;">
+                    @item.CreatedDate.ToString("yyyy-MM-dd")
+                </td>
+                <td class="bor">
+                    @item.RuleName
+                </td>
+                <td class="bor">
+                    @if (item.Type == 0)
+                    {
+                        <strong style="color: #ff8a00;">+@item.Score</strong>
+                 
+                    }
+                    else
+                    {
+                        <strong style="color: #33982e;">-@item.Score</strong>
+                    }
+                </td>
+                <td class="bor">
+                    @item.Description
+                </td>
+            </tr>
+            }
+        }
+    </table>
+    <center>
+                                        @Html.Pager(Model, new PagerOptions
+                                            {
+                                                PageIndexParameterName = "pageIndex",
+                                                NumericPagerItemCount = 10,
+                                                NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                                                NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                                                CssClass = "in_pages",
+                                                SeparatorHtml = ""
+                                            })
+                                    </center>
+
+</div>

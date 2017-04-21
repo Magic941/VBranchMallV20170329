@@ -1,0 +1,129 @@
+﻿@using Maticsoft.ViewModel.SNS
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.ProductCategory
+<!-- 照片列表-->
+<div id="ProductListDiv">
+<script type="text/javascript">
+
+      $(function () {
+            if(@(Request.RequestContext.RouteData.Values["topcid"])!=@(Request.RequestContext.RouteData.Values["cid"]))
+            {
+              $("a:contains('@(Request.RequestContext.RouteData.Values["cname"])')").css('color','#FF4A82');
+            }
+            $("#@(Request.RequestContext.RouteData.Values["sequence"])").css('color','#FF4A82');
+            $("#price@(Request.RequestContext.RouteData.Values["minprice"])@(Request.RequestContext.RouteData.Values["maxprice"])").css('color','#FF4A82');
+            $('.emerge').unbind('hover').hover(function () {
+                $(this).find('#dodge').show();
+            }, function () {
+                $(this).find('#dodge').hide();
+            });
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    Params:@Html.Raw(ViewBag.DataParam),
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Product/WaterfallProductListData"
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex:$('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "col_",
+                //列数
+                ColumnNumber: 4
+            });
+            resizeImg('.imagewalls', 211, 1280);
+        });
+
+
+    </script>
+    <div class="imagewalls">
+        @{
+            if (Model.ProductList4ForCol != null)
+            {
+                for (int i = 0; i < Model.ProductList4ForCol.Length; i++)
+                {
+            <div id="col_@(i)" class="col1" @(i == 3 ? "style=margin-right:0px" : "")>
+                @foreach (Maticsoft.Model.SNS.Products item in Model.ProductList4ForCol[i])
+                {
+                    <div class="i_w_y">
+                        <div id="emerge" class="emerge">
+                            <p>
+                                <a class="pic_load" href="@item.StaticUrl"  target="_blank">
+                                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@item.ProductName" />
+                                    @if (item.Price.HasValue && item.Price.Value > -1)
+                                    {
+                                        <span class="price">¥ @item.Price.Value.ToString("F")</span>
+                                    }
+                                    
+                                </a>
+                            </p>
+                            <div id="dodge">
+                                <a href="javascript:;" class="addalbum" targetid="@item.ProductID" imagetype="Product" imageurl="@item.ThumbImageUrl" >
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>
+                        </div>
+                        <div class="search_com">
+                            <div class="search_com_a">
+                                <p class="search_com_a1">
+                                    <a href="javascript:;"class="favourite" imagetype="Product" targetid="@item.ProductID">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" /></a></p>
+                                <p class="search_com_a2">
+                                    <a href="javascript:;">@item.FavouriteCount</a></p>
+                            </div>
+                            <div class="search_com_b" style="cursor: pointer">
+                                <p class="search_com_b1">
+                                    <a href="javascript:;">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                                <p class="search_com_b2">
+                                    <span class="commentcount">@item.CommentCount</span>评论</p> 
+                                    <input class="TargetId" type="hidden" value="@item.ProductID" />
+                            </div>
+                           
+                            <div class="clear">
+                            </div>
+                        </div>
+                           <div class="search_iss">
+                        @{if (item.CommentCount > 0 && Model.DicCommentList.ContainsKey(item.ProductID))
+                          {
+
+                              Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", Model.DicCommentList[item.ProductID]);
+
+                          }}  <div class="clear">
+                                </div>
+                         </div>
+                    </div>
+                }
+            </div>
+                }
+            }
+        }
+    </div>
+    <div class="clear">
+    </div>
+  @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")
+    <div>
+    @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+{
+    ShowDisabledPagerItems = false,
+    AlwaysShowFirstLastPageNumber = false,
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 10,
+    CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+    CssClass = "in_pages",
+    SeparatorHtml = ""
+}, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+
+</div>
+</div>
+<!-- 照片列表end-->

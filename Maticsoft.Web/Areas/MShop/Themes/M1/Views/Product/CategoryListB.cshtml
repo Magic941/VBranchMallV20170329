@@ -1,0 +1,88 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "商品分类";
+    ViewBag.Keywords = "商品分类";
+    ViewBag.Description = "商品分类";
+}
+@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+<link href="/Areas/MShop/Themes/M1/Content/Css/Category/style.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    $(function () {
+        $(".CategoryList").click(function () {
+            $(this).next().toggle();
+        });
+    })
+</script>
+<style></style>
+<div class="top">
+    @if (ViewBag.ParentId > -1)
+    {
+        <a href="@(ViewBag.BasePath)p/c/@ViewBag.ParentId"><span>@ViewBag.CurrentName</span></a>
+    }
+    else
+    {
+        <span>全部分类</span>
+    }
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="classify">
+    <ul>
+        <li class="">
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=2"><img src="/Areas/MShop/Themes/M1/Content/img/27_02.jpg" /></a></em>
+            <div class="classify_Fle">
+                <a class="classify_b1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=2">
+                    <span>护肤美妆</span>
+                </a>
+            </div>
+        </li>
+        <li class="">
+            <div class="classify_Fle">
+                <a class="classify_a1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=1">
+                    <span>服饰鞋包</span>
+                </a>
+            </div>
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=1"><img src="/Areas/MShop/Themes/M1/Content/img/26_02.jpg" /></a></em>
+        </li>
+        <li class="">
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=4"><img src="/Areas/MShop/Themes/M1/Content/img/30_08.jpg" /></a></em>
+            <div class="classify_Fle">
+                <a class="classify_d1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=4">
+                    <span>家居用品</span>
+                </a>
+            </div>
+        </li>
+        <li class="">
+            <div class="classify_Fle">
+                <a class="classify_c1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=3">
+                    <span>母婴玩具</span>
+                </a>
+            </div>
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=3"><img src="/Areas/MShop/Themes/M1/Content/img/29_06.jpg" /></a></em>
+        </li>
+        
+        <li class="">
+            <div class="classify_Fle">
+                <a class="classify_e1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=5">
+                    <span>食品保健</span>
+                </a>
+            </div>
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=5"><img src="/Areas/MShop/Themes/M1/Content/img/-2_03.jpg" /></a></em>
+        </li>
+        <li class="">
+            <em>
+                <a href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=6"><img src="/Areas/MShop/Themes/M1/Content/img/-1_02.jpg" /></a></em>
+            <div class="classify_Fle">
+            <a class="classify_f1" href="@(ViewBag.BasePath)Product/ProductCategoryList?PID=6">
+                <span>数码家电</span>
+            </a>
+            </div>
+        </li>
+    </ul>
+</div>

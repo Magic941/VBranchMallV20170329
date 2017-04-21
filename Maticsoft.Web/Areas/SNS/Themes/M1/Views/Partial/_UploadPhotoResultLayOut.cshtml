@@ -1,0 +1,78 @@
+﻿@model  Maticsoft.ViewModel.SNS.PhotoAlbum
+@{
+    string Random = DateTime.Now.ToString("mmssffff");
+            }
+<script type="text/javascript">
+    // loadmap("baidumap_@(Random)", "txtAddress_@(Random)");
+    $(function() {
+
+    })
+</script>
+@*<div id="PhotoResultTemplate">*@
+
+<div class="fabiao photolist" >
+<div id="baidumap_@(Random)" style="display: none">
+</div>
+    <div class="fabiao_a">
+             <input id="txtAddress_@(Random)_data" type="hidden" name="imagedata"  value="@ViewBag.ImageData"/>
+        <img  style='width: 80px; height: 80px' src="@ViewBag.ImageUrl" >
+    </div>
+        <a href="javascript:void(0)" class="AddPhotoNext"></a>
+    <div class="fabiao_b">
+        <div class="fabiao_bs">
+            <div class="fabiao_bs_1" >
+                专辑：</div>
+            <div class="fabiao_bs_2">
+                <select  name="myAlbums" class="myAlbums">
+                    @foreach (Maticsoft.Model.SNS.UserAlbums item in Model.UserAlbums)
+                    {
+                        <option value="@item.AlbumID" title="@item.AlbumName">@item.AlbumName</option>
+                    }
+                </select>
+            </div>
+            <div class="fabiao_bs_3">
+                            <a href="javascript:void(0)" class="createAlblums" style="text-decoration: none">创建专辑
+                            </a>
+                        </div>
+                <div class="clear">
+        </div>
+                 <div class="fabiao_bs_1">
+                     分类：     </div>
+                           <div class="fabiao_bs_2">
+                     <select id="txtPhotoCate" name="PhotoCate">
+                         <option value="0" >请选择</option>
+                         @if (Model != null && Model.PhotoCateList != null)
+                         {
+                                foreach (var  item in Model.PhotoCateList)
+                                {
+                        <option value="@item.CategoryId" title="@item.Name">@item.Name</option>
+                                }
+                         }
+                        </select>
+                    </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="fabiao_cs" style="display: none">
+            <p class="fabiao_cs_1">
+                地址:</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <input name="Address" style="width: 300px;" province="" id="txtAddress_@(Random)" @*onfocus=" loadmap('baidumap_@(Random)', 'txtAddress_@(Random)')*@"  />
+                <input id="txtAddress_@(Random)_Lat" type="hidden" name="Lat"  value=""/>
+                <input id="txtAddress_@(Random)_Lng" type="hidden" name="Lng"  value="" />
+            </p>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="fabiao_cs">
+            <p class="fabiao_cs_1">
+                信息:</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <textarea name="PhotoAddAlbumscontent" cols="" style="width: 300px;" 
+                    rows=""></textarea></p>    
+        </div>
+    </div>
+</div>
+    <div class="clear">
+        </div>
+@*    </div>*@

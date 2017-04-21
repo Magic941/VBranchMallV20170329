@@ -1,0 +1,84 @@
+﻿@model  Maticsoft.ViewModel.SNS.ProductAlbum
+@{
+    string Random = DateTime.Now.ToString("mmssffff");
+}
+
+@*<div id="PhotoResultTemplate">*@
+<div class="fabiao productlist">
+    <div class="fabiao_a">
+        <input id="txtAddress_@(Random)_data" type="hidden" name="imagedata"  value="@ViewBag.ImageData"/>
+        <img  style='width: 80px; height: 80px' src="@ViewBag.ImageUrl" />
+    </div>
+    <div class="fabiao_b">
+        <div class="fabiao_bs" style="margin-bottom: 0px">
+            <div class="fabiao_bs_1">
+                专辑：</div>
+            <div class="fabiao_bs_2" style="height: 25px">
+                <select name="myAlbums" class="myAlbums">
+                    @foreach (Maticsoft.Model.SNS.UserAlbums item in Model.UserAlbums)
+                    {
+                        <option value="@item.AlbumID" title="@item.AlbumName">@item.AlbumName</option>
+                    }
+                </select>
+            </div>
+            <div class="fabiao_bs_3">
+                <a href="javascript:void(0)" class="createAlblums" style="text-decoration: none">创建专辑
+                </a>
+            </div>
+            <div class="clear">
+            </div>
+            <div class="fabiao_bs_1" style="display: none">
+               分类：</div>
+            <div class="fabiao_bs_2" style="display: none">
+                <select id="txtPhotoCate" name="PhotoCate">
+                    <option value="0">请选择</option>
+                         @if (Model != null && Model.ProductCateList != null)
+                    {
+                        foreach (var item in Model.ProductCateList)
+                        {
+                        <option value="@item.CategoryId" title="@item.Name">@item.Name</option>
+                        }
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="fabiao_cs" >
+            <p class="fabiao_cs_1">
+                名称：</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <input name="ProductName" style="width: 300px;"   />
+            </p>
+        </div>
+        <div class="clear">
+        </div>
+          <div class="fabiao_cs" >
+            <p class="fabiao_cs_1">
+                价格：</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <input name="ProductPrice" style="width: 300px;"   />
+            </p>
+        </div>
+        <div class="clear">
+        </div>
+          <div class="fabiao_cs" >
+            <p class="fabiao_cs_1">
+                链接：</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <input name="ProductUrl" style="width: 300px;"   />
+            </p>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="fabiao_cs">
+            <p class="fabiao_cs_1">
+                信息：</p>
+            <p class="fabiao_cs_2" style="width: 300px;">
+                <textarea name="ProductDescription" cols="" style="width: 300px; height: 25px" rows=""  ></textarea></p>
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>
+@*    </div>*@

@@ -1,0 +1,8 @@
+﻿@model  Maticsoft.Model.Shop.Supplier.SupplierInfo 
+            @if (Model != null)
+            {
+                 <div  style="padding-left: 10px;">
+          卖&#12288;家：<a  target="_blank"  href="@(ViewBag.BasePath)Store/@Model.SupplierId"  title="@Model.ShopName">@Model.ShopName</a>
+
+                 </div>
+            }

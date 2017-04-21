@@ -1,0 +1,69 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model  PagedList<Maticsoft.ViewModel.Shop.SaleRecord>
+
+<div class="hd">
+    <h3>
+        购买记录</h3>
+</div>
+<div class="bd"   id="SaleList">
+    <table style="" cellspacing="0" summary="客户购买记录" class="buy-record">
+        <thead>
+            <tr class="thead">
+                <th class="t1" scope="col">
+                    购买人
+                </th>
+                <th class="t2" scope="col">
+                    购买价
+                </th>
+                <th class="t4" scope="col">
+                    数量
+                </th>
+                <th scope="col">
+                </th>
+                <th class="t3" scope="col">
+                    购买时间
+                </th>
+            </tr>
+        </thead>
+        @if (Model != null && Model.Count > 0)
+        {
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="alt">
+                        <td>
+                            @item.BuyName
+                        </td>
+                        <td>
+                            @item.BuyPrice.ToString("F")
+                        </td>
+                        <td>
+                            @item.BuyCount
+                        </td>
+                        <td>
+                        </td>
+                        <td class="c9 tr">
+                            @item.BuyDate
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        }
+    </table>
+    <div class="scott">
+        @Html.AjaxPager(Model, new PagerOptions
+            {
+                CssClass = "in_pages",
+                ShowDisabledPagerItems = false,
+                AlwaysShowFirstLastPageNumber = false,
+                PageIndexParameterName = "pageIndex",
+                NumericPagerItemCount = 10,
+                CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+                NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+            }, new AjaxOptions { UpdateTargetId = "SaleList" })
+    </div>
+</div>
+
+

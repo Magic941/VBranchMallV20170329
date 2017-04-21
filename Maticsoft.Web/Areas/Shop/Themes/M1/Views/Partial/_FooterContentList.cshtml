@@ -1,0 +1,17 @@
+﻿@model   List<Maticsoft.Model.CMS.Content>
+<ul itemid="helpcenterabout" itemname="@ViewBag.contentclassName">
+
+    <h4>@ViewBag.contentclassName</h4>
+
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <li>
+            <a href="/Article/Details/@item.ContentID" target="_blank">@(Maticsoft.Common.StringPlus.SubString(item.Title, 8, ""))  </a>
+        </li>
+        }
+    }
+
+
+</ul>

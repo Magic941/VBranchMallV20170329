@@ -1,0 +1,45 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--一般的新闻-->
+@if (Model != null && Model.Count > 0)
+{
+     <div class="newsletter">
+                <div class="com-title">
+                    <span>
+                        <img src="/Areas/CMS/Themes/M2/Content/99jkc/images/symbol-13.png" alt="">新闻资讯</span>
+                </div>
+                <ul>
+        @foreach (var item in Model)
+        {
+            if(item.Title.Length>19)
+            {
+              <li><a href="/Article/Details/@item.ContentID" title="@item.Title" target="_blank"> @item.Title.Substring(0,18)</a></li>
+            }else
+            {
+                <li><a href="/Article/Details/@item.ContentID" title="@item.Title" target="_blank"> @item.Title</a></li>
+            }
+        }
+       
+    
+                </ul>
+            </div>
+}
+else
+{
+      <div class="newsletter">
+                <div class="com-title">
+                    <span>
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-13.png" alt="">新闻资讯</span>
+                </div>
+                <ul>
+                    <li><a href="#" title="将移动转售业务运营交给市场效果会更好吗？" target="_blank">将移动转售业务运营交给市场效果会更</a></li>
+                    <li><a href="#" title="谷歌便发布消息:2014 年共过滤掉5 亿余条恶意广告" target="_blank">谷歌便发布消息:2014 年共过滤掉5 亿</a></li>
+                    <li><a href="#" title="Facebook“大”到自己都难以想象" target="_blank">Facebook“大”到自己都难以想象</a></li>
+                    <li><a href="#" title="苹果开始招聘健康业销售高管 与IBM合作大有进展" target="_blank">苹果开始招聘健康业销售高管 与IBM合</a></li>
+                    <li><a href="#" title="迪拜七星级酒店推出 镀金纪念版苹果iPhone6" target="_blank">迪拜七星级酒店推出 镀金纪念版苹果i</a></li>
+                    <li><a href="#" title="睡前玩游戏有助于放松心情？ 事实告诉你恰恰相反" target="_blank">睡前玩游戏有助于放松心情？ 事实告</a></li>
+
+
+                </ul>
+            </div>
+    
+}

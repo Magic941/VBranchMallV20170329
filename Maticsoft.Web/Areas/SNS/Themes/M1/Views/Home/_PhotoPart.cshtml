@@ -1,0 +1,22 @@
+﻿@model List<Maticsoft.Model.SNS.Photos>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="club-meitushow">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (i == 0)
+            {
+                <div class="image_01">
+            <a href="@Model[i].StaticUrl">
+                <img src="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbImageUrl, "T300X330_"))" alt="@Model[i].Description"  title="@Model[i].Description"><span>@Maticsoft.Common.StringPlus.SubString(Model[i].Description,18,"...")</span></a></div>
+            }
+            else
+            {
+              <div class="image_02">
+            <a href="@Model[i].StaticUrl">
+                <img src="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbImageUrl, "T160X160_"))" alt="@Model[i].Description"  title="@Model[i].Description"><span>@Maticsoft.Common.StringPlus.SubString(Model[i].Description,10,"...")</span></a></div>
+            }
+        }
+    </div>
+}
+

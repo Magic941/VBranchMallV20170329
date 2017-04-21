@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.CMS.Content>
+<div class="main newslist">
+    <!--左侧-->
+    <div class="listl list2">
+        <div class="listview">保险资讯</div>
+        <ul>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (var item in Model)
+                {
+                <li>
+                    <div class="viewimg">
+                        <div class="hotimgzz"></div>
+                        <a href="#" class="zzsz"></a><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">
+                            <img src="@item.ImageUrl" alt="@item.Title" width="250" height="165">
+                        </a>
+                        <div class="standpoint"><a href="#">保险资讯</a></div>
+                    </div>
+                     @if(item.Title.Length>=26)
+                    {
+                      <h3><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">@item.Title.Substring(0,25)</a></h3>
+                    }
+                    else
+                    {
+                        <h3><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">@item.Title</a></h3>
+                    }
+                    @if(item.Summary.Length>=130)
+                    {
+                       <p>@item.Summary.Substring(0,129)...</p>
+                    }
+                    else
+                    {
+                     <p>@item.Summary</p>
+                    }
+                    <span>@item.CreatedDate</span>
+                </li>
+                }
+
+            }
+            else
+            {
+                <li>暂无内容</li>
+            }
+        </ul>
+        @Html.Pager(Model, new PagerOptions
+                                            {
+                                                PageIndexParameterName = "pageIndex",
+                                                NumericPagerItemCount = 10,
+                                                NumericPagerItemWrapperFormatString = "{0}",
+                                                NavigationPagerItemWrapperFormatString = "{0}",
+                                                CssClass = "page",
+                                                SeparatorHtml = ""
+                                            })
+
+    </div>
+
+   <div class="listr">
+				<!-- 广告位_01 -->				
+				@Html.Action("HomePartial", "Article", new { classid = 51,viewName="_AllGuanggaoRight",top=1,isRec=true  }) 
+           
+				<!--排行榜-->				
+                @Html.Action("HomePartial", "Article", new { classid = 42,viewName="_PaiHangRight",top=10,isHot=true })
+
+
+				<!--编辑推荐-->
+                @Html.Action("HomePartial", "Article", new { classid = 42,viewName="_TuiJianRight",top=6,isRec=true })
+				
+				<!-- 广告位_03-->
+				@Html.Action("HomePartial", "Article", new { classid = 51,viewName="_AllGuanggaoRight",top=1,isRec=true  })    
+				
+			</div>	
+</div>

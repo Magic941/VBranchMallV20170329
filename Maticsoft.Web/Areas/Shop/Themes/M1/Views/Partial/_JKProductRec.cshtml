@@ -1,0 +1,26 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null && Model.Count > 0)
+{
+ 
+      int i=1;
+      foreach (var item in Model)
+        {
+           <li>
+            	<div class="top1 clearfix">
+            		<b>TOP@(i)</b>
+                    <p>
+                    	<span> <a target="_blank" href="@ViewBag.BasePath/Product/Detail/@item.ProductId"> @item.ProductName</a></span>
+                        <em>@item.Subhead</em>
+                    </p>
+                </div>
+				 <a target="_blank" href="@ViewBag.BasePath/Product/Detail/@item.ProductId"> <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T300X300_")" width="242" height="243"/></a>
+                <div class="price">
+                	<i>市场价￥@(item.MarketPrice.HasValue ? item.MarketPrice.Value.ToString("F") : "0.00")</i>
+                    <i>特价￥<b>@item.LowestSalePrice.ToString("F")</b></i>
+                </div>
+            </li>
+            i++;
+}
+    
+}
+@*<a href="_Navigation.cshtml">_Navigation.cshtml</a>*@

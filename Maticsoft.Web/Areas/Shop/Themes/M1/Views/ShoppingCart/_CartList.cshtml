@@ -1,0 +1,357 @@
+﻿@model Maticsoft.ViewModel.Shop.ShoppingCartModel
+@{
+    var SupplierList = Model.AllCartInfo.Items.GroupBy(m => m.SupplierId).ToList();
+    
+}
+<script type="text/javascript">
+    $(function () {
+        $(".ico-server").hover(function () {
+            $(".poptip", $(this).parent()).show();
+        }, function () { $(".poptip", $(this).parent()).hide(); })
+
+        $("#SelectCount").html($(".danxuan input[type=checkbox][checked]").length);
+        var selectItem = new Array();
+        $(".SalePrice").each(function () {
+            var sellprice = $(this).attr("toalSellPrice");
+            var adjustedprice = $(this).attr('toalAdjustedPrice');
+            var p = parseFloat(sellprice) - parseFloat(adjustedprice);
+            if (p > 0) {
+                $(this).text(p);
+                $(this).parent().show();
+            }
+        });
+        //填充数组
+        $(".btnCheck").each(function () {
+            var itemId = $(this).attr("ItemId");
+            //判断选中数组中是否已存在该项
+            var index = $.inArray(itemId, selectItem);
+            if (index > -1) {
+                selectItem.splice(index, 1);
+            } else {
+                selectItem.push(itemId);
+            }
+        });
+        $("#btnRemoveAll").click(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)ShoppingCart/ClearShopCart",
+                data: {},
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                        setTimeout(function () { $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList"); }, 3000);
+                    }
+                }
+            });
+        });
+        $("#btnCheckAll").click(function () {
+            if ($(this).attr("checked") == "checked") {
+                $(".btnCheck").each(function (_i, data) {
+                    alert(_i);
+                    $(this).trigger("click");
+                });
+            } else {
+                $(".btnCheck").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+        $(".btnCheck").click(function () {
+            var itemId = $(this).attr("ItemId");
+            //判断选中数组中是否已存在该项
+            // jQuery.inArray
+            var index = $.inArray(itemId, selectItem);
+            if (index > -1) {
+                selectItem.splice(index, 1);
+            } else {
+                selectItem.push(itemId);
+            }
+        });
+        //$("#btnProductFav").click(function () {
+        //    if (CheckUserState()) {
+        //        var productId = $(this).attr("productId");
+        //        $.ajax({
+        //            type: "POST",
+        //            dataType: "text",
+        //            url: "/UserCenter/AjaxAddFav",
+        //            async: false,
+        //            data: { ProductId: productId },
+        //            success: function (data) {
+        //                if (data == "Rep") {
+        //                    ShowSuccessTip('您已经收藏了该商品，请不要重复收藏');
+        //                } else if (data == "True") {
+        //                    ShowSuccessTip('收藏商品成功');
+        //                } else {
+        //                    ShowFailTip('服务器繁忙，请稍候再试！');
+        //                }
+        //            }
+        //        });
+        //    }
+        //});
+
+        $("#btnRemoveSelect").click(function () {
+            alert(selectItem);
+            var itemIds = selectItem.join(",");
+            alert(itemIds);
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)ShoppingCart/RemoveItem",
+                data: { ItemIds: itemIds },
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                        setTimeout(function () { $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList"); }, 3000);
+                    }
+                }
+            });
+        });
+        $(".btnDelete").click(function () {
+            if (confirm("您确定要删除该商品吗？")) {
+                var itemId = $(this).attr("ItemId");
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "@(ViewBag.BasePath)ShoppingCart/RemoveItem",
+                    data: { ItemIds: itemId },
+                    success: function (data) {
+                        if (data != "No") {
+                            $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+
+                        } else {
+                            ShowFailTip("服务器繁忙，请稍候再试！");
+                            setTimeout(function () { $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList"); }, 3000);
+                        }
+                    }
+                });
+            }
+        });
+        $(".danxuan input[type=checkbox]").click(function () {
+            writeToCashByOne(this);
+        });
+
+        if (parseInt($('#SelectedQuantity').attr('Quantity')) < 1) {
+            $('#toSettlement').css('cursor', ' not-allowed');
+            $('#toSettlement').click(function () {
+                return false;
+            });
+        }
+
+        $(".SupplierCheck").click(function () {
+            var supplierid = $(this).attr("SupplierID");
+            var itemList = "";
+            if ($(this).attr("checked") == "checked") {
+                $(".btnCheck[SupplierID='s_" + supplierid + "']").not('input:checked').each(function (_i, _data) {
+                    itemList += $(this).attr("ItemId") + ",";
+                })
+                writeToCashByAll(this, itemList, 1, supplierid);
+            }
+            else {
+                $(".btnCheck[SupplierID='s_" + supplierid + "']").each(function (_i, _data) {
+                    itemList += $(this).attr("ItemId") + ",";
+                })
+                writeToCashByAll(this, itemList, 2, supplierid);
+            }
+        });
+    })
+
+    function writeToCashByAll(obj, itemList, type, supplierid) {
+
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)ShoppingCart/SelectedItemAll",
+            data: { itemALl: itemList },
+            success: function (data) {
+                if (data == "OK") {
+                    $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList", function () {
+                        if (type == 1) {
+                            $("#SupplierCheck" + supplierid).attr("checked", "checked");
+                        }
+                        else if (type == 2) {
+                            $("#SupplierCheck" + supplierid).removeAttr("checked");
+                        }
+                    });
+
+                } else {
+                    ShowFailTip("服务器繁忙，请稍候再试！");
+                    setTimeout(function () { $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList"); }, 3000);
+                }
+
+            }
+        });
+    }
+
+    function writeToCashByOne(obj) {
+        //$("#SelectCount").html($(".danxuan input[type=checkbox][checked]").length);
+        var itemId = $(obj).attr("ItemId");
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)ShoppingCart/SelectedItem",
+            data: { id: itemId },
+            success: function (data) {
+                if (data == "OK") {
+                    $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList");
+                } else {
+                    ShowFailTip("服务器繁忙，请稍候再试！");
+                    setTimeout(function () { $("#LoadCartList").load("@(ViewBag.BasePath)ShoppingCart/CartList"); }, 3000);
+                }
+
+            }
+        });
+    }
+</script>
+<style>
+    .cart-empty {
+        height: 298px;
+        border: 1px solid #ddd;
+        background-color: #f3f3f3;
+    }
+
+        .cart-empty .message {
+            height: 198px;
+            padding-left: 42%;
+            margin-top: 9%;
+            background: #f3f3f3 url(/Areas/Shop/Themes/M1/Content/images/cart-empty-bg.png) no-repeat 35% 22px;
+        }
+
+            .cart-empty .message p {
+                line-height: 98px;
+            }
+
+            .cart-empty .message ul {
+                padding-top: 23px;
+            }
+
+            .cart-empty .message li {
+                line-height: 26px;
+            }
+
+        .cart-empty a, .cart-empty a:visited, .cart-empty a:hover {
+            color: #005ea7;
+        }
+</style>
+@if (Model != null && Model.AllCartInfo.Quantity > 0)
+{
+    <div class="main_cont">
+        <div class="wrapperMy">
+            <div class="myCart-tab">
+                <a class="chose" href="#">全部商品<strong> @Model.AllCartInfo.Items.Count</strong></a>
+            </div>
+            <div>
+                <table class="tab-tit" width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="all" colspan="2" width="14%">
+                        <td width="10%">操作</td>
+                    </tr>
+                </table>
+                @foreach (var Supplier in SupplierList)
+                {
+                    var SupplierName = Supplier.Where(m => m.SupplierId == Supplier.Key).First().SupplierName;
+                    var PreferentialType = 0; ;
+                    var UnitValue = 0M;
+                    var RateValue = 0M;
+                    string ActiveName = "";
+                    if (Model.AllCartInfo.SupplierPriceList.Count != 0)
+                    {
+                        var s_Model = Model.AllCartInfo.SupplierPriceList.Where(m => m.SupplierId == Supplier.Key && (m.PreferentialType == 1 || m.PreferentialType == 2)).ToList();
+                        if (s_Model.Count != 0)
+                        {
+                            PreferentialType = s_Model.First().PreferentialType;
+                            UnitValue = s_Model.First().AMDUnitValue;
+                            RateValue = s_Model.First().AMDRateValue;
+                            ActiveName = "满" + UnitValue + (PreferentialType == 1 ? "打" + RateValue / 10 + "折" : "减" + RateValue);
+                        }
+                        
+                    }
+                    
+                    
+                    <table class="myCart-goods" width="100%" border="0" cellspacing="0" cellpadding="0">
+
+                        <tr>
+                            <th colspan="8" class="">
+                                <div class="fL">
+                                    <input name="@Supplier.Key" type="checkbox" class="SupplierCheck" id="SupplierCheck@(Supplier.Key)"  SupplierID="@Supplier.Key"  value="" />@SupplierName
+                                </div>
+                                <div class="fL" style='position: relative;display:@(PreferentialType == 0 ? "none" : "block")'>
+                                    <a class="ico-server" href="#"  style="height:24px;width:30px;font-size:11px;line-height:20px;text-align:center;;color:white;display:inherit;background-image:url(/Areas/Shop/Themes/M1/Content/images/images/activity/activity_@(PreferentialType).png)">
+                                        @(PreferentialType==1?"满折":"满减")</a>
+                                    <div style='display:none;color: #333; width: 60px; top: 5px; left: 35px;' class="poptip tag-pop">
+                                        <span class="poptip-arrow poptip-arrow-left"><em>◆</em><i>◆</i></span>
+                                        <a href="/Store/@Supplier.Key" >@ActiveName</a>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                        @foreach (var item in Supplier)
+                        {
+                            <tr>
+                                <td align="right" width="5%">
+                                    <div class="danxuan">
+                                        <input style="margin-top: 25px;margin-right: 20px;" SupplierID="s_@(Supplier.Key)" type="checkbox" @(item.Selected ? "checked='checked'" : "") class="btnCheck" ItemId="@item.ItemId"/>
+                                    </div>
+                                </td>
+                                <td width="9%" class="W-pic-S">
+                                    <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank">
+                                        <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T158X158_")" width="82px" height="82px" /></a></td>
+                                <td class="tit" width="20%"><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank">@item.Name</a></td>
+                                <td class="size txt-gray" width="14%">
+                                    @if (item.SkuValues != null && item.SkuValues.Length > 0)
+                                    {
+                                        <ul class="sku-size-select AttrItems">
+                                            @foreach (string val in item.SkuValues)
+                                            {
+                                                <li class="SkuItems"><a href="javascript:;">@val</a> </li>
+                                            }
+                                        </ul>
+                                    }
+                                </td>
+                                <td width="10%"><del class="txt-gray">@item.MarketPrice.ToString("F")</del><br />
+                                    @item.AdjustedPrice.ToString("F")</td>
+                                <td width="13%" ItemId="@item.ItemId" ProductId="@item.ProductId@Supplier.ToList().IndexOf(item)" class="SL"><a class="ico-jj subtract" href="javascript:;">-</a><input buylimit="@item.QuantityLimit" promotiontype="@item.PromotionType" name="" style="text-align:center"  class="txtQuantity" maxlength="3" type="text"  value="@item.Quantity" />
+                                    <a buylimit="@item.QuantityLimit" promotiontype="@item.PromotionType" class="ico-jj plus" href="javascript:;">+</a></td>
+                                <td class="txt-red" width="10%"><b>@((item.AdjustedPrice * item.Quantity).ToString("F"))</b></td>
+                                @*<td class="txt-red" width="9%"><b>6.00</b></td>*@
+                                <td width="10%">@*<a href="javascript:void(0)" id="btnProductFav" productId="@item.ProductId">点击收藏</a><br />*@
+                                    <a  href="javascript:void(0)" class="btnDelete"  ItemId="@item.ItemId" ProductId="@item.ProductId@Supplier.ToList().IndexOf(item)">删除</a></td>
+                            </tr>
+                        }
+
+                    </table> 
+                }
+                <div class="Settlement tab-tit clearfix">
+                    <div class="SettlementL fL">
+                    </div>
+                    <div class="SettlementR fR" id="SelectedQuantity" Quantity="@Model.SelectedCartInfo.Quantity">
+                        <span>已选商品<strong><span style="padding-left: 20px;" id="SelectCount">0</span></strong> 件 </span>
+                        <span>优惠总额：<strong>¥@(Model.AllCartInfo.SupplierPriceList.Sum(m=>m.PreferentialValue).ToString("0.00"))</strong></span>
+                        <span id="finalPrice" data-bind="@Model.SelectedCartInfo.TotalAdjustedPrice.ToString("F")">合计(不含运费):<strong>¥@Model.SelectedCartInfo.TotalAdjustedPrice.ToString("F")</strong></span>
+                        <!--结算直接提交到订单页-->
+                        <a class="btn-Settlement" href="@(ViewBag.BasePath)Order/SubmitOrder" id="toSettlement" ></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="goon_buy">
+    </div>
+
+}
+else
+{
+    <div class="cart-inner cart-empty">
+        <div class="message">
+            <ul>
+                <li>购物车内暂时没有商品。</li>
+                <li>去<a href="@(ViewBag.BasePath)Product" >商品频道</a>挑选喜欢的商品</li>
+            </ul>
+        </div>
+    </div>
+}

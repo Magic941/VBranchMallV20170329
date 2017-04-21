@@ -1,0 +1,12 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+
+@*三级分类*@
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+        {
+            @("|")<a href="@(ViewBag.BasePath)product/@item.CategoryId"
+                    target="_blank">@item.Name</a>
+        }
+}
+

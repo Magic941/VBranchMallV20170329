@@ -1,0 +1,11 @@
+﻿ @model  List<Maticsoft.Model.CMS.Content>
+             @if (Model != null)
+             {
+               foreach (var item in Model)
+               { 
+                  <li onclick="pageload('Article','newsDetail_@(item.ContentID)','@item.Title','NewsDetail', 'NewsDetail','-1','@item.ContentID')" title="@item.Title">@item.Title</li> 
+               }                
+             }
+ 
+                        
+                     

@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_CMSLayout.cshtml";
+}
+@model Maticsoft.ViewModel.CMS.Photo
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/jquery.cookie.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#maticsoftFooter").show();
+    });
+</script>
+<div class="main">
+    <!--MainMenu BEGIN-->
+    @Html.Action("MainMenu", "Partial")
+    <!--MainMenu End-->
+ @{Html.RenderPartial("PhotoList", Model);}
+ </div>

@@ -1,0 +1,145 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierMenus> 
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridView ">
+    <tbody>
+        <tr class="head1">
+            <td width="12" height="23" align="center" bgcolor="#FFFFFF">
+                <input type="checkbox" id="checkall" class="checkAll"/>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>显示序号</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>菜单名称</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>RUL类型</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>URL值</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>打开方式</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>是否可用</strong>
+            </td>
+            <td width="15%" bgcolor="#FFFFFF">
+                <strong>操作</strong>
+            </td>
+        </tr>
+        @if (null != Model)
+        {
+            foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <input  type="checkbox" menuId="@item.MenuId" class="itemcheck"/>
+                </td>
+                <td>@item.Sequence
+                </td>
+                <td>@item.MenuName
+                </td>
+                <td>
+                    @switch (item.URLType)
+                    {
+                        case 1:
+                        @:商品分类
+                            break;
+                        case 2:
+                        @:栏目
+                            break;
+                        case 0:
+                        default:
+                        @:自定义
+                                                                                                            break;
+                    }
+                </td>
+                <td>@item.NavURL
+                </td>
+                <td>
+                    @switch (item.Target)
+                    {
+                        case 1:
+                        @:新窗口
+                            break;
+                        case 0:
+                        default:
+                        @:本窗口打开
+                                                                                                            break;
+                    }
+                </td>
+                <td>@(item.IsUsed ? "可用" : "不可用")
+                </td>
+                <td>
+                    <a  href="javascript:;" menuid="@item.MenuId" class="editThisMenu">编辑</a> <a href="javascript:;" class="deleteThisMenu" menuid="@item.MenuId">
+                        删除</a>
+                </td>
+            </tr>
+            }
+            <tr height="27px" style="background: #FFF">
+                @* <td colspan="12" style="white-space: nowrap;" align="right">
+                @Html.AjaxPager(Model, new PagerOptions
+           {
+               ShowDisabledPagerItems = false,
+               AlwaysShowFirstLastPageNumber = true,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+               NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+               NavigationPagerItemWrapperFormatString = "<span class=\"page_xia\">{0}</span>",
+               CssClass = "page",
+               SeparatorHtml = ""
+           }, new AjaxOptions { UpdateTargetId = "LoadMenuList" })
+            </td>*@
+                <div class="abc">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                        <tr>
+                            <td width="32" style="padding-left: 12px;">
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="30%">
+                                @Html.AjaxPager(Model, new PagerOptions
+           {
+               ShowDisabledPagerItems = false,
+               AlwaysShowFirstLastPageNumber = true,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+               NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+               NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+               CssClass = "page",
+               SeparatorHtml = ""
+           }, new AjaxOptions { UpdateTargetId = "LoadMenuList" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+        $("#checkall").click(function () {
+            $(".itemcheck").prop('checked', $(this).prop('checked'));
+        });
+    });
+</script>

@@ -1,0 +1,29 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+    <link href="/Areas/Shop/Themes/M1/Content/card/css/home.css" rel="stylesheet" />  
+}
+
+<div class="focus_map">
+</div>
+<div class="" style=" background:url(images/bj001.jpg) center no-repeat;">
+	<div class="content">
+    	<h3><span class="title1"></span></h3>
+        <ul class="clearfix">
+            @Html.Action("ProductRec", "Partial", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Hot,cid=0,Top=40,ViewName="_jkProductRec" });
+        </ul>
+    </div>
+    <div class="content">
+    	<h3><span class="title2"></span></h3>
+        <ul class="clearfix">
+          @Html.Action("ProductRec", "Partial", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Cheap,cid=0,Top=40,ViewName="_jkProductRec" });
+            
+        </ul>
+    </div>
+</div>
+
+
+
+

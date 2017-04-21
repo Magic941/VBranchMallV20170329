@@ -1,0 +1,38 @@
+﻿          
+@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+
+    @if (Model != null && Model.Count > 0)
+    {
+    <div class="bd" >     
+    <div class="baobeilist">
+    <ul>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (i%2 == 0)
+            {
+                <li class="mr10"><a href="@(ViewBag.BasePath)p/d/@Model[i].ProductId">
+                                     <img width="145" onerror="this.onerror='';this.src='/Content/themes/base/images/404/142.jpg'" height="145" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")" />
+                                     <h2>
+                                         @Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 8, "...")</h2>
+                                     <p>
+                                         <span class="hongzi">￥@Model[i].LowestSalePrice.ToString("F")</span> <span class="huizi">￥@(Model[i].MarketPrice.HasValue ? Model[i].MarketPrice.Value.ToString("F") : "")</span></p>
+                                 </a></li>
+            }
+            else
+            { <li ><a href="@(ViewBag.BasePath)p/d/@Model[i].ProductId">
+                                     <img width="145" height="145"  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T158X158_")" onerror="this.onerror='';this.src='/Content/themes/base/images/404/142.jpg'" />
+                                     <h2>
+                                         @Maticsoft.Common.StringPlus.SubString(Model[i].ProductName, 8, "...")</h2>
+                                     <p>
+                                         <span class="hongzi">￥@Model[i].LowestSalePrice.ToString("F")</span> <span class="huizi">￥@(Model[i].MarketPrice.HasValue ? Model[i].MarketPrice.Value.ToString("F") : "")</span></p>
+                                 </a></li>
+            }
+
+        }
+   </ul>
+</div>
+<div class="clear"></div> 
+</div> 
+    <div class="blank20"></div> 
+    }
+

@@ -1,0 +1,95 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+<style type="text/css">
+    select
+    {
+        width: 80px;
+    }
+</style>
+<!--表单验证开始-->
+<script type="text/javascript" src="/Scripts/jquery/maticsoft.jquery.min.js"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/draw.js"></script>
+<!--表单验证结束-->
+<input type="hidden" id="Balance" value="@ViewBag.Balance"/>
+<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+    <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>
+<div class="col-main">
+    <!-- 用户信息 E -->
+    <div class="user_dingdantitle">
+        申请提现</div>
+    <div class="J_tab_panel">
+        <div class="material_con">
+            <div class="f-box" style="margin-top: 20px;">
+                <label class="f-label">
+                    提现金额：</label>
+                <div class="f-input">
+                    <input type="text" value="" maxlength="40" id="txtAmount" name="txtAmount" class="f-txt-b f-txt">
+                </div>
+                <div class="f-msg">
+                    <div id="AmountTip">
+                    </div>
+                </div>
+            </div>
+            <div class="f-box">
+                <label class="f-label">
+                    帐号：</label>
+                <div class="f-input">
+                    <input id="txtBankCard" name="txtBankCard" type="text" maxlength="50" class="f-txt-b f-txt">
+                </div>
+                <div class="f-msg">
+                    <div id="BankCardTip">
+                    </div>
+                </div>
+            </div>
+            <div class="f-box">
+                <label class="f-label">
+                    帐号类型：</label>
+                <div class="f-input f-draw-radio">
+                    <input type="radio" name="radType" value="1" class="dan" /><label>银行卡号</label>
+                    <input type="radio" name="radType" value="2" class="dan" /><label>支付宝帐号</label>
+                </div>
+                <div class="f-msg">
+                    <div id="radTypeTip">
+                    </div>
+                </div>
+            </div>
+            <div class="f-box bank" style="display: none;">
+                <label class="f-label">
+                    开户行名称：</label>
+                <div class="f-input">
+                    <input id="txtBankName" name="txtBankName" type="text" value="" maxlength="200" class="f-txt-b f-txt">
+                </div>
+                <div class="f-msg">
+                    <div id="BankNameTip">
+                    </div>
+                </div>
+            </div>
+            <div class="f-box bank" style="display: none;">
+                <label class="f-label">
+                    开户姓名：</label>
+                <div class="f-input">
+                    <input id="txtTrueName" name="txtTrueName" type="text" value="" maxlength="40" class="f-txt-b f-txt">
+                </div>
+                <div class="f-msg">
+                    <div id="TrueNameTip">
+                    </div>
+                </div>
+            </div>
+            <div class="fb f-act">
+                <div class="f-input">
+                    <input class="btn btn-important-large" style="line-height: 30px; background-position: 100% -78px;
+                        padding-right: 10px; font-weight: bold;" type="button" value="提交" id="btnDraw"
+                        onclick="gosubmit();" />
+                </div>
+                <div class="f-msg">
+                    <div id="divRegTip">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

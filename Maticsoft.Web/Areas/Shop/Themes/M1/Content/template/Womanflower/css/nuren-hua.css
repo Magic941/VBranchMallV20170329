@@ -1,0 +1,391 @@
+﻿@charset "utf-8";
+
+/* 女人花 */
+.substance{
+	border-top:1px solid #f1f1ef;
+	/*padding-bottom:5px;*/
+    margin-top:10px;
+	}
+.substance_nr1{
+	 width:446px;
+	 height:550px;
+     float:left;
+	 border-left:1px solid #f1f1ef;
+	 background:#efefef;
+	}
+.substance_nr2{
+	 width:753px;
+	 height:550px;
+	 float:left;
+	}
+.substance_nr1_logo{
+	width:160px;
+	float:left;
+	}
+.substance_nr1_sp{
+	width:285px;
+	height:551px;
+	overflow:hidden;
+	float:left;
+	position:relative;
+	}
+.nr1_sp1_1 ul{
+	width:285px;
+	height:551px;
+	overflow:hidden;
+	}
+.nr1_sp1_1 li{
+	float:left;
+	}
+.substance_nr2 li{
+	float:left;
+	border-right:1px solid #f1f1ef;
+	border-bottom:1px solid #f1f1ef;
+	padding-bottom:7px;
+	}
+.substance_nr2 li p {
+    text-overflow:ellipsis;
+     white-space:nowrap; 
+     overflow:hidden;
+     color:#808080;
+
+    }
+.substance_nr2 li p,.substance_nr2 li em{
+	text-align:center;
+    width:165px;
+	display:block;
+    margin:0 auto;
+	}
+.substance_nr2 li em {
+    color:#808080;
+    }
+.substance_nr2 li em s{
+    text-decoration:none;
+	}
+.FZ_ny{
+	border-left:1px solid #f1f1ef;
+	}
+.substance_nr1_logo li{
+	width:130px;
+	margin:0 auto;
+    padding-top:5px;
+	}
+.Female_new_nz1{
+	float:left;
+	padding: 15px 8px;
+	border:1px solid #ebebeb;
+	}
+.Female_new_nz1 span{
+    width:136px;
+	font-size:14px;
+    font-family:"微软雅黑";
+     
+	}
+.Female_new_nz1 span a {
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+    }
+.Female_new_nz1 a {
+    /*width:136px;
+    height:249px;*/
+        display:block;
+    }
+.Female_new_nz1 a img:hover{
+    box-shadow:0 2px 6px 2px #efefef;
+    }
+.Female_new_nz2{
+	width:476px;
+	float:left;
+	}
+.Female_new_nz2 li{
+	float:left;
+	padding:13px 10px;
+	border-right:1px solid #ebebeb;
+	border-bottom:1px solid #ebebeb;
+	border-top:1px solid #ebebeb;
+	}
+.Female_new_nz2 a img:hover {
+    box-shadow:0 2px 6px 2px #efefef;
+}
+.Female_new_nz1 em {
+    width:136px;
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden; 
+}
+.Female_new_nz1 a,.Female_new_nz1 span,.Female_new_nz1 em{
+	display:block;
+	}
+.Female_new_nz2 li a,.Female_new_nz2 li span,.Female_new_nz2 li em{
+	display:block;
+	}
+.Female_new_nz2 li span{
+    width:138px;
+	font-size:14px;
+    font-family:"微软雅黑";
+     
+	}
+.Female_new_nz2 li span a {
+         text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+    }
+.Female_new_nz2 li em {
+    width:138px;
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden; 
+}
+.Female_new_nz2 li.nz2_A3{
+	border-right:none;
+	}
+.Female_sex{
+	float:left;
+	}
+.nz2_A4 a,.nz2_A4 span,.nz2_A4 em{
+	display:block;
+	}
+.nz2_A4{
+}
+.nz2_A4 span{
+    font-family:"微软雅黑";
+    font-size:12px;
+     width:138px;
+      
+}
+.nz2_A4 span a{
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden;
+    }
+.nz2_A4 em {
+    width:138px;
+    text-overflow:ellipsis; white-space:nowrap; overflow:hidden; 
+}
+.female_sexs,.nz2_A4{
+	border-bottom:1px solid #ebebeb;
+	float:left;
+	}
+.female_sexs p{
+	float:left;
+	  font:12px Arial, Helvetica, sans-serif;
+ 	  width:20px;
+	  text-align:center;
+	  writing-mode:lr-tb;
+	 /* -webkit-transform: rotate(90deg);    /* for Chrome || Safari */
+	  /*-moz-transform: rotate(90deg);       /* for Firefox */
+	  /*-ms-transform: rotate(90deg);        /* for IE */
+	  /*-o-transform: rotate(90deg);         /* for Opera */
+	}
+.female_sexs span{
+	float:left;
+	  font:12px Arial, Helvetica, sans-serif;
+ 	  width:20px;
+	  text-align:center;
+	  writing-mode:lr-tb;
+	  display:block;
+	  padding:0 6px;
+	  font-size:14px;
+      font-family:"微软雅黑";
+	 /* -webkit-transform: rotate(90deg);    /* for Chrome || Safari */
+	  /*-moz-transform: rotate(90deg);       /* for Firefox */
+	  /*-ms-transform: rotate(90deg);        /* for IE */
+	  /*-o-transform: rotate(90deg);         /* for Opera */
+	}
+.female_sexs a{
+	display:block;
+	float:left;
+	}
+.female_sexs{
+	width:297px;
+	padding:10px 10px;
+	border-right:1px solid #ebebeb;
+	}
+.nz2_A4{
+	padding:15px 10px 16px 10px;
+	}
+.nz2_A4 span{
+	font-size:16px;
+	}
+.species_odds{
+	float:left;
+	}
+.species_odds_th span{
+	width:201px;
+	height:41px;
+	line-height:41px;
+	font-size:16px;
+	color:#fff;
+	display:block;
+	text-align:center;
+	background:url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0010_03.png) no-repeat;
+	}
+.species_odds_spp2 em{
+	display:block;
+	color:#e60012;
+    height:30px;
+    line-height:30px;
+    text-align:center;
+	}
+.species_odds_spp2{
+	width:183px;
+	margin:0 auto;
+	}
+.species_odds_spp2 p{
+    width:183px;
+    margin:0 auto;
+	height:30px;
+	line-height:30px;
+	font-size:14px;
+    font-family:"微软雅黑";
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+	}
+.species_odds_spp2{
+	padding-bottom:5px;
+	}
+.species_odds_spp2 i{
+	width:183px;
+	text-align:right;
+	display:block;
+	color:#e82431;
+	}
+.text_classification{
+	width:130px;
+	margin:0 auto;
+	}
+.text_classification li{
+	float:left;
+	width:65px;
+	}
+.text_classification li a{
+	height:18px;
+	line-height:18px;
+	display:inline-block;
+	display:inline;zoom:1;
+	}
+.gentlemanss_sexs{
+	width:201px;
+	height:693px;
+	float:left;
+	background:url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0012_02.png) no-repeat;
+	}
+.gentlemanss_sexs span{
+	height:34px;
+	line-height:34px;
+	font-size:16px;
+    font-family:"微软雅黑";
+    padding-left:15px;
+	}
+.gentlemanss_sexs .gentleman—menu_1{
+	margin-top:10px;
+	}
+.banner_sexs_nx ul{
+	width:798px;
+	height:360px;
+	overflow:hidden;
+	}
+.Female_new_product{
+	width:790px;
+	padding-top:16px;
+	padding:12px 0 0 6px;
+	}
+.gentlemanss_cent{
+	float:left
+	}
+.odds_pg_xs{
+	background:#ffa5d8;
+	}
+.odds_pg_xs span{
+	height:36px;
+	line-height:36px;
+	font-size:16px;
+	color:#fff; 
+	background:url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0015_03.png) left center no-repeat;
+	/*padding-left:20px;*/
+	text-align:center;
+	display:block;
+	}
+.odds_pg_sp{
+	width:199px;
+	border:1px solid #ccc;
+	border-top:none;
+	}
+.odds_pg_sp span{
+	font-size:16px;
+	color:#595757;
+	padding-left:5px;
+    font-family:"微软雅黑";
+	}
+.odds_pg_sp_1{
+	width:157px;
+	margin:0 auto;
+	}
+.odds_pg_sp_1 p{
+	font-size:14px;
+	color:#595757;
+    font-family:"微软雅黑";
+    text-overflow:ellipsis;
+    overflow:hidden;
+    white-space:nowrap;
+	}
+.odds_pg_sp_1 em{
+	height:28px;
+	line-height:28px;
+	color:#e60012;
+	display:block;
+	text-align:center;
+	}
+.odds_pg_sp_1 i{
+	width:66px;
+	height:29px;
+    line-height:29px;
+	background:#ea409f;
+	display:block;
+	text-align:center;
+	margin:11px auto;
+    font-family:"微软雅黑";
+    font-size:14px;
+	}
+.odds_pg_sp_1 i a{
+	color:#fff;
+	font-size:14px;
+	}
+.gentleman—sexs_2 dl{
+	width:182px;
+	border-bottom:2px dashed #ccc;
+    margin: 0 auto;
+	}
+.gentleman—sexs_2 dt{
+	float:none;
+	padding-left:20px;
+	font-size:14px;
+    font-family:"微软雅黑";
+    font-weight:bold;
+	}
+.gentleman—sexs_2 dd{
+	float:none;
+	padding-left:20px;
+	}
+.gentleman—sexs_2 dd a{
+	width:78px;
+    height:21px;
+    line-height:21px;
+	display:inline-block;
+	*display:inline;zoom:1;
+	}
+.nr1_sp1_2{
+	width:120px;
+	height:35px;
+	position:absolute;
+	bottom:0;left:116px;
+	
+	}
+.nr1_sp1_2 li{
+	float:left;
+	}
+.nr1_sp1_2 li a{
+	width:15px; 
+	height:15px;
+	background:url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0021.png) no-repeat;
+	display:block;
+	padding:0 2px;
+	}
+.nr1_sp1_2 li a:hover,.nr1_sp1_2 li.active a{
+	background:url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0022.png) no-repeat;
+	}
+.odds_pg_sp{
+    padding-bottom:14px;
+}

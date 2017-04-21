@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://service.nineorange.com" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="BusinessServiceService" targetNamespace="http://service.nineorange.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns="http://service.nineorange.com" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://service.nineorange.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="getReceipt">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="taskID" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getReceiptResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getReceiptReturn" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getReceivedMsg">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="param" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getReceivedMsgResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getReceivedMsgReturn" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUserInfo">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="getUserInfoResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="getUserInfoReturn" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="modifyPassword">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="oldPassword" type="xs:string" />
+            <xs:element name="newPassword" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="modifyPasswordResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="modifyPasswordReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendBatchMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="destmobile" type="xs:string" />
+            <xs:element name="msgText" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendBatchMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sendBatchMessageReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="destmobile" type="xs:string" />
+            <xs:element name="msgText" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sendMessageReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendMmsMessages">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="phones" type="xs:string" />
+            <xs:element name="mmsString" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendMmsMessagesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sendMmsMessagesReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendPersonalMessages">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="destMobiles" type="xs:string" />
+            <xs:element name="msgContents" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendPersonalMessagesResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sendPersonalMessagesReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendTimelyMessage">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+            <xs:element name="sendDateTime" type="xs:string" />
+            <xs:element name="destmobile" type="xs:string" />
+            <xs:element name="msgText" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sendTimelyMessageResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sendTimelyMessageReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateUser">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="account" type="xs:string" />
+            <xs:element name="password" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="validateUserResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="validateUserReturn" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:complexType name="gxmt">
+        <xs:sequence>
+          <xs:element name="account" type="xs:string" />
+          <xs:element name="password" type="xs:string" />
+          <xs:element name="sendDateTime" type="xs:string" />
+          <xs:element name="destmobiles" type="xs:string" />
+          <xs:element name="msgTexts" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="gxmtResponse">
+        <xs:sequence>
+          <xs:element name="gxmtReturn" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="gxmt" nillable="true" type="tns:gxmt" />
+      <xs:element name="gxmtResponse" nillable="true" type="tns:gxmtResponse" />
+      <xs:element name="sendBatchMessageTimelyExt" type="tns:sendBatchMessageTimelyExt" />
+      <xs:complexType name="sendBatchMessageTimelyExt">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="sendDateTime" type="xs:string" />
+          <xs:element minOccurs="0" name="destmobile" type="xs:string" />
+          <xs:element minOccurs="0" name="msgText" type="xs:string" />
+          <xs:element minOccurs="0" name="ext" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sendBatchMessageTimelyExtResponse" type="tns:sendBatchMessageTimelyExtResponse" />
+      <xs:complexType name="sendBatchMessageTimelyExtResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sendGjBatchMessage" type="tns:sendGjBatchMessage" />
+      <xs:complexType name="sendGjBatchMessage">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="sendDateTime" type="xs:string" />
+          <xs:element minOccurs="0" name="destmobile" type="xs:string" />
+          <xs:element minOccurs="0" name="msgText" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sendGjBatchMessageResponse" type="tns:sendGjBatchMessageResponse" />
+      <xs:complexType name="sendGjBatchMessageResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sendAudio" type="tns:sendAudio" />
+      <xs:complexType name="sendAudio">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="account" type="xs:string" />
+          <xs:element minOccurs="0" name="password" type="xs:string" />
+          <xs:element minOccurs="0" name="sendDateTime" type="xs:string" />
+          <xs:element minOccurs="0" name="destmobile" type="xs:string" />
+          <xs:element minOccurs="0" name="msgText" type="xs:string" />
+          <xs:element minOccurs="0" name="srcMobile" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="sendAudioResponse" type="tns:sendAudioResponse" />
+      <xs:complexType name="sendAudioResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sendMmsMessagesResponse">
+    <wsdl:part name="parameters" element="tns:sendMmsMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchMessageTimelyExt">
+    <wsdl:part name="parameters" element="tns:sendBatchMessageTimelyExt" />
+  </wsdl:message>
+  <wsdl:message name="getReceivedMsg">
+    <wsdl:part name="parameters" element="tns:getReceivedMsg" />
+  </wsdl:message>
+  <wsdl:message name="sendAudioResponse">
+    <wsdl:part name="parameters" element="tns:sendAudioResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchMessageTimelyExtResponse">
+    <wsdl:part name="parameters" element="tns:sendBatchMessageTimelyExtResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendTimelyMessage">
+    <wsdl:part name="parameters" element="tns:sendTimelyMessage" />
+  </wsdl:message>
+  <wsdl:message name="sendMessageResponse">
+    <wsdl:part name="parameters" element="tns:sendMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendMmsMessages">
+    <wsdl:part name="parameters" element="tns:sendMmsMessages" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfo">
+    <wsdl:part name="parameters" element="tns:getUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchMessageResponse">
+    <wsdl:part name="parameters" element="tns:sendBatchMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="validateUserResponse">
+    <wsdl:part name="parameters" element="tns:validateUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendTimelyMessageResponse">
+    <wsdl:part name="parameters" element="tns:sendTimelyMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="getUserInfoResponse">
+    <wsdl:part name="parameters" element="tns:getUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="modifyPassword">
+    <wsdl:part name="parameters" element="tns:modifyPassword" />
+  </wsdl:message>
+  <wsdl:message name="getReceivedMsgResponse">
+    <wsdl:part name="parameters" element="tns:getReceivedMsgResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendBatchMessage">
+    <wsdl:part name="parameters" element="tns:sendBatchMessage" />
+  </wsdl:message>
+  <wsdl:message name="sendPersonalMessages">
+    <wsdl:part name="parameters" element="tns:sendPersonalMessages" />
+  </wsdl:message>
+  <wsdl:message name="sendGjBatchMessage">
+    <wsdl:part name="parameters" element="tns:sendGjBatchMessage" />
+  </wsdl:message>
+  <wsdl:message name="gxmtResponse">
+    <wsdl:part name="parameters" element="tns:gxmtResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendAudio">
+    <wsdl:part name="parameters" element="tns:sendAudio" />
+  </wsdl:message>
+  <wsdl:message name="getReceipt">
+    <wsdl:part name="parameters" element="tns:getReceipt" />
+  </wsdl:message>
+  <wsdl:message name="getReceiptResponse">
+    <wsdl:part name="parameters" element="tns:getReceiptResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendMessage">
+    <wsdl:part name="parameters" element="tns:sendMessage" />
+  </wsdl:message>
+  <wsdl:message name="sendGjBatchMessageResponse">
+    <wsdl:part name="parameters" element="tns:sendGjBatchMessageResponse" />
+  </wsdl:message>
+  <wsdl:message name="sendPersonalMessagesResponse">
+    <wsdl:part name="parameters" element="tns:sendPersonalMessagesResponse" />
+  </wsdl:message>
+  <wsdl:message name="modifyPasswordResponse">
+    <wsdl:part name="parameters" element="tns:modifyPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="gxmt">
+    <wsdl:part name="parameters" element="tns:gxmt" />
+  </wsdl:message>
+  <wsdl:message name="validateUser">
+    <wsdl:part name="parameters" element="tns:validateUser" />
+  </wsdl:message>
+  <wsdl:portType name="BusinessService">
+    <wsdl:operation name="getReceivedMsg">
+      <wsdl:input name="getReceivedMsg" message="tns:getReceivedMsg" />
+      <wsdl:output name="getReceivedMsgResponse" message="tns:getReceivedMsgResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBatchMessageTimelyExt">
+      <wsdl:input name="sendBatchMessageTimelyExt" message="tns:sendBatchMessageTimelyExt" />
+      <wsdl:output name="sendBatchMessageTimelyExtResponse" message="tns:sendBatchMessageTimelyExtResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendPersonalMessages">
+      <wsdl:input name="sendPersonalMessages" message="tns:sendPersonalMessages" />
+      <wsdl:output name="sendPersonalMessagesResponse" message="tns:sendPersonalMessagesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="modifyPassword">
+      <wsdl:input name="modifyPassword" message="tns:modifyPassword" />
+      <wsdl:output name="modifyPasswordResponse" message="tns:modifyPasswordResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getReceipt">
+      <wsdl:input name="getReceipt" message="tns:getReceipt" />
+      <wsdl:output name="getReceiptResponse" message="tns:getReceiptResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendBatchMessage">
+      <wsdl:input name="sendBatchMessage" message="tns:sendBatchMessage" />
+      <wsdl:output name="sendBatchMessageResponse" message="tns:sendBatchMessageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendGjBatchMessage">
+      <wsdl:input name="sendGjBatchMessage" message="tns:sendGjBatchMessage" />
+      <wsdl:output name="sendGjBatchMessageResponse" message="tns:sendGjBatchMessageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+      <wsdl:input name="validateUser" message="tns:validateUser" />
+      <wsdl:output name="validateUserResponse" message="tns:validateUserResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendMessage">
+      <wsdl:input name="sendMessage" message="tns:sendMessage" />
+      <wsdl:output name="sendMessageResponse" message="tns:sendMessageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendTimelyMessage">
+      <wsdl:input name="sendTimelyMessage" message="tns:sendTimelyMessage" />
+      <wsdl:output name="sendTimelyMessageResponse" message="tns:sendTimelyMessageResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendMmsMessages">
+      <wsdl:input name="sendMmsMessages" message="tns:sendMmsMessages" />
+      <wsdl:output name="sendMmsMessagesResponse" message="tns:sendMmsMessagesResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="gxmt">
+      <wsdl:input name="gxmt" message="tns:gxmt" />
+      <wsdl:output name="gxmtResponse" message="tns:gxmtResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <wsdl:input name="getUserInfo" message="tns:getUserInfo" />
+      <wsdl:output name="getUserInfoResponse" message="tns:getUserInfoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="sendAudio">
+      <wsdl:input name="sendAudio" message="tns:sendAudio" />
+      <wsdl:output name="sendAudioResponse" message="tns:sendAudioResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BusinessServiceServiceSoapBinding" type="tns:BusinessService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="getReceivedMsg">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getReceivedMsg">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getReceivedMsgResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBatchMessageTimelyExt">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendBatchMessageTimelyExt">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendBatchMessageTimelyExtResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendPersonalMessages">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendPersonalMessages">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendPersonalMessagesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="modifyPassword">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="modifyPassword">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="modifyPasswordResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getReceipt">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getReceipt">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getReceiptResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendBatchMessage">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendBatchMessage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendBatchMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendGjBatchMessage">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendGjBatchMessage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendGjBatchMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="validateUser">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="validateUser">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="validateUserResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMessage">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendMessage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendTimelyMessage">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendTimelyMessage">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendTimelyMessageResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="gxmt">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="gxmt">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="gxmtResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendMmsMessages">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendMmsMessages">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendMmsMessagesResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getUserInfo">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="getUserInfo">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getUserInfoResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sendAudio">
+      <soap:operation soapAction="" style="document" />
+      <wsdl:input name="sendAudio">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="sendAudioResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BusinessServiceService">
+    <wsdl:port name="BusinessServicePort" binding="tns:BusinessServiceServiceSoapBinding">
+      <soap:address location="http://www.jianzhou.sh.cn/JianzhouSMSWSServer/services/BusinessService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

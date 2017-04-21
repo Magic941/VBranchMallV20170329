@@ -1,0 +1,66 @@
+﻿@model  Maticsoft.ViewModel.SNS.PostsPage
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserProfileLayOut.cshtml";
+}
+@section head{
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>@*上传图片的要引用的js*@
+    <script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+    <link href="/Scripts/Pagination/pagination.css" rel="stylesheet" type="text/css" />@*分页控件的css*@
+    <script type="text/javascript" src="/Scripts/Pagination/jquery.pagination.js"></script>@*分页控件的javascript*@
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/UserPosts.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/UserProfilePosts.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+    <link href="/Areas/SNS/Themes/M1/Content/css/microblog.view.css" rel="stylesheet"
+        type="text/css" />
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/microblog.view.js" type="text/javascript"></script>
+}
+<input id="DataCount" value="@(Model.DataCount)" type="hidden" />
+<input id="PageSize" value="@(Model.PageSize)" type="hidden" />
+<input id="PostType" value="@(Model.Type)" type="hidden" />
+<input id="UserId" value="@(Model.UserID)" type="hidden" />
+<div class="user_cont_zuo">
+    <!--选项卡开始-->
+    <div class="dynamic">
+        <div class="tShow" id="tab">
+            <div class="tmenu">
+                <ul>
+                    <li><a href="javascript:void(0)" class="tmenu_a posttype" data_posttype="user" id="UserAllBtn">
+                        全部</a></li>
+                    <li  style="@(Model.Setting._Picture ? "" : "display:none")"><a href="javascript:void(0)" class="tmenu_b posttype" data_posttype="photo" id="UserPhotoBtn">
+                        照片</a></li>
+                    <li  style="@(Model.Setting._Product ? "" : "display:none")"><a href="javascript:void(0)" class="tmenu_b posttype" data_posttype="product" 
+                        id="UserProductBtn">商品</a></li>
+                    <li><a href="javascript:void(0)" class="tmenu_b posttype" data_posttype="video" id="UserVideoBtn">
+                        视频</a></li>
+                    <li  style="@(Model.Setting._Blog ? "" : "display:none")"><a href="javascript:void(0)" class="tmenu_b posttype" data_posttype="blog" id="UserBlogBtn">
+                        文章</a></li>
+                </ul>
+                <div class="clear">
+                </div>
+            </div>
+            <div id="referDiv" style="margin-top: 15px; display: none">
+                <a href="/SNS/Profile/Posts?type=ReferMyPost" id="ReferMyPost" style="color: #333">@@我的动态</a>
+                <span style="color: #CCC">/</span> <a id="ReferMyComment" href="javascript:;" style="color: #09E">
+                    @@我的评论</a>
+            </div>
+            <div class="content" style="display: block;">
+                <div id="PostAllContent">
+                </div>
+                <div class="clear">
+                </div>
+                <div id="Pagination" class="pagination" style="width: 500px">
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div id="template" style="display: none">
+    @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_PostHiddenLayout.cshtml")
+</div>
+@Html.Action("ProfileLeft", "Partial")

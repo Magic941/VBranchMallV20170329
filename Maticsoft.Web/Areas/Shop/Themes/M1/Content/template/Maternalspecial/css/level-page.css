@@ -1,0 +1,495 @@
+﻿@charset "utf-8";
+/* CSS Document */
+/*substance*/
+.substance {
+    background: #e0fdff;
+    padding-top: 15px;
+}
+
+
+.Carousel_na1 {
+    background: #f35c6d;
+}
+
+.Carousel_na2 {
+    background: #894ee4;
+}
+
+.Carousel_na3 {
+    background: #4358e7;
+}
+
+.assortment_muyian {
+    width: 1200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.assortment-GSA1 {
+    width: 187px;
+    background: #9e090b;
+    position: absolute;
+    top: -389px;
+    left: 0;
+}
+
+    .assortment-GSA1 li a {
+        height: 43.2px;
+        line-height: 43px;
+        display: block;
+    }
+
+        .assortment-GSA1 li a span {
+            color: #fff;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            height: 43px;
+            line-height: 40px;
+            display: block;
+        }
+
+.assortment-GSA2 {
+    position: absolute;
+    right: 0px;
+    top: -389px;
+}
+
+/*Carousel_myi end*/
+/*maternal-child_subnav*/
+.maternal-child_subnav {
+    width: 976px;
+    float: left;
+}
+
+.child_subnav-top {
+    width: 976px;
+    /*background: #5edfad;*/
+    background:url(/Areas/Shop/Themes/M1/Content/template/Maternalspecial/images/images/bj_03.png) no-repeat;
+}
+
+    .child_subnav-top li {
+        width: 118px;
+        float: left;
+    }
+
+        .child_subnav-top li a{
+            height: 40px;
+            line-height: 40px;
+            display: block;
+            text-align: center;
+            font-family: "微软雅黑";
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .child_subnav-top li:hover a{
+            height: 39px;
+            line-height: 39px;
+            color: #00633d;
+            border-right: 1px solid #2fa175;
+            border-bottom: 1px solid #33a67a;
+            background: none;
+        }
+
+.child_subnav-wares {
+    background: #fff;
+    border-bottom: 1px solid #dadada;
+}
+
+    .child_subnav-wares li {
+        width: 243px;
+        float: left;
+        border-left: 1px solid #dadada;
+    }
+
+        .child_subnav-wares li a {
+            width: 208px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .child_subnav-wares li p {
+            height: 42px;
+            font-family: "微软雅黑";
+            font-size: 14px;
+            color: #888888;
+        }
+
+        .child_subnav-wares li span {
+            padding: 20px 0;
+            display: block;
+        }
+
+        .child_subnav-wares li em {
+            display: block;
+            text-align: center;
+            font-family: "微软雅黑";
+            font-size: 16px;
+            color: #ff0000;
+            padding-bottom: 2px;
+        }
+
+/*maternal-child_subnav end*/
+
+/*maternal-child_seller*/
+.maternal-child_seller {
+    width: 224px;
+    float: left;
+}
+
+.child_seller-top {
+    width: 224px;
+    background: #83eecf;
+}
+
+    .child_seller-top span {
+        height: 40px;
+        line-height: 40px;
+        font-family: "微软雅黑";
+        color: #00633d;
+        font-size: 16px;
+        background: url(../images/images/1_03.png) left center no-repeat;
+        padding-left: 28px;
+        margin-left: 45px;
+        display: block;
+    }
+
+.child_seller-wares {
+    background: #fff;
+    border-right: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+}
+
+    .child_seller-wares a {
+        display: block;
+        padding-top: 6px;
+    }
+
+/*maternal-child_seller end*/
+/*the-newproduct*/
+.the-newproduct {
+    padding-top: 20px;
+}
+
+    .the-newproduct li {
+        float: left;
+        padding-right: 15px;
+    }
+
+
+
+/*the-newproduct end*/
+/*Mother-infant_food*/
+.Mother-infant_food {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 40px;
+}
+
+.infant_food-nav1 {
+    width: 1200px;
+    background: url(../images/images/bb1_07.png) no-repeat;
+}
+
+.infant_food-nav2 {
+    width: 1200px;
+    background: url(../images/images/m01_03.png) no-repeat;
+}
+
+.infant_food-nav3 {
+    width: 1200px;
+    background: url(../images/images/m02_06.png) no-repeat;
+}
+
+.infant_food-nav4 {
+    width: 1200px;
+    background: url(../images/images/m02_09.png) no-repeat;
+}
+
+.infant_food-nav5 {
+    width: 1200px;
+    background: url(../images/images/m04_12.png) no-repeat;
+}
+
+.infant_food-nav6 {
+    width: 1200px;
+    background: url(../images/images/m05_14.png) no-repeat;
+}
+
+    .infant_food-nav1 span, .infant_food-nav2 span, .infant_food-nav3 span, .infant_food-nav4 span, .infant_food-nav5 span, .infant_food-nav6 span {
+        font-family: "微软雅黑";
+        height: 50px;
+        line-height: 50px;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        *display: inline;
+        zoom: 1;
+        padding-left: 30px;
+        margin-left: 12px;
+    }
+
+.infant_food-nav1 span {
+    background: url(../images/images/bb3_03.png) left center no-repeat;
+}
+
+.infant_food-nav2 span {
+   background: url(../images/images/bb0303.png) left center no-repeat; 
+}
+
+.infant_food-nav3 span {
+     background: url(../images/images/bb0404.png) left center no-repeat; 
+}
+
+.infant_food-nav4 span {
+    background: url(../images/images/bb0505.png) left center no-repeat; 
+}
+
+.infant_food-nav5 span {
+     background: url(../images/images/bb0515.png) left center no-repeat; 
+}
+
+.infant_food-nav6 span {
+    background: url(../images/images/bb0606.png) left center no-repeat; 
+}
+
+.infant_food-nav1 a, .infant_food-nav2 a, .infant_food-nav3 a, .infant_food-nav4 a, .infant_food-nav5 a, .infant_food-nav6 a {
+    padding-left: 45px;
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #fff;
+}
+
+    .infant_food-nav1 a:hover, .infant_food-nav2 a:hover, .infant_food-nav3 a:hover, .infant_food-nav4 a:hover, .infant_food-nav5 a:hover, .infant_food-nav6 a:hover {
+        color: #fff;
+    }
+
+.food-brand {
+}
+
+.infant_food-brand1, .infant_food-brand2, .infant_food-brand3, .infant_food-brand4, .infant_food-brand5, .infant_food-brand6 {
+    padding-bottom: 5px;
+}
+
+.infant_food-brand1 {
+    background: #ec5a60;
+}
+
+.infant_food-brand2 {
+    background: #e0a6fb;
+}
+
+.infant_food-brand3 {
+    background: #ffc000;
+}
+
+.infant_food-brand4 {
+    background: #a8c72f;
+}
+
+.infant_food-brand5 {
+    background: #8ecdff;
+}
+
+.infant_food-brand6 {
+    background: #ffaac5;
+}
+
+    .infant_food-brand1 span, .infant_food-brand2 span, .infant_food-brand3 span, .infant_food-brand4 span, .infant_food-brand5 span, .infant_food-brand6 span {
+        padding-left: 5px;
+    }
+
+.food-brand em {
+    height: 38px;
+    line-height: 38px;
+    font-family: "微软雅黑";
+    font-size: 16px;
+    padding-left: 10px;
+    color: #fff;
+}
+
+.food-wares {
+    width: 857px;
+    float: left;
+    background: #fff;
+}
+
+    .food-wares li {
+        width: 213px;
+        float: left;
+        border-right: 1px solid #e2e2e2;
+        border-bottom: 1px solid #e2e2e2;
+    }
+
+.brand_fenlei {
+    width: 268px;
+    margin: 0 auto;
+}
+
+    .brand_fenlei a {
+        padding-right: 18px;
+        font-family: "微软雅黑";
+        font-size: 14px;
+        color: #fff;
+    }
+
+.food-wares span, .food-wares em, .food-wares p {
+    display: block;
+    text-align: center;
+}
+
+.food-wares p, .food-wares em {
+    font-family: "微软雅黑";
+    font-size: 14px;
+    width: 170px;
+    margin: 0 auto;
+    display: block;
+}
+
+.food-wares p {
+    height: 40px;
+    overflow: hidden;
+    color: #999999;
+}
+
+.food-wares em {
+    color: #c9020b;
+}
+
+.the-newproduct li {
+    position: relative;
+}
+
+    .the-newproduct li em {
+        position: absolute;
+        width: 46px;
+        height: 55px;
+        display: block;
+    }
+
+.AK_SDA1 em {
+    top: -5px;
+    right: 8px;
+    background: url(../images/images/sj1_43.png) no-repeat;
+}
+
+.AK_SDA2 em {
+    top: -5px;
+    right: 11px;
+    background: url(../images/images/sj2_45.png) no-repeat;
+}
+
+.AK_SDA3 em {
+    top: -5px;
+    right: -4px;
+    background: url(../images/images/sj3_43.png) no-repeat;
+}
+
+.assortment-GSA1 li em {
+    float: left;
+    background: url(../images/images/tubi_icon.png) no-repeat;
+    display: block;
+    margin-top: 11px;
+    margin-right: 5px;
+}
+
+.assortment-GSA1 li span {
+    float: left;
+}
+
+.assortment-GSA1 li.VHB_KN1 em {
+    width: 41px;
+    height: 18px;
+    background-position: 0 0;
+}
+
+.assortment-GSA1 li.VHB_KN2 em {
+    width: 41px;
+    height: 23px;
+    background-position: 0 -18px;
+}
+
+.assortment-GSA1 li.VHB_KN3 em {
+    width: 41px;
+    height: 23px;
+    background-position: 0 -41px;
+}
+
+.assortment-GSA1 li.VHB_KN4 em {
+    width: 41px;
+    height: 23px;
+    background-position: 0 -64px;
+}
+
+.assortment-GSA1 li.VHB_KN5 em {
+    width: 41px;
+    height: 23px;
+    background-position: 0 -86px;
+}
+
+.assortment-GSA1 li.VHB_KN6 em {
+    width: 41px;
+    height: 27px;
+    background-position: 0 -111px;
+}
+
+.assortment-GSA1 li.VHB_KN7 em {
+    width: 41px;
+    height: 27px;
+    background-position: 0 -164px;
+}
+
+.assortment-GSA1 li.VHB_KN8 em {
+    width: 41px;
+    height: 28px;
+    background-position: 0 -139px;
+}
+
+.assortment-GSA1 li.VHB_KN9 em {
+    width: 41px;
+    height: 28px;
+    background-position: 0 -192px;
+}
+
+.assortment-GSA1 li {
+    padding-left: 25px;
+}
+
+.brand_fenlei a:hover {
+    color: #fff;
+}
+
+/*Mother-infant_food end*/
+
+.Carousel_myi ul{height:389px;position:absolute;}
+.Carousel_myi ul li{float:left;width:1200px;height:504px;overflow:hidden;position:relative;/*background:#000;*/}
+.Carousel_myi ul li div{position:absolute;overflow:hidden;}
+.Carousel_myi .btnBg{position:absolute;width:389px;height:20px;left:0;bottom:0;background:#000;}
+.Carousel_myi .mid_btn{position:absolute;width:1200px;height:10px;padding:5px 10px;right:0;bottom:0;text-align:right;text-align:center}
+.Carousel_myi .mid_btn span{display:inline-block;_display:inline;_zoom:1;width:25px;height:10px;_font-size:0;margin-left:5px;cursor:pointer;background:#fff;}
+.Carousel_myi .mid_btn span.on{background:#fff;}
+.Carousel_myi .preNext{width:45px;height:100px;position:absolute;top:90px;background:url('../../../images/images/AD/sprite.png') no-repeat 0 0;cursor:pointer;}
+.Carousel_myi .pre{left:0;}
+.Carousel_myi .next{right:0;background-position:right top;}
+
+.main_msg-L,.Carousel_myi,.main_msg-R{display:block; position: relative;}
+.Carousel_myi{width:1200px;}
+
+/*Carousel_myi*/
+.Carousel_myi{
+    width: 1200px;
+    height: 389px;
+    overflow: hidden;
+    display: block;
+    overflow:hidden;
+    position:relative;
+    margin:0 auto;
+}
+.Carousel_myi li, .Carousel_myi ul {
+    width: 100%;
+}
+.Carousel_myili a {
+    width: 1200px;
+    display: block;
+    margin: 0 auto;
+}

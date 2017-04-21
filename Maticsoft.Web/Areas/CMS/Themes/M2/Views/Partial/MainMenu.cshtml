@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+@model List<Maticsoft.Model.Settings.MainMenus>
+<div class="main_nav">
+    <ul>
+        @if (Model != null)
+        {
+            int i = 0;
+            foreach (var item in Model)
+            {
+            <li><a href="@(ViewBag.BasePath + item.NavURL)" id="maticsoft@(i++)">@item.MenuName</a></li>
+            }
+        }
+    </ul>
+    <div style="clear: both">
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    (function() {
+        var maticsoftid = "@ViewBag.MaticsoftId";
+        if (maticsoftid) {
+            $("#maticsoft" + maticsoftid).addClass("nav1");
+        } else {
+            $('.main_nav').find("a[href$='" + $.PageName() + "']").addClass("nav1");
+        }
+    })();
+</script>

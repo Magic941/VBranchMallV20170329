@@ -1,0 +1,16 @@
+﻿@*<div class="logo fl mb5">
+    <a href="/" title="@ViewBag.WebName" target="_blank">
+        <img src="@ViewBag.Logo" alt="@ViewBag.WebName" width="270" height="62"></a></div>*@
+<a href="/" title="@ViewBag.WebName" target="_blank">
+    <img src="@ViewBag.Logo" alt="@ViewBag.WebName" /></a>
+@*<ul class="hd-my fr">
+    <li><a rel="nofollow" href="@(ViewBag.BasePath)UserCenter/Orders">我的订单</a></li>
+</ul>*@
+<script type="text/javascript">
+    //    $.post('/Partial/Login', { notLoginView: "_NotLoginShopping", userLoginView: "_UserLoginShopping" }, function (data) {
+    //        $('.hd-my').prepend(data);
+    //    });
+    $('.hd-qbar-list-cart').hide();
+    $('.hd-qbar-list-check').hide();
+</script>
+@*<span class="clr"></span>*@

@@ -1,0 +1,36 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+<div class="hd">
+    <h2>
+        商品分类</h2>
+    <div class="act divOpenAct" style="display: none">
+        <a href="javascript:;" target="_blank" style="color: #C00">展开</a></div>
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="bd divContent" id="j-prdsort">
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            if (i == 0 || i == 1)
+            {
+            <div class="prdsort-list prdsort-list-b">
+                <div class="prdsort-fixed">
+                    <h3 class="hp-linefeed">
+                        <a target="_blank" href="/product/@Model[i].CategoryId">@Model[i].Name</a></h3>
+                    @Html.Action("IndexSecondCategoryList", "Partial", new { Cid = Model[i].CategoryId, Top = -1, ViewName = "_SecondCateAll" })
+                </div>
+            </div>
+            }
+            else
+            {
+            <div class="prdsort-list">
+                <div class="prdsort-flow">
+                    <h3 class="hp-linefeed">
+                        <a target="_blank" href="/product/@Model[i].CategoryId">
+                            @Model[i].Name</a></h3>
+                    @Html.Action("IndexSecondCategoryList", "Partial", new { Cid = Model[i].CategoryId, Top = -1, ViewName = "_SecondCateAll" })
+                </div>
+            </div>
+            }
+        }
+    </div>
+}

@@ -1,0 +1,512 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/Modify.helper.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<!--图片上传开始-->
+<link href="/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet"
+    type="text/css" />
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js" type="text/javascript"></script>
+
+ <link href="/Scripts/tab/tab.css" rel="stylesheet" type="text/css" charset="utf-8" />
+    <script src="/Scripts/tab/tab.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#uploadify").uploadify({
+            'uploader': '/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.swf',
+            'script': '/UploadNormalImg.aspx',
+            'cancelImg': '/Scripts/jquery.uploadify/uploadify-v2.1.0/cancel.png',
+            'buttonImg': '/Areas/Shop/Themes/M1/Content/images/Supplier/uploadfile.jpg',
+            'folder': 'UploadFile',
+            'queueID': 'fileQueue',
+            'auto': true,
+            'multi': true,
+            'width': 76,
+            'height': 25,
+            'fileExt': '*.jpg;*.gif;*.png;*.bmp',
+            'fileDesc': 'Image Files (.JPG, .GIF, .PNG)',
+            'queueSizeLimit': 1,
+            'sizeLimit': 1024 * 1024 * 10,
+            'onInit': function () {
+            },
+
+            'onSelect': function (e, queueID, fileObj) {
+            },
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                if (response.split('|')[0] == "1") {
+                    $("[id$='hfLogoUrl']").val(response.split('|')[1]);
+                    $("[id$='imagelogourl']").attr('src', response.split('|')[1].format(''));
+                    ShowSuccessTip("上传成功");
+                } else {
+                    ShowFailTip("图片上传失败！");
+                }
+            }
+        });
+
+
+        $('[id$="txtSequence"]').OnlyNum();
+    });
+</script>
+<!--图片上传结束-->
+<script type="text/javascript">
+    $(function () {
+
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+
+        $("[id$='txtEstablishedDate']").prop("readonly", true).datepicker({ dateFormat: "yy-mm-dd" });
+        $("[id$=txtRegisteredCapital],[id$=txtCellPhone],[id$=txtQQ]").OnlyNum();
+        $("[id$=txtBalance]").OnlyFloat();
+    });
+</script>
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = "/ueditor/";
+</script>
+<script src="/ueditor/editor_config.js" type="text/javascript"></script>
+<script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+<link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+@*@using (Html.BeginForm("Modify", "Home", FormMethod.Post))
+{*@
+<form action="" method="post" id="Modify">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            编辑商家</h3>
+        <small class="desc">您可以编辑商家信息</small>
+    </div>
+    <div class="nTab4">
+        <div class="TabTitle">
+            <ul id="myTab1">
+                <li class="active" onclick="nTabs(this,0);"><a href="javascript:void(0);">基本信息</a></li>
+                <li class="normal" onclick="nTabs(this,1);"><a href="javascript:void(0);">扩展信息</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="TabContent formitem" style="background-color: #ffffff;">
+        <div id="myTab1_Content0" tabindex="0">
+             <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+            <tr style="display: none;">
+                <td class="td_class">
+                    用户名 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtUserName" name="Name" style="width: 350px" maxlength="25"
+                           disabled="disabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    商家名称 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.Name : "")" name="Name" type="text" id="txtName" style="width:350px;" maxlength="100" />
+                    <input type="hidden" name="AgentId" value="@Model.AgentId" />
+                </td>
+            </tr>
+         
+            <tr style="display: none;">
+                <td class="td_class">
+                    账户余额 ：
+                </td>
+                <td height="25">
+                    <input value='@(Model != null ? @Model.Balance.ToString("F2") : "")' name="Balance" type="text" id="txtBalance" style="width:150px;display:none;" />
+                </td>
+            </tr>
+         
+                 <tr>
+                     <td class="td_class">
+                         手机 ：
+                     </td>
+                     <td height="25">
+                         <input value="@(Model != null ? @Model.CellPhone : "")" type="text" name="CellPhone" id="txtCellPhone" style="width:350px" maxlength="11" />
+                     </td>
+                 </tr>
+            <tr>
+                <td class="td_class">
+                    省/市/县：
+                </td>
+                <td height="25" id="UpdatePanel1">
+                    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                    <input type="hidden" id="123hfSelectedNode" value="@ViewBag.SelectID" name="RegionId" id="RegionId"/>
+                    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx"
+                            isnull="true" type="text/javascript"></script>
+                </td>
+            </tr>
+           
+            <tr>
+                <td class="td_class">
+                    详细地址 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.Address : "")" type="text" name="Address" id="txtAddress" style="width:350px" maxlength="300" />
+                </td>
+            </tr>
+
+            <tr style="display: none;">
+                <td class="td_class">
+                    QQ ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@(Model != null ? Model.QQ : "")" id="txtQQ" name="QQ" style="width:350px" maxlength="10" />
+                </td>
+            </tr>
+          
+            <tr style="display: none;">
+                <td class="td_class">
+                    状态
+                </td>
+                <td height="25" data-selected="@Model.Status">
+                    <input type="radio" value="1" name="Status" />正常
+                    <input type="radio" value="0" name="Status" />未审核
+                    <input type="radio" value="2" name="Status" />冻结
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    创建日期 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtCreateDate" value="@(Model != null ? Model.CreatedDate : DateTime.Now))" name="CreateDate" style="width: 70px" />
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    创建用户 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtCreatedUserID" value="@(Model != null ? Model.CreatedUserId : 0)" name="CreatedUserId" style="width: 350px" />
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    更新日期 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtUpdatedDate" value="@(Model != null ? Model.UpdatedDate : DateTime.Now))" name="UpdateDate" style="width: 70px" />
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    更新用户 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtUpdatedUserID" value="@(Model != null ? Model.UpdatedUserId : 0)" name="UpdateUserID" style="width: 350px" />
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    标志 ：
+                </td>
+                <td height="25">
+                    <input type="hidden" id="hfLogoUrl" name="LOGO" />
+                    <div id="fileQueue">
+                    </div>
+                    <input type="file" name="uploadify" id="uploadify" /><span>温馨提示：该文件将作为您店铺的logo显示在店铺前台，请注意您上传的logo尺寸，建议尺寸大小为
+                                                                             980*68(px)</span>
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                </td>
+                <td height="25">
+                    <img id="imagelogourl" src="@(Model != null ? Model.LOGO : "")" style="width:500px;height:50px;" />
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    代理商ID ：
+                </td>
+                <td height="25">
+                    <input type="text" id="txtAgentID" name="AgentID" style="width: 350px" value="0" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class" valign="top">
+                    商家介绍 ：
+                </td>
+                <td height="25">
+                    <textarea id="txtIntroduction" style="width: 600px;" name="Introduction">@(Model != null ? Model.Introduction : "")</textarea>
+                </td>
+            </tr>
+                
+            <tr>
+                <td>
+                </td>
+                <td height="10px">
+                </td>
+            </tr>
+        </table>
+        </div>
+        
+        <div id="myTab1_Content1" tabindex="1" class="none4">
+            <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+                     <tr>
+                <td class="td_class">
+                    电话 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.TelPhone : "")" type="text" name="TelPhone" id="txtTelPhone" style="width:350px" maxlength="50" />
+                </td>
+            </tr>
+                <tr>
+                    <td class="td_class">
+                        联系邮箱 ：
+                    </td>
+                    <td height="25">
+                        <input value="@(Model != null ? @Model.ContactMail : "")" type="text" name="ContactMail" id="txtContactMail" style="width:350px;" maxlength="50" />
+                    </td>
+                </tr>
+                <tr style="display:none;">
+                <td class="td_class">
+                    客服电话 ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@(Model != null ? Model.ServicePhone : "")" name="ServicePhone" id="txtServicePhone" style="width:350px" maxlength="150" />
+                </td>
+            </tr>
+                <tr>
+                <td class="td_class">
+                    成立时间 ：
+                </td>
+                <td height="25">
+                    @* <input type="text" name="EstablisheDate" value="@Model.EstablishedDate.Value.ToString("yyyy-MM-dd")" id="txtEstablishedDate" style="width:77px" maxlength="10" />*@
+                    <input type="text" name="EstablishedDate" value="@ViewBag.EstablishedDate" id="txtEstablishedDate" style="width:77px" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    注册资本 ：
+                </td>
+                <td height="25">
+                    <input type="text" id="RegisteredCapital" name="RegisteredCapital" value="@ViewBag.RegisteredCapital" style="width: 150px; font-size: 12px"/>
+                </td>
+            </tr>
+                <tr>
+                    <td class="td_class">
+                        注册地 ：
+                    </td>
+                    <td height="25" id="UpdatePanel2">
+                        <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                        <input type="hidden" id="456hfSelectedNode" value="@ViewBag.RegionCity" name="EstablishedCity" id="EstablishedCity"/>
+                        <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx"
+                                isnull="true" type="text/javascript"></script>
+                    </td>
+                </tr>
+                 <tr>
+                <td class="td_class">
+                    联系人 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.Contact : "")" type="text" name="Contact" id="txtContact" style="width:350px" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    传真 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.Fax : "")" type="text" name="Fax" id="txtFax" style="width:350px" maxlength="15" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    邮编 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.PostCode : "")" type="text" name="PostCode" id="txtPostCode" style="width:350px" maxlength="10" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    主页 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.HomePage : "")" type="text" name="HomePage" id="txtHomePage" style="width:350px" maxlength="50" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    法人 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? @Model.ArtiPerson : "")" type="text" name="ArtiPerson" id="txtArtiPerson" style="width:350px;" maxlength="25" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    商家等级 ：
+                </td>
+                <td height="25">
+                    <select id="dropEnteRank" name="Rank" data-selected="@Model.Rank" style="width:205px">
+                        <option value="0">--请选择--</option>
+                        <option value="1">一星级</option>
+                        <option value="2">二星级</option>
+                        <option value="3">三星级</option>
+                        <option value="4">四星级</option>
+                        <option value="5">五星级</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    商家分类 ：
+                </td>
+                <td height="25">
+                    <select id="dropEnteClassID" name="CategoryId" data-selected="@Model.CategoryId.ToString()" style="width:205px">
+                        <option value="0">--请选择--</option>
+                        <option value="1">合资</option>
+                        <option value="2">独资</option>
+                        <option value="3">国有</option>
+                        <option value="4">私营</option>
+                        <option value="5">全民所有制</option>
+                        <option value="6">集体所有制</option>
+                        <option value="7">股份制</option>
+                        <option value="8">有限责任制</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    公司性质：
+                </td>
+                <td height="25">
+                    <select id="dropCompanyType" name="CompanyType" data-selected="@Model.CompanyType.ToString()" style="width:205px">
+                        <option value="0">--请选择--</option>
+                        <option value="1">个体工商</option>
+                        <option value="2">私营独资商家</option>
+                        <option value="3">国营商家</option>
+                    </select>
+                </td>
+            </tr>
+            <tr style="display: none;">
+                <td class="td_class">
+                    营业执照 ：
+                </td>
+                <td height="25">
+                    <input type="text" name="BusinessLicense" value="@(Model != null ? Model.BusinessLicense : "")" id="txtBusinessLicense" style="width: 350px" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    税务登记 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? Model.TaxNumber : "")" type="text" name="TaxNumber" id="txtTaxNumber" style="width:350px" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    开户银行 ：
+                </td>
+                <td height="25">
+                    <input value="@(Model != null ? Model.AccountBank : "")" type="text" name="AccountBank" id="txtAccountBank" style="width:350px" maxlength="100" />
+                </td>
+            </tr>
+                <tr>
+                    <td class="td_class">
+                        账号信息 ：
+                    </td>
+                    <td height="25">
+                        <input type="text" value="@(Model != null ? Model.AccountInfo : "")" name="AccountInfo" id="txtAccountInfo" style="width:350px" maxlength="100" />
+                    </td>
+                </tr>
+                 <tr>
+                     <td>
+                     </td>
+                     <td height="10px">
+                     </td>
+                 </tr>
+                   <tr>
+                <td class="td_class">
+                    MSN ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@(Model != null ? Model.MSN : "")" id="txtMSN" name="MSN" style="width:350px" maxlength="30" />
+                </td>
+            </tr>
+                <tr>
+                <td class="td_class">
+                    商家标语 ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@(Model != null ? Model.Slogan : "")" id="Slogan" name="Slogan" style="width:350px" maxlength="30" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class">
+                    折扣信息 ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@(Model != null ? Model.Discount : "")" id="Discount" name="Discount" style="width:350px" maxlength="30" />
+                </td>
+            </tr>
+            <tr>
+                <td class="td_class" valign="top">
+                    备注 ：
+                </td>
+                <td height="25">
+                    <textarea id="txtRemark" name="Remark" style="width: 500px; height: 80px" rows="3">@(Model != null ? Model.Remark : "")</textarea>
+                </td>
+            </tr>
+            </table>
+        </div>
+    </div>
+   <div class="form stdform">
+                        <input type="button" value="保存" class="adminsubmit_short btn_style" style="margin-left: 200px "  id="SaveModify" class="reset radius2" />
+                    </div>
+ 
+</div>
+</form>
+@*}*@
+<br />
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: '/ueditor/themes/default/iframe.css', toolbars: [
+
+            ['fullscreen',
+                'bold', 'underline', 'strikethrough', '|', 'removeformat', '|', 'forecolor', 'backcolor',
+                '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|',
+                'insertimage', 'imagenone', 'imageleft', 'imageright',
+                'imagecenter']
+            ],
+        initialContent: '',
+        minFrameHeight: 220,
+        pasteplain: false
+         , wordCount: false
+          , elementPathEnabled: false
+ , autoClearinitialContent: false, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor.render(document.getElementById("txtIntroduction")); //将编译器渲染到容器
+</script>
+<script type="text/javascript">
+    $(function () {
+        var obj1 = $("#dropEnteRank option");
+        obj1.each(function (k, v) {
+            if ("@Model.Rank" == $(this).attr("value")) {
+                $(this).attr("selected", "selected");
+            }
+        });
+
+        var obj2 = $("#dropEnteClassID option");
+        obj2.each(function (k, v) {
+            if ("@Model.CategoryId" == $(this).attr("value")) {
+                $(this).attr("selected", "selected");
+            }
+        });
+
+        var obj3 = $("#dropCompanyType option");
+        obj3.each(function (k, v) {
+            if ("@Model.CompanyType" == $(this).attr("value")) {
+                $(this).attr("selected", "selected");
+            }
+        });
+    });
+</script>

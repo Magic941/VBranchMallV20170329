@@ -1,0 +1,47 @@
+﻿/*icon*/
+.icon-info03,.icon-succ05{display:inline-block;*zoom:1;font-size:0;line-height:0;overflow:hidden;background:url(../images/pur-icon.png) no-repeat}
+.icon-succ05{background-position:-49px -235px;width:16px;height:16px}
+.icon-info03{background-position:-42px 0;width:32px;height:32px}
+.icon-succ02,.icon-wrong02,.icon-warn02{background-image:url(../images/icon48.png);display:inline-block;*zoom:1;font-size:0;line-height:0;overflow:hidden;width:48px;height:48px}
+.icon-wrong02{background-position:-48px 0;}
+.icon-warn02{background-position:-96px 0;}
+.icon-ques05,.icon-info05{background:url(../images/icon16.png);display:inline-block;*zoom:1;font-size:0;line-height:0;overflow:hidden;width:16px;height:16px}
+.icon-ques05{background-position:-48px 0}
+.icon-info05{background-position:-64px 0; }
+/*prompt*/
+.prompt{position:relative;border:1px solid #c4c4c4;background:#ffffff;box-shadow: 0 0 5px 0 rgba(0,0,0,0.3);zoom:1;-moz-border-radius:1px;-webkit-border-radius:1px;border-radius:1px;width:100px}
+.pb{position:absolute;}.pb b{position:absolute;left:0;font-size:0;line-height:0;overflow:hidden;border:4px dashed transparent;}.pb .b1{z-index:1;}.pb .b2{z-index:2;}.pb b.b3{border-width:6px;z-index:0;display:none\9;}
+*|html[xmlns*=""] .pb b.b3 {display:none;}
+.pb-t b{border-bottom-style:solid;}.pb-t .b1{top:-1px;border-bottom-color:#c4c4c4;}.pb-t .b2{top:0;border-bottom-color:#ffffff;}.pb-t .b3{top:-3px;left:-1px;border-bottom-color:rgba(0,0,0,0.08);}
+*html .pb-r{right:-1px;}.pb-r b{border-left-style:solid;}.pb-r .b1{right:-11px;top:-1px;border-left-color:#EDD28B;border-width:11px;}.pb-r .b2{right:-11px;border-left-color:#FFFDEE;}.pb-r .b3{top:-2px;left:4px;border-left-color:rgba(0,0,0,0.15);}
+.pb-b b{border-top-style:solid;}.pb-b .b1{bottom:-12px;border-top-color:#EDD28B;}.pb-b .b2{bottom:-11px;border-top-color:#FFFDEE;}.pb-b .b3{bottom:-19px;left:-2px;border-top-color:rgba(0,0,0,0.15);}
+.pb-l b{border-right-style:solid;}.pb-l .b1{left:-1px;top:-9px;border-right-color:#c4c4c4;}.pb-l .b2{top:-9px;border-right-color:#ffffff;}.pb-l .b3{top:-11px;left:-5px;border-right-color:rgba(0,0,0,0.08);}
+/*fontcolor*/
+.ftx-01,a.flk-01:link,a.flk-01:visited,.flk-01 a:link,.flk-01 a:visited{color:#E4393C}.ftx-02{color:#7ABD54}.ftx-03,a.flk-03:link,a.flk-03:visited,.flk-03 a:link,.flk-03 a:visited{color:#999999;}.ftx-04,a.flk-04:link,a.flk-04:visited,.flk-04 a:link,.flk-04 a:visited{color:#ff6600;}.ftx-05,a.flk-05:link,a.flk-05:visited,.flk-05 a:link,.flk-05 a:visited{color:#005ea7;}.ftx-06{color:#666666;}
+
+/*201305UI*/
+.main .m3{padding-top:30px;padding-bottom:30px;margin-bottom:10px;margin-left:0;margin-right:0}
+.m3 .icon-succ02{float:left;margin-left:40px}
+.m3 .fore{overflow:hidden}
+.m3 .fore .ftx-02{font-size:18px;font-family:\5FAE\8F6F\96C5\9ED1;font-weight:normal;margin-bottom:15px}
+.m3 .fore0 dd{padding-right:15px;margin-right:15px;border-right:1px solid #cccccc;color:#666666;}
+.m3 li,.mtips li{padding-right:15px;margin-right:15px;border-right:1px solid #cccccc;}
+.m3 .list-h .fore2{border-right:none}
+#qpay .list-h{ margin-bottom: 20px;padding-left: 0;}
+	.list-h{overflow:hidden;zoom:1}
+.list-h li{ float: left;}
+	
+.main{border:none;margin-bottom:16px}
+#sp3{border-width:2px}
+.o-mb{ background-color:#fff;font-size:12px;height:35px;line-height:35px;padding-left:0}
+#footer{border-top:1px solid #F1F1F1;padding-top:11px}
+#qpay{background:#F3FDED;border-top:2px solid #7ABD54;padding-right:20px}
+.m3 .fore .list-h{margin-bottom:12px}
+.m3 .fore .list-h li{color:#333}
+.z-tips01 h3{font-size:12px;font-weight:normal;color:#999}
+.tabs{border-bottom:none}
+.tab{overflow:visible;border:solid #DDDDDD;border-width:1px 1px 0;background-color:#F7F7F7;height:30px;line-height:30px;}
+.tab li{float:left;border-right:1px solid #DDDDDD;text-align:center;height:29px;padding:0 28px;position:relative;overflow:hidden;color:#666666;font:18px/29px "microsoft yahei"}
+.tab li.curr{background:#fffdee;height:38px;/*-webkit-box-shadow:1px 0 0 0 rgba(7,0,2,.2);-moz-box-shadow:0px 1px 0 0 rgba(7,0,2,.2);*/box-shadow:3px -2px 2px 0 rgba(7,0,2,.1);border:solid #EDD28B;border-width:2px 2px 0 2px;margin-top:-8px;margin-bottom:-2px;margin-left:-1px;position:relative;z-index:9}
+.tab li.curr,.tab li.curr a:link,.tab li.curr a:visited{color:#ff6600;}
+.tab li a:link,.tab li a:visited{color:#333333;}

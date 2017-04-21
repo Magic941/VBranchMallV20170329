@@ -1,0 +1,33 @@
+﻿@model List<Maticsoft.Model.Ms.Regions>
+ @{
+     string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+     string regionId = Request.RequestContext.RouteData.Values["regionId"] != null ? Request.RequestContext.RouteData.Values["regionId"].ToString() : "643";
+     string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+     string parentId = Request.RequestContext.RouteData.Values["parentId"] != null ? Request.RequestContext.RouteData.Values["parentId"].ToString() : "643";
+ }
+
+ 
+    <a href="@(ViewBag.BasePath)ProSales/GroupBuy/@parentId/@cid/@mod" regionId="@regionId">全部</a> 
+    @if (null != Model)
+    {
+        foreach (var item in Model)
+        {
+            <a href="@(ViewBag.BasePath)ProSales/GroupBuy/@item.RegionId/@cid/@mod" regionId="@item.RegionId" class="arealist">@item.RegionName</a>
+        }
+       
+    }
+                                 
+<div class="clr">
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#arealist a[regionId='@regionId']").addClass("current").siblings().removeClass("current");
+        $("#arealist a").each(function () {
+            var reg = $(this).attr("regionId");
+            if (reg == "@regionId") {
+                $(this).addClass("current").siblings().removeClass("current");
+            }
+        });
+    });
+</script>
+

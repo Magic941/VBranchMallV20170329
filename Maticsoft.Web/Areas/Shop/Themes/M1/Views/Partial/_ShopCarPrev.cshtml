@@ -1,0 +1,83 @@
+﻿@using Maticsoft.ViewModel.Shop;
+@using Maticsoft.Model.Shop.Products;
+@model List<Maticsoft.Model.Settings.MainMenus>
+@{
+    var ShopCarModel = (@ViewBag.ShopCarPreview) as ShoppingCartModel;
+    var CarList = ((@ViewBag.ShopCarPreview) as ShoppingCartModel).AllCartInfo.Items;
+    var Count = CarList.Count;
+    var toalPrice = ((@ViewBag.ShopCarPreview) as ShoppingCartModel).AllCartInfo.TotalSellPrice.ToString("F");
+
+    List<CategoryInfo> categoryInfos = (@ViewBag.TopCatg) as List<CategoryInfo>;
+    
+}
+<script type="text/javascript">
+    $(function () {
+        //购物车列表显示隐藏
+        $(".shop-cart").hover(function () {
+            //$(".shop-cart").animate({ "width": "50px" }, 100).animate({ "height": "50px" }, 100).animate({ "width": "30px" }, 100).animate({ "height": "30px" }, 100);
+            $(".shop-cart").fadeTo("slow", 0.2, function () { $(".shop-cart").fadeTo("fast", 1); });
+            $(".Shop-Cart-Box").slideDown(function () {
+                $(".Shop-Cart-Box").css("border", "solid 2px gray").css("border-top", "none");
+                if ($(".Shop-Cart").text() == "0") {
+                    setTimeout(function () { $(".Shop-Cart-Box").slideUp(); }, 1000);
+                }
+            });
+        }, function () { });
+        $(".Shop-Cart-Box").hover(function () { }, function (event) {
+            $(".Shop-Cart-Box").slideUp();
+            event.stopPropagation();
+        });
+        if ($(".Shop-Cart").text() == "0") {
+            $(".Shop-Cart-Box").html("<h4>购物车中暂无商品<h4>");
+            setTimeout(function () { $(".Shop-Cart-Box").slideUp(); }, 1000);
+        }
+        $("#btnDelete").click(function () {
+            var itemId = $(this).attr("ItemId");
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)ShoppingCart/RemoveItem",
+                data: { ItemIds: itemId },
+                success: function (data) {
+                    if (data == "Yes") {
+                        $(".Right_cont").load("@(ViewBag.BasePath)Partial/ShopCarPrev");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+    })
+</script>
+<a class="shop-cart" href="/ShoppingCart/CartInfo"></a>
+<div class="Shop-Cart">@Count</div>
+<div class="Shop-Cart-Box">
+    <h4>最新加入的商品</h4>
+    <div class="Shop-Cart-goods" id="Shop-Cart-goods">
+        @*<div class="disco clearfix"><span class="reduce-box">满减</span><span class="reduce-con">满100元减10元</span><span class="reduce-price">小计￥8888.00</span></div>*@
+        <ul class="goods">
+            @if (CarList.Count != 0)
+            {
+                foreach (var item in CarList)
+                {
+                    var price = Math.Round(item.SellPrice, 2);
+                    var name = (item.Name).ToString().Length > 10 ? (item.Name).Substring(0, 10) + "..." : (item.Name);
+                <li class="clearfix">
+                    <div class="goods-pic">
+                        <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T115X115_")" />
+                    </div>
+                    <div class="goods-tit" title="@item.Name">@name</div>
+                    <div class="goods-price">
+                        <b>￥@price</b>x @item.Quantity<p ItemId ="@item.ItemId" id="btnDelete">删除</p>
+                    </div>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+    <div class="Total">
+        <p>共<span>@Count</span>件商品<b></b>共计<span>￥@toalPrice</span></p>
+        <p><a class="btn-red" href="/ShoppingCart/CartInfo">去购物车结算</a></p>
+    </div>
+
+</div>

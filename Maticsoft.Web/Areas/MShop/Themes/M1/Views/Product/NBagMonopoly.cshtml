@@ -1,0 +1,397 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "新品服装";
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+<style>
+    .Wechat_baf a img {
+        height: 165px;
+    }
+
+    .Popularity {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+        .Popularity a, .Popularity a img {
+            width: 100%;
+        }
+
+    .bag_classify {
+        width: 95%;
+        margin: 0 auto;
+        padding: 5px 0 8px 0;
+    }
+
+        .bag_classify dl {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .bag_classify dt {
+            width: 4rem;
+            height: 2rem;
+            line-height: 2rem;
+            float: left;
+            background: #d91047;
+            text-align: center;
+            color: #fff;
+        }
+
+        .bag_classify dd {
+            float: right;
+            margin: 0;
+        }
+
+            .bag_classify dd a {
+                height: 2rem;
+                line-height: 2rem;
+                border: 1px solid #d1d1d1;
+                display: inline-block;
+                *display: inline;
+                zoom: 1;
+                text-align: center;
+                padding: 0 8px;
+                margin-bottom: 10px;
+            }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="background: #fff">
+    <div class="boutique_cn">
+        <a href="javascript:void(0)">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/001.png" />
+        </a>
+    </div>
+    <div class="bag_classify">
+        <div class="bag_classify">
+            <dl>
+                <dt>女包</dt>
+                <dd>
+                    <a href="@(ViewBag.BasePath)h/805"  target="_blank">钱包</a>
+                    <a href="@(ViewBag.BasePath)h/807"  target="_blank">单肩包</a>
+                    <a href="@(ViewBag.BasePath)h/809"  target="_blank">手提包</a>
+                    <a href="@(ViewBag.BasePath)h/810"  target="_blank">斜挎包</a>
+                    <a href="@(ViewBag.BasePath)h/806"  target="_blank">手包</a>
+                </dd>
+            </dl>
+            <dl>
+                <dt>男包</dt>
+                <dd>
+                    <a href="@(ViewBag.BasePath)h/814"  target="_blank">手包</a>
+                    <a href="@(ViewBag.BasePath)h/815"  target="_blank">商务包</a>
+                    <a href="@(ViewBag.BasePath)h/817"  target="_blank">单肩/斜挎包</a>
+                </dd>
+            </dl>
+        </div> 
+    </div>
+
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/002.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12980/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/rq01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12980/0/0">2015春季新款女包 日韩淑女单肩斜跨包 褶皱夹子手拿小包SG020（小号）</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 68.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12926/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/rq02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12926/0/0">2015春季新款女包欧美复古潮流混色毛呢包手提单肩女士包包SG080</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 105.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10315/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/rq03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10315/0/0">2015春季新款单肩手提精美质感五金绅士高贵品味高雅商务休闲男包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 264.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10306/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/rq04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10306/0/0">2015春季新款萨兰丹迪男士手包真皮手拿包 编织纹手抓包头层牛皮</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 125.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/003.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12789/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12789/0/0">2015春季新款英伦欧美复古撞色双肩胸包背包学院小书包女包包MQN0130B</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12955/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12955/0/0">2015春季新款包包 简约OL风磨砂皮单肩手提包泊金女包SG0671（高档pu版带磁扣）</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 98.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12926/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12926/0/0">2015春季新款女包欧美复古潮流混色毛呢包手提单肩女士包包SG080</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 105.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12867/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12867/0/0">2015春季新款佳丽宁荔枝纹进口PU笑脸包女包手提包 秋冬新款DBX7780</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 95.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12899/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12899/0/0">2015春季新款佳丽宁中长款磁扣女士钱包钱夹皮夹子鸵鸟纹票夹小手包WMT9892</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 39.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12908/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12908/0/0">2015春季新款时尚接拼水桶包单肩斜跨包欧美大牌同款包SG096</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 96.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12906/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12906/0/0">2015春季新款女包欧美大牌同款条纹海军风手提包复古单肩大包女潮SG095</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 88.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12920/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12920/0/0">2015新款磨砂皮邮差手提包 欧美大牌时尚单肩包斜跨包SG087</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 98.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12829/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12829/0/0">2015春季新品外贸出口欧美大牌手拿小包时尚单肩斜跨女包SG153</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 88.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/12841/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/ss10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/12841/0/0">2015春季新品时尚新款撞色手提包韩版潮流单肩斜挎包包SG146</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 128.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/004.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10318/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10318/0/0">2015年新款单肩手提流行牛津皮潮流时尚质感五金商务休闲男包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 217.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10291/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10291/0/0">2015春季新款萨兰丹迪真皮商务包男士撞色男包包休闲包时尚包单肩包斜挎包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 164.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10090/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10090/0/0">拉斐尔系列头层牛皮男士手抓包钱包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 189.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10088/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10088/0/0">2015春季新款普鲁士系列头层牛皮手提包单肩包真皮包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 399.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/6039/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/6039/0/0">2015春季新款柏拉图系列高档牛皮撞色商务包时尚休闲</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 298.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/6471/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/6471/0/0">2015年 新款单肩手提 质感五金时尚潮流复古 休闲百搭 个性男包</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 199.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/6704/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/6704/0/0">2015春季新款Septwolves/七匹狼 男士真皮商务头层牛皮钱包 18横款啡色均码</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 138.00</em>
+                </div>
+
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/9/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/9/0/0">2015春季新款萨蒙斯纵横客系列商务休闲公文包时尚休闲</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 438.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/5998/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/5998/0/0">2015春季新款新贵密码系列时尚潮流男士商务公文包时尚休闲</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 259.00</em>
+                </div>
+            </li>
+             <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/6021/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/bag/pp10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/6021/0/0">2015春季新款萨蒙斯亨利系列高档男士时尚商务包时尚休闲</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 328.00</em>
+                </div>
+
+            </li>
+
+
+        </ul>
+    </div>
+</div>

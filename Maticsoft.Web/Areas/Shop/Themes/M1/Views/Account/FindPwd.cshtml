@@ -1,0 +1,137 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+ <link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnVerify").click(function () {
+            Math.random() * 24
+            $("#tImg").attr("src", "/ValidateCode.aspx?Guid=" + Math.random() * 100);
+        });
+        $("#btnFindPwd").click(function () {
+           // if ($("#divEmailTip").attr('class') == 'msg msg-ok msg-naked') {
+                $("#formfindpwd").submit();
+           // }
+        });
+        $("#Email").focus(function () {
+            $("#divEmailTip").removeClass("msg msg-ok msg-naked").removeClass("msg msg-err").addClass("msg msg-info").html("<i class=\"msg-ico\"></i><p>请填写Email地址</p>");
+        }).blur(function () {
+            checkfindpwdEmail();
+        });
+        checkfindpwdEmail();//回发的时候恢复样式
+    });
+    
+    //验证邮箱
+    function checkfindpwdEmail() {
+            $("#btnFindPwd").attr("disabled", "disabled"); //禁用
+            var regs = /^[\w-]+(\.[\w-]+)*\@@[A-Za-z0-9]+((\.|-|_)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/;
+            var emailval = $("#Email").val();
+            if (emailval != "") {
+                if (!regs.test(emailval)) {
+                    $("#divEmailTip").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>请填写有效的Email地址</p>");
+                    return false;
+                } else {
+                    //验证注册邮箱是否存在
+                $.ajax({
+                    url: $Maticsoft.BasePath + "Account/HasEmail" ,
+                    type: 'post',
+                    dataType: 'text',
+                    timeout: 10000,
+                    data: { Action: "post", Email: emailval },
+                    success: function (resultData) {
+                        if (resultData == "false") {
+                            $("#divEmailTip").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>该Email帐号不存在</p>");
+                            return false;
+                        }
+                        if (resultData == "true") {
+                            $("#btnFindPwd").removeAttr("disabled");//启用
+                            $("#divEmailTip").removeClass("msg msg-err").removeClass("msg msg-info").addClass("msg msg-ok msg-naked").html("<i class=\"msg-ico\"></i><p>&nbsp;</p>");
+                            return true;
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        alert(textStatus);
+                        return false;
+                    }
+                });
+                }
+            } else {
+                $("#divEmailTip").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>请填写有效的Email地址</p>");
+                return false;
+            }
+        }
+</script>
+<div class="w760">
+        <div class="box box-pwd">
+            <div class="hd">
+                <h2>
+                    找回密码</h2>
+            </div>
+            <div class="bd">
+                <div id="tab_regi">
+                    <div class="J_tab_panel">
+
+                        @*  <form class="form form-regi">*@
+                       @using (Html.BeginForm("FindPwd", "Account", FormMethod.Post, new {  Class="form form-regi",id="formfindpwd"}))
+                       {
+                            <span style="text-align: center; color: Red">  @Html.ValidationMessage("Error")</span>
+                            <div class="f-box" style="margin-top: 20px;">
+                                <label class="f-label">
+                                    Email地址：</label>
+                                <div class="f-input">
+                                 <!--  <input type="text" maxlength="40" name="xlInput" id="email" class="f-txt-b f-txt">  -->
+                                                              @Html.TextBox("Email", ViewData["Email"], new
+                                                         {
+                                                             id = "Email",
+                                                             maxlength = "40",
+                                                             Class = "f-txt-b f-txt"
+                                                         })
+                                </div>
+                                <div class="f-msg">
+                                    <div id="divEmailTip">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                  <div class="f-box" style="margin-top: 20px;">
+                                <label class="f-label">
+                                    验证码：</label>
+                                <div class="f-input">
+                                 <!--  <input type="text" maxlength="40" name="xlInput" id="email" class="f-txt-b f-txt">  -->
+                                @Html.TextBox("CheckCode", "", new { maxlength = "4", Class = "f-txt-b f-txt", style = "width: 30px;" })
+                                </div>
+                                <div class="f-msg">
+                                   <div class="f-vcode">
+                                        <div style="padding-left: 30px;">  <img id="tImg" alt="验证码" src="/ValidateCode.aspx"  style="height: 25px"/>
+                        <a id="btnVerify" href="javascript:void(0)" style="color: #666666">看不清楚?</a></div>
+                                    </div>
+                                </div>
+                            </div> 
+                        <div class="fb f-act">
+                            <div class="f-input"> 
+                                <input class="btn btn-important-large" style="color:#fff; background-color:#f00; width:80px;"  btype="button" value="确定" id="btnFindPwd"/> 
+                            </div>
+                          
+                        </div>
+                       }
+                      
+                        
+
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+ 
+
+

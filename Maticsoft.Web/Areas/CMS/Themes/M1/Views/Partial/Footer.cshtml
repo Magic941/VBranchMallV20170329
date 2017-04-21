@@ -1,0 +1,194 @@
+﻿@model Maticsoft.BLL.SysManage.WebSiteSet
+    <!--FrontPageDisplays BEGIN-->
+    <div class="footer_top" id="maticsoftFooter" style="display: none;">
+        <div class="footer_top_zone">
+            <dl class="attention">
+                <dt class="attention_tit">订阅关注</dt>
+                <dd class="attention_bot">
+                    <ul>
+                        <li><a href="@(ViewBag.BasePath + "RSS")" target="_blank"><span>
+                            <img src="/Areas/CMS/Themes/M1/Content/images/RSS.jpg" /></span>RSS订阅</a></li>
+                        <li><span><a href="http://e.weibo.com/maticsoft" target="_blank">
+                            <img src="/Areas/CMS/Themes/M1/Content/images/sina.jpg" /></a></span><a href="http://e.weibo.com/maticsoft" target="_blank">新浪微博</a></li>
+                        <li style="margin-right: 0px;"><span><a href="http://t.qq.com/maticsoftcom" target="_blank">
+                            <img src="/Areas/CMS/Themes/M1/Content/images/qq.jpg" /></a></span><a href="http://t.qq.com/maticsoftcom" target="_blank">腾讯微博</a></li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="reports" style="display: none;">
+                <dt class="reports_tit">申请报道</dt>
+                <dd class="reports_bot">
+                    <ul>
+                        <li>
+                            <div id="popDiv" class="mydiv" style="display: none;">
+                                <div class="frm_report_top">
+                                    <dl class="title">
+                                        <dt>申请报道</dt>
+                                        <dd>
+                                            建议您<a href="javascript:;">注册</a>一个账户显示作者的信息</dd>
+                                    </dl>
+                                    <dl class="close">
+                                        <a href="javascript:closeDiv()">
+                                            <img src="/Areas/CMS/Themes/M1/Content/images/close.jpg" /></a>
+                                    </dl>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                                <div class="frm_report_con">
+                                    <table width="520" border="0">
+                                        <tr>
+                                            <td align="left" valign="middle" height="50">
+                                                *项目名称
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="不超过60个字符或30个汉字" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle">
+                                                *项目简介
+                                            </td>
+                                            <td align="center">
+                                                <textarea name="" cols="" rows=""></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle" height="50">
+                                                *邮箱
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle">
+                                                *手机号码
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" height="50">
+                                                <a href="javascript:;">
+                                                    <img src="/Areas/CMS/Themes/M1/Content/images/report.jpg" width="91" height="36" style="float: left;
+                                                        margin-left: 70px;" /></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="padding-left: 70px; text-align: left;">
+                                                支持Word、PDF、PPT等常见文档，此项非必选
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="frm_report_fot">
+                                    <dl class="anniu">
+                                        <a href="javascript:closeDiv()">
+                                            <img src="/Areas/CMS/Themes/M1/Content/images/submit.jpg" /></a></dl>
+                                    <dl class="anniu1">
+                                        <a href="javascript:closeDiv()">取消投递</a></dl>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="bg" class="bg" style="display: none;">
+                            </div>
+                            <a href="javascript:showDiv()">申请报道</a>
+                            <iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
+                        </li>
+                        <li style="margin-right: 0px;">
+                            <div id="popDiv" class="mydiv" style="display: none;">
+                                <div class="frm_report_top">
+                                    <dl class="title">
+                                        <dt>投递文章</dt>
+                                        <dd>
+                                            建议您<a href="javascript:;">注册</a>一个账户显示作者的信息</dd>
+                                    </dl>
+                                    <dl class="close">
+                                        <a href="javascript:closeDiv()">
+                                            <img src="/Areas/CMS/Themes/M1/Content/images/close.jpg" /></a>
+                                    </dl>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                                <div class="frm_report_con">
+                                    <table width="520" border="0">
+                                        <tr>
+                                            <td align="left" valign="middle" height="50">
+                                                *标题
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="不超过60个字符或30个汉字" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle">
+                                                *文章内容
+                                            </td>
+                                            <td align="center">
+                                                <textarea name="" cols="" rows=""></textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle" height="50">
+                                                *作者
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle">
+                                                *联系方式
+                                            </td>
+                                            <td align="center">
+                                                <input name="username" type="text" value="手机号码/邮箱地址/qq" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" height="50">
+                                                <a href="javascript:;">
+                                                    <img src="/Areas/CMS/Themes/M1/Content/images/report.jpg" width="91" height="36" style="float: left;
+                                                        margin-left: 70px;" /></a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" style="padding-left: 70px; text-align: left;">
+                                                支持Word、PDF、PPT等常见文档，此项非必选
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="frm_report_fot">
+                                    <dl class="anniu">
+                                        <a href="javascript:closeDiv()">
+                                            <img src="/Areas/CMS/Themes/M1/Content/images/submit.jpg" /></a></dl>
+                                    <dl class="anniu1">
+                                        <a href="javascript:closeDiv()">取消投递</a></dl>
+                                    <div style="clear: both">
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="bg" class="bg" style="display: none;">
+                            </div>
+                            <a href="javascript:showDiv()">我要投稿</a>
+                            <iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <div style="clear: both;">
+            </div>
+        </div>
+    </div>
+    <!--FrontPageDisplays End-->
+    <!--Copyright BEGIN-->
+<div class="bot_menu" style="">
+    <a href="@(ViewBag.BasePath + "About/")" >关于读科技</a>
+    |
+    加入读科技
+    |
+    联系我们
+</div>
+    <!--Copyright End-->

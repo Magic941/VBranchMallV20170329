@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+
+    <link href="/Areas/Shop/Themes/M1/Content/Css/main-catg.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/revision.css" rel="stylesheet" />
+
+}
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+
+    .Poster_page {
+        height: 620px;
+        position: relative;
+        background: url(/Areas/Shop/Themes/M1/Content/images/hb.jpg) center top no-repeat;
+    }
+
+    .Poster_page1 {
+        height: 53px;
+        width: 232px;
+        position: absolute;
+        bottom: 30px;
+        left: 27%;
+    }
+
+        .Poster_page1 a {
+            text-align: center;
+            height: 53px;
+            line-height: 53px;
+            font-family: "微软雅黑";
+            font-size: 28px;
+            color: #fcf011;
+            display: block;
+            border: 2px solid #fcf011;
+            border-radius: 30px;
+        }
+
+    .Poster_page2 {
+        position: absolute;
+        top: 0;
+        right: 10%;
+    }
+
+        .Poster_page2 a {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #aa3c7e;
+            background: #7f1d58;
+            display: block;
+            font-family: "微软雅黑";
+            font-size: 28px;
+        }
+
+    .tog_contact {
+        height: 620px;
+        width: 100%;
+        position: absolute;
+        z-index: 10000;
+        display: none;
+    }
+
+    .t_con_box {
+        margin: 0 auto;
+        height: 620px;
+        position: relative;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+
+        $(".divOpenAct").click(function () {
+            var tip = $(this).children().text();
+            if (tip == "展开") {
+                $(this).children().text("收起");
+            } else {
+                $(this).children().text("展开");
+            }
+            $(".divContent").toggle();
+        });
+
+    })
+</script>
+@*顶部广告条*@
+@Html.Action("TopAD")
+
+@*顶部大图片展示区*@
+@Html.Action("MainMsg")
+<div class="main_cont" id="main_cont">
+    <div class="wrapper">
+        @*一楼*@
+        @Html.Action("Floor1")
+       @Html.Action("Floor2")
+        @Html.Action("Floor3")
+        @Html.Action("Floor4")
+        @Html.Action("Floor5")
+
+    </div>
+</div>
+

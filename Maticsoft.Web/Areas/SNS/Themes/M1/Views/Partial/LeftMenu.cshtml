@@ -1,0 +1,69 @@
+﻿@{
+    Maticsoft.Accounts.Bus.User UserInfo = ViewBag.UserInfo;
+}
+<script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/SNS/Themes/M1/Content/Scripts/show.js"></script>
+<script type="text/javascript" src="/Areas/SNS/Themes/M1/Content/Scripts/tab.js"></script>
+<script type="text/javascript" src="/Areas/SNS/Themes/M1/Content/Scripts/jghj.js"></script>
+<link href="/Scripts/jBox/Skins/Purple/jbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jBox/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+<script src="/Scripts/jBox/i18n/jquery.jBox-zh-CN.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(".ann2").click(function () { $(this).next().slideToggle(); });
+        var currentpage = $("#currentpage").val();
+        if (currentpage) {
+            $("#" + currentpage).addClass("hoverColor");
+        }
+    })
+</script>
+<div class="subnav">
+    <div class="subnav_a">
+        用户中心</div>
+    <div class="subnav_ab">
+        <div class="subnav_b1">
+            <a href="/UserCenter/Personal">
+                <img src="" alt="@UserInfo.NickName" width="117px" height="114px"  class="Gravatar"/></a></div>
+        <script type="text/javascript">            $(".Gravatar").attr("src", "/Upload/User/Gravatar/@(@UserInfo.UserID).jpg?id=" + $.Guid.New());</script>
+        <div class="subnav_b2">
+            <a href="/UserCenter/Personal">@UserInfo.NickName</a></div>
+    </div>
+    <div class="left_nav_bottombj">
+        <ul id="ul_1">
+            <li id="class1" class="ann2">账户管理</li>
+            <li id="nav2" style="display: block; width: 200px; height: auto; overflow: hidden">
+                <ul class="erji_ul">
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/Personal"><span id="span_1">个人资料</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/Gravatar"><span id="span_2">修改头像</span></a></li>
+                     <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/Tags"><span id="span_15">个人标签</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/ChangePassword"><span id="span_3">修改密码</span></a></li>
+                    <li class="erji1" id="nav1_erji2" style="display: none;"><a href="javascript:void(0);"><span id="span_4">个人域名</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/PointsDetail"><span id="span_5">我的积分</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/UserBind">@*<a href="javascript:void(0);" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">*@<span id="span_12">微博绑定</span></a></li>
+                </ul>
+            </li>
+            <li id="class1" class="ann2" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定手机</li>
+            <li id="nav2" style="display: block; width: 200px; height: auto; overflow: hidden">
+                <ul class="erji_ul">
+                    <li class="erji1" id="nav1_erji2"><a href="javascript:void(0);" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')"><span id="span_6">绑定手机</span></a></li>
+                </ul>
+            </li>
+            <li id="class1" class="ann2">用户认证</li>
+            <li id="nav2" style="display: block; width: 200px; height: auto; overflow: hidden">
+                <ul class="erji_ul">
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/UserApprove"><span id="span_7">实名认证</span></a></li>
+                </ul>
+            </li>
+            <li id="class1" class="ann2">站内信管理</li>
+            <li id="nav2" style="display: block; width: 200px; height: auto; overflow: hidden">
+                <ul class="erji_ul">
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/SendMessage"><span id="span_8">发信息</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/Outbox"><span id="span_9">发件箱</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/Inbox"><span id="span_10">收件箱</span></a></li>
+                    <li class="erji1" id="nav1_erji2"><a href="@(@ViewBag.BasePath)UserCenter/SysInfo"><span id="span_11">系统消息</span></a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

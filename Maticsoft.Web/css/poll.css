@@ -1,0 +1,269 @@
+﻿        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        a:link {text-decoration: none; }
+		a:active {text-decoration: none; }
+		a:visited{text-decoration: none; } 
+        body
+        {
+            background: #fff;
+            font-size: 14px;
+            background: url(../Images/bodybg.png) repeat-x;
+        }
+        .clear{ clear:both;}
+		a img{border:none;}
+        .btn
+        {
+            display: block;
+            padding: .3em 2em;
+            background: url(../Images/btn.png) repeat-x;
+            color: #fff;
+            font-size: 1.2em;
+            text-decoration: none;
+            border:none;
+            border:3px solid #fff;
+        }
+        .red{ color:Red;}
+        .layout
+        {
+            padding: 2em;
+            width: 53.6em;
+            margin: 0 auto;
+            background: url(../Images/conbg.png) no-repeat center top;
+        }
+        .head
+        {
+            height: 7.5em;
+            position:relative;
+        }
+        .head .haitong{ position:absolute; width:12em; height:2em; top:1em; left:0em;}
+        .head .gupk{position:absolute; width:7em; height:2em; top:1em; left:15em;}
+        .intro
+        {
+            background: url(../Images/introbg.png) repeat-x;
+            height: 15em;
+            position: relative;
+            font-weight: bold;
+            margin-bottom:.5em;
+        }
+        .intro .introdetail
+        {
+            position: absolute;
+            padding: 1em;
+            line-height: 1.4;
+            width:30em;
+        }
+        .intro .introdetail .tip
+        {
+            background: #fff;
+            border: 1px solid #fc0;
+            color: #666;
+            padding:.2em;
+        }
+        .intro .introdetail .star{ position:absolute; top:-1em; right:0}
+        .intro .introctr
+        {
+            position: absolute;
+            right: 1em;
+            top: -2.6em;
+            width: 19em;
+            background:url(../Images/ctrbg.gif) no-repeat;
+            padding-top:1em;
+            
+        }
+        .intro .introctr .intbox{padding:0 1em 1em 1em;background:url(../Images/ctrbg.gif) no-repeat left bottom; overflow:auto;}
+        .intro .introctr ul li
+        {
+            list-style: none;
+            display: block;
+            width: 7.5em;
+            height: 2.5em;
+            background: url(../Images/intro.png) no-repeat 0 -90px;
+            float: left;
+            padding: 1em .5em 0;
+        }
+        .intro .introctr ul li.cs
+        {
+        	background: url(../Images/intro.png) no-repeat 0 0px;
+        	width: 16em;
+            height: 3em;
+        	}
+        .intro .introctr ul li a
+        {
+            background: url(../Images/intro.png) no-repeat 0 -140px;
+            padding-left: 2em;
+            width: auto;
+            height: 1.5em;
+        }
+        .intro .introctr ul li.rule a{background: url(../Images/intro.png) no-repeat 0 -160px;}
+        .intro .introctr ul li.draw a{background: url(../Images/intro.png) no-repeat 0 -240px;}
+        .intro .introctr ul li.award a{background: url(../Images/intro.png) no-repeat 0 -180px;}
+        .intro .introctr ul li.office a{background: url(../Images/intro.png) no-repeat 0 -220px;}
+        .intro .introctr ul li.mail a{background: url(../Images/intro.png) no-repeat 0 -200px;}
+        .prizes h2
+        {
+            height: 1.5em;
+            margin:.2em 0;
+            background: url(../Images/jphead.png) no-repeat center bottom;
+        }
+        .prizes .box
+        {
+            width: 33%;
+            float: left;
+            height: 17em;
+            background: url(../Images/jpbg.png) no-repeat center top;
+        }
+        .prizes .box img
+        {
+            padding: 2em .6em 0;
+        }
+        .prizes .box p{ text-align:center; color:#fff;}
+        .prizes .box p a{ color:#fff;}
+        .per{ background:url(../Images/bk.png) no-repeat center bottom;}
+        .per h2{background:url(../Images/bk.png) no-repeat center top; height:2em; font-size:100%; line-height:2; padding-left:1em;}
+        .per .conbox{ padding:1em;}
+		.per .conbox .tip{
+		background:#FFF9ED;
+		border:1px solid #FFCC00;
+		color:#000;
+		padding:0.4em;
+		margin-bottom:.5em;
+		}
+        .per .conbox table{ width:100%;}
+        .per .conbox th{ background:#efddbc; padding:.4em;}
+        .per .conbox td{ background:#fff9ed; padding:.4em;}
+        .per .conbox td .w25{ width:10em; display:block; float:left; height:1.6em;}
+        .submit{ background:url(../Images/bottombg.png) no-repeat; height:4em; padding:.5em 0; text-align:center; margin:1em 0;}
+        .submit .btn{ margin:0 auto;}
+        .foot{ text-align:center;}
+        /**/
+        .per .suc{ padding:5em; font-weight:bold;}
+        .suc img{ float:left; padding-right:1em;}
+        /**/
+        .jqmWindow {
+			display: none;
+		    
+			position: fixed;
+			top: 17%;
+			left: 50%;
+		    
+			margin-left: -300px;
+			width: 600px;
+		    
+			background-color: #fff;
+			color: #333;
+			border: 5px solid #04b0f0;
+			padding: 12px;
+			z-index:11;
+		}
+		.jqmClose{ float:right;}
+
+		.jqmOverlay { background-color: #000; }
+
+		/* Fixed posistioning emulation for IE6
+			 Star selector used to hide definition from browsers other than IE6
+			 For valid CSS, use a conditional include instead */
+		* html .jqmWindow {
+			 position: absolute;
+			 top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+		}
+		/*****************
+		gupk
+		*******/
+		#gupkstyle .btn
+        {
+            background: url(../Images/btn_gp.png) repeat-x;
+            border:1px solid #9fc120;
+            color:#113900;
+        }
+        #gupkstyle .layout
+        {
+            background: url(../Images/conbg_gp.png) no-repeat center top;
+        }
+       #gupkstyle .intro
+        {
+            background: url(../Images/introbg_gp.png) repeat-x;
+            height:11em;
+
+        }
+        #gupkstyle .intro .introctr ul li
+        {
+            background: url(../Images/intro_gp.png) no-repeat 0 -90px;
+            padding:0.8em 0.5em 0;
+        }
+        #gupkstyle .intro .introctr ul li.cs
+        {
+        	background: url(../Images/intro_gp.png) no-repeat 0 0px;
+        	padding:1.1em 0.5em 0;
+        	}
+        #gupkstyle .intro .introctr ul li a
+        {
+            background: url(../Images/intro_gp.gif) no-repeat 0 -140px;
+        }
+        #gupkstyle .intro .introctr ul li.rule a{background: url(../Images/intro_gp.gif) no-repeat 0 -160px;}
+        #gupkstyle .intro .introctr ul li.draw a{background: url(../Images/intro_gp.gif) no-repeat 0 -240px;}
+        #gupkstyle .intro .introctr ul li.award a{background: url(../Images/intro_gp.gif) no-repeat 0 -180px;}
+        #gupkstyle .intro .introctr ul li.office a{background: url(../Images/intro_gp.gif) no-repeat 0 -220px;}
+        #gupkstyle .intro .introctr ul li.mail a{background: url(../Images/intro_gp.gif) no-repeat 0 -200px;}
+        #gupkstyle .per{ background:url(../Images/bk_gp.png) no-repeat center bottom;}
+        #gupkstyle .per h2{background:url(../Images/bk_gp.png) no-repeat center top; color:#fff;}
+        #gupkstyle .submit{ background:url(../Images/bottombg_gp.png) no-repeat;}
+        #gupkstyle .per .conbox th{ background:#badef1;}
+        #gupkstyle .per .conbox td{ background:#e9f6fd;}
+        #gupkstyle .head .haitong{ display:none;}
+        #gupkstyle .head .gupk{position:absolute; width:9em; height:4em; top:0em; left:0em;}
+        /*****************
+		yinhe
+		*******/
+		#yhstyle .btn
+        {
+
+        }
+        #yhstyle .layout
+        {
+            background: url(../Images/conbg_yh.png) no-repeat center top;
+        }
+       #yhstyle .intro
+        {
+            background: url(../Images/introbg_yh.png) repeat-x;
+
+        }
+        #yhstyle .intro .introctr ul li
+        {
+            background: url(../Images/intro_yh.png) no-repeat 0 -90px;
+            padding:0.8em 0.5em 0;
+        }
+        #yhstyle .intro .introctr ul li.cs
+        {
+        	background: url(../Images/intro_yh.png) no-repeat 0 0px;
+        	padding:1.1em 0.5em 0;
+        	}
+        #yhstyle .intro .introctr ul li a
+        {
+            background: url(../Images/intro_yh.gif) no-repeat 0 -140px;
+        }
+        #yhstyle .intro .introctr ul li.rule a{background: url(../Images/intro_yh.gif) no-repeat 0 -160px;}
+        #yhstyle .intro .introctr ul li.draw a{background: url(../Images/intro_yh.gif) no-repeat 0 -240px;}
+        #yhstyle .intro .introctr ul li.award a{background: url(../Images/intro_yh.gif) no-repeat 0 -180px;}
+        #yhstyle .intro .introctr ul li.office a{background: url(../Images/intro_yh.gif) no-repeat 0 -220px;}
+        #yhstyle .intro .introctr ul li.mail a{background: url(../Images/intro_yh.gif) no-repeat 0 -200px;}
+        #yhstyle .per{ background:url(../Images/bk_yh.png) no-repeat center bottom;}
+        #yhstyle .per h2{background:url(../Images/bk_yh.png) no-repeat center top; color:#fff;}
+        #yhstyle .submit{ background:url(../Images/bottombg_yh.png) no-repeat;}
+        #yhstyle .per .conbox th{ background:#badef1;}
+        #yhstyle .per .conbox td{ background:#e9f6fd;}
+        #yhstyle .prizes h2
+        {
+            height: 1.5em;
+            margin:.2em 0;
+            background: url(../Images/jphead_yh.png) no-repeat center bottom;
+        }
+        #yhstyle .prizes .box
+        {
+            width: 33%;
+            float: left;
+            height: 17em;
+            background: url(../Images/jpbg_yh.png) no-repeat center top;
+        }

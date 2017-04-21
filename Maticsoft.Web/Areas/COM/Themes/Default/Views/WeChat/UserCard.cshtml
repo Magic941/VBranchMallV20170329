@@ -1,0 +1,585 @@
+﻿@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = "用户会员卡";
+    Maticsoft.Model.Members.UsersExpModel UserInfo = ViewBag.UserInfo;
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Pay.BalanceDetails>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<link href="/Areas/COM/Themes/Default/Content/Css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        $("#btnGetUserCard").click(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)WeChat/GetUserCard",
+                success: function (data) {
+                    if (data == "True") {
+                        ShowSuccessTip("获取会员卡成功！");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                        return;
+                    }
+                    else if (data == "NoOpen") {
+                        window.location.href = "@(ViewBag.MShop)a/l/?returnUrl=" + encodeURI("/COM/WeChat/userCard")
+                        return;
+                    }
+                    else if (data == "NoLogin") {
+                        $("#btnGetUserCard").hide();
+                        $("#result").show();
+                        return;
+                    }
+                    else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+
+        $("#btnBindUser").click(function () {
+            var name = $("#trueName").val();
+            var phone = $("#telPhone").val();
+            if (name == "") {
+                ShowFailTip("请输入您的姓名！");
+                return;
+            }
+            if (phone == "") {
+                ShowFailTip("请输入您的手机号码！");
+                return;
+            }
+
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)WeChat/BindUserCard",
+                data: { Name: name, Phone: phone },
+                success: function (resultData) {
+                    if (resultData == "1") {
+                        ShowSuccessTip("获取会员卡成功！");
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1000);
+                        return;
+                    }
+                    if (resultData == "0") {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        })
+    })
+</script>
+<style type="text/css">
+    .qiandaobanner
+    {
+        max-width: 640px;
+        height: auto;
+    }
+    .qiandaobanner img
+    {
+        width: 100%;
+        border: 0;
+        min-width: 300px;
+    }
+    .receive
+    {
+        background-color: #F4F4F4;
+        padding: 6px 20px;
+        position: relative;
+        font-size: 16px;
+        text-decoration: none;
+        border: 1px solid #C6C6C6;
+        background-image: linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+        background-image: -o-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+        background-image: -moz-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+        background-image: -webkit-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+        background-image: -ms-linear-gradient(bottom, #E1E1E1 0%, #ffffff 100%);
+        background-image: -webkit-gradient(
+ linear,
+ left bottom,
+ left top,
+ color-stop(0, #E1E1E1),
+ color-stop(1, #ffffff)
+ );
+        -webkit-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+        -moz-box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+        box-shadow: 0 1px 0 #FFFFFF inset, 0 1px 0 #EEEEEE;
+        -webkit-border-radius: 35px;
+        -moz-border-radius: 35px;
+        -o-border-radius: 35px;
+        border-radius: 35px;
+        color: #666666;
+        display: block;
+        text-align: center;
+    }
+    
+    .boxcontent
+    {
+        margin: 15px 15px 0;
+        border-radius: 5px;
+        padding: 2px;
+        background-color: #FEF8B2;
+        -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        -moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+    }
+    .pxbtn
+    {
+        background: #ff6501;
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #ffa201 ), to( #ff6501 )); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #ffa201, #ff6501 ); /* Chrome 10+, Saf5.1+ */
+        background-image: -moz-linear-gradient( #ffa201, #ff6501 ); /* FF3.6 */
+        background-image: -ms-linear-gradient( #ffa201, #ff6501 ); /* IE10 */
+        background-image: -o-linear-gradient( #ffa201, #ff6501 ); /* Opera 11.10+ */
+        background-image: linear-gradient( #ffa201, #ff6501 );
+        border: 1px solid #ff6501;
+        border-bottom: 1px solid #d35605;
+        color: #ffffff;
+        font-weight: bold;
+        text-shadow: 0 1px 0 #FFFFFF;
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        display: block;
+        width: 100%;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: pointer;
+        text-align: center;
+        font-weight: bold;
+        text-shadow: 0 0 2px #BE4205;
+        font-size: 18px;
+        padding: 10px;
+        margin: 10px 0 0 0;
+    }
+    .px
+    {
+        margin: 0.5em 0;
+        position: relative;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) inset;
+        background-color: #FFFFFF;
+        border-radius: 0.6em 0.6em 0.6em 0.6em;
+        border: 1px solid rgba(0, 0, 0, 0.3);
+        color: #333333;
+        text-shadow: 0 1px 0 #FFFFFF;
+        display: block;
+        width: 100%;
+        padding: 6px 10px;
+        font-size: 18px;
+        margin: 10px 0 0 0;
+        font-family: Arial, Helvetica, sans-serif;
+        -webkit-appearance: none;
+    }
+    
+    .px:hover
+    {
+        border: 1px solid #ff6501;
+    }
+    
+    .px:focus
+    {
+        border: 1px solid #ff6501;
+        box-shadow: 0 0 5px #ff6501;
+    }
+    
+    .px[type="text"]
+    {
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    
+    .px[type="password"]
+    {
+        width: 100%;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+    }
+    
+    .pxbtn:visited
+    {
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #ffa201 ), to( #ff6501 )); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #ffa201, #ff6501 ); /* Chrome 10+, Saf5.1+ */
+        background-image: -moz-linear-gradient( #ffa201, #ff6501 ); /* FF3.6 */
+        background-image: -ms-linear-gradient( #ffa201, #ff6501 ); /* IE10 */
+        background-image: -o-linear-gradient( #ffa201, #ff6501 ); /* Opera 11.10+ */
+        background-image: linear-gradient( #ffa201, #ff6501 );
+    }
+    
+    .pxbtn:hover
+    {
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #ff7f01 ), to( #ff6501 )); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #ff7f01, #ff6501 ); /* Chrome 10+, Saf5.1+ */
+        background-image: -moz-linear-gradient( #ff7f01, #ff6501 ); /* FF3.6 */
+        background-image: -ms-linear-gradient( #ff7f01, #ff6501 ); /* IE10 */
+        background-image: -o-linear-gradient( #ff7f01, #ff6501 ); /* Opera 11.10+ */
+        background-image: linear-gradient( #ff7f01, #ff6501 );
+    }
+    
+    .pxbtn:active
+    {
+        background-image: -webkit-gradient(linear, left top, left bottom, from( #ff6501 ), to( #ffa201 )); /* Saf4+, Chrome */
+        background-image: -webkit-linear-gradient( #ff6501, #ffa201 ); /* Chrome 10+, Saf5.1+ */
+        background-image: -moz-linear-gradient( #ff6501, #ffa201 ); /* FF3.6 */
+        background-image: -ms-linear-gradient( #ff6501, #ffa201 ); /* IE10 */
+        background-image: -o-linear-gradient( #ff6501, #ffa201 ); /* Opera 11.10+ */
+        background-image: linear-gradient( #ff6501, #ffa201 );
+        border: 1px solid #ff6501;
+        border-top: 1px solid #d35605;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3) inset;
+    }
+    .businesses_info .title
+    {
+        font-size: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .cardinfo
+    {
+        padding-left: 30px;
+        -webkit-background-size: 24px 24px;
+        background-size: 24px 24px;
+        min-height: 24px;
+    }
+    .cardinfo .title
+    {
+        font-size: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .integral_info
+    {
+        padding-left: 30px;
+        -webkit-background-size: 24px 24px;
+        background-size: 24px 24px;
+        min-height: 24px;
+    }
+    .integral_info .title
+    {
+        font-size: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+    }
+    .month_sel
+    {
+        padding-left: 46px;
+        -webkit-background-size: 40px 40px;
+        background-size: 40px 40px;
+        min-height: 40px;
+    }
+    .qiandao
+    {
+        padding-left: 46px;
+        -webkit-background-size: 40px 40px;
+        background-size: 40px 40px;
+        min-height: 40px;
+    }
+    .accordion_child img
+    {
+        max-width: 100%;
+        border: 0;
+    }
+    .qiandaobanner
+    {
+        display: block;
+        text-align: center;
+        position: relative;
+        min-height: 26px;
+    }
+    .qiandaobanner img
+    {
+        width: 100%;
+        border: 0;
+        min-width: 320px;
+    }
+    
+    .qiandaobanner span
+    {
+        background-color: rgba(0, 0, 0, 0.5);
+        bottom: 0;
+        color: #FFFFFF;
+        display: block;
+        font-size: 16px;
+        margin: 0 auto;
+        line-height: 26px;
+        position: absolute;
+        text-align: center;
+        width: 100%;
+    }
+    
+    .integral_table th
+    {
+        font-size: 14px;
+        font-weight: normal;
+        background-color: #eee;
+        border-top: 1px solid #e3e3e3;
+        border-bottom: 1px solid #e3e3e3;
+        text-align: center;
+        padding: 3px 5px 3px 5px;
+    }
+    
+    .integral_table td
+    {
+        font-size: 12px;
+        color: #797979;
+        border-bottom: 1px solid #e3e3e3;
+        text-align: center;
+        background-color: #fff;
+        padding: 5px 5px 4px 5px;
+    }
+    .integral_table tfoot td
+    {
+        border-bottom: 0;
+    }
+    
+    .integral_table td .yqian
+    {
+        color: #02ae02;
+    }
+    .integral_table td .wqian
+    {
+        color: #797979;
+    }
+    .integral_table td.right
+    {
+        text-align: right;
+    }
+    .integral_table td .heji
+    {
+        color: #02ae02;
+    }
+    .red
+    {
+        color: #FF0000;
+    }
+    .green
+    {
+        color: #02ae02;
+    }
+    .zongjifen li
+    {
+        width: 50%;
+        float: left;
+        display: block;
+    }
+    .zongjifen li p
+    {
+        display: block;
+        text-align: center;
+    }
+    .zongjifen li span
+    {
+        display: block;
+        text-align: center;
+    }
+    .zongjifen li .fengexian
+    {
+        margin: 8px;
+        border-right: 1px dotted #ccc;
+    }
+    
+    #cardintegral .jifen-box .month
+    {
+        display: block;
+        height: 60px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+    }
+    
+    .jifen-box
+    {
+        border: 1px solid #C6C6C6;
+        background-color: rgba(255, 255, 255, 0.8);
+        text-align: left;
+        font-size: 14px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        box-shadow: 0 1px 1px #f6f6f6;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+    
+    .jifen-box .title p
+    {
+        color: #797979;
+        font-size: 12px;
+    }
+    #cardshopping .jifen-box .month
+    {
+        display: block;
+        height: 60px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0px;
+        width: 100%;
+    }
+    
+    .tipcs
+    {
+        color: #888888;
+        display: inline-block;
+        font-size: 14px;
+        margin: 8px;
+        text-shadow: 0 1px #FFFFFF;
+    }
+    
+    ul.round
+    {
+        border: 1px solid #C6C6C6;
+        background-color: rgba(255, 255, 255, 0.9);
+        text-align: left;
+        font-size: 14px;
+        line-height: 24px;
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -moz-box-shadow: 0 1px 1px #f6f6f6;
+        -webkit-box-shadow: 0 1px 1px #f6f6f6;
+        box-shadow: 0 1px 1px #f6f6f6;
+        margin-bottom: 11px;
+        display: block;
+        overflow: hidden;
+        -webkit-transition: height 0.6s;
+        -moz-transition: height 0.6s;
+        -o-transition: height 0.6s;
+        transition: height 0.6s;
+    }
+    
+    ul.round li
+    {
+        border: solid #C6C6C6;
+        border-width: 0 0 1px 0;
+        padding: 0px 10px 0 10px;
+    }
+    ul.round li:only-of-type
+    {
+        border-width: 0;
+    }
+    ul.round li:last-of-type
+    {
+        border-width: 0;
+    }
+    .round li, .round li span, .round li a
+    {
+        line-height: 22px;
+    }
+</style>
+<div class="qiandaobanner" style="padding: 8px">
+    <a href="javascript:history.go(-1);">
+        <img src="/Areas/COM/Themes/Default/Content/images/vip.jpg">
+    </a>
+</div>
+<div class="yy">
+</div>
+<div class="boxcontent boxyellow" id="result" style="display: none">
+    <div class="box">
+        <div class="title-orange">
+            <span>领卡信息</span></div>
+        <div class="Detail">
+            <p>
+                填写您的姓名和手机号码，即可获得会员卡，享受会员特权
+            </p>
+            <p>
+                <input name="tel" class="px" id="trueName" value="" type="text" placeholder="请输入您的姓名">
+            </p>
+            <p>
+                <input name="tel" class="px" id="telPhone" value="" type="text" placeholder="用户请输入您的手机号">
+            </p>
+            <p>
+                <input class="pxbtn" name="提 交" id="btnBindUser" type="button" value="提交">
+            </p>
+        </div>
+    </div>
+</div>
+@if (UserInfo == null || String.IsNullOrWhiteSpace(UserInfo.UserCardCode))
+{
+    <div class="form search-01" style="margin-bottom: 10px; margin-left: 10px; margin-top: 12px">
+        <a href="javascript:;" id="btnGetUserCard" class="receive">领取您的会员卡</a>
+    </div> 
+    <span class="tipcs">微时代会员卡，方便携带收藏，永不挂失…</span>
+    <div class="jifen-box ">
+        <ul class="zongjifen" style="margin: 0">
+            <li>
+                <div class="fengexian">
+                    <p>
+                        剩余金额</p>
+                    <span>0 元</span>
+                </div>
+            </li>
+            <li><a href="@(ViewBag.MShop)UserCenter/PointsDetail">
+                <div class="fengexian">
+                    <p>
+                        剩余积分</p>
+                    <span>0分</span>
+                </div>
+            </a></li>
+        </ul>
+        <div class="clr" style="clear: both">
+        </div>
+    </div>
+}
+else
+{
+    <div style="font-family: 微软雅黑; font-size: 14px; margin: 10px;">
+        会员卡卡号:<span style="color: #ff8a00;">
+            @UserInfo.UserCardCode </span>
+        <br />
+        卡状态 ：<span style="color: #ff8a00;">@(ViewBag.Status == 1 ? "正常" : "已冻结")</span>
+    </div>
+    <span class="tipcs">微时代会员卡，方便携带收藏，永不挂失…</span>
+
+    <div class="jifen-box ">
+        <ul class="zongjifen" style="margin: 0; padding: 0;">
+            <li>
+                <div class="fengexian">
+                    <p>
+                        剩余金额</p>
+                    <span>@(UserInfo.Balance.HasValue ? UserInfo.Balance.Value.ToString("F") : "0")
+                        元</span>
+                </div>
+            </li>
+            <li><a href="@(ViewBag.MShop)UserCenter/PointsDetail">
+                <div class="fengexian">
+                    <p>
+                        剩余积分</p>
+                    <span>@(UserInfo.Points)分</span>
+                </div>
+            </a></li>
+        </ul>
+        <div class="clr" style="clear: both">
+        </div>
+    </div>
+
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+    <div class="home_piclist">
+        <div class="ddnum" style="height: 80px;">
+            <span>日期：</span> @item.TradeDate.ToString("yyyy-MM-dd HH:mm:ss")<br />
+            <span>收入：</span> @(item.Income.HasValue ? item.Income.Value.ToString("F") : "")<br />
+            <span>支出：</span> @(item.Expenses.HasValue ? item.Expenses.Value.ToString("F") : "")<br />
+            <span>余额：</span> @item.Balance.ToString("F")<br />
+            <span>备注：</span>@item.Remark
+        </div>
+    </div>
+        }
+    @Html.Pager(Model, new PagerOptions
+{
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 3,
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+    CssClass = "in_pages_m",
+    SeparatorHtml = ""
+})
+    }
+}

@@ -1,0 +1,76 @@
+﻿@model List<Maticsoft.Model.CMS.Content>  
+<div class="m-slide">
+@if (Model != null && Model.Count > 0)
+{
+  
+       <ul class="img">
+        @foreach (var item in Model)
+        {
+          <li style="display: none;"><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">
+                <img src="@item.ImageUrl"  height="365" width="670"></a></li>       
+        }
+       </ul>
+       <div id="ifocus_opdiv"></div>
+        <div id="ifocus_tx">
+            <ul>
+                 @foreach (var item in Model)
+                  {
+                    <li style="display: none;"><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">@item.Title</a></li>               
+                  }
+            </ul>
+        </div>
+         <ul class="tab">
+               @foreach (var item in Model)
+               {
+                 <li class="" style="width: 130px;">
+                   <div class="color1">@item.Title</div>  
+                     </li>             
+               }
+        </ul>
+  
+                   
+}
+else
+{
+  
+        <ul class="img">
+            <li style="display: none;"><a href="#" target="_blank" title="算法推荐阅读的冷思考——自我选择才是真正的“个性化”">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G516310-L.jpg" height="365" width="670"></a></li>
+            <li style="display: none;"><a href="#" target="_blank" title="红包成兵家必争之地，泛滥有隐忧需发力多元化">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G515560-L.jpg" height="365" width="670"></a></li>
+            <li style="display: none;"><a href="#" target="_blank" title="三足鼎立，全球社交巨头三国杀时代来临">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G514530-L.jpg" height="365" width="670"></a></li>
+            <li style="display: list-item;"><a href="#" target="_blank" title="“再造搜狐”空喊五年，张朝阳回归就能改变一切？">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/1-15020G513180-L.jpg" height="365" width="670"></a></li>
+
+        </ul>
+        <div id="ifocus_opdiv"></div>
+        <div id="ifocus_tx">
+            <ul>
+                <li style="display: none;"><a href="#" target="_blank" title="算法推荐阅读的冷思考——自我选择才是真正的“个性化”">算法推荐阅读的冷思考——自我选择</a></li>
+                <li style="display: none;"><a href="#" target="_blank" title="红包成兵家必争之地，泛滥有隐忧需发力多元化">红包成兵家必争之地，泛滥有隐忧需</a></li>
+                <li style="display: none;"><a href="#" target="_blank" title="三足鼎立，全球社交巨头三国杀时代来临">三足鼎立，全球社交巨头三国杀时代</a></li>
+                <li style="display: list-item;"><a href="#" target="_blank" title="“再造搜狐”空喊五年，张朝阳回归就能改变一切？">“再造搜狐”空喊五年，张朝阳回归</a></li>
+
+
+            </ul>
+        </div>
+        <ul class="tab">
+            <li class="" style="width: 130px;">
+                <div class="color1">算法推荐阅读的冷思考——自我选择</div>
+            </li>
+            <li class="" style="width: 130px;">
+                <div class="color2">红包成兵家必争之地，泛滥有隐忧需</div>
+            </li>
+            <li class="" style="width: 130px;">
+                <div class="color3">三足鼎立，全球社交巨头三国杀时代</div>
+            </li>
+            <li class="on" style="width: 130px;">
+                <div class="color4">“再造搜狐”空喊五年，张朝阳回归</div>
+            </li>
+
+        </ul>
+ 
+    
+}
+ </div>

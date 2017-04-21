@@ -1,0 +1,18 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="index_title">
+    @ViewBag.CategoryName</div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <table width="100%" class="index_showpic" border="0" cellspacing="5" cellpadding="0">
+    <tr>
+        @foreach (var item in Model)
+        {
+            <td>
+            <a href="@(ViewBag.BasePath)p/d/@item.ProductId">
+                <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T300X300_")" /><span>￥@item.LowestSalePrice.ToString("F")</span></a>
+        </td>
+        }
+    </tr>
+</table>
+    }
+

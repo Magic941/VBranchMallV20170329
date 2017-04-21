@@ -1,0 +1,458 @@
+﻿@{
+    Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    List<Maticsoft.Payment.Model.PaymentModeInfo> PaymentModeInfoLists = ViewBag.PaymentModeInfolist as List<Maticsoft.Payment.Model.PaymentModeInfo>;
+    List<Maticsoft.Model.Shop.Coupon.CouponInfo> CouponInfolists = ViewBag.infoModelList as List<Maticsoft.Model.Shop.Coupon.CouponInfo>;
+}
+@section head{
+    <link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx"
+        isnull="true" type="text/javascript"></script>
+}
+@section foot{
+    <script src="/Scripts/jqueryui/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jqueryui/maticsoft.jqueryui.dialog.min.js" type="text/javascript"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/Pay/SubmitOrderNew.js?v=20150312" type="text/javascript"></script>
+    <style type="text/css">
+        .seach_bg {
+            background: #f2f2f2;
+        }
+
+        .w85 {
+            width: 95%;
+            height: 28px;
+        }
+
+        .ddl_Freight {
+            margin: 0;
+        }
+
+        .gou_nrtext_fgde {
+            padding: 0;
+            margin: 0;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+        }
+
+        .goulist_x {
+        }
+
+        .nrtext_fgde_tytyr em {
+            display: block;
+            float: left;
+        }
+
+        .nrtext_fgde_tytyr p {
+            margin: 0;
+            font-size: 0.8rem;
+            padding-top: 5px;
+        }
+
+        .nrtext_fgde_tytyr {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            background: #fff;
+        }
+
+        .gou_nrtext_fgdr {
+            width: 90%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+
+        .fgde_tu {
+            display: block;
+            padding: 10px;
+        }
+
+            .fgde_tu img {
+                border: 1px solid #ccc;
+            }
+
+        .nrtext_fgde_NKNK {
+            float: left;
+        }
+
+            .nrtext_fgde_NKNK dt {
+                float: left;
+            }
+
+            .nrtext_fgde_NKNK select {
+                width: 100px;
+                height: 30px;
+            }
+
+        .nrtext_fgde_wai p {
+            width: 9rem;
+            float: left;
+            margin: 3px;
+            height: 3rem;
+            line-height: 3rem;
+            padding-left: 10px;
+            font-size: 0.8rem;
+        }
+
+        #step-2 select {
+            width: 100%;
+            height: 3rem;
+            line-height: 3rem;
+            margin: 0 auto;
+            border: 1px solid #C7C7C7;
+            text-align: center;
+        }
+
+        .gou_nrtext_fgdo {
+            border-bottom: 1px solid #ccc;
+            background: #fff;
+        }
+
+            .gou_nrtext_fgdo span {
+                height: 30px;
+                line-height: 30px;
+                padding-left: 10px;
+                font-size: 0.8rem;
+            }
+
+        .red {
+        }
+    </style>
+
+}
+@model Maticsoft.Model.Shop.Products.ShoppingCartInfo
+@{
+    var SupplierList = Model.Items.GroupBy(m => m.SupplierId).ToList();
+}
+
+<div class="top">
+    <span>填写订单</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy">
+</div>
+<div class="goucontent">
+    <input type="hidden" id="SkuInfo" value="@ViewBag.SkuInfo"/>
+    <input type="hidden" id="SkuCount" value="@ViewBag.SkuCount"/>
+    <input type="hidden" id="ProSale" value="@ViewBag.ProSale"/>
+    <input type="hidden" id="GroupBuy" value="@ViewBag.GroupBuy"/>
+    <input type="hidden" id="activeid" value="@ViewBag.ActiveID"/>
+    <input type="hidden" id="activetype" value="@ViewBag.ActiveType"/>
+    <input type="hidden" id="hidShippingType" value="@ViewBag.ShippingType" />
+    <span class="@*gou_title*@"style="padding-left:10px; height:40px; line-height:40px; display:block;">收货人信息</span>
+    <div class="gou_nrtext" id="step-1" style="background-color: #fff; border: none;">
+        @Html.Action("ShowAddress", "Order")
+    </div>
+    @*<span class="gou_title">支付及配送方式</span>*@
+    <span class="@*gou_title*@" style="padding-left:10px; height:40px; line-height:40px; display:block;">支付方式</span>
+    <div class="ddlPay" id="step-2" style="/*background-color: #C7C7C7*/">
+        @*@Html.Action("ShowPayAndShip", "Order")*@
+        <select class="mgL5 w150" name="PaymentMode" id="PaymentMode">
+            @if (PaymentModeInfoLists == null)
+            {
+                <option value="-1">请设置支付方式 </option>
+            }
+            else
+            {
+                if (PaymentModeInfoLists.Count == 0)
+                { 
+                <option value="-1">请设置支付方式 </option>
+                }
+                foreach (Maticsoft.Payment.Model.PaymentModeInfo payinfo in PaymentModeInfoLists)
+                {
+                <option value="@payinfo.ModeId" >@payinfo.Name </option>
+                }
+
+            }
+
+        </select>
+    </div>
+
+
+    @foreach (var item in SupplierList)
+    {
+        var SupplierName = item.Where(m => m.SupplierId == item.Key).First().SupplierName;
+        var PreferentialType = 0;
+        var UnitValue = 0M;
+        var RateValue = 0M;
+        string ActiveName = "";
+        var TotalPrice = 0M;
+        decimal SupplierPreferentialPrice = 0;
+        var s_model = Model.SupplierPriceList.Where(m => m.SupplierId == item.Key && (m.PreferentialType == 1 || m.PreferentialType == 2)).ToList();
+        if (s_model.Count != 0)
+        {
+            PreferentialType = s_model.First().PreferentialType;
+            UnitValue = s_model.First().AMDUnitValue;
+            RateValue = s_model.First().AMDRateValue;
+            ActiveName = "满" + UnitValue + (PreferentialType == 1 ? "打" + RateValue / 10 + "折" : "减" + RateValue);
+            TotalPrice = Model.SupplierPriceList.Where(m => m.SupplierId == item.Key).First().TotalAdjustedPrice;
+            SupplierPreferentialPrice = PreferentialType == 1 ? TotalPrice / (RateValue / 100) - TotalPrice : RateValue;
+        }
+        else
+        {
+            TotalPrice = Model.Items.Where(m => m.SupplierId == item.Key).Sum(m => m.AdjustedPrice * m.Quantity);
+        }
+      
+        
+        <div class="gou_nrtext_fgde">
+            <div class="gou_nrtext_fgdo">
+                <span>@SupplierName</span>
+            </div>
+
+            @foreach (var rec in item)
+            {
+        
+                <div class="nrtext_fgde_tytyr">
+                    <em style="">
+                        <a class="fgde_tu" href="@(ViewBag.BasePath)p/d/@rec.ProductId/@rec.ActiveID/@rec.ActiveType" target="_blank">
+                            <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(rec.ThumbnailsUrl, "T158X158_")" width="50" height="50" /></a>
+
+                    </em>
+                    <div class="" style="float: left; width: 75%; padding-top: 5px;">
+                        <p class="p-name">
+                            <a href="@(ViewBag.BasePath)p/d/@rec.ProductId/@rec.ActiveID/@rec.ActiveType" target="_blank">@rec.Name</a>
+                        </p>
+                        @if (rec.SkuValues != null && rec.SkuValues.Length > 0)
+                        {
+                            @Html.Raw(" <p class=\"p-num\">" + string.Join(",", rec.SkuValues) + "</p>");
+                        }
+                        <p class="p-num">数量：@rec.Quantity 单价：@rec.AdjustedPrice.ToString("F")</p>
+                    </div>
+                </div>
+               
+            }
+            <div class="nrtext_fgde_wai" style="background:#e2e2e2; overflow: hidden;">
+                <div class="nrtext_fgde_NKNK">
+                    @*<dt>运送方式：</dt>*@
+                    <dl id="Freight@(item.Key)" class="@*gou_nrtex*@t" style="text-align:center;">
+
+                        <dd>运费：<span id="freightPriceId@(item.Key)" supplierId="@(item.Key)" class="txt-red mgL20">0.00</span></dd>
+                    </dl>
+                </div>
+                <p class="p-price">
+                    小计：￥@TotalPrice.ToString("F")
+                </p>
+            </div>
+        </div>
+    }
+    <span class="gou_title" style="display: none">发票信息</span>
+    <div class="gou_nrtext" style="display: none">
+        <span><a href="#">发票类型：普通发票</a></span><span><a href="#">发票抬头： 个人 </a></span><span><a
+            href="#">非图书商品： 明细</a></span>
+    </div>
+
+    @if (CouponInfolists!=null)
+    {
+        if (CouponInfolists.Count>0)
+        {
+    <div class="gou_nrtext" style="background: none; padding-top:10px; margin:10px 0; border:1px solid #ccc; ">
+        @*<span>优惠券</span>*@
+        <select id="txtcoupon" class="Ticket" style="/*float:left;*/ height:30px; width:90%; margin:0 auto; display:block; ">
+           <option value="">请选择优惠券</option>
+                 @foreach (var item in CouponInfolists)
+                 {
+                  <option value="@item.CouponCode">@item.CouponName 需满足金额:@item.LimitPrice.ToString("0.00")</option>
+                  }
+         </select>
+
+        <p>
+            
+             
+            <input id="hfcoupon" type="hidden" />
+             <a href="javascript:void(0)" id="entityCouponId" class="sub_btn" style="color: white;">使用优惠劵</a>
+          
+        </p>
+    </div>
+    }
+    }
+    <div align="right" class="fhdd" id="div_back_cart" style="display: none;">
+        <a href="@(ViewBag.BasePath)sc/ci" id="order_tuan_submit" style="text-decoration:underline; font-size:14px" >返回修改购物车</a>
+    </div>
+
+    <div class="gou_nrjiage">
+        <span><em>商品金额：</em>￥@((ViewBag.ProductTotal-ViewBag.TotalPromPrice).ToString("F"))</span>
+        <span><em>+ 运费：</em>
+            <input type="hidden" id="hidtotalfreight" name="hidtotalfreight" value="@ViewBag.Freight.ToString("F")" />
+            <span class="price" id="totalfreightPriceId" Freight="@ViewBag.Freight.ToString("F")">￥@ViewBag.Freight.ToString("F")</span>
+        </span>
+       @* <span><em>- 促销：</em>
+            <span id="promotionsPriceId">￥@ViewBag.TotalPromPrice.ToString("F")</span></span>*@
+        <span><em>- 优惠：</em>
+             <input type="hidden" id="hidcoupontotalprice" name="hidcoupontotalprice" value="0" />
+            <span id="couponPriceId">￥0.00</span>
+        </span>
+        <span>
+            <em>应付总额：</em>
+             <input type="hidden" id="hidTotalPrice" name="hidTotalPrice" value="@ViewBag.TotalAdjustedPrice.ToString("F")" />
+            <strong id="payPriceId" BasePrice="@ViewBag.TotalPrice" TotalAdjustedPrice="@ViewBag.TotalAdjustedPrice">￥@ViewBag.TotalPrice.ToString("F")
+            </strong>
+        </span>
+    </div>
+    <div>
+        <a href="javascript:void(0)" id="order-submit" class="sub_btn" style="color: white;">提交订单</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var proSaleId = parseInt($('#ProSale').val());
+    var groupBuyId = parseInt($('#GroupBuy').val());
+    if (!proSaleId && !groupBuyId && window.navigator.userAgent.indexOf('Maticsoft_Shop_APP') == -1) {
+        //非手机APP访问
+        $('#div_back_cart').show();
+    }
+
+</script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('#order-submit').click(function () {
+                var addressId = $('#step-1 .step-content').attr("addressId");
+                if (!addressId || addressId < 1) {
+                    $.alertEx('请修改收货人信息!', function () {
+                        $('#step-1').effect('highlight', 1000);
+                        //$('#step-1').effect('shake');
+                    });
+                    return false;
+                }
+                var payId = $("#PaymentMode").val();
+                if (!payId || payId < 1) {
+                    $.alertEx('请修改支付方式后提交订单!', function () {
+                        $('#step-2').effect('highlight', 1000);
+                    });
+                    return false;
+                }
+
+
+                var ShippingTypeval = $("#hidShippingType").val();
+                if (ShippingTypeval < 1) {
+                    ShowFailTip("请选择设置配货方式！");
+                    return false;
+                }
+
+
+                var shipId = "";
+                $("[id^='freightPriceId']").each(function (_index, data) {
+                    shipId += ShippingTypeval + ","
+                });
+                shipId = shipId.substr(0, shipId.length - 1);
+                var conpon = $("#hfcoupon").val();
+                /*商家对应的运送方式*/
+                var supplierFreight = "[";
+                $("[id^='freightPriceId']").each(function (_i, data) {
+                  
+                    var supplier = $(this).attr("supplierId");
+                    var shipId = ShippingTypeval;
+                    supplierFreight += "{\"SupplierId\":" + supplier + ",\"ShippingTypeID\":" + shipId + ",\"Remark\":''},";
+
+                });
+                supplierFreight = supplierFreight.substr(0, supplierFreight.length - 1);
+                supplierFreight += "]";
+                SubmitOrder(this, addressId, shipId, payId, conpon, supplierFreight);
+                //SubmitOrder(this, addressId, shipId, payId, conpon);
+            });
+            function changeFreight() {
+                
+                var addressId = $('#step-1 .step-content').attr("addressId");
+                if (!addressId || addressId < 1) {
+                    $.alertEx('请修改收货人信息!', function () {
+                        $('#step-1').effect('highlight', 1000);
+                        //$('#step-1').effect('shake');
+                    });
+                    return false;
+                }
+                var ShippingTypeval = $("#hidShippingType").val();
+                if (ShippingTypeval < 1) {
+                    ShowFailTip("请选择设置配货方式！");
+                    return false;
+                }
+
+                if (!addressId || addressId == '') {
+                    ShowFailTip("请选择收货地址！");
+                    return false;
+                }
+
+                var couponcode= $("#hfcoupon").val();
+                $.ajax({
+                    url: $Maticsoft.BasePath + 'Order/getFreightNew',
+                    type: "POST",
+                    cache: false,
+                    async: false,
+                    data: {
+                        ModeId: ShippingTypeval,
+                        addrId: addressId,
+                        couponCode:couponcode
+                    },
+                    success: function (data) {
+                        if (data.StatusStr == "OK") {
+                            var obj = eval("(" + data.FreightStr + ")");
+                            //运费
+                            var totalFreight = 0.00;
+                            for (var i = 0; i < obj.length; i++) {
+                                $("#freightPriceId" + obj[i].supplier).text(obj[i].fee);
+                                totalFreight = totalFreight + Number(obj[i].fee);
+                            }
+
+
+                            $('#totalfreightPriceId').text('￥' + totalFreight);
+                            $('#hidtotalfreight').val(totalFreight);
+                            $("#totalfreightPriceId").attr("Freight", totalFreight);
+                            var TotalAdjustedPrice = $("#hidTotalPrice").val();
+                            var coupontotalprice= $("#hidcoupontotalprice").val();
+                            var totalprice = parseFloat(TotalAdjustedPrice) + parseFloat(totalFreight) - parseFloat(coupontotalprice);
+                            $("#payPriceId").text(totalprice.toFixed(2));
+                        }
+                        else {
+                            ShowFailTip(data.MessageStr);
+                        }
+                    }
+                });
+               
+              
+            }
+
+            changeFreight();
+
+            $("#entityCouponId").click(function () {
+                var code = $("#txtcoupon").val();
+                var totalPrice = $("#payPriceId").attr("TotalPrice");
+                var TotalAdjustedPrice= $("#hidTotalPrice").val()
+                var totalFreight = $("#hidtotalfreight").val();
+                if (code == "") {
+                    ShowFailTip("请输入优惠券卡号！");
+                    return;
+                }
+                $("#hidcoupontotalprice").val(0);
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    cache: false,
+                    async: false,
+                    url: $Maticsoft.BasePath + "Order/AjaxGetCoupon",
+                    data: { ConponCode: code, TotalPrice: TotalAdjustedPrice },
+                    success: function (data) {
+                        if (data == "False") {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                            return;
+                        }
+                        else if (data == "No") {
+                            ShowFailTip('您输入的优惠券不存在或已过期！');
+                            return;
+                        } else if (data == "Used") {
+                            ShowFailTip('您输入的优惠券已使用！');
+                            return;
+                        } else if (data == "Limit") {
+                            ShowFailTip('您输入的优惠券不满足最低消费金额！');
+                            return;
+                        } else {
+                            $("#hfcoupon").val(code);
+
+                            $("#couponPriceId").text("￥" + data.split("|")[1]);
+                            $("#hidcoupontotalprice").val(data.split("|")[1]);
+                            var paytotalprice = (Number( TotalAdjustedPrice) -Number( data.split("|")[1]) + Number( totalFreight)).toFixed(2);
+                            $("#payPriceId").text("￥" + paytotalprice);
+                        }
+                    }
+                });
+               
+                changeFreight();
+            });
+        });
+    </script>

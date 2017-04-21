@@ -1,0 +1,41 @@
+﻿@{
+    Layout = null;
+}
+@using Maticsoft.Common;
+@model List<Maticsoft.Model.Settings.Advertisement>
+@if (Model != null)
+{
+    <div class="column">
+        <div class="banner">
+            <div class="banner_yb">
+                <div id="preview-content-head">
+                    <div id="preview-slider">
+                        @foreach (var item in Model)
+                        {
+                            <div id="preview-slide-@item.Row">
+                                <a href="@item.NavigateUrl" target="_blank">
+                                    <img src='@item.FileUrl' alt="" width='950' height='270' /></a></div>
+                        }
+                        <div id="preview-slider-line">
+                            <ul id="preview-slider-holder">
+                                @foreach (var item in Model)
+                                {
+                                    <li class="preview-@item.Row">
+                                        <div class="preview-slider-thumbnail">
+                                            <a href="javascript:;" target="_blank">
+                                                <img src='@item.FileUrl' alt="" width='66' height='36' id='preview-thumbnail-im1' /></a></div>
+                                        <span><a href="@item.NavigateUrl" target="_blank">&nbsp;&nbsp;@Html.Raw(StringPlus.SubString(item.AdvertisementName, "", 10, false))</a></span></li>
+               
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div style="clear: both">
+        </div>
+    </div>
+}

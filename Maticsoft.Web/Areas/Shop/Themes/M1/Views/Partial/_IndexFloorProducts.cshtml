@@ -1,0 +1,21 @@
+﻿@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+   
+        <li>
+            <div class="M2_fgoods">
+                <div class="mod_goods_img">
+                    <a target="_blank" href="/Product/Detail/@item.ProductId">
+                        <img class="mgT30" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")" style="width:160px;height:160px" /></a>
+                </div>
+                <div class="mod_goods_info">
+                    <p class="mod_goods_price"><span class="mod_price"><i>¥</i><span>@(item.LowestSalePrice.ToString("F"))</span></span></p>
+                    <p class="mod_goods_tit"><a target="_blank" href="/Product/Detail/@item.ProductId ">@item.ProductName</a></p>
+                </div>
+            </div>
+        </li>                  
+                       
+    }
+}

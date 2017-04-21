@@ -1,0 +1,92 @@
+﻿@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = "微信用户绑定";
+}
+<link href="/Areas/COM/Themes/Default/Content/Css/userstyle.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Areas/COM/Themes/Default/Content/Css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        //微信新用户绑定
+        $("#bindsubmit").click(function () {
+
+            $(this).attr("disabled", "disabled");
+            var userName = $("#txtLogin").val();
+            var pwd = $("#password").val();
+            if (userName == "") {
+                ShowFailTip("请填写用户名！");
+                return;
+            }
+            if (pwd == "") {
+                ShowFailTip("请填写帐号密码！");
+                return;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "WeChat/AjaxBind",
+                type: 'post',
+                dataType: 'text',
+                timeout: 10000,
+                async: false,
+                data: {
+                    Action: "post", UserName: userName, UserPwd: pwd
+                },
+                success: function (resultData) {
+                    if (resultData == "1") {
+                        $(".logincontent").hide();
+                        $("#divSuccess").show();
+                        ShowSuccessTip("绑定用户成功！");
+                    }
+                    if (resultData == "2") {
+                        ShowFailTip("该账户已被冻结，请联系管理员！");
+                    }
+                    if (resultData == "3") {
+                        ShowFailTip("该账户已经绑定了其它帐号！");
+                    }
+
+                    if (resultData == "0") {
+                        ShowFailTip("您输入的用户名和密码有误，请重试！");
+                        $("#bindsubmit").removeAttr("disabled");
+                    }
+                    if (resultData == "-1") {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器繁忙，请稍候再试！");
+                }
+            });
+        });
+    })
+</script>
+@model Maticsoft.ViewModel.Shop.LogOnModel 
+<div class="top">
+    <span>微信用户绑定</span>
+</div>
+<div class="yy">
+    <span id="diverror" style="margin-left: 10px; margin-top: 10px;" class="txterror">
+ 
+    </span>
+</div>
+<div class="logincontent">
+    <span class="login_title">账户：</span>
+    <div>
+        @Html.TextBoxFor(m => m.UserName, new { Class = "logininput", id = "txtLogin" })<br />
+        <div id="divLoginTip" class="txterror">
+            <span class="txterror">@Html.ValidationMessageFor(m => m.UserName)</span>
+        </div>
+    </div>
+    <span class="login_title">密码：</span>
+    <div>@Html.PasswordFor(m => m.Password, new { Class = "logininput", id = "password" })
+        @*<input name="" type="text" class="logininput" />*@<br />
+        <div id="divPasswordTip" class="txterror">
+            <span class="txterror">@Html.ValidationMessageFor(m => m.Password)</span>
+        </div>
+    </div>
+        <span class="login_title" style="text-align:center;">   绑定现有帐号，没有？ <a href="@(ViewBag.MShop)a/r">点击立即注册</a> </span>
+    <div>
+        <input type="button" value="绑定" id="bindsubmit" class="sub_btn"></div>
+</div>
+<div id="divSuccess" style=" display:none; padding-top:40px">
+    <img alt="" src="/Images/02.png" style="width: 32px;padding-left: 12px;" />
+      恭喜您绑定帐号成功。
+</div>

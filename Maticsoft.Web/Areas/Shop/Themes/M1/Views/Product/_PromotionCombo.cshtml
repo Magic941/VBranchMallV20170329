@@ -1,0 +1,103 @@
+﻿  @{
+      decimal totalprice;
+  }
+  @model List<Maticsoft.ViewModel.Shop.ProductAccessorie>
+               @if (Model != null && Model.Count > 0)
+               {
+                    <a name="tab"></a><a name="comment"></a>
+           
+                    <div class="mb15">
+                <ul class="pInfoTab yahei f14 cf">
+                    <li><a  href="javascript:;"><span>优惠套装</span></a></li>
+                </ul>
+            </div>
+              <div id="favorable-suit" class="favorable-suit" >
+                  <div class="tab1body cf "  >
+                      <ul class="detail-list stab ul_detail-list"  >
+                          @for (int i = 0; i < Model.Count; i++)
+                          {
+                              if (Model[i].ProductAccessorieInfo == null)
+                              {
+                                  continue;
+                              }
+                              if (i == 0)
+                              {
+                                     <li  class="scurr" item="acces_@(Model[i].ProductAccessorieInfo.AccessoriesId)">@Model[i].ProductAccessorieInfo.Name</li>
+                              }
+                              else
+                              {
+                                     <li class="sborder" item="acces_@(Model[i].ProductAccessorieInfo.AccessoriesId)">@Model[i].ProductAccessorieInfo.Name</li>
+                              }
+
+                          }
+                      </ul> 
+                  </div>
+                      @for (int i = 0; i < Model.Count; i++)
+                      {
+                          if (Model[i].ProductAccessorieInfo == null)
+                          {
+                              continue;
+                          }
+                        
+                                  <div class="bd div_access_item"   id="acces_@(Model[i].ProductAccessorieInfo.AccessoriesId)" @if (i != 0)
+                                                                                                                               {
+                                                                                                                                   @:style="display:none;"
+                                                                                                                               } >
+
+             @if (Model[i].SkuInfo != null)
+             {
+                 totalprice = 0;
+                 
+                 <div  style="width:600px;">
+                 @foreach (var item in Model[i].SkuInfo)
+                 {
+                     totalprice += item.SalePrice;
+                         
+                       <div class="master" >    <s></s>    
+                          <div class="p-img">
+                              <a href="@item.SeoUrl" target="_blank">
+                                  <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ProductThumbnailUrl, "T115X115_")"  onerror="this.onerror='';this.src='/Areas/Shop/Themes/M1/Content/Images/404.jpg'" height="100" width="100" >
+                              </a>    
+                          </div>   
+                          <div class="p-name">
+                              <a href="@item.SeoUrl" target="_blank">@item.ProductName</a>    
+                          </div>     
+                            <div class="p-name" style="height:25px">
+                                           @if (item.SkuItems != null && item.SkuItems.Count > 0)
+                                           {
+                                               foreach (var valueItems in item.SkuItems)
+                                               {
+                       <span>@valueItems.ValueStr</span> 
+                                               }
+
+
+                                           }
+                                                           
+                            </div>         
+                       </div>
+                 }
+                     </div>  
+                           <div class="infos">
+                                        <s></s>                      
+                                        <div class="p-price">套&nbsp;&nbsp;装&nbsp;&nbsp;价：       
+                                            <strong class="fitting-price">
+                                                @Model[i].ProductAccessorieInfo.DiscountAmount.ToString("F")
+                                            </strong>    </div>   
+                                        <div class="p-price">原　　价：     
+                                            <del class="orign-price">@totalprice.ToString("F")</del>    </div>  
+                                        <div class="p-saving">立即节省：      
+                                            <span class="fitting-saving">@((totalprice - Model[i].ProductAccessorieInfo.DiscountAmount).ToString("F"))</span>    </div>  
+                                        <div class="btns">
+                                            <a class="btn-buy" href="@(ViewBag.BasePath)Order/SubmitOrder?a=@(Model[i].ProductAccessorieInfo.AccessoriesId)" target="_blank" clstag="shangpin|keycount|product|zybuysuit">购买套装</a>    
+                                        </div>
+                                    </div>  
+             }  </div> 
+                         
+                      }
+             
+
+              </div>
+            
+                            
+               }
+ 

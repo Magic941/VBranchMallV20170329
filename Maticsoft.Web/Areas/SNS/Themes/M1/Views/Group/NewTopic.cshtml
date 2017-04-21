@@ -1,0 +1,143 @@
+﻿@model Maticsoft.Model.SNS.Groups
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = "/ueditor/";
+    </script>
+    <script src="/ueditor/editor_config.js" type="text/javascript"></script>
+    <script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+    <link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+     <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>@*上传图片的要引用的js*@
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/NewTopic.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+}
+<!------published------> 
+<input id="groupid" value="@Model.GroupID" type="hidden" />
+<div class="clear"></div>
+<div class="single_bk">
+  <div class="single_bk_F">
+    <div class="single_bk_FA">
+      <div class="single_Tf">
+         <dl class="single_Tf_A"></dl>
+         <dl class="single_Tf_B" style="">
+            <p class="single_Tf_B_a">@Model.GroupName</p>
+            <p class="single_Tf_B_b">创建于 @Model.CreatedDate
+            </p>
+         </dl>
+      </div>
+      <div class="clear"></div>
+      <div class="single_CF">
+         <div class="published">
+            <h1>发表主题</h1>
+            <div class="published_h">
+               <p>标题:</p>
+              <div class="published_h_i">
+                  <dl class="published_h_i1"></dl>
+                  <dl class="published_h_i2"><input name="" type="" value="" id="titleTopic" /></dl>
+                  <dl class="published_h_i3"></dl>
+               </div>
+            <div class="clear"></div>
+            </div>
+            <div class="published_h">
+                        <p>正文:</p>
+                        <div class="published_u">
+                            <div class="published_u_2"><textarea name="" cols="" rows="" id="contentTopic"></textarea></div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+            <div class="published_v">
+             
+               <div class="published_v1"style=" position:relative; display: none ">
+                  <p><a href="javascript:;" class="biaoqingshow"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_14.jpg"/></a></p>
+                  <p ><a href="javascript:;" class="biaoqingshow">表情</a></p>
+                  <div class="cbiaoqing" style="top:10px;display:none; left:-20px;z-index:999" id="tbiaoqing"> 
+                       @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_biaoqing.cshtml")
+                     </div>
+               </div>
+               <div class="published_v1" id="UploadProduct" style=" position:relative">
+                  <div id="LoadUrlShow"><p><a href="javascript:void(0)"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_15.jpg"/></a></p>
+                  <p><a href="javascript:void(0)">商品</a></p></div>
+                  <div class="yshopp" id="LoadProductWindow" style=" display:none">
+                  <div class="biaoqing_a"></div>
+                     <div class="biaoqing_b">
+                        <div class="biaoqing_b1" id="LoadUrlClose" style=" cursor:pointer">
+                           <div class="yshopp_g"><img src="/Areas/SNS/Themes/M1/Content/images/biao2.jpg"/></div>
+                        </div>
+                        <div class="yshopp_d">
+                             <div class="yshopp_d1">
+                                <dl class="yshopp_d1_a"><input onfocus="this.value=''" onblur="if(this.value==''){this.value='将商品网址粘贴到这里'}" id="ProductLink" type="text" value="将商品网址粘贴到这里"/></dl>
+                                <dl class="yshopp_d1_b"><a href="javascript:void(0)" id="addProduct"><img src="/Areas/SNS/Themes/M1/Content/images/yshop1.jpg"/></a></dl>
+                             </div>
+                             <div class="yshopp_d2" style=" ">
+                                <ul>
+                                  <li>已支持以下网站：
+                                  <li><a target="_blank" href="http://www.taobao.com/">淘宝</a>
+                                  <li><a target="_blank" href="http://www.tmall.com/">天猫</a>
+                                
+                                </ul>
+                             </div>
+                        </div>
+                     </div>
+                   </div>
+               </div>
+               <div class="published_v1" id="UploadPhoto" >
+                  <p><a href="javascript:;"><img src="/Areas/SNS/Themes/M1/Content/images/detailed_16.jpg"/></a></p>
+                  <p><a href="javascript:;">图片</a></p>
+               </div>
+               @Html.Action("WeiBoBind", "Partial")
+
+            <div class="clear"></div>
+            </div>
+
+             <div class="published_h" style="margin-left: 50PX;margin-top: 10PX; display:none" id="yulanImage">
+                 <div class="xyu">
+                     <div class="xyu_b" style="float:right">
+                         <a href="javascript:;" >
+                             <img src="/Areas/SNS/Themes/M1/Content/images/xyu1.png" id="CancelImage" /></a></div>
+                     <div class="xyu_a">
+                         <img src="/Areas/SNS/Themes/M1/Content/images/xyu.jpg"  id="yulantu" style="height:137px"/></div>
+                 </div>
+             </div>
+            <div class="published_w">
+                 <div class="published_w_a"><a href="javascript:void(0);" id="SubmitTopic"><img src="/Areas/SNS/Themes/M1/Content/images/published_7.jpg"/></a></div>
+                 <div class="published_w_b" id="backGroup"><a href="javascript:void(0)">取消</a></div>
+                 <script type="text/javascript">
+                     $("#backGroup").click(function () { var id = $("#groupid").val(); window.location = "@(ViewBag.BasePath)Group/GroupInfo?GroupId=" + id + "" });
+                 
+                 </script>
+            <div class="clear"></div>
+            </div>
+
+         <div class="clear"></div>
+         </div>
+      <div class="clear"></div>  
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: 'ueditor/themes/default/iframe.css', toolbars: [
+
+            ['fullscreen',
+                'bold', 'underline', 'strikethrough', '|', 'removeformat', '|', 'forecolor', 'backcolor',
+                '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', 'insertorderedlist', 'insertunorderedlist', '|',
+                'insertimage', 'imagenone', 'imageleft', 'imageright',
+                'imagecenter', '|']
+                 ],
+        initialContent: '', autoHeightEnabled: false,
+        minFrameHeight: 220,
+        pasteplain: false
+         , wordCount: false
+          , elementPathEnabled: false
+ , autoClearinitialContent: true, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor.render('contentTopic'); //将编译器渲染到容器
+    </script>
+<!------published end----->
+
+

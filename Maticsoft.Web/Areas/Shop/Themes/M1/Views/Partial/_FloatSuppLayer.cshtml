@@ -1,0 +1,81 @@
+﻿@model  Maticsoft.Model.Shop.Supplier.SupplierInfo
+            @if (Model != null )
+            {
+                decimal scores = (Model.ScoreDesc + Model.ScoreService + Model.ScoreSpeed)/3;
+                <div  id="brand-bar-pop"  class="zaixianduihua"> 
+                    <dl id="seller">
+                        <dt>卖&#12288;&#12288;家：</dt>
+                        <dd style="margin-bottom: 5px;"><a  target="_blank"  href="@(ViewBag.BasePath)Store/@Model.SupplierId"  title="@Model.ShopName">@Model.ShopName</a></dd>
+                        
+                    </dl>
+                    <dl id="evaluate" style="display:none;">
+                        <dt>综合评分：</dt>
+                        <dd>
+                            <span class="heart-white"><span class="heart-red h9">&nbsp;</span></span>
+                            <em class="evaluate-grade">
+                                <strong title="@scores"><a target="_blank" href="javascript:;">@scores.ToString("0.0")</a></strong>分
+                            </em><s id="ssuppscores" ></s>
+                        </dd>
+
+                    </dl>
+                    <div class="m" id="evaluate-detail" style="display:none;">
+                        <div class="mt">
+                            <div class="fl">评分明细</div>           
+                            <div class="p-bfc">&nbsp;</div>        
+                        </div>        <div class="mc">
+                                          <dl>
+                                              <dt>商品评分：</dt>               
+                                              <dd>
+                                                  <span title="@Model.ScoreDesc" class="eva-grade">@Model.ScoreDesc.ToString("0.0")<b>分</b></span>                              
+                                              </dd>            
+                                          </dl>           
+                                          <dl>
+                                              <dt>服务评分：</dt>              
+                                              <dd>
+                                                  <span title="@Model.ScoreService" class="eva-grade">@Model.ScoreService.ToString("0.0")<b>分</b></span>                            
+                                              </dd>            
+                                          </dl>           
+                                          <dl>
+                                              <dt>时效评分：</dt>             
+                                              <dd>
+                                                  <span title="@Model.ScoreSpeed" class="eva-grade">@Model.ScoreSpeed.ToString("0.0")<b>分</b></span>                             
+                                              </dd>            
+                                          </dl><div class="line"></div>        
+                                      </div>
+                    </div>
+                     @if (!String.IsNullOrWhiteSpace(Model.QQ))
+                            {
+                                <dl id="online-service" style="display: block;">
+                                    <dt style="margin-bottom: 10px;">在线咨询：</dt>
+                                    <dd>
+                            
+                                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=@(Model.QQ)&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:@(Model.QQ):41"  onerror="this.onerror='';$('#online-service').hide();"></a>
+                           
+ 
+                                    </dd>
+
+                                </dl> } 
+                                <dl id="pop-company" ><dt>公司名称：</dt><dd>@Model.Name</dd></dl><dl id="pop-address"><dt>所&nbsp;在&nbsp;地：</dt><dd>@Model.Address</dd></dl>
+                    <dl id="hotline">
+                        <dt>联系电话：</dt>
+                        <dd>@Model.ServicePhone</dd>
+                    </dl>
+                    <div id="enter-shop">
+                        <a target="_blank" href="@(ViewBag.BasePath)Store/@Model.SupplierId" >进入卖家店铺</a>
+                    </div>
+                </div>
+                
+                <script type="text/javascript">
+                    $(function () {
+                        $('#ssuppscores').click(function () {
+                            if ($(this).hasClass('fold')) {
+                                $(this).removeClass('fold');
+                                $('#evaluate-detail').show();
+                            } else {
+                                $(this).addClass('fold');
+                                $('#evaluate-detail').hide();
+                            }
+                        });
+                    });
+                </script>
+            }

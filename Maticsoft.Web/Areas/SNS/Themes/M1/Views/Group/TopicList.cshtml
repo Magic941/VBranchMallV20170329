@@ -1,0 +1,67 @@
+﻿
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.GroupTopics>
+       @{
+        
+    Layout = null;
+}
+<div class="content_post">
+
+@if (Model != null)
+{
+     foreach (Maticsoft.Model.SNS.GroupTopics item in Model)
+     {
+           <div class="content_post_one" style=" margin-top:25px">
+@*           <dl class="chunk"><a href="javascript:;">149</a></dl>
+*@
+               <dl class="chunk"><a style=" font-size:18px" href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">@item.ReplyCount</a></dl>
+               <dl class="author">
+                   <dt class="author_tit"><a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">@item.Title</a></dt>
+                   <dd class="author_nam">
+                      <p class="author_nam_a"><a href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID"><img width="15px" height="15px" alt="@(item.CreatedNickName)"  src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" onerror="this.onerror='';this.src='/Upload/User/Gravatar/default.jpg';" /></a></p>
+                      <p class="author_nam_b"><a href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID">@item.CreatedNickName</a></p>
+                   </dd>
+               </dl>
+               <dl class="reply">
+                 <p>@item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+               
+                   @if (ViewBag.IsCreator != null && ViewBag.IsCreator)
+                   {
+                     if (item.IsRecomend == 0)
+                     {
+           
+                           <a href="javascript:void(0)" class="topicRecommand" topicid="@item.TopicID">推荐</a>
+                           <a style="display:none" href="javascript:void(0)" class="CancellTopicRecommand" topicid="@item.TopicID">取消推荐</a>
+                     }
+                     else
+                     {
+               
+                           <a style="display:none" href="javascript:void(0)" class="topicRecommand" topicid="@item.TopicID">推荐</a>
+                           <a href="javascript:void(0)" class="CancellTopicRecommand" topicid="@item.TopicID">取消推荐</a>
+                     }
+                          <a href="javascript:void(0)" class="DeleteTopic" topicid="@item.TopicID">删除</a>
+                   }  <a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">回复</a>
+               </dl>
+           <div class="clear"></div>
+           </div>
+     }
+}
+        <div class="clear"></div>
+        </div>
+
+                  <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model, new PagerOptions()
+       {
+           CssClass = "in_pages",
+           PageIndexParameterName = "page",
+           NumericPagerItemCount = 5,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       },
+                                   new AjaxOptions() { UpdateTargetId = "MaticsoftToplist" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+           
+
+      

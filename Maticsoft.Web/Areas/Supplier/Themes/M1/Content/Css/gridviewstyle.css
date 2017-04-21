@@ -1,0 +1,159 @@
+﻿.SmallCommonTextButton
+{
+    font-weight:bold;color:#000!important;
+}
+.SmallCommonTextButton:LINK
+{
+    text-decoration: none;
+    color: #333333;
+}
+
+.SmallCommonTextButton:VISITED
+{
+    text-decoration: none;
+    color: #333333;
+}
+
+.SmallCommonTextButton:ACTIVE
+{
+    text-decoration: none;
+    color: #333333;
+}
+
+.SmallCommonTextButton:HOVER
+{
+    text-decoration: underline;
+    color: #333333;
+}
+.SmallCommonTextButtonHighlight:LINK, .CommonTextButtonHighlight:VISITED, .CommonTextButtonHighlight:ACTIVE, .CommonTextButtonHighlight:HOVER
+{
+    text-decoration: none;
+    color: #333333;
+}
+
+/*表格样式*/
+.formTableList{margin:0px;BORDER-RIGHT: #6493c8 1px solid; BORDER-TOP: #6493c8 1px solid; BACKGROUND: #E6EFF8; BORDER-LEFT: #6493c8 1px solid; BORDER-BOTTOM: #6493c8 1px solid
+}
+.formTableList td{padding:4px 0px;}
+.formTableList .leftTD{
+	border-top:1px #e1e1e1 solid; background:#E6EFF8;padding-right:3px;text-align:right;width:125px;
+}
+.formTableList .rightTD,.bottonLeftTD{
+	border-top:1px #e1e1e1 solid;padding-left:8px;
+}
+.formTableList .rightTD{
+	width:auto;
+}
+.bottonLeftTD{width:120px;}
+.searchTableLeftTD{width:1px;}
+.searchTableControlTD{width:1px;padding-right:10px;}
+.bottonTD{padding-left:12px;}
+/*表格样式结束*/
+input { padding:2px; }
+select {padding:0;margin:0px;}
+.input_longest
+{
+    width:300px;    
+}
+.input_short
+{
+    width:200px;    
+}
+.input_leastLength
+{
+    width:50px;    
+}
+textarea { font-size:12px; }
+.fileUploadStyle{width:230px;}/*上传input的样式*/
+
+/*gridview*/
+.GridViewStyle {
+	width:100%;
+	font-size:12px;
+}
+.GridViewStyle table /* to center the paging links*/ { margin:0px auto; }
+.GridViewStyle th,.GridViewStyle td{line-height:22px;padding:1px 5px;}
+.GridViewStyle td.productcag2{padding-left:80px;}
+.GridViewStyle td.productcag3{padding-left:120px;}
+.GridViewStyle td.productcag4{padding-left:140px;}
+.GridViewStyle td.productcag5{padding-left:160px;}
+.GridViewStyle td.productcag6{padding-left:180px;}
+.GridViewStyle td.productcag7{padding-left:200px;}
+.GridViewStyle td.productcag8{padding-left:220px;}
+.GridViewStyle td.productcag9{padding-left:240px;}
+.GridViewStyle td.productcag10{padding-left:260px;}
+.GridViewStyle td.productcag11{padding-left:280px;}
+.GridViewStyle td.productcag12{padding-left:300px;}
+.GridViewStyle td.productcag13{padding-left:320px;}
+.GridViewStyle td.productcag14{padding-left:340px;}
+.GridViewStyle td.productcag15{padding-left:360px;}
+/*.GridViewStyle th,.GridViewStyle td{white-space:nowrap;}*/
+.grdrow td, .grdalternationRow td {
+	border-bottom: 1px solid #ddd;
+	height:25px;
+}
+/*.grdrow td, input{
+    height:19px;
+    padding-top:2px;
+}*/
+.grdrow:hover td, .grdalternationRow:hover td { /*background-color:#FBFBF4; */background-color:#E3EFFF;}
+.GridNoBorder{border-top:1px solid #ddd;}
+.GridViewHeaderStyle th {
+	border-color: #CCCCCC;
+	border-bottom:1px solid #ddd;
+	color:#858585;
+	font-weight:normal;
+	
+}
+.GridViewHeaderStyle th a {
+	/*border-bottom:1px solid #ddd;*/
+	color:#E6EFF8;
+	text-align:left;
+	font-weight:normal;
+	padding-top:10px;
+}
+.leftbgColorByEditTable {
+	background-color:#f9f9f9;
+	padding-right:7px;
+	color:#003451;
+	text-align:right;
+}
+.rightbgColorByEditTable {
+	background-color:#E6EFF8;
+}
+.leftbgColorByZhuShi {
+	padding-left:12px;
+	height:20px;
+	color:#959595;
+}
+/*gridview 结束*/
+
+/******ShowTable开始****/
+        .ShowTableList
+        {
+            margin: 0px;
+            border-right: #6493c8 1px solid;
+            border-top: #6493c8 1px solid;
+            background: #E6EFF8;
+            border-left: #6493c8 1px solid;
+            border-bottom: #6493c8 1px solid;
+        }
+        
+        .ShowTableList td
+        {
+            padding: 4px 0px;
+        }
+        
+        .ShowTableList .leftTD
+        {
+            border-top: 1px #e1e1e1 solid;
+            background: #E6EFF8;
+            padding-right: 3px;
+            text-align: right;
+            width: 125px;
+        }
+        .ShowTableList .rightTD{
+	border-top:1px #D4E4F6 solid;padding-left:8px;width:auto;
+}
+/*结束****/
+.typesch{} .typeatt{} .typevideo{}

@@ -1,0 +1,6 @@
+﻿    @model List<Maticsoft.Model.Settings.Advertisement>
+    @if (Model != null && Model.Count > 0)
+    {
+        <a href="@Model[0].NavigateUrl" target="_blank"> <img src="@Model[0].FileUrl" width="315" title="@Model[0].AdvertisementName" /></a>
+    }
+    

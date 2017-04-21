@@ -1,0 +1,114 @@
+﻿@model Maticsoft.Model.V_DriveCardInfo
+<div class="Orders" style="display: block" ng-app="activaDrivenCardApp" ng-controller="activaDrivenCardCtrl">
+    @if (Model != null)
+    {
+        <div class="border-out"  ng-show="ApplicantType==1">
+            <table frame="void" class="card-detail" width="100%" border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="4">个人驾乘卡投保信息</th>
+                </tr>
+                <tr>
+                    <td width="16%" class="bg1">卡号：</td>
+                    <td width="34%">@Model.CardNo</td>
+                    <td width="16%" class="bg1">激活时间：</td>
+                    <td width="34%">@Model.ActivateDate</td>
+                </tr>
+                @if(string.IsNullOrEmpty(Model.InsureNo))
+                {
+                    <tr>
+                        <td width="16%" class="bg1">保单号：</td>
+                        <td width="34%">@Model.InsureNo</td>
+                        <td width="16%" class="bg1">保单</td>
+                        <td width="34%"><a href="@Model.InsureOrderFileUrl"target="_blank">点击查看</a></td>
+                    </tr>
+                }               
+            
+                <tr>
+                    <td class="bg1">手机号:</td>
+                    <td>@Model.Mobile</td>
+                    <td class="bg1">身份证：</td>
+                    <td>@Model.CardID</td>
+                </tr>
+                <tr>
+                    <td class="bg1">车牌号:</td>
+                    <td>@Model.LPNumber</td>
+                    <td class="bg1">车架号：</td>
+                    <td>@Model.VINumber</td>
+                </tr>
+                 <tr>
+                    <td class="bg1">车座位数:</td>
+                    <td>@Model.SeatsNumber</td>
+                    <td class="bg1"></td>
+                    <td></td>
+                </tr>
+                
+            </table>
+         
+        </div>
+        
+         <div class="border-out"  ng-show="ApplicantType==2">
+            <table frame="void" class="card-detail" width="100%" border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="4">单位驾乘卡投保信息</th>
+                </tr>
+                <tr>
+                    <td width="16%" class="bg1">卡号：</td>
+                    <td width="34%">@Model.CardNo</td>
+                    <td width="16%" class="bg1">激活时间：</td>
+                    <td width="34%">@Model.ActivateDate</td>
+                </tr>
+                 <tr>
+                    <td width="16%" class="bg1">投保单位：</td>
+                    <td width="34%">@Model.EnterpriseName</td>
+                    <td width="16%" class="bg1">单位机构代码证：</td>
+                    <td width="34%">@Model.EnterpriseCode</td>
+                </tr>
+
+                @if(string.IsNullOrEmpty(Model.InsureNo))
+                {
+                    <tr>
+                        <td width="16%" class="bg1">保单号：</td>
+                        <td width="34%">@Model.InsureNo</td>
+                        <td width="16%" class="bg1">保单</td>
+                        <td width="34%"><a href="@Model.InsureOrderFileUrl"target="_blank">点击查看</a></td>
+                    </tr>
+                }               
+            
+                <tr>
+                    <td class="bg1">手机号:</td>
+                    <td>@Model.Mobile</td>
+                    <td class="bg1">身份证：</td>
+                    <td>@Model.CardID</td>
+                </tr>
+                <tr>
+                    <td class="bg1">车牌号:</td>
+                    <td>@Model.LPNumber</td>
+                    <td class="bg1">车架号：</td>
+                    <td>@Model.VINumber</td>
+                </tr>
+                 <tr>
+                    <td class="bg1">车座位数:</td>
+                    <td>@Model.SeatsNumber</td>
+                    <td class="bg1"></td>
+                    <td></td>
+                </tr>
+                
+            </table>
+         
+        </div>
+    }
+    else
+    {
+        <h4>暂无卡激活信息</h4>
+    }
+</div>
+
+
+<script>
+
+    var app = angular.module('activaDrivenCardApp', []);
+    app.controller('activaDrivenCardCtrl', function ($scope, $http) {
+        $scope.ApplicantType = '@Model.ApplicantType';
+    });
+
+</script>

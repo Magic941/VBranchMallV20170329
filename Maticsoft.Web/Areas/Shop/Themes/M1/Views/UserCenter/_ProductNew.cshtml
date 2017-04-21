@@ -1,0 +1,35 @@
+﻿ @model List<Maticsoft.Model.Shop.Products.ProductInfo>
+  <div class="box hot-new" style="display: block;">
+      <div class="hd">
+          <h2>
+              热销新品</h2>
+      </div>
+
+      <div class="bd">
+          @if (Model != null)
+          {
+              <ul class="list-s" id="ulHotSales">
+                  @foreach (var item in Model)
+                  {
+                      <li class="item-s"><a title="@item.ProductName" href="/Product/Detail/@item.ProductId" class="item-s-pic" target="_blank">
+                                             <img width="50" height="65" alt="@item.ProductName" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T50X65_")"></a><div class="item-s-txt">
+                                                                                                                                                                                                      <a title="@item.ProductName" href="/Product/Detail/@item.ProductId" class="item-s-title" target="_blank">@item.ProductName</a><p class="item-s-brand">
+                                                                                                                                                                                                                                                                                                                                           @item.CategoryName</p>
+                                                                                                                                                                                                      <p class="item-s-price">
+                                                                                                                                                                                                          <span>@item.LowestSalePrice.ToString("F")</span></p>
+                                                                                                                                                                                                  </div>
+                      </li>
+
+                  }
+                 
+                  
+            
+              </ul>
+          }
+          else
+          {
+              <span>暂无新品</span>
+          }
+       
+      </div>
+            </div>

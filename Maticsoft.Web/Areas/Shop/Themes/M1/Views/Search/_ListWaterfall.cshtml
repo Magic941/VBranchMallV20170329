@@ -1,0 +1,55 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfoForProductIndex>
+@{
+    <script type="text/javascript">
+        $(function () {
+            $.lazyFixedLoadImg('.item', 175, 228);
+        });
+    </script>
+
+    if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+    <li class="Glist cur" styleid="product_@(item.ProductId)">
+        <div class="Glist-box">
+            <a class="Glist-box-img" target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">
+                <img style="width:200px;height:200px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T400X400_")" title="@item.ProductName" alt="@item.ProductName" /></a>
+            <div class="Good-HD">
+                <div class="txt-red" title="@item.Subhead">
+                    @if (item.Subhead != null)
+                    {
+                        if (item.Subhead.Length > 18)
+                        {@item.Subhead.Substring(0, 18);
+                        }
+                        else
+                        {@item.Subhead}
+                    }
+                </div>
+            </div>
+            <div class="price-box clearfix">
+                <span class="price txt-red">¥@(item.LowestSalePrice.ToString("F"))</span>
+                <del>¥@(item.MarketPrice.Value.ToString("F"))</del>
+            </div>
+            <div class="Goods-Tit">
+                <a  target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" >@item.ProductName</a>
+            </div>
+            <div class="comment clearfix">
+                @*<span class="fL comment-p">评论<a href="#"><em>2150条</em></a></span>
+                                <span class="fan fR">返4.5元</span>*@
+            </div>
+            <div class="Glist-act clearfix">
+                @*<div class="shopping_num">
+                                        <input type="text" value="1">
+                                        <span>
+                                            <a class="add">加</a>
+                                            <a class="dis_decrease" href="#">减</a>
+                                        </span>
+                                    </div>*@
+                <div class="fL shopping-btn-s"><a target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"></a></div>
+            </div>
+            @*<div class="owner"><span>健康店自营</span></div>*@
+        </div>
+    </li>
+        }
+    }
+}

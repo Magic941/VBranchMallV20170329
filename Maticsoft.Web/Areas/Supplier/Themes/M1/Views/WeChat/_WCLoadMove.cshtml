@@ -1,0 +1,53 @@
+﻿
+@*<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>*@
+@model List<Maticsoft.WeChat.Model.Core.Group>
+@if (Model != null)
+{        
+    <select name="ddGroup" id="ddGroup">
+        <option value="-1">移动到...</option>
+        @foreach (var item in Model)
+        {
+            <option value=@item.GroupId>@item.GroupName</option>
+        }
+    </select>
+}
+<script type="text/javascript">
+    $(function () {
+        //移动分组
+        $('#ddGroup').change(function () {
+            var groupId = $("#ddGroup").val();
+            var Ids = "";
+
+            var obj = $(':checkbox[name="WebChat"][checked=checked]')
+            if (obj.length == 0) {
+                ShowFailTip("请选择要移动的项！");
+                return false;
+            } else {
+                obj.each(function () {
+                    if (($(this).attr("checked")) == "checked") {
+                        Ids += $(this).attr("id") + ",";
+                    }
+                });
+                $.ajax({
+                    url: ($Maticsoft.BasePath + "WeChat/DDGroup?timestamp={0}").format(new Date().getTime()),
+                    type: 'POST',
+                    dataType: 'json',
+                    timeout: 10000,
+                    async: false,
+                    data: { ids: Ids, groupId: groupId },
+                    success: function (resultData) {
+                        if (resultData["Result"] == "OK") {
+                            ShowSuccessTip("批量删除成功!");
+                            window.location.href = $Maticsoft.BasePath + 'WeChat/UserList';
+                        } else {
+                            ShowFailTip("批量删除失败!");
+                        }
+                    }, error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        ShowFailTip(xmlHttpRequest.responseText);
+                    }
+                });
+            }
+        });
+    });
+</script>

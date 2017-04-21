@@ -1,0 +1,165 @@
+﻿@using Maticsoft.Model.Shop.Products
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/about.css" rel="stylesheet" type="text/css" /> 
+}
+<style>
+.Wechat_a{
+	width:100%;
+	height:3rem;
+	background:#fff;
+	margin-bottom:10px;
+	}
+.Wechat_a a{
+	width:50%;
+	height:3rem;
+	line-height:3rem;
+	display:inline-block;
+	*display:inline;zoom:1;
+	float:left;
+	text-align:center;
+	border-bottom:2px solid #cbcbcb;
+	}
+.Wechat_a a.ccc{
+	border-bottom:2px solid #e7114e;
+	}
+.Wechat_b{
+	width:90%;
+	margin:0 auto;
+	border:1px solid #d3d3d3;
+	background:#fff;
+	}
+.Wechat_bag{
+	border-bottom:1px solid #d3d3d3;
+	}
+.Wechat_bag a{
+	width:95%;
+	margin:0 auto;
+	display:block
+	}
+.Wechat_bag a img{
+	width:100%;
+	padding:0.4rem 0 0.1rem 0;
+	}
+.Wechat_b p{
+	width:95%;
+	margin:0 auto;
+	font-size:1rem;
+	}
+.Wechat_b p a{
+	color:#7f7f7f;
+	}
+.Wechat_b em{
+	font-style:normal;
+	width:95%;
+	margin:0 auto;
+	color:#d03b3b;
+	font-size:1.5rem;
+	display:block;
+	}
+.Wechat_cn{
+	width:90%;
+	margin:0 auto;
+	}
+.Wechat_cn ul{
+	overflow:hidden;
+	padding:0;
+	}
+.Wechat_cn li{
+	float:left;
+	width:48%;
+	border:1px solid #d3d3d3;
+	background:#fff;
+	margin-bottom:0.5rem;
+	}
+.Wechat_cn li a img{
+	border-bottom:1px solid #d3d3d3;
+	}
+.Wechat_baf a img{
+	width:100%;
+	}
+.Wechat_cn li:nth-child(2n+1){
+	float:right;
+	}
+.Wechat_cn li p{
+	width:90%;
+	margin:0 auto;
+	color:#3d3d3d;
+	font-size:1rem;
+	}
+.Wechat_cn li p a{
+	color:#3d3d3d;
+	}
+.Wechat_sell{
+	width:90%;
+	overflow:hidden;
+	margin:0 auto;
+	}
+.Wechat_sell em{
+	font-style:normal;
+	color:#d03b3b;
+	font-size:1rem;
+	float:left;
+	padding-right:5px;
+	}
+.Wechat_sell i{
+	font-style:normal;
+	color:#999999;
+	font-size:1rem;
+	float:left;
+	}
+.Wechat_sell a{
+	width:1.8rem;
+	height:1.8rem;
+	text-align:right;
+	display:block;
+	float:right;
+	}
+.Wechat_sell a img{
+	width:100%;
+	}
+</style>
+<div class="top">
+    <div class="header-btn fl">
+        <a href="@(ViewBag.BasePath)p/c" style="margin: 8px; padding-top: 8px; height: 22px; border:0px">
+            <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/images/sort.png">
+        </a>
+    </div>
+    <div class="logo fl" style="margin: 8px 8px 8px 0; padding-top: 5px; height: 25px; border:0px">
+        <a href="@ViewBag.BasePath">
+           <img src="/Areas/MShop/Themes/M1/Content/images/header-icon3.jpg" width="22" height="21">
+        </a>
+    </div>
+    <div class="header-btn fr">
+        <a href="@(ViewBag.BasePath)u" style="margin: 8px 8px 8px 0; padding-top: 5px; height: 25px; border:0px">
+            <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/images/header-icon2.jpg"></a><a 
+                href="@(ViewBag.BasePath)sc/ci" style="margin: 8px 8px 8px 0; padding-top: 5px; height: 25px; border:0px">
+               <img src="/Areas/MShop/Themes/M1/Content/images/header-icon1.jpg" width="22" height="21">
+            </a>
+    </div>
+</div>
+
+<style type="text/css">
+    body
+    {
+        word-break: break-all;
+    }
+</style>
+
+  <div class="touch_top">
+    	<img src="/Areas/MShop/Themes/M1/Content/img/21_02.png" />
+    </div>
+  <div class="touch_content">
+    	<p>全国热线电话：400-021-3888</p>
+        <p>申请热线：021-54260290 </p>
+        <p>邮箱：haolin@zhenhaolin.com</p>
+        <p>地址：上海徐汇区漕河泾经济开发区田林路398号2号楼A座6楼</p>
+   </div>
+
+@*<div class="ding">
+    <a href="javascript:;">回顶部</a></div>*@

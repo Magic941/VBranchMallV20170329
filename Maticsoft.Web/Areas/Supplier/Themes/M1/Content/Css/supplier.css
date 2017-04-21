@@ -1,0 +1,45 @@
+﻿
+/**原gridview的样式**/
+.autobrake{ word-wrap: break-word;  width: 280px;}
+.item-title-area{   width: 300px;  }
+.high-light{cursor: pointer;}
+.txtpname{ width: 260px;  display: none; }  
+.text { mso-number-format:\@@; }
+.GridViewTyle tr td { border: 1px solid #CCCCCC;}
+.GridViewTyle tr td table tr td{ border: none;}
+.GridViewTyle tr td { border-spacing: 2px; border-color: #CCCCCC;border-collapse: collapse;empty-cells: show; }
+.GridViewTyle a{ color:#1317fc;text-decoration: none;}
+.GridViewTyle a:hover{ color:#1317fc;}
+.GridViewTyle span{  text-align:center;}
+.GridViewTyle th{text-align: center;color: #666666;}
+.oddtrcolor{ background-color: rgb(255, 255, 255);cursor: pointer; background-position: initial initial; background-repeat: initial initial;}
+.eventrcolor{background-color: rgb(244, 244, 244); cursor: pointer; background-position: initial initial; background-repeat: initial initial;}
+.tylehover{ background-color:rgb(203, 227, 244);}
+/**分页样式**/
+.seller_in_pages{width:100%;margin: 10px;line-height: 26px; overflow:hidden;}
+.seller_in_pages span{  margin-right:4px; text-align:center; color:#1317fc; font-family:"微软雅黑";font-weight:bold;display:inline-block; *display: inline; font-size:13px; font-weight:bold;}
+.seller_in_pages span a{ color:#1317fc;font-weight:bold; display:inline-block; *display: inline; background:#E8F0EF ;border:#E8F0EF 1px solid; padding:2px 8px 2px 8px;font-weight:bold; }
+.seller_in_pages span a:hover{ padding:2px 8px 2px 8px; background:#fff; color:orange;display:inline-block; *display: inline; background:#fff;border:#E8F0EF 1px solid; }
+.seller_in_pages .in_s { padding:2px 8px 2px 8px; background:#fff; color:orange;display:inline-block; *display: inline; background:#fff;border:#E8F0EF 1px solid;font-weight:bold; }
+
+.seller_orlist_st{display: none;border: 1px #1317fc solid;padding-left: 5px;padding-right: 5px;margin-right: 5px;padding-top: 2px;padding-bottom: 2px;white-space: nowrap;}
+ 
+.Adstd {
+    text-align: center;
+    height: 27px;
+    padding-left:5px;
+}
+.GridView td {
+    text-align: center;
+    height: 34px;
+}
+ .GridView a{
+display:inline-block;
+width:50px;
+color: #1317fc
+}
+.GridView td.supp_in_pages {
+   text-align: right;
+padding-right: 20px;
+}
+

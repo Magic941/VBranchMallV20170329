@@ -1,0 +1,19 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<div class="shang_wl">
+   @{
+       var f = Model.FirstOrDefault();
+       var l = Model.LastOrDefault();
+      
+       if(f!=null)
+       {
+           <a href="" target="_blank">上一篇: @f.Title .</a>
+       }
+       if(l!=null)
+       {
+           <a href="" target="_blank">下一篇:  @l.Title .</a>
+       }       
+        
+     }  	
+       
+   
+ </div>

@@ -1,0 +1,108 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.Model.Members.PointsRule
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/UpdateMemberRule.helper.js"
+    type="text/javascript"></script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            修改积分规则:</h3>
+        <small class="desc">您可以进行修改积分规则操作:</small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            对应操作：
+                            <input type="hidden" name="name" value="@Model.RuleId" id="ruleID" />
+                        </td>
+                        <td height="25">
+                            <select name="ActionName" id="ActionName">
+                                @{
+                                    Maticsoft.BLL.Members.PointsAction actionBll = new Maticsoft.BLL.Members.PointsAction();
+                                    List<Maticsoft.Model.Members.PointsAction> list = actionBll.GetAllActionList();
+                                    foreach (var item in list)
+                                    {
+                                    <option value="@item.ActionId">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            规则名称 ：
+                        </td>
+                        <td height="25">
+                            <input type="text" name="tName" id="tName" value="@Model.Name"  maxlength="20" style="width: 250px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            影响积分数 ：
+                        </td>
+                        <td height="25">
+                            <input type="text" name="Score" id="Score" value="@Model.Score" maxlength="20" style="width: 250px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            限制条件 ：
+                        </td>
+                        <td height="25">
+                            <select name="LimitName" id="LimitName">
+                                
+                                @{
+                                    Maticsoft.BLL.Members.PointsLimit limitBll = new Maticsoft.BLL.Members.PointsLimit();
+                                    List<Maticsoft.Model.Members.PointsLimit> listLimit = limitBll.GetAllLimitList();
+                                    foreach (var item in listLimit)
+                                    {
+                                    <option value="@item.LimitID">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            规则描述 ：
+                        </td>
+                        <td height="50">
+                            <textarea id="Remark" name="Remark" style="width: 250px" maxlength="50" rows="5"
+                                cols="3" value=@Model.Description></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input type="button" name="name" id="btnSave" value="保存" class="reset radius2 btn_style" />
+                                <input type="button" name="name" id="btnCancel" value="取消" class="reset radius2" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label id="lblMsg" style="color: Red">
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#ActionName option[value='@Model.ActionId.ToString()']").attr("selected", "selected")
+        $("#LimitName option[value='@Model.LimitID.ToString()']").attr("selected", "selected")
+        $("#ActionName").attr("disabled", "disabled");
+    });
+</script>

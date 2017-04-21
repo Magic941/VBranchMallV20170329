@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "找回密码";
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+ <link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnVerify").click(function () {
+            Math.random() * 24
+            $("#tImg").attr("src", "/ValidateCode.aspx?Guid=" + Math.random() * 100);
+        });
+        $("#btnFindPwd").click(function () {
+            if ($("#Password").val() == $("#RePassword").val() && $("#Password").val().length >= 6) {
+                $("#formfindpwd").submit();
+            }
+        });
+        $("#Password").focus(function () {
+            $("#divEmailTip1").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>请输入密码</p>");
+        }).blur(function () {
+                if ($("#Password").val().length < 6)
+                    $("#divEmailTip1").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>密码长度不能小于6！</p>");
+                else
+                    $("#divEmailTip1").removeClass("msg msg-err").removeClass("msg msg-info").addClass("msg msg-ok msg-naked").html("<i class=\"msg-ico\"></i><p>&nbsp;</p>");
+        });
+
+        $("#RePassword").focus(function () {
+            $("#divEmailTip2").removeClass("msg msg-ok msg-naked").removeClass("msg msg-err").addClass("msg msg-info").html("<i class=\"msg-ico\"></i><p>请输入确认密码</p>");
+        }).blur(function () {
+            if ($("#Password").val() != $("#RePassword").val()) {
+                $("#divEmailTip2").removeClass("msg msg-ok msg-naked").removeClass("msg msg-info").addClass("msg msg-err").html("<i class=\"msg-ico\"></i><p>两次密码不一致！</p>");
+            }
+            else {
+                $("#divEmailTip2").removeClass("msg msg-err").removeClass("msg msg-info").addClass("msg msg-ok msg-naked").html("<i class=\"msg-ico\"></i><p>&nbsp;</p>");
+            }
+        });
+    });
+</script>
+<div class="w760">
+        <div class="box box-pwd">
+            <div class="hd">
+                <h2>
+                    设置新密码</h2>
+            </div>
+            <div class="bd">
+                <div id="tab_regi">
+                    <div class="J_tab_panel">
+
+                       @using (Html.BeginForm("ReSetPwd", "Account", FormMethod.Post, new { Class = "form form-regi", id = "formfindpwd" }))
+                       {
+                            <span style="text-align: center; color: Red">  @Html.ValidationMessage("Error")</span>
+                            <div class="f-box" style="margin-top: 20px;">
+                                <label class="f-label">
+                                    新密码：</label>
+                                <div class="f-input">
+                                         @Html.Password("Password","", new{id = "Password",maxlength = "40",Class = "f-txt-b f-txt"})
+                                </div>
+                                <div class="f-msg">
+                                    <div id="divEmailTip1">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                           <div class="f-box" style="margin-top: 20px;">
+                                <label class="f-label">
+                                    确认密码：</label>
+                                <div class="f-input">
+                                         @Html.Password("RePassword", "", new{id = "RePassword",maxlength = "40",Class = "f-txt-b f-txt"})
+                                </div>
+                                <div class="f-msg">
+                                    <div id="divEmailTip2">
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                  <div class="f-box" style="margin-top: 20px;">
+                                <label class="f-label">
+                                    验证码：</label>
+                                <div class="f-input">
+                                @Html.TextBox("CheckCode", "", new { maxlength = "4", Class = "f-txt-b f-txt", style = "width: 30px;" })
+                                </div>
+                                <div class="f-msg">
+                                   <div class="f-vcode">
+                                        <div style="padding-left: 30px;">  <img id="tImg" alt="验证码" src="/ValidateCode.aspx"  style="height: 25px"/>
+                        <a id="btnVerify" href="javascript:void(0)" style="color: #666666">看不清楚?</a></div>
+                                    </div>
+                                </div>
+                            </div> 
+                        <div class="fb f-act">
+                            <div class="f-input"> 
+                                <input class="btn btn-important-large" style="color:#fff; background-color:#f00; width:80px; height:30px; display:block;"  type="button" value="确定" id="btnFindPwd"/> <div class="Tip" id="checkTip">@ViewBag.CheckResult</div>
+                            </div>
+                          
+                        </div>
+                       }
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>

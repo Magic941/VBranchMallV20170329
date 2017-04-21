@@ -1,0 +1,103 @@
+﻿<!--在线留言开始--->
+@model List<Maticsoft.Model.Members.Guestbook>
+<header class="header view">
+    <span class="nowposition">
+        <a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');" class="ui-link">首页</a>
+        <a href="javascript:;" class="ui-link">在线留言</a>
+    </span>
+</header>
+<div class="content content_view">
+    <div class="tab-list">
+        <div class="tab-buttons controlgroup">
+            <span class="tab-list-button  selected">
+                <a class="js-git-protocol-selector ui-link">客户留言 </a>
+            </span>
+            <span class="tab-list-button">
+                <a class="js-git-protocol-selector ui-link">发表留言 </a>
+            </span>
+        </div>
+        <div class="tab-content">
+            <div style="display: block;">
+                <div class="gbook-list comment">
+                    @if (Model != null)
+                    {
+                        foreach (var item in Model)
+                        {
+                        <dl class="">
+
+
+
+                            <span>
+                                <b>原贴: </b>@item.CreateNickName<time class="time">@item.CreatedDate.ToString("yyyy-MM-dd")</time>
+                            </span>
+                            <p>@Html.Raw(item.Description)</p>
+                            <dd class="">回复: <small>( @item.HandlerNickName )
+                                                              </small>
+                                <time class="time">@(item.HandlerDate.HasValue ? item.HandlerDate.Value.ToString("yyy-MM-dd") : "")</time>
+                                <p>@item.ReplyDescription</p>
+                            </dd>
+
+                        </dl>
+                        }
+                    }
+                    else
+                    {
+                        <div class="appMore">
+                            <a class="button">没有了 </a>
+                        </div>
+                        <a onclick="javascript:;" class="txt_item ui-link">
+                            <h3>网站</h3>
+                        </a> 
+                    }
+
+                </div>
+            </div>
+            <div>
+                <form id="gbook_frm" name="add_frm" action="javascript:;" method="post">
+                    <input type="hidden" name="chk" value="yes">
+                    <fieldset>
+                        <legend>发表留言 </legend>
+                        <div id="gbook_input" style="display: inline-block; width: 100%;">
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">留言标题</legend>
+                            </div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" name="gbookTopic" maxlength="50" value="" class="jq-ui-forms" data-role="none"></div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <input type="hidden" name="gbookTime" maxlength="50" value="2013-8-2 18:41:20" class="jq-ui-forms" data-role="none"></div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">用户邮箱</legend>
+                            </div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <input type="text" name="userMail" maxlength="100" value="" class="jq-ui-forms" data-role="none"></div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <input type="hidden" name="userIp" maxlength="100" value="219.143.83.41" class="jq-ui-forms" data-role="none"></div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <legend class="jq-ui-forms" data-role="none">留言内容</legend>
+                            </div>
+                            <div style="display: inline-block; width: 100%;" class="jq-ui-forms" data-role="none">
+                                <textarea id="gbookMain" name="gbookMain" style="" class="jq-ui-forms" data-role="none"></textarea></div>
+                        </div>
+                        <input type="button" name="add_btn" value=" 提交 " class="button gbookformsubmit" data-role="none">
+                        <input type="reset" name="clear_btn" value=" 重新填写 " class="button gbookformnone" data-role="none">
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="pagePrevNext controlgroup" style="display: none;">
+    <span>
+        <a onclick="javascript:;" class="ui-link">没有了</a>
+    </span>
+    <span class="pagecount">
+        <a class="ui-link">1/1</a>
+    </span>
+    <span>
+        <a onclick="javascript:;" class="ui-link">没有了</a>
+    </span>
+</div>
+
+<!--在线留言结束-->
+

@@ -1,0 +1,216 @@
+﻿@using Maticsoft.Model.CMS;
+@using System.Data;
+@*公告*@
+@using Maticsoft.Model.Shop.Products;
+@{
+    var ContentList = ViewBag.ContentList as List<Content>;
+    List<CategoryInfo> categoryInfos = (@ViewBag.TopCatg) as List<CategoryInfo>;
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery-1.7.min.js" type="text/javascript"></script>
+}
+<style>
+    .product_NEW2 li p {
+        height: 37px;
+        overflow: hidden;
+    }
+</style>
+<script>
+    $(function () {
+        $(".main_categary").mouseover(function () {
+            $(".new_show_sort2").hide();
+            $(this).find(".new_show_sort2").show();
+            $(this).find(".item-list").show();
+
+        });
+
+        $(".main_categary").mouseout(function () {
+            $(this).find(".item-list").hide();
+            $(".new_show_sort2").hide();
+        });
+
+        $("#tabA,#tabB").mouseover(function () {
+            $("#tabA,#tabB").attr("class", "");
+            $(this).attr("class", "active");
+
+            if ($(this).attr("id") == "tabA") {
+                $(".best_seller").show();
+                $(".Business_logo").hide();
+            }
+            if ($(this).attr("id") == "tabB") {
+                $(".best_seller").hide();
+                $(".Business_logo").show();
+            }
+        });
+
+        $("#tab1,#tab2,#tab3,#tab4,#tab5,#tab6").mouseover(function () {
+            $(".classifi_NEW").find("a").attr("class", "");
+            $(this).attr("class", "active");
+            $(".product_NEW2").hide();
+            $("#" + $(this).attr("id") + "1").show();
+        });
+    });
+</script>
+<style>
+    .kl_POKL {
+        /*background:url(Areas/Shop/Themes/M1/Content/images/year/bj_0001_02.jpg) center no-repeat;*/
+    }
+</style>
+<div class="main_cont kl_POKL">
+    <div class="wrapper clearfix" style="width: 1200px; margin: 0 auto;">
+        <div class="main_msg clearfix" style="border-bottom: 1px solid #ccc;">
+            <div class="assortment_odd" style="float: left;">
+                <ul>
+                    @for (int i = 0; i < categoryInfos.Count; i++)
+                    {
+                        <li class="main_categary">
+                            <dl>
+                                <dt>
+
+                                    <span><em class="l_@(i + 1)"></em><a href="@(ViewBag.BasePath)product/@categoryInfos[i].Path/0/0/default/" target="_blank">@categoryInfos[i].Name</a></span>
+                                    @switch (categoryInfos[i].CategoryId.ToString())
+                                    {
+                                        case "131":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/134" target="_blank">手机</a>
+                                            <a href="@(ViewBag.BasePath)product/232" target="_blank">数码相机</a>
+                                            <!--<a href="product/223" target="_blank">充电器/数据线</a>-->
+                                        </p>
+                                            break;
+                                        case "132":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/279" target="_blank">笔记本</a>
+                                            <a href="@(ViewBag.BasePath)product/282" target="_blank">苹果电脑</a>
+                                            <a href="@(ViewBag.BasePath)product/304" target="_blank">U盘</a>
+                                        </p>
+                                            break;
+                                        case "135":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/370" target="_blank">保鲜盒</a>
+                                            <a href="@(ViewBag.BasePath)product/373" target="_blank">储物/收纳/置物架</a>
+                                        </p>
+                                            break;
+                                        case "136":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/457" target="_blank">卫生巾</a>
+                                            <a href="@(ViewBag.BasePath)product/440" target="_blank">洗发水</a>
+                                            <a href="@(ViewBag.BasePath)product/442" target="_blank">洗护套装</a>
+                                        </p>
+                                            break;
+                                        case "137":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/479" target="_blank">热水器</a>
+                                            <a href="@(ViewBag.BasePath)product/500" target="_blank">微波炉</a>
+                                            <a href="@(ViewBag.BasePath)product/482" target="_blank">电吹风</a>
+                                        </p>
+                                            break;
+                                        case "138":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/963" target="_blank">饮料</a>
+                                            <a href="@(ViewBag.BasePath)product/559" target="_blank">休闲零食</a>
+                                            <a href="@(ViewBag.BasePath)product/605" target="_blank">葡萄酒</a>
+                                        </p>
+                                            break;
+                                        case "139":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/660" target="_blank">针织衫</a>
+                                            <a href="@(ViewBag.BasePath)product/675" target="_blank">保暖内衣</a>
+                                            <a href="@(ViewBag.BasePath)product/678" target="_blank">打底裤</a>
+                                        </p>
+                                            break;
+                                        case "140":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/727" target="_blank">传统滋补</a>
+                                            <a href="@(ViewBag.BasePath)product/739" target="_blank">按摩枕/垫</a>
+                                        </p>
+                                            break;
+                                        case "141":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/745" target="_blank">婴儿尿裤</a>
+                                            <a href="@(ViewBag.BasePath)product/749" target="_blank">婴幼奶粉</a>
+                                            <a href="@(ViewBag.BasePath)product/763" target="_blank">日常护理</a>
+                                        </p>
+                                            break;
+                                        case "142":
+                                        <p>
+                                            <a href="@(ViewBag.BasePath)product/809" target="_blank">手提包</a>
+                                            <a href="@(ViewBag.BasePath)product/815" target="_blank">商务公文包</a>
+                                            
+                                        </p>
+                                            break;
+                                        default:
+                                            break;
+                                    }
+
+                                    <i></i>
+                                </dt>
+                                <dd style="">
+                                    <div class="new_show_sort2" style="position:absolute;top:-@(i * 63)px; left:1px;display:none;">
+                                        @Html.Action("IndexSubCategoryList", "Partial", new { Cid = categoryInfos[i].CategoryId, Top = -1, ViewName = "_SecondCate" })
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <div class="banner_screen" style="width: 796px; float: left;">
+                <div style="width: 796px; height: 334px" class="main_msg-M" id="main_msg-M">
+                    <ul style="width: 796px; height: 334px;">
+                        <!--滚动广告，所有和图片相关的广告可以读取这里的方法-->
+                        @Html.Action("AdDetail", "Partial", new { id = 36, ViewName = "_IndexAd" })
+                    </ul>
+                </div>
+                <div class="product_NEW clearfix">
+                    
+                    @Html.Action("RecommendProducts", "Partial", new { recommendId =60,top=5, ViewName = "_NewProducts" })
+                </div>
+            </div>
+            <div class="Fine_businesses">
+                <ul class="clearfix">
+                    <li id="tabA" class="active"><a href="#">精品热卖</a></li>
+                    <li id="tabB" class=""><a href="/ProSales/SupplierList">商家入驻</a></li>
+                </ul>
+                <div class="best_seller" style="display: block; background-color: #fff; float: left;">
+                    <div id="demo" style="overflow: hidden; height: 550px; width: 200px">
+                        <div id="demo1">
+                            @Html.Action("RecommendProducts", "Partial", new { recommendId =22,top=10, ViewName = "_IndexHotProducts" })                          
+                            
+                        </div>
+                        <div id="demo2">
+                        </div>
+                    </div>
+                    <script>
+                        var speed = 10;
+                        var demo2 = document.getElementById("demo2");
+                        var demo1 = document.getElementById("demo1");
+                        var demo = document.getElementById("demo");
+                        demo2.innerHTML = demo1.innerHTML
+                        function Marquee() {
+                            if (demo2.offsetTop - demo.scrollTop <= 0)
+                                demo.scrollTop -= demo1.offsetHeight;
+                            else {
+                                demo.scrollTop++;
+                            }
+                        }
+                        var MyMar = setInterval(Marquee, speed);
+                        demo.onmouseover = function () { clearInterval(MyMar) }
+                        demo.onmouseout = function () { MyMar = setInterval(Marquee, speed) }
+                    </script>
+                </div>
+                <div class="Business_logo" style="display: none;">
+                    <a class="LOGO_1" style="" href="/store/19" target="_blank"><span></span></a>
+                    <a class="LOGO_2" style="" href="/store/10" target="_blank"><span></span></a>
+                    <a class="LOGO_3" style="" href="/store/45" target="_blank"><span></span></a>
+                    <a class="LOGO_4" style="" href="/store/3" target="_blank"><span></span></a>
+                    <a class="LOGO_5" style="" href="/store/26" target="_blank"><span></span></a>
+                    <a class="LOGO_6" style="" href="/store/93" target="_blank"><span></span></a>
+                    <a class="LOGO_7" style="" href="/store/94" target="_blank"><span></span></a>
+                    <a class="LOGO_8" style="" href="/store/92" target="_blank"><span></span></a>
+                    <a class="LOGO_9" style="" href="/store/67" target="_blank"><span></span></a>
+                    <a class="LOGO_0" style="" href="/store/8" target="_blank"><span></span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

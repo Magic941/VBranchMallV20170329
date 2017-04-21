@@ -1,0 +1,54 @@
+﻿@model List<Maticsoft.Model.Ms.Theme>
+    @if (null != Model)
+    {
+        foreach (var item in Model)
+        {
+            if (item.IsCurrent)
+            {
+                <td name="@item.Name" class="currentTd">
+                <table cellpadding="2" cellspacing="8" style="margin-left: 20px" class="themeList">
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ecf4d3; text-align: left; padding: 10px">
+                                <img src="@item.PreviewPhotoSrc" style="width: 180px; height: 200px" title="@item.Description">
+                                <br>
+                                <input type="hidden" id="" value="0">
+                                <span>名称：@item.Name</span><br>
+                                <span>作者：@item.Author</span><br>
+                                <span>语言：@item.Language</span><br><br>&nbsp;
+                                                                  @*<a name="@item.Name" href="javascript:;" style="color: #0063dc;" class="setCurrentThe">设为当前主题</a>*@
+                                                                  <span  style="font-weight: bold;color: #666666;">当前主题</span>
+                               <input type="hidden" name="1" id="ctl00" value="False">
+                               <a  href="javascript:;" style="color: #0063dc; display: none">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            }
+            else
+            {
+  <td name="@item.Name">
+                <table cellpadding="2" cellspacing="8" style="margin-left: 20px" class="themeList">
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ecf4d3; text-align: left; padding: 10px">
+                                <img src="@item.PreviewPhotoSrc" style="width: 180px; height: 200px" title="@item.Description">
+                                <br>
+                                <input type="hidden" id="" value="0">
+                                <span>名称：@item.Name</span><br>
+                                <span>作者：@item.Author</span><br>
+                                <span>语言：@item.Language</span><br><br>&nbsp;
+                                                                  <a name="@item.Name" href="javascript:;" style="color: #0063dc;" class="setCurrentThe">设为当前主题</a>
+                                                               
+                               <input type="hidden" name="1" id="ctl00" value="False">
+                               <a  href="javascript:;" style="color: #0063dc; display: none">删除</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+            }
+            
+        }
+    }

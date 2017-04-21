@@ -1,0 +1,38 @@
+﻿@model Maticsoft.Model.Shop.Shipping.ShippingAddress
+@if (Model != null)
+{
+    <input id="txtAddressCount" type="hidden" value="1"/>
+    <div class="step-title">
+        <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action"> <a href="#none" onclick="Edit_Consignee(this, @Model.ShippingId,@ViewBag.UserId)">[修改]</a> </span>
+    </div>
+    <div class="step-content" addressId="@Model.ShippingId">
+        <div id="consignee" class="sbox-wrap">
+            <div class="sbox">
+                <div class="s-content">
+                    <p>
+                        @Model.ShipName &nbsp; @Model.CelPhone &nbsp; &nbsp; @Model.EmailAddress<br/>
+                        @Model.RegionFullName&nbsp;@Model.Address
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <input id="txtAddressCount" type="hidden" value="0" />
+    <div class="step-title">
+        <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action"> <a href="#none" onclick="Edit_Consignee(this, -1,@ViewBag.UserId)">[修改]</a> </span>
+    </div>
+    <div class="step-content" addressId="-1">
+        <div id="consignee" class="sbox-wrap">
+            <div class="sbox">
+                <div class="s-content">
+                    <p>
+                        未设置收货信息
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

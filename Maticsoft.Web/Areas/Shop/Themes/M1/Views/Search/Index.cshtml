@@ -1,0 +1,169 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["keyword"] != null ? Request.RequestContext.RouteData.Values["keyword"].ToString() : "";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "0-0";
+}
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/dialog,item,item-s,paging,scroeAndlist-v1.css"
+    type="text/css" />
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.history.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.cookie.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.scrollto.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/dialog.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/ListBase.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/List.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/lazyLoad.js"></script>
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/level3page/level3.js"></script>*@
+<script type="text/javascript">
+    $(function () {
+        $("#btnSearch").click(function () {
+            var keyword = $("#txtKeyWord").val();
+            if (keyword == "") {
+                ShowFailTip('请输入关键字！');
+                return;
+            }
+            location.href = "/search/0/0/default/0-0/" + keyword;
+        });
+    })
+    $(function () {
+        //左侧菜单浮动
+        $("#Float").capacityFixed({ "top": 250 });
+        //$(".cate3-L-listCont").capacityFixed({ "top": 319 });
+
+        //左侧ul菜单伸缩效果
+        $(".listCont-B").each(function (_index, _li) {
+            $("h3", _li).click(function () {
+                var attr = $(".listCont-BL", _li)[0].style.display;
+                if (attr == "none") {
+                    $(".listCont-BL", _li).slideDown();
+                    $('i', this).addClass("zk");
+                    $('i', this).removeClass("ss");
+                }
+                else {
+                    $(".listCont-BL", _li).slideUp();
+                    $('i', this).addClass("ss");
+                    $('i', this).removeClass("zk");
+                }
+            });
+        });
+
+        //左侧div滚动条效果
+       // scroll();
+    })
+</script>
+ 
+<link media="screen" type="text/css" rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/msg,list,item,item-s,paging,scroe,autocomplete,search-list.css">
+
+<!--add for autocomplete-->
+
+
+<form id="form1">
+    @*<div class="w980">
+        <div class="crumb">
+            <ul>
+                <li class="crumb-hp"><a href="/">首页</a></li>
+                @if (Model.CategoryPathList != null && Model.CategoryPathList.Count > 0)
+                {
+                    foreach (var item in Model.CategoryPathList)
+                    {
+                    <li class="">
+                        <a href="/product/@item.CategoryId/@brandid/@attrvalues/@mod/@price">@item.Name</a>
+                    </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </div>*@
+    <div class="catg-II">
+        <div class=" wrapper">
+           <div class="W-row">
+                <a href="/"><strong>首页 > </strong> 关键词：@keyword (共找到 <span id="spPCount">@ViewBag.TotalCount </span>个商品)</a>          
+
+            </div>
+            <div class=" clearfix">
+                <div class="cate3-L">
+                    <div id="Float">
+                        <!--分类-->
+                        <div class="cate3-L-listCont" name="__NZLB001">
+                         @*   <div id="divResult">111</div>
+                            <div id="divResult2">222</div>*@
+                            @Html.Action("ProductCatgList","Product", new { Cid = Model.CurrentCid, ViewName = "_ProductCategory" })
+                            
+                        </div>
+            @*            <!--热销新品-->
+                        <div class="mgT10"><a href="http://zhenhaolin.com/product/61/15520/0/default/" target="_blank">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/Search-left1.jpg" /></a></div>
+                        <div class="mgT10"><a href="http://www.zhenhaolin.com/product/199/232/0/default/" target="_blank"">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/Search-left2.jpg" /></a></div>*@
+
+                       @* <div class="box-sub" id="areaHotNew" name="__RXSP004">
+                            <div class="hd">
+                                <h2>热销新品</h2>
+                            </div>
+                            @Html.Action("ProductCatgRec", "Partial", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Recommend, Top = 10, Cid = Model.CurrentCid })
+                        </div>*@
+                        <!--品牌旗舰店-->
+                        @*     @Html.Action("BrandList", "Product", new { productType=Model.ProductInfo.TypeId,Top=10})*@
+                        <script type="text/javascript">
+                            var MbarndBtn = $('<div class="moreBrand"><a href="#">显示更多品牌</a></div>');
+                            if ($("#J_brand>li").size() > 10) {
+                                $("#J_brand>li").slice(10).hide();
+                                $("#J_brand").after(MbarndBtn);
+                            }
+                            $(".moreBrand").click(function () {
+                                $("#J_brand>li").slice(10).show();
+                                $(".moreBrand").remove();
+                                return false;
+                            })
+                        </script>
+                        <!--广告-->
+                        <!--热门评论-->
+                        <!--最近浏览的商品-->
+                   @*     <div class="box-sub" id="areaLastView" style="display: none;" name="__NZLL001">
+                            @Html.Action("ProductLastView", "Product")
+                        </div>*@
+                    </div>
+                </div>
+                <div class="cate3-R">
+
+                @*    @Html.Action("HotCommand","Product", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Recommend, Top = 10, Cid = Model.CurrentCid })*@
+
+                    <div class="W-slt mgT10">
+                        <div class="hot-tj">
+                            <div style="display: none;" id="ajaxContentPosition">
+                            </div>
+                            <div class="tjHD">
+                                <h3><span class="txt-red">关键词： -</span>  @keyword (共找到 <span id="spPCount">@ViewBag.TotalCount </span>个商品)</h3>
+                            </div>
+                            <div ajaxcontent="1" id="N1-N101-12-60-1-00-1-1-N-N-0-0-Filter" class="W-slt-c">
+                                <div id="Filter">
+                                </div>
+
+@*                                <!--品牌-->
+                                @Html.Action("BrandList", new { cid = Model.CurrentCid, ViewName = "_Brands", top = -1 })
+                                <!--属性列表-->
+                                @Html.Action("AttrList", new { cid = Model.CurrentCid, ViewName = "_AttrList", top = -1 })*@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mgT10 W-com">
+                      
+                         @{Html.RenderPartial("_ProductList", Model);}
+                    </div>                   
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/tab.js" type="text/javascript"></script>
+    
+    <!--分类热门关键词维护-->
+</form>
+

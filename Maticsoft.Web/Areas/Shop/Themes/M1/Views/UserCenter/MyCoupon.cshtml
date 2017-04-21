@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Coupon.CouponInfo>
+<script type="text/javascript">
+    $(function () {
+        var status = $.getUrlParam("Status");
+        if (!status) {
+            status = "1";
+        }
+        $(".clStatus").each(function () {
+            var value = $(this).attr("status");
+            if (value == status) {
+                $(this).addClass("curr");
+            }
+        });
+    })
+</script>
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/UserCenterStyle.css" rel="stylesheet"
+    type="text/css" />
+<div class="U-R">
+    <div class="U-R-T1 U-R-T0">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的优惠券
+            </h3>
+        </div>
+        <div class="Order-head clearfix">
+            <div class="hd1 hd1-in chose">
+                <h3><a href="@(ViewBag.BasePath)UserCenter/MyCoupon?Status=1">未使用</a></h3>
+            </div>
+            <div class="hd1 hd1-in">
+                <h3><a href="@(ViewBag.BasePath)UserCenter/MyCoupon?Status=2">已使用</a></h3>
+            </div>
+
+            @*<div class="hd1 hd1-in ">
+                <h3>已过期(2)</h3>
+            </div>
+            <div class="hd1 hd1-in ">
+                <h3>已作废(2)</h3>
+            </div>*@
+        </div>
+        <div>
+            <table class="shipping" width="100%" border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th>优惠券</th>
+                    <th>优惠券类型</th>
+                    <th>金额</th>
+                    <th>有效期</th>
+                    <th>所需消费金额</th>
+                    @*<th>使用说明</th>*@
+                </tr>
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td style="text-align: center">
+                            @item.CouponCode
+                        </td>
+                        <td style="text-align: center">
+                            @item.ClassName
+                        </td>
+                        <td style="text-align: center">
+                            @item.CouponPrice.ToString("C")
+                        </td>
+                        <td style="text-align: center">
+                            @(item.EndDate.ToString("yyyy-MM-dd").StartsWith("9999-") ? "无限制" : (item.StartDate.ToString("yyyy-MM-dd") + "至" + item.EndDate.ToString("yyyy-MM-dd")))
+                        </td>
+                        <td style="text-align: center">
+                            @(item.LimitPrice == 0 ? "无限制" : item.LimitPrice.ToString("C"))
+                        </td>
+
+                    </tr>
+                    }
+                }
+
+
+            </table>
+
+        </div>
+
+
+    </div>
+
+    <center>
+        @Html.Pager(Model, new PagerOptions
+                                            {
+                                                PageIndexParameterName = "pageIndex",
+                                                NumericPagerItemCount = 10,
+                                                NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                                                NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                                                CssClass = "in_pages",
+                                                SeparatorHtml = ""
+                                            })
+    </center>
+</div>
+

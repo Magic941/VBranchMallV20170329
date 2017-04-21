@@ -1,0 +1,122 @@
+﻿
+@using Maticsoft.Model.SNS
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.PhotoList
+
+<!-- 照片列表-->
+<div id="FavListDiv" >
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/DeleteFav.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+      $(function () {
+            $('.emerge').unbind('hover').hover(function () {
+                $(this).find('#dodge').show();
+                $(this).find('#delfav').show();
+            }, function () {
+                $(this).find('#dodge').hide();
+                $(this).find('#delfav').hide();
+            });
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    Params:{UserId:@(ViewBag.UserId)},
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath+ViewBag.RequestPage)/WaterfallFavListData"
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex:$('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "col_",
+                //列数
+                ColumnNumber: 4
+            });
+            resizeImg('.imagewalls', 211, 1280);
+        });
+    </script>
+    <div class="imagewalls">
+        @{
+            if (Model != null)
+            {
+                for (int i = 0; i < Model.PhotoList4FourCol.Length; i++)
+                {
+            <div id="col_@(i)" class="col1" style="margin-right:10px;">
+                @foreach (PostContent item in Model.PhotoList4FourCol[i])
+                {
+                    <div class="i_w_y">
+                        <div id="emerge" class="emerge">
+                            <p>
+                                <a target="_blank" href="@(ViewBag.BasePath)Detail/@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product? "Product" : "Photo")/@item.TargetId"  >
+                                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@item.TargetDescription" /></a></p>
+
+                             @if (ViewBag.IsCurrentUser==true)
+                             {
+                            <div id="delfav">
+                                <a href="javascript:;" class="delfav" targetid="@item.TargetId" imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product ? "Product" : "Photo")">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/del-btn-19x19.png" /></a></div>
+                             }
+                            <div id="dodge">
+                                <a href="javascript:;" class="addalbum" targetid="@item.TargetId" imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product ? "Product" : "Photo")" imageurl="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T116x170_"))" >
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>
+                        </div>
+                        <div class="search_com">
+                            <div class="search_com_a">
+                                <p class="search_com_a1">
+                                    <a href="javascript:;"class="favourite" imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product ? "Product" : "Photo")" targetid="@item.TargetId">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" /></a></p>
+                                <p class="search_com_a2">
+                                    <a  target=_blank href="@(ViewBag.BasePath)Detail/@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product ? "Product" : "Photo")/@item.TargetId" >@item.FavouriteCount</a></p>
+                            </div>
+                                        <div class="search_com_b" style="cursor: pointer">
+                                <p class="search_com_b1">
+                                    <a href="javascript:;">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                                <p class="search_com_b2">
+                                    <span class="commentcount">@item.CommentCount</span>评论</p> 
+                                    <input class="TargetId" type="hidden" value="@item.TargetId" imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.FavoriteType.Product ? "Product" : "Photo")"/>
+                            </div>
+                           
+                            <div class="clear">
+                            </div>
+                        </div>
+                           <div class="search_iss">
+                        @{if(item.CommentCount > 0 && item.CommentList.Count>0)
+                        {
+                            Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", item.CommentList);
+                                
+                        }}  <div class="clear">
+                                </div>
+                         </div>
+                    </div>
+                }
+            </div>
+            }
+            }
+        }
+         
+    </div>
+    <div class="clear">
+    </div>
+    @Html.AjaxPager(Model.PhotoPagedList, new PagerOptions
+   {
+       ShowDisabledPagerItems = false,
+       AlwaysShowFirstLastPageNumber = false,
+       PageIndexParameterName = "pageIndex",
+       NumericPagerItemCount = 10,
+       CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       CssClass = "in_pages",
+       SeparatorHtml = ""
+   }, new AjaxOptions { UpdateTargetId = "FavListDiv" })
+    
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.WaterfallStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.WaterfallEndIndex" />
+</div>
+<!-- 照片列表end-->

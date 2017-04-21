@@ -1,0 +1,390 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnAddPermissionText" xml:space="preserve">
+    <value>Add Permission&gt;&gt;</value>
+    <comment>Add Permission&gt;&gt;</comment>
+  </data>
+  <data name="btnAddText" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add</comment>
+  </data>
+  <data name="btnBackText" xml:space="preserve">
+    <value>Back</value>
+    <comment>Back</comment>
+  </data>
+  <data name="btnCancleText" xml:space="preserve">
+    <value>Cancle</value>
+    <comment>Cancle</comment>
+  </data>
+  <data name="btnDeleteText" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="btnEditText" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
+  </data>
+  <data name="btnOKText" xml:space="preserve">
+    <value>OK</value>
+    <comment>OK</comment>
+  </data>
+  <data name="btnRemovePermissionText" xml:space="preserve">
+    <value>&lt;&lt; Remove Permission</value>
+    <comment>&lt;&lt; Remove Permission</comment>
+  </data>
+  <data name="btnSaveText" xml:space="preserve">
+    <value>Save</value>
+    <comment>Save</comment>
+  </data>
+  <data name="btnSearchText" xml:space="preserve">
+    <value>Search</value>
+    <comment>Search</comment>
+  </data>
+  <data name="btnUpdateText" xml:space="preserve">
+    <value>Update</value>
+    <comment>Update</comment>
+  </data>
+  <data name="fieldConfirmationPassword" xml:space="preserve">
+    <value>Confirmation Password</value>
+    <comment>Confirmation Password</comment>
+  </data>
+  <data name="fieldEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="fieldPassword" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="fieldSex" xml:space="preserve">
+    <value>Sex</value>
+  </data>
+  <data name="fieldTelphone" xml:space="preserve">
+    <value>Telphone</value>
+  </data>
+  <data name="fieldTrueName" xml:space="preserve">
+    <value>TrueName</value>
+  </data>
+  <data name="fieldUserName" xml:space="preserve">
+    <value>UserName</value>
+  </data>
+  <data name="fieldUserType" xml:space="preserve">
+    <value>UserType</value>
+  </data>
+  <data name="lblAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="lblCategory" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="lblOperation" xml:space="preserve">
+    <value>Operation</value>
+  </data>
+  <data name="lblRole" xml:space="preserve">
+    <value>Role</value>
+  </data>
+  <data name="lblSearch" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="ptActions" xml:space="preserve">
+    <value>功能行为管理</value>
+  </data>
+  <data name="ptAddUser" xml:space="preserve">
+    <value>增加用户</value>
+  </data>
+  <data name="ptEditRole" xml:space="preserve">
+    <value>角色编辑</value>
+  </data>
+  <data name="ptPermissionAdmin" xml:space="preserve">
+    <value>权限管理</value>
+  </data>
+  <data name="ptUserAdmin" xml:space="preserve">
+    <value>用户管理</value>
+  </data>
+  <data name="TooltipDelConfirm" xml:space="preserve">
+    <value>Do you really want to delete?</value>
+  </data>
+  <data name="TooltipDelOK" xml:space="preserve">
+    <value>删除成功！</value>
+  </data>
+  <data name="TooltipNoNull" xml:space="preserve">
+    <value>请输入内容！</value>
+  </data>
+  <data name="TooltipSaveOK" xml:space="preserve">
+    <value>保存成功！</value>
+  </data>
+  <data name="TooltipUpdateOK" xml:space="preserve">
+    <value>修改成功！</value>
+  </data>
+  <data name="lblFalse" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="lblTrue" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="TooltipUserExist" xml:space="preserve">
+    <value>用户已经存在！</value>
+  </data>
+  <data name="TooltipNumFormatErr" xml:space="preserve">
+    <value>不是数字格式</value>
+  </data>
+  <data name="TooltipTimeFormatErr" xml:space="preserve">
+    <value>不是日期格式</value>
+  </data>
+  <data name="TooltipNoPermission" xml:space="preserve">
+    <value>You do not have permission to access this page！Please login again or contact your administrator</value>
+  </data>
+  <data name="TooltipSessionExpired" xml:space="preserve">
+    <value>No your login's info or Session expired and Please login again！</value>
+  </data>
+  <data name="btnDeleteListText" xml:space="preserve">
+    <value>批量删除</value>
+  </data>
+  <data name="btnMoveToText" xml:space="preserve">
+    <value>移动到</value>
+  </data>
+  <data name="btnDetailText" xml:space="preserve">
+    <value>详细</value>
+  </data>
+  <data name="ErrorMessageSQL" xml:space="preserve">
+    <value>数据库执行错误。</value>
+  </data>
+  <data name="ErrorMessageSQL1205" xml:space="preserve">
+    <value>DeadLock Victim</value>
+  </data>
+  <data name="ErrorMessageSQL17" xml:space="preserve">
+    <value>SQL Server does not exist or access denied.</value>
+  </data>
+  <data name="ErrorMessageSQL18456" xml:space="preserve">
+    <value>Login Failed</value>
+  </data>
+  <data name="ErrorMessageSQL2601" xml:space="preserve">
+    <value>Unique Index/Constriant Violation.</value>
+  </data>
+  <data name="ErrorMessageSQL2627" xml:space="preserve">
+    <value>Unique Index/Constriant Violation.</value>
+  </data>
+  <data name="ErrorMessageSQL4060" xml:space="preserve">
+    <value>nvalid Database</value>
+  </data>
+  <data name="ErrorMessageSQL547" xml:space="preserve">
+    <value>数据已经被其它地方引用，无法执行该操作。</value>
+  </data>
+  <data name="TooltipForceLogin" xml:space="preserve">
+    <value>你的帐号已在别处登陆，你被强迫下线！</value>
+  </data>
+  <data name="btnNextText" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="btnCalculateText" xml:space="preserve">
+    <value>计算</value>
+  </data>
+  <data name="TooltipInputDataErr" xml:space="preserve">
+    <value>输入数据不正确！</value>
+  </data>
+  <data name="btnApproveListText" xml:space="preserve">
+    <value>批量审核</value>
+  </data>
+  <data name="btnCloseListText" xml:space="preserve">
+    <value>批量关闭</value>
+  </data>
+  <data name="btnApproveText" xml:space="preserve">
+    <value>审核</value>
+  </data>
+  <data name="btnPayText" xml:space="preserve">
+    <value>发放</value>
+  </data>
+  <data name="btnAssignmentText" xml:space="preserve">
+    <value>分配</value>
+  </data>
+  <data name="btnQueryText" xml:space="preserve">
+    <value>查询</value>
+  </data>
+  <data name="btnCreateFile" xml:space="preserve">
+    <value>生成文件</value>
+  </data>
+  <data name="ErrorSystemTip" xml:space="preserve">
+    <value>系统提示：</value>
+  </data>
+  <data name="TooltipCodeExist" xml:space="preserve">
+    <value>该编码已经存在，请更换其他编码。</value>
+  </data>
+  <data name="btnDownText" xml:space="preserve">
+    <value>向下</value>
+  </data>
+  <data name="btnUpText" xml:space="preserve">
+    <value>向上</value>
+  </data>
+  <data name="btnSetInvalidText" xml:space="preserve">
+    <value>设为无效</value>
+  </data>
+  <data name="btnSetValidText" xml:space="preserve">
+    <value>设为有效</value>
+  </data>
+  <data name="GVTextExportExcel" xml:space="preserve">
+    <value>ExportExcel</value>
+  </data>
+  <data name="GVTextExportWord" xml:space="preserve">
+    <value>ExportWord</value>
+  </data>
+  <data name="GVTextFirst" xml:space="preserve">
+    <value>First</value>
+  </data>
+  <data name="GVTextLast" xml:space="preserve">
+    <value>Last</value>
+  </data>
+  <data name="GVTextNext" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="GVTextPage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="GVTextPrevious" xml:space="preserve">
+    <value>Previous</value>
+  </data>
+  <data name="GVTextRecord" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="TooltipDataBeUsed" xml:space="preserve">
+    <value>该数据已经被其它数据使用，不能再进行修改！</value>
+  </data>
+  <data name="btnOpenListText" xml:space="preserve">
+    <value>批量打开</value>
+  </data>
+  <data name="btnInverseApproveText" xml:space="preserve">
+    <value>反审核</value>
+  </data>
+  <data name="btnShowText" xml:space="preserve">
+    <value>查看</value>
+  </data>
+  <data name="btnModifyText" xml:space="preserve">
+    <value>修改</value>
+  </data>
+  <data name="btnAdjustText" xml:space="preserve">
+    <value>重新调整</value>
+  </data>
+  <data name="fieldPointsDetail" xml:space="preserve">
+    <value>积分明细</value>
+  </data>
+  <data name="fieldSetRoles" xml:space="preserve">
+    <value>设置角色</value>
+  </data>
+  <data name="TooltipPermCateNoDelete" xml:space="preserve">
+    <value>该类别下存在权限数据，不能再进行删除！请先删除关联数据！</value>
+  </data>
+</root>

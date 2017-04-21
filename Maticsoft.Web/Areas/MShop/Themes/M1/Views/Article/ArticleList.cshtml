@@ -1,0 +1,23 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+ }
+   @model List<Maticsoft.Model.CMS.Content>
+<div class="top"> <span>新闻中心</span>
+  @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+ @if (Model != null && Model.Count > 0)
+ {
+     <div class="home_newlist">       
+         @foreach (var item in Model)
+         {
+         <div class="cms_newcontent"><span><a href="@(ViewBag.BasePath)Article/Details/@item.ContentID">@item.Title</a></span> <small>@item.CreatedDate.ToString("yyyy-MM-dd hh:mm")</small></div>
+         }  
+     </div>
+
+ }
+ else
+ {
+      <div class="home_newlist"> <div class="cms_newcontent"> <span>暂无新闻</span> </div></div>
+ }
+
+ 

@@ -1,0 +1,11 @@
+﻿@model List<Maticsoft.Model.Shop.Products.HotKeyword>
+ @if (Model != null && Model.Count > 0)
+ {
+     foreach (var item in Model)
+     {
+      <dd>
+                        <a href="/search/0/0/default/0-0/@item.Keywords" target="_blank">@item.Keywords</a></dd>
+     }
+ }
+   
+                  

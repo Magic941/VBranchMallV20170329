@@ -1,0 +1,77 @@
+﻿@model  List<Maticsoft.Model.SNS.MsgTip>
+@{Maticsoft.Accounts.Bus.User currentUser = (Maticsoft.Accounts.Bus.User)ViewBag.Current;}
+  <link href="/Areas/SNS/Themes/M1/Content/Css/jquery.message.css" rel="stylesheet" type="text/css" />
+ <script src="/Scripts/PointMsg/Scripts/jquery.message.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#appear').unbind('hover').hover(function () {
+            $('#conceal').show();
+        }, function () {
+            $('#conceal').hide();
+        });
+        if (@ViewBag.Pointer >0) {
+               $.MessageShow("登录成功！积分，<span style='color:yellow;font-weight: bolder;'>+"+@ViewBag.Pointer+"</span>");
+        }
+    });
+
+    //绑定
+    $(function () {
+        $(".layer_message_box").smartFloat();
+        $(".W_close_color").click(function () {
+            $(this).parents(".layer_message_box").hide();
+        });
+    });
+
+</script>
+@if(Model!=null&&Model.Count>0)
+{
+<div class="layer_message_box" style="">
+    <ul>
+      @foreach(Maticsoft.Model.SNS.MsgTip item in Model)
+      {
+        if(item._MsgType==(int)Maticsoft.Model.SNS.EnumHelper.MsgType.System&&item.Count>0)
+        {
+          <li>@(item.Count)条系统消息，<a target="_top" action-type="bp-link" bpfilter="main" href="/UserCenter/SysInfo">查看消息</a></li>
+        }
+        else if (item._MsgType == (int)Maticsoft.Model.SNS.EnumHelper.MsgType.Private && item.Count > 0)
+        {
+          <li>@(item.Count)条最新私信，<a target="_top" action-type="bp-link" bpfilter="main" href="/UserCenter/Inbox">查看私信</a></li>
+        }
+        else if (item._MsgType == (int)Maticsoft.Model.SNS.EnumHelper.MsgType.Refer && item.Count > 0)
+        {
+          <li>@(item.Count)条新@提到我，<a target="_top" action-type="bp-link" bpfilter="main" href="/Profile/Posts?type=referme">查看@@我</a></li>
+        }
+      }
+      </ul>
+    <a class="W_close_color" href="javascript:void(0);" action-type="closeTip"></a>
+</div>
+}
+<div class="headers">
+<input type="hidden"  id="currentUserId" value=@{@currentUser.UserID} />
+    <div class="header">
+        <div class="logo">
+            <a href="@ViewBag.BasePath"><img src="@ViewBag.Logo" width="232" height="54" alt="@(ViewBag.SiteName)"></a></div>
+            <script type="text/javascript">$.scaleLoad('.logo', 232, 54);</script>
+        <div class="user_login">
+            <div id="appear">
+                <p class="appear_z">
+                    <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">
+                        <img style=" width:30px; height:30px" src="/Upload/User/Gravatar/@{@currentUser.UserID}.jpg" alt="@currentUser.NickName"></a></p>
+                <p class="appear_y">
+                    <a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">@currentUser.NickName</a><img src="/Areas/SNS/Themes/M1/Content/images/user_3.jpg"></p>
+                <div id="conceal" style="display: none;">
+                    <ul>
+                        <li><a href="@(ViewBag.BasePath)Profile/Posts?type=fellow">我的主页</a></li>
+                              <li><a href="/UserCenter">帐号设置</a></li>
+                     @*   <li><a href="@(ViewBag.BasePath)UserCenter/Inbox"><span>我的私信</span></a></li>*@
+                        <li style="border-bottom: none;"><a href="@(ViewBag.BasePath)Account/Logout">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="appear" style="background: none; width: 50px; margin-left: 10px;">
+                <p class="appear_y">
+                    <a href="/UserCenter/Inbox">消息</a></p>
+            </div>
+        </div>
+    </div>
+</div>

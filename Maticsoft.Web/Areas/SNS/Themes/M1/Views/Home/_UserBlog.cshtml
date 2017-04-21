@@ -1,0 +1,27 @@
+﻿@model List<Maticsoft.Model.SNS.UserBlog>
+<div class="cell-hd">
+    <h2>
+        用户博客</h2>
+    <a class="hd-sub font-song" href="@(ViewBag.BasePath)Blog"
+       onmousedown="" title="更多">更多<b>&gt;</b></a>
+</div>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="cell-bd">
+        <blockquote class="primary-recom-first">
+            <h3>
+                <a href="@(ViewBag.BasePath)Blog/BlogDetail?id=@Model[0].BlogID" title="@Model[0].Title" style="color: #333">@Maticsoft.Common.StringPlus.SubString(Model[0].Title, 15, "...")</a></h3>
+        </blockquote>
+        <span class="detail">
+            <ul class="primary-recom-list">
+                @for (int i = 1; i < Model.Count; i++)
+                {
+                    <li><a href="@(ViewBag.BasePath)Blog/BlogDetail?id=@Model[i].BlogID" 
+                   class="list-main" title="@Model[i].Title">@Maticsoft.Common.StringPlus.SubString(Model[i].Title, 25, "...")</a><a href="@(ViewBag.BasePath)User/Posts/@Model[i].UserID"
+                                                                                         class="list-extra"
+                                                                                         title="">@Model[i].UserName</a></li>
+                }
+            </ul>
+        </span>
+    </div>
+}

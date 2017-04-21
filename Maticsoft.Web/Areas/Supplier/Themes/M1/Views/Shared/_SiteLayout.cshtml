@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @Html.MaticsoftSEO(PoweredBy: true)@*全局模版*@
+        <script src="/Scripts/jquery-1.8.3.min.js" type="text/javascript"></script> 
+        <script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script> 
+        <link href="@Url.Content("~/Scripts/msgbox/css/msgbox.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/msgbox/js/msgbox.js")" type="text/javascript"></script>
+        <script type="text/javascript" >var $Maticsoft = { BasePath: '/SP/', CurrentArea: '@(ViewBag.CurrentArea)' };</script>
+        @*------------以下是M1模版的css或者用到的js ---------*@
+        @RenderSection("headtop", false)
+        @RenderSection("head", false)
+    </head>
+    <body>
+        <div class="LoadingImg" style="display: none"></div>
+        @RenderBody()
+        @RenderSection("foot", false)
+    </body>
+</html>

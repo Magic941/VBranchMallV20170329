@@ -1,0 +1,141 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Products.SKUInfo>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script> 
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet" type="text/css" />
+<!--Title -->
+<div class="newslistabout">
+    <div class="newslist_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitle">
+                    商品管理
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitlebody">
+                    @ViewBag.strTitle
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--Title end -->
+    <!--Add  -->
+    <!--Add end -->
+    <!--Search -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td width="1%" height="30" bgcolor="#FFFFFF" class="newstitlebody">
+                <img src="/Areas/Supplier/Themes/M1/Content/images/icon-1.gif" width="19" height="19" />
+            </td>
+            <td height="35" bgcolor="#FFFFFF" class="newstitlebody">
+                <span>商城商品分类</span>：
+                <select id="drpProductCategory" >
+                    <option value="0">请选择</option>
+                    @if (Model != null && Model.CategoryList != null && Model.CategoryList.Count > 0)
+                    {
+                        foreach (Maticsoft.Model.Shop.Products.CategoryInfo item in Model.CategoryList)
+                        {
+                            <option value="@item.CategoryId">@item.Name</option>
+                        }
+                    }
+                </select>
+                    
+                <span>店铺商品分类</span>：
+                <select id="dropProdSuppCate" >
+                    <option value="0">请选择</option>
+                    @if (Model != null && Model.SuppCategoryList != null && Model.SuppCategoryList.Count > 0)
+                    {
+                        foreach (Maticsoft.Model.Shop.Supplier.SupplierCategories item in Model.SuppCategoryList)
+                        {
+                            <option value="@item.CategoryId">@item.Name</option>
+                        }
+                    }
+                </select>
+                  
+                <span>商品名称</span>：
+                <input type="text" name="txtName" id="txtName"/>           
+                <span>产品编号</span>：
+                <input type="text" name="txtProductNum" id="txtProductNum"/>           
+                <button  id="btnSearch" class="adminsubmit" >搜索</button>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div class="newslist"  >
+        <div class="newsicon">
+            <ul>
+                <li style="width: 1px; padding-left: 0px" ></li>
+                <li id="liDel"  style="display:none;" runat="server" style="margin-top: -6px; width: 100px; padding-left: 0px">
+                    <button  name="btnDelete"  class="adminsubmit">批量删除</button>
+                </li>
+                <li style="margin-top: -6px; padding-left: 0px ">
+                    @if (ViewBag.SaleStatus != null)
+                    {
+                        switch ((int)ViewBag.SaleStatus)
+                        {
+                            case 1:
+                             <button  name="btnInverseApprove"  class="adminsubmit">批量下架</button>  
+                                break;
+                            case 0:
+                             <button  name="btnInverseApprove"  class="adminsubmit">批量上架</button>  
+                                break;
+                        }
+                    }    
+                </li> 
+            </ul>
+        </div>
+    </div>
+        
+    <div id="instockProdList">
+        @Html.Action("ProdList", "Product", new { s = ViewBag.SaleStatus })
+    </div>
+      
+    <table border="0" cellpadding="0" cellspacing="1" style="width: 100%; ">
+        <tr>
+            <td style="width: 5px;">
+            </td>
+            <td align="left">
+                <button  name="btnDelete"  class="adminsubmit" style="display:none;">批量删除</button>
+                @if (ViewBag.SaleStatus != null)
+                {
+                    switch ((int)ViewBag.SaleStatus)
+                    {
+                        case 1:
+                             <button  name="btnInverseApprove"  class="adminsubmit">批量下架</button>  
+                            break;
+                        case 0:
+                             <button  name="btnInverseApprove"  class="adminsubmit">批量上架</button>  
+                            break;
+                    }
+                }    
+            </td>
+        </tr>
+    </table>
+</div>
+<input type="hidden" value="@ViewBag.SaleStatus" id="hidSaleStatus"/>
+
+ <script type="text/javascript">
+     $(document).ready(function () {
+         resizeImg('.borderImage', 80, 80);
+         //搜索按钮
+         $('#btnSearch').click(function () {
+             $('#btnSearch').attr('disabled', 'disabled');
+             var status = $('#hidSaleStatus').val();
+             var cateVal = $('#drpProductCategory').val();
+             var suppCateVal = $('#dropProdSuppCate').val();
+             var prodname = $('#txtName').val();
+             var prodcode = $('#txtProductNum').val();
+             $("#instockProdList").load($Maticsoft.BasePath + 'Product/ProdList?s=' + status + '&cate=' + cateVal + '&suppcate=' + suppCateVal + '&prodName=' + prodname + '&code=' + prodcode, function () {
+                 $('#btnSearch').removeAttr('disabled');
+             });
+         });
+         $('.seller_in_pages a[href]').attr('href', function (e, v) {
+             return v += '&s=' + $('#hidSaleStatus').val();
+         });
+     });
+    </script>
+

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />
+    <style type="text/css">
+    .xxts {
+width: 650px;
+font-size: 14px;
+color: #333;
+}
+</style>
+}
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSend").click(function () {
+            $.ajax({
+                url: $Maticsoft.BasePath +"Account/SendEmail",
+                type: 'post', dataType: 'text', timeout: 10000,
+                data: { Action: "post", Email: '@ViewBag.Email', Type: 1 },
+                success: function (resultData) {
+                    if (resultData == "success") {
+                        ShowSuccessTip("重新发送邮件成功！");
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowFailTip("发送邮件失败：" + errorThrown);
+                }
+            });
+        });
+    });
+</script>
+<div class="w760">
+        <div class="box box-pwd">
+            <div class="hd">
+                <h2>
+                    找回密码</h2>
+            </div>
+            <div class="bd" style="border:0px;">
+                <div id="tab_regi">
+                    <div class="J_tab_panel">
+                     <div class="login_k">
+      	<div class="xxts ">
+            <span style="font-size: 16px; color: #999;font-family: '微软雅黑';line-height: 30px;">已成功发送邮件，请登录邮箱进行处理</span>
+            <p style="font-family: '微软雅黑';line-height: 30px;">我们已将找回密码邮件发送到您的邮箱 @ViewBag.Email，请点击邮件中的“找回密码链接”来完成密码重置。</p>
+            <div>
+                <a href="@ViewBag.EmailUrl" class="l"><img src="/Areas/Shop/Themes/M1/Content/images/dlyx.gif" width="100" height="50" /></a>
+                <p class="l" style="font-family: '微软雅黑';line-height: 30px;">没收到找回密码邮件？请稍等……<br />
+                      若仍未收到找回密码邮件，请<a  href="javascript:void(0)" id="btnSend" >点击这里</a>重新发送</p>
+                <span class="cl2"></span>
+            </div>
+        </div><br class="cl" />
+    </div>
+
+                    </div>
+            
+                </div>
+            </div>
+        </div>
+    </div>

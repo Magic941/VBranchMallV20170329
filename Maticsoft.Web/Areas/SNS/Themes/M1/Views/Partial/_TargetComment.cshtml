@@ -1,0 +1,15 @@
+﻿@model List<Maticsoft.Model.SNS.Comments>
+     @foreach (Maticsoft.Model.SNS.Comments item in Model)
+     {
+                    <div class="tgoods_z">
+                       <div class="tgoods_z_e"><a  target="_blank" href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID"><img style=" width:32px; height:32px" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" alt="@item.CreatedNickName"></a></div>
+                       <div class="tgoods_z_f">
+                          <div class="tgoods_z_f1">
+                             <p class="tgoods_z_f11"><a  target="_blank" href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID">@item.CreatedNickName</a></p>
+                             <p class="tgoods_z_f12">@Maticsoft.ViewModel.ViewModelBase.DateDiff(item.CreatedDate)</p>
+                          </div>
+                          <div class="tgoods_z_f2">@Html.Raw(Maticsoft.ViewModel.ViewModelBase.RegexNickName(item.Description))</div>
+                          <div class="tgoods_z_f3"><a href="javascript:;" class="replycomment" nickname=@item.CreatedNickName>回复</a></div> 
+                       </div>
+                    </div>
+     }

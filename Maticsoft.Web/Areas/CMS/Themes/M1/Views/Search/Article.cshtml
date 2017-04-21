@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_CMSLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Common;
+@model PagedList<Maticsoft.Model.CMS.Content>
+<!--<script type="text/javascript">
+    $(document).ready(function () {
+
+        switch ("@ViewBag.Message") {
+            case "Toolong":
+                ShowServerBusyTip("您输入的关键字过长,最多不超过25个字符，请重新输入关键字！");
+                break;
+            default:
+                break;
+        }
+
+    });
+</script>-->
+<div class="main">
+    <!--MainMenu Start-->
+    @Html.Action("MainMenu", "Partial")
+    <!--MainMenu End-->
+    <div class="main_container">
+        <div class="container_sidebar" id="Article">
+            <!--ArticleList-->
+            @{Html.RenderPartial("~/Areas/CMS/Themes/M1/Views/Partial/UCjQuerySearchList.cshtml", Model); }
+            <!--ArticleList-->
+            <div style="clear: both">
+            </div>
+        </div>
+        <div class="container_rightside">
+            <!--Hot Articles Start-->
+            @Html.Action("HotArticles", "Partial")
+            <!--Hot Articles End-->
+            <div class="ad">
+                @Html.Action("AD", "Partial", new { AdvPositionId = 13 })</div>
+            @Html.Action("Comments", "Partial", new { Top = 5 })
+            <div class="ad">
+                @Html.Action("AD", "Partial", new { AdvPositionId = 14 })</div>
+            <!--FriendLink Start-->
+            @Html.Action("FriendLink", "Partial")
+            <!--FriendLink End-->
+            <div class="ad">
+                @Html.Action("ADDefindCode", "Partial", new { AdvPositionId = 16 })
+            </div>
+        </div>
+        <div style="clear: both">
+        </div>
+    </div>
+    <div style="clear: both;">
+    </div>
+</div>

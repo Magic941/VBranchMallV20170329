@@ -1,0 +1,338 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+@model Maticsoft.Model.Shop_CardUserInfo
+<link href="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js")" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/DataPicker4CN.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/CardUserInfoCheck.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $(":radio[name='sex']").click(function () { $("#Sex").val($(this).val()); });
+        $(":radio[name='ismarry']").click(function () { $("#IsMarry").val($(this).val()); });
+
+        //$("[id$='Birthday']").datepicker({ dateFormat: "yy-mm-dd", yearRange: ("1900:" + new Date().getFullYear()) });
+
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        var constellation = $("#hfConstellation").val();
+        var personalstatus = $("#hfPersonalStatus").val();
+        var sex = $("#hfSex").val();
+        if (sex == "1") {
+            $("#radman").attr("checked", true);
+            $("#radwoman").attr("checked", false);
+        }
+        if (sex == "0") {
+            $("#radman").attr("checked", false);
+            $("#radwoman").attr("checked", true);
+        }
+
+        if ($("#radman").click(function () {
+            $("#radwoman").attr("checked", false);
+        }));
+
+        if ($("#radwoman").click(function () {
+            $("#radman").attr("checked", false);
+        }));
+        $("#dropConstellation").val(constellation);
+
+        $("#dropPersonalStatus").val(personalstatus);
+        $("#BackPerson").val("@ViewBag.SalesName");
+
+        $("#CardNo").val("@ViewBag.cardNum");
+        $("#CardSysId").val("@ViewBag.CardSysId");
+    });
+</script>
+<div class="U-R">
+
+    @using (Html.BeginForm("CardUserInfo", "UserCenter", FormMethod.Post, new { id = "baseInfo" }))
+    {
+        <script>
+            $(function () {
+                $("#btn-next-1").click(function () {
+                    if (!$("#Chk").attr("checked")) { alert("请同意《健康网使用协议》！"); return }
+                    var Bool = true;
+                    if ("@(ViewBag.RegisterType)" == "normal") {
+                        if (!NormalCheck()) Bool = false;
+                    }
+                    else {
+                        if (!SimpleCheck()) Bool = false;
+                    }
+                    if (Bool) {
+                        if ("@ViewBag.RegisterType" == "normal") {
+                            $(".tab_0").hide();
+                            $(".tab_1").show();
+                        }
+                        else {
+                            $.ajax({
+                                cache: true,
+                                type: "POST",
+                                url: '/UserCenter/CardUserInfo',
+                                data: $('#baseInfo').serialize(),
+                                async: false,
+                                success: function (data) {
+                                    if (data) {
+                                        if (data == "1") {
+                                            $(".tab_0").hide();
+                                            $(".tab_1").hide();
+                                            $(".tab_2").show();
+                                        } else {
+                                            ShowFailTip(data);
+                                            setTimeout(function () { location.href = "/UserCenter/HLCard"; }, 800);
+                                        }
+                                    }
+                                },
+                                error: function (request) {
+                                    ShowFailTip("网络连接错误！");
+                                }
+                            });
+                        }
+
+
+                    }
+                    else {
+                        ShowFailTip("完善信息");
+                    }
+
+                });
+                $("#btn-next-2").click(function () {
+                    if (!$("#Chk2").attr("checked")) { alert("请同意保险协议！"); return }
+                    $.ajax({
+                        cache: true,
+                        type: "POST",
+                        url: '/UserCenter/CardUserInfo',
+                        data: $('#baseInfo').serialize(),
+                        async: false,
+                        success: function (data) {
+                            if (data) {
+                                if (data == "1") {
+                                    $(".tab_0").hide();
+                                    $(".tab_1").hide();
+                                    $(".tab_2").show();
+                                } else {
+                                    
+                                    ShowFailTip(data);
+                                    //setTimeout(function () { location.href = "/UserCenter/HLCard"; }, 1000);
+
+                                }
+                            }
+                        },
+                        error: function (request) {
+                            ShowFailTip("网络连接错误！");
+                        }
+                    });
+
+
+                });
+            })
+        </script>
+        @Html.HiddenFor(m => m.CardSysId, new { id = "CardSysId" })
+        <input type="hidden" name="CardTypeNo" value="@ViewBag.CardTypeNo" />
+        <input type="hidden" name="Batch" value="@ViewBag.Batch" />
+        <input type="hidden" name="Password" value="@ViewBag.Pwd" />
+        <div class="U-R-T1 tab_0">
+            <div class="clearfix U-R-Tbg">
+                <h3 class="fL">我的健康卡</h3>
+            </div>
+            <div class="Order-head clearfix">
+                <div class="hd1 hd1-in chose">
+                    <h3>个人基本信息(*为必填信息)</h3>
+                </div>
+                <div class="hd1 hd1-in" style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <h3>保险协议</h3>
+                </div>
+                <div class="hd1 hd1-in ">
+                    <h3>成功激活</h3>
+                </div>
+            </div>
+            <div class="card-cont">
+                <dl style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>健康卡号：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.CardNo, new { Class = "w200 address", id = "CardNo", ReadOnly = "true", name = "" })<span id="cardNoTip"></span><em></em>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><span>*</span>姓名：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Name, new { Class = "w200 address", id = "Name", name = "" })<span id="nameTip"></span>
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>性别：</dt>
+                    <dd>
+                        <label>
+                            <input value="男" name="sex" checked="checked" type="radio" />男</label>
+                        <label class="mgL20">
+                            <input value="女" name="sex" type="radio" />女</label>
+                    </dd>
+                </dl>
+                @Html.HiddenFor(m => m.Sex, new { id = "Sex" })
+
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>身份证号：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.CardId, new { Class = "w200 address", id = "CardId", name = "" })<span id="cardTip"></span>
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>邮箱：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Email, new { Class = "w200 address", id = "Email", name = "" })<span id="emailTip"></span>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><span>*</span>手机号：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Moble, new { Class = "w200 address", id = "Moble", name = "" })<span id="mobleTip"></span>
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt>固定电话：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Tel, new { Class = "w200 address", id = "Tel", name = "" })
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt>&nbsp</dt>
+                    <dd class="f-input" id="divaddress">
+                        <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                        <input type="hidden" id="hfSelectedNode" value="0" />
+                        <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script>
+
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>详细地址：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Address, new { Class = "w500 address", id = "Address", name = "" })<span id="addressTip"></span>
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>邮编：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.CodeNo, new { Class = "w200 address", id = "CodeNo", name = "" })<span id="codenoTip"></span>
+                    </dd>
+                </dl>
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt>生日：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.BirthDay, new { name = "txtBirthday", id = "txtBirthday", ReadOnly = "true", Class = "f-txt-b f-txt" })
+
+                    </dd>
+                </dl>
+                <dl style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt><span>*</span>婚否：</dt>
+                    <dd>
+                        <label>
+                            <input value="1" name="ismarry" checked="checked" type="radio" />是</label>
+                        <label class="mgL20">
+                            <input value="0" name="ismarry" type="radio" />否</label>
+                    </dd>
+                </dl>
+                <dl>
+                    @Html.HiddenFor(m => m.IsMarry, new { id = "IsMarry" })
+                </dl>
+                <dl>
+                    <dt><span>*</span>职业：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.Job, new { Class = "w200 address", id = "Job", name = "" })<span id="jobTip"></span>
+                    </dd>
+                </dl>
+                @*<dl>
+                    <dt>告知书：</dt>
+                    <dd>@Html.TextBoxFor(m=>m.CodeNo,new {Class="w200 address",id="CodeNo",name=""})<em>购买时给的告知书号</em>
+                    </dd>
+                </dl>*@
+                <dl  style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                    <dt>紧急联系人：</dt>
+                    <dd>
+                        @Html.TextBoxFor(m => m.BackPerson, new { Class = "w200 address",ReadOnly = "true",  id = "BackPerson", name = "" })<em>当您在商城消费或遇到保险理赔等问题时请您联系我</em>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>&nbsp;</dt>
+                    <dd>
+                        <label>
+                            <input name="" type="checkbox" id="Chk" checked="checked" value="" />我已经阅读并同意《健康网使用协议》</label>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>&nbsp;</dt>
+                    <dd>
+                        <a id="btn-next-1" class="btn-next" href="#"></a>
+                    </dd>
+                </dl>
+            </div>
+
+
+        </div>
+        <div class="U-R-T1 tab_1" style="display: none">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的健康卡</h3>
+        </div>
+        <div class="Order-head clearfix">
+            <div class="hd1 hd1-in ">
+                <h3>个人基本信息(*为必填信息)</h3>
+            </div>
+            <div class="hd1 hd1-in chose" style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                <h3>保险协议</h3>
+            </div>
+            <div class="hd1 hd1-in ">
+                <h3>成功激活</h3>
+            </div>
+        </div>
+        <div class="card-cont" style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+            <p>@Html.Raw(ViewBag.Agreement)</p>
+            <div style="min-height: 200px"></div>
+            <div>
+                <label class="clearfix">
+                    <input class="fL mgT5" name="" id="Chk2" type="checkbox" checked="checked" value="" />
+                    <p class="fL mgL10" style="width: 900px; color: #555">@Html.Raw(ViewBag.ActivatePrompt)</p>
+                </label>
+                <a id="btn-next-2" class="btn-next" href="#"></a>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="U-R-T1 tab_2" style="display: none">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的健康卡</h3>
+        </div>
+        <div class="Order-head clearfix">
+            <div class="hd1 hd1-in ">
+                <h3>个人基本信息(*为必填信息)</h3>
+            </div>
+            <div class="hd1 hd1-in" style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                <h3>保险协议</h3>
+            </div>
+            <div class="hd1 hd1-in chose ">
+                <h3>成功激活</h3>
+            </div>
+        </div>
+        <div class="card-cont">
+            <div class="suc-regist">
+                <div class="suc-regist-con">
+                    <dl>
+                        <dt><i class="suc-ico"></i></dt>
+                        <dd style="width: 660px">
+                            <p>
+                                恭喜您成功激活健康卡！！<br />
+                                您已成为健康商城尊贵的会员。赶紧来我们商城体验一下吧。
+                            </p>
+                            <p class="mgT20"><a class="btn-shop" href="/"></a><a class="btn-perin mgL10" href="/UserCenter/Orders"></a></p>
+                        </dd>
+
+                    </dl>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    }
+
+
+    
+</div>

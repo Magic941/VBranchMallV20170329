@@ -1,0 +1,474 @@
+﻿@charset "utf-8";
+body,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td { margin:0; padding:0; }
+body,button,input,select,textarea { font:12px/1.5 '微软雅黑','Droid Sans',Arial,Verdana,sans-serif; }
+ul,ol { list-style:none; }
+.clear { display:block; height:0; overflow:hidden; clear:both; }
+.clearfix:after { content:'\20'; display:block; height:0; clear:both; }
+a:link,a:visited { text-decoration:none; }
+a:hover,a:active { text-decoration:underline; }
+
+/*团购详情页*/
+/*content*/
+ .content{
+width:1200px;
+margin:0 auto;
+}
+.content_top{
+width:1200px;
+}
+.content_top h2{
+}
+.content_top h2 a{
+height:59px;
+line-height:59px;
+float:left;
+font-family:"微软雅黑";
+color:#5D6469;
+padding-right:10px;
+}
+.catalog{
+float:left;
+}
+.catalog a{
+height:59px;
+line-height:59px;
+font-size:16px;
+font-family:"微软雅黑";
+padding-left:10px;
+color:#828282;
+background:url(../../../images/images/tuangou/twr5_3.png) left center no-repeat;
+}
+.addCart-gray {
+background-color:black;
+}
+
+/*content_left*/
+.content_left{
+width:882px;
+float:left;
+}
+.oils_content{
+padding:10px;
+}
+.oils{
+width:880px;
+border:4px solid #ddd;
+}
+.oils_title{
+width:837px;
+padding-top:20px;
+margin:0 auto;
+}
+.oils_title span{
+width:880px;
+font-size:36px;
+font-family:"微软雅黑";
+color:#353535;
+}
+.oils_title p{
+font-size:30px;
+font-family:"微软雅黑";
+color:#353535;
+}
+.oils_title b{
+color:#EB020B;
+}
+.rush{
+width:880px;
+width:246px;
+}
+.buy_to{
+width:266px;
+float:left;
+}
+.buy_to_title{
+	height:66px;
+	overflow:hidden;
+	padding-left:20px;
+	background:url(../../../images/images/tuangou/tuangou_1_3.png) no-repeat;
+}
+.buy_to_title span{
+	line-height:64px;
+	float:left;
+	color:#fff;
+	font-size:40px;
+	font-family:"微软雅黑";
+}
+.buy_to_title span bdo{
+	font-size:30px;
+}
+.price{
+	float:left;
+	color:#fff;
+	padding:28px 0 0 25px;
+	margin-top:10px;
+	position:relative;
+}
+.price i{
+	font-style:normal;
+}
+.price bdo{
+	width:57px;
+	height:24px;
+	text-align:center;
+	display:block;
+	position:absolute; left:40px; top:5px;
+	background:url(../../../images/images/tuangou/www.png) no-repeat;
+}
+
+.buy_to_p{
+width:248px;
+border:1px solid #E4ECF1;
+border-top:none;
+margin-left:10px;
+}
+.buy_to_p li{
+width:246px;
+border-bottom:1px solid #E4ECF1;
+}
+.addCart{
+width:134px;
+height:42px;
+font-size:26px;
+font-family:"微软雅黑";
+color:#EFEFEF;
+background:#FF9419;
+border:1px solid #EA4D05;
+margin:21px 0 23px 54px;
+}
+.buy_to_t{
+width:526px;
+float:left;
+}
+.share_it{
+width:880px;
+height:45px;
+background:#F1F6F9;
+}
+.share_it_dt{
+float:left;
+}
+.share_it_dt input{
+border:none;
+margin:7px 0 0 20px;
+background:url(../../../images/images/tuangou/collect.jpg)
+} 
+.buy_to_pl{
+width:246px;
+text-align:center;
+margin-bottom:20px;
+}
+.buy_to_pl a{
+height:48px;
+line-height:48px;
+font-size:20px;
+font-family:"微软雅黑";
+color:#6E6F6F;
+}
+.buy_to_pl p{
+font-size:16px;
+font-family:"微软雅黑";
+color:#777777;
+}
+.buy_to_pl a b{
+color:#EB0103;
+}
+.buy_to_pj{
+float:left;
+text-align:center;
+margin:12px 0 10px 15px;
+}
+.buy_to_pw{
+padding-top:8px;
+}
+.buy_to_pj b a,.buy_to_pw b a{
+font-size:14px;
+font-family:"微软雅黑";
+color:#000;
+display:block;
+}
+.buy_to_pw{
+float:right;
+text-align:center;
+margin:12px 15px 10px 0;
+}
+.share_it{
+	border-top:1px solid #e0ebf0;
+}
+.share_it ul{
+	float:right;
+	padding-top:1px;
+	background:#f1f6f9;
+}
+.share_it li{
+padding-right:7px;
+float:left;
+}
+.share_it li a img{
+padding-top:10px;
+}
+.share_it li a span{
+height:44px;
+line-height:44px;
+font-size:14px;
+font-family:"微软雅黑";
+color:#131212;
+}
+.hot_gu{
+width:882px;
+border:1px solid #E5EDF1;
+margin-top:10px;
+}
+.hot_gu_va span{
+height:70px;
+line-height:70px;
+font-size:18px;
+font-family:"微软雅黑";
+color:#989898;
+margin-left:35px;
+}
+.hot_gu_v .hot_gu_vb{
+float:left;
+}
+.hot_gu_v li{
+width:847px;
+height:46px;
+margin:0 auto;
+border-bottom:1px solid #E6EDF1;
+}
+.hot_gu_vb a{
+height:46px;
+line-height:46px;
+font-size:14px;
+font-family:"微软雅黑";
+padding-left:20px;
+color:#5A5A5A;
+}
+.hot_gu_vb a em{
+font-style:normal;
+color:#FE3229;
+}
+.hot_gu_v span a{
+height:46px;
+line-height:46px;
+font-size:14px;
+font-family:"微软雅黑";
+float:right;
+margin-right:10px;
+color:#5A5A5A;
+}
+.detail_ol{
+width:882px;
+margin-top:10px;
+}
+.detail_gh li{
+width:130px;
+height:48px;
+line-height:48px;
+background:#FAFAFA;
+text-align:center;
+float:left;
+border:1px solid #E6EDF1;
+}
+.detail_gh li a{
+height:48px;
+line-height:48px;
+font-size:18px;
+font-family:"微软雅黑";
+color:#5B5B5B;
+display:block;
+border-top:2px solid #fff;
+}
+.detail_gh li a:hover,.detail_gh li.active a{	
+height:49px;
+color:#7A7A7A;
+background:#fff;
+border-top:2px solid #EA0507;
+}
+.detail_ol dd{
+width:882px;
+border:1px solid #E6EDF1;
+}
+.detail_ol dd .detail_box{
+	display:none;
+}
+.purch{
+position:relative;
+}
+.purch li{
+	height:24px;
+	line-height:24px;
+	padding:8px 0;
+	border:none;
+}
+
+.purch li a{
+	float:left;
+	display:inline-block;
+	*display:inline; zoom:1;
+	border:2px solid #fff;
+}
+.purch li i{
+	height:24px;
+	font-style:normal;
+	display:block;
+	padding:0 10px;
+	border:1px solid #ddd;
+}
+.purch li em{
+	height:24px;
+	font-style:normal;
+	display:block;
+	padding:0 8px;
+	border:1px solid #ddd;
+}
+.purch li span{
+	width:4em;
+	float:left;
+	margin-left:10px;
+	font-family:"微软雅黑";
+	font-size:14px;
+	color:#999999;
+}
+.purch li.color{
+	height:30px;
+	line-height:30px;
+}
+.purch li.color a, .purch li.color span{
+	height:30px;
+	line-height:30px;
+	padding:0;
+}
+.purch li.color span{
+	display:inline-block;
+	*display:inline; zoom:1;
+}
+.purch li .active em{
+border:1px solid #ff1c2c;
+}
+.purch li .active i{
+	border:1px solid #ff1c2c;
+}
+.purch li .active img{
+border:1px solid #ff1c2c;
+}
+.purch li .active{
+background:url(../../../images/images/tuangou/icon_arr.jpg) right bottom no-repeat;
+	border:1px solid #ff1c2c;
+}
+ .purch li em,.purch li i,.purch li p{
+ color:#333333;
+ }
+.purch_din-wei{
+position:absolute;
+top:30px;
+left:123px;
+}
+/*content_right*/
+.content_right{
+width:293px;
+float:right;
+border:1px solid #E5EDF1;
+}
+.content_right_nav{
+width:293px;
+height:41px;
+border-bottom:1px solid #E5EEF2;
+background:#F2F2F2;
+}
+.content_right_nav span{
+height:41px;
+line-height:41px;
+font-size:16px;
+font-family:"微软雅黑";
+margin-left:10px;
+float:left;
+color:#414141;
+}
+.content_right_nav a{
+height:41px;
+line-height:41px;
+font-size:16px;
+font-family:"微软雅黑";
+float:right;
+margin-right:10px;
+color:#3880B0;
+}
+.read li{
+width:293px;
+margin:0 auto;
+margin-top:15px;
+padding-bottom:10px;
+border-bottom:1px dashed #E3E3E3;
+}
+.read li a{
+width:225px;
+margin-left:34px;
+}
+.read_yt{
+width:214px;
+margin:0 auto;
+}
+.read_yt a{
+width:214px;
+font-size:14px;
+font-family:"微软雅黑";
+color:#525252;
+}
+.read_yt a span{
+height:30px;
+line-height:30px;
+color:#E83363;
+float:left;
+}
+.read_yt a input{
+width:94px;
+height:30px;
+border:1px solid #D5D5D5;
+float:right;
+background:#FEFBF6;
+color:#525252;
+}
+.read_ll{
+border-bottom:none;
+}
+.share_it_dt .collect{
+	width:112px;
+	height:27px;
+	display:block;
+    cursor:pointer;
+	text-indent:-9999px;
+	background:url(../../../images/images/tuangou/collect.jpg) no-repeat;
+}
+/* content end */
+.TconR-W ul {
+   
+}
+    .TconR-W ul li {
+        border-bottom:1px solid #dedede;
+         padding-top:15px;
+    }
+.fast_buy {
+    width:220px;
+    margin:0 auto;
+    height:88px;
+}
+.fast_buy p {
+    font-family:"微软雅黑";
+    font-size:14px;
+}
+.TconR-W li a.TconR-WM {
+    width:220px;
+    display:block;
+    margin:0 auto;
+}
+.TconR-W li span em {
+    background: none repeat scroll 0 0 #ff0000;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    width: 103px;
+}

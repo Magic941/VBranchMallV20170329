@@ -1,0 +1,32 @@
+﻿@model Maticsoft.Model.Members.Users
+@if (Model != null)
+{
+    
+     <table  width="100%"   class="border form" style="background-color: #ffffff; border: 1px solid #CCC; padding:8px">
+    <tr>
+        <td class="td_class">
+            用户名：
+        </td>
+        <td height="25">
+            @(String.IsNullOrWhiteSpace(Model.TrueName) ? Model.NickName : Model.TrueName)
+            &nbsp;&nbsp;&nbsp;
+        </td>
+    </tr>
+    <tr>
+        <td class="td_class">
+            联系方式：
+        </td>
+        <td height="25">
+          @Model.Phone
+        </td>
+    </tr>
+    
+</table>
+}
+else
+{
+     <div style=" font-size: 16px; color: red; padding-left: 18px; font-weight: bold; background-color: #ffffff; border: 1px solid #CCC; padding:8px" > 
+     无该用户信息，请确认。
+     </div>
+}
+

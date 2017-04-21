@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-好粉排行榜";
+}
+@using System.Data;
+
+<link href="/Areas/MShop/Themes/M1/Content/LongHu/weixin/css/LongHu.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    var $Maticsoft = { BasePath: '/MShop/', CurrentArea: 'MShop' }
+</script>
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+    <span style="padding-left: 32px">好粉排行榜</span>
+</div>
+<div class="yy"></div>
+@{
+    string[] SortName = new string[] { "冠军", "亚军", "季军", "第四名", "第五名", "第六名", "第七名", "第八名", "第九名", "第十名" };
+        
+    <div class="Monthly-income">
+        <div class="DF_Emm">
+            <span style="color: #fff; background: url(/Areas/MShop/Themes/M1/Content/LongHu/weixin/ico/22w_03.png) center no-repeat; background-size: cover;">本周粉丝上榜名单</span>
+        </div>
+        <table width="98%" style="margin: 0 auto;">
+            <tr class="PS_qqe" width="100%" style="background: #c71d0a; text-align: center;">
+                <td width="30%" style="display: inline-block; text-align: center;">名次</td>
+                <td width="30%" style="display: inline-block; text-align: center;">姓名</td>
+                <td width="30%" style="display: inline-block; text-align: center;">粉丝数量</td>
+            </tr>
+            @{
+                if (ViewBag.FWeek != null)
+                {
+                    List<Maticsoft.Model.Team.SalesPersonBillboard> dt_FWeek = ViewBag.FWeek;
+                    int leng = dt_FWeek.Count > 10 ? 10 : dt_FWeek.Count;
+                    int i=0;
+
+                    for (int j = 0; j < leng; j++)
+                    {
+                        var item = dt_FWeek[j];
+                            
+                            if (i == 0)
+                            {
+                                <tr class="PS_qqe AD_11" style="background: #e55045; text-align: center;color:#ffd800">
+                                    <td width="30%" style="display: inline-block; text-align: center;">@SortName[i]</td>
+                                    <td class="Full-name" width="30%" style="display: inline-block; text-align: center;">@item.SalesName</td>
+                                    <td width="30%" style="display: inline-block; text-align: center;">@item.Result</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="PS_qqe AD_11" style="background: #e55045; text-align: center;">
+                                    <td width="30%" style="display: inline-block; text-align: center;">@SortName[i]</td>
+                                    <td class="Full-name" width="30%" style="display: inline-block; text-align: center;">@item.SalesName</td>
+                                    <td width="30%" style="display: inline-block; text-align: center;">@item.Result</td>
+                                </tr>
+                            }
+                            i++;
+                        }
+                    
+                }
+            }
+        </table>
+    </div>
+    <div class="Monthly-income">
+        <div class="DF_Emm">
+            <span style="color: #ffea39; background: url(/Areas/MShop/Themes/M1/Content/LongHu/weixin/ico/1_a.png) center no-repeat; background-size: cover;">本月粉丝上榜名单</span>
+        </div>
+        <table width="98%" style="margin: 0 auto;">
+            <tr class="PS_qqe AD_12" width="100%" style="background: #0083a0;">
+                <td width="30%" style="display: inline-block; text-align: center;">名次</td>
+                <td width="30%" style="display: inline-block; text-align: center;">姓名</td>
+                <td width="30%" style="display: inline-block; text-align: center;">粉丝数量</td>
+            </tr>
+            @{
+                if (ViewBag.FMonth != null)
+                {
+                    List<Maticsoft.Model.Team.SalesPersonBillboard> dt_FMonth = ViewBag.FMonth;
+
+                    int leng = dt_FMonth.Count > 10 ? 10 : dt_FMonth.Count;
+                    int i = 0;
+                    for (int j = 0; j < leng; j++)
+                    {
+                        var item = dt_FMonth[j];
+                            if (i < 3)
+                            {
+                                <tr class="PS_qqe AD_12" style="background: #089fc1;color:#ffd800">
+                                    <td width="30%" style="display: inline-block; text-align: center;">@SortName[i]</td>
+                                    <td class="Full-name2" width="30%" style="display: inline-block; text-align: center;">@item.SalesName</td>
+                                    <td width="30%" style="display: inline-block; text-align: center;">@item.Result</td>
+                                </tr>
+                            }
+                            else
+                            {
+                                <tr class="PS_qqe AD_12" style="background: #089fc1;">
+                                    <td width="30%" style="display: inline-block; text-align: center;">@SortName[i]</td>
+                                    <td class="Full-name2" width="30%" style="display: inline-block; text-align: center;">@item.SalesName</td>
+                                    <td width="30%" style="display: inline-block; text-align: center;">@item.Result</td>
+                                </tr>
+                            }
+                            i++;
+                        }
+                    
+                }
+            }
+        </table>
+    </div>
+}

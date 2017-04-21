@@ -1,0 +1,214 @@
+﻿@model Maticsoft.ViewModel.SNS.RegisterGroup
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Scripts/jquery/jquery.autosize-min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.jquery.dynatextarea.js" type="text/javascript"></script>
+ <link href="/Content/themes/base/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/taghandler/css/jquery.taghandler.css" rel="stylesheet" type="text/css" />
+          <script src="/Scripts/jqueryui/jquery-ui-1.8.20.custom.js" type="text/javascript"></script>
+    <script src="/Scripts/taghandler/js/jquery.taghandler.js" type="text/javascript"></script>
+    @if (ViewData.ModelState != null &&
+        ViewData.ModelState.Count > 0 &&
+        ViewData.ModelState["Message"] != null &&
+        ViewData.ModelState["Message"].Errors.Count > 0)
+    {
+        <script type="text/javascript">
+            $(function () {
+                $.jBox.tip('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+            });
+        </script>
+    }
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(function () {
+                if ($('#GroupLogo').val()) {
+                    $(".picture_wen").empty().append(("<img src='{0}' width='80px' height='80px'/>").format($('#GroupLogo').val().format("")));
+                }
+                var uploadbutton = $("#UploadPhoto").html();
+                var templatehtml = '<div class="qq-uploader span12">' +
+            '<pre class="qq-upload-drop-area span12"><span>{dragZoneText}</span></pre>' +
+            '<div class="qq-upload-button btn btn-success" style="width: 142px;padding-top: 0px;auto: hidden;background:rgb(239, 239, 239);height: 32px;right: -30px;">{uploadButtonText}</div>' +
+            '<span class="qq-drop-processing"><span>{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
+            '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center;"></ul>' +
+            '</div>';
+
+                var uploader = new qq.FineUploader({
+                    element: $("#UploadPhoto")[0],
+                    request: {
+                        endpoint: '/Upload/SNSUploadTmpImg.aspx'
+                    },
+                    text: {
+                        uploadButton: uploadbutton
+                    },
+                    template: templatehtml,
+                    multiple: false,
+                    validation: {
+                        allowedExtensions: ['jpeg', 'jpg', 'gif', 'png']
+                    },
+                    callbacks: {
+                        onComplete: function (id, fileName, responseJSON) {
+                            $(".btn-success").find("input").css("height", "28px");
+                            $(".qq-upload-list").hide();
+                            if (responseJSON.success) {
+                                $(".btn-success").find("input").css("height", "28px");
+                                $(".picture_wen").empty().append(("<img src='{0}' width='80px' height='80px'/>").format(responseJSON.data.format("T116x170_")));
+                                $.jBox.tip('上传成功！', 'success');
+                                $('#GroupLogo').val(responseJSON.data);
+                            } else {
+                                ShowFailTip("服务器没有返回数据，可能服务器忙，请稍候再试：");
+                            }
+                        }
+                    }
+                });
+            });
+
+    </script>
+}
+@using (Html.BeginForm())
+{
+    <div class="clear">
+    </div>
+    <div class="single_bk">
+        <div class="single_bk_F">
+            <div class="single_bk_FA">
+                <div class="single_CF">
+                    <div class="published">
+                        <h1>
+                            创建小组</h1>
+                        <div class="published_h" style="width: auto">
+                            <p>
+                                小 组:</p>
+                            <div class="published_h_i" style="width: 362px;">
+                                <dl class="published_h_i1">
+                                </dl>
+                                <dl class="published_h_i2" style="width: 350px;">
+                                    @Html.TextBoxFor(m => m.GroupName, new
+                            {
+                                style = "width: 350px;"
+                            })
+                                </dl>
+                                <dl class="published_h_i3">
+                                </dl>
+                            </div>
+                            <p>
+                                <span>@Html.ValidationMessageFor(m => m.GroupName)</span></p>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h" style="width: auto">
+                            <p>
+                                描 述:</p>
+                            <div class="published_u" style="height: auto;">
+                                @Html.TextAreaFor(m => m.GroupDescription, new { style = "width:360px;height:100px;" })
+                                <span id="probarGroupDescription" class="progress"></span>
+                            </div>
+                            <p>
+                                <span>@Html.ValidationMessageFor(m => m.GroupDescription)</span></p>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h" style="width: auto">
+                            <p>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                            <div class="published_u" style="height: auto;">
+                                @Html.HiddenFor(m => m.GroupLogo)
+                                <div class="picture" id="UploadPhotoWindow">
+                                    <div class="picture_an" id="UploadPhoto">
+                                        <a href="javascript:void(0);" class="btn_addPic"><span style="color: black"><em>+</em>上传Logo</span>
+                                            <input title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" name="pic" id="absFileInput" class="filePrew" type="file">
+                                        </a>
+                                    </div>
+                                    <div class="picture_wen">
+                                    </div>
+                                </div>
+                            </div>
+                            <p>
+                                <span>@Html.ValidationMessageFor(m => m.GroupLogo)</span></p>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h" style="width: auto">
+                            <p>
+                                标 签:</p>
+                            <div class="published_h_i">
+                                           @Html.HiddenFor(m => m.Tags, new { id = "SelectTags" })
+                    @Html.Hidden("TagsList", Model.TagList)
+                    <ul id="tags">
+                    </ul>
+                            </div>
+                            <p>
+                                <span>@Html.ValidationMessageFor(m => m.Tags)</span></p>
+                            <div class="clear">
+                            </div>
+                              <div style="color: #999;padding-left: 40px">手动输入标签，以逗号或者回车键结束即可</div>
+                        </div>
+                     <div class="published_w" style="width: 240px">
+                            <div class="published_w_a" style="width: 240px">
+                                <input type="submit" value="" style="float: left; background: url(/Areas/SNS/Themes/M1/Content/images/baocun1.png) no-repeat;
+                                    width: 113px; height: 30px; margin: 0; padding: 0; border: 0px; cursor: pointer;" />
+                                <span style="float: left; padding-left: 18px; padding-top: 8px;"><a  href="@(ViewBag.BasePath)Group">
+                                    <img alt="取消" src="/Areas/SNS/Themes/M1/Content/images/q.jpg" /></a> </span>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        jQuery.validator.unobtrusive.parse();
+        var tagValue = $("#SelectTags").val();
+        var tags_arr = [];
+        if (tagValue != "") {
+            tags_arr = $("#SelectTags").val().split(",");
+        }
+        var tagList_arr = $("#TagsList").val().split(",");
+        $('#tags').tagHandler({
+            assignedTags: tags_arr,
+            availableTags: tagList_arr,
+            autocomplete: true,
+            onAdd: function (tag) {
+                var addflag = true, tags = $('#tags').tagHandler("getTags");
+                jQuery.each(tags, function (i, e) {
+                    if (tag.toUpperCase() === e.toUpperCase()) {
+                        $('#tags').find('.tagItem').each(function () {
+                            if ($(this).html().toLocaleUpperCase() === tag.toLocaleUpperCase()) {
+                                $(this).animate({ opacity: 0.55 }).delay(20).animate({ opacity: 1 }).animate({ opacity: 0.55 }).delay(20).animate({ opacity: 1 });
+                            }
+                        });
+                        addflag = false;
+                    }
+                });
+                if (tags != "") {
+                    $("#SelectTags").val(tags + "," + tag);
+                }
+                else {
+                    $("#SelectTags").val(tag);
+                }
+                return addflag;
+            },
+            onDelete: function (tag) {
+                var tag_arr = $("#SelectTags").val().split(",");
+                var tag_value = $.grep(tag_arr, function (n, i) {
+                    return n != tag;
+                });
+                $("#SelectTags").val(tag_value.join(","));
+                return true;
+            }
+        });
+    });
+</script>

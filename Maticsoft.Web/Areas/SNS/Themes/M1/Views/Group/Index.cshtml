@@ -1,0 +1,608 @@
+﻿@model Maticsoft.ViewModel.SNS.GroupIndex
+@{
+    //ViewBag.Title = "小组首页";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/show.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/tab.js" type="text/javascript"></script>
+      
+    <script type="text/javascript">
+        $(function () {
+            xuanxiangka('tab');
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            var oUl1 = document.getElementById('ul1');
+            var aLi = oUl1.getElementsByTagName('li');
+            var aSpan = oUl1.getElementsByTagName('span');
+            var aDiv = getByClass(oUl1, 'show');
+            var timer = null;
+            var iHeight = 0;
+            var i = 0;
+            for (i = 0; i < aLi.length; i++) {
+                if (i % 2 == 0) {
+                    aLi[i].style.backgroundColor = 'white';
+                    aLi[i].style.color = '#FFF';
+                }
+                else {
+                    aLi[i].style.backgroundColor = '#CCC';
+                    aLi[i].style.color = '#000';
+                }
+            }
+            for (var j = 0; j < aSpan.length; j++) {
+                aSpan[j].index = j;
+                aSpan[j].bBtn = true;
+                aSpan[j].onclick = show;
+            }
+            function show() {
+
+                if (this.bBtn) {
+                    aDiv[this.index].style.display = "block";
+                    aDiv[this.index].style.height = 0;
+                    startMove(aDiv[this.index], aDiv[this.index].scrollHeight);
+                    this.bBtn = false;
+                }
+                else {
+                    startMove(aDiv[this.index], '0');
+                    this.bBtn = true;
+                }
+
+            };
+            function startMove(obj, iTarget) {
+                clearInterval(timer);
+                timer = setInterval(function () {
+
+                    var iSpeed = (iTarget - obj.offsetHeight) / 8;
+
+                    iSpeed = iSpeed > 0 ? Math.ceil(iSpeed) : Math.floor(iSpeed);
+
+                    if (obj.offsetHeight == iTarget) {
+                        clearInterval(timer);
+                    }
+                    else {
+                        obj.style.height = obj.offsetHeight + iSpeed + 'px';
+                    }
+                }, 30);
+            }
+            function getByClass(oParent, sClass) {
+                var aEle = oParent.getElementsByTagName("*");
+                var aResult = [];
+                var i = 0;
+
+                for (i = 0; i < aEle.length; i++) {
+                    if (aEle[i].className == sClass) {
+                        aResult.push(aEle[i]);
+                    }
+                }
+                return aResult;
+            }
+
+        });
+
+        $(function () {
+            resizeImg(".pic_load", 80, 80);
+            $("#searchGroup").click(function() {
+                var keyword = $("#groupkey").val();
+                window.location = $Maticsoft.BasePath + "Search/Groups?keyword=" + keyword;
+            });
+        });
+
+    </script>
+}
+<div class="clear">
+</div>
+<!------group-------->
+<div id="group">
+    <div class="group_ban">  @Html.Action("AdDetail", "Partial", new { id =4, ViewName = "_ImageAd" })  
+        @*<a href="javascript:;">
+            <img src="/Areas/SNS/Themes/M1/Content/images/group_1.jpg" /></a>*@</div>
+    <div class="group_sub">
+        <div class="group_sub_my">
+            <dl class="group_sub_my_a">
+            </dl>
+            <dl class="group_sub_my_b">
+                <h1>
+                    我的小组@* <a href="@(ViewBag.BasePath)Profile/Group?Type=1" >我发表的</a> <a href="@(ViewBag.BasePath)Profile/Group?Type=2" >我的回应</a>*@</h1>
+                @if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    <ul>
+                        <li>登录之后才可以看到您的小组,请<a href="@(ViewBag.BasePath)Account/Login">登录</a></li>
+                    </ul>
+                }
+                else
+                {
+                    if (Model.MyGroupList != null)
+                    {
+                    <div class="group_gro" style="margin-left: 15px">
+                        <div class="group3">
+                            <div id="target" style="width: 663px;@*height: 300px*@">
+                                <ul>
+                                    @for (int i = 0; i < Model.MyGroupList.Count; i++)
+                                    {
+                                        <li style="padding: 0;">
+                                            <div class="group2_s_1_a">
+                                                <a class="pic_load" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.MyGroupList[i].GroupID">
+                                                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.MyGroupList[i].GroupLogoThumb, "T80x80_"))"  alt="@Model.MyGroupList[i].GroupName"/>
+                                                </a>
+                                            </div>
+                                            <div class="group2_s_1_b">
+                                                <p class="group2_s_1_ba">
+                                                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.MyGroupList[i].GroupID">
+                                                        @(Maticsoft.Common.StringPlus.SubString(Model.MyGroupList[i].GroupName, 7, ".."))
+                                                    </a>
+                                                </p>
+                                                <p class="group2_s_1_bb">@Model.MyGroupList[i].GroupUserCount 个成员</p>
+                                                <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(Model.MyGroupList[i].GroupDescription, 10, ".."))</p>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                    </div>
+                    }
+                }
+            </dl>
+            <dl class="group_sub_my_c">
+            </dl>
+        </div>
+        <div class="group_gro">
+            <div class="group_gro_bk">
+                小组风采</div>
+            <div class="group_gro_ck">
+                <div class="group3">
+                    <dl class="group1_s">
+                        <dt class="group1_s_1">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_5.jpg" /></dt>
+                        <dd class="group1_s_2" style="display: none;">
+                            <a href="javascript:void(0);" onclick=''>换一批</a></dd>
+                    </dl>
+                    <div class="clear">
+                    </div>
+                    <div id="target" style="width: 663px;@*height: 300px*@">
+                        <ul>
+                            @if (Model.TopGroupList != null)
+                            {
+                                for (int i = 0; i < Model.TopGroupList.Count; i++)
+                                {
+                                <ul>
+                                    <li>
+                                        <div class="group2_s_1_a">
+                                            <a class="pic_load" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.TopGroupList[i].GroupID">
+                                                <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.TopGroupList[i].GroupLogoThumb, "T80x80_"))" alt="@Model.TopGroupList[i].GroupName"/>
+                                            </a>
+                                        </div>
+                                        <div class="group2_s_1_b">
+                                            <p class="group2_s_1_ba">
+                                                <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.TopGroupList[i].GroupID">
+                                                    @(Maticsoft.Common.StringPlus.SubString(Model.TopGroupList[i].GroupName, 7, ".."))
+                                                </a>
+                                            </p>
+                                            <p class="group2_s_1_bb">@Model.TopGroupList[i].GroupUserCount 个成员</p>
+                                            <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(Model.TopGroupList[i].GroupDescription, 10, ".."))</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                }
+                            }
+                        </ul>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="group3" style="border-bottom: 0;">
+                    <dl class="group1_s">
+                        <dt class="group1_s_1">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_6.jpg" /></dt>
+                        <dd class="group1_s_2" style="display: none;">
+                            <a href="javascript:;">换一批</a></dd>
+                    </dl>
+                    <div class="clear">
+                    </div>
+                    <ul>
+                        @if (Model.HotGroupList != null)
+                        {
+                            for (int i = 0; i < Model.HotGroupList.Count; i++)
+                            {
+                            <li>
+                                <div class="group2_s_1_a">
+                                    <a class="pic_load" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.HotGroupList[i].GroupID">
+                                        <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.HotGroupList[i].GroupLogoThumb, "T80x80_"))" alt="@Model.HotGroupList[i].GroupName" />
+                                    </a>
+                                </div>
+                                <div class="group2_s_1_b">
+                                    <p class="group2_s_1_ba">
+                                        <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.HotGroupList[i].GroupID">
+                                            @(Maticsoft.Common.StringPlus.SubString(Model.HotGroupList[i].GroupName, 7, ".."))
+                                        </a>
+                                    </p>
+                                    <p class="group2_s_1_bb">@Model.HotGroupList[i].GroupUserCount 个成员</p>
+                                    <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(Model.HotGroupList[i].GroupDescription, 10, ".."))</p>
+                                </div>
+                            </li>
+                            }
+                        }
+                    </ul>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="group_all" id="tab" style="display: none;">
+            <div class="textTitle">
+                <ul>
+                    <li><a href="javascript:;"><span class="all1">全部</span></a></li>
+                    <li><a href="javascript:;">新晋</a></li>
+                    <li><a href="javascript:;">美妆</a></li>
+                    <li><a href="javascript:;">美发</a></li>
+                    <li><a href="javascript:;">护肤</a></li>
+                    <li><a href="javascript:;">美体</a></li>
+                    <li><a href="javascript:;">风格</a></li>
+                    <li><a href="javascript:;">穿搭</a></li>
+                </ul>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="textNr" style="display: block;">
+                <div class="textNr_new">
+                    <h1>
+                        新晋</h1>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="textNr_new">
+                    <h1>
+                        美妆美发</h1>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <dl class="textNr_new_a">
+                        <dt class="hy"><a href="javascript:;">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                        <dd class="sy">
+                            <p class="sy_1">
+                                <a href="javascript:;">那些彩妆</a></p>
+                            <p class="sy_2">
+                                2383人</p>
+                        </dd>
+                    </dl>
+                    <div class="clear">
+                    </div>
+                    <div class="flexible">
+                        <ul id="ul1">
+                            <li>
+                                <div class="show">
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1" style="padding-right: 0px;">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                    <dl class="show_1">
+                                        <dt class="hy"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_9.jpg" /></a></dt>
+                                        <dd class="sy">
+                                            <p class="sy_1">
+                                                <a href="javascript:;">那些彩妆</a></p>
+                                            <p class="sy_2">
+                                                2383人</p>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <h5>
+                                    <span>
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/group_11.jpg" /></span></h5>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="textNr">
+                新晋</div>
+            <div class="textNr">
+                美妆</div>
+        </div>
+    </div>
+    <!------right----->
+    <div class="group_right">
+        <div class="group_right_fig">
+            <div class="group_right_fig_1">
+            </div>
+            <div class="group_right_fig_2">
+                <div class="number">
+                    <p class="number_t">
+                        已有</p>
+                    <ul>
+                        @for (int i = 0; i < 5 - ViewBag.GroupCount.Length; i++)
+                        {
+                            <li>0</li>
+                        }
+                        @for (int i = 0; i < ViewBag.GroupCount.Length; i++)
+                        {
+                            <li>@ViewBag.GroupCount[i]</li>
+                        }
+                    </ul>
+                    <p class="number_p">
+                        创建小组</p>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="create">
+                    <a href="@(ViewBag.BasePath)Group/Create">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/group_16.jpg" /></a></div>
+                <div class="sear">
+                    <dl class="sear_l">
+                    </dl>
+                    <dl class="sear_z">
+                        <input name="" type="" id="groupkey" /></dl>
+                    <dl class="sear_m">
+                        <a href="javascript:void(0)" id="searchGroup">
+                            <img src="/Areas/SNS/Themes/M1/Content/images/group_17.jpg" /></a></dl>
+                </div>
+            </div>
+            <div class="group_right_fig_3">
+            </div>
+        </div>
+        
+        @if (Model.ProGroupList != null && Model.ProGroupList.Count > 0)
+            {
+                <div class="group_right_leader">
+                    <div class="group_right_fig_1">
+                    </div>
+                    <div class="group_right_leader_2">
+                        <h2>
+                            精选推荐小组</h2>
+                        <div class="group_con">
+                            @for (int i = 0; i < Model.ProGroupList.Count; i++)
+                            {
+                            @*<div id="sidebar">
+                                <dl class="leader_b">
+                                    <p class="leader_b_a">
+                                        <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.ProGroupList[i].GroupID">@(Maticsoft.Common.StringPlus.SubString(Model.ProGroupList[i].GroupName, 7, ".."))</a></p>
+                                    <p class="leader_b_b">
+                                        <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.ProGroupList[i].GroupID" class="pic_load">
+                                            <img ref="@Model.ProGroupList[i].GroupLogo" alt="@Model.ProGroupList[i].GroupName" /></a></p>
+                                    <p class="leader_b_c">
+                                        <span class="soe">@Model.ProGroupList[i].GroupUserCount</span>个成员<br />
+                                        @(Maticsoft.Common.StringPlus.SubString(Model.ProGroupList[i].GroupDescription, 10, ".."))</p>
+                                </dl>
+                            </div>*@
+                                <div class="group2_s_1_a">
+                                    <a class="pic_load" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.ProGroupList[i].GroupID">
+                                        <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.HotGroupList[i].GroupLogoThumb, "T80x80_"))" alt="@Model.ProGroupList[i].GroupName"/>
+                                    </a>
+                                </div>
+                                <div class="group2_s_1_b">
+                                    <p class="group2_s_1_ba">
+                                        <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.ProGroupList[i].GroupID">
+                                            @(Maticsoft.Common.StringPlus.SubString(Model.ProGroupList[i].GroupName, 7, ".."))
+                                        </a>
+                                    </p>
+                                    <p class="group2_s_1_bb">@Model.ProGroupList[i].GroupUserCount 个成员</p>
+                                    <p class="group2_s_1_bc">@(Maticsoft.Common.StringPlus.SubString(Model.ProGroupList[i].GroupDescription, 10, ".."))</p>
+                                </div>
+                                if (i < Model.ProGroupList.Count)
+                                {
+                                    <div class="clear" style="margin-bottom: 10px">
+                                    </div>
+                                }
+                            }
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="group_right_fig_3">
+                    </div>
+                </div>
+            }
+        <div class="group_right_leader">
+            <div class="group_right_fig_1">
+            </div>
+            <div class="group_right_leader_2">
+                <h2>
+                    最新话题</h2>
+                @if (Model.NewGroupTopicList != null)
+                {
+                    for (int i = 0; i < Model.NewGroupTopicList.Count; i++)
+                    {
+                    <ul>
+                        <li><a href="@(ViewBag.BasePath)Group/TopicReply?id=@Model.NewGroupTopicList[i].TopicID">@Model.NewGroupTopicList[i].Title</a></li>
+                        <li>来自:<a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.NewGroupTopicList[i].GroupID" style="font-weight: normal;">@Model.NewGroupTopicList[i].GroupName</a>
+                         回复:<span class="topic">@Model.NewGroupTopicList[i].ReplyCount</span></li>
+                    </ul>
+                    }
+                }
+                <div class="clear">
+                </div>
+            </div>
+            <div class="group_right_fig_3">
+            </div>
+        </div>
+    </div>
+    <!------right end----->
+    <div class="clear">
+    </div>
+</div>
+<!------group结束----->

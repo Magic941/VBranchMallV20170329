@@ -1,0 +1,39 @@
+﻿@model List<Maticsoft.Model.Shop.Products.BrandInfo>
+           
+  <div class="box-sub" name="__P_PPQJD01">
+      <div class="hd">
+          <h2>
+              品牌旗舰店</h2>
+      </div>
+      @if (Model != null && Model.Count > 0)
+      {
+          <div class="bd">
+                    <div class="subbrand-box">
+                        <ul id="J_brand" class="subbrand">
+                            @foreach (var item in Model)
+                            {
+                                     <li><a href="#"
+                                   target="_blank" title="@item.BrandName">
+                                    <img alt="@item.BrandName" src="@item.Logo"></a>
+                            </li>
+                            }
+                        </ul>
+                        <!-- <div class="moreBrand">
+								<a href="http://product.maticsoft.com/p-SJ12209.htm#" style="display:none">显示更多品牌</a></div>-->
+                    </div>
+                </div>
+      }
+                
+            </div>
+            <script type="text/javascript">
+                var MbarndBtn = $('<div class="moreBrand"><a href="#">显示更多品牌</a></div>');
+                if ($("#J_brand>li").size() > 10) {
+                    $("#J_brand>li").slice(10).hide();
+                    $("#J_brand").after(MbarndBtn);
+                }
+                $(".moreBrand").click(function () {
+                    $("#J_brand>li").slice(10).show();
+                    $(".moreBrand").remove();
+                    return false;
+                })
+            </script>

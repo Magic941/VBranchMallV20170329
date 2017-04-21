@@ -1,0 +1,42 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@{
+    <script type="text/javascript">
+        $(function () {
+            $.lazyFixedLoadImg('.list-n4', 175, 228);
+        });
+    </script>
+
+    if (Model != null)
+    {
+        foreach (Maticsoft.Model.Shop.Products.ProductInfo item in Model)
+        {
+    <li>
+        <div class="W-img">
+            <a target="_blank"  href="@(ViewBag.BasePath)Product/ProSaleDetail/@item.CountDownId"
+                                                            title="@item.ProductName">
+                <img title="@item.ProductName" alt="@item.ProductName" width="175" height="228" ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T175X228_")"></a>
+            <div class="W-img-hover" endDate="@item.ProSalesEndDate" Product="@item.ProductId"  id="txtenddate_@(item.ProductId)">
+                剩余：<span><span id="dayEnd_@(item.ProductId)">0</span>天<span id="hourEnd_@(item.ProductId)">0</span>时 
+                            <span id="minEnd_@(item.ProductId)">0</span>分 <span id="secEnd_@(item.ProductId)">0</span>秒</span>
+            </div>
+        </div>
+        <p class="Scatg-list-tit">
+            <a class="txt-red" href="#"><span class="txt-red">7.4折</span>@item.ProductName </a>
+        </p>
+        <div class="Scatg-list-yh clearfix">
+            <div class="clearfix price-msg">
+                <div class="price-btn fL">¥@(item.ProSalesPrice.ToString("F"))</div>
+                <div class="fL price-save">
+                    <b class="txt-red">立省@(item.MarketPrice.Value - item.ProSalesPrice)元</b><br />
+                    @if (item.MarketPrice.HasValue)
+                    {
+                        <del><b>¥@(item.MarketPrice.Value.ToString("F"))</b></del>
+                    }
+                </div>
+            </div>
+            <div class="goods-buy"><a href="#"></a></div>
+        </div>
+    </li>
+        }
+    }
+}

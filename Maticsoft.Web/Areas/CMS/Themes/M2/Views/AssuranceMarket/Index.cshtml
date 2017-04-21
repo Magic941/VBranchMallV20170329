@@ -1,0 +1,560 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+
+
+ <link rel="stylesheet" type="text/css" href="http://union.xyz.cn/static/union-less/css/channel/union-template.css" />
+ <link rel="stylesheet" type="text/css" href="http://union.xyz.cn//static/union-less/css/channel/global.css" />
+
+<div class="w960" style="margin-top:20px">
+  <div class="lay-cont fn-clear">
+    
+    <div class="lay-main fn-left">
+      <input id="dev_uid" value="132056" type="hidden">
+      <input id="dev_sid" value="8eNXvnWy2J5g" type="hidden">
+      <input id="dev_comId" value="" type="hidden">
+      <input id="dev_prodType" value="" type="hidden">
+      
+		   <div id="dev_prod_type" class="order-my-sel">
+		  	 
+		  		 <div class="fn-clear">
+		        
+		        
+		          <label class="fn-left">产品分类:</label>
+		        
+		        
+		        
+		        <ul>
+		        
+		        
+		          
+		            <li><span class="any-sel" onclick="prodPropClickFn('','prodTypeAll')">全部</span></li>
+		            
+		             
+		            
+		            <li><span onclick="prodPropClickFn('101-01','prodType')">交通意外保险</span></li>
+		            
+		            
+		             
+		            
+		            <li><span onclick="prodPropClickFn('101-02','prodType')">综合意外保险</span></li>
+		            
+		            
+		             
+		            
+		            <li><span onclick="prodPropClickFn('101-05','prodType')">健康险</span></li>
+		            
+		            
+		             
+		            
+		            <li><span onclick="prodPropClickFn('101-03','prodType')">国内旅行保险</span></li>
+		            
+		            
+		             
+		            
+		            <li><span onclick="prodPropClickFn('101-04','prodType')">境外旅行保险</span></li>
+		            
+		            
+		          
+		          
+		          
+		        
+		        </ul>
+		        </div>
+		       
+		  		 <div class="fn-clear">
+		        
+		        
+		        
+		          <label class="fn-left">保险公司:</label>
+		        
+		        
+		        <ul>
+		        
+		        
+		          
+		          
+		            <li><span class="any-sel" onclick="prodPropClickFn('','comAll')">全部</span></li>
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('842','comId')">前海人寿</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('827','comId')">利安保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('625','comId')">安联保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('824','comId')">人保寿险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('601','comId')">中国平安</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('603','comId')">美亚财产保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('604','comId')">阳光财险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('606','comId')">丘博保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('608','comId')">华泰财产保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('622','comId')">华安保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('802','comId')">泰康养老</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('807','comId')">昆仑健康</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('810','comId')">太平养老保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('605','comId')">大地财产保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('811','comId')">合众人寿保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('612','comId')">太平洋财产保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('618','comId')">史带财险（原大众保险）</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('820','comId')">平安养老保险</span></li>
+		            
+		            
+		            
+		            
+		            <li><span onclick="prodPropClickFn('621','comId')">安盛保险</span></li>
+		            
+		            
+		          
+		          
+		        
+		        </ul>
+		        </div>
+		       
+		   </div>
+		 
+       
+        <div class="pro-showcase-all fn-clear">
+         
+          
+           <div class="pro-showcase">
+          
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/j24wcp3v?sid=8eNXvnWy2J5g" target="_blank">
+            <i>新一站白领健康保障计划</i></a></div>
+            <div class="pro-img"><a href="#"><img title="新一站白领健康保障计划" alt="新一站白领健康保障计划" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=j24wcp3v&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>30种常见重疾，日常意外伤害及医疗，上下班公共交通意外，专为白领定制的全面保障。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">380.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="史带财产保险股份有限公司上海自贸试验区分公司" alt="史带财产保险股份有限公司上海自贸试验区分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=102" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+           <div class="pro-showcase">
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/jp4whqoj?sid=8eNXvnWy2J5g" target="_blank">
+            <i>平安综合意外精英版计划四</i></a></div>
+            <div class="pro-img"><a href="#"><img title="平安综合意外精英版计划四" alt="平安综合意外精英版计划四" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=jp4whqoj&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>保障全面升级，50万元意外伤残+200元/天住院津贴+5万元意外医疗，每天不到1.9元。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">688.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="中国平安财产保险股份有限公司江苏分公司" alt="中国平安财产保险股份有限公司江苏分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=1" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+          
+           <div class="pro-showcase no-mr">
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/ja3whqmv?sid=8eNXvnWy2J5g" target="_blank">
+            <i>安盛“卓越亚洲行”尊贵计划</i></a></div>
+            <div class="pro-img"><a href="#"><img title="安盛“卓越亚洲行”尊贵计划" alt="安盛“卓越亚洲行”尊贵计划" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=ja3whqmv&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>亚洲游升级保障，保障全面，人身、财产、个人责任均涵盖，医疗救援更周全。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">35.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安盛天平财产保险股份有限公司上海分公司" alt="安盛天平财产保险股份有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=132" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+           <div class="pro-showcase">
+          
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/kiugpqbw?sid=8eNXvnWy2J5g" target="_blank">
+            <i>申根之王玛瑙计划</i></a></div>
+            <div class="pro-img"><a href="#"><img title="申根之王玛瑙计划" alt="申根之王玛瑙计划" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=kiugpqbw&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>30万高额医疗保障，住院门诊全覆盖，低调的价格，不低调的全面保障。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">65.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安联财产保险（中国）有限公司上海分公司" alt="安联财产保险（中国）有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=4543" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+           <div class="pro-showcase">
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/pt6wppwg?sid=8eNXvnWy2J5g" target="_blank">
+            <i>安联安途东南亚旅行险计划</i></a></div>
+            <div class="pro-img"><a href="#"><img title="安联安途东南亚旅行险计划" alt="安联安途东南亚旅行险计划" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=pt6wppwg&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>令人心醉的低价，3万境外医疗+20万个人责任！航班延误、随身财物、24小时救援妥妥哒。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">16.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安联财产保险（中国）有限公司上海分公司" alt="安联财产保险（中国）有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=4543" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+          
+           <div class="pro-showcase no-mr">
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/jl5gpp5g?sid=8eNXvnWy2J5g" target="_blank">
+            <i>安联安途中国境内游升级款</i></a></div>
+            <div class="pro-img"><a href="#"><img title="安联安途中国境内游升级款" alt="安联安途中国境内游升级款" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=jl5gpp5g&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>无论是自驾、租车游or自由行均适用，全面的行程保障，医疗、航班延误、个人责任全保。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">11.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安联财产保险（中国）有限公司上海分公司" alt="安联财产保险（中国）有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=4543" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+           <div class="pro-showcase">
+          
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/p3vgj3wg?sid=8eNXvnWy2J5g" target="_blank">
+            <i>“太平一生”精英综合意外险含海陆空交通意外</i></a></div>
+            <div class="pro-img"><a href="#"><img title="“太平一生”精英综合意外险含海陆空交通意外" alt="“太平一生”精英综合意外险含海陆空交通意外" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=p3vgj3wg&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i title="日常生活工作、外出、公共交通等意外风险均涵盖，医疗可报销、伤残有保障；经济实惠，附加服务居多，保您出行安全无忧。">日常生活工作、外出、公共交通等意外风险均涵盖，医疗可报销、伤残有保障；经济实惠，附加服务居多...</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">330.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="太平养老保险股份有限公司江苏分公司" alt="太平养老保险股份有限公司江苏分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=41" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+           <div class="pro-showcase">
+          
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/j25wpqbu?sid=8eNXvnWy2J5g" target="_blank">
+            <i>安联安途亚洲旅行险计划</i></a></div>
+            <div class="pro-img"><a href="#"><img title="安联安途亚洲旅行险计划" alt="安联安途亚洲旅行险计划" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=j25wpqbu&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>带够保障再出发，50万高额保障玩转亚洲，承保娱乐项目，24小时医疗救援更安心。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">85.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安联财产保险（中国）有限公司上海分公司" alt="安联财产保险（中国）有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=4543" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+          
+          
+          
+           <div class="pro-showcase no-mr">
+          
+            <div class="pro-title f14"><a class="lnk-blue" href="/union/prodDetail/pqwghqgh?sid=8eNXvnWy2J5g" target="_blank">
+            <i>安盛户外运动保障精英款</i></a></div>
+            <div class="pro-img"><a href="#"><img title="安盛户外运动保障精英款" alt="安盛户外运动保障精英款" src="http://www.xyz.cn/p/prodpic.do?xcase=showPic&amp;prodId=pqwghqgh&amp;logoType=23" width="140" height="140"></a></div>
+            <p class="pro-detail gray9"><i>保障额度升级，10万元意外伤害及3万元医疗保障，理赔有保障，出行更安心。</i></p>
+            
+              
+	            <div class="fn-clear">
+	              <div class="brand-money fn-left">
+	               <p class="f18"><span class="gray9"><dfn>¥</dfn></span><span class="ui-money">6.00</span></p>
+	              </div>
+	            <div class="fn-right">
+	              <img title="安盛天平财产保险股份有限公司上海分公司" alt="安盛天平财产保险股份有限公司上海分公司" src="http://www.xyz.cn/p/company.do?xcase=showLogoImg&amp;companyDetailDto.insComId=132" width="100" height="36">
+	            </div>
+	            </div>
+	             <p class="brand-del"></p>
+	         
+	         
+           
+           
+         </div>
+        
+        </div>
+       
+      <div class="pager">
+       
+       
+		
+		<div class="pager"><div><a class="disable-click" disable="true"><span title="翻至上一页">&lt;上一页</span></a><span class="curP">1</span><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=2">2</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=3">3</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=4">4</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=5">5</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=6">6</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=7">7</a><span class="moreP">...</span><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=22">22</a><a href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=23">23</a><a class="pnext" href="/union/showProd?uid=132056&amp;sid=8eNXvnWy2J5g&amp;currentPage=2"><span title="翻至下一页">下一页&gt;</span></a></div></div>
+	</div>
+    </div>
+    
+      
+
+
+
+
+
+
+
+
+
+	<div class="lay-sider fn-left">
+	<div class="lay-sider-wrap">
+		<h3 class="title f14">投保流程</h3>
+		<div class="content">
+			<img title="投保流程" alt="投保流程" src="/static/union-less/images/channel/insure-process.png" width="151" height="236">
+		</div>
+	</div>
+	
+		<div class="lay-sider-wrap">
+			<h3 class="title f14"><a href="/union/viewQuestion?partId=641" target="_blank">常见问题</a>
+			
+			</h3>
+			<div class="content">
+				<ul class="question-list">
+				   
+				     
+				       <li><a href="/union/viewQuestion?partId=641#name325" target="_blank">关于保险产品</a></li>
+				      
+				   
+				     
+				       <li><a href="/union/viewQuestion?partId=641#name333" target="_blank">关于投保</a></li>
+				      
+				   
+				     
+				       <li><a href="/union/viewQuestion?partId=641#name326" target="_blank">关于支付</a></li>
+				      
+				   
+				     
+				       <li><a href="/union/viewQuestion?partId=641#name327" target="_blank">关于保单</a></li>
+				      
+				   
+				     
+				       <li><a href="/union/viewQuestion?partId=641#name343" target="_blank">关于理赔</a></li>
+				      
+				   
+				</ul>
+			</div>
+		</div>
+	
+	
+		<div class="lay-sider-wrap">
+			<h3 class="title f14"><a href="/union/viewClaim?partId=642" target="_blank">理赔指南</a>
+			
+			</h3>
+			<div class="content">
+				<ul class="question-list">
+				  
+				    
+				     <li><a href="/union/viewClaim?partId=642#name190" target="_blank">理赔申请应备材料</a></li>
+				    
+				  
+				    
+				     <li><a href="/union/viewClaim?partId=642#name191" target="_blank">理赔注意事项</a></li>
+				    
+				  
+				    
+				     <li><a href="/union/viewClaim?partId=642#name192" target="_blank">报案方式</a></li>
+				    
+				  
+				</ul>
+			</div>
+		</div>
+	
+	<div>
+		<img style="cursor: pointer;" onclick="javascript:window.open('http://b.qq.com/webc.htm?new=0&amp;sid=4006675599&amp;eid=218808P8z8p8P8P8R8Q8q&amp;o=www.xyz.cn&amp;q=7&amp;ref=www.xyz.cn', '_blank', 'height=544, width=644,toolbar=no,scrollbars=no,menubar=no,status=no');" border="0" src="/static/union-less/images/channel/qq-online.jpg">
+	</div>
+</div>
+    
+  </div>
+  <div style="margin: 0px auto; padding: 0px 0px 40px; width: 960px; text-align: center;">保险网络销售资质提供商：新一站保险代理有限公司</div>    
+     
+     
+    
+    
+    <script charset="UTF-8" src="/static/plugins/jquery-1.4.2.js"></script>
+    <script charset="UTF-8" src="/static/script/union_common.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/script/jquery_placeholder.js"></script>
+    <script charset="UTF-8" src="/static/plugins/jquery.form.js"></script>
+    
+    
+    <script type="text/javascript" charset="UTF-8" src="/static/script/member/login.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="/static/script/adv/spread_home.js"></script>
+    
+    
+    <script type="text/javascript">
+        $(".dev_palceholer").placeholder({
+            placeholder: 'placeholder1',
+            css: {
+                'top': '10px',
+                'left': '8px'
+            }
+        });
+				</script>
+    
+        
+            
+            
+            
+                
+                       <script language="javascript" charset="utf-8" src="http://kefu.trademessenger.com/chat/float_card?settingId=ayfvNxUccAs"></script><div style="top: 150px; right: 10px; margin-right: 0px; position: fixed; z-index: 2147483647; _position: absolute;" id="focustech-kefu">    <div class="spike-closer">                <a onclick='try{top.open("http://kefu.trademessenger.com/chat?domain=unionxyz&amp;referrer=" + encodeURIComponent(window.location.href),"kefu","toolbar=no,location=no,directories=no,resizable=yes,status=yes,menubar=no,scrollbars=yes,width=800,height=600,left=0,top=0")}catch(e){};return false;' href="javascript:void(0);">        <img alt="focustech kefu" src="http://kefu.trademessenger.com/chat/code_setting/download?fileid=3ccacf5c-6844-4d4c-8d54-0f8d4e3a2c1b">        </a>    </div></div>
+                
+            
+        
+    
+    
+    
+    <script type="text/javascript" charset="utf-8" src="/static/script/my_union/my_union.js"></script>
+    
+	<!-- probe -->
+	<script type="text/javascript" src="http://pylon.pro6e.com/gb/js/assets/probe/probe_3415_1.js"></script>
+	<script type="text/javascript"> if (typeof Probe !== 'undefined') { (new Probe({ probability: 100, resourceCollect: ['http://www.googleadservices.com/pagead/conversion.js'] })).start(); }</script>
+	<!-- End probe -->     
+    
+    <script type="text/javascript" charset="UTF-8" src="/static/script/channel_prod/prod_list.js"></script>
+
+
+
+
+
+
+
+

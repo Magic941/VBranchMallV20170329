@@ -1,0 +1,577 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+
+<style>
+/* CSS Document */
+
+*{ padding:0; margin:0; }
+
+/*! normalize.css v2.1.3 | MIT License | git.io/normalize */
+
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+
+audio,
+canvas,
+video {
+    display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+    display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+    background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+
+a:focus {
+    outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+
+h1 {
+    font-size: 1em;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+
+abbr[title] {
+    border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+
+b,
+strong {
+    font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+
+dfn {
+    font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+    background: #ff0;
+    color: #000;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, serif;
+    font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+
+pre {
+    white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+
+q {
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+    font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.25em;
+}
+
+/* ==========================================================================
+   Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+
+img {
+    border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+
+figure {
+    margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+    border: 1px solid #c0c0c0;
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+    border: 0; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+button,
+input {
+    line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+
+button,
+select {
+    text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+    box-sizing: border-box; /* 1 */
+    padding: 0; /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+    -webkit-appearance: textfield; /* 1 */
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box; /* 2 */
+    box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+
+textarea {
+    overflow: auto; /* 1 */
+    vertical-align: top; /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/*! update normalize.css by joenix */
+.clearfix{
+	*zoom:1;
+}
+.clearfix:before,
+.clearfix:after{
+	display:table;
+	content:'';
+	line-height:0;
+}
+.clearfix:after{
+	clear:both;
+}
+
+section, .section{
+	margin:0 auto;
+}
+
+form{
+	border:none;
+}
+input, button{
+	vertical-align:top;
+}
+
+li{
+	list-style:none;
+}
+
+html{
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+a         {text-decoration:none;outline:none;color:#333;background-color:transparent;} /* 未添加的链接 */
+a:link    {} /* 未访问的链接 */
+a:visited {} /* 已访问的链接 */
+a:hover   {color:#E62222} /* 鼠标悬停链接 */
+a:focus   {color:#E62222; outline:none;} /* 焦点选择链接 */
+a:active  {color:#E62222} /* 被选择的链接 */
+.Hoard_goods1{
+	height:479px;
+	background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h1_01.png) center no-repeat
+	}
+.Hoard_goods2{
+	height:559px;
+	background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h2_02.png) center no-repeat;
+	}
+</style>
+
+
+<body>
+<div class="Hoard_goods1" style=""></div>
+<div class="Hoard_goods2" style=""></div>
+<div class="" style="background:#1a053d; padding-bottom:50px;">
+	<div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h3.png) no-repeat; width:1250px; height:671px; margin:0 auto;"></div>
+    <div class="Kitchen1cleaning1" style=" background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h5_06.png) no-repeat; width:1250px; height:423px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/1154569" style="width:320px;height:400px;display:block;position:absolute;top:19px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/11286" style="width:320px;height:400px;display:block;position:absolute;top:19px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154148" style="width:320px;height:400px;display:block;position:absolute;top:19px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style=" background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h6_09.png) no-repeat; width:1250px; height:422px; margin:0 auto; position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/7879
+" style="width:320px;height:400px;display:block;position:absolute;top:9px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/8563
+" style="width:320px;height:400px;display:block;position:absolute;top:9px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1155185
+" style="width:320px;height:400px;display:block;position:absolute;top:9px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h7.png) no-repeat; width:1250px; height:401px; margin:0 auto; position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/4004
+" style="width:320px;height:400px;display:block;position:absolute;top:0px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/3678
+" style="width:320px;height:400px;display:block;position:absolute;top:0px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/4712
+" style="width:320px;height:400px;display:block;position:absolute;top:0px;left:774px;" target="_blank"></a>
+    </div>
+</div>
+<div class="" style="background:#fdbc2a; padding-bottom:58px;">
+	<div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h8_14.png) no-repeat; width:1250px; height:484px; margin:0 auto;">
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h9_15.png) no-repeat; width:1250px; height:437px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/9593
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/4050
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/11130
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h10_17.png) no-repeat; width:1250px; height:406px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/1155650
+" style="width:320px;height:400px;display:block;position:absolute;top:-2px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/7905
+" style="width:320px;height:400px;display:block;position:absolute;top:-2px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/12099
+" style="width:320px;height:400px;display:block;position:absolute;top:-2px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h11_18.png) no-repeat; width:1250px; height:410px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/4155
+" style="width:320px;height:400px;display:block;position:absolute;top:4px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/7964
+" style="width:320px;height:400px;display:block;position:absolute;top:4px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/4685
+" style="width:320px;height:400px;display:block;position:absolute;top:4px;left:774px;" target="_blank"></a>
+    </div>
+</div>
+<div class="" style="background:#eb2a2f; padding:28px 0 80px 0;">
+	<div class="" style=" background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h12_20.png) no-repeat; width:1250px; height:471px; margin:0 auto;">	
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h13_21.png) no-repeat; width:1250px; height:423px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/1154194
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154234
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154186
+" style="width:320px;height:400px;display:block;position:absolute;top:20px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h13_22.png) no-repeat; width:1250px; height:431px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/3970
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154121
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154156
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h14_23.png) no-repeat; width:1250px; height:409px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/13914
+" style="width:320px;height:400px;display:block;position:absolute;top:-1px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1746
+" style="width:320px;height:400px;display:block;position:absolute;top:-1px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154420
+" style="width:320px;height:400px;display:block;position:absolute;top:-1px;left:774px;" target="_blank"></a>
+    </div>
+</div>
+<div class="" style="background:#1a053d; padding:30px 0 80px 0;">
+	<div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h16_25.png) no-repeat; width:1250px; height:470px; margin:0 auto;">
+    </div>
+    <div class="" style="background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h17_26.png) no-repeat; width:1250px; height:428px; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/6922
+" style="width:320px;height:400px;display:block;position:absolute;top:23px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1155328
+" style="width:320px;height:400px;display:block;position:absolute;top:23px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1155030
+" style="width:320px;height:400px;display:block;position:absolute;top:23px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="width:1250px; height:412px; background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h18_27.png) no-repeat; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/1154262
+" style="width:320px;height:400px;display:block;position:absolute;top:12px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154820
+" style="width:320px;height:400px;display:block;position:absolute;top:12px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1155359
+" style="width:320px;height:400px;display:block;position:absolute;top:12px;left:774px;" target="_blank"></a>
+    </div>
+    <div class="" style="width:1250px; height:416px; background:url(/Areas/Shop/Themes/M1/Content/ld/th/images/h19_28.png) no-repeat; margin:0 auto;position:relative;">
+    	<a class="" href="http://zhenhaolin.com/Product/Detail/1155152
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:104px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1154949
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:439px;" target="_blank"></a>
+        <a class="" href="http://zhenhaolin.com/Product/Detail/1155542
+" style="width:320px;height:400px;display:block;position:absolute;top:16px;left:774px;" target="_blank"></a>
+    </div>
+</div>

@@ -1,0 +1,157 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model  PagedList<Maticsoft.Model.Shop.Products.ProductReviews>
+
+<div id="CommentList">
+    <div class="hd">
+        <div class="fr">
+            购买过该商品的用户才能进行评论 <a href="javascript:;" style="display:none;" class="btn btn-highlight ml10 btnAddComment">
+                                <span>我要评论</span></a></div>
+        <h3>
+            顾客评论<a class="ml5 f12 fn" href="javascript:;"
+                   target="_blank">@(ViewBag.TotalCount)评论</a></h3>
+    </div>
+    <div class="bd" >
+        <div class="faq-vote" style="display: none">
+            <div class="box">
+                <div class="hd">
+                    <h2>
+                        商品评分：</h2>
+                    <span class="big-star"><i style="width: 90%"></i></span><strong class="faq-score">4.3分</strong>
+                </div>
+                <div class="bd">
+                    <ul class="faq-vote-list">
+                        <li><span class="small-star"><i style="width: 100%"></i></span><span class="faq-vote-scale">
+                                                                                           <i style="width: 51.36187%"></i></span><strong class="faq-vote-data">132</strong></li>
+                        <li><span class="small-star"><i style="width: 80%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 34.63035%"></i></span><strong class="faq-vote-data">89</strong></li>
+                        <li><span class="small-star"><i style="width: 60%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 9.727627%"></i></span><strong class="faq-vote-data">25</strong></li>
+                        <li><span class="small-star"><i style="width: 40%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 2.723735%"></i></span><strong class="faq-vote-data">7</strong></li>
+                        <li><span class="small-star"><i style="width: 20%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 1.55642%"></i></span><strong class="faq-vote-data">4</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box">
+                <div class="hd">
+                    <h2>
+                        舒适度：</h2>
+                    <span class="big-star"><i style="width: 90%"></i></span><strong class="faq-score">4.3分</strong>
+                </div>
+                <div class="bd">
+                    <ul class="faq-vote-list">
+                        <li><span class="small-star"><i style="width: 100%"></i></span><span class="faq-vote-scale">
+                                                                                           <i style="width: 54.91803%"></i></span><strong class="faq-vote-data">134</strong></li>
+                        <li><span class="small-star"><i style="width: 80%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 33.60656%"></i></span><strong class="faq-vote-data">82</strong></li>
+                        <li><span class="small-star"><i style="width: 60%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 7.786885%"></i></span><strong class="faq-vote-data">19</strong></li>
+                        <li><span class="small-star"><i style="width: 40%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 2.459016%"></i></span><strong class="faq-vote-data">6</strong></li>
+                        <li><span class="small-star"><i style="width: 20%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 1.229508%"></i></span><strong class="faq-vote-data">3</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="box">
+                <div class="hd">
+                    <h2>
+                        外观：</h2>
+                    <span class="big-star"><i style="width: 90%"></i></span><strong class="faq-score">4.2分</strong>
+                </div>
+                <div class="bd">
+                    <ul class="faq-vote-list">
+                        <li><span class="small-star"><i style="width: 100%"></i></span><span class="faq-vote-scale">
+                                                                                           <i style="width: 47.34694%"></i></span><strong class="faq-vote-data">116</strong></li>
+                        <li><span class="small-star"><i style="width: 80%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 39.18367%"></i></span><strong class="faq-vote-data">96</strong></li>
+                        <li><span class="small-star"><i style="width: 60%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 9.795918%"></i></span><strong class="faq-vote-data">24</strong></li>
+                        <li><span class="small-star"><i style="width: 40%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 2.040816%"></i></span><strong class="faq-vote-data">5</strong></li>
+                        <li><span class="small-star"><i style="width: 20%"></i></span><span class="faq-vote-scale">
+                                                                                          <i style="width: 1.632653%"></i></span><strong class="faq-vote-data">4</strong></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="faq-size-box">
+                <h2>
+                    尺码：</h2>
+                <ul class="faq-size-list">
+                    <li><strong>76%</strong>用户认为该商品实际尺码<em>[合适]</em></li>
+                    <li><strong>3%</strong>用户认为该商品实际尺码<em>[偏大]</em></li>
+                    <li><strong>21%</strong>用户认为该商品实际尺码<em>[偏小]</em></li>
+                </ul>
+            </div>
+        </div>
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="load-item">
+                <img class="load-item-img" style="display: none;" src="/Areas/Shop/Themes/M1/Content/images/loading-pink.gif">
+                <div class="load-item-mask" style="display: none; height: 300px;">
+                </div>
+                <ul class="discusslist c6">
+                    @foreach (var item in Model)
+                    {
+                        <li class="discusslist-item cf clearfix">
+                            <div class="cf" id="comment-main-0">
+                                <a class="fl discusslist-Item-avatar" target="_blank" href="#" onclick="javascript:return false;">
+                                    <img src="/Upload/User/Gravatar/@(item.UserId).jpg" onerror="this.onerror='';this.src='/Upload/User/Gravatar/1.jpg'"></a>
+                                <div class="discusslist-item-con">
+                                    <div class="tr c9">
+                                        <span class="fl"><a href="#"
+                                                            target="_blank"  onclick="javascript:return false;" style="font-weight:bold;">@item.UserName</a></span>@item.CreatedDate</div>
+                                    <p class="mt5">
+                                        @item.ReviewText</p>
+                                </div>
+                            </div>
+                       
+                            @if (!String.IsNullOrWhiteSpace(item.ImagesPath) && !String.IsNullOrWhiteSpace(item.ImagesNames))
+                            {
+                                string[] arr = item.ImagesNames.Split(new Char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                                <div class="discusslist-correlate" style="margin-left: 100px;" >
+                                    <!--图片-->
+                                    @for (int k = 0; k < arr.Length; k++)
+                                    {
+                                        <span class="detail_proimage"><img width="100px" src="@string.Format(item.ImagesPath, arr[k])" height="100px"  /></span>
+                                    }                                                                      
+                                </div>
+                            }
+                
+                            <div class="discusslist-correlate" style="display: none">
+                                <div class="cf">
+                                    <div class="fr">
+                                        <a class="btn"><span>对我有用(4)</span></a></div>
+                                    <span class="mr15">身高：160厘米</span><span class="mr15">体重：55公斤</span><span class="mr15">颜色：白条纹</span><span
+                                                                                                                                           class="mr15">尺码：L</span></div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                  <div class="mt10 tr">
+                <a href="javascript:void(0)" style="display:none;"  class="btn btn-highlight btnAddComment"><span>我要评论</span></a></div>
+            </div>
+            <div class="cf mt15">
+                @Html.AjaxPager(Model, new PagerOptions
+           {
+               CssClass = "in_pages",
+               ShowDisabledPagerItems = false,
+               AlwaysShowFirstLastPageNumber = false,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+               NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+               NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           }, new AjaxOptions { UpdateTargetId = "CommentList" })
+            </div>
+        }
+    </div>
+</div>
+
+<div id="divAjaxComments" style="display: none">
+    <div style='margin-left: 10px; margin-top: 10px; font-size: 14px; font-weight: bold;'>
+        评论内容：
+        <textarea id="txtComment" cols="20" rows="2" style='height: 80px; width: 260px;'></textarea>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+<div class="content-list" id="ProductListDiv">
+    @if (Model != null && Model.ProductPagedList != null && Model.ProductPagedList.Count > 0)
+    {
+<div class="products_list">
+
+@foreach (var item in Model.ProductPagedList)
+{
+<ul>
+<a href="@(ViewBag.BasePath)Product/ProSaleDetail/@item.CountDownId" class="listimg" style="min-height: 100px">
+<img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  width="100"/></a> 
+<a href="@(ViewBag.BasePath)Product/ProSaleDetail/@item.CountDownId">
+<h3>
+@item.ProductName
+</h3>
+<small class="zeng">￥@(item.ProSalesPrice.ToString("F"))</small>
+@*<span class="valuation-star" style="padding: 0;
+overflow: auto;
+height: auto;"><span class="mu-star"><span class="mu-starv" style="width: 80%"></span></span>
+<span class="txt-star" style="padding: 0;"></span></span>*@
+<p class="item-brand txtenddate" style="margin: 5px 0;font-size: 12px;color: #7c7c7c;" endDate="@item.ProSalesEndDate" Product="@item.CountDownId"  id="txtenddate_@(item.CountDownId)" >
+剩余：<span id="dayEnd_@(item.CountDownId)">0</span>天<span id="hourEnd_@(item.CountDownId)">0</span>时 <span id="minEnd_@(item.CountDownId)">0</span>分 <span id="secEnd_@(item.CountDownId)">0</span>秒
+</p>
+</a>
+</ul>
+}
+@Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+{
+    ShowDisabledPagerItems = false,
+    AlwaysShowFirstLastPageNumber = false,
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 5,
+    CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+    CssClass = "in_pages",
+    SeparatorHtml = ""
+}, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+</div>
+    }
+</div>

@@ -1,0 +1,78 @@
+﻿@using Webdiyer.WebControls.Mvc
+@{
+    int number = System.DateTime.Now.Hour;
+    string today = ViewBag.datehour.ToString("yyyy-MM-dd");
+    bool istoday = ViewBag.IsToday;
+}
+@model List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+<div class="buying_Pan2">
+    <ul>
+        @{
+              
+                
+            foreach (Maticsoft.Model.Shop.PromoteSales.GroupBuy item in Model)
+            {
+                string name = "";
+                string col = "#fff";
+                string url = ViewBag.BasePath + "p/d/0/" + item.GroupBuyId + "/1/";
+                int salecount = 0;
+                salecount = item.BuyCount + item.GroupBase;
+                int i = ViewBag.Hours;
+                if (istoday)
+                {
+                    if (i == number)
+                    {
+                        name = "立即抢购";
+                        col = "#f25029";
+                    }
+                    else if (i < number)
+                    {
+                        name = "抢购结束";
+                        col = "";
+                    }
+                    else
+                    {
+                        name = "即将开枪";
+                        col = "#48b2fe";
+                        salecount = 0;
+
+                    }
+                }
+                else
+                {
+                    name = "即将开枪";
+                    col = "#48b2fe";
+                    salecount = 0;
+                }
+                if (item.BuyCount >= item.MaxCount)
+                {
+                    name = "已售罄";
+                }
+            <li>
+                <div class="" style="border-bottom: 1px solid #dedede; padding: 15px 0; overflow: hidden;">
+                    <em><a href="@url">
+                        <img  class="lazy" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.GroupBuyImage, "T300X300__")" alt="@item.ProductName" /></a></em>
+                    <div class="buying_wares">
+                        <p>@item.ProductName</p>
+                        <div class="" style="overflow: hidden;">
+                            <div class="wares_tariff">
+                                <b>¥@item.Price.ToString("F")</b>
+                                <s>¥@item.MarketPrice.ToString("F")</s>
+                                <span>已售 @salecount</span>
+                            </div>
+
+                            @Html.Raw(string.Format("<div class=\"wares_icon\" ><a  style=\"background:{0};\" href=\"{1}\">{2} </a></div>", col, url, name))
+                        </div>
+
+                    </div>
+                </div>
+            </li>
+                       
+              
+            }
+                  
+        }
+    </ul>
+</div>
+
+

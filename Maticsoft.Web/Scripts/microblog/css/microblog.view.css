@@ -1,0 +1,20 @@
+    a { text-decoration: none;}
+    a:hover { text-decoration: underline;}
+    
+    a{ color: #005eac; }        /*链接的颜色*/
+    a:hover { color:#5195ce}    /*鼠标悬停链接颜色*/
+
+    
+    .hide {display:none;}
+    div.mpicWrap { border:1px #ddd solid; background:#f2f2f2; width:460px}
+
+    div.picTool { margin:10px 0px 0px 10px;}
+    div.picTool span { color:#005eac; margin-right:5px;margin-left:5px; padding-left:12px;}
+
+    div.picTool span.cmdZoomin { background:url("../images/pictool.png");background-repeat:no-repeat; background-position:-23px 2px;}
+    div.picTool span.cmdViewOPic { background:url("../images/pictool.png");background-repeat:no-repeat;  background-position:-36px 2px;}
+
+    div.picTool span a { background:#f2f2f2;}
+    .mpicPanel { overflow:hidden;}
+    .mvideoPanel {margin:5px 0px 5px 15px;}
+    .clear {clear: both;height: 0;overflow: hidden;display: block;}

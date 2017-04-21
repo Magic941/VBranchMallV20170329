@@ -1,0 +1,800 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKCardActivateBaseLayout.cshtml";
+}
+
+@model Maticsoft.Model.Shop_Card
+@section head{
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/jihuo.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/hcalendar.css" rel="stylesheet" type="text/css" />
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/moment_min.js"></script>
+    <script src="/Scripts/jquery/validate/jquery.validate.js?v=1" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/CMS/Themes/M2/Content/wb5188/js/jquery.tmpl.min.js"></script>
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/hcalendar.js"></script>
+    <!--异常提示样式在其中-->
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/moment_min.js"></script>
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/daterange.js"></script>
+}
+
+
+<style>
+    .error {
+        color: red;
+    }
+
+    .frm_control_group {
+        padding-bottom: 10px;
+    }
+
+    .frm_label {
+        width: 10em;
+        float: left;
+        margin-right: 1em;
+        line-height: 35px;
+        text-align: right;
+    }
+
+    .input_bor2 {
+        width: 180px;
+        padding-left: 3px;
+    }
+</style>
+
+<div class="w1200 liuc_wl" ng-app="activaDrivenCardApp" ng-controller="activaDrivenCardCtrl">
+    <div class="yy_jh_one">
+        <p>
+            <span class="sel_yuan">1</span><span class="sel_xian"></span>
+            <span class="sel_yuan">2</span><span class="sel_xian"></span>
+            <span class="yuan">3</span><span class="xian"></span>
+            <span class="yuan">4</span>
+        </p>
+        <h3>
+            <span style="margin-left: -10px;">阅读条款</span>
+            <span style="margin-left: 150px;">填写详细资料</span>
+            <span style="margin-left: 152px;">确认信息</span>
+            <span style="margin-left: 170px;">激活成功</span>
+        </h3>
+    </div>
+    <div class="xinxi">产品信息</div>
+    <div class="jihuo_list" style="clear: both;">
+        <ul>
+            <li>
+                <h3><span>*</span> 产品名称：</h3>
+                <p>
+                    <label>{{CardType.CardTypeName}}</label>
+                </p>
+            </li>
+            @*<li>
+                <h3><span>*</span> 产品简介：</h3>
+                <p>
+                    <label style="clear:both;">@Html.Raw(Model.CardSelfType.Agreement)</label>
+                </p>
+            </li>*@
+            <li>
+                <h3><span>*</span> 激活提示：</h3>
+                <p>
+                    <label>@Html.Raw(Model.CardSelfType.ActivatePrompt)</label>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div class="jihuo_list" ng-show="stepNumber==1" style="clear: both;">
+
+        <table width="100%" border="0" class="t1" align="left" cellpadding="0" height="auto">
+            <tr ng-repeat="x in Cards">
+                <td style="width: 250px; height: 30px; line-height: 30px;">
+                    <label class="frm_label" style="width: 50px;">卡号{{$index+1}}：</label>
+                    <input class="input_bor input_bor2" type="text" ng-model="x.CardNo" ng-disabled="$index==0">
+                </td>
+                <td>
+                    <label class="frm_label" style="width: 50px">密码：</label>
+                    <input class="input_bor input_bor2" type="text" ng-model="x.Password" ng-disabled="$index==0">
+                </td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="baoxian_wl" style="clear: both; text-align: center; padding: 20px;">
+        <p style="color: #FF8812">友情提示：本次只能激活5张属于同一种类型的卡,否则激活不成功! </p>
+    </div>
+    <div class="new_aa" style="text-align: center; padding-left: 100px; padding-top: 30px;" ng-show="stepNumber==1">
+        <a href="javascript:void(0);" class="btn" ng-click="step(2)">激活卡信息确认</a>
+    </div>
+    <div class="jihuo_list" style="clear: both;" ng-show="stepNumber==2">
+        <div class="xinxi">请选择投保类型</div>
+        <ul>
+            <li>
+                <p>
+                    <label>
+                        <input type="radio" value="1" ng-model="ApplicantType" checked="checked" class="insuantSex" />个人投保</label>
+                    <label>
+                        <input type="radio" value="2" ng-model="ApplicantType" class="insuantSex" />单位投保</label>
+                </p>
+            </li>
+        </ul>
+    </div>
+    <div ng-show="stepNumber>1&&ApplicantType==1">
+        <form class="formActivate" id="formActivate" name="formActivate" ng-submit="submitForm1(formActivate.$valid)" method="get" novalidate>
+            <div class="xinxi">请完善个人投保信息</div>
+            <div class="jihuo_list">
+                <ul>
+                    <li>
+                        <h3><span>*</span> 车主姓名：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="PersonCard.Name" name="PersonName" placeholder="请正确填写真实姓名" required personname>
+                            <span ng-show="formActivate.PersonName.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">用户名是必须的！</font></span>
+                            <span ng-show="formActivate.PersonName.$error.personname">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">最低需要2个字符长度,最大6个字符！</font></span>
+                            <span ng-show="formActivate.PersonName.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车主身份证号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="PersonCard.CardId" name="PersonCardId" placeholder="请填写正确的身份证号码" card-id required>
+                            <span ng-show="formActivate.PersonCardId.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">身份证是必须的！</font></span>
+                            <span ng-show="formActivate.PersonCardId.$error.cardid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">身份证格式不正确！</font></span>
+                            <span ng-show="formActivate.PersonCardId.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车主手机：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="PersonCard.Mobile" name="PersonMobile" placeholder="请填写正确的手机号码" required mobile>
+                            <span ng-show="formActivate.PersonMobile.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">手机号是必须的！</font></span>
+                            <span ng-show="formActivate.PersonMobile.$error.mobile">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">手机格式不正确！</font></span>
+                            <span ng-show="formActivate.PersonMobile.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车牌号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="PersonCard.LPNumber" name="PersonLPNumber" placeholder="请填写正确的车牌号" required lpnumber>
+                            <span ng-show="formActivate.PersonLPNumber.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车牌号是必须的！</font></span>
+                            <span ng-show="formActivate.PersonLPNumber.$error.lpnumber">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车牌号格式不正确！</font></span>
+                            <span ng-show="formActivate.PersonLPNumber.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车架号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="PersonCard.VINumber" name="PersonVINumber" placeholder="请填写正确的车架号" required vinumber>
+                            <span ng-show="formActivate.PersonVINumber.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车架号是必须的！</font></span>
+                            <span ng-show="formActivate.PersonVINumber.$error.vinumber">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车架号格式不正确！</font></span>
+                            <span ng-show="formActivate.PersonVINumber.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 座位数：</h3>
+                        <p>
+                            <select class="input_bor insuantRelationShip" ng-model="PersonCard.SeatsNumber">
+                                <option value="2" selected>2座</option>
+                                <option value="3">3座</option>
+                                <option value="4">4座</option>
+                                <option value="5">5座</option>
+                                <option value="6">6座</option>
+                                <option value="7">7座</option>
+                                <option value="8">8座</option>
+                                <option value="9">9座</option>
+                            </select>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="divWait" style="float:left;padding-left:400px;clear:both;"></div>
+            <div class="button1" style="margin-left:500px;float:left;">
+                <input value="提交激活信息" style="width: 100%; height: 100%; BACKGROUND-COLOR: transparent; border: 0px; border-style: none;color:#fff" type="submit">
+            </div>
+        </form>
+    </div>
+
+    <div ng-show="stepNumber>1&&ApplicantType==2">
+        <form class="formActivate2" name="formActivate2" id="formActivate2" method="get" ng-submit="submitForm2(formActivate2.$valid)" novalidate>
+            <div class="xinxi">请完善单位投保信息</div>
+            <div class="jihuo_list">
+                <ul>
+                    <li>
+                        <h3><span>*</span> 单位名称：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="EnterpriseCard.EnterpriseName" name="EnterpriseCardEnterpriseName" placeholder="请正确填写真实单位名称" required enterprisename>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseName.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">企业名称是必须的！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseName.$error.enterprisename">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">企业名称不合法,最低5个字符,最长20字符！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseName.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 组织机构代码证</br>或社会信用代码证号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="EnterpriseCard.EnterpriseCode" name="EnterpriseCardEnterpriseCode" placeholder="请填写正确的组织机构代码证或者社会信用代码证号" required enterprisecode>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseCode.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">证号是必须的！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseCode.$error.enterprisecode">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">机构证号不正确！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardEnterpriseCode.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 联系手机：</h3>
+                        <p>
+                            <input class="input_bor name" class="frm_input phone" ng-model="EnterpriseCard.Mobile" name="EnterpriseCardMobile" placeholder="请填写正确的手机号码" mobile required>
+                            <span ng-show="formActivate2.EnterpriseCardMobile.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">手机号是必须的！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardMobile.$error.mobile">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">手机格式不正确！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardMobile.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车牌号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="EnterpriseCard.LPNumber" name="EnterpriseCardLPNumber" class="frm_input" placeholder="请填写正确的车牌号" required lpnumber>
+                            <span ng-show="formActivate2.EnterpriseCardLPNumber.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车牌号是必须的！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardLPNumber.$error.lpnumber">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车牌号格式不正确！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardLPNumber.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 车架号：</h3>
+                        <p>
+                            <input class="input_bor name" ng-model="EnterpriseCard.VINumber" class="frm_input" name="EnterpriseCardVINumber" placeholder="请填写正确的车架号" required vinumber>
+                            <span ng-show="formActivate2.EnterpriseCardVINumber.$error.required">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车架号是必须的！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardVINumber.$error.vinumber">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/cuowu.png" /><font class="y_cuowu">车架号格式不正确！</font></span>
+                            <span ng-show="formActivate2.EnterpriseCardVINumber.$valid">
+                                <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/right.png" /><font class="y_right"></font></span>
+                        </p>
+                    </li>
+                    <li>
+                        <h3><span>*</span> 座位数：</h3>
+                        <p>
+                            <select class="input_bor insuantRelationShip" ng-model="EnterpriseCard.SeatsNumber">
+                                <option value="2" selected>2座</option>
+                                <option value="3">3座</option>
+                                <option value="4">4座</option>
+                                <option value="5">5座</option>
+                                <option value="6">6座</option>
+                                <option value="7">7座</option>
+                                <option value="8">8座</option>
+                                <option value="9">9座</option>
+                            </select>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <div class="divWait" style="padding-left:400px;float:left;clear:both;"></div>
+           <div class="button1" style="float:left;margin-left:500px">
+                <input value="提交激活信息" style="width: 100%; height: 100%; BACKGROUND-COLOR: transparent; border: 0px; border-style: none;color:#fff" type="submit">
+            </div>
+        </form>
+    </div>
+    <div style="height: 50px; clear: both;"></div>
+</div>
+
+<script>
+    var app = angular.module('activaDrivenCardApp', []);
+    app.controller('activaDrivenCardCtrl', function ($scope, $http) {
+        $scope.curSubmitStatus = false;
+        $scope.CurCard = { CardNo: '@Model.CardNo', Password: '@Model.PasswordOrigin' };
+        $scope.CardType = { CardTypeName: '@Model.CardSelfType.TypeName', Agreement: '', ActivatePrompt: '' };
+        //截取前面的4个字符代表卡类型
+        $scope.CardTypeNo = "";
+        $scope.Cards = [{ CardNo: $scope.CurCard.CardNo, Password: $scope.CurCard.Password }, { CardNo: "", Password: "" }, { CardNo: "", Password: "" }, { CardNo: "", Password: "" }, { CardNo: "", Password: "" }];
+        $scope.stepNumber = 1;
+        $scope.ErrorMsg = "";
+        $scope.PersonCard = { Name: "", ApplicantType: 1, CardId: '', Mobile: '', LPNumber: '', VINumber: '', SeatsNumber: '2' };
+        $scope.EnterpriseCard = { EnterpriseName: "", EnterpriseCode: '', ApplicantType: 2, Mobile: '', LPNumber: '', VINumber: '', SeatsNumber: '2' };
+
+        $scope.formIsValid1 = false;
+        $scope.formIsValid2 = false;
+        $scope.submitForm1 = function (isvalid) {
+           
+            $scope.formIsValid1 = isvalid;
+            if (isvalid)
+                $scope.SubmitDataToServer();
+        };
+
+        $scope.submitForm2 = function (isvalid) {
+           
+            $scope.formIsValid2 = isvalid;
+            if (isvalid)
+                $scope.SubmitDataToServer();
+        };
+
+        //默认申请类型是 个人投保=1 单位投保=2
+        $scope.ApplicantType = 1;
+        $scope.step = function (stepnumber) {
+
+            $scope.stepNumber = stepnumber;
+
+        };
+
+
+        $scope.$watch('stepNumber', function (newValue, oldValue) {
+
+            if (oldValue == 1 && newValue == 2) {
+                if ($scope.Cards[0].CardNo == "") {
+                    $scope.ErrorMsg = "最少要输入一张待激活卡!";
+                    $scope.stepNumber = oldValue;
+                    return false;
+                }
+
+                angular.forEach($scope.Cards, function (item, index, array) {
+                    if (item.CardNo != "") {
+
+                        if (item.CardNo.length != 9) {
+                            $scope.ErrorMsg = "[" + item.CardNo + "]卡不合法,请输入合法的卡号!";
+                            $scope.stepNumber = oldValue;
+                            return false;
+                        }
+                        if (item.CardPwd.length != 6) {
+                            $scope.ErrorMsg = "[" + item.CardNo + "]卡密码输入不正确!";
+                            $scope.stepNumber = oldValue;
+                            return false;
+                        }
+
+                        var typeno = item.CardNo.substring(0, 4);
+                        if (index == 0) {
+                            $scope.CardTypeNo = typeno;
+                        } else {
+                            if (typeno != $scope.CardTypeNo) {
+                                $scope.ErrorMsg = "其它卡的类型不一样,请输入投保类型一致的卡!";
+                                $scope.stepNumber = oldValue;
+
+                            }
+                        }
+
+                    }
+                });
+            }
+            //if (newValue == 3) {
+            //    $scope.SubmitDataToServer();
+            //}
+        });
+
+        //$http.get("/try/angularjs/data/Customers_JSON.php")JSON.stringify()
+        //.success(function (response) { $scope.names = response.records; });
+
+        //提交数据到服务器
+        $scope.SubmitDataToServer = function () {
+            var toCards = $.grep($scope.Cards, function (card) { return card.CardNo != ''; });
+            var toServerData = { CardsTxt: JSON.stringify(toCards) };
+            if ($scope.ApplicantType == 1) {
+                toServerData = $.extend({}, toServerData, $scope.PersonCard);
+
+            } else {
+
+                toServerData = $.extend({}, toServerData, $scope.EnterpriseCard);
+            }
+
+            $.ajax({
+                url: '/CardActivate/CardActivateStep21SubmitData',
+                type: 'post',
+                dataType: "json",
+                timeout: 50000,
+                data: toServerData,
+                beforeSend: function () {
+                    if (!$scope.curSubmitStatus) {
+                        $scope.curSubmitStatus = true;
+                        $("div.divWait").html("正在提交数据,请等待.....");
+                    } else {
+
+                        return false;
+                    }
+                },
+                success: function (data) {
+
+                    if (!data.IsSuccess) {
+                        alert(data.Message);
+                    }
+                    else {
+                        window.location.href = "/CardActivate/CardActivateStep4";
+                    }
+                    $scope.curSubmitStatus = false;
+                }, error: function (XMLResponse) {
+                    alert(XMLResponse.responseText);
+                    $scope.curSubmitStatus = false;                    
+                }, complete: function () {
+                    if (!$scope.curSubmitStatus) {
+                        $("div.divWait").html("数据提交结束!");
+                    }
+                }
+            });
+        }
+    });
+
+    //用户名验证,只能是汉字
+    app.directive('personname', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var vehicleNoStyle = /^[\u2E80-\u9FFF]{2,5}$/;
+                    var result = vehicleNoStyle.test(viewValue);
+                    if (result) {
+                        ctrl.$setValidity('personname', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('personname', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+
+    //用户名验证,只能是汉字 EnterpriseCode
+    app.directive('enterprisename', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var vehicleNoStyle = /^[\u2E80-\u9FFF]{5,20}$/;
+                    var result = vehicleNoStyle.test(viewValue);
+                    if (result) {
+                        ctrl.$setValidity('enterprisename', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('enterprisename', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+    //15位工商注册纳税人识别号或社会信用代码号
+    app.directive('enterprisecode', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+                    var vehicleNoStyle = /^([0-9A-Z]{18})|\d{15}$/;
+                    var result = vehicleNoStyle.test(viewValue);
+                    var result2 = checkEnterpriseCode(viewValue);
+                    if (result || result2) {
+                        ctrl.$setValidity('enterprisecode', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('enterprisecode', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+
+    //身份证类型
+    app.directive('cardId', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+                    if (checkcardid(viewValue).issuccess) {
+                        ctrl.$setValidity('cardid', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('cardid', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+    //手机号
+    app.directive('mobile', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+
+                    var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1}))+\d{8})$/;
+                    var result = viewValue.length == 11 && mobile.test(viewValue);
+
+                    if (result) {
+                        ctrl.$setValidity('mobile', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('mobile', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+
+    //车牌号   
+    app.directive('lpnumber', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+
+                    var vehicleNoStyle = /^[\u2E80-\u9FFF]+[A-Z0-9]{5,6}$/;
+
+                    var result = vehicleNoStyle.test(viewValue);
+
+                    if (result) {
+                        ctrl.$setValidity('lpnumber', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('lpnumber', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+
+    //车架号   
+    app.directive('vinumber', function () {
+        return {
+            require: 'ngModel',
+            link: function (scope, elm, attrs, ctrl) {
+                ctrl.$parsers.unshift(function (viewValue) {
+
+                    var result = checkVIN(viewValue);
+
+                    if (result) {
+                        ctrl.$setValidity('vinumber', true);
+                        return viewValue;
+                    } else {
+                        ctrl.$setValidity('vinumber', false);
+                        return undefined;
+                    }
+                });
+            }
+        };
+    });
+
+
+    var checkVIN = function (val) {
+
+        var Arr = new Array();
+        var Brr = new Array();
+        Arr['A'] = 1;
+        Arr['B'] = 2;
+        Arr['C'] = 3;
+        Arr['D'] = 4;
+        Arr['E'] = 5;
+        Arr['F'] = 6;
+        Arr['G'] = 7;
+        Arr['H'] = 8;
+        Arr['J'] = 1;
+        Arr['K'] = 2;
+        Arr['L'] = 3;
+        Arr['M'] = 4;
+        Arr['N'] = 5;
+        Arr['P'] = 7;
+        Arr['R'] = 9;
+        Arr['S'] = 2;
+        Arr['T'] = 3;
+        Arr['U'] = 4;
+        Arr['V'] = 5;
+        Arr['W'] = 6;
+        Arr['X'] = 7;
+        Arr['Y'] = 8;
+        Arr['Z'] = 9;
+        Arr['1'] = 1;
+        Arr['2'] = 2;
+        Arr['3'] = 3;
+        Arr['4'] = 4;
+        Arr['5'] = 5;
+        Arr['6'] = 6;
+        Arr['7'] = 7;
+        Arr['8'] = 8;
+        Arr['9'] = 9;
+        Arr['0'] = 0;
+        Brr[1] = 8;
+        Brr[2] = 7;
+        Brr[3] = 6;
+        Brr[4] = 5;
+        Brr[5] = 4;
+        Brr[6] = 3;
+        Brr[7] = 2;
+        Brr[8] = 10;
+        Brr[9] = 0;
+        Brr[10] = 9;
+        Brr[11] = 8;
+        Brr[12] = 7;
+        Brr[13] = 6;
+        Brr[14] = 5;
+        Brr[15] = 4;
+        Brr[16] = 3;
+        Brr[17] = 2;
+        function getCheckCode(sVIN) {
+            var sKYZF = "ABCDEFGHJKLMNPRSTUVWXYZ1234567890";
+            var sJYW = '';
+            var bl = false;
+            var blKYZF = false;
+            if (sVIN.length == 17) {
+                var iJQS = 0, intTemp = 0;
+                ht = Arr;
+                htZM = Brr;
+                try {
+                    for (var i = 0; i < sVIN.length; i++) {
+                        if (sKYZF.indexOf(sVIN.substr(i, 1)) != -1) {
+                            blKYZF = true;
+                            iJQS = iJQS + parseInt(ht[sVIN.substr(i, 1)]) * parseInt(htZM[(i + 1)]);
+                        }
+                        else {
+                            blKYZF = false;
+                            break;
+                        }
+                    }
+                    if (blKYZF) {
+                        intTemp = iJQS % 11;
+                        if (intTemp == 10) {
+                            sJYW = "X";
+                        }
+                        else {
+                            sJYW = intTemp.toString();
+                        }
+                        if (sJYW == sVIN.substr(8, 1)) bl = true;
+                    }
+                    else {
+                        bl = false;
+                    }
+                }
+                catch (err) {
+                    bl = false;
+                }
+            }
+            return bl;
+        }
+        return getCheckCode(val);
+    };
+
+    //组织机构代码证
+    var checkEnterpriseCode = function (code) {
+
+        var ws = [3, 7, 9, 10, 5, 8, 4, 2];
+        var str = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var reg = /^([0-9A-Z]){8}-[0-9|X]$/;
+        if (!reg.test(code)) {
+
+            return false;
+        }
+
+        var sum = 0;
+        for (var i = 0; i < 8; i++) {
+            sum += str.indexOf(code.charAt(i)) * ws[i];
+        }
+        var c9 = 11 - (sum % 11);
+        if (c9 == 10) {
+            c9 = 'X';
+        } else if (c9 == 11) {
+            c9 = '0';
+        }
+
+        if (c9 != code.charAt(9)) {
+
+            return false;
+        }
+        return true;
+    }
+</script>
+
+<script>
+    //返回文本对象和获取的日期{issuccess:,date:,message:}
+    function checkcardid(cardid) {
+        var result = { issuccess: false, date: "", message: "", sex: 0 };
+        num = cardid.toUpperCase();
+        //身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X。
+        if (!(/(^\d{15}$)|(^\d{17}([0-9]|X)$)/.test(num))) {
+
+            result.issuccess = false;
+            result.message = "输入的身份证号长度不对，或者号码不符合规定！\n15位号码应全为数字，18位号码末位可以为数字或X";
+
+            return result;
+        }
+        //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+        //下面分别分析出生日期和校验位
+        var len, re;
+        len = num.length;
+        if (len == 15) {
+            re = new RegExp(/^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/);
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date('19' + arrSplit[2] + '/' + arrSplit[3] + '/' + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                //alert('输入的身份证号里出生日期不对！');
+                result.issuccess = false;
+                result.message = "输入的身份证号里出生日期不对";
+
+                return result;
+            }
+            else {
+                //将15位身份证转成18位
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                var nTemp = 0, i;
+                num = num.substr(0, 6) + '19' + num.substr(6, num.length - 6);
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                num += arrCh[nTemp % 11];
+                var sex = parseInt(num.substr(14, 1));
+                var birthday = num.substring(6, 14);
+                birthday = birthday.substring(0, 4) + "-" + birthday.substring(4, 6) + "-" + birthday.substring(6);
+                result.issuccess = true;
+                result.message = "身份证合格";
+                result.date = birthday;
+                result.sex = sex % 2 == 0 ? 0 : 1;
+                return result;
+            }
+        }
+        if (len == 18) {
+            re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
+            var arrSplit = num.match(re);
+
+            //检查生日日期是否正确
+            var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
+            var bGoodDay;
+            bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
+            if (!bGoodDay) {
+                result.issuccess = false;
+                result.message = "输入的身份证号里出生日期不对";
+                return result;
+            }
+            else {
+                //检验18位身份证的校验码是否正确。
+                //校验位按照ISO 7064:1983.MOD 11-2的规定生成，X可以认为是数字10。
+                var valnum;
+                var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
+                var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
+                var nTemp = 0, i;
+                for (i = 0; i < 17; i++) {
+                    nTemp += num.substr(i, 1) * arrInt[i];
+                }
+                valnum = arrCh[nTemp % 11];
+                if (valnum != num.substr(17, 1)) {
+
+                    result.issuccess = false;
+                    result.message = "18位身份证的校验码不正确";
+
+                    return result;
+                }
+                var sex = parseInt(num.substr(16, 1));
+
+                var birthday = num.substring(6, 14);
+                birthday = birthday.substring(0, 4) + "-" + birthday.substring(4, 6) + "-" + birthday.substring(6);
+                result.issuccess = true;
+                result.message = "身份证合格";
+                result.date = birthday;
+                result.sex = sex % 2 == 0 ? 0 : 1;
+                return result;
+
+            }
+        }
+        result.issuccess = false;
+        result.message = "身份证检测不合格";
+        result.date = "";
+        return result;
+    }
+
+</script>

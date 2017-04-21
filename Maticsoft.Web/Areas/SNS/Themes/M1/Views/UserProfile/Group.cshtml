@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserProfileLayOut.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model  PagedList<Maticsoft.Model.SNS.GroupTopics>
+@section head{
+ <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script> 
+ <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+ }
+@if (ViewBag.IsCurrentUser)
+{
+    <div class="dong" style="width: 900px">
+        <ul>
+            <li><a href="@(ViewBag.BasePath)Profile/Group?Type=0" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserGroup ? "class=dong3" : "class=dong2")>
+                小组主题</a></li>
+            <li><a href="@(ViewBag.BasePath)Profile/Group?Type=1" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserPostTopic ? "class=dong3" : "class=dong2")>
+                我发表的</a></li>
+            <li><a href="@(ViewBag.BasePath)Profile/Group?Type=2" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserReply ? "class=dong3" : "class=dong2")>
+                我回应的</a></li>
+            <li><a href="@(ViewBag.BasePath)Profile/Group?Type=3" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserFav ? "class=dong3" : "class=dong2")>
+                我收藏的</a></li>
+        </ul>
+        <span class="creat2" id="createAlbum"><a class="M_btn_c" href="@(ViewBag.BasePath)Group/Create" action-type="album_add">
+            创建小组</a></span>
+    </div>
+}
+else
+{ 
+ <div class="dong" style="width: 900px">
+        <ul>
+            <li><a href="@(ViewBag.BasePath)User/Group?uid=@(ViewBag.UserId)&Type=0" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserGroup ? "class=dong3" : "class=dong2")>
+                小组主题</a></li>
+            <li><a href="@(ViewBag.BasePath)User/Group?uid=@(ViewBag.UserId)&Type=1" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserPostTopic ? "class=dong3" : "class=dong2")>
+                Ta发表的</a></li>
+            <li><a href="@(ViewBag.BasePath)User/Group?uid=@(ViewBag.UserId)&Type=2" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserReply ? "class=dong3" : "class=dong2")>
+                Ta回应的</a></li>
+            <li><a href="@(ViewBag.BasePath)User/Group?uid=@(ViewBag.UserId)&Type=3" @((Maticsoft.Model.SNS.EnumHelper.UserGroupType)ViewBag.Type == Maticsoft.Model.SNS.EnumHelper.UserGroupType.UserFav ? "class=dong3" : "class=dong2")>
+                Ta收藏的</a></li>
+        </ul>
+    </div>
+}
+<div  id="MaticsoftToplist" style="float: left;">
+    @{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/UserProfile/TopicList.cshtml", Model);}
+    <div class="clear">
+    </div>
+</div>
+@{
+    if (ViewBag.IsCurrentUser)
+    {
+        Html.RenderAction("SelfRight", "Partial");
+    }
+    else
+    {
+    Html.RenderAction("ProfileLeft", "Partial");
+    }
+    
+    }

@@ -1,0 +1,78 @@
+﻿@model Maticsoft.ViewModel.SNS.SelfRight
+<div class="user_cont_you">
+    <div class="Nuse_right">
+        @if (Model.UserInfo != null)
+        {
+            <div class="Nuse_right_top">
+                <dl class="avatar">
+                    <a href="@(ViewBag.BasePath)User/Posts/@(Model.UserInfo.UserID)"  target="_blank" >
+                        <img  src="/Upload/User/Gravatar/@{@Model.UserInfo.UserID}.jpg" alt="@Model.UserInfo.NickName" width="100px;" height="100px;" /></a></dl>
+                <dl class="info">
+                    <dt class="info_a">@Model.UserInfo.NickName</dt>
+                    <dd class="info_b">
+                            @if (Model.UserInfo.Sex == "1")
+                        {
+                            <img src="/Areas/SNS/Themes/M1/Content/images/user_9.png" />
+                        }
+                        else
+                        {
+                          <img src="/Areas/SNS/Themes/M1/Content/images/user_8.jpg" />
+                        }
+                        @Model.UserInfo.Address</dd>
+                </dl>
+                <div class="clear">
+                </div>
+            </div>
+        }
+        <div class="Nuse_right_bot">
+            <ul>
+                <li><a href="@(ViewBag.BasePath)Profile/Fellows"><span class="jiacu">@Model.UserInfo.FellowCount</span></a><br />
+                    <a href="@(ViewBag.BasePath)Profile/Fellows">关注</a></li>
+                <li><a href="@(ViewBag.BasePath)Profile/Fans"><span class="jiacu">@Model.UserInfo.FansCount</span></a><br />
+                    <a href="@(ViewBag.BasePath)Profile/Fans">粉丝</a></li>
+                <li style="border-right: 0;"><a href="@(ViewBag.BasePath)Profile/Fav"><span class="jiacu">@Model.UserInfo.FavouritesCount</span></a><br />
+                    <a href="@(ViewBag.BasePath)Profile/Fav">喜欢</a></li>
+            </ul>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    <div class="mygroup">
+        <h1>
+            <a href="@(ViewBag.BasePath)Profile/Group">我的小组</a></h1>
+        @if (Model.MyGroups != null && Model.MyGroups.Count > 0)
+        {
+            foreach (var item in Model.MyGroups)
+            {
+            <div class="mygroup_a">
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">
+                        <img src="@item.GroupLogo" style="width:50px; height:50px"></a></p>
+                <p>
+                    <a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID" title="@item.GroupName">@Maticsoft.Common.StringPlus.SubString(item.GroupName,4) </a></p>
+            </div>
+            }
+        }
+        <div class="clear">
+        </div>
+    </div>
+    <div class="mygroup">
+        
+           <h1> <a href="@(ViewBag.BasePath)Profile/Albums">我的专辑</a></h1>
+               @if (Model.MyAlbum != null && Model.MyAlbum.Count > 0)
+               {
+                   foreach (var item in Model.MyAlbum)
+                   {
+        <div class="mygroup_a" style="margin-top: 10px; margin-right: 0px;">
+            <p>
+                <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">
+                    <img src="@(item.TopImages.Count > 0 ? Maticsoft.Web.Components.FileHelper.GeThumbImage(item.TopImages[0], "T60x60_") : "/Content/themes/base/images/404/80.jpg")"  style="width:50px; height:50px"/></a></p>
+            <p>
+                <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID" title="@item.AlbumName">@Maticsoft.Common.StringPlus.SubString(item.AlbumName, 4)</a></p>
+        </div>
+                   }
+               }
+        <div class="clear">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,135 @@
+#Guidebody {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; BACKGROUND: #a9c9ee; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 5px
+}
+#Guide_back {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#Guide_back UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#Guide_back LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none
+}
+#Guide_back {
+	BACKGROUND: url(/admin/images/Guide_main.gif) #a9c9ee repeat-y left 50%
+}
+#Guide_top {
+	BACKGROUND: url(/admin/images/Guide_top.gif) #a9c9ee no-repeat left top; HEIGHT: 57px
+}
+#Guide_toptext {
+	FONT-WEIGHT: bold; FONT-SIZE: 14px; MARGIN: 0px 0px 0px 60px; COLOR: #28569b; PADDING-TOP: 25px; FONT-FAMILY: "宋体"
+}
+#Guide_main {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#Guide_box {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px 0px 0px 10px; PADDING-TOP: 0px
+}
+.guideexpand {
+	PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 12px; CURSOR: pointer; COLOR: #08377c; LINE-HEIGHT: 25px; FONT-FAMILY: "宋体"; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.guidecollapse {
+	PADDING-LEFT: 30px; FONT-WEIGHT: bold; FONT-SIZE: 12px; CURSOR: pointer; COLOR: #08377c; LINE-HEIGHT: 25px; FONT-FAMILY: "宋体"; HEIGHT: 25px; TEXT-ALIGN: left
+}
+.guideexpand {
+	BACKGROUND: url(/admin/images/guide_expand.gif) no-repeat left center
+}
+.guidecollapse {
+	BACKGROUND: url(/admin/images/guide_collapse.gif) no-repeat left center
+}
+.guide {
+	MARGIN-RIGHT: 15px; BACKGROUND-COLOR: #fff
+}
+.guidesearch {
+	MARGIN-RIGHT: 15px; BACKGROUND-COLOR: #fff
+}
+.guide UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; BACKGROUND-COLOR: #fff
+}
+.guide LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; BACKGROUND-COLOR: #fff
+}
+.guidesearch {
+	MARGIN-TOP: 2px; LINE-HEIGHT: 25px; TEXT-ALIGN: center
+}
+.guide LI {
+	LINE-HEIGHT: 140%; BACKGROUND-COLOR: #fff
+}
+ HTML .guide LI {
+	HEIGHT: 20px
+}
+.guide A {
+	PADDING-RIGHT: 0px; DISPLAY: block; PADDING-LEFT: 8px; PADDING-BOTTOM: 3px; PADDING-TOP: 3px; TEXT-ALIGN: left; TEXT-DECORATION: none
+}
+.guide A:link {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BORDER-LEFT: #fff 1px solid; COLOR: #4579b9; BORDER-BOTTOM: #fff 1px solid
+}
+.guide A:visited {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BORDER-LEFT: #fff 1px solid; COLOR: #4579b9; BORDER-BOTTOM: #fff 1px solid
+}
+.guide A:hover {
+	BORDER-RIGHT: #e6eff8 1px solid; BORDER-TOP: #e6eff8 1px solid; BORDER-LEFT: #e6eff8 1px solid; COLOR: #c00; BORDER-BOTTOM: #e6eff8 1px solid; BACKGROUND-COLOR: #f2f8fd; TEXT-DECORATION: none
+}
+#Guide_bottom {
+	BACKGROUND: url(/admin/images/Guide_bottom.gif) #adcbef no-repeat left top; HEIGHT: 13px
+}
+.refresh {
+	BACKGROUND: url(/admin/images/refresh.gif) no-repeat center center; LEFT: 160px; WIDTH: 15px; CURSOR: pointer; POSITION: absolute; TOP: 29px; HEIGHT: 15px
+}
+.quickLink LI {
+	FLOAT: left; WHITE-SPACE: nowrap
+}
+.floatingDialog {
+	BORDER-RIGHT: #000 1px solid; BORDER-TOP: #000 1px solid; Z-INDEX: 50; LEFT: 200px; BORDER-LEFT: #000 1px solid; BORDER-BOTTOM: #000 1px solid; POSITION: absolute; TOP: 100px; BACKGROUND-COLOR: #f0f5ff
+}
+.floatingDialog_handle {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-WEIGHT: bold; BACKGROUND: url(/admin/images/title.gif) #b0d0f3 repeat-x left top; PADDING-BOTTOM: 2px; VERTICAL-ALIGN: middle; CURSOR: move; COLOR: #3666aa; LINE-HEIGHT: 120%; PADDING-TOP: 2px; TEXT-ALIGN: center
+}
+.floatingDialog_content {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BACKGROUND: #d4e4f6; PADDING-BOTTOM: 5px; PADDING-TOP: 5px
+}
+.floatingDialogClose {
+	FLOAT: right; COLOR: #ffffff; TEXT-DECORATION: none
+}
+.floatingDialogFontSkin {
+	CURSOR: pointer; COLOR: red
+}
+#AdminTabs {
+	CLEAR: both; HEIGHT: 24px
+}
+#AdminTabs {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#AdminTabs UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#AdminTabs LI {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+#AdminTabs LI {
+	FONT-WEIGHT: bold; CURSOR: pointer; MARGIN-RIGHT: 2px
+}
+#AdminTabs LI {
+	FLOAT: left
+}
+#AdminTabs A {
+	FLOAT: left
+}
+#AdminTabs A {
+	DISPLAY: block; PADDING-LEFT: 3px; BACKGROUND: url(/admin/images/tableft.gif) no-repeat left top; MARGIN: 0px; FONT: 12px/24px Arial, "宋体" ,Helvetica,sans-serif; TEXT-ALIGN: center; TEXT-DECORATION: none; min-width: 70px
+}
+#AdminTabs A SPAN {
+	PADDING-RIGHT: 8px; DISPLAY: block; PADDING-LEFT: 5px; BACKGROUND: url(/admin/images/tabright.gif) no-repeat right top; FLOAT: none; PADDING-BOTTOM: 0px; COLOR: #000; PADDING-TOP: 0px
+}
+#AdminTabs A:hover {
+	BACKGROUND-POSITION: 0% -24px
+}
+#AdminTabs #current A {
+	BACKGROUND-POSITION: 0% -24px
+}
+#AdminTabs A:hover SPAN {
+	BACKGROUND-POSITION: 100% -24px; COLOR: #fff
+}
+#AdminTabs #current A SPAN {
+	BACKGROUND-POSITION: 100% -24px; COLOR: #fff
+}

@@ -1,0 +1,25 @@
+﻿  @model List<Maticsoft.Model.SNS.Comments>
+            @foreach(Maticsoft.Model.SNS.Comments item in Model)
+            {
+                    <div class="tgoods_z" id="replyResult@(item.CommentID)" style="width: 592px; margin-bottom: 15px;">
+                        <div class="tgoods_z_e">
+                            <a href="javascript:;">
+                                <img style="width: 32px; height: 32px" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" alt="@item.CreatedNickName"></a></div>
+                        <div class="tgoods_z_f" style="width: 550px;">
+                            <div class="tgoods_z_f1" style="width: 550px;">
+                                <p class="tgoods_z_f11">
+                                    <a href="javascript:;">@item.CreatedNickName</a></p>
+                                <p class="tgoods_z_f12">
+                                   <span>@(Maticsoft.ViewModel.ViewModelBase.DateDiff(item.CreatedDate))</span></p>
+                            </div>
+                            <div class="tgoods_z_f2" style="width: 550px;">
+                                @Html.Raw(item.Description)
+                                <p class="dynamic_t4">
+                                    <a href="javascript:;" class="replyCommentBtn" postid="@ViewBag.PostId" replyname="@item.CreatedNickName">回复</a></p>
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                  <div class="clear"></div>
+       }

@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        @Html.MaticsoftSEO(PoweredBy: true)
+        <script  src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+        <script src="http://a.tbcdn.cn/apps/top/x/sdk.js?appkey=@ViewBag.TaoBaoAppkey"></script>
+        <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+        <link href="/Scripts/jBox/Skins/Purple/jbox.css" rel="stylesheet" type="text/css" />
+        <script src="/Scripts/jBox/jquery.jBox-2.3.min.js" type="text/javascript"></script>
+        <script src="/Scripts/jBox/i18n/jquery.jBox-zh-CN.js" type="text/javascript"></script>
+        <link href="@Url.Content("~/Scripts/msgbox/css/msgbox.css")" rel="stylesheet" type="text/css" />
+        <script src="@Url.Content("~/Scripts/msgbox/js/msgbox.js")" type="text/javascript"></script>
+        <link href="/Scripts/powerFloat/powerFloat.css" rel="stylesheet" type="text/css" />
+        <script src="/Scripts/powerFloat/jquery-powerFloat.js" type="text/javascript"></script>
+        <link href="/Scripts/jquery.upload/fineuploader-3.4.1.css" rel="stylesheet" type="text/css" />
+        <script src="/Scripts/jquery.upload/jquery.fineuploader-3.4.1.min.js" type="text/javascript"></script>
+        @*------------以下是Default模版的css或者用到的js ---------*@
+        <link href="/Areas/SNS/Themes/M1/Content/css/style.css" rel="stylesheet" type="text/css" />
+        <link href="/Areas/SNS/Themes/M1/Content/css/verify.css" rel="stylesheet" type="text/css" />
+        <link rel="SHORTCUT ICON" href="/Areas/SNS/Themes/M1/Content/images/favicon.ico" />
+        <script src="/Areas/SNS/Themes/M1/Content/Scripts/Common.js" type="text/javascript"></script>
+        <script src="/Areas/SNS/Themes/M1/Content/Scripts/favAndAddToAlbums.js" type="text/javascript"></script>
+        <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxLoadUserInfo.js" type="text/javascript"></script>
+        <script type="text/javascript" src="/Scripts/jquery/ToTop.js"></script>
+        <script src="/Areas/SNS/Themes/M1/Content/Scripts/nagging-menu.js" type="text/javascript"></script>
+            <script type="text/javascript" language="javascript">                var $Maticsoft = { BasePath: '@(ViewBag.BasePath)', CurrentArea: '@(ViewBag.CurrentArea)' } </script>
+        @RenderSection("head", false)
+    </head>
+<body>
+    @RenderBody()
+    @*加入专辑弹出的页面*@
+    @RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/_AddToAlbums.cshtml")
+</body>
+</html>

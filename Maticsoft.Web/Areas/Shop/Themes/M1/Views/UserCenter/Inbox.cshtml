@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+<script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<input type="hidden" id="currentpage" value="span_10"/>
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+   <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<div class="U-R">  
+  <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的收件箱</h3>
+        </div>
+    </div> 
+    <div   id="InBoxList">
+        @Html.Action("InboxList","UserCenter")
+    </div>   
+</div>  
+

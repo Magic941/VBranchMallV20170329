@@ -1,0 +1,93 @@
+﻿@model  Maticsoft.Model.SNS.UserAlbums
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    List<SelectListItem> List = ViewBag.TypeList;
+}
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/AlbumEdit.js" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+
+    <!------published------>
+    <div class="clear">
+    </div>
+    <div class="single_bk">
+        <div class="single_bk_F">
+            <div class="single_bk_FA">
+                <div class="clear">
+                </div>
+                <div class="single_CF">
+                    <div class="published">
+                        <h1>
+                             编辑专辑</h1>
+                        <div class="published_h">
+                            <p>
+                                名称:</p>
+                            <div class="published_h_i">
+                                <dl class="published_h_i1">
+                                </dl>@Html.HiddenFor(model => model.AlbumID)
+                                <dl class="published_h_i2">
+                                    @Html.EditorFor(model => model.AlbumName)
+                                </dl>
+                                <dl class="published_h_i3">
+                                </dl>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h">
+                            <p>
+                                类型:</p>
+                            <div class="published_h_i">
+                                <dl class="">
+                                </dl>
+                                <dl class="">
+                                    @*@Html.DropDownListFor(model => model.TypeId,)*@
+                                       @Html.DropDownListFor(model => model.TypeId, List, new { style = "width:240px" })  
+                                </dl>
+                                <dl class="">
+                                </dl>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h">
+                            <p>
+                                描述:</p>
+                            <div class="published_u">
+                                <div class="published_u_1">
+                                </div>
+                                <div class="published_u_2">
+                                  <textarea class="text-box multi-line" id="Description" name="Description" >@Model.Description</textarea>
+@* @Html.TextBoxFor(model => model.Description, new { @class = "text-box multi-line", width = "200px", height = "150px" })*@
+                                </div>
+                                <div class="published_u_3">
+                                </div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+        
+                        <div class="published_w" style=" width:250px">
+                            <div class="published_w_a">
+                                <input type="submit" onclick="return sub();" value="" style="background: url(/Areas/SNS/Themes/M1/Content/images/published_7.jpg) no-repeat; width: 113px; height: 30px; margin: 0; padding: 0; border: 0px; cursor: pointer;" /></div>
+                            <div class="published_w_b"><a href="javascript:void(0)" id="delAlbum" AlbumId="@Model.AlbumID">删除</a></div>
+                            <div class="published_w_b">@Html.ActionLink("取消", "Albums", "Profile")</div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------published end----->
+    
+    
+    
+    
+    
+}

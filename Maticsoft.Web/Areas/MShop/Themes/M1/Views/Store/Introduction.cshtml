@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_StoreLayout.cshtml";
+    ViewBag.Title = "电子商务解决方案-店铺介绍";
+}
+@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+@section head{
+ <link href="/Areas/MShop/Themes/M1/Content/Css/style-20131107.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/searchlist.css" rel="stylesheet" type="text/css" />
+}
+ <div class="bg_bai"> 
+       <div class="top">
+         <div class="back_button"><a href="javascript:;" onclick="history.go(-1);"><img src="/Areas/MShop/Themes/M1/Content/Images/back.png" width="13" height="14" /></a></div>
+         <h1 class="lanmu_title">商家主页</h1>
+         <div class="header-btn fr"> <a href="@(ViewBag.BasePath)u" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                                           <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/Images/avatar.png">
+                                       </a>
+               <a href="@(ViewBag.BasePath)sc/ci" style="margin:8px 8px 8px 0;padding-top:5px;height:25px">
+                   <img src="/Areas/MShop/Themes/M1/Content/Images/cart.png" width="22" height="21" > 
+               </a>
+          </div>
+        </div>
+ @if (Model != null)
+{
+    <div class="home_newlist">
+        <div class="home_newtitle">
+            <span>@Model.ShopName</span> </div>
+        <div class="home_newcontent">
+            @Html.Raw(Model.Introduction)
+        </div>
+    </div>
+}
+   <div class="ding"  id="divding"><a href="javascript:;">回顶部</a></div>
+</div> 
+<script>
+    $(function () {
+        $("#divding").click(function (e) {
+            //以1秒的间隔返回顶部
+            $('body,html').animate({ scrollTop: 0 }, 1000);
+        });
+    });
+</script>

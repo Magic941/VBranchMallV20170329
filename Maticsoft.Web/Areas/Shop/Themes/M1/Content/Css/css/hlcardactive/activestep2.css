@@ -1,0 +1,257 @@
+﻿body {
+    background: url(Areas/Shop/Themes/M1/Content/images/images/bei_03.png) center top repeat-y;
+}
+.reading_yd_bottom{
+	width:348px;
+	}
+.reading_yd,.reading_yd_bottom{
+margin:0 auto;
+}
+.reading_yd_bottom a{
+padding-right:20px;
+}
+/*第二步*/
+.big_backdrop {
+    width: 1200px;
+    margin: 0 auto;
+    padding-top: 490px;
+    padding-bottom: 100px;
+    background: url(../../../images/images/bei_03.png) repeat-y center top;
+}
+
+.white_background {
+    width: 1080px;
+    margin: 0 auto;
+    background: #fff;
+    border: 3px solid #fff;
+    border-radius: 30px;
+    padding-bottom: 60px;
+}
+
+.procedure_bz span {
+    margin-left: 60px;
+    height: 152px;
+    line-height: 152px;
+    float: left;
+    font-size: 46px;
+    font-family: "微软雅黑";
+}
+
+.agreement_pt span,.agreement_pt p,.agreement_pt em{
+	font-family:"微软雅黑";
+	font-size:12px;
+	font-style:inherit;
+	color:#666;
+	}
+.agreement_pt p{
+	text-indent:25px
+	}
+.agreement_pt em{
+	color:red;
+	}
+
+.steps {
+    float: right;
+}
+
+    .steps ul {
+        height: 152px;
+        line-height: 162px;
+    }
+
+    .steps li {
+        float: right;
+    }
+
+.activation_ka {
+    margin-left: 160px;
+}
+
+    .activation_ka b {
+        width: 650px;
+        display: block;
+        font-size: 28px;
+        font-family: "微软雅黑";
+        color: #de1316;
+        padding-left: 50px;
+    }
+
+.detriment_nk {
+    width: 345px;
+    margin: 0 auto;
+    padding-bottom: 75px;
+    padding-top: 30px;
+}
+
+.first_insured ul {
+    width: 967px;
+}
+
+.first_insured li {
+    height: 64px;
+    line-height: 64px;
+    float: left;
+    padding-right: 40px;
+}
+
+    .first_insured li a {
+        font-size: 16px;
+    }
+
+.neighbor_application li {
+    height: 40px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+.neighbor_application .card_number_a, .neighbor_application .card_number_b {
+    width: 457px;
+}
+
+.neighbor_application {
+    width: 935px;
+}
+
+    .neighbor_application label {
+        width: 7em;
+        height: 38px;
+        line-height: 38px;
+        margin-right: 10px;
+        text-align: right;
+        font-family: "微软雅黑";
+        font-size: 16px;
+        float: left;
+    }
+
+        .neighbor_application label em {
+            color: #e7221a;
+            padding-right: 5px;
+            font-style: inherit;
+        }
+
+    .neighbor_application li.card_number_a input {
+        width: 331px;
+        height: 38px;
+        border: 1px solid #e7e5e6;
+    }
+
+.card_number_c input {
+    width: 788px;
+    height: 38px;
+}
+
+.card_number_b {
+    width: 331px;
+    height: 38px;
+    line-height: 38px;
+    margin-bottom: 10px;
+}
+
+.neighbor_application input {
+    margin-bottom: 10px;
+}
+
+
+.activation_ka span {
+    width: 41px;
+    height: 41px;
+    display: block;
+    float: left;
+    background: url(../../../images/images/icon_ab.png) no-repeat;
+    margin-top: 8px;
+}
+
+
+.basic_inforionmat {
+    width: 952px;
+    margin: 0 auto;
+}
+
+.step {
+    width: 370px;
+    height: 130px;
+    float: right;
+    margin: 10px 0 0 10px;
+    background: url(../../../images/images/jidu_2.png) center 40px no-repeat;
+    text-align: center;
+}
+
+    .step * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .step ul {
+        padding: 0 10px;
+    }
+
+    .step li.active {
+        color: red;
+    }
+
+    .step li {
+        width: 87px;
+        float: left;
+        padding: 0 0px;
+        font-size: 12px;
+    }
+
+        .step li dt, .step li dd, .step li dl {
+            float: none;
+        }
+
+        .step li dt, .step li dd {
+            font-size: 12px;
+            font-family: "微软雅黑"；;
+        }
+
+        .step li a {
+            font-size: 12px;
+            font-family: "微软雅黑";
+            color: #000;
+        }
+
+            .step li a:hover {
+                color: #F38790;
+            }
+
+.gkga {
+    margin-right: 53px;
+}
+
+.table-border th, .table-border td {
+    border: 1px solid #ccc;
+}
+
+.buju {
+    margin-top: 50px;
+}
+
+.neighbor_application_b{
+	width:
+	}
+.neighbor_application_b label{
+	width:7em;
+	height:38px;
+	line-height:38px;
+	margin-right:10px;
+	text-align:right;
+	font-family:"微软雅黑";
+	font-size:16px;
+	float:left;
+}
+.neighbor_application_b input{
+	width:331px;
+	height:38px;
+	border:1px solid #e7e5e6;
+	margin-bottom:10px;
+	}
+.neighbor_application_b input em{
+	color:#e7221a;
+	padding-right:5px;
+	font-style:inherit;
+	}
+.neighbor_application_b select{
+	width:111px;
+	height:36px;
+	}

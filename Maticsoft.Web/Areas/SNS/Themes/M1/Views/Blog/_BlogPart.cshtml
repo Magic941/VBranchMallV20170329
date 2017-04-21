@@ -1,0 +1,11 @@
+﻿@model  List<Maticsoft.Model.SNS.UserBlog>  
+<ul>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <li><a href="@(ViewBag.BasePath)Blog/BlogDetail?id=@item.BlogID">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 15)</a><span
+            style="float: right; padding-right: 18px">(@item.PvCount)</span></li>
+        }
+    }
+</ul>

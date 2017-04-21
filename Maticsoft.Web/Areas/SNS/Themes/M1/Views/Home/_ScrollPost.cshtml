@@ -1,0 +1,71 @@
+﻿@model  List<Maticsoft.Model.SNS.Posts>
+<script type="text/javascript">
+    myFocus.set({
+        id: 'tqq',
+        pattern: 'mF_sd_tqq',
+        time: 4
+    });
+    $(function () {
+        $('body').timeago();
+        $("#tqq").show();
+    });
+</script>
+<script src="/Scripts/timeCount/js/timeago.js" type="text/javascript"></script>
+<script src="/Scripts/timeCount/js/locales/timeago.zh-cn.js" type="text/javascript"></script>
+<div class="cell-hd">
+    <h3>
+        最新动态</h3>
+</div>
+<div id="tqq" class="mF_sd_tqq mF_sd_tqq mF_sd_tqq-tqq" style="display: none">
+    <ul class="msgs" style="margin-top: 0px;">
+         @for (int i = 0; i < Model.Count; i++)
+        {
+            <li style="opacity: 0.72;" data-id="@i">
+                <div class="img">
+                    <a target="_blank" href="@(ViewBag.BasePath)User/Posts/@(Model[i].CreatedUserID)">
+                        <img style=" width:40px; height:40px" src="/Upload/User/Gravatar/@(Model[i].CreatedUserID).jpg"  alt="@Model[i].CreatedNickName" /></a>
+                </div>
+                <div class="msg">
+                    <a target="_blank" href="@(ViewBag.BasePath)User/Posts/@(Model[i].CreatedUserID)">@Model[i].CreatedNickName</a>
+                        @if (Model[i].Type == 1)
+                        {
+                            <span>：
+                            <a href="@(ViewBag.BasePath)Photo/Detail/@Model[i].TargetId">
+                                       @(String.IsNullOrWhiteSpace(Model[i].Description)?"分享图片":Html.Raw(Model[i].Description).ToString() )
+                             </a>
+                            </span>
+                        }
+                        @if (Model[i].Type == 3)
+                        {
+                                <span>：
+                            <a href="@(ViewBag.BasePath)Video/Detail/@Model[i].PostID">
+                                       @(String.IsNullOrWhiteSpace(Model[i].Description) ? "分享视频" : Html.Raw(Model[i].Description).ToString())
+                             </a>
+                            </span>
+                        }
+                        @if (Model[i].Type == 0)
+                        {
+                            if (Model[i].TargetId > 0)
+                            {
+                                <span>：@Html.Raw(Model[i].Description) :<a target='_blank' style='color: #FF7CAE' href="/Product/Detail/@Model[i].TargetId">@Model[i].ProductName</a>
+                                </span>
+                            }
+                            else
+                            {
+                                   <span>：@Html.Raw(Model[i].Description) 
+                            </span>
+                            }
+                        }
+                        @if (Model[i].Type == 4)
+                        {
+                            <span>：@Html.Raw(Model[i].Description.Replace("{BlogUrl}", (ViewBag.BasePath + "Blog/BlogDetail/" + Model[i].TargetId))) 
+                        </span>
+                        }
+                       
+                    <br />
+                    <span>@Maticsoft.ViewModel.ViewModelBase.DateDiff(Model[i].CreatedDate)</span>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

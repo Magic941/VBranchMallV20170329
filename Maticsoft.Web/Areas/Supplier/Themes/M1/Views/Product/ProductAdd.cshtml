@@ -1,0 +1,552 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.ViewModel.Shop.ProductModel
+@section head{
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/Guide.css" type="text/css" rel="stylesheet"
+          charset="utf-8" />
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/index.css" type="text/css" rel="stylesheet"
+          charset="utf-8" />
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/xtree.css" type="text/css" rel="stylesheet"
+          charset="utf-8" />
+    <link href="/Scripts/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/colorbox/jquery.colorbox.js" type="text/javascript"></script>
+    <script src="/Areas/Supplier/Themes/M1/Content/Scripts/SelectProductCategory.helper.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = "/ueditor/";
+    </script>
+    <script src="/ueditor/editor_config.js" type="text/javascript"></script>
+    <script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+    <link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+    <link href="/Scripts/tab/tab.css" rel="stylesheet" type="text/css" charset="utf-8" />
+    <script src="/Scripts/tab/tab.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="/Scripts/validate/pagevalidator.css" type="text/css" />
+    <script type="text/javascript" src="/Scripts/validate/pagevalidator.js"></script>
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/gridviewstyle.css" rel="stylesheet"
+          type="text/css" />
+    <!--SWF图片上传开始-->
+    <link href="/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet"
+          type="text/css" />
+    <script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js"
+            type="text/javascript"></script>
+    <script type="text/javascript" src="/Scripts/jquery.uploadify/uploadify-v2.1.4/swfobject.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.uploadify/uploadify-v2.1.4/jquery.uploadify.v2.1.4.min.js"></script>
+    <script src="/Areas/Supplier/Themes/M1/Content/Scripts/ProductAdd.helper.js" type="text/javascript"></script>
+    <script src="/Areas/Supplier/Themes/M1/Content/Scripts/ProductImage.helper.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/regionjs.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/jquery.autosize-min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.jquery.dynatextarea.js" type="text/javascript"></script>
+    <script src="/Scripts/json2.js" type="text/javascript"></script>
+    <link href="/Areas/Supplier/Themes/M1/Content/Css/productstyle.css" rel="stylesheet"
+          type="text/css" />
+    <link href="/Scripts/chose/chosen.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/chose/chosen.jquery.js" type="text/javascript"></script>
+    <!--Select2 Start-->
+    <link href="/Scripts/select2/select2.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/select2/select2.min.js" type="text/javascript"></script>
+    <!--Select2 End-->
+    <script src="/Scripts/jquery/selectSuppProdCate.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#SelectProductType").select2({ width: "300px" });
+
+            //            $("a.iframe").colorbox({ width: "auto", height: "auto", inline: true, href: "#divModal" }, function() {
+            //                $('#cboxClose').hide();
+            //            });
+            //$("a.packageWindow").colorbox({ width: "auto", height: "auto", inline: true, href: "#divPackage" });
+            var isOpenSku = $("#hfIsOpenSku").val();
+            if (isOpenSku == "True") { //隐藏【规格】
+                $("#tabSku").show();
+            }
+        });
+    </script>
+    <style type="text/css">
+        #AttributeContent
+        {
+            list-style-type: none;
+        }
+        #AttributeContent li
+        {
+            line-height: 30px;
+            vertical-align: middle;
+        }
+        #AttributeContent li input
+        {
+            margin-right: 5px;
+        }
+        #AttributeContent li
+        {
+            float: left;
+            width: 150px;
+            display: block;
+        }
+        .bg_fffff
+        {
+            background: #ffffff;
+        }
+        .input_372
+        {
+            width: 372px;
+        }
+        .formTR .td_class em { color: Red;padding-right:3px; }
+    </style>
+}
+@using (Html.BeginForm("SubmitProduct", "Product", FormMethod.Post, new { id = "FormSubmitProduct" }))
+{  
+    <input type="hidden" id="hidsupplierid" value="@ViewBag.SuppID" />
+    @Html.HiddenFor(m => m.ProductInfo.ProductId)
+    <input id="chkUpselling" type="checkbox" checked="checked" style="display: none;" /> 
+    <input id="hfProductImagesThumbSize" type="hidden" value="@ViewBag.ProductImagesThumbSize"/>
+         
+    <input type="hidden" id="hfCurrentAttributes" name="hfCurrentAttributes" />
+    <input type="hidden" id="hfCurrentBaseProductSKUs" name="hfCurrentBaseProductSKUs" />
+    <input type="hidden" id="hfCurrentProductSKUs" name="hfCurrentProductSKUs" />
+    <input type="hidden" id="hfProductImages" name="hfProductImages" />
+         
+    <input type="hidden" id="Hidden_TempSKUInfo" value='' />
+@*<input type="hidden" id="hfApplyAttributes" value='@ViewBag.Attribute' />*@
+  
+    <div class="mar30">
+        <div class="contenttitle2">
+            <h3>
+                <span>添加新商品</span>
+            </h3>
+            <small class="desc">您可以设置商品的基本信息，详细介绍，规格 </small>
+        </div>
+        <input type="hidden" value="@ViewBag.hfIsOpenSku"  id="hfIsOpenSku"/>
+        <div class="nTab4">
+            <div class="TabTitle">
+                <ul id="myTab1">
+                    <li class="active" onclick="nTabs(this,0);"><a href="javascript:void(0);">基本信息</a></li>
+                    <li class="normal" onclick="nTabs(this,1);"><a href="javascript:void(0);">详细介绍</a></li>
+                    <li class="normal" onclick="nTabs(this,2);" id="tabSku" style="display: none"><a
+                        href="javascript:void(0);">规格</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="TabContent formitem border form" style="background-color: #ffffff;">
+            <div id="myTab1_Content0" tabindex="0">
+                <table class="TabMainborder" style="width: 100%; border-bottom: none; border: 0;border-top: none;
+                    float: left;" cellpadding="2" cellspacing="1" class="border borderkuang">
+                    <tr>
+                        <td class="tdbg">
+                            <table cellspacing="0" cellpadding="0" width="100%" border="0" class="formTR">
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>网站商品分类 ：
+                                    </td>
+                                    <td height="25">
+                                        <span id="categoryid">@Html.HiddenFor(m => m.ProductInfo.CategoryId, new { id = "hfSelectedNode" })
+                                            <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+                                            <script src="/Scripts/jquery/maticsoft.selectnode.js" handle="/Shopmanage.aspx" isnull="true"
+                                                type="text/javascript"></script>
+                                        </span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>店铺商品分类 ：
+                                    </td>
+                                    <td height="25">
+                                        <div>
+                                            <select id="selectSuppParentCate">
+                                            </select>
+                                            <select id="selectSuppChildCate" style="display: none;">
+                                            </select>
+                                            @Html.HiddenFor(m => m.ProductInfo.SuppCategoryId, new { id = "hidSuppCategoryId", name = "hidSuppCategoryId" })
+                                            @Html.HiddenFor(m => m.ProductInfo.SuppParentCategoryId, new { id = "hidSuppParentCategoryId", name = "hidSuppParentCategoryId" })
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>商品名称 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.ProductName, new { id = "ProductName", @class = "input_372" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>副标题 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.Subhead, new { id = "Subhead", @class = "input_372" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>商品类型 ：
+                                    </td>
+                                    <td height="25">
+                                        <div>
+                                            @Html.HiddenFor(m => m.ProductInfo.TypeId, new { id = "hfCurrentProductType" })
+                                            @Html.HiddenFor(m => m.ProductInfo.BrandId, new { id = "hfCurrentProductBrand" })
+                                            <select id="SelectProductType">
+                                                <option selected='selected' value="">请选择</option>
+                                            </select>
+                                            <span>品牌 ：
+                                                <select id="SelectProductBrand">
+                                                    <option selected='selected' value="">请选择</option>
+                                                </select></span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="td_class">
+                                    </td>
+                                    <td height="25">
+                                        <label class="msgNormal" style="width: 200px">
+                                            <span>选择此商品的商品类型</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>商品编码 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.ProductCode, new { id = "txtProductSKU", maxlength = "20", @class = "input_328" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>销售价 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.LowestSalePrice, new { id = "txtSalePrice", maxlength = "20", @class = "input_328 OnlyFloat", @Value = "0" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        <em>*</em>商品库存 ：
+                                    </td>
+                                    <td height="25">
+                                        <input id="txtStock" class="input_328 OnlyNum" maxlength="20" value="0" maxlength="6" />
+                                    </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="td_class">
+                                        <em>*</em>显示顺序 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.DisplaySequence, new { id = "txtDisplaySequence", maxlength = "20", @class = "input_328 OnlyNum", @Value = "0" })
+                                    </td>
+                                </tr>
+                                <tr >
+                                    <td colspan="2">
+                                        <h2>
+                                        </h2>
+                                    </td>
+                                </tr>
+                                <tr class="AttributesTR">
+                                    <td id="ContetAttributesEx" colspan="2">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        计量单位 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.Unit, new { maxlength = "20", @class = "input_328" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        所在地 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.HiddenFor(m => m.ProductInfo.RegionId, new { id = "hfSelectedNode", handle = "/RegionHandle.aspx", isnull = "true" })
+                                        <script src="/Scripts/jquery/maticsoft.selectregion.js" type="text/javascript"></script>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        市场价 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextBoxFor(m => m.ProductInfo.MarketPrice, new { id = "txtMarketPrice", maxlength = "20", @class = "input_328 OnlyFloat", @Value = "0" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        成本价 ：
+                                    </td>
+                                    <td height="25">
+                                        <input type="text" value="0" class="input_328 OnlyFloat" id="txtCostPrice" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        警戒库存 ：
+                                    </td>
+                                    <td height="25">
+                                        <input type="text" value="0" class="input_328 OnlyFloat" id="txtAlertStock" maxlength="6" />
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        商品重量 ：
+                                    </td>
+                                    <td height="25">
+                                        <input type="text" value="0" class="input_328 OnlyNum" id="txtWeight" />
+                                        克
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">运费 ：
+                                    </td>
+                                    <td height="25">
+                                        <input type="text" value="0" class="input_328 OnlyNum" id="txtFreight" name ="txtFreight" />
+                                        元
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        可得积分 ：
+                                    </td>
+                                    <td height="25">
+                                         @Html.TextBoxFor(m => m.ProductInfo.Points, new { id = "txtPoints", maxlength = "5", @class = "input_328 OnlyNum", @Value = "0" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                        商品图片 ：
+                                    </td>
+                                    <td height="25">
+                                        <div class="order_shouhuo" style="height: auto;">
+                                        </div>
+                                        <ul class="product_upload_img_ul" style="display: block">
+                                            <li>
+                                                <div class="ImgUpload ">
+                                                    <input type="hidden" id="hfImage0" />
+                                                    <span id="a1" class="cancel" style="display: none; z-index: 999999"><a class="DelImage"
+                                                        href="javascript:void(0);">删除</a></span> <span class="file_uploadUploader" style="width: 127px;
+                                                            height: 128px; overflow: hidden;">
+                                                            <input type="file" class="file_upload" id="file_upload0" />
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ImgUpload">
+                                                    <input type="hidden" id="hfImage1" />
+                                                    <span id="Span1" class="cancel" style="display: none; z-index: 999999"><a class="DelImage"
+                                                        href="javascript:void(0);">删除</a></span> <span class="file_uploadUploader" style="width: 127px;
+                                                            height: 128px; overflow: hidden;">
+                                                            <input type="file" class="file_upload" id="file_upload1" />
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ImgUpload">
+                                                    <input type="hidden" id="hfImage2" />
+                                                    <span id="Span3" class="cancel" style="display: none; z-index: 999999"><a class="DelImage"
+                                                        href="javascript:void(0);">删除</a></span> <span class="file_uploadUploader" style="width: 127px;
+                                                            height: 128px; overflow: hidden;">
+                                                            <input type="file" class="file_upload" id="file_upload2" />
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ImgUpload">
+                                                    <input type="hidden" id="hfImage3" />
+                                                    <span id="Span5" class="cancel" style="display: none; z-index: 999999"><a class="DelImage"
+                                                        href="javascript:void(0);">删除</a></span> <span class="file_uploadUploader" style="width: 127px;
+                                                            height: 128px; overflow: hidden;">
+                                                            <input type="file" class="file_upload" id="file_upload3" />
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div class="ImgUpload">
+                                                    <input type="hidden" id="hfImage4" />
+                                                    <span id="Span7" class="cancel" style="display: none; z-index: 999999"><a class="DelImage"
+                                                        href="javascript:void(0);">删除</a></span> <span class="file_uploadUploader" style="width: 127px;
+                                                            height: 128px; overflow: hidden;">
+                                                            <input type="file" class="file_upload" id="file_upload4" />
+                                                        </span>
+                                                </div>
+                                            </li>
+                                            <li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class">
+                                    </td>
+                                    <td height="25">
+                                        <label class="msgNormal">
+                                            <span>请选择有效的图片文件，第一张图片为产品主图，建议将图片文件的大小限制在200KB以内。</span>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" value="" id="Hidden_SelectValue" />
+                <!--当关闭分类时用于比较分类是否发生改变-->
+            </div>
+            <div id="myTab1_Content1" tabindex="1" class="none4">
+                <table style="width: 100%; border-bottom: none; border-top: none;border: 0; float: left;" cellpadding="2"
+                    cellspacing="1" class="border borderkuang">
+                    <tr>
+                        <td class="tdbg">
+                            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                                <tr>
+                                    <td height="25">
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr style="margin-bottom: 10px;display: none;">
+                                    <td class="td_class" style="vertical-align: top;">
+                                        商品简介 ：
+                                    </td>
+                                    <td height="25">
+                                        <div>
+                                            @Html.TextAreaFor(m => m.ProductInfo.ShortDescription, new
+                                          {
+                                              id = "txtShortDescription",
+                                              @class = "input_328",
+                                              style = "width:494px;height: 80px;float: left;"
+                                          })
+                                            <div id="progressbar1" class="progress" style="float: left;">
+                                            </div>
+                                        </div>
+                                        (字数限制为300个)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="25">
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="vertical-align: top;">
+                                        商品介绍 ：
+                                    </td>
+                                    <td height="25">
+                                        @Html.TextAreaFor(m => m.ProductInfo.Description, new { id = "txtDescription", name = "txtDescription", @class = "input_328", style = "width:880px;height: 337px;" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div id="myTab1_Content2" tabindex="2" class="none4">
+                <table style="width: 100%; border-bottom: none; border-top: none;border: 0; float: left;" cellpadding="2"
+                       cellspacing="1" class="border borderkuang">
+                    <tr>
+                        <td class="tdbg">
+                            <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                                <tr>
+                                    <td style="height: 6px;">
+                                    </td>
+                                    <td height="6">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td height="25">
+                                        <div class="form stdform">
+                                            <input id="btnOpenSKUs" type="button" class="adminsubmit_short" value="开启规格" />
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr class="SKUsTR">
+                        <td id="contetSKUs" colspan="2">
+                        </td>
+                    </tr>
+                </table>
+            </div>
+                <div  class="form" style="text-align: center;">
+        <button class="adminsubmit_short" id="btnSave" onclick="return SubProdForm();">
+            保存</button>
+    </div>
+        </div>
+    </div>
+
+
+    <br />
+    
+}
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({
+        //实例化编辑器
+        iframeCssUrl: '/ueditor/themes/default/iframe.css',
+        toolbars: [
+
+                ['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                    'bold', 'italic', '|', 'forecolor', 'backcolor', '|',
+                    'superscript', 'subscript', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', 'insertorderedlist', 'insertunorderedlist', '|', 'indent', '|', 'removeformat', 'formatmatch', 'autotypeset', '|', 'pasteplain', '|', 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|', 'fontfamily', 'fontsize', '|', 'imagenone', 'imageleft', 'imageright',
+                    'imagecenter', '|', 'insertimage', 'insertvideo', 'map', 'horizontal', '|',
+                    'link', 'unlink', '|', 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols']
+        ],
+        initialContent: '',
+        autoHeightEnabled: false,
+        minFrameHeight: 400,
+        pasteplain: false,
+        wordCount: false,
+        elementPathEnabled: false,
+        autoClearinitialContent: false,
+        imagePath: "",
+        imageManagerPath: "/"
+    });
+    editor.render($('[id$=txtDescription]').get(0));
+    //将编译器渲染到容器
+
+    function SubProdForm() {
+        if (editor.hasContents()) { //此处以非空为例
+            editor.sync();       //同步内容
+        }
+        $('#btnSave').attr('disabled', 'disabled'); //禁用当前按钮
+        $('#Hidden_SelectValue').val($('#categoryid select:last').val()); //获取分类的值 **为了原有的productadd.helper.js 对商品分类的值做下处理
+        $('#hfSelectedNode').val($('#categoryid select:last').val()); //商品分类
+        if ($.trim($('#hidSuppCategoryId').val()) == '' || $.trim($('#hidSuppCategoryId').val()) <= 0) {
+            ShowFailTip("请选择商品所在店铺分类！");
+            $('#btnSave').removeAttr('disabled');
+            return false;
+        }
+        if ($.trim($('#ProductName').val()) == '') {
+            ShowFailTip("请填写商品名称！");
+            $('#btnSave').removeAttr('disabled');
+            return false;
+        }
+        var subformResult = SubForm();
+        if (subformResult == true) {
+            $('#FormSubmitProduct').submit();
+            return true;
+        }
+        $('#btnSave').removeAttr('disabled');
+        return false;
+    }
+
+</script>
+@if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            var resultVal = '@ViewData.ModelState["Message"].Errors[0].ErrorMessage';
+            if (resultVal == 'OK') {
+                ShowSuccessTip('添加成功！');
+                setTimeout(function () {
+                    window.location.href = $Maticsoft.BasePath + "Product/InStock?SaleStatus=-1";
+                }, 2000);
+            } else {
+                $('#btnSave').removeAttr('disabled'); //解除禁用
+                ShowFailTip(resultVal);
+            }
+        })
+
+        $("#selectSuppChildCate").select2();
+    </script>
+}

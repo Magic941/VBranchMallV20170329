@@ -1,0 +1,102 @@
+.slide_bg {
+	background-color: rgb(20, 20, 20);
+}
+.slide_box {
+	margin: 40px auto 0px; overflow: hidden;
+}
+.slide_box img {
+	background: url("/images/data-loading.gif") no-repeat center 40%;
+}
+.slide_close {
+	background: url("/b/img/95_mod_slide.png") no-repeat 0px 100%;
+}
+.slide_menu {
+	background: url("/b/img/95_mod_slide.png") no-repeat 0px 100%;
+}
+.slide_bar {
+	background: url("/b/img/95_mod_slide.png") no-repeat 0px 100%;
+}
+.slide_btn {
+	background: url("/b/img/95_mod_slide.png") no-repeat 0px 100%;
+}
+.slide_close {
+	background-position: 0px -640px; padding: 2px 0px 0px 18px; top: 10px; right: 10px; color: rgb(155, 155, 155); line-height: 20px; position: absolute;
+}
+.slide_close:hover {
+	background-position: 0px -660px; color: rgb(195, 195, 195); text-decoration: none;
+}
+.slide_menu {
+	width: 100%; height: 110px; bottom: 0px; position: absolute;
+}
+.slide_bar {
+	background-repeat: repeat-x;
+}
+.slide_menu {
+	background-repeat: repeat-x;
+}
+.slide_bar {
+	background-position: 0px -700px; margin-top: 40px;
+}
+.slide_btn {
+	width: 45px; height: 33px; display: inline-block;
+}
+.slide_prev {
+	
+}
+.slide_prev:hover {
+	background-position: 0px -40px;
+}
+.slide_prev_down {
+	background-position: 0px -80px;
+}
+.slide_prev_off {
+	background-position: 0px -120px;
+}
+.slide_stop {
+	background-position: 0px -160px;
+}
+.slide_stop:hover {
+	background-position: 0px -200px;
+}
+.slide_stop_down {
+	background-position: 0px -240px;
+}
+.slide_stop_off {
+	background-position: 0px -280px;
+}
+.slide_next {
+	background-position: 0px -320px;
+}
+.slide_next:hover {
+	background-position: 0px -360px;
+}
+.slide_next_down {
+	background-position: 0px -400px;
+}
+.slide_next_off {
+	background-position: 0px -440px;
+}
+.slide_play {
+	background-position: 0px -480px;
+}
+.slide_play:hover {
+	background-position: 0px -520px;
+}
+.slide_play_down {
+	background-position: 0px -560px;
+}
+.slide_play_off {
+	background-position: 0px -600px;
+}
+.slide_prev_off {
+	outline: 0px; cursor: default;
+}
+.slide_stop_off {
+	outline: 0px; cursor: default;
+}
+.slide_play_off {
+	outline: 0px; cursor: default;
+}
+.slide_next_off {
+	outline: 0px; cursor: default;
+}

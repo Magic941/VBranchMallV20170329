@@ -1,0 +1,251 @@
+﻿@{
+
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayOut.cshtml";
+}
+<style type="text/css">
+    #foot_wrap
+    {
+        clear: both;
+        height: 264px;
+        overflow: hidden;
+        margin: 25px 0 0 0;
+    }
+    .back2top_fat
+    {
+        position: fixed;
+        z-index: 1001;
+        right: 4px;
+        bottom: 4px;
+        width: 60px;
+    }
+    .shouhead a
+    {
+        background: url('/images/tpcj.jpg') no-repeat;
+        width: 141px;
+        height: 54px;
+        display: block;
+        font-size: 1px;
+        text-indent: -999em;
+        float: left;
+    }
+    .shouhead
+    {
+        margin: 20px auto 0;
+        width: 960px;
+        padding: 0 auto;
+        overflow: hidden;
+    }
+    .shoutab
+    {
+        background: url('/images/tpcj-7.jpg') no-repeat;
+        width: 827px;
+        height: 50px;
+        position: relative;
+        margin: 0 auto;
+    }
+    .piece1
+    {
+        width: 960px;
+        position: relative;
+        background: #fff;
+        border-radius: 7px;
+        margin: 25px auto 0;
+    }
+    .piece1_hd
+    {
+        height: 10px;
+        font-size: 0;
+    }
+    .useimg_chrome
+    {
+        margin: 0 auto;
+        width: 850px;
+    }
+    .canfindimg
+    {
+        margin: 0 auto;
+        width: 479px;
+        display: none;
+    }
+    .otherimg
+    {
+        margin: 0 auto;
+        width: 853px;
+        display: none;
+    }
+    .shoutab .use
+    {
+        display: block;
+        font-size: 1px;
+        height: 38px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 131px;
+        position: absolute;
+        left: 161px;
+        top: 4px;
+    }
+    .shoutab .cantfind
+    {
+        display: block;
+        font-size: 1px;
+        height: 38px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 131px;
+        position: absolute;
+        left: 338px;
+        top: 4px;
+    }
+    .shoutab .other
+    {
+        display: block;
+        font-size: 1px;
+        height: 38px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 131px;
+        position: absolute;
+        left: 494px;
+        top: 4px;
+    }
+    .useimg_chrome .shoubtn
+    {
+        background: url('/images/tpcj-2.jpg') no-repeat;
+        width: 850px;
+        height: 227px;
+        position: relative;
+    }
+    .useimg_chrome .shoubtn a
+    {
+        display: block;
+        font-size: 1px;
+        height: 55px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 131px;
+        position: absolute;
+        left: 124px;
+        top: 120px;
+    }
+
+    .otherimg .othcopy input
+    {
+        border: 0;
+        position: absolute;
+        left: 105px;
+        top: 572px;
+        width: 537px;
+        height: 30px;
+    }
+
+    .jiantou
+    {
+        position: absolute;
+        right: 530px;
+        top: 0;
+        display: none;
+        z-index: 9999;
+        background: url("/images/tpcj-9.png") no-repeat scroll 0 0 transparent;
+        width: 120px;
+        height: 184px;
+        _filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/images/tpcj-9.png',sizingMethod='scale');
+        _background-image: none;
+    }
+    .shouhead div
+    {
+        margin: 0 auto;
+        width: 516px;
+    }
+    
+    .useimg_chrome .shoulook {
+background: url('/Images/tpcj-4.jpg') no-repeat;
+width: 850px;
+height: 666px;
+position: relative;
+}
+    .piece1_bd {
+overflow: hidden;
+zoom: 1;
+background-color: #FFF;
+}
+</style>
+<script type="text/javascript">
+    $(function () {
+        var hostname = '@ViewBag.HostName';
+        var scriptvalue = "javascript:void((function(){var%20d=new%20Date();var%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.id='maticsoftShareScript';e.setAttribute('src','http://" + hostname + "/Scripts/maticsoft.collection.min.js?t='+d.getTime());document.body.appendChild(e)})());";
+        $(".shoubtn").find("a").attr("href", scriptvalue);
+        $("#chajian").attr("href", scriptvalue);
+        $("#shoushou_link").val(scriptvalue);
+    });
+</script>
+
+    <div id="body" class="fm960">
+        <div class="shouhead">
+            <div>
+                <img style="float: left;" src="/Images/tpcj-6.jpg">
+                <a href="" id="chajian">图片采集</a>
+            </div>
+        </div>
+        <div class="piece1 mt10">
+            <div class="piece1_hd">
+            </div>
+            <div class="piece1_bd">
+                <div class="shoutab" style="background-image: url(/Images/tpcj-7.jpg);
+                    background-position: initial initial; background-repeat: initial initial;">
+                    <a href="javascript:;" class="use">使用</a> <a href="javascript:;" class="cantfind">找不到</a>
+                </div>
+                <div class="useimg_chrome mt20" style="display: block;">
+                    <img src="/Images/tpcj-1.jpg">
+                    <div class="shoubtn">
+                        <a href="javascript:void((function(){var%20d=new%20Date();var%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.id='maticsoftShareScript';e.setAttribute('src','http://www.remaigou.com//Scripts/maticsoft.collection-min.js?t='+d.getTime());document.body.appendChild(e)})());">
+                            图片采集</a></div>
+                        
+                    <img src="/Images/tpcj-3.jpg">
+                        <div class="shoulook"></div>
+                    </div>
+                    <div class="canfindimg mt20" style="display: none;">
+                        <img src="/images/tpcj-10.jpg">
+                        <img src="/Images/tpcj-11.jpg">
+                        <img src="/Images/tpcj-5.jpg">
+                        <img src="/Images/tpcj-12.jpg">
+                    </div>
+                </div>
+                <div class="piece1_ft">
+                </div>
+            </div>
+            <input type="hidden" id="lltype" value="chrome">
+            <script>
+                $(function () {
+                    var lltype = $('#lltype').val();
+                    $('.cantfind').click(function () {
+                        $('.shoutab').css('background', 'url(/images/tpcj-8.jpg)');
+                        $('.useimg_' + lltype).hide();
+                        $('.otherimg').hide();
+                        $('.canfindimg').show();
+                        return false;
+                    });
+                    $('.use').click(function () {
+                        $('.shoutab').css('background', 'url(/images/tpcj-7.jpg)');
+
+                        $('.canfindimg').hide();
+                        $('.otherimg').hide();
+                        $('.useimg_' + lltype).show();
+                        return false;
+                    });
+                    $('#chajian').bind('mouseover', function () {
+                        $('.jiantou').css('left', $(document.body).width() / 2 + $('.shouhead').width() / 2 - 220);
+                        $('.jiantou').show();
+                    });
+                    $('#chajian').bind('mouseout', function () {
+                        $('.jiantou').hide();
+                    });
+                });
+            </script>
+            <div class="jiantou" style="left: 1180.5px; display: none;">
+            </div>
+        </div>

@@ -1,0 +1,110 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Pay.RechargeRequest>
+
+<div class="user_rechargedetial user_detialclear">
+    <a href="javascript:;" item="BalanceDetList">收支明细</a>
+    <a href="javascript:;" class="curr">充值明细</a>
+    <a href="javascript:;" item="DrawDetList">提现明细</a>
+</div>
+                <table width="100%" border="0" class="user_dingdan user_balancelist" cellspacing="0" cellpadding="0">
+              <tr>
+                  <th>时间</th>
+                  <th>充值单号</th>
+                  <th>充值金额</th>
+                  <th>状态</th>
+                  <th>操作</th>
+              </tr>
+              @if (Model != null)
+              {
+                  foreach (var item in Model)
+                  {
+                  <tr id="tr_@(item.RechargeId)">
+                      <td height="40" style="width: 88px" class="bor">
+                          @item.TradeDate.ToString("yyyy-MM-dd HH:mm:ss")
+                      </td>
+                      <td style="width: 220px;" class="bor">
+                          @item.RechargeId
+                      </td>
+                      <td style="width: 88px" class="bor">
+                          @item.RechargeBlance.ToString("F")
+                      </td>
+                      <td style="width: 88px" class="bor status" >
+                          @(item.Status == 0 ? "未支付" : "已支付")
+                      </td>
+                      <td style="width: 60px;text-align: center;"  >
+                         @if (item.Status == 0)
+                         {
+                             <a style="cursor: pointer;" href="javascript:;" onclick="PayAccount(@item.RechargeId)">支付</a><br />
+                             <a style="cursor: pointer;" onclick="delRech(@item.RechargeId,@item.Status)">取消</a>
+                         }
+                      </td>
+                  </tr>
+                  }
+              }
+           
+           </table>
+    
+ 
+<!-- FansList BEGIN -->
+
+ <center>
+     <!--jQuery Ajax Paging Start-->
+      @Html.AjaxPager(Model, new PagerOptions
+                    {
+                        PageIndexParameterName = "pageIndex",
+                        NumericPagerItemCount = 10,
+                        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                        CssClass = "in_pages",
+                        SeparatorHtml = ""
+                    }, new AjaxOptions { UpdateTargetId = "divdetaillist" })
+    <!--jQuery Ajax Paging End-->
+ </center> 
+<script>
+    $(function() {
+        $('.status:contains("未支付")').addClass('tdstatusno');
+        $('.status:contains("已支付")').addClass('tdstatusok');
+
+    });
+
+    var PayAccount = function (id) {
+        if (id) {
+            window.location.replace($Maticsoft.BasePath + "pay/account" + id);
+        }
+    };
+
+    var delRech = function (id, states) {
+        if (parseInt(states) == 0 && id) {
+            $.ajax({
+                url: $Maticsoft.BasePath + "UserCenter/DelRecharge",
+                type: 'post',
+                dataType: 'text',
+                timeout: 10000,
+                async: false,
+                data: {
+                    Action: "post",
+                    Id: id
+                },
+                success: function (Data) {
+                    switch (Data) {
+                        case "False":
+                            ShowFailTip("删除失败！");
+                            break;
+                        case "True":
+                            ShowSuccessTip("删除成功！");
+                            $('#tr_' + id).empty();
+                            break;
+                        default:
+                            ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                            break;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                }
+            });
+        }
+    };
+   
+</script>

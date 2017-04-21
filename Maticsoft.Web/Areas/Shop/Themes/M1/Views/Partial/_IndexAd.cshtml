@@ -1,0 +1,14 @@
+﻿@model List<Maticsoft.Model.Settings.Advertisement>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <li style="width:796px; height:334px;"><a href="@item.NavigateUrl" target="_blank">
+            <img src="@(Maticsoft.Web.Components.FileHelper.GetImageUrl(item.FileUrl))" alt="#" style="width:796px; height:334px;" /></a></li> 
+    }
+}
+else
+{
+         <li style="width:796px; height:334px;"><a href="#" target="_blank">
+            <img src="http://218.244.133.188/Upload/AD/36/201503170942513345585.jpg" alt="#" style="width:796px; height:334px;" /></a></li> 
+}

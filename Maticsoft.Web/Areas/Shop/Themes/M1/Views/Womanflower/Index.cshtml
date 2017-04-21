@@ -1,0 +1,1051 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/ml-min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>
+
+
+    <link href="/Areas/Shop/Themes/M1/Content/Css/main-catg.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/revision.css" rel="stylesheet" />
+    <link href="/Areas/Shop/Themes/M1/Content/template/Womanflower/Css/nuren-hua.css" rel="stylesheet" />
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery-1.7.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.js?v=1" charset="utf-8"></script>
+}
+
+<script type="text/javascript">
+    $(function () {
+
+        $(".divOpenAct").click(function () {
+            var tip = $(this).children().text();
+            if (tip == "展开") {
+                $(this).children().text("收起");
+            } else {
+                $(this).children().text("展开");
+            }
+            $(".divContent").toggle();
+        });
+    })
+</script>
+<style type="text/css">
+    /*body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div,dl,dt,dd,input{margin:0;padding:0;}
+body{ font-size: 12px; background-color: #E8E8E8; }*/
+    img {
+        border: none;
+    }
+
+    li {
+        list-style: none;
+    }
+
+    input, select, textarea {
+        outline: none;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    /*清浮动*/
+    .clearfix:after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .clearfix {
+        zoom: 1;
+    }
+
+    /* banner */
+    .banner {
+        height: 360px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .carousel_advertising ul {
+        height: 282px;
+        overflow: hidden;
+    }
+
+    .banner-btn {
+        display: none;
+    }
+
+        .banner-btn a {
+            display: block;
+            position: absolute;
+            top: 120px;
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            opacity: 0.3;
+            filter: alpha(opacity=30) color:rgb(255, 255, 255);
+            overflow: hidden;
+            z-index: 4;
+        }
+
+    .prevBtn {
+        left: 5px;
+    }
+
+    .nextBtn {
+        right: 5px;
+    }
+
+    .banner-img {
+        height: 360px;
+        width: 796px;
+        overflow: hidden;
+        font-size: 0;
+        *word-spacing: -1px; /* IE6、7 */
+        letter-spacing: -3px;
+        position: relative;
+    }
+
+        .banner-img li {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1; /* IE6、7 */
+            vertical-align: top;
+            letter-spacing: normal;
+            word-spacing: normal;
+            font-size: 12px;
+        }
+
+    .banner_sexs_nx {
+        height: 360px;
+        width: 796px;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 0;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .clearfix_Href {
+        height: 360px;
+        overflow: hidden;
+        font-size: 0;
+        *word-spacing: -1px; /* IE6、7 */
+        letter-spacing: -3px;
+        position: relative;
+    }
+
+        .clearfix_Href li {
+            display: inline-block;
+            *display: inline;
+            *zoom: 1; /* IE6、7 */
+            vertical-align: top;
+            letter-spacing: normal;
+            word-spacing: normal;
+            font-size: 12px;
+        }
+
+    .banner i {
+        background: url() no-repeat;
+        width: 15px;
+        height: 23px;
+        cursor: pointer;
+        margin: 8px 0 0 12px;
+        display: block;
+    }
+
+    .banner .nextBtn i {
+        background-position: -200px -24px;
+    }
+
+    .banner .prevBtn i {
+        background-position: -200px 0px;
+        width: 24px;
+        height: 41px;
+        background: url(/Areas/Shop/Themes/M1/Content/template/man/images/shenshigang/14_03.png) no-repeat;
+        display: block;
+    }
+
+    .banner-circle {
+        position: absolute;
+        left: 50%;
+        bottom: 15px;
+        height: 13px;
+        text-align: center;
+        font-size: 0;
+        border-radius: 10px;
+        background: rgba(255,255,255,0.3);
+        filter: alpha(opacity:30);
+    }
+
+        .banner-circle li {
+            border-radius: 10px;
+            margin: 2px;
+            display: inline-block;
+            display: -moz-inline-stack;
+            vertical-align: middle;
+            zoom: 1;
+        }
+
+            .banner-circle li a {
+                display: block;
+                padding-top: 9px;
+                width: 9px;
+                height: 0;
+                border-radius: 50%;
+                background: #B7B7B7;
+                overflow: hidden;
+            }
+
+        .banner-circle .selected a {
+            background: #F40;
+        }
+
+    .red {
+        color: red;
+    }
+
+    .substance_nr2 li s {
+        text-decoration: none;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        //第一个切换图片广告
+        function SwitchAd(bannerobj, banner_ulobj, bannerbtnobj, prevBtnclassname) {
+            var $banner = bannerobj;
+            var $banner_ul = banner_ulobj;
+            var $btn = bannerbtnobj;
+            var $btn_a = $btn.find('a');
+
+            var v_width = $banner_ul.width();
+
+            var page = 1;
+
+            var timer = null;
+            var btnClass = null;
+
+            var page_count = $banner_ul.find('li').length;//把这个值赋给小圆点的个数
+
+            var banner_cir = "<li class='selected' href='#'><a></a></li>";
+            for (var i = 1; i < page_count; i++) {
+                //动态添加小圆点
+                banner_cir += "<li><a  href='#'></a></li>";
+            }
+            $('.banner-circle').append(banner_cir);
+
+            var cirLeft = $('.banner-circle').width() * (-0.5);
+            $('.banner-circle').css({ 'marginLeft': cirLeft });
+
+            $banner_ul.width(page_count * v_width);
+
+            function move(obj, classname) {
+                //手动及自动播放
+                if (!$banner_ul.is(':animated')) {
+                    if (classname == prevBtnclassname) {
+                        if (page == 1) {
+                            $banner_ul.animate({ left: -v_width * (page_count - 1) });
+                            page = page_count;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '+=' + v_width }, "slow");
+                            page--;
+                            cirMove();
+                        }
+                    }
+                    else {
+                        if (page == page_count) {
+                            $banner_ul.animate({ left: 0 });
+                            page = 1;
+                            cirMove();
+                        }
+                        else {
+                            $banner_ul.animate({ left: '-=' + v_width }, "slow");
+                            page++;
+                            cirMove();
+                        }
+                    }
+                }
+            }
+
+            function cirMove() {
+                //检测page的值，使当前的page与selected的小圆点一致
+                $('.banner-circle li').eq(page - 1).addClass('selected').siblings().removeClass('selected');
+            }
+
+            $banner.mouseover(function () {
+                $btn.css({ 'display': 'block' });
+                clearInterval(timer);
+            }).mouseout(function () {
+                $btn.css({ 'display': 'none' });
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+            }).trigger("mouseout");//激活自动播放
+
+            $btn_a.mouseover(function () {
+                //实现透明渐变，阻止冒泡
+                $(this).animate({ opacity: 0.6 }, 'fast');
+                $btn.css({ 'display': 'block' });
+                return false;
+            }).mouseleave(function () {
+                $(this).animate({ opacity: 0.3 }, 'fast');
+                $btn.css({ 'display': 'none' });
+                return false;
+            }).click(function () {
+
+                //手动点击清除计时器
+                btnClass = this.className;
+                clearInterval(timer);
+                timer = setInterval(move, 5000);
+                move($(this), this.className);
+            });
+
+
+            $('.banner-circle li').live('click', function () {
+                var index = $('.banner-circle li').index(this);
+                $banner_ul.animate({ left: -v_width * index }, 'slow');
+                page = index + 1;
+                cirMove();
+            });
+
+        }
+        var $banner = $('.banner_sexs_nx');
+        var $banner_ul = $('.clearfix_Href');
+        var $btn = $('.banner-btn');
+        SwitchAd($banner, $banner_ul, $btn, 'prevBtn');
+
+
+    });
+</script>
+
+
+<div class="main_cont">
+    <div class="wrapper">
+        <div class=" clearfix">
+            <div class="gentlemanss_sexs">
+                <span>女人花</span>
+                <div class="gentleman—sexs_2">
+                    <dl>
+                        <dt class="OO_A1"><em>女装</em></dt>
+                        <dd>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/607">T恤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/608">雪纺衫/蕾丝衫</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/609">衬衫</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/610">卫衣</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/615">休闲裤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/617">打底裤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/618">小西裤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/619">外套</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/620">大衣</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/621">羽绒服/棉服</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/626">短裤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/630">针织衫</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/631">中老年女装</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/611">马甲</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/612">连衣裙</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/613">半身裙</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A2"><em>内衣</em></dt>
+                        <dd>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/665">内裤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/667">睡衣/家居服</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/50">文胸</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A3"><em>女鞋</em></dt>
+                        <dd>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/700">筒靴</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/701">帆布鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/706">布鞋/绣花鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/692">高跟鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/693">单鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/694">休闲鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/695">凉鞋</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/696">女靴</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/698">拖鞋/人字拖</a>
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt class="OO_A4"><em>女包</em></dt>
+                        <dd>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/805">钱包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/806">手拿包/晚宴包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/807">单肩包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/808">双肩包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/809">手提包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/810">斜挎包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/811">钥匙包</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/812">卡包/零钱包</a>
+                        </dd>
+                    </dl>
+
+                    <dl style="border: none;">
+                        <dt class="OO_A6"><em>美妆</em></dt>
+                        <dd>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/431">洁面</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/432">防晒</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/433">护肤</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/434">面膜</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/435">护肤套装</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/436">眼部保养</a>
+                            <a target="_blank" href="http://www.zhenhaolin.com/product/437">卸妆</a>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="gentlemanss_cent">
+                <div class="banner_sexs_nx" style="position: relative;">
+                    <ul class="clearfix_Href">
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/ld/chunyou.html">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/jiaodian-04.jpg" width="798" height="360" /></a></li>
+                        <li><a target="_blank" href="@(ViewBag.BasePath)Ld/njr.html">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/jiaodian-02.jpg" width="798" height="360" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/136/408/0/default/">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/jiaodian-03.jpg" width="798" height="360" /></a></li>
+                    </ul>
+                </div>
+                <div class="Female_new_product clearfix">
+                    <div class="Female_new_nz1">
+                        <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154113">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/1.jpg" width="136" height="249" /></a>
+                        <span><a href="http://zhenhaolin.com/Product/Detail/1154113">漫澜品牌秋季新款 薄款调整型聚拢收副乳蕾丝杯面文胸女士内衣</a></span>
+                        <em>温和去除彩妆 补水</em>
+                    </div>
+                    <div class="Female_new_nz2">
+                        <ul class="clearfix">
+                            <li>
+                                <a target="_blank" href="http://zhenhaolin.com/Product/Detail/12884">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/3.jpg" width="138" height="91" /></a>
+                                <span><a href="http://www.zhenhaolin.com/Product/Detail/5936">韩国代购 正品芭妮兰致柔卸妆膏</a></span>
+                                <em>新款mIu风 手提单肩斜跨</em>
+                            </li>
+                            <li>
+                                <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1381">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/4.jpg" width="138" height="91" /></a>
+                                <span><a href="http://zhenhaolin.com/Product/Detail/1381">EFE专柜正品 高端防紫外线 欧美时尚 渐变色镜片 中性 板材镜架 遮阳镜 FV1325-C1 黑色</a></span>
+                                <em>高端时尚 中性 高端防紫外线 太阳镜</em>
+                            </li>
+                            <li class="nz2_A3">
+                                <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154183">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/5.jpg" width="138" height="91" /></a>
+                                <span><a href="http://zhenhaolin.com/Product/Detail/1154183">PEIPEI佩佩雪纺丝润修颜乳30g</a></span>
+                                <em>CC霜保湿滋润遮瑕隔离</em>
+                            </li>
+                        </ul>
+                        <div class=" clearfix">
+                            <div class="female_sexs clearfix">
+                                <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1156506">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/7.jpg" width="295" height="141" /></a>
+                            </div>
+                            <div class="nz2_A4">
+                                <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1156591">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/6.jpg" width="138" height="91" /></a>
+                                <span style="font-size: 14px;"><a href="http://zhenhaolin.com/Product/Detail/1156591">茧蝶 2015欧洲站早秋新款明星走秀款显瘦钉珠钉花拼色女装连衣裙</a></span>
+                                <em>时尚潮流</em>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Female_new_nz1">
+                        <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1155871">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/2.jpg" width="136" height="249" /></a>
+                        <span><a href="http://zhenhaolin.com/Product/Detail/1155871">语馨 春装新款镂空职业衬衫蕾丝衫 四面弹 97%纤维3%氨纶 无内衬</a></span>
+                        <em>时尚休闲</em>
+                    </div>
+                </div>
+            </div>
+            <div class="species_odds">
+                <div class="species_odds_th">
+                    <span>今日特惠</span>
+                    <div class="species_odds_spp2">
+                        <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/13727">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/0001.jpg" width="183" height="245" /></a>
+                        <p><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/13727">妮维雅 凝水活采泡沫洁面乳 保湿 补水 清洁100g</a></p>
+                        <em>特惠价:￥19.00</em>
+                    </div>
+                    <div class="" style="width: 201px; height: 9px; background: url(/Areas/Shop/Themes/M1/Content/template/Womanflower/images/0011_09.png) no-repeat;"></div>
+                </div>
+                <div class="species_odds_pg">
+                    <div class="odds_pg_xs"><span>限时抢购</span></div>
+                    <div class="odds_pg_sp">
+                        <span>@*剩余<b>05</b>时<b>42</b>分<b>55</b>秒*@</span>
+                        <div class="odds_pg_sp_1">
+                            <a target="_blank" href="http://www.zhenhaolin.com/Product/ProSaleDetail/438">
+                                <img src="/Areas/Shop/Themes/M1/Content/images/womenspend/0002.jpg" width="157" height="157" /></a>
+                            <p><a target="_blank" href="http://www.zhenhaolin.com/Product/ProSaleDetail/438">晶尚晶美 JM7153 蕾丝衫</a></p>
+                            <em>抢购价:￥ 99.00</em>
+                            <i><a target="_blank" href="http://www.zhenhaolin.com/Product/ProSaleDetail/438">立即抢购</a></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!--wrapper-->
+<div class="wrapper clearfix">
+    <div class="">
+        <a target="_blank" href="http://zhenhaolin.com/product/675">
+            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/zbanner-01.jpg" width="1200" height="111" />
+        </a>
+    </div>
+    <!-- substance -->
+    <div class="substance clearfix">
+        <!--substance_nr1-->
+        <div class="substance_nr1 clearfix">
+            <div class="substance_nr1_logo">
+                <span>
+                    <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/1.png" width="160" height="178" /></span>
+                <div class="">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/182/62/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/pinshangjingmei.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/182/224/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/facaiyang.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/182/193/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/anshang.jpg" width="130" height="60" /></a></li>
+                    </ul>
+                </div>
+                <div class="text_classification">
+                    <ul>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/607">T恤</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/608">雪纺衫</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/608">蕾丝衫</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/609">衬衫</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/610">卫衣</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/619">外套</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/620">大衣</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/621">羽绒服</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/621">棉服</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/630">针织衫</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/631">中老年女装</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/612">连衣裙</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="substance_nr1_sp">
+                <div class="nr1_sp1_1">
+                    <ul>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/ld/zmyz.html">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-01.jpg" width="285" height="550" /></a></li>
+                        @*<li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>*@
+                    </ul>
+                </div>
+                <div class="nr1_sp1_2">
+                    <ul>
+                        <li class="active"><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/7549"></a></li>
+                        @*<li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end substance_nr1-->
+        <!--substance_nr2-->
+        <div class="substance_nr2">
+            <ul>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154481">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-02.jpg" alt="111111111111" width="187" height="231" /></a>
+                    <p>黎诗白兰 最新款水钻大毛领长大衣</p>
+                    <em><s class="red">￥ 699.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154380">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-03.jpg" width="187" height="231" /></a>
+                    <p>冬季韩版女装棉衣外套工装羊羔毛绒毛领带帽中长款棉服</p>
+                    <em><s class="red">￥ 169.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154610">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-04.jpg" width="187" height="231" /></a>
+                    <p>发财羊 新品热卖韩版印花针织衫套头长袖娃娃领女士打底羊毛衫批发</p>
+                    <em><s class="red">￥ 111.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/12061">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-05.jpg" width="187" height="231" /></a>
+                    <p>恒源祥新款羽绒服正品修身兔毛领PU皮女士中长款反季清仓特价</p>
+                    <em><s class="red">￥ 398.00</s></em>
+                </li>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154487">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-06.jpg" width="187" height="231" /></a>
+                    <p>黎诗白兰 最新款羊绒斗篷大衣</p>
+                    <em><s class="red">￥ 499.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154530">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-07.jpg" width="187" height="231" /></a>
+                    <p>2014秋装新款 欧美潮流女装时尚千鸟格修身长袖品牌连衣裙JR1105</p>
+                    <em><s class="red">￥ 99.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/1154383">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-08.jpg" width="187" height="231" /></a>
+                    <p>2014秋冬新款貉子毛肩棉袄欧根纱拼接裙摆中长款棉衣外套女</p>
+                    <em><s class="red">￥ 189.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://zhenhaolin.com/Product/Detail/12499">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/fushi-09.jpg" width="187" height="231" /></a>
+                    <p>2014冬装新款韩版女装中长款修身棉衣女耗子毛领棉服加厚女士棉袄</p>
+                    <em><s class="red">￥ 318.00</s></em>
+                </li>
+            </ul>
+        </div>
+        <!--substance_nr2-->
+    </div>
+    <div class="substance clearfix">
+        <!--substance_nr1-->
+        <div class="substance_nr1 clearfix">
+            <div class="substance_nr1_logo">
+                <span>
+                    <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/2.png" width="160" height="178" /></span>
+                <div class="">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/49/365/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/nanjiren.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/49/254/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/silamei.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/49/363/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/yayirou.jpg" width="130" height="60" /></a></li>
+                    </ul>
+                </div>
+                <div class="text_classification">
+                    <ul>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/665">内裤</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/667">睡衣</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/667">家居服</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/50">文胸</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/677">内衣配件</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="substance_nr1_sp">
+                <div class="nr1_sp1_1">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/49/29879/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-01.jpg" width="285" height="550" /></a></li>
+                        @*<li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>*@
+                    </ul>
+                </div>
+                <div class="nr1_sp1_2">
+                    <ul>
+                        <li class="active"><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/9966"></a></li>
+                        @*<li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end substance_nr1-->
+        <!--substance_nr2-->
+        <div class="substance_nr2">
+            <ul>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8220">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-02.jpg" width="187" height="231" /></a>
+                    <p>斯拉媚 无钢圈文胸 减压舒适调整型文胸 超聚拢 上托运动内衣5063</p>
+                    <em>￥<s class="red">46.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8211">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-03.jpg" width="187" height="231" /></a>
+                    <p>斯拉媚 磁疗女士内衣 紫荆花刺绣性感文胸 聚拢调整型文胸5032-1</p>
+                    <em>￥<s class="red">39.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8227">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-04.jpg" width="187" height="231" /></a>
+                    <p>斯拉媚 文胸刺绣聚拢调整型文胸 品牌文胸内衣5037-1</p>
+                    <em></em><em>￥<s class="red">49.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8218">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-05.jpg" width="187" height="231" /></a>
+                    <p>斯拉媚 植绒文胸 新款文胸 高档 内衣 聚拢调整型文胸</p>
+                    <em>￥<s class="red">55.00</s></em>
+                </li>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/9968">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-06.jpg" width="187" height="231" /></a>
+                    <p>684冬季加厚款三层夹棉睡衣 女士可爱法兰绒家居服大码棉袄套装</p>
+                    <em>￥<s class="red">149.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/11053">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-07.jpg" width="187" height="231" /></a>
+                    <p>P90102-1花语蕾丝v领秋衣秋裤无缝美体内衣女士莫代尔薄款保暖套装女塑身</p>
+                    <em>￥<s class="red">63.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/11057">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-08.jpg" width="187" height="231" /></a>
+                    <p>帕兰朵 P92222超厚美体柔暖内衣女士塑身保暖内衣套装加厚加绒彩色花纹棉秋衣秋裤</p>
+                    <em>￥<s class="red">129.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8215">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/neiyi-09.jpg" width="187" height="231" /></a>
+                    <p>斯拉媚 虾红色印花配套内裤 水溶网纱 蕾丝性感三角裤8882</p>
+                    <em>￥<s class="red">17.00</s></em>
+                </li>
+
+            </ul>
+        </div>
+        <!--substance_nr2-->
+    </div>
+
+    <div class="">
+        <a target="_blank" href="http://www.zhenhaolin.com/product/678">
+            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/zbanner-02.jpg" width="1200" height="91" />
+        </a>
+    </div>
+    <div class="substance clearfix">
+        <!--substance_nr1-->
+
+        <div class="substance_nr1 clearfix">
+            <div class="substance_nr1_logo">
+                <span>
+                    <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/3.png" width="160" height="178" /></span>
+                <div class="">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/165/120/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/duofen.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/165/68/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/haifeisi.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/165/298/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/zishengtang.jpg" width="130" height="60" /></a></li>
+                    </ul>
+                </div>
+                <div class="text_classification">
+                    <ul>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/431">洁面</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/432">防晒</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/433">护肤</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/434">面膜</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/435">护肤套装</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/436">眼部保养</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="substance_nr1_sp">
+                <div class="nr1_sp1_1">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/136/29852/0/default/">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-01.jpg" width="285" height="550" /></a></li>
+                        @*<li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>*@
+                    </ul>
+                </div>
+                <div class="nr1_sp1_2">
+                    <ul>
+                        <li class="active"><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/7257"></a></li>
+                        @*<li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end substance_nr1-->
+        <!--substance_nr2-->
+        <div class="substance_nr2">
+            <ul>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8845">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-02.jpg" width="187" height="231" /></a>
+                    <p>洗颜专科 透润亮颜美白柔肤露 150ml（特润型）</p>
+                    <em>￥<s class="red">80.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8842">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-03.jpg" width="187" height="231" /></a>
+                    <p>洗颜专科 凝润深透保湿眼霜 15g</p>
+                    <em>￥<s class="red">80.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8841">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-04.jpg" width="187" height="231" /></a>
+                    <p>洗颜专科 凝润深透保湿特润霜 50g</p>
+                    <em>￥<s class="red">80.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/1583">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-05.jpg" width="187" height="231" /></a>
+                    <p>OLAY 水感透白亮肤洁面乳125g</p>
+                    <em>￥<s class="red">85.00</s></em>
+                </li>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/8848">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-06.jpg" width="187" height="231" /></a>
+                    <p>肌水 乳润滋养露 400ml</p>
+                    <em>￥<s class="red">50.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/4482">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-07.jpg" width="187" height="231" /></a>
+                    <p>玉兰油眼部滋养凝露14g</p>
+                    <em>￥<s class="red">75.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/4483">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-08.jpg" width="187" height="231" /></a>
+                    <p>玉兰油滋润霜50g YLY006 白里透红 补水保湿</p>
+                    <em>￥<s class="red">39.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/4481">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/hufu-09.jpg" width="187" height="231" /></a>
+                    <p>玉兰油细滑活肤洁面乳150g 补水保湿 洗面奶 收缩毛孔</p>
+                    <em>￥<s class="red">29.00</s></em>
+                </li>
+
+            </ul>
+        </div>
+        <!--substance_nr2-->
+    </div>
+    <div class="substance clearfix">
+        <!--substance_nr1-->
+        <div class="substance_nr1 clearfix">
+            <div class="substance_nr1_logo">
+                <span>
+                    <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/4.png" width="160" height="178" /></span>
+                <div class="">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/199/302/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/Anymore.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/199/230/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/niuzhilan.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/199/232/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/oushina.jpg" width="130" height="60" /></a></li>
+                    </ul>
+                </div>
+                <div class="text_classification">
+                    <ul>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/805">钱包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/806">手拿包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/806">晚宴包</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/807">单肩包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/808">双肩包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/809">手提包</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/810">斜挎包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/811">钥匙包</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/812">卡包</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/812">零钱包</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="substance_nr1_sp">
+                <div class="nr1_sp1_1">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/199/377/0/default/">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-01.jpg" width="285" height="550" /></a></li>
+                        @*<li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>*@
+                    </ul>
+                </div>
+                <div class="nr1_sp1_2">
+                    <ul>
+                        <li class="active"><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/5939"></a></li>
+                        @*<li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!--end substance_nr1-->
+        <!--substance_nr2-->
+        <div class="substance_nr2">
+            <ul>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/6034">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-02.jpg" width="187" height="231" /></a>
+                    <p>奥罗拉系列高档十字纹牛皮包</p>
+                    <em>￥<s class="red">358.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10097">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-03.jpg" width="187" height="231" /></a>
+                    <p>纽芝兰 再遇见系列简约时尚油蜡牛皮百搭手提包</p>
+                    <em>￥<s class="red">299.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/6000">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-04.jpg" width="187" height="231" /></a>
+                    <p>撞色女王系列复古帅气机车包</p>
+                    <em>￥<s class="red">338.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/7">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-05.jpg" width="187" height="231" /></a>
+                    <p>颂伊系列大牌时尚牛皮手提斜跨包</p>
+                    <em>￥<s class="red">338.00</s></em>
+                </li>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/5945">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-06.jpg" width="187" height="231" /></a>
+                    <p>旋转时空系列撞色手提斜跨包</p>
+                    <em>￥<s class="red">268.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/5958">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-07.jpg" width="187" height="231" /></a>
+                    <p>筑梦系列十字纹牛皮手提斜跨包</p>
+                    <em>￥<s class="red">299.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/5977">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-08.jpg" width="187" height="231" /></a>
+                    <p>流光系列高档光面牛皮包</p>
+                    <em>￥<s class="red">338.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/5980">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/baobao-09.jpg" width="187" height="231" /></a>
+                    <p>英伦小调系列英伦风复古印花撞色上肩包</p>
+                    <em>￥<s class="red">158.00</s></em>
+                </li>
+
+            </ul>
+        </div>
+        <!--substance_nr2-->
+    </div>
+    <div class="substance clearfix">
+        <!--substance_nr1-->
+        <div class="substance_nr1 clearfix">
+            <div class="substance_nr1_logo">
+                <span>
+                    <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/5.png" width="160" height="178" /></span>
+                <div class="">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/185/140/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/hengda.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/185/331/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/jikemila.jpg" width="130" height="60" /></a></li>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/185/155/0/default/0-0">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/logo/lanyu.jpg" width="130" height="60" /></a></li>
+                    </ul>
+                </div>
+                <div class="text_classification">
+                    <ul>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/700">筒靴</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/701">帆布鞋</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/692">高跟鞋</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/693">单鞋</a></li>
+                        <li><a target="_blank" href="http://www.zhenhaolin.com/product/694">休闲鞋</a></li>
+                        <li><a style="color: red" target="_blank" href="http://www.zhenhaolin.com/product/696">女靴</a></li>
+                    </ul>
+
+                </div>
+            </div>
+            <div class="substance_nr1_sp">
+                <div class="nr1_sp1_1">
+                    <ul>
+                        <li><a target="_blank" href="http://zhenhaolin.com/product/185/331/0/default/">
+                            <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-01.jpg" width="285" height="550" /></a></li>
+                        @*<li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>
+                            <li><a  target="_blank" href="#"><img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/001_03.png" width="285" height="550"/></a></li>*@
+                    </ul>
+                </div>
+                <div class="nr1_sp1_2">
+                    <ul>
+                        <li class="active"><a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10250"></a></li>
+                        @*<li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>
+                            <li><a  target="_blank" href="#"></a></li>*@
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--end substance_nr1-->
+        <!--substance_nr2-->
+        <div class="substance_nr2">
+            <ul>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10259">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-02.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 欧美秋冬同款粗跟短靴舒适真皮女靴头层皮克罗心靴</p>
+                    <em>￥<s class="red">225.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10255">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-03.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 韩版秋冬真皮细跟裸靴小牛皮系带单靴甜美女靴</p>
+                    <em>￥<s class="red">218.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10211">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-04.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 韩版通勤冬季女靴皮搭扣平底防滑单靴甜美马丁靴</p>
+                    <em>￥<s class="red">79.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10262">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-05.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 韩版秋冬真皮裸色短靴磨砂牛皮细跟裸靴高跟女靴</p>
+                    <em>￥<s class="red">185.00</s></em>
+                </li>
+                <li class="FZ_ny">
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10119">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-06.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 欧美简约秋鞋时尚深口单鞋高跟鞋搭扣女鞋</p>
+                    <em>￥<s class="red">99.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10254">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-07.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 韩版拼接真皮裸靴甜美百搭粗跟短靴牛皮女靴</p>
+                    <em>￥<s class="red">155.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/10234">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-08.jpg" width="187" height="231" /></a>
+                    <p>亿淘鞋 韩版冬季新款长靴低跟甜美瘦腿女靴百搭骑士靴</p>
+                    <em>￥<s class="red">99.00</s></em>
+                </li>
+                <li>
+                    <a target="_blank" href="http://www.zhenhaolin.com/Product/Detail/9298">
+                        <img src="/Areas/Shop/Themes/M1/Content/template/Womanflower/images/nv/nvxie-09.jpg" width="187" height="231" /></a>
+                    <p>2014春秋短靴女真皮粗跟磨砂皮中跟小辣椒短靴及踝靴马丁靴英伦风</p>
+                    <em>￥<s class="red">228.00</s></em>
+                </li>
+
+            </ul>
+        </div>
+        <!--substance_nr2-->
+    </div>
+
+</div>
+<!--end substance -->
+<!--end wrapper-->
+
+@*<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.min.js"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/topmenu.js"></script>*@
+@*<script>
+    lazyload("main_cont");
+</script>*@
+

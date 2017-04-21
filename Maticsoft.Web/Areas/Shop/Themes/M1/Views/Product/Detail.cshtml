@@ -1,0 +1,444 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Common
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Shop.ProductModel
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/btn,dialog,item,item-s,paging,score,tipsANDvi-v0-a.css">
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/carousel,dialog,imagezoom,swfobject,tab.js"></script>
+<link href="@Url.Content("/Areas/Shop/Themes/M1/Content/css/image.zoom.css")" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/Detail.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/SKU.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/image.zoom.base.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/Product/Pcompare.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/css/pshow.css">
+<script type="text/javascript">
+    $(document).ready(function () {
+        resizeImg('.sbox', 176, 165);
+        resizeImg('.jqzoom', 400, 400);
+        resizeImg('.pack_b_1', 570, 410);
+        resizeImg('.J_carousel_list', 115, 115);
+        $(".jqzoom").jqueryzoom({ xzoom: 300, yzoom: 300, offset: 20, position: "right", preload: 1, lens: 1 });
+        //$("#thumb_container").jdMarquee({ deriction: "left", width: 420, height: 70, step: 2, speed: 4, delay: 10, control: true, _front: "#spec-right", _back: "#spec-left" });
+        $("#thumb_container").find("img").bind("mouseover", function () {
+            var src = $(this).attr("jqimg");
+            var src2 = $(this).attr("jqimg2"); 
+            $("#previewImg").find("img").eq(0).attr({ ref: src.replace('T115X115_', 'T400X400_'), jqimg:src2 }).removeAttr('loaded');
+            $.scaleLoad('.jqzoom', 400, 400);
+            $(this).css({ "border": "2px solid #01b55a" });
+        }).bind("mouseout", function () {
+            $(this).css({ "border": "2px solid #ccc", "padding": "2px" });
+        });
+
+
+        //评论图片
+        $.scaleFixedLoad('.detail_proimage', 100, 100);
+    });
+</script>
+@if (Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode") == "BuyNow")
+{
+    <style type="text/css">
+        .addCart {
+            background: url(/Areas/Shop/Themes/M1/Content/images/btnlikegoumai.jpg) no-repeat;
+            width: 123px;
+            height: 34px;
+            overflow: hidden;
+        }
+
+        .addCart-gray {
+            background: url(/Areas/Shop/Themes/M1/Content/images/btnlikegoumaigray.jpg) no-repeat;
+            width: 123px;
+            height: 34px;
+            overflow: hidden;
+        }
+    </style>
+}
+<script type="text/javascript">
+    $(function () {
+        if (@Model.ProductInfo.SaleStatus != 1) {
+            $('#SKUOptions').parent().find('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+            $('#iteminfo #divBuyInfo').hide();
+            $('#iteminfo #divSelectInfo').empty();
+            $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已下架!");
+            $('#iteminfo #closeArrivingNotifyMess').show();
+        }
+        $("#id-buy-guarantee").click(function () {
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+            $("#buy - guarantee").show();
+            $("#LoadData").empty();
+            $(".pInfoTab").find("a").each(function () {
+                $(this).removeClass("cur");
+            });
+            $("#id-buy-guarantee").addClass("cur");
+        });
+        $("#id-goods-info").click(function () {
+            $("#product-detail").show();
+            $("#buy - guarantee").hide();
+            $("#LoadData").empty();
+            $(".pInfoTab").find("a").each(function () {
+                $(this).removeClass("cur");
+            });
+            $("#id-goods-info").addClass("cur");
+        });
+        $("#id-buy-annal").click(function () {
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+            $("#LoadData").load("@(ViewBag.BasePath)Product/SaleRecord/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".pInfoTab").find("a").each(function () {
+                    $(this).removeClass("cur");
+                });
+                $("#id-buy-annal").addClass("cur");
+            });
+        });
+
+        $("#id-buyer-leaveword").click(function () {
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+            $("#LoadData").load("@(ViewBag.BasePath)Product/ProductConsult/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".pInfoTab").find("a").each(function () {
+                    $(this).removeClass("cur");
+                });
+                $("#id-buyer-leaveword").addClass("cur");
+            });
+        });
+
+        $("#id-buyer-comment").click(function () {
+            $("#LoadData").html("<div style='margin:0 auto;text-align: center;'><img src='/Areas/Shop/Themes/M1/Content/images/loads.gif' ></div>");
+            $("#LoadData").load("@(ViewBag.BasePath)Product/ProductComments/@Model.ProductInfo.ProductId", function () {
+                $("#product-detail").hide();
+                $("#buy - guarantee").hide();
+                $(".pInfoTab").find("a").each(function () {
+                    $(this).removeClass("cur");
+                });
+                $("#id-buyer-comment").addClass("cur");
+            });
+        });
+
+        $("#btnAddToCart").click(function () {
+            if ($(this).hasClass('addCart-gray')) return false;
+            if (!$(this).attr('itemid')) {
+                $('#SKUOptions,#SKUOptions a').effect('highlight', 500);
+                ShowFailTip('请选择商品规格属性！');
+                return false;
+            }
+            var count = parseInt($("#productCount").val());
+            //判断该商品是否参与豪礼大放送活动
+            $.ajax({
+                url:'@(ViewBag.BasePath)/ProSales/GetPromotionCheck',
+                data:{productid:@Model.ProductInfo.ProductId,count:count},
+                type:'post',
+                success:function(data){
+                    var obj = eval("("+data+")");
+                    switch (obj.result) {
+                        case "Login":location.href=obj.Msg+"?returnUrl=/Product/Detail/"+@Model.ProductInfo.ProductId;break;
+                        case "Full":ShowFailTip(obj.Msg);break;
+                        case "Normal":
+                            @if (Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode") == "BuyNow")
+                            {
+                                 @:location.href = " @(ViewBag.BasePath)Order/SubmitOrder?sku=" + $("#btnAddToCart").attr('itemid') + "&Count=" + count;
+                            }
+                            else
+                            {
+                                 @:location.href = " @(ViewBag.BasePath)ShoppingCart/AddCart?sku=" + $("#btnAddToCart").attr('itemid') + "&Count=" + count;
+                            }
+                            break;
+                        case "ProSaleNormal":
+                            $.ajax({
+                                url:'@(ViewBag.BasePath)ShoppingCart/ProSaleAddCart',
+                                type:'post',
+                                data:{sku:$("#btnAddToCart").attr('itemid'),g:"",Count:count},
+                                success:function(data){
+                                    var obj = eval("("+data+")")
+                                    if (obj.result=="True") {
+                                        location = obj.Msg;
+                                    }
+                                    else
+                                    {
+                                        ShowFailTip(obj.Msg);
+                                    }
+                                }
+                            })
+                            break;
+                        default:
+                    }
+                }
+            });
+        });
+
+        $("#plus").click(function () {
+            var count = parseInt($("#productCount").val()) + 1;
+            $("#productCount").val(count);
+        });
+        $("#subtract").click(function () {
+            var count = parseInt($("#productCount").val());
+            if (count > 1) {
+                count = count - 1;
+            }
+            $("#productCount").val(count);
+        });
+        
+        //收藏操作
+        $("#btnProductFav").click(function () {
+            if (CheckUserState()) {
+                var productId = $(this).attr("productId");
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "@(ViewBag.BasePath)UserCenter/AjaxAddFav",
+                    async: false,
+                    data: { ProductId: productId },
+                    success: function (data) {
+                        if (data == "Rep") {
+                            ShowSuccessTip('您已经收藏了该商品，请不要重复收藏');
+                        } else if (data == "True") {
+                            ShowSuccessTip('收藏商品成功');
+                        } else {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                        }
+                    }
+                });
+            }
+        });
+
+
+        $('#favorable-suit .ul_detail-list li').click(function() {
+            $(this).siblings().removeClass('scurr');
+            $(this).addClass('scurr');
+            $('#favorable-suit .div_access_item').hide();
+            $('#'+$(this).attr('item')).show();  
+        });
+        $('#parts-suit .ul_detail-list li').click(function() {
+            $(this).siblings().removeClass('scurr');
+            $(this).addClass('scurr');
+            $('#parts-suit .div_access_item').hide();
+            $('#'+$(this).attr('item')).show();  
+        }); 
+
+        $(".W-img-B").hover(function(){
+            $(this).css("border","1px solid #01b55a");
+        },function(){
+            $(this).css("border","1px solid white");
+        })
+        
+        //配件 加入购物车
+        $(".acce_cart_btn").click(function () {
+            if (!$(this).attr('itemid')) {
+                return false;
+            }
+            window.open("@(ViewBag.BasePath)ShoppingCart/AddCart?sku=" + $(this).attr('itemid'));
+              
+        });
+    })
+</script>
+
+<input id="hdProductId" type="hidden"  value="@Model.ProductInfo.ProductId"/>
+<input id="hdProductName" type="hidden"  value="@Model.ProductInfo.ProductName"/>
+<input id="hdProdThumUrl1"   type="hidden" value="@Model.ProductInfo.ThumbnailUrl1"/>
+<input id="hdtypeid"   type="hidden" value="@Model.ProductInfo.TypeId"/>
+<div class="catg-II">
+    <div class="wrapper">
+        <div class="W-row">
+            <a href="/">首页</a> > @Html.Raw(ViewBag.CategoryStr)
+            @Model.ProductInfo.ProductName
+        </div>
+        <div class="W-detail clearfix">
+            <div class="W-detail-L">
+                <div id="previewImg" class="W-img-B">
+                    <div class="jqzoom" id="J_zoom">
+                        <img temprop="image" style="height:400px;width:400px" ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T400X400_")" jqimg="@Model.ProductInfo.ImageUrl"  alt="@ViewBag.ImageAlt" title="@ViewBag.ImageTitle"/>
+                    </div>
+                </div>
+                <div class="W-img-S" id="thumb_container">
+                    <ul class="clearfix thumbpic J_carousel_list">
+                        <li class="pre nML"><a href="#"></a></li>
+                        @if (Model != null && Model.ProductImages != null)
+                        {
+                            foreach (ProductImage productImage in Model.ProductImages)
+                            {
+                            <li>
+                                <img itemprop="image" ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T115X115_")" jqimg="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T400X400_")" jqimg2="@Maticsoft.Web.Components.FileHelper.GetImageUrl(productImage.ImageUrl)" alt="@ViewBag.ImageAlt" title="@ViewBag.ImageTitle">
+                            </li>
+                            }
+                        }
+                        <li class="nex nMR"><a href="#"></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="W-detail-M">
+                <div>
+                    <div class="H-tit">
+                        <div>
+                            <h3 title="@Model.ProductInfo.ProductName">@Maticsoft.Common.StringPlus.SubString(@Model.ProductInfo.ProductName, 50, "...")</h3>
+                            <p class="alert-txt">
+                                @if (Model.ProductInfo.Subhead != null)
+                                {
+                                    @Maticsoft.Common.StringPlus.SubString(@Model.ProductInfo.Subhead, 50, "...");
+                                }
+                            </p>
+                            <div class="x-price clearfix">
+                                <span class="price">
+                                    <strong><span id="stylePrice">
+                                        <abbr>&yen;</abbr>@Model.ProductSkus[0].SalePrice.ToString("F")</span></strong></span>
+                                <span class="zk">@if (Model.ProductInfo.MarketPrice.HasValue)
+                                                 {
+                                    @Math.Round((Model.ProductSkus[0].SalePrice * 10 / Model.ProductInfo.MarketPrice.Value), 1);
+                                                 }折扣</span>
+                                <span class="sc-pric">市场价<del><abbr>&yen;</abbr>@(Model.ProductInfo.MarketPrice.HasValue ? Model.ProductInfo.MarketPrice.Value.ToString("F") : "0.00")</del></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="oper Productinfo" id="iteminfo">
+                        <div class="oper-cont">
+                            <dl class="clearfix">
+                                <dt>数量：</dt>
+                                <dd class="sl clearfix">
+                                    <div class="sl-box clearfix">
+                                        <span class="box-L" id="subtract">-</span>
+                                        <input type="text" id="productCount" class="box-M" style="text-align: center" value="1">
+                                        <span class="box-R" id="plus">+</span>
+                                    </div>
+                                    <div class="bianma">商品编码：@Model.ProductInfo.ProductCode</div>
+                                </dd>
+                            </dl>
+                            <div class="W-from">
+                                已售数量：
+                                 @(Model.ProductInfo.SaleCounts+Model.ProductInfo.FalseSaleCount)
+                            </div>
+                            <dl class="clearfix">
+                                <dt>配送：</dt>
+                                <dd>@if (@Model.ProductInfo.SupplierId == 1)
+                                    {
+                                    @:由健康商城为您送达
+                                        }
+                                    else
+                                    {
+                                    @:由第三方平台为您送达
+                                        }</dd>
+                            </dl>
+                            <div class="W-from">
+                                此商品由
+                                <a style="color: #0071cb" href="#">@Model.ProductInfo.SupplierName</a>提供	
+                            </div>
+                            <dl class="clearfix">
+                                <dt>服务：</dt>
+                                <dd class="serve">
+                                    <a class="s1" href="#"></a>
+                                    <a class="s2" href="#"></a>
+                                    <a class="s3" href="#"></a>
+                                    <a class="s4" href="#"></a>
+                                    <a class="s5" href="#"></a>
+                                    <a class="s6" href="#"></a>
+                                </dd>
+                            </dl>
+                        </div>
+
+                    </div>
+                    <div class="sec">
+                        <div>
+
+
+                            <div class="sec-cont choiceOptions" id="SKUOptions">
+                                @Html.Action("OptionSKU", new { ProductId = Model.ProductInfo.ProductId })
+                            </div>
+
+
+                            @{
+                                if (Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode") == "BuyNow")
+                                {
+                                <div class="buy-btn go-buy" style="float: left"><a href="#" unselectable="on" itemid="" productid="@Model.ProductInfo.ProductId"  id="btnAddToCart"></a></div>
+                                    }
+                                    else
+                                    {
+                                <div class="shopping-btn" style="float: left"><a href="#" unselectable="on" class="addCart-red" itemid="" productid="@Model.ProductInfo.ProductId" id="btnAddToCart"></a></div>
+                                    }
+                            }
+                            <div style="float: left"><a id="btnProductFav" class="collect-btn" productId="@Model.ProductInfo.ProductId" originate="product"></a></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="W-detail-R">
+                @Html.Action("ProductRec", "Partial", new { Type = ProductRecType.Recommend, Top = 3, Cid = ViewBag.Cid, ViewName = "_ProdRecommand" })
+            </div>
+        </div>
+        <div class="W-msg mgT20">
+            <div class="about-tab W-msg-tab">
+                <ul class="clearfix" id="msgTab">
+                    <li class="chose"><a href="javascript:;">商品介绍</a></li>
+                    <li><a href="javascript:;">规格及包装</a></li>
+                    <li><a href="javascript:;">商品推荐</a></li>
+                    <li><a href="javascript:;">商品问答</a></li>
+                    <li><a href="javascript:;">客户评价</a></li>
+                </ul>
+            </div>
+            <div class="W-msg-cont">
+                <div class="W-msg" style="min-height: 100px; text-align:center;">
+                    @Html.Raw(Maticsoft.BLL.Settings.SEORelationManage.FilterStr(Model.ProductInfo.Description, true, false, true, false, false, Model.ProductInfo.ProductId, "ShopDescription"))
+                </div>
+            </div>
+            <div class="W-msg-cont" style="display: none">
+                <div class="W-size-table" style="min-height: 100px">
+                    @Html.Action("OptionAttr", new { ProductId = Model.ProductInfo.ProductId })
+
+                </div>
+            </div>
+            <div class="W-msg-cont" style="display: none">
+                <div class="W-msg remai" style="min-height: 100px">
+                    @Html.Action("ProductRec", "Partial", new { Type = ProductRecType.Recommend, Top = 10, Cid = ViewBag.Cid })
+                </div>
+            </div>
+            <div class="W-msg-cont" style="display: none">
+                @Html.Action("ProductConsult", "Product", new { ProductId = @Model.ProductInfo.ProductId })
+            </div>
+        </div>
+        <div class="W-msg-cont" style="display: none">
+            @Html.Action("ProductComments", "Product", new { ProductId = @Model.ProductInfo.ProductId })
+        </div>
+    </div>
+</div>
+
+<div id="divAjaxLogin" style="display: none">
+    <div style='margin-left: 40px; margin-top: 10px; font-weight: bold;'>
+        @if (ViewBag.RegisterToggle == "Phone")
+        {
+            @:手&nbsp;&nbsp;机：<input type='text' style='height: 20px; width: 220px;border:solid 1px #ccc' id='txtEmail' name='Email' />
+                               }
+        else
+        {
+            @:邮&nbsp;&nbsp;箱：<input type='text' style='height: 20px; width: 220px; border:solid 1px #ccc' id='txtEmail' name='Email' />
+                               }
+    </div>
+    <div style='margin-left: 40px; margin-top: 20px; font-weight: bold;'>
+        密&nbsp;&nbsp;码：<input type="password" style='height: 20px; width: 220px; border: solid 1px #ccc' id='txtPwd' name='Pwd' />
+    </div>
+</div>
+<script type="text/javascript">
+    var _mvq = _mvq || [];
+    _mvq.push(['$setAccount', 'm-29312-0']);
+    _mvq.push(['$setGeneral', 'goodsdetail', '', /*用户名*/ 'admin', /*用户id*/ '1']);
+    _mvq.push(['$logConversion']);
+    _mvq.push(['$addGoods','@Model.ProductInfo.TypeId','@Model.ProductInfo.BrandId', /*商品名称*/ '@Model.ProductInfo.ProductName',/*商品ID*/ '@Model.ProductInfo.ProductId',/*商品售价*/ '@Model.ProductInfo.SalePrice', /*商品图片url*/ '@Model.ProductInfo.ImageUrl', /*分类名*/ '@Model.ProductInfo.CategoryName', /*品牌名*/ '@Model.ProductInfo.BrandName', /*商品库存状态1或是0*/ '@Model.ProductInfo.StockNum', /*网络价*/ '',/*收藏人数*/ '', /*商品下架时间*/ '']);
+    _mvq.push(['$logData']);
+</script>
+
+<style type="text/css">
+    .ui-widget-header {
+        background: #E66;
+        color: #FFF;
+        font-size: 14px;
+    }
+
+    .ui-widget-content {
+        border: 8px solid #CCC;
+        color: #988;
+        font-size: 14px;
+    }
+</style>

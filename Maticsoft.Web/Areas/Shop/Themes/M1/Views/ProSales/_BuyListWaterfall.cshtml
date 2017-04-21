@@ -1,0 +1,30 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@{
+    <script type="text/javascript">
+        $(function () {
+            $.lazyFixedLoadImg('.list-n4', 175, 228);
+        });
+    </script>
+
+    if (Model != null)
+    {
+        foreach (Maticsoft.Model.Shop.Products.ProductInfo item in Model)
+        {
+      <li styleid="product_@(item.ProductId)" class="item item-sale"><a target="_blank" href="@(ViewBag.BasePath)Product/GroupBuyDetail/@item.GroupBuy.GroupBuyId"
+                                                            title="@item.ProductName" class="item-desc ForSkuLink">
+                                                                                   <img title="@item.ProductName" alt="@item.ProductName" width="175" height="228" ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T175X228_")">
+                                                                                      <span class="item-title" style="width: 180px;float: left">
+                            @item.ProductName </span></a>
+                       <span style="float: left;color: grey">团购价：</span><span class="item-price" style="float: left"><em>@(item.GroupBuy.Price.ToString("F"))</em></span>
+                        @if (item.MarketPrice.HasValue)
+                        {
+                            <del style="padding-left: 128px; padding-top: 4px;">@(item.MarketPrice.Value.ToString("F"))</del>
+                        }
+              @*          <p class="item-brand txtenddate" endDate="@item.GroupBuy.EndDate" Product="@item.ProductId"  id="txtenddate_@(item.ProductId)">
+                            剩余：<span id="dayEnd_@(item.ProductId)">0</span>天<span id="hourEnd_@(item.ProductId)">0</span>时 
+                            <span id="minEnd_@(item.ProductId)">0</span>分 <span id="secEnd_@(item.ProductId)">0</span>秒
+                        </p>*@
+                    </li>
+        }
+    }
+}

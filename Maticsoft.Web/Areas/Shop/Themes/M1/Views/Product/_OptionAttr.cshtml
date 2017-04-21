@@ -1,0 +1,21 @@
+﻿@model List<Maticsoft.Model.Shop.Products.AttributeInfo>
+@if (Model == null) { return; }
+<table width="100%" cellpadding="5" cellspacing="0" border="1" style="border-collapse: collapse; border: 1px solid #ccc">
+    <th colspan="2" style="text-align:center; font-weight:bold">主体</th>
+    @foreach (Maticsoft.Model.Shop.Products.AttributeInfo item in Model)
+    {
+        if (item.AttributeValues != null && item.AttributeValues.Count > 0)
+        {
+            {
+                string xx = string.Join(" ", item.ValueStr);
+        <tr style="border: 1px solid #ccc">
+            <td class="tb_lab">@item.AttributeName &nbsp;</td>
+            <td>&nbsp;&nbsp;@xx</td>
+        </tr>
+        
+            }
+        }
+    }
+</table>
+
+

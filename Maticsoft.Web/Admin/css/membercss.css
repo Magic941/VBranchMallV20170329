@@ -1,0 +1,23 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+
+/*订单列表开始*/
+.member_order_title { height:33px; width:749px; margin:auto;margin-left:1px;}
+.member_order_t1 { margin:8px 10px 0 0; padding:0px; float:left; background:url(../images/member_order_tbg_01.gif) repeat-x bottom;}
+.member_order_t1 li { background:url(../images/member_order_tbg_02.gif) no-repeat left bottom; height:25px; line-height:25px; font-size:12px; font-weight:bold;}
+.member_order_t1 li dt {background:url(../images/member_order_tbg_03.gif) no-repeat right bottom; padding:0 10px 0 10px; text-align:center;}
+
+
+.member_order_t2 { margin:8px 10px 0 0; padding:0px; float:left; background:url(../images/member_order_tbg_06.gif) repeat-x bottom; }
+.member_order_t2 li { background:url(../images/member_order_tbg_04.gif) no-repeat left bottom; height:25px; line-height:25px; font-size:12px; font-weight:bold;}
+.member_order_t2 li dt {background:url(../images/member_order_tbg_05.gif) no-repeat right bottom; padding:0 10px 0 10px; text-align:center;}
+
+.w88 { width:88px;}
+
+.member_order_show { overflow:hidden; margin:auto; border-top:solid 3px #e46100; border-bottom:solid 2px #e46100;}
+.member_order_show ul { margin:0px; padding:0px; overflow:hidden; width:100%;}
+.member_order_show ul li { font-size:12px; float:left; height:29px; line-height:29px;}
+.member_order_show ul li span { color:#c8161d;}
+
+ 

@@ -1,0 +1,30 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<div class="cell-hd">
+    <h2>
+        热点聚焦</h2>
+   @* <a class="hd-sub font-song" href="#"
+         title="更多">
+        更多<b>&gt;</b></a>*@</div>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="cell-bd">
+        <blockquote class="primary-recom-first">
+            <h3>
+                <a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[0].ContentID" style=" color: #333" target="_blank">@Model[0].Title</a></h3>
+            <span class="detail">@Maticsoft.Common.StringPlus.SubString(Model[0].Summary, 60, "...")
+                @*<span
+                                                                                                          class="author">文/<a href="http://club.1688.com/user/articles/yinhao77521.html" onmousedown="return aliclick(this,'?tracelog=club_index1_firstHead01');"
+                                                                                                                              title="">@Model[0].</a></span>*@</span></blockquote>
+        <span class="detail">
+            <ul class="primary-recom-list">
+                @for (int i = 1; i < Model.Count; i++)
+                {
+                        
+                    <li><a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[i].ContentID" 
+                               class="list-main" title="@Model[i].Title" target="_blank">【@Model[i].ClassName】@Maticsoft.Common.StringPlus.SubString(Model[i].Title, 15, "...")
+                    </a><span class="list-extra">@(Model[i].TotalComment)人回复</span></li>
+                }
+            </ul>
+        </span>
+    </div>
+}

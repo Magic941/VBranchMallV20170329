@@ -1,0 +1,116 @@
+﻿@model List<Maticsoft.Model.Shop.Coupon.CouponInfo>
+<style>
+    .home_piclist
+    {
+        font-family: 微软雅黑;
+        font-size: 14px;
+        margin-left: 10px;
+        margin-top: 5px;
+        overflow: hidden;
+        width: 95%;
+        margin: 10px auto 10px auto;
+        border-radius: 5px;
+        border: 1px solid rgb(164, 164, 164);
+        vertical-align: text-top;
+        box-shadow: inset 0px 1px 3px #c8c8c8;
+        background-color: rgb(244, 244, 244);
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -moz-box-shadow: 0 1px 3px #c8c8c8 inset;
+        -webkit-box-shadow: 0 1px 3px #c8c8c8 inset;
+    }
+    .ddnum
+    {
+        border-bottom: solid 1px rgb(164, 164, 164);
+        overflow: hidden;
+        height: 60px;
+        padding: 5px;
+        font-size: 14px;
+    }
+        .u-btn
+    {
+        display: block;
+position: relative;
+width: 60px;
+cursor: pointer;
+line-height: 25px;
+text-align: center;
+color: #3c3c3c;
+font-size: .875em;
+background: -webkit-gradient(linear,left top,left bottom,from(#fff),to(#e2d7c5));
+background: -moz-linear-gradient(top,#fff,#e2d7c5);
+border: 1px solid #baac9d;
+border-radius: 5px;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+float: left;
+margin-right: 10px;
+        }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".btnUsed").die("click").live("click", function () {
+            var coupon = $(this).attr("itemid");
+            if (coupon == "") {
+                ShowFailTip("该优惠券码不存在！");
+                return;
+            }
+            var self = $(this);
+            $.ajax({
+                url: "/COM/Admin/UseCoupon",
+                type: 'post',
+                dataType: 'text',
+                timeout: 10000,
+                data: {
+                    Action: "post", Coupon: coupon
+                },
+                success: function (resultData) {
+                    if (resultData == "1") {
+                        ShowSuccessTip("优惠券使用成功！");
+                        $(".home_piclist[itemid='" + coupon + "']").hide();
+                        return;
+                    }
+                    if (resultData == "2") {
+                        ShowFailTip("该优惠券已过期！");
+                        return;
+                    }
+                    if (resultData == "3") {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                        return;
+                    }
+
+                    if (resultData == "0") {
+                        ShowFailTip("该优惠券不存在！");
+                        return;
+                    }
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器繁忙，请稍候再试！");
+                }
+
+            });
+        })
+    })
+</script>
+@if (Model != null&&Model.Count>0)
+{
+
+    foreach (var item in Model)
+    {
+    <div class="home_piclist" itemid="@item.CouponCode">
+        <div class="ddnum" style="height: 88px;" >
+            <span>卡号：</span>@item.CouponCode<br />
+            <span>面值：</span>@item.CouponPrice.ToString("F")<br />
+            <span>最低消费：</span>@item.LimitPrice.ToString("F")<br />
+             <a href="javascript:;" class="btnUsed u-btn"  itemid="@item.CouponCode">
+                使用</a>
+        </div>
+    </div>
+    }
+}
+else
+{
+   <div style=" font-size: 16px; color: red; padding-left: 18px; font-weight: bold; background-color: #ffffff; border: 1px solid #CCC; padding:8px; margin-top:18px" > 
+        该用户无有效优惠券，请确认。
+    </div>
+}

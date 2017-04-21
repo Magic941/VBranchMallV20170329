@@ -1,0 +1,93 @@
+﻿<script type="text/javascript">
+    function onload() {
+        var url = window.location.href;
+        url = url.replace("MShop", "Shop");
+    }
+    </script>
+
+
+<div class="footer" style="/*background:#fff;*/">
+    @if (ViewBag.UserID!=0)
+    {
+        <a href="@(ViewBag.BasePath)u">@ViewBag.usernickname   </a> @:│ <a href="@(ViewBag.BasePath)account/Logout"> 退出 </a>
+    }
+    else 
+    {
+       
+        <a href="@(ViewBag.BasePath)a/l">登录 </a> @:│<a href="@(ViewBag.BasePath)a/r"> 注册 </a> 
+    }
+  @*  @(null != Context.Request.Cookies["WeChat_UserName"] ? Context.Request.Cookies["WeChat_UserName"].Value : string.Empty)*@
+    </div>
+    
+@if (ViewBag.IsHideMenu)
+{
+     <script type="text/javascript">
+         document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+             WeixinJSBridge.call('hideOptionMenu');
+         });
+</script>
+}
+
+<script type="text/javascript">
+document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    WeixinJSBridge.call('hideToolbar');
+
+});
+
+
+</script>
+<script type="text/javascript">
+   
+    var winWidth = 0;
+    var winHeight = 0;
+    function findDimensions() //函数：获取尺寸
+    {
+        //获取窗口宽度
+        if (window.innerWidth)
+            winWidth = window.innerWidth;
+        else if ((document.body) && (document.body.clientWidth))
+            winWidth = document.body.clientWidth;
+        //获取窗口高度
+        if (window.innerHeight)
+            winHeight = window.innerHeight;
+        else if ((document.body) && (document.body.clientHeight))
+            winHeight = document.body.clientHeight;
+        //通过深入Document内部对body进行检测，获取窗口大小
+        if (document.documentElement && document.documentElement.clientHeight && document.documentElement.clientWidth)
+        {
+            winHeight = document.documentElement.clientHeight;
+            winWidth = document.documentElement.clientWidth;
+        }
+        //结果输出至两个文本框
+        //document.form1.availHeight.value= winHeight;
+        //document.form1.availWidth.value= winWidth;
+    }
+    
+    //findDimensions();
+    ////调用函数，获取数值
+    ////window.onresize=findDimensions;
+    ////–>
+
+    ////获取元素高度
+
+    //var footerheight = $("#footer").height();
+    //var obj = $("#footer"); //这个元素就是目标元素，你可以用任何方式将它传入。  
+      
+   
+    //获取元素的纵坐标 
+    function getTop(e) {
+        var offset = e.offsetTop;
+        if (e.offsetParent != null) offset += getTop(e.offsetParent);
+        return offset;
+    }
+    ////获取元素的横坐标 
+    //function getLeft(e) {
+    //    var offset = e.offsetLeft;
+    //    if (e.offsetParent != null) offset += getLeft(e.offsetParent);
+    //    return offset;
+    //}
+   // var top = $("#footer").top;
+    //alert($("#footer").scrollTop());
+ 
+    
+</script>

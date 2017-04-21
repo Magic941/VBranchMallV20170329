@@ -1,0 +1,45 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo> 
+<div class="hp-box best" name="__CXJPE">
+    <div class="hp-hd">
+        <h2>
+            <a href="javascript:void(0)" title="畅销精品" target="_blank">畅销精品<span>BEST</span></a></h2>
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        
+        <div class="hp-bd">
+            <div class="best-list">
+                <ol>
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        if (i < 4)
+                        {
+                        <li class="best-item">@*<a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                                         title="@Model[i].ProductName" target="_blank">*@
+                                <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                            <img width="175" height="228" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T175X228_")"
+                                               alt="@Model[i].ProductName"><span class="best-item-desc"> @*<span class="best-item-sv">热销500件</span>*@
+                                                   <em class="best-item-tit">@Model[i].ProductName</em> <span class="best-item-price"><ins>
+                                                       <i></i>@Model[i].LowestSalePrice.ToString("0")</ins></span>
+                            </span><i class="best-item-n">@(i + 1)</i> 
+                            </a></li>
+                        }
+                        else
+                        {
+                        <li class="best-item-s">@*<a href="@(ViewBag.BasePath)Product/Detail/@Model[i].ProductId"
+                                           title="@Model[i].ProductName" target="_blank">*@
+                                           <a href="@Model[i].SeoUrl" title="@Model[i].ProductName" target="_blank">
+                            <img width="115" height="115" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model[i].ThumbnailUrl1, "T115X115_")"
+                                                            alt="@Model[i].ProductName" title="@Model[i].ProductName">
+                            <span class="best-item-s-desc"><em class="best-item-s-tit">@Model[i].ProductName</em><span
+                                class="best-item-s-price"><ins>@Model[i].LowestSalePrice.ToString("F")</ins></span></span>
+                            @* <span class="best-item-s-sv">热销1273件</span>*@ <i class="best-item-s-n">@(i + 1)</i>
+                        </a></li>
+                        }
+
+                    }
+                </ol>
+            </div>
+        </div>
+    }
+</div>

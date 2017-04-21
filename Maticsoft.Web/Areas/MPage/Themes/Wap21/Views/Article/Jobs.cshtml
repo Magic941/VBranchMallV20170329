@@ -1,0 +1,28 @@
+﻿@model List<Maticsoft.Model.CMS.ContentClass>
+<!--新闻咨询开始-->
+<header class="header ilist">
+        <a  href="tel:@ViewBag.tel"  class="ui-link">电话</a>
+    <h1>@ViewBag.ClassName</h1>
+</header>
+<div class="content content_list">
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+<div class="listmate">
+<span>@item.ClassName</span>
+</div>
+<ol class="listbox">
+ @Html.Action("NewsContent", "Article", new { viewName = "_JobsContent", classID = item.ClassID, top = 3 })
+</ol>
+        
+<div class="list_more">
+<a href="javascript:;" onclick="pageloadByPage('Article','jobsList_@(item.ClassID)page1','@item.ClassName','NewsList', 'JobsList','@(item.ClassID)','1');" class="button ui-link"> 进入 @item.ClassName &gt;&gt;</a>
+</div>
+
+        }
+    }
+ 
+
+</div>
+ 

@@ -1,0 +1,39 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+           
+@if (Model != null && Model.Count > 0)
+{
+    <div class="comment-nav">
+        <ul class="cf j-sw-nav">
+            @for (int i = 0; i < Model.Count; i++)
+            {
+                if (i == 0)
+                {
+                         <li class="cur">@Model[i].Name</li>
+                }
+                else
+                {
+                   <li >@Model[i].Name</li>
+                }
+            }
+        </ul>
+            </div>
+    <div class="comment-cont j-sw-c">
+          @for (int i = 0; i < Model.Count; i++)
+          {
+              if (i == 0)
+              {
+                  <ul class="cf" style="display: block;">
+                      @Html.Action("CommentPart", new {Cid = Model[i].CategoryId, Top = 9})
+                  </ul>
+              }
+              else
+              {
+                 <ul class="cf none">
+                      @Html.Action("CommentPart", new { Cid = Model[i].CategoryId, Top = 9 })
+                  </ul>
+              }
+          }
+    </div>
+} 
+
+

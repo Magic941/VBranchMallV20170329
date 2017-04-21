@@ -1,0 +1,45 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.UserBlog>
+<div class="content_post">
+
+@if (Model != null)
+{
+     foreach (var item in Model)
+     {
+           <div class="content_post_one" style=" margin-top:25px">
+@*           <dl class="chunk"><a href="javascript:;">149</a></dl>
+*@
+               <dl class="chunk"><a style=" font-size:18px" target="_blank" href="@(ViewBag.BasePath)Blog/BlogDetail?id=@item.BlogID">@item.PvCount</a></dl>
+               <dl class="author">
+                   <dt class="author_tit"><a target="_blank" class="bloglink" href="@(ViewBag.BasePath)Blog/BlogDetail?id=@item.BlogID">@item.Title</a></dt>
+                   <dd class="author_nam">
+                      <p class="author_nam_a"><a target="_blank" href="@(ViewBag.BasePath)User/Posts/@item.UserID"><img width="15px" height="15px" alt="@(item.UserName)"  src="/Upload/User/Gravatar/@(item.UserID).jpg" onerror="this.onerror='';this.src='/Upload/User/Gravatar/default.jpg';" /></a></p>
+                      <p class="author_nam_b"><a target="_blank" href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.UserName</a></p>
+                   </dd>
+               </dl>
+               <dl class="reply">
+                   <p>@item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+                   <p>评论（@item.TotalComment）| 喜欢 (@item.TotalFav)</p>
+               </dl>
+           <div class="clear"></div>
+           </div>
+     }
+}
+        <div class="clear"></div>
+        </div>
+                  <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model, new PagerOptions()
+       {
+           CssClass = "in_pages",
+           PageIndexParameterName = "page",
+           NumericPagerItemCount = 5,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       },
+                                   new AjaxOptions() { UpdateTargetId = "MaticsoftToplist" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+           
+
+      

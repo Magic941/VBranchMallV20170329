@@ -1,0 +1,96 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+ 
+}
+@model  Dictionary<string, Maticsoft.Model.Shop.Products.AttributeInfo>
+<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/css/product.pcompare.css">
+<div class="w" id="pcomprare">
+	<ul class="tab">
+		<li class="curr">基本信息对比</li>
+	</ul>
+	<div class="tabcon">
+	  @if (Model != null && Model.Count > 0)
+	  {
+	    <table class="tb-1">
+	        <tbody>
+	            @if (Model.ContainsKey("商品图片"))
+	            {
+	                <tr class="" style="background-color: rgb(255, 255, 255);"><th>商品图片</th> 
+	                    @if (Model["商品图片"].AttributeValues != null && Model["商品图片"].AttributeValues.Count > 0)
+	                    {
+	                        int count = Model["商品图片"].AttributeValues.Count;
+	                        for (int i = 0; i < count; i++)
+	                        {
+	                            <td>
+	                                <a href="@(ViewBag.BasePath)Product/Detail/@Model["商品图片"].AttributeValues[i].ValueId" target="_blank" rel="nofollow"><img width="100px" height="100px" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model["商品图片"].AttributeValues[i].ImageUrl, "T50X65_")"  /></a>
+	                                <div>
+	                                    <a href="@(ViewBag.BasePath)Product/Detail/@Model["商品图片"].AttributeValues[i].ValueId" target="_blank" rel="nofollow">@Model["商品图片"].AttributeValues[i].ValueStr</a>
+	                                </div>
+	                            </td>
+	                        }
+	                        for (int i = 0; i < (4 - count); i++)
+	                        {
+	                            <td>
+	                                <div class="no-contrast">暂无对比项</div><div class="add-contrast"><a href="@(ViewBag.BasePath)product" rel="nofollow">添加</a></div>
+	                            </td>
+	                        }
+	                    } 
+	                </tr>
+                 }
+                    @if (Model.ContainsKey("价格"))
+                    {
+                        <tr class="p-price">
+                            <th>价格</th>
+                            @if (Model["价格"].AttributeValues != null && Model["价格"].AttributeValues.Count > 0)
+                            {
+                                int count = Model["价格"].AttributeValues.Count;
+                                for (int i = 0; i < count; i++)
+                                {
+                                    <td>
+                                        <strong>￥@Model["价格"].AttributeValues[i].ValueStr   </strong>
+                                    </td>
+                                }
+                                for (int i = 0; i < (4 - count); i++)
+                                {
+                                    <td class="data_empty">&nbsp;</td>
+                                }
+                            }  
+                        </tr>
+                    } 
+	            @foreach (KeyValuePair<string, Maticsoft.Model.Shop.Products.AttributeInfo> item in Model)
+             {
+                 if (item.Key == "价格" || item.Key == "商品图片")
+                 {
+                     continue;
+                 }
+	                <tr class="brand">
+	                    <th>@item.Key</th> 
+	                    @if (Model[item.Key].ValueStr != null && Model[item.Key].ValueStr.Count > 0)
+                     {
+                         int count = Model[item.Key].ValueStr.Count;
+                         for (int i = 0; i < count; i++)
+                         {  <td>
+	                               @Model[item.Key].ValueStr[i] 
+	                           </td>  
+                         }
+                         for (int i = 0; i < (4 - count); i++)
+                         { 
+	                            <td class="data_empty">&nbsp;</td>
+                         }
+                     }  
+	                </tr>
+             }
+	        </tbody>
+	    </table>
+		<div id="tool" style="display:none;">
+			<div id="locate" title="点击取消固定"></div>
+			<div id="static" title="点击固定工具条" style="display: none;"></div>
+			<div class="con">
+			<a href="javascript:;" id="compare_highlight" class="setup" style="width:99px;"><b></b>高亮显示不同项</a>
+			<a href="javascript:;" id="compare_equal" class="setup" style="width:75px;"><b></b>隐藏相同项</a>
+			
+			</div>
+		</div>
+      }
+	</div>
+</div>

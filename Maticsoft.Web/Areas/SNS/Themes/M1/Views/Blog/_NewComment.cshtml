@@ -1,0 +1,17 @@
+﻿@model List<Maticsoft.Model.SNS.Comments>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <ul>
+            @if (item.UserBlog != null && !String.IsNullOrWhiteSpace(item.Description))
+            {
+                <li><a href="@(ViewBag.BasePath)Blog/BlogDetail?id=@item.UserBlog.BlogID"  title="@Html.Raw(item.Description)">@Html.Raw(Maticsoft.Common.StringPlus.SubString(item.Description, 20, "..."))
+                    </a>
+                    </li>
+            <li>来自:<a href="@(ViewBag.BasePath)Blog/BlogDetail?id=@item.UserBlog.BlogID" style="font-weight: normal;" title="@item.UserBlog.Title">@Maticsoft.Common.StringPlus.SubString(item.UserBlog.Title, 10, "...")</a>
+               <span class="topic" style="float: right;padding-right:8px"> 评论数:@item.UserBlog.TotalComment</span></li>
+            }
+        </ul>
+    }
+}

@@ -1,0 +1,123 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/admin/js/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+@model List<Maticsoft.ViewModel.Order.OrderInfoExPage>
+<script type="text/javascript">
+    $(function () {
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        $("[id$=txtStartDate]").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("[id$=txtEndDate]").datepicker("option", "minDate", selectedDate);
+            }
+        });
+        $("[id$=txtEndDate]").prop("readonly", true).datepicker({
+            defaultDate: "+1w",
+            changeMonth: true,
+            dateFormat: "yy-mm-dd",
+            onClose: function (selectedDate) {
+                $("[id$=txtStartDate]").datepicker("option", "maxDate", selectedDate);
+                $("[id$=txtEndDate]").val($(this).val());
+            }
+        });
+    })
+</script>
+<script src="/FusionCharts/FusionCharts.js" type="text/javascript"></script>
+@*<form action="" method="post">*@
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            商品销量排行
+        </h3>
+        <small class="desc">您可以查看商品销量排行走势图信息 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                    <tr>
+                        <td style="width: 610px; float: left; height: 38px; line-height: 38px;">
+                            开始时间：@*<asp:TextBox ID="txtStartDate" runat="server"></asp:TextBox>*@<input type="text"
+                                name="StartDate" id="txtStartDate" value="@ViewBag.StartDate" />
+                            &nbsp;&nbsp;结束时间：@*<asp:TextBox ID="txtEndDate" runat="server"></asp:TextBox>*@
+                            <input type="text" name="EndDate" value="@ViewBag.EndDate" id="txtEndDate" />
+                            @*<asp:radiobuttonlist id="rdoMode" runat="server" repeatdirection="Horizontal" style="float: right;
+                                height: 38px; line-height: 38px;">
+                                    <asp:ListItem Text="天" Value="0"></asp:ListItem>
+                                    <asp:ListItem Text="月" Value="1" Selected="True"></asp:ListItem>
+                                    <asp:ListItem Text="年" Value="2"></asp:ListItem>
+                                </asp:radiobuttonlist>*@
+                            @if (ViewBag.Mode == "Day")
+                            {
+                                <input type="radio" name="rdoMode" value="0" checked /><label>天</label>
+                                <input type="radio" name="rdoMode" value="1" /><label>月</label>
+                                <input type="radio" name="rdoMode" value="2" /><label>年</label>
+                            }
+                            else if (ViewBag.Mode == "Year")
+                            {
+                                <input type="radio" name="rdoMode" value="0" /><label>天</label>
+                                <input type="radio" name="rdoMode" value="1" /><label>月</label>
+                                <input type="radio" name="rdoMode" value="2" checked /><label>年</label>
+                                                                               
+                            }
+                            else
+                            {
+                                <input type="radio" name="rdoMode" value="0" /><label>天</label>
+                                <input type="radio" name="rdoMode" value="1" checked /><label>月</label>
+                                <input type="radio" name="rdoMode" value="2" /><label>年</label>
+                            }
+                        </td>
+                        <td style="float: left; height: 38px; line-height: 38px;">
+                            &emsp;&emsp;@*<asp:button id="btnReStatistic" runat="server" text="统计" class="adminsubmit"
+                                onclick="btnReStatistic_OnClick" />*@
+                            <input type="submit" name="btnReStatistic" id="btnReStatistic" value="统计" class="sub" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label>@Html.Raw(ViewBag.litChart)</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <div id="ProSaleList">
+        @{Html.RenderPartial("_ProSaleList", Model);}
+    </div>
+</div>
+@*</form>*@
+<script type="text/javascript">
+    $(function () {
+        $("#btnReStatistic").click(function () {
+            var value = $(':radio[name=rdoMode]:checked').val();
+            var rdoModel = $.setUrlParam('selectMode', value);
+            var StartDate = $("#txtStartDate").val();
+            var EndDate = $("#txtEndDate").val();
+            rdoModel = $.setUrlParam('StartDate', StartDate, rdoModel);
+            window.location = $.setUrlParam('EndDate', EndDate, rdoModel);
+            return false;
+        });
+        $(':radio[name=rdoMode]:checked').val($.getUrlParam('selectMode'));
+        //        $("#txtStartDate").val($.getUrlParam('StartDate'))
+        //        $("#EndDate").val($.getUrlParam('EndDate'))
+
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            })
+    });
+</script>

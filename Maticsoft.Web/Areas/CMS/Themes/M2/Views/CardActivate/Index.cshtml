@@ -1,0 +1,109 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@section head{
+
+    <script src="/Scripts/jquery/jquery.lazyload.js?ver=@DateTime.Now.ToString("yyyyMMdd")" type="text/javascript"></script>   
+ <link rel="stylesheet" type="text/css" href="/Areas/CMS/Themes/M1/Content/99jkc/css/login.css" />
+    <link href="/Areas/CMS/Themes/M1/Content/99jkc/css/home.css?v=2" rel="stylesheet" type="text/css" />
+}
+
+<div class="wrap">
+    <div class="banner-show">
+        <div class="cell bns-02">
+            <div class="con"></div>
+        </div>
+    </div>
+
+    <!--div class="buzhou"><img src="images/buzhou1.jpg" alt="激活步骤"></div-->
+    <div class="container">
+        <div class="register-box">
+            <div class="reg-slogan">健康卡激活界面</div>
+            <div class="reg-form" id="js-form-mobile">
+                <br>
+                <br>
+                <div class="cell">
+                    <label for="js-mobile_ipt"></label>
+                    <input type="text" name="Card" placeholder="激活卡号" id="txtCardNo" class="text" maxlength="11" />
+                </div>
+                <div class="cell">
+                    <label for="js-mobile_pwd_ipt"></label>
+                    <input type="password" name="passwd" placeholder="激活密码" id="txtPwd" class="text" />
+                </div>
+                <!-- !短信验证码 -->
+                <div class="bottom"><a id="js-mobile_btn" href="javascript:void(0);" class="button btn-green" onclick="javascript:activatecard()" >立即激活</a></div>
+                <div class="bottom1"><a id="js-mail_btn" href="javascript:void(0);"  class="button btn-green1" onclick="javascript:ViewActivatedCard()" >立即查询</a></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="kefu">
+       
+    </div>
+
+     <form id="formViewCard" method="post" action="/CardActivate/ViewActivatedCard" target="_self">
+          <input  type="hidden" name="cardNo" id="hdcardNo" />
+          <input  type="hidden" name="PWD" id="hdcardPWD"/>
+      </form>
+
+</div>
+
+<script>
+    //开始激活请求卡
+    function activatecard()
+    {
+        //window.location.href = "/CardActivate/CardActivateStep1";
+        var cardNo = $("#txtCardNo").val();
+        var cardPwd = $("#txtPwd").val();
+
+        if (cardNo == "")
+        {
+            alert("请输入待激活卡号!");
+            return;
+        }
+        if (cardPwd == "") {
+            alert("请输入激活卡密码!");
+            return;
+        }
+
+        $.ajax({
+            url: '/CardActivate/GetCard',
+            type: 'post', dataType: 'json', timeout: 10000,
+            async: false,
+            data: { cardNo: cardNo, pwd: cardPwd },
+            success: function (data) {
+                if (!data.IsSuccess)
+                {
+                    alert(data.Message);
+                    return false;
+                }
+                else {                  
+                    window.location.href = "/CardActivate/CardActivateStep1";
+                }
+            }
+        });
+    }
+
+    function ViewActivatedCard() {
+        var cardNo = $("#txtCardNo").val();
+        var cardPwd = $("#txtPwd").val();
+
+        if (cardNo == "") {
+            alert("请输入查询卡号!");
+            return;
+        }
+        if (cardPwd == "") {
+            alert("请输入查询密码!");
+            return;
+        }
+
+        $("#hdcardNo").val(cardNo);
+        $("#hdcardPWD").val(cardPwd);
+        $("#formViewCard")[0].submit();
+
+    }
+</script>
+
+
+
+

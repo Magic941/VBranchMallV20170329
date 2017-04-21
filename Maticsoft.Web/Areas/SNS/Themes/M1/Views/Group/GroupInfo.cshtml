@@ -1,0 +1,176 @@
+﻿@model Maticsoft.ViewModel.SNS.GroupInfo
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/slides.min.jquery.js"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/CheckUserIsJoinGroup.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/GroupInfo.js" type="text/javascript"></script>
+ 
+}
+<input id="groupid" value="@Model.Group.GroupID" type="hidden" />
+<input id="q" value="@(ViewBag.q)" type="hidden" />
+<!------Single group-------->
+<div class="clear"></div>
+<div class="single_bk">
+  <div class="single_bk_F">
+    <div class="single_bk_FA">
+      <div class="single_Tf">
+         <dl class="single_Tf_A"></dl>
+          <dl class="single_Tf_B">
+              <p class="single_Tf_B_a"><a style="color:#FF3188" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@Model.Group.GroupID">@Model.Group.GroupName</a></p>
+              <p class="single_Tf_B_b">创建于 @(Maticsoft.ViewModel.ViewModelBase.DateDiff(Model.Group.CreatedDate))</p>
+          </dl>
+      </div>@if (ViewBag.IsCreator)
+            {
+                <div style="float: right"><a href="@(ViewBag.BasePath)Group/Update?GroupId=@Model.Group.GroupID">修改小组信息</a></div>
+            }
+      <div class="clear"></div>
+      <div class="single_CF">
+        <div class="single_CF_s">
+          <dl class="single_CF_intro">
+          <p>@Model.Group.GroupDescription</p>
+              <p class="intro_a">已有<span>@Model.Group.GroupUserCount</span>位成员　
+              @if (ViewBag.IsJoin == false)
+              {
+              　　<a href="javascript:void(0)" class="joingroup"><img src="/Areas/SNS/Themes/M1/Content/images/single_3.jpg"/></a>
+              }</p>
+           </dl>
+           <div class="topShow" id="tab">
+    <div class="tabmenu">
+        <ul>
+            <li><a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@(Model.Group.GroupID)" class="tabmenu_a" id="tabAll">全部</a></li>
+            <li><a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@(Model.Group.GroupID)&type=Recommand" class="tabmenu_b" id="tabRecommand">推荐</a></li>
+            <li><a href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@(Model.Group.GroupID)&type=User" id="tabUser" class="tabmenu_b">成员</a></li>
+        </ul>
+        <p class="tabmenu_c"><a id="btnPostTopic" href="@(ViewBag.BasePath)Group/NewTopic?GroupId=@Model.Group.GroupID"><img src="/Areas/SNS/Themes/M1/Content/images/single_5.jpg"/></a></p>
+        <div class="clear"></div>
+    </div>
+    <div class="content" style="display:block;">
+        <div class="content_sear">
+           <dl class="content_sear_a">共有@(ViewBag.toalcount)个帖子</dl>
+           <dl class="content_sear_b">
+              <dl class="content_sear_bs"></dl>
+              <dl class="content_sear_bt"><input name="" type="" id="topickey"/></dl>
+              <dl class="content_sear_bu">
+                 <dt class="content_sear_bua" id="searchtopic"><a href="javascript:;"><img src="/Areas/SNS/Themes/M1/Content/images/single_6.jpg"/></a></dt>
+                 <dd class="content_sear_bub"></dd>
+              </dl>
+           </dl>
+        <div class="clear"></div>
+        </div>
+        <div class="content_post" id="MaticsoftToplist">
+            @if (ViewBag.GetType == "User")
+            {
+                Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Group/UserList.cshtml", Model);
+            }
+            else
+            {
+                Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Group/TopicList.cshtml", Model.TopicList);
+            }
+            <div class="clear"></div>
+        </div>
+    </div>
+   
+</div>
+          </div> 
+      <!------右侧内容------->
+          <div class="single_CF_t">
+                <div id="example">
+          <div id="slides">
+          <div class="slides_container">
+                    <div class="slide">
+                        <a href="javascript:void(0)" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                        <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">我要快乐</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:void(0)" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b2.jpg" align="b1 2"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">世外桃源</div>
+                        </div>					</div>
+                    <div class="slide">
+                        <a href="javascript:void(0)" target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">花花世界</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:void(0)"  target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b2.jpg" align="b1 2"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">五彩缤纷</div>
+                        </div>
+                    </div>
+                    <div class="slide">
+                        <a href="javascript:void(0)"  target="_blank"><img src="/Areas/SNS/Themes/M1/Content/images/b1.jpg" align="b1 1"></a>
+                         <div class="capt">
+                        <div class="caption"></div>
+                        <div class="caption_a">天上人间</div>
+                        </div>
+                    </div>
+             </div>
+           </div>
+          </div>
+               <dl class="single_diagram">
+                  <h1>小组管理员</h1>
+                  <dl class="single_diagram_pp">
+                     <dl class="ppsm"><a href="@(ViewBag.BasePath)User/Posts/@Model.Group.CreatedUserId"><img style=" height:50px; width:50px" alt="@Model.Group.CreatedNickName" src="/Upload/User/Gravatar/@(Model.Group.CreatedUserId).jpg"/></a></dl>
+                     <dl class="ppsn">
+                        <dt class="ppsn_ab">@Model.Group.CreatedNickName<img src="/Areas/SNS/Themes/M1/Content/images/single_16.jpg"/></dt>
+                        <dd class="ppsn_ac">  
+                         <a href="@(ViewBag.BasePath)User/Posts/@Model.Group.CreatedUserId" class="FellowUser"  UserId="@Model.Group.CreatedUserId">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:void(0)" class="UnFellowUser"  style="display:none"  UserId="@Model.Group.CreatedUserId" >
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a></dd>
+                     </dl>
+                  </dl>
+                  <div class="clear"></div>
+               </dl>
+               <div class="clear"></div>
+          
+               <dl class="single_online">
+                   <h1>欢迎新人</h1>
+                   <dl class="single_online_ht">
+                   @foreach (var item in Model.NewUserList)
+                   {
+                      <dl class="hts">
+                         <dt><a href="@(ViewBag.BasePath)User/Posts/@item.UserID"><img alt="@item.NickName" style=" height:50px; width:50px" src="/Upload/User/Gravatar/@(@item.UserID).jpg"/></a></dt>
+                         <dd class="hts_a"><a href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.NickName</a></dd>
+                      </dl>
+                   }
+                     
+                   </dl>
+                   <div class="clear"></div>
+                   @if (ViewBag.IsJoin == false)
+                   {
+                    <dl class="single_online_sq" ><a href="javascript:void(0)" class="joingroup">申请加入</a></dl>
+                   }
+                   
+                <div class="clear"></div>
+               </dl>
+               <dl class="single_newest">
+                    <h1>最新话题</h1>
+                       <ul>
+                       @foreach (var item in Model.NewTopicList)
+                       {
+                          <li><a href="@(ViewBag.BasePath)Group/TopicReply?id=@item.TopicID">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 15)</a>(@item.ReplyCount)</li>
+                     
+                       }
+                       </ul>
+               </dl>
+          </div>
+          <div class="clear"></div>  
+      </div>
+    </div>
+  </div>
+</div>
+<!------Single group end----->
+

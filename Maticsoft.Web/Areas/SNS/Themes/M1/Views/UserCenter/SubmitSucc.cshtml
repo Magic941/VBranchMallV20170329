@@ -1,0 +1,88 @@
+﻿@{
+      Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@section head{
+<script type="text/javascript">
+    function reinput() {
+        $.ajax({
+            url: $Maticsoft.BasePath + "UserCenter/SubmitSucc",
+            type: 'post',
+            dataType: 'json',
+            timeout: 10000,
+            async: false,
+            data: {
+                Action: "post"
+            },
+            success: function (JsonData) {
+                switch (JsonData.STATUS) {
+                    case "SUCCESS":
+                        window.location = $Maticsoft.BasePath + "UserCenter/UserApprove";
+                        break;
+                    case "FAILE":
+                        ShowFailTip("服务器忙，请稍后再试！");
+                        window.location = $Maticsoft.BasePath + "UserCenter/UserApprove";
+                        break;
+                    default:
+                        ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                        break;
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+            }
+        });
+    }
+</script>
+}
+<input type="hidden" id="currentpage" value="span_7"/>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            实名认证</p>
+    </h1>
+    <div class="approve">
+        <div class="approve_nav">
+            <img src="/Areas/SNS/Themes/M1/Content/images/approve1.2.jpg" /></div>
+        @if (ViewBag.Falid != null)
+        {
+            <div class="success">
+                <p class="success_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/cha.png" /></p>
+                <p class="success_b">@ViewBag.Desc</p>
+            </div>
+        }
+        else
+        {
+            <div class="success">
+                <p class="success_a">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/success.jpg" /></p>
+                <p class="success_b">@ViewBag.Desc</p>
+            </div>
+        }
+        @if (ViewBag.Falid != null)
+        {
+            <div class="audit_b">
+                <a href="/UserCenter/UserApprove" onclick="reinput();">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/resteapprove.jpg" /></a></div>
+        }
+        <div class="clear">
+        </div>
+        <div class="approve_d">
+            <p>
+                认证前需要准备</p>
+            <ul>
+                <li>1.个人身份证件的清晰照片，无遮挡，无修改</li>
+                <li>2.证件在有效期范围内</li>
+            </ul>
+            <p class="app">
+                说明</p>
+            <ul>
+                <li>1.实名认证通过后获得标志<img src="/Areas/SNS/Themes/M1/Content/images/approve6.jpg" />大家更信赖认证过的帐户。</li>
+                <li>2.认证是免费的，但认证后不可取消。</li>
+                <li>3.认证后会获得150个信用。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>

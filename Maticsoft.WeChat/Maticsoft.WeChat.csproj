@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F1D544FB-91C1-4A9F-99D4-237B34BC9A94}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.WeChat</RootNamespace>
+    <AssemblyName>Maticsoft.WeChat</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Maticsoft.WeChat.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Maticsoft.WeChat.XML</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Common">
+      <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.Components">
+      <HintPath>..\Lib\Maticsoft.Components.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.DBUtility">
+      <HintPath>..\Lib\Maticsoft.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.Json">
+      <HintPath>..\Lib\Maticsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\Activity\ActivityAward.cs" />
+    <Compile Include="BLL\Activity\ActivityCode.cs" />
+    <Compile Include="BLL\Activity\ActivityDetail.cs" />
+    <Compile Include="BLL\Activity\ActivityInfo.cs" />
+    <Compile Include="BLL\Core\Action.cs" />
+    <Compile Include="BLL\Core\Command.cs" />
+    <Compile Include="BLL\Core\Config.cs" />
+    <Compile Include="BLL\Core\CustomerMsg.cs" />
+    <Compile Include="BLL\Core\CustUserMsg.cs" />
+    <Compile Include="BLL\Core\Group.cs" />
+    <Compile Include="BLL\Core\KeyRule.cs" />
+    <Compile Include="BLL\Core\KeyValue.cs" />
+    <Compile Include="BLL\Core\LinkLog.cs" />
+    <Compile Include="BLL\Core\Location.cs" />
+    <Compile Include="BLL\Core\Menu.cs" />
+    <Compile Include="BLL\Core\MsgItem.cs" />
+    <Compile Include="BLL\Core\NoReplyMsg.cs" />
+    <Compile Include="BLL\Core\OPLog.cs" />
+    <Compile Include="BLL\Core\PostMsg.cs" />
+    <Compile Include="BLL\Core\PostMsgItem.cs" />
+    <Compile Include="BLL\Core\RequestMsg.cs" />
+    <Compile Include="BLL\Core\Scene.cs" />
+    <Compile Include="BLL\Core\SceneDetail.cs" />
+    <Compile Include="BLL\Core\SysMsg.cs" />
+    <Compile Include="BLL\Core\User.cs" />
+    <Compile Include="BLL\Core\Utils.cs" />
+    <Compile Include="BLL\Push\TaskLog.cs" />
+    <Compile Include="BLL\Push\TaskMsg.cs" />
+    <Compile Include="IDAL\Activity\IActivityAward.cs" />
+    <Compile Include="IDAL\Activity\IActivityCode.cs" />
+    <Compile Include="IDAL\Activity\IActivityDetail.cs" />
+    <Compile Include="IDAL\Activity\IActivityInfo.cs" />
+    <Compile Include="IDAL\Core\IAction.cs" />
+    <Compile Include="IDAL\Core\ICommand.cs" />
+    <Compile Include="IDAL\Core\IConfig.cs" />
+    <Compile Include="IDAL\Core\ICustomerMsg.cs" />
+    <Compile Include="IDAL\Core\ICustUserMsg.cs" />
+    <Compile Include="IDAL\Core\IGroup.cs" />
+    <Compile Include="IDAL\Core\IKeyRule.cs" />
+    <Compile Include="IDAL\Core\IKeyValue.cs" />
+    <Compile Include="IDAL\Core\ILinkLog.cs" />
+    <Compile Include="IDAL\Core\ILocation.cs" />
+    <Compile Include="IDAL\Core\IMenu.cs" />
+    <Compile Include="IDAL\Core\IMsgItem.cs" />
+    <Compile Include="IDAL\Core\INoReplyMsg.cs" />
+    <Compile Include="IDAL\Core\IOPLog.cs" />
+    <Compile Include="IDAL\Core\IPostMsg.cs" />
+    <Compile Include="IDAL\Core\IPostMsgItem.cs" />
+    <Compile Include="IDAL\Core\IRequestMsg.cs" />
+    <Compile Include="IDAL\Core\IScene.cs" />
+    <Compile Include="IDAL\Core\ISceneDetail.cs" />
+    <Compile Include="IDAL\Core\ISysMsg.cs" />
+    <Compile Include="IDAL\Core\IUser.cs" />
+    <Compile Include="IDAL\Push\ITaskLog.cs" />
+    <Compile Include="IDAL\Push\ITaskMsg.cs" />
+    <Compile Include="Model\Activity\ActivityAward.cs" />
+    <Compile Include="Model\Activity\ActivityCode.cs" />
+    <Compile Include="Model\Activity\ActivityDetail.cs" />
+    <Compile Include="Model\Activity\ActivityInfo.cs" />
+    <Compile Include="Model\Core\Action.cs" />
+    <Compile Include="Model\Core\Command.cs" />
+    <Compile Include="Model\Core\Config.cs" />
+    <Compile Include="Model\Core\CustomerMsg.cs" />
+    <Compile Include="Model\Core\CustUserMsg.cs" />
+    <Compile Include="Model\Core\Group.cs" />
+    <Compile Include="Model\Core\KeyRule.cs" />
+    <Compile Include="Model\Core\KeyValue.cs" />
+    <Compile Include="Model\Core\LinkLog.cs" />
+    <Compile Include="Model\Core\Location.cs" />
+    <Compile Include="Model\Core\Menu.cs" />
+    <Compile Include="Model\Core\MsgItem.cs" />
+    <Compile Include="Model\Core\NoReplyMsg.cs" />
+    <Compile Include="Model\Core\OPLog.cs" />
+    <Compile Include="Model\Core\PostMsg.cs" />
+    <Compile Include="Model\Core\PostMsgItem.cs" />
+    <Compile Include="Model\Core\RequestMsg.cs" />
+    <Compile Include="Model\Core\Scene.cs" />
+    <Compile Include="Model\Core\SceneDetail.cs" />
+    <Compile Include="Model\Core\SysMsg.cs" />
+    <Compile Include="Model\Core\User.cs" />
+    <Compile Include="Model\Push\TaskLog.cs" />
+    <Compile Include="Model\Push\TaskMsg.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLServerDAL\Activity\ActivityAward.cs" />
+    <Compile Include="SQLServerDAL\Activity\ActivityCode.cs" />
+    <Compile Include="SQLServerDAL\Activity\ActivityDetail.cs" />
+    <Compile Include="SQLServerDAL\Activity\ActivityInfo.cs" />
+    <Compile Include="SQLServerDAL\Core\Action.cs" />
+    <Compile Include="SQLServerDAL\Core\Command.cs" />
+    <Compile Include="SQLServerDAL\Core\Config.cs" />
+    <Compile Include="SQLServerDAL\Core\CustomerMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\CustUserMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\Group.cs" />
+    <Compile Include="SQLServerDAL\Core\KeyRule.cs" />
+    <Compile Include="SQLServerDAL\Core\KeyValue.cs" />
+    <Compile Include="SQLServerDAL\Core\LinkLog.cs" />
+    <Compile Include="SQLServerDAL\Core\Location.cs" />
+    <Compile Include="SQLServerDAL\Core\Menu.cs" />
+    <Compile Include="SQLServerDAL\Core\MsgItem.cs" />
+    <Compile Include="SQLServerDAL\Core\NoReplyMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\OPLog.cs" />
+    <Compile Include="SQLServerDAL\Core\PostMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\PostMsgItem.cs" />
+    <Compile Include="SQLServerDAL\Core\RequestMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\Scene.cs" />
+    <Compile Include="SQLServerDAL\Core\SceneDetail.cs" />
+    <Compile Include="SQLServerDAL\Core\SysMsg.cs" />
+    <Compile Include="SQLServerDAL\Core\User.cs" />
+    <Compile Include="SQLServerDAL\Push\TaskLog.cs" />
+    <Compile Include="SQLServerDAL\Push\TaskMsg.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MySqlDAL\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />  
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,18 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+ @if (Model != null && Model.Count > 0)
+ {
+     foreach (var item in Model)
+     {
+         if (item.HasChildren)
+         {
+             <a href="@(ViewBag.BasePath)p/c/@item.CategoryId">@item.Name</a> 
+         }
+         else
+         {
+              <a href="@(ViewBag.BasePath)p/@item.CategoryId">@item.Name</a> 
+         }
+        
+     }
+     
+ }
+ 

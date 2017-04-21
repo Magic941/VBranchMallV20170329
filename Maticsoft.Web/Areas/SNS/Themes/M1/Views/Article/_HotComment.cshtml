@@ -1,0 +1,12 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+ @if (Model != null && Model.Count > 0)
+ {
+     <dl>
+         @for (int i = 0; i < Model.Count; i++)
+         {
+              <dd>
+             <span class="rank-number">@(i+1)</span> <a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@Model[i].ContentID" title="@Model[i].Title">@Maticsoft.Common.StringPlus.SubString(Model[i].Title,8,"...")</a> <small>@(Model[i].TotalComment)评</small></dd>
+         }
+     </dl>
+ }
+

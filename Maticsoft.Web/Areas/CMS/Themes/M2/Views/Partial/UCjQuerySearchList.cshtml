@@ -1,0 +1,130 @@
+﻿@{
+    Layout = null;
+}
+@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Common;
+@model PagedList<Maticsoft.Model.CMS.Content>
+<!--ArticleList Start-->
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+    <div class="container_sidebar_cast" style="margin-top: 30px;">
+        <h3>
+          @*  @Html.ActionLink(StringPlus.SubString(Globals.HtmlDecode(item.Title), "", 40, false), "../Article/Details/", new { id = item.ContentID })*@
+          <a href="@item.SeoUrl">@StringPlus.SubString(Globals.HtmlDecode(item.Title), "", 40, false)</a>
+        </h3>
+        <p class="source">
+            来自：<a>@item.BeFrom</a> <a style="margin-left: 100px;"></a>时间：@TimeParser.DateTimeFormat(item.CreatedDate, "yyyy-MM-dd", true)</p>
+        <dl class="tupic">
+            @if(item.ImageUrl==null || item.ImageUrl=="") {
+            <p class="tupic_writingnopic">
+                @Html.Raw(Globals.HtmlDecode(Maticsoft.BLL.Settings.SEORelationManage.FilterStr(item.Summary, true, true, false, false, false, item.ContentID, "CMSSummary")))
+                <a href="@item.SeoUrl" class = "view"> 查看全文</a>
+            </p>
+                  <div style="clear: both">
+        </div>
+            }
+            else
+            {
+            <p class="tupic_writing">
+                @Html.Raw(Globals.HtmlDecode(Maticsoft.BLL.Settings.SEORelationManage.FilterStr(item.Summary, true, true, false, false, false, item.ContentID, "CMSSummary")))
+             <a href="@item.SeoUrl" class = "view"> 查看全文</a>
+            </p>
+            <p>
+                <a href="@item.SeoUrl">
+                    <img src="@item.ImageUrl" width="172" height="167" alt="" /></a></p>
+            }
+        </dl>
+        <dl class="know">
+            <p class="know_bs">
+                <a>阅读数：</a> @item.PvCount <a style="margin-left: 20px;">赞数： @item.TotalSupport</a>
+                <a style="margin-left: 20px; display: none;">收藏数：@item.TotalFav</a> <a style="margin-left: 20px;
+                    display: none;">评论数：@item.TotalComment</a> <a style="margin-left: 20px;">栏目：</a>
+                @Html.ActionLink(StringPlus.SubString(Globals.HtmlDecode(item.ClassName), "", 10, false), "../Category/", new { id = item.ClassID })
+            </p>
+            <!--Share BEGIN-->
+            <p class="know_share">
+                <div style="float: right;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <td>
+                                分享到：
+                            </td>
+                            <td>
+                                <!--本页第一个分享工具代码开始-->
+                            <!-- Baidu Button BEGIN -->
+                        <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare"
+                                    data="{'text':'@(item.Title.Replace("'","\\'")) | @ViewBag.WebName.Replace("'", "\\'")','url':'@(ViewBag.Domain + ViewBag.BasePath)Article/Details/@item.ContentID'}">
+                            <span class="bds_more">分享到：</span>
+                            <a class="bds_qzone"></a>
+                            <a class="bds_tsina"></a>
+                            <a class="bds_tqq"></a>
+                            <a class="bds_renren"></a>
+                            <a class="bds_t163"></a>
+                            <a class="shareCount"></a>
+
+                        <script type="text/javascript" id="bdshare_js" data="type=tools&amp;uid=@(ViewBag.CurrentUserId)" ></script>
+                        <script type="text/javascript" id="bdshell_js"></script>
+                        <script type="text/javascript">
+                            document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000)
+                        </script>
+                        <!-- Baidu Button END -->
+                                </div>
+                                <!--本页第一个分享工具代码结束-->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </p>
+            <!--Share End-->
+        </dl>
+        <div style="clear: both">
+        </div>
+    </div>
+    }
+}
+else
+{
+    <div style="font-size: 14px;">
+        <p>
+            抱歉，没有找到&nbsp;<b>@ViewBag.HotWordss</b>&nbsp;的相关文章。</p>
+        <br />
+        <p>
+            建议您：</p>
+        <ul>
+            <li>检查输入的关键词是否有误。</li>
+            <li>缩短关键词。</li>
+            <li>使用相近、相同或其他语义的关键词。</li>
+            <li>放宽筛选条件。</li>
+        </ul>
+    </div>
+}
+<!--ArticleList End-->
+<!--Paging Start-->
+<center>
+    <div class="container_sidebar_paging">
+       @* <ul style="display: none;">
+            <!--jQuery Ajax Paging Start-->
+            @Html.AjaxPager(Model, new PagerOptions()
+       {
+           PageIndexParameterName = "page",
+           CssClass = "anpager",
+           NumericPagerItemCount=10
+       },
+         new AjaxOptions() { UpdateTargetId = "Article" })
+            <!--jQuery Ajax Paging End-->
+        </ul>*@
+        <ul>
+            <!--Standard Paging Start-->
+            @Html.Pager(Model, new PagerOptions
+   {
+       PageIndexParameterName = "page",
+       CssClass = "anpager",
+       NumericPagerItemCount = 10
+   })
+            <!--Standard Paging End-->
+        </ul>
+    </div>
+</center>
+<!--Paging End-->

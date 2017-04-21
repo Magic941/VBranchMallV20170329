@@ -1,0 +1,43 @@
+﻿@model Maticsoft.Model.Shop.Shipping.ShippingAddress
+
+@if (Model != null)
+{
+    if (Model.Address.Contains(Model.RegionFullName))
+    {
+        Model.RegionFullName = "";
+    }
+    
+    <script>
+        $(function () {
+            $("#addres").text("@Model.RegionFullName" + "@Model.Address");
+            $("#Consignee").text("@Model.ShipName " + " @Model.CelPhone");
+        })
+    </script>
+    <input id="txtAddressCount" type="hidden" value="1" />
+    <h3>收货人信息<span id="consignee_edit_action"><a href="#none" onclick="Edit_Consignee(this, @Model.ShippingId)">[修改]</a></span></h3>
+    <div class="msg" addressId="@Model.ShippingId">
+        <div id="consignee">
+            <p><span>@Model.ShipName</span>  <span>@Model.CelPhone</span><br />
+              <span>@Model.RegionFullName</span><span>@Model.Address</span></p>
+        </div>
+    </div>
+@*<p class="msg"><span>@Model.ShipName</span>  <span>@Model.CelPhone</span><br /><span>@Model.EmailAddress</span>  <span>@Model.RegionFullName</span>  <span>@Model.Address</span></p>*@
+}
+else
+{
+    <input id="txtAddressCount" type="hidden" value="0" />
+    <div class="step-title">
+        <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action"> <a href="#none" onclick="Edit_Consignee(this, -1)">[修改]</a> </span>
+    </div>
+    <div class="step-content" addressid="-1">
+        <div id="consignee" class="sbox-wrap">
+            <div class="sbox">
+                <div class="s-content">
+                    <p>
+                        未设置收货信息
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}

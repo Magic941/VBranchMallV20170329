@@ -1,0 +1,159 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Scripts/tab/tab.css" rel="stylesheet" type="text/css" charset="utf-8" />
+<script src="/Scripts/tab/tab.js" type="text/javascript"></script>
+<link href="/Scripts/colorbox/colorbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/colorbox/jquery.colorbox-min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        //日期控件
+        $("[id$='txtCreatedDateStart']").prop("readonly", true).datepicker({
+            numberOfMonths: 1, //显示月份数量
+            onClose: function () {
+                $(this).css("color", "#000");
+            }
+        }).focus(function () { $(this).val(''); });
+        $("[id$='txtCreatedDateEnd']").prop("readonly", true).datepicker({
+            numberOfMonths: 1, //显示月份数量
+            onClose: function () {
+                $(this).css("color", "#000");
+            }
+        }).focus(function () { $(this).val(''); });
+
+        //显示筛选条件
+        switch ($('#hidOrderStatus').val()) {
+            case "-1": //导出订单
+                $('#btnExport').css('display', 'inline-block');
+                $('#divPaymentStatus').css('display', 'inline-block');
+                $('#divShippingStatus').css('display', 'inline-block');
+                break;
+            case "1": //未处理
+                break;
+            case "2": //未完成
+                $('#divPaymentStatus').css('display', 'inline-block');
+                $('#divShippingStatus').css('display', 'inline-block');
+                break;
+            case "3": //已完成
+                break;
+            default:
+                break;
+        }
+
+
+        //搜索按钮
+        $('#btnSearch').click(function () {
+            $('#btnSearch').attr('disabled', 'disabled');
+            var os = $('#hidOrderStatus').val();
+            var oc = $('#txtOrderCode').val();
+            var sn = $('#txtShipName').val();
+            var bn = $('#txtBuyerName').val();
+            var pays = $('#dropPaymentStatus').val();
+            var ss = $('#dropShippingStatus').val();
+            var dr = $('#txtCreatedDateStart').val() + '_' + $('#txtCreatedDateEnd').val(); //, { os: os, oc: oc, sn: sn, bn: bn, pays: pays, ss: ss, dr: dr }
+            if (dr.length <= 1) {
+                dr = '';
+            }
+            $("#divOrderList").load($Maticsoft.BasePath + 'Order/OrderList?os=' + os + '&oc=' + oc + '&sn=' + sn + '&bn=' + bn + '&ss=' + ss + '&dr=' + dr + '&pays=' + pays, function () {
+                $('#btnSearch').removeAttr('disabled');
+            });
+        });
+
+
+        $('#btnExport').click(function () {
+            if (confirm("您确认要导出数据么？")) {
+                var os = $('#hidOrderStatus').val();
+                var oc = $('#txtOrderCode').val();
+                var sn = $('#txtShipName').val();
+                var bn = $('#txtBuyerName').val();
+                var pays = $('#dropPaymentStatus').val();
+                var ss = $('#dropShippingStatus').val();
+                var dr = $('#txtCreatedDateStart').val() + '_' + $('#txtCreatedDateEnd').val();
+                if (dr.length <= 1) {
+                    dr = '';
+                }
+                $('[name="os"]').val(os);
+                $('[name="oc"]').val(oc);
+                $('[name="sn"]').val(sn);
+                $('[name="bn"]').val(bn);
+                $('[name="pays"]').val(pays);
+                $('[name="ss"]').val(ss);
+                $('[name="dr"]').val(dr);
+                $('#formExprot').submit();
+            }
+        });
+    });
+</script>
+<!--Title -->
+<input type="hidden" id="hidOrderStatus" value="@ViewBag.OrderStatus"/>
+<div class="contenttitle2 mar30">
+    <h3>
+        <span>订单管理</span>
+    </h3>
+    <small class="desc"><span>您可以根据订单状态查询订单，配送货操作</span> </small>
+</div>
+<!--Title end -->
+<!--Add  -->
+<!--Add end -->
+<!--Search -->
+<form  action="@(ViewBag.BasePath)Order/Export" method="post" enctype="" id="formExprot">
+<input type="hidden" name="os" value="" />
+<input type="hidden" name="oc" value="" />
+<input type="hidden" name="sn" value="" />
+<input type="hidden" name="bn" value="" />
+<input type="hidden" name="pays" value="" />
+<input type="hidden" name="ss" value="" />
+<input type="hidden" name="dr" value="" />
+<div class="newslistabout">
+    <div class="field shuru shuru1">
+        <img src="/Areas/Supplier/Themes/M1/Content/images/icon-1.gif" width="19" height="19" />
+        <span>搜索</span> &nbsp;&nbsp;<span>订单号</span>：
+        <input type="text" id="txtOrderCode" class="admininput_1" />
+        &nbsp;&nbsp;<span id="LiteralShipName">收货人</span>：
+        <input type="text" id="txtShipName" class="admininput_1">
+        &nbsp;&nbsp;<span id="LiteralBuyerName">用户名</span>：
+        <input type="text" id="txtBuyerName" class="admininput_1" />
+       @*inline-block*@
+        <div style="display: none;" id="divPaymentStatus">
+            <span id="LiteralPaymentStatus">付款状态</span>：
+            <select id="dropPaymentStatus" class="myselect">
+                <option value="-1">全部</option>
+                <option value="0">未支付</option>
+                <option value="2">已支付</option>
+            </select></div>
+        <div style="display: none;" id="divShippingStatus">
+            &nbsp;&nbsp;<span id="LiteralShippingStatus">发货状态</span>：
+            <select id="dropShippingStatus" class="myselect">
+                <option value="-1">全部</option>
+                <option value="0">未发货</option>
+                <option value="2">已发货</option>
+            </select>
+        </div>
+        &nbsp;&nbsp;<span id="LiteralCreatedDate">下单日期</span>：
+        <input type="text" id="txtCreatedDateStart" style="width: 80px;" />-<input type="text"
+            id="txtCreatedDateEnd" style="width: 80px;" />
+        <button type="button" id="btnSearch">
+            搜索</button>
+        <button type="button" id="btnExport" style="display: none;">
+            一键导出</button>
+    </div>
+</div>
+</form>
+<!--Search end-->
+<br />
+<div class="newslist">
+    <div id="divOrderList">
+        @Html.Action("OrderList", "Order")
+    </div>
+</div>

@@ -1,0 +1,107 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<div class="newslistabout">
+        <div class="newslist_title">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+                <tr>
+                    <td bgcolor="#FFFFFF" class="newstitle">
+                        微信菜单管理 
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#FFFFFF" class="newstitlebody">
+                       您可以进行添加微信菜单操作
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                        <tr>
+                            <td class="td_class">
+                                上级菜单：
+                            </td>
+                            <td height="25">
+                                  @*<asp:DropDownList ID="ddlParent" runat="server">
+                        </asp:DropDownList>*@
+                                <select id="ddlParent">
+                                    
+                                </select>
+                            </td>
+                        </tr>
+                     
+                        <tr>
+                            <td class="td_class">
+                                菜单名称：
+                            </td>
+                            <td height="25">
+                                @*<asp:TextBox ID="tName" TabIndex="1" runat="server" Width="250px" MaxLength="30"></asp:TextBox>*@
+                                <input type="text" name="tName" style="width:250px"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="td_class">
+                                显示顺序：
+                            </td>
+                            <td height="25">
+                                <asp:TextBox ID="txtSequence"  runat="server" Width="250px" MaxLength="30"></asp:TextBox>
+                                <input type="text" name="txtSequence" style="width:250px"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="td_class">
+                                菜单类型：
+                            </td>
+                            <td height="25">
+                                @*<asp:DropDownList ID="ddType" runat="server" Width="200px"   AutoPostBack="True" OnSelectedIndexChanged="ddType_Changed">
+                                    <asp:ListItem Value="click" Text="事件"></asp:ListItem>
+                                    <asp:ListItem Value="view" Text="页面跳转"></asp:ListItem>
+                                </asp:DropDownList>
+                                   <asp:TextBox ID="txtMenuUrl" runat="server"  Visible="False"  ></asp:TextBox>
+                                    <asp:DropDownList ID="dropAction" runat="server" Width="200px"  >
+                                </asp:DropDownList>*@
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td class="td_class">
+                                是否启用：
+                            </td>
+                            <td height="25">
+                                  @* <asp:CheckBox ID="chkStatus" Text="是" runat="server"   Checked="True"/>*@
+                                <input type="checkbox" name="chkStatus" checked />是
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                <asp:Literal ID="Literal4" runat="server" Text="菜单描述" />：
+                            </td>
+                            <td height="25">
+                                <asp:TextBox ID="txtDesc" runat="server" Width="250px" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                            </td>
+                            <td height="25">
+                                <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Site, btnSaveText %>"
+                                    OnClick="btnSave_Click" class="adminsubmit_short"></asp:Button>&nbsp;&nbsp;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <asp:Label ID="lblMsg" runat="server" ForeColor="Red"></asp:Label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+    </div>
+

@@ -1,0 +1,114 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierAD>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridView">
+    <tbody>
+        <tr class="head1">
+            <td width="5%" height="23" align="center" bgcolor="#FFFFFF">
+              <input id="checkAll" type="checkbox" >
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>广告编号</strong>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>广告名称</strong>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>创建时间</strong>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>状态</strong>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>顺序</strong>
+            </td>
+            <td width="30%" bgcolor="#FFFFFF">
+                <strong>操作</strong>
+            </td>
+          @*  <td width="10%" bgcolor="#FFFFFF">
+                <strong>编辑</strong>
+            </td>
+            <td width="10%" bgcolor="#FFFFFF">
+                <strong>删除</strong>
+            </td>*@
+        </tr>
+        @if (null != Model)
+        {
+            foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    <input adId="@item.AdvertisementId" type="checkbox" class="itemCheck">
+                </td>
+                <td>@item.AdvertisementId
+                </td>
+                <td>@item.Name
+                </td>
+                <td>@item.CreatedDate.ToString("yyyy-MM-dd HH:MM:ss")
+                </td>
+                <td>@(item.Status == 1 ? "有效" : "无效")
+                </td>
+                <td>@item.Sequence
+                </td>
+                <td>
+                    <a class="adDetail"  href="javascript:;"  adid="@item.AdvertisementId">详细</a>
+               
+                    @*@Html.ActionLink("编辑", "AdsDetail", "SellerCenter", new { @class = "editThisAd", adid =item.AdvertisementId,viewName="AdsEdit" })*@
+                    <a class="editThisAd" href="javascript:;" style="display:inline-block;width:50px;" adid="@item.AdvertisementId">
+                        编辑</a>
+              
+                    <a class="deleteThisAd" href="javascript:;" style="display:inline-block;width:50px;color:#1317fc;" adid="@item.AdvertisementId">
+                        删除</a>
+                </td>
+            </tr>
+            }
+            <tr height="27px" style="background: #FFF">
+                <div class="abc">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                        <tr>
+                            <td width="5%" style="padding-left: 12px;">
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="50%">
+                                @Html.AjaxPager(Model, new PagerOptions
+{
+    AlwaysShowFirstLastPageNumber = true,
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 10,
+    CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+    NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+    NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+    CssClass = "page",
+    SeparatorHtml = ""
+}, new AjaxOptions { UpdateTargetId = "LoadMenuList" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+        $("#checkAll").click(function () {
+            $(".itemCheck").prop('checked', $(this).prop('checked'));
+        });
+    });
+</script>

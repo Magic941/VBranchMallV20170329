@@ -1,0 +1,55 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.ViewModel.Order.OrderInfoExPage> 
+  <table cellspacing="0" cellpadding="0" rules="all" border="0px" class="GridView"
+        style="border-color: #CCCCCC; border-width: 1px; border-style: solid; width: 55%;
+        border-collapse: collapse;">
+        <tbody>
+            <tr class="trclass">
+                <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                    text-align: center; height: 34px;">
+                    <span style="color: #666666;">时间</span>
+                </th>
+                <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                    height: 34px; text-align: center">
+                    <span style="color: #666666;">商品名称</span>
+                </th>
+                <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                    height: 34px; text-align: center">
+                    <span style="color: #666666;">销售量(份)222</span>
+                </th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {     
+                <tr>
+                    <td>
+                       @item.GeneratedDate.ToString("yyyy-MM-dd")
+                    </td>
+                    <td>
+                        @item.ProductName&nbsp;&nbsp;@item.SKUs
+                    </td>
+                    <td>
+                        @item.ToalQuantity
+                    </td>
+                </tr>
+                }
+                 <tr height="27px" style="background: #FFF">
+                <td colspan="12" style="white-space: nowrap;" class="supp_in_pages" align="right">
+                    @Html.AjaxPager(Model, new PagerOptions
+               {
+                   ShowDisabledPagerItems = false,
+                   AlwaysShowFirstLastPageNumber = true,
+                   PageIndexParameterName = "pageIndex",
+                   NumericPagerItemCount = 10,
+                   CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+                   NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                   NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+                   CssClass = "page",
+                   SeparatorHtml = ""
+               }, new AjaxOptions { UpdateTargetId = "ProSaleList" })
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

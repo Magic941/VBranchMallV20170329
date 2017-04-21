@@ -1,0 +1,9 @@
+﻿@model List<Maticsoft.Model.SysManage.SysNode>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (var item in Model)
+    {
+                  <li><a href="@(ViewBag.BasePath)@item.Url" target="mainFrame">@item.TreeText</a></li>
+    } 
+}
+

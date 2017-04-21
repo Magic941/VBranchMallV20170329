@@ -1,0 +1,61 @@
+﻿@using Maticsoft.ViewModel.SNS
+@model Maticsoft.ViewModel.SNS.ProductCategory
+@{
+    <script type="text/javascript">
+        $(function () {
+            $('.emerge').unbind('hover').hover(function () {
+                $(this).find('#dodge').show();
+            }, function () {
+                $(this).find('#dodge').hide();
+            });
+            resizeImg('.imagewalls', 211, 1280);
+        });
+    </script>
+    foreach (Maticsoft.Model.SNS.Products item in Model.ProductListWaterfall)
+    {
+    <div class="i_w_y">
+        <div id="emerge" class="emerge">
+            <p>
+                <a class="pic_load" href="@item.StaticUrl" target="_blank" >
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@item.ProductName" />
+                    @if (item.Price.HasValue && item.Price.Value > -1)
+                    {
+                        <span class="price">¥ @item.Price.Value.ToString("F")</span>
+                    }
+                </a>
+            </p>
+            <div id="dodge">
+                <a href="javascript:;" class="addalbum" targetid="@item.ProductID" imagetype="Product" imageurl="@item.ThumbImageUrl" >
+                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>
+        </div>
+        <div class="search_com">
+            <div class="search_com_a">
+                <p class="search_com_a1">
+                    <a href="javascript:;"class="favourite" imagetype="Product" targetid="@item.ProductID">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" /></a></p>
+                <p class="search_com_a2">
+                    <a href="javascript:;">@item.FavouriteCount</a></p>
+            </div>
+            <div class="search_com_b" style="cursor: pointer">
+                <p class="search_com_b1">
+                    <a href="javascript:;">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                <p class="search_com_b2">
+                    <span class="commentcount">@item.CommentCount</span>评论</p>
+                <input class="TargetId" type="hidden" value="@item.ProductID" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="search_iss">
+            @{if (item.CommentCount > 0 && Model.DicCommentList.ContainsKey(item.ProductID))
+              {
+                  Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", Model.DicCommentList[item.ProductID]);
+
+              }}
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    }
+}

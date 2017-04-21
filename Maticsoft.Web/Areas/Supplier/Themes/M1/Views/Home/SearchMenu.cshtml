@@ -1,0 +1,128 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierMenus>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // $("#LoadMenuList").load("@(ViewBag.BasePath)SellerCenter/LoadMenu", { viewName: "_MenuList" });
+        $("#btnAddtwo").click(function () {
+            window.location = $Maticsoft.BasePath + "Home/AddMenu";
+        });
+    });
+</script>
+<script type="text/javascript">
+    function GetDeleteM() {
+        $("[id$='btnDelete']").click();
+    }
+
+    function GetAdd() {
+        window.location = 'add.aspx';
+    }
+
+        
+</script>
+<div class="newslistabout">
+    <!--Title -->
+    <div class="newslist_title">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitle">
+                    <span>导航菜单管理</span>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#FFFFFF" class="newstitlebody">
+                    <span>您可以添加、编辑自定义网站前台顶部导航菜单。</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!--Title end -->
+    <!--Add  -->
+    <!--Add end -->
+    <!--Search -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td width="1%" height="30" bgcolor="#FFFFFF" class="newstitlebody">
+                <img src="/Areas/Supplier/Themes/M1/Content/images/list.gif" />
+            </td>
+            <td height="35" bgcolor="#FFFFFF" class="newstitlebody">
+                <span>关键字</span>
+                <input type="text" id="txtKeyword" value="@(ViewBag.keyword)" class="admininput_1"/>
+                <input type="button" id="btnSearch" value="搜索" class="adminsubmit_short" />
+            </td>
+        </tr>
+    </table>
+    <!--Search end-->
+    <br />
+    <!--Toolbar -->
+    <div class="newslist">
+        <div class="newsicon">
+            <ul>
+                <li style="height: 35px;">
+                    <input type="button" id="btnAddtwo" value="添加" class="adminsubmit_short" />
+                </li>
+                <li style="height: 35px;">
+                    <input type="button" id="btnDeletetwo" value="批量删除" class="adminsubmit" />
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--Toolbar end -->
+    <div id="LoadMenuList">
+        @{ Html.RenderPartial("_MenuList", Model);}
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var idlist = "";
+        $("#btnDeletetwo").click(function () {
+            var $checkBoxList = $("input[type='checkbox']:checked");
+            if ($checkBoxList.length == 0) {
+                ShowFailTip("请选择要删除的菜单！");
+                return false;
+            } else {
+                if (!confirm('您确定要删除吗？')) {
+                    return false;
+                }
+                $checkBoxList.each(function () {
+                    idlist += $(this).attr("menuId") + ",";
+                });
+                $.post($Maticsoft.BasePath + "Home/DeleteMenus", { idList: idlist }, function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("删除成功");
+                        window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+                    } else {
+                        ShowFailTip("删除失败！");
+                    }
+                });
+            }
+        });
+        $(".deleteThisMenu").die('click').live('click', function () {
+            if (!confirm("您确定要删除吗？")) {
+                return false;
+            }
+            $.post($Maticsoft.BasePath + "Home/DeleteAMenu", { menuId: $(this).attr("menuid") }, function (data) {
+                if (data == "ok") {
+                    ShowSuccessTip("删除成功");
+                    window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+                } else {
+                    ShowFailTip("删除失败！");
+                }
+            });
+        });
+        $(".editThisMenu").die('click').live('click', function () {
+            window.location = $Maticsoft.BasePath + "Home/EditMenu/" + $(this).attr("menuid");
+        });
+        $("#btnSearch").click(function () {
+            if ($("#txtKeyword").val().length == 0) {
+                ShowFailTip("请输入关键字！");
+                return false;
+            }
+            //window.location = "@(ViewBag.BasePath)SellerCenter/SearchMenu/" + $("#txtKeyword").val();
+            $.post($Maticsoft.BasePath + "Home/SearchMenu", { keyword: $("#txtKeyword").val() });
+        });
+    });
+</script>

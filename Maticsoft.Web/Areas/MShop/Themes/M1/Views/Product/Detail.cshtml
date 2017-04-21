@@ -1,0 +1,260 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Shop.ProductModel
+<script type="text/javascript">var Shop_BuyMode = '@Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode")';</script>
+<link href="/Scripts/PhotoSwipe/photoswipe.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/PhotoSwipe/klass.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<link href="/Areas/MShop/Themes/M1/Content/Css/productdetail.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/productdetail.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/SKU.js" type="text/javascript"></script>
+<script src="/Scripts/PhotoSwipe/photoswipe.jquery.min.js" type="text/javascript"></script>
+ <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/WeixinApi.js"></script>
+
+
+
+
+<link href="/Scripts/PhotoSwipe/styles.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    $(function() {
+        var myPhotoSwipe = $(".view-photo a").photoSwipe({
+           enableMouseWheel: true, 
+           enableKeyboard: true,
+					autoStartSlideshow:true,
+					captionAndToolbarOpacity: 1
+ 
+        });
+    })
+</script>
+<script type="text/javascript">
+    (function (window, $, PhotoSwipe) {
+        $(document).ready(function () {
+            var delay = 3000;
+            var autoStartSlideshow = true;
+            var instance, indicators;
+            indicators = $("#Indicators img");
+            if (indicators.length < 1) return;
+            instance = PhotoSwipe.attach(
+            indicators,
+                {
+                    target: $("#PhotoDetail"),
+                    preventHide: true,
+                    autoStartSlideshow: autoStartSlideshow,
+                    preventDefaultTouchEvents: false,
+                    allowUserZoom: false,
+                    captionAndToolbarHide: true,
+                    slideshowDelay: delay,
+                    getImageSource: function (obj) {
+                        return $(obj).attr("src");
+                    },
+                    getImageCaption: function (obj) {
+                        return $(obj).attr("alt");
+                    },
+                    getImageMetaData: function (el) {
+
+                        return {
+                            longDescription: el.getAttribute('alt'),
+                            relatedUrl: el.getAttribute('href')
+                        };
+
+                    }
+                }
+            );
+            // onDisplayImage - set the current indicator
+            instance.addEventHandler(PhotoSwipe.EventTypes.onDisplayImage, function (e) {
+                $(e.currentTarget.originalImages).parent().removeClass();
+                $(e.currentTarget.originalImages[e.index]).parent().addClass('current');
+            });
+            instance.addEventHandler(PhotoSwipe.EventTypes.onTouch, function (e) {
+                if (e.action === 'tap') {
+                    var relatedUrl = this.getCurrentImage().metaData.relatedUrl;
+                    if (relatedUrl && relatedUrl != 'http://') window.open(relatedUrl);
+                }
+            });
+            instance.show(0);
+        });
+    }(window, window.jQuery, window.Code.PhotoSwipe));
+
+</script>
+<style type="text/css">
+    div.ps-document-overlay
+    {
+        background: #ede6db;
+    }
+</style>
+
+
+<div class="top">
+    <a href="javascript:;" onclick="history.go(-1)"><span>&lt;返回</span></a>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@if (Model != null)
+{
+    <div id="iteminfo" data-role="page" data-add-back-btn="true">
+       <input type="hidden" id="hidimg" value="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T115X115_")" />
+       <input type="hidden" id="hidproductname" value="@Model.ProductInfo.ProductName" />
+        <div class="index-ads w">
+    <div id="PhotoDetail" style="margin-top: 2px">
+    </div>
+      @if (Model != null && Model.ProductImages != null)
+            {
+        <div id="Indicators" style="margin-top: 0px">
+              @foreach (ProductImage productImage in Model.ProductImages)
+                {
+              
+                    <img style="display: none"   src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T350X350_")"   alt="@Model.ProductInfo.ProductName" />
+              
+            }
+        </div>
+                
+    }
+</div>
+
+        <div class="productshow_title">
+            @Model.ProductInfo.ProductName</div>
+        <div class="view-photo tc"  >
+            @* <a href="javascript:void(0)" id="i_pre" class="btn-prev">上一个</a> *@
+          <li class="mid-img" id="div_img"><a href="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T350X350_")"  rel="external" >
+                                                 <img  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T115X115_")"  alt="@Model.ProductInfo.ProductName" />
+                                             </a>
+            </li>
+            @if (Model != null && Model.ProductImages != null)
+            {
+                foreach (ProductImage productImage in Model.ProductImages)
+                {
+                    <li class="mid-img" style="display: none">
+                        <a href="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T350X350_")" rel="external" >
+                             <img  src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(productImage.ThumbnailUrl1, "T115X115_")"   alt="@Model.ProductInfo.ProductName" />
+                        </a>
+
+                    </li>
+                }
+            }
+        </div>
+
+        @*     <a id="i_next" href="javascript:void(0)" class="btn-next">下一个</a>*@
+         @Html.Action("StoreLayer", "Partial", new { suppId = Model.ProductInfo.SupplierId })
+        <div class="productshow_jiage">
+            市场价：<span>￥@(Model.ProductInfo.MarketPrice.HasValue?Model.ProductInfo.MarketPrice.Value.ToString("F"):"0")</span><br />
+            销售价：<strong>￥<span id="stylePrice">@Model.ProductSkus[0].SalePrice.ToString("F")</span></strong></div>
+        <div class="proshow_pl">
+            @*<a href="@(ViewBag.BasePath)product/Comments/@Model.ProductInfo.ProductId"><small>商品评论：</small> （@ViewBag.CommentCount）</a>*@</div>
+        <div class="choiceOptions c6">
+            <div id="SKUOptions" class="proshowlxtext  " style="float: left">
+                @Html.Action("OptionSKU", "Product", new { ProductId = Model.ProductInfo.ProductId, viewName = "_OptionSKU" })
+            </div>
+        </div>
+        <div class="sku-selected-title mt15 c9" style="min-height: 18px; clear: left; padding-left: 8px;"
+             id="divSelectInfo">
+        </div>
+        <div class="productshow_sl">
+            <span>购买件数：</span>
+            <a href="javascript:;" class="redu" id="subtract">-</a>
+            <input type="text" size="4" value="1" name="num" id="productCount" class="common-input" />
+            <a href="javascript:;" id="plus" class="add">+</a> <span style="display: none">（库存@(Model.ProductSkus[0].Stock)件）</span></div>
+        <div class="producshow_but">
+            <div class="btn-section">
+                <span class="btn-tbl-cell"><a class="btn-attention link" productId="@Model.ProductInfo.ProductId" id="btnProductFav">
+              
+                    <span class="icon">关注</span></a></span> 
+                    <span class="btn-tbl-cell" >
+
+                    <a class="btn-add-cart link" id="btnAddToCart" DefaultText='@(Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode") == "BuyNow" ? "立刻购买" : "放入购物车")'   itemid=""  productid="@Model.ProductInfo.ProductId">
+                        @(Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("Shop_BuyMode") == "BuyNow" ? "立刻购买" : "放入购物车")</a></span> 
+
+                        <span class="btn-tbl-cell" style="display: none">
+                        <a class="btn-quk-buy" id="btnQukBuy"   itemid=""  productid="@Model.ProductInfo.ProductId">
+                            立刻购买</a></span>
+            </div>
+        </div>
+    </div>
+}
+<div class="productshow_a">
+    <ul>
+        <li><a href="@(ViewBag.BasePath)product/productdesc/@Model.ProductInfo.ProductId">商品详情</a></li>
+        <li style="display:none"><a href="@(ViewBag.BasePath)product/Consults/@Model.ProductInfo.ProductId">规格参数</a></li>
+          
+    </ul>
+</div>
+<div class="proshowlxtext">
+    相关商品</div>
+@Html.Action("ProductRelation", "Product", new { id = Model.ProductInfo.ProductId, Top = 3, viewName = "_ProductRelation" })
+
+
+<script type="text/javascript">
+    var url = window.location.href;
+    if (url.indexOf('?') != -1) {
+        url = url + "&RUserNameID=@ViewBag.Phone"
+    }
+    else {
+        url = url + "?RUserNameID=@ViewBag.Phone"
+    }
+    var imgurl = $("#hidimg").val();
+    var title=$("#hidproductname").val();
+
+    
+    // 需要分享的内容，请放到ready里
+    WeixinApi.ready(function (Api) {
+
+        // 微信分享的数据
+        var wxData = {
+            "appId": "", // 服务号可以填写appId
+            "imgUrl": imgurl,
+            "link": url,
+            "desc": '健康商城-您身边的商城（zhenhaolin.com）-贴心服务、优惠返利、保险赠送、轻松购物,网上商城，批发商城，分销商城，电子商务解决方案',
+            "title": title
+        };
+
+        // 分享的回调
+        var wxCallbacks = {
+            // 分享操作开始之前
+            ready: function () {
+                // 你可以在这里对分享的数据进行重组
+                //  alert("准备分享");
+            },
+            // 分享被用户自动取消
+            cancel: function (resp) {
+                // 你可以在你的页面上给用户一个小Tip，为什么要取消呢？
+               //  alert("分享被取消，msg=" + resp.err_msg);
+            },
+            // 分享失败了
+            fail: function (resp) {
+                // 分享失败了，是不是可以告诉用户：不要紧，可能是网络问题，一会儿再试试？
+                // alert("分享失败，msg=" + resp.err_msg);
+            },
+            // 分享成功
+            confirm: function (resp) {
+                // 分享成功了，我们是不是可以做一些分享统计呢？
+               // alert("分享成功，msg=" + resp.err_msg);
+            },
+            // 整个分享过程结束
+            all: function (resp, shareTo) {
+                // 如果你做的是一个鼓励用户进行分享的产品，在这里是不是可以给用户一些反馈了？
+                //  alert("分享" + (shareTo ? "到" + shareTo : "") + "结束，msg=" + resp.err_msg);
+            }
+        };
+
+        // 用户点开右上角popup菜单后，点击分享给好友，会执行下面这个代码
+        Api.shareToFriend(wxData, wxCallbacks);
+
+        // 点击分享到朋友圈，会执行下面这个代码
+        Api.shareToTimeline(wxData, wxCallbacks);
+
+        // 点击分享到腾讯微博，会执行下面这个代码
+        Api.shareToWeibo(wxData, wxCallbacks);
+
+        // iOS上，可以直接调用这个API进行分享，一句话搞定
+        Api.generalShare(wxData, wxCallbacks);
+
+
+
+    });
+
+    </script>

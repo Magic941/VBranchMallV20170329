@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_ShoppingLayout.cshtml";
+
+    DateTime TimeLimit = DateTime.Now.AddMinutes(double.Parse(ViewBag.PaymentTimeLimit));
+    List<Maticsoft.Payment.Model.PaymentModeInfo> PaymentModes = ViewBag.PaymentModes as List<Maticsoft.Payment.Model.PaymentModeInfo>;
+}
+@section step{
+    <div class="myCart-right">
+        <div class="Cartbar Cartbar3"></div>
+    </div>
+}
+@section title{
+    <span>核对支付信息</span>
+}
+<link href="/Areas/Shop/Themes/M1/Content/css/shopc2.css" rel="stylesheet" type="text/css" />
+<div class="w main">
+<div class="m m3" id="qpay">
+    <div class="mc">
+        <s class="icon-succ02"></s>
+        <div class="fore">
+            <h3 class="ftx-02">
+                订单提交成功，请在[@(TimeLimit.ToString("yyyy-MM-dd HH:mm"))]前完成付款！</h3>
+            <ul class="list-h">
+                <li class="fore1">订单号：@ViewBag.OrderCode</li>
+                <li class="fore2">应付金额：<strong class="ftx-01">@(ViewBag.OrderAmount.ToString("F"))元</strong></li>
+            </ul>
+            <p id="p_show_info">
+                &nbsp;</p>
+            <p class="reminder" style="margin-bottom: 10px">
+                <strong>立即支付<span class="ftx-01">@(ViewBag.OrderAmount.ToString("F"))元</span>，即可完成订单。</strong>
+                <!-- 过期提示 -->
+                <!-- 过期提示页面 -->
+                @*请您在<span class="ftx-04">24小时</span>内完成支付，否则订单会被自动取消。*@
+            </p>
+            @if (!string.IsNullOrWhiteSpace(ViewBag.CodeUrl))
+            { 
+                <div style="margin:0 auto 20px auto;">
+                    <ul style="width:200px; text-align:center;">
+                        <li style="border-width:0px;"><img id="qrcode" src="/QRCode.aspx?Url=@(ViewBag.CodeUrl)" alt="订单二维码" style="width:150px; height:150px; padding-bottom:2px;" /></li>
+                        <li style="border-width:0px;"><span style="color:red;">打开微信扫一扫,立即完成支付</span></li>
+                    </ul>
+                </div>
+            }
+            @if (null != PaymentModes && PaymentModes.Count > 0)
+            { 
+                <div style="margin:0px 0px 30px 0px;">
+                    <div style="font-family: 微软雅黑; font-size: 16px; font-weight:bold; text-align: left; margin: 30px 0px 10px 0px;">
+                        请选择支付方式:
+                    </div>
+                    <ul class="defray-wayad">
+                    @foreach (var item in PaymentModes)
+                    {
+                        <li style="padding:5px;">
+                            <input type="radio" class="checkbox" style="vertical-align:middle; height:35px; margin-left:20px;" id="paymentType@(item.ModeId)" name="checkbox" value="@item.ModeId" />
+                            <span class="labpaymentType">
+                                <label  for="paymentType@(item.ModeId)" >
+                                    <img src="@item.Logo" alt="@(item.Name)" style="height:35px;"/>
+                                </label>
+                            </span>
+                        </li>
+                    }
+                    </ul>
+                </div>
+            }
+            <input type="button" border="none" name="" class="btn-impay" value="立即支付">
+        </div>
+</div>
+</div></div>
+<script type="text/javascript">
+    $('.btn-impay').unbind('click').bind('click', function () {
+        //window.location.replace('/pay/certification@(ViewBag.OrderId)/@(ViewBag.CurrentArea)');
+        //return;
+        var orderid="@(ViewBag.OrderId)";
+        var PaymentTypeId = $('input:radio[name="checkbox"]:checked').val();
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "Order/Immediatepayment",
+            data: { OrderId: orderid,PaymentTypeId:PaymentTypeId},
+            success: function (data) {
+                if (data == "True")
+                {
+                    window.location.replace('/pay/certification@(ViewBag.OrderId)/@(ViewBag.CurrentArea)');
+                }
+                else if(data == "False") {
+                    ShowFailTip('服务器繁忙，请稍候再试！');
+                    return;
+                }else{
+                    ShowFailTip('服务器繁忙，请稍候再试！');
+                    return;
+                }
+            }
+        });
+    });
+
+    $(function () {
+        $(".defray-wayad li #paymentType@(ViewBag.OrderPaymentType)").attr("checked", true);
+    });
+</script>

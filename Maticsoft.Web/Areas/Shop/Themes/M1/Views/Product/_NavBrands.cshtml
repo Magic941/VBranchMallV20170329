@@ -1,0 +1,14 @@
+﻿@model List<Maticsoft.Model.Shop.Products.BrandInfo>
+<dl class="mdetail-brands">
+    <!--热卖品牌-->
+    @if (Model != null && Model.Count > 0)
+    {
+        <dt><span class="fb">热卖品牌</span></dt>
+        foreach (var item in Model)
+        {
+        <dd>
+            <a href="/product/@ViewBag.Cid/@item.BrandId/" target="_blank">
+                <img src="@item.Logo" alt="@item.BrandName" width="110" height="52"></a></dd>
+        }
+    }
+</dl>

@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+@using Maticsoft.Common;
+@model List<Maticsoft.Model.Settings.FriendlyLink>
+<div class="articles">
+    <h3>
+        <a href="javascript:void(0);">友情链接</a></h3>
+    <ul>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <li><a href="@item.LinkUrl" target="_blank">@Html.Raw(StringPlus.SubString(item.Name, "...", 23, false))</a></li>
+            }
+        }
+    </ul>
+</div>

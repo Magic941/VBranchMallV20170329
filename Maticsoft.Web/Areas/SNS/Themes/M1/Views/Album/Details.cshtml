@@ -1,0 +1,201 @@
+﻿@model Maticsoft.ViewModel.SNS.PhotoList
+@{
+
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowAlbum.js" type="text/javascript"></script>
+<link href="/Scripts/Pagination/pagination.css" rel="stylesheet" type="text/css" />@*分页控件的css*@
+<script type="text/javascript" src="/Scripts/Pagination/jquery.pagination.js"></script>@*分页控件的javascript*@
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/AlbumDetail.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: "@(ViewBag.BasePath)Profile/GetUserId",
+            success: function (data) {
+                var userId = parseInt(data);
+                if (parseInt($(".FellowUser").attr("UserId")) == userId) {
+                    $(".FellowUser").hide();
+                    $(".FellowAlbum").hide();
+                    $(".UnFellowAlbum").hide();
+                    $(".inside").show();
+                }
+//                else {
+//                    $(".FellowUser").show();
+//                    $(".FellowAlbum").show();
+//                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                $(".FellowUser").show();
+                $(".FellowAlbum").show();
+            }
+        });
+
+    })
+</script>
+<div class="clear">
+</div>
+<!-----individual----->
+<div id="individual">
+    <div class="individual_a">
+        <div class="individual_a_d">
+            <div class="individual_a_d1">
+            </div>
+            <div class="individual_a_d2">
+                <div class="dps">
+                    <dl class="dps_left">
+                        <dt class="dps_left_tou"><a href="@(ViewBag.BasePath)User/Posts/@Model.UserModel.UserID">
+                            <img src="/Upload/User/Gravatar/@(Model.UserModel.UserID).jpg" alt="@Model.UserModel.NickName" style="width:60px; height:60px;"/></a></dt>
+                        <dd class="dps_left_guan">
+                            <a href="javascript:;" class="FellowUser"  UserId="@Model.UserModel.UserID">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  style="display:none"  UserId="@Model.UserModel.UserID" >
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                        </dd>
+                    </dl>
+                    <dl class="dps_right">
+                        <dt class="dps_right_a"><a href="@(ViewBag.BasePath)User/Posts/@Model.UserModel.UserID">@Model.UserModel.NickName</a></dt>
+                        <dd class="dps_right_b">
+                            @*<p>
+                                <img src="/Areas/SNS/Themes/M1/Content/images/id_5.jpg" alt="" />达人</p>*@
+                            <p>
+                                <a href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserModel.UserID">粉丝<span>@Model.UserModel.FansCount</span></a>
+                                <a href="@(ViewBag.BasePath)User/Fellows?uid=@Model.UserModel.UserID">关注<span>@Model.UserModel.FellowCount</span></a></p>
+                            <p>
+                                <a href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserModel.UserID">喜欢<span>@Model.UserModel.FavouritesCount</span></a>
+                                <a href="@(ViewBag.BasePath)User/Albums?uid=@Model.UserModel.UserID">专辑<span>@Model.UserModel.AblumsCount</span></a></p>
+                            <p>
+                                <a href="@(ViewBag.BasePath)User/Posts/@Model.UserModel.UserID" class="cyc">去TA的个人中心</a></p>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="dsh">
+                </div>
+            </div>
+        </div>
+        <div class="individual_a_e">
+            <p class="essc">@Model.AlbumModel.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</p>
+            <p class="dssd">@Model.AlbumModel.AlbumName</p>
+            <div class="clear">
+            </div>
+            <div class="inside" style="display: none">
+                <a class="btn albumbtn" href="@(ViewBag.BasePath)Profile/AlbumEdit/@Model.AlbumModel.AlbumID" target="_blank" style="color: #FFF;">
+                    设 置</a>
+            </div>
+            <p class="fssa">@Model.AlbumModel.Description</p>
+            @if (!string.IsNullOrWhiteSpace(@Model.AlbumModel.Tags))
+            {
+                <p class="hssb">
+                    标签：
+                    @foreach (string item in @Model.AlbumModel.Tags.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                    {
+                        <a href="javascript:void(0);">@item</a>
+                    }
+                </p>
+            }
+        </div>
+        <div class="individual_a_e">
+            <div class="individual_a_f1">
+                <p class="individual_a_f11">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_6.jpg" /></p>
+                <p class="individual_a_f12">
+                    宝贝 <span>@Model.AlbumModel.PhotoCount</span></p>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="individual_a_f1">
+                <p class="individual_a_f11">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_7.jpg" /></p>
+                <p class="individual_a_f12">
+                    被收藏 <span>@Model.AlbumModel.FavouriteCount</span></p>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="individual_a_f1">
+                <p class="individual_a_f11">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_8.jpg" /></p>
+                <p class="individual_a_f12">
+                    评论 <span>@Model.AlbumModel.CommentsCount</span></p>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="individual_a_f1">
+                <a href="javascript:;" class="FellowAlbum"  AlbumId=@Model.AlbumModel.AlbumID>
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_3.jpg" /></a> <a href="javascript:;" class="UnFellowAlbum"  style="display:none" AlbumId=@Model.AlbumModel.AlbumID  >
+                        <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao.jpg" /></a></div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="individual_b">
+        <!-- 照片列表-->
+        @{Html.RenderPartial("PhotoList", Model);}
+        <!-- 照片列表end-->
+        <!-- 评论列表 -->
+        <div class="individual_b_you">
+            <div class="idp">
+                <h1>
+                    说说你此对专辑的看法</h1>
+                <div class="idp_a">
+                    <div class="idp_a_1">
+                        <textarea name="" cols="" rows="" id="CommentContent"></textarea></div>
+                    <div class="idp_a_2">
+                        <p id="biaoqingshow" style="windows: 60px; float: left">
+                            <a href="javascript:;">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/detailed_14.jpg"></a><a href="javascript:;"
+                                    style="padding-left: 5px;">表情</a></p>
+                        <div class="cbiaoqing" style="top: 470px; display: none" id="tbiaoqing">
+                            @RenderPage("/Areas/SNS/Themes/M1/Views/Partial/_biaoqing.cshtml")
+                        </div>
+                        <p class="idp_a_22">
+                            <a href="javascript:;" id="AddCommentBtn" TargetId="@Model.AlbumModel.AlbumID">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/id_14.jpg" /></a></p>
+                        @* @Html.Action("WeiBoBind", "Partial")*@
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <div class="idp_b">
+                    <div id="CommentArea">
+                        @*//  @{Html.RenderPartial("CommentList.cshtml", Model.CommentList);}*@
+                    </div>
+                    <div class="idp_b_c">
+                        <div id="Pagination" class="pagination" style="width: 230px">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+                <input type="hidden"  id="CommentCount" value="@(Model.CommentCount)"/>
+                <input type="hidden" id="CommentPageSize" value="@(Model.CommentPageSize)"/>
+                <input type="hidden" id="AlbumID" value="@(Model.AlbumModel.AlbumID)"/>
+                <div class="clear">
+                </div>
+            </div>
+            <div class="moreablum">
+                <h1>
+                    Ta的更多专辑 <a target="_blank" href="@(ViewBag.BasePath)User/Albums?uid=@Model.UserModel.UserID">
+                        查看更多</a></h1>
+                @foreach (var item in Model.AlbumsList)
+                {
+                    if (Model.AlbumModel.AlbumID != item.AlbumID)
+                    {
+                    <p class="moreablum_a">
+                        <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">@item.AlbumName 更多</a></p>
+                    }
+                }
+            </div>
+        </div>
+        <!-- 评论列表end -->
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<!-----individual end----->
+@RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")

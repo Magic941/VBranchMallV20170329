@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserProfileLayOut.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.UserShip>
+@section head{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+}
+<div id="MaticsoftFans">
+    @{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/UserProfile/FansList.cshtml", Model);}
+</div>
+@{
+    if (ViewBag.IsCurrentUser)
+    {
+        Html.RenderAction("SelfRight", "Partial");
+    }
+    else
+    {
+        Html.RenderAction("ProfileLeft", "Partial");
+    }
+}

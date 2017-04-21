@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.Accounts.Bus.User
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/UserModify.helper.js" type="text/javascript"></script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            用户信息:</h3>
+        <small class="desc">您可以编辑用户信息</small>
+    </div>
+    <form id="btnModify" action="">
+    <div style="background-color: #ffffff; border: 1px solid #CCC;">
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="3" cellpadding="3" width="100%" border="0">
+                        <tr>
+                            <td class="td_class">
+                                用户名：
+                            </td>
+                            <td height="25">
+                                @Model.UserName
+                                <input type="hidden" name="txtName" id="txtName" value="@Model.UserName" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                真实姓名：
+                            </td>
+                            <td height="25">
+                                <input type="text" name="txtTrueName" id="txtTrueName" value="@Model.TrueName"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                邮箱：
+                            </td>
+                            <td height="25">
+                                <input type="text" name="txtEmail" id="txtEmail" value="@Model.Email" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label style="color: Red;">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                            </td>
+                            <td height="25">
+                                <div class="form stdform">
+                                    <input type="button" name="txtSave" value="保存" class="reset radius2 btn_style" onclick="return ModifySave();" />
+                                    <input type="button" name="txtCancel" id="txtCancel" value="取消" class="reset radius2 " />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+    </form>
+</div>

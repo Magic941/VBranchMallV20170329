@@ -1,0 +1,105 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/AddMemberRule.js" type="text/javascript"></script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            添加积分规则
+        </h3>
+        <small class="desc">您可以进行添加积分规则操作 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            规则码：
+                        </td>
+                        <td height="25">
+                            @*<input type="text" name="ActionName" value=" " id="ActionName" MaxLength="20" style="width:250px"/>*@
+                            <select name="ActionName" id="ActionName">
+                                <option value="-1">请选择</option>
+                                @{
+                                    Maticsoft.BLL.Members.PointsAction actionBll = new Maticsoft.BLL.Members.PointsAction();
+                                    List<Maticsoft.Model.Members.PointsAction> list = actionBll.GetAllActionList();
+                                    foreach (var item in list)
+                                    {
+                                    <option value="@item.ActionId">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            规则名称 ：
+                        </td>
+                        <td height="25">
+                            <input type="text" name="tName" id="tName" value="" maxlength="20" style="width: 250px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            影响积分数：
+                        </td>
+                        <td height="25">
+                            @* <asp:TextBox ID="tScore" TabIndex="3" runat="server" Width="250px" MaxLength="20"
+                                    Text="0"></asp:TextBox>
+                                <asp:RangeValidator ID="RangeValidator1" Display="Dynamic" Type="Integer" ControlToValidate="tScore"
+                                    MinimumValue="0" MaximumValue="1000" runat="server" ErrorMessage="数字在0-1000之间"></asp:RangeValidator>*@
+                            <input type="text" name="Score" id="Score" value="0" maxlength="20" style="width: 250px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            限制条件：
+                        </td>
+                        <td height="25">
+                            <select name="LimitName" id="LimitName">
+                                <option value="-1">请选择</option>
+                                @{
+                                    Maticsoft.BLL.Members.PointsLimit limitBll = new Maticsoft.BLL.Members.PointsLimit();
+                                    List<Maticsoft.Model.Members.PointsLimit> listLimit = limitBll.GetAllLimitList();
+                                    foreach (var item in listLimit)
+                                    {
+                                    <option value="@item.LimitID">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            规则描述：
+                        </td>
+                        <td height="50">
+                            <textarea id="Remark" name="Remark" style="width: 250px" maxlength="50" rows="5"
+                                cols="3"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input type="button" name="name" id="btnSave" value="保存" class="adminsubmit_short btn_style" />
+                                <input type="button" name="name" id="btnCancel" value="取消" class="adminsubmit_short" />
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label id="lblMsg" style="color: Red">
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>

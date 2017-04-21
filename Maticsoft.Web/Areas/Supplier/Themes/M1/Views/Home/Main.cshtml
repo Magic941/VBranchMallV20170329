@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<link href="/Areas/Supplier/Themes/M1/Content/css/admin.css" rel="stylesheet" type="text/css">
+<!-- 广告位 S -->
+<div class="mar30">
+    <div class="admincenter">
+        <div class="admintitle">
+             <span><strong style="font-size: 14px;">@ViewBag.userName
+                您好，欢迎使用@(ViewBag.webSiteName)</strong> </span>
+        </div></div>
+    <div class="main_main">
+        <div class="sj">
+            <img src="/Areas/Supplier/Themes/M1/Content/images/full-time.png" width="32" height="32" /></div>
+        <span class="main_time">您上次登录的时间：@ViewBag.lastLoginDate
+        </span>
+    </div>
+    <div class="main_line">
+    </div>
+    <div class="main_iconmenu" @*style="height: auto;"*@>
+        @* <span><a href="@(ViewBag.BasePath)Product/InStock/1" target="mainFrame">
+        <img src="/images/icon_4.gif" width="48" height="48" /><br />
+    
+        商品查询</a></span> <span><a href="@(ViewBag.BasePath)Order/Orders" target="mainFrame">
+            <img src="/images/main_orderManage.png" width="48" height="48" /><br />
+          
+            订单管理</a></span> <span><a href="@(ViewBag.BasePath)Home/SalesLine" target="mainFrame">
+                <img src="/images/icon_3.gif" width="48" height="48" /><br />
+               
+                销量统计</a></span>*@
+        <ul>
+            <li><a href="@(ViewBag.BasePath)Product/InStock/1" target="mainFrame">
+                <img src="/images/icon_4.gif" width="32" height="32" />
+                <span>商品查询</span></a> </li>
+            <li><a href="@(ViewBag.BasePath)Order/Orders" target="mainFrame">
+                <img src="/images/main_orderManage.png" width="32" height="32" />
+                <span>订单管理</span></a> </li>
+            <li><a href="@(ViewBag.BasePath)Product/InStock/1" target="mainFrame">
+                <img src="/images/icon_3.gif" width="32" height="32" />
+                <span>销量统计</span></a> </li>
+        </ul>
+    </div>
+    <div class="blank10">
+    </div>
+    <div class="contenttitle2">
+        <h3>
+            供货统计</h3>
+    </div>
+</div>
+<div class="main_bottomzi">
+    <ul>
+        <li>供货总量/额 ： </li>
+        <li><span>@ViewBag.ToalQuantity</span> &emsp;/&emsp;<span>@ViewBag.ToalPrice</span></li></ul>
+    <ul>
+        <li>已售量/额 ： </li>
+        <li><span>@ViewBag.soldQuantity</span> &emsp;/&emsp; <span>@ViewBag.SoldPrice</span></li>
+    </ul>
+    <ul>
+        <li>剩余量/额 ： </li>
+        <li><span>@ViewBag.remainQuantity</span> &emsp;/&emsp; <span>@ViewBag.remainPrice</span></li>
+    </ul>
+</div>
+<div class="main_line_1">
+</div>
+<div class="main_3">
+    <div class="sj">
+        <img src="/images/icon7.gif" width="15" height="15" /></div>
+    <div class="mainzileft">
+        我的个人资料管理</div>
+</div>
+<div class="main_xiaocaidan">
+    <ul>
+        <li><a href="@(ViewBag.BasePath)Home/UserInfo" class="btn">用户信息</a></li>
+        <li><a href="@(ViewBag.BasePath)Home/Show" class="btn">商家信息</a></li>
+        <li><a href="@(ViewBag.BasePath)Home/UserPass" class="btn">修改密码</a></li>
+        <li><a href="@(ViewBag.BasePath)Home/Modify" class="btn">商家设置</a></li>
+    </ul>
+</div>

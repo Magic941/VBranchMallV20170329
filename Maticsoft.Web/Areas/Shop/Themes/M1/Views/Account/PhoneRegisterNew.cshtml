@@ -1,0 +1,204 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "用户注册";
+}
+@model Maticsoft.ViewModel.Shop.RegisterModel
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/Account/registerCheck.js"></script>
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.custom.js" type="text/javascript"></script>
+<link href="/Areas/Shop/Themes/M1/Content/card/css/home.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/card/css/login.css" rel="stylesheet" />
+
+ 
+<script>
+
+    $(function () {
+        //点击回复触发
+        $("#aUserAgreement").click(function () {
+            $("#divUserAgreement").dialog(dialogOpts); //弹出‘用户协议’层  
+        });
+        $("#btnVerify").click(function () {
+            Math.random() * 24
+            $("#tImg").attr("src", "/ValidateCode.aspx?Guid=" + Math.random() * 100);
+        });
+
+        //dialog层中项的设置
+        var dialogOpts = {
+            title: "用户注册协议",
+            width: 700,
+            height: 600,
+            modal: true,
+            buttons: {
+                "同意": function () {
+                    $("#Chk").attr("checked", "checked"); //选中同意
+                    $(this).dialog("close"); //关闭层
+                },
+                "取消": function () {
+                    $(this).dialog("close"); //关闭层
+                }
+            }
+        };
+        $(".ster_ma").click(function () {
+            if (!(/(^1[3|5|8|7][0-9]{9}$)/).test($("#UserName").val())) {
+                ShowFailTip("手机号码不正确");
+            }
+            var txtCodel = $("#CheckCode").val();
+            if (txtCodel == '') {
+                ShowFailTip("请输入图片验证码！");
+            }
+            else {
+                //验证手机号码是否已经注册
+                $.ajax({
+                    url: '/Account/IsExistPhone',
+                    type: 'post',
+                    data: { phone: $("#UserName").val() },
+                    success: function (data) {
+                        if (data) {
+                            get_code_time($(".ster_ma"));
+                            $.ajax({
+                                url: '/Account/SendSMS',
+                                type: 'post',
+                                async: false,
+                                data: { phone: $("#UserName").val(), SmsValCode: txtCodel },
+                                success: function (data) {
+                                    if (data) {
+                                        $("#NickName").val($("#UserName").val());
+                                    }
+                                }
+                            });
+                        }
+                        else {
+                            ShowFailTip("该手机号已经注册！");
+                        }
+                    }
+                });
+            }
+           // $("#btnVerify").click();
+        })
+
+        $(".buttona").click(function () {
+           // if (!$("#Chk").attr("checked")) { ShowFailTip("请同意《健康网使用协议》！"); return }
+
+            if (CheckForm()) {
+                $("#submit").click();
+            }
+        });
+
+    })
+    var wait = 120;
+    var get_code_time = function (o) {
+        if (wait == 0) {
+            o.attr("disabled", false);
+            o.text("免费获取验证码");
+            wait = 120;
+        } else {
+            o.attr("disabled", true);
+            o.text("(" + wait + ")秒后重新获取");
+            wait--;
+            setTimeout(function () {
+                get_code_time(o)
+            }, 1000)
+        }
+    }
+
+</script>
+<style>
+    .landcontent li label{
+        width:7em;
+        float:left;
+        text-align:right;
+        margin-right:5px;
+    }
+    .loglininput {
+        width:325px;
+
+    }
+    .buttona,.buttonb {
+        width:150px;
+    }
+    .logininput {
+    }
+
+</style>
+
+<div class="focus_mapa">
+</div>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { id = "phoneregister" }))
+    { 
+  <div class="land">
+    <div class="" style="padding-top:25px;">
+        <div class="landcontent">
+            <span>注册新用户</span>
+        <ul>
+            <li class="clearfix">
+                <label>手机号码:</label>
+               
+                @Html.TextBoxFor(m => m.UserName, new { id = "UserName", Class="loglininput"})
+                
+              
+                <em class="Tip" id="usernameTip"></em>
+            </li>
+             <li class="clearfix">
+                <label>图片验证码：</label>
+               
+                 @Html.TextBox("CheckCode", "", new { id = "CheckCode", maxlength = "4", Class = "logininput", style = "width:100px", placeholder = "请输入图片验证码" })
+               
+               
+                   <img id="tImg" alt="验证码" src="/ValidateCode.aspx" style="height: 25px; display: block; float: left; margin-left:15px;padding-top:10px;" />
+                            <a id="btnVerify" href="javascript:void(0)" style="color: #666666; display: block; float: left; padding-top: 3px; padding-left: 10px;font-size:14px;">看不清楚?</a>@*&nbsp;&nbsp;&nbsp;&nbsp;*@
+                     <a href="javascript:;" class="ster_ma" style=" height:40px; background:#f88e00; color:#fff; font-size:14px; padding:0 10px;">获取验证码</a>  
+                <em class="Tip" id="checkcodeTip"></em>
+            </li>
+           
+            <li class="clearfix">
+                <label>手机动态码:</label>
+               
+                    <input type="text" name="dac"  id="SMSCode" />
+                
+                
+                <em class="Tip" id="smscodeTip">请输入已收到的动态码</em>
+            </li>
+            <li class="clearfix">
+                <label>登陆密码:</label>
+                <div class="regi_ster">
+                    @Html.PasswordFor(m => m.Password, new { id = "password" , Class="loglininput"})
+                </div>
+              
+                <em class="Tip" id="pwdTip"></em>
+            </li>
+            <li class="clearfix">
+                <label>确认密码:</label>
+               
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { id = "ConfirmPassword", Class="loglininput" })
+              
+          
+                <em class="Tip" id="comfirmpwdTip"></em>
+            </li>
+            <li style="display:none" >
+                <div class="regi_ster_mv">
+                    <input type="checkbox" id="Chk" name="sex" />
+                    <span><a id="aUserAgreement" style="cursor: pointer;
+                                        text-decoration: none;">《健康用户协议》</a></span>
+                </div>
+            </li>
+            <li class="button" >
+                <a href="javascript:;" class="buttona">用户注册</a>
+                <input type="submit" id="submit" style="display: none" />
+                <a href="/Account/Login" class="buttonb">我要登录</a>
+            </li>
+        </ul>
+     </div>
+    </div>
+</div>
+}
+<script type="text/javascript">
+    var _mvq = window._mvq || []; window._mvq = _mvq;
+    _mvq.push(['$setAccount', 'm-29312-0']);
+
+
+    _mvq.push(['$setGeneral', 'register', '', 'username', '']);
+    _mvq.push(['$logConversion']);
+
+</script>
+
+

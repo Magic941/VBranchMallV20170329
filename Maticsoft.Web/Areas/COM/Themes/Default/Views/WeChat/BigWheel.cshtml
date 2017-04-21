@@ -1,0 +1,258 @@
+﻿@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = " 微信营销-大转盘";
+}
+@model Maticsoft.WeChat.Model.Activity.ActivityInfo 
+<script src="/Scripts/jquery.alertify/src/alertify.js" type="text/javascript"></script>
+<link href="/Scripts/jquery.alertify/themes/alertify.core.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/jquery.alertify/themes/alertify.default.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Areas/COM/Themes/Default/Content/Css/Activity/bigwheel.css" rel="stylesheet"
+    type="text/css" />
+@if (Model != null)
+{
+    <input id="hfChange" type="hidden"  value="@ViewBag.HasChange"/>
+    <input id="hfAwardType" type="hidden" value="@Model.AwardType" />
+    <div class="main">
+        <div id="outercont">
+            <div id="outer-cont">
+                <div id="outer">
+                    <img src="/Areas/COM/Themes/Default/Content/images/activity-lottery-3.png">
+                </div>
+            </div>
+            <div id="inner-cont">
+                <div id="inner">
+                    <img src="/Areas/COM/Themes/Default/Content/images/activity-lottery-2.png">
+                </div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="boxcontent boxyellow" id="result" style="display: none">
+                <div class="box">
+                    <div class="title-orange">
+                        <span>恭喜你中奖了</span></div>
+                    <div class="Detail">
+                        <p>
+                            你中了：<span class="red" id="prizetype"> </span>
+                        </p>
+                        <p>
+                            兑奖SN码：<span class="red" id="sncode"></span></p>
+                        <!--<p class="red" id="P1">你已经兑奖成功,本SN码自动作废! </p>-->
+                        <p class="red" id="red">
+                            本次兑奖码已经关联你的微信号.
+                        </p>
+                        @if (Model.AwardType == 0)
+                        {
+                        <p>
+                            <input name="tel" class="px" id="txtName" value="" type="text" placeholder="请输入您的姓名">
+                        </p>
+                        <p>
+                            <input name="tel" class="px" id="telPhone" value="" type="text" placeholder="请输入您的手机号">
+                        </p>
+                        <p>
+                            <input name="tel" class="px" id="txtAddress" value="" type="text" placeholder="请输入地址">
+                        </p>
+                        }
+                        <p>
+                            <input class="pxbtn" name="提 交" id="btnBindSN" type="button" value="提交">
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="boxcontent boxyellow">
+                <div class="box">
+                    <div class="title-green">
+                        <span>奖项设置：</span></div>
+                    <div class="Detail">
+                        <!-- <p><span class="red">你已经转了3次,但你没抽中任何奖品!</span></p>-->
+                        @Html.Action("AwardList", new { cid = Model.ActivityId, viewName = "_AwardList" })
+                    </div>
+                </div>
+            </div>
+            <div class="boxcontent boxyellow">
+                <div class="box">
+                    <div class="title-green">
+                        活动说明：</div>
+                    <div class="Detail">
+                        <p>
+                            @Model.Summary</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+
+    $(function () {
+        window.requestAnimFrame = (function () {
+            return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                function(callback) {
+                    window.setTimeout(callback, 1000 / 60);
+                };
+        })();
+        $("#btnBindSN").click(function() {
+            var code = $("#sncode").text();
+            var phone = $("#telPhone").val();
+            var name = $("#txtName").val();
+            var address = $("#txtAddress").val();
+            var type = parseInt($("#hfAwardType").val());
+            if (type == 0) {
+                if (code == "") {
+                    ShowFailTip('您的获奖SN卡号不存在！');
+                    return;
+                }
+                if (phone == "") {
+                    ShowFailTip('请输入您的手机号码！');
+                    return;
+                }
+                if (name == "") {
+                    ShowFailTip('请输入您的姓名！');
+                    return;
+                }
+            }
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "WeChat/BindSNCode",
+                data: { SNCode: code, Phone: phone, Name: name, Remark: address, Type: @Model.AwardType },
+                success: function(data) {
+                    if (data == "True") {
+                        ShowSuccessTip('领取奖品成功！');
+                        $("#outercont").slideToggle(500);
+                        $("#result").slideUp(500);
+                    } else {
+                        ShowFailTip('服务器繁忙，请稍候再试！');
+                    }
+                }
+            });
+        });
+
+        var totalDeg = 360 * 3 + 0;
+        var steps = [];
+        var lostDeg = [270,90];
+        var prizeDeg = [30,60,120,150, 180,210,240,300,330,360];
+        var prize, sncode;
+        var count = 0;
+        var now = 0;
+        var a = 0.01;
+        var outter, inner, timer, running = false;
+        function countSteps() {
+            var t = Math.sqrt(2 * totalDeg / a);
+            var v = a * t;
+            for (var i = 0; i < t; i++) {
+                steps.push((2 * v * i - a * i * i) / 2);
+            }
+            steps.push(totalDeg);
+        }
+        function step() {
+            outter.style.webkitTransform = 'rotate(' + steps[now++] + 'deg)';
+            outter.style.MozTransform = 'rotate(' + steps[now++] + 'deg)';
+            if (now < steps.length) {
+                running = true;
+                requestAnimFrame(step);
+            } else {
+                running = false;
+                setTimeout(function() {
+                    if (prize != null) {
+                        $("#sncode").text(sncode);
+                        $("#prizetype").text(prize);
+                        $("#result").slideToggle(500);
+                        $("#outercont").slideUp(500);
+                    } else {
+                        alertify.alert("亲，继续努力哦！");
+                    }
+                },
+                    200);
+            }
+        }
+        function start(deg) {
+           deg = deg || lostDeg[parseInt(lostDeg.length * Math.random())];
+            running = true;
+            clearInterval(timer);
+            totalDeg = 360 * 2 + deg;
+            steps = [];
+            now = 0;
+            countSteps();
+            requestAnimFrame(step);
+        }
+        window.start = start;
+        outter = document.getElementById('outer');
+        inner = document.getElementById('inner');
+        i = 10;
+        $("#inner").click(function() {
+            if (running) return;
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "WeChat/HasChange",
+                data: { ActivityId: @Model.ActivityId },
+                success: function(data) {
+                    if (data == "True") {
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: $Maticsoft.BasePath + "WeChat/GetSNCode",
+                            data: { ActivityId: @Model.ActivityId },
+                            success: function(data) {
+                                if (data.STATUS == "True") {
+                                    if (data.Data != "NoData") {
+                                        prize = data.Data;
+                                        sncode = data.SNCode;
+                                        switch (data.Data) {
+                                        case "一等奖":
+                                            start(prizeDeg[9]);
+                                            break;
+                                        case "二等奖":
+                                            start(prizeDeg[8]);
+                                            break;
+                                        case "三等奖":
+                                            start(prizeDeg[7]);
+                                            break;
+                                          case "四等奖":
+                                            start(prizeDeg[6]);
+                                            break;
+                                        case "五等奖":
+                                            start(prizeDeg[5]);
+                                            break;
+                                        case "六等奖":
+                                            start(prizeDeg[4]);
+                                            break;
+                                      case "七等奖":
+                                            start(prizeDeg[3]);
+                                            break;
+                                        case "八等奖":
+                                            start(prizeDeg[2]);
+                                            break;
+                                        case "九等奖":
+                                            start(prizeDeg[1]);
+                                            break;
+                                       case "十等奖":
+                                            start(prizeDeg[0]);
+                                            break;
+                                        default:
+                                            start();
+                                            break;
+                                        }
+                                    } else {
+                                        start();
+                                    }
+                                } else {
+                                    alertify.alert("亲，服务器繁忙！请稍后再试~");
+                                }
+                            }
+                        });
+                    } else {
+                        alertify.alert("亲，你不能再参加本次活动了喔！下次再来吧~");
+                    }
+                }
+            });
+        });
+    });
+    </script>
+}
+else
+{
+    <script type="text/javascript">
+        alertify.alert("亲，该活动不存在或者已经过期了。");
+    </script> 
+}

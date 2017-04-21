@@ -1,0 +1,7 @@
+﻿@model List<Maticsoft.Model.Poll.Options>
+           
+            @foreach (var item in Model)
+    {
+      <span>@item.Name</span>
+        <div class="divresultcolor" style="width: @(item.SubmitNum).00%;">@(item.SubmitNum).00%</div>
+    }

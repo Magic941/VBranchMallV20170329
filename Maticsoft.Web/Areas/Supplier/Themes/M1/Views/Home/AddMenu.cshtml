@@ -1,0 +1,270 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<script type="text/javascript" src="/Areas/Supplier/Themes/M1/Content/Scripts/checkinput.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var selectValue = $("#ctl00_ContentPlaceHolder1_ddlType").val();
+        if (selectValue == "CMS") {
+            $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                var navtype = $(this).val();
+                if (navtype == 2 || navtype == 3 || navtype == 4) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        }
+        //SNS
+        if (selectValue == "SNS") {
+            $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                var navtype = $(this).val();
+                if (navtype == 1 || navtype == 4) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        }
+        //Shop
+        if (selectValue == "Shop") {
+
+            $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                var navtype = $(this).val();
+                if (navtype == 1 || navtype == 2 || navtype == 3) {
+                    $(this).hide();
+                }
+                else {
+                    $(this).show();
+                }
+            });
+        }
+        var selectNavtype = $("#ctl00_ContentPlaceHolder1_ddNavType").val();
+        if (selectNavtype == 0) {
+            $("#ctl00_ContentPlaceHolder1_txtNavURL").show();
+            $("#ctl00_ContentPlaceHolder1_ddValue").hide();
+        } else {
+            $("#ctl00_ContentPlaceHolder1_txtNavURL").hide();
+            $("#ctl00_ContentPlaceHolder1_ddValue").show();
+        }
+
+        $("#ctl00_ContentPlaceHolder1_ddlType").click(function () {
+            var value = $(this).val();
+            $("#ctl00_ContentPlaceHolder1_ddNavType").val("0");
+            $("#ctl00_ContentPlaceHolder1_txtNavURL").show();
+            $("#ctl00_ContentPlaceHolder1_ddValue").hide();
+            //CMS 
+            if (value == "CMS") {
+                $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                    var navtype = $(this).val();
+                    if (navtype == 2 || navtype == 3 || navtype == 4) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            }
+            //SNS
+            if (value == "SNS") {
+                $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                    var navtype = $(this).val();
+                    if (navtype == 1 || navtype == 4) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            }
+            //Shop
+            if (value == "Shop") {
+                $("#ctl00_ContentPlaceHolder1_ddNavType").find('option').each(function () {
+                    var navtype = $(this).val();
+                    if (navtype == 1 || navtype == 2 || navtype == 3) {
+                        $(this).hide();
+                    }
+                    else {
+                        $(this).show();
+                    }
+                });
+            }
+        });
+
+        $("#ctl00_ContentPlaceHolder1_ddNavType").click(function () {
+            var value = $(this).val();
+
+            if (value == 0) {
+                $("#ctl00_ContentPlaceHolder1_txtNavURL").show();
+                $("#ctl00_ContentPlaceHolder1_ddValue").hide();
+            } else {
+                $("#ctl00_ContentPlaceHolder1_txtNavURL").hide();
+                $("#ctl00_ContentPlaceHolder1_ddValue").show();
+            }
+        });
+    });
+       
+</script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>新建导航菜单</span></h3>
+        <small class="desc"><span>您可以新增导航菜单</span> </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="borderkuang border form">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            <span>菜单名称：</span>
+                        </td>
+                        <td>
+                            <input type="text" id="txtMenuName" style="width: 350px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>页面地址：</span>
+                        </td>
+                        <td height="25">
+                            <select id="ddNavType">
+                                <option value="0">自定义</option>
+                                <option value="1">商品分类</option>
+                            </select>
+                            <select id="ddValue">
+                            </select>
+                            <input type="text" id="txtNavURL" style="width: 280px;">
+                            <input type="hidden" id="hidCurrentCateValue" name="hidCurrentCateValue" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>显示序号：</span>
+                        </td>
+                        <td>
+                            <input type="text" id="txtSqueeze" style="width: 50px;" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>打开方式：</span>
+                        </td>
+                        <td style="height: 3px" height="3">
+                            <select id="ddlTarget">
+                                <option value="0">本窗口</option>
+                                <option value="1">新窗口</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>是否可用：</span>
+                        </td>
+                        <td height="25">
+                            <input type="checkbox" id="chkIsUsed" class="checkbox_class" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input type="button" value="确定" id="btnSave" class="reset radius2 btn_style" />
+                                <input type="button" value="取消" id="btnCancle" class="reset radius2" />
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $("#ddValue").hide();
+    $(function () {
+        $("#ddNavType").change(function () {
+            if ($(this).val() > 0) {
+                //说明选择的是商品分类
+                $("#txtNavURL").hide();
+                $.ajax({
+                    url: $Maticsoft.BasePath + "Home/LoadProductCategory",
+                    type: "Post",
+                    dataType: "Json",
+                    success: function (data) {
+                        var html = '<option value="0" selected="selected">请选择</option>';
+                        for (var i = 0; i < data.length; i++) {
+                            html += '<option value="' + data[i].split(':')[0] + '">' + data[i].split(':')[1] + '</option>';
+                        }
+                        $("#ddValue").append(html).show();
+                    }
+                });
+                $("#ddValue").change(function () {
+                    if ($(this).val() == 0) {
+                        ShowFailTip("页面地址不能为空");
+                        return false;
+                    } else {
+                        $("#txtNavURL").val($(this).val());
+                    }
+                });
+            } else {
+                $("#txtNavURL").show();
+                $("#ddValue").hide();
+                $("#ddValue option").remove();
+                var url = $("#txtNavURL").val();
+            }
+        });
+        $("#btnSave").click(function () {
+            //确定按钮点击
+            var menuName = $("#txtMenuName").val().trim();
+            var navUrl = $("#txtNavURL").val().trim();
+            var sequence = $("#txtSqueeze").val().trim();
+            var openType = $("#ddlTarget").val().trim();
+            var checked = $("#chkIsUsed").attr("checked");
+            if (menuName == "") {
+                ShowFailTip("请输入菜单名称");
+                return false;
+            }
+            if (navUrl == "") {
+                ShowFailTip("请输入菜单地址");
+                return false;
+            }
+            if (sequence == "") {
+                ShowFailTip("请输入显示顺序");
+                return false;
+            }
+            if (is_number(sequence)) {
+                ShowFailTip("显示顺序只能为数字");
+                return false;
+            }
+
+            $.ajax({
+                url: $Maticsoft.BasePath + "Home/SubmitMenu",
+                type: "POST",
+                data: {
+                    menuName: menuName,
+                    navUrl: navUrl,
+                    sequence: sequence,
+                    openType: openType,
+                    checked: checked,
+                    submitType: "Add"
+                },
+                success: function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("添加成功！");
+                    } else {
+                        ShowFailTip("添加失败！");
+                    }
+                    window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+                }
+            });
+        });
+        $("#btnCancle").click(function () {
+            window.location = $Maticsoft.BasePath + "Home/SupplierMenu";
+        });
+    });
+
+</script>

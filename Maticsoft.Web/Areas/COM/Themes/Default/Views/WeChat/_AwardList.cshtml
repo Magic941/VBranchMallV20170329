@@ -1,0 +1,9 @@
+﻿@model List<Maticsoft.WeChat.Model.Activity.ActivityAward>
+
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+       <p>@item.AwardName：@item.GiftName 。@*奖品数量：@item.Count*@</p>
+    }
+}

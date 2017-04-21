@@ -1,0 +1,16 @@
+﻿@model List<Maticsoft.Model.Poll.Topics>
+           <div class="newsletterThurii_rdr wenjuandiaocha">
+           @if (Model != null)
+           {
+               foreach (var item in Model)
+               {
+                  <div class="title_diaocha">@item.Title</div>
+                   <div class="multi_nl_cb_text diaocha_txt">
+                       @Html.Action("Options", "Survey", new { topicid = item.ID })
+                   </div>
+                   <input value="radionls@(item.ID)" type="hidden" name="hidtopics" topicsid="@item.ID"/> <!--用来保存每一个问题的所有答案的name-->
+               }
+            <div class="tijiao_wj"><a  onclick="submitOptions()">提交</a></div>
+               <div class="chajieguo" style="display:none;"><a href="javascript:;">查看结果</a></div>              
+           }
+</div>           

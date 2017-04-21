@@ -1,0 +1,107 @@
+﻿@model List<Maticsoft.Model.CMS.Content>  
+<div class="flexslider">
+@if (Model != null && Model.Count > 0)
+{    
+  
+    <ul class="slides">
+     @foreach (var item in Model)
+     {
+          
+		  <li style="background:url(@item.ImageUrl) 50% 0 no-repeat;"></li>     
+	
+     }
+   </ul>          
+}
+else
+{  
+   
+	<ul class="slides">
+		<li style="background:url(/Areas/CMS/Themes/M2/Content/wb5188/images/ban.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/Areas/CMS/Themes/M2/Content/wb5188/images/ban1.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/Areas/CMS/Themes/M2/Content/wb5188/images/ban.jpg) 50% 0 no-repeat;"></li>
+        <li style="background:url(/Areas/CMS/Themes/M2/Content/wb5188/images/ban1.jpg) 50% 0 no-repeat;"></li>
+	</ul> 
+    
+}
+    <div class="w1200 zhuce">
+    	<div class="c m denglu">
+              <div class="login">
+              <h3>健康卡激活</h3>
+              	<input type="text" placeholder="激活卡号" style="margin-top:50px;" id="txtCardNo"/>
+                <input type="text" placeholder="激活密码" id="txtPwd"/>
+                <div class="y_shuru"><img src="/Areas/CMS/Themes/M2/Content/wb5188/images/tanhao.png" /><p>请输入正确的卡号或密码！</p></div>
+                <div class="jihuo">
+                	<a class="chaxun" href="javascript:void(0);" target="_self" onclick="javascript:activatecard()">激活</a>
+                   <li><a class="denglzc" href="javascript:void(0);" target="_self" onclick="javascript:ViewActivatedCard()" >查询</a><li>
+                </div>
+              </div>
+        </div>
+    </div>  
+ </div>
+<form id="formViewCard" method="post" action="/CardActivate/ViewActivatedCard" target="_self">
+          <input  type="hidden" name="cardNo" id="hdcardNo" />
+          <input  type="hidden" name="PWD" id="hdcardPWD"/>
+      </form>
+
+<script type="text/javascript" src="/Areas/CMS/Themes/M2/Content/wb5188/js/jquery.flexslider-min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.flexslider').flexslider({
+		directionNav: true,
+		pauseOnAction: false
+	});
+});
+</script>
+
+
+<script>
+    //开始激活请求卡
+    function activatecard() {        
+        var cardNo = $("#txtCardNo").val();
+        var cardPwd = $("#txtPwd").val();
+
+        if (cardNo == "") {
+            alert("请输入待激活卡号!");
+            return;
+        }
+        if (cardPwd == "") {
+            alert("请输入激活卡密码!");
+            return;
+        }
+
+        $.ajax({
+            url: '/CardActivate/GetCard',
+            type: 'post', dataType: 'json', timeout: 10000,
+            async: false,
+            data: { cardNo: cardNo, pwd: cardPwd },
+            success: function (data) {
+                if (!data.IsSuccess) {
+                    alert(data.Message);
+                    return false;
+                }
+                else {
+                    window.location.href = "/CardActivate/CardActivateStep1";
+                }
+            }
+        });
+    }
+
+    function ViewActivatedCard() {
+        var cardNo = $("#txtCardNo").val();
+        var cardPwd = $("#txtPwd").val();
+
+        if (cardNo == "") {
+            alert("请输入查询卡号!");
+            return;
+        }
+        if (cardPwd == "") {
+            alert("请输入查询密码!");
+            return;
+        }
+
+        $("#hdcardNo").val(cardNo);
+        $("#hdcardPWD").val(cardPwd);
+        $("#formViewCard")[0].submit();
+
+    }
+</script>

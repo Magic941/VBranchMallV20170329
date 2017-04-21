@@ -1,0 +1,42 @@
+﻿@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="product_NEW clearfix">
+    <div class="product_NEW1 clearfix" style="">
+        <span>新品上市</span>
+        <div class="classifi_NEW">
+            @*<a id="tab1" class="active" href="#">家居生活</a>|
+                                <a id="tab2" href="#">服饰鞋包</a>|
+                                <a id="tab3" href="#">家电通讯</a>
+                            <a id="tab4" href="#">电脑数码</a>
+                            <a id="tab5" href="#">母婴玩具</a>
+                            <a id="tab6" href="#">食品饮料</a>*@
+
+        </div>
+    </div>
+    <div id="tab11" class="product_NEW2" style="width: 796px; float: left;">
+        <span class="NEW2_a"><a href="#"></a></span>
+        <ol>
+            <ul class="clearfix">
+                @if(Model!=null)
+                {
+                    foreach(var item in Model)
+                    {
+                    
+                        <li>
+                            <a href="http://zhenhaolin.com/Product/Detail/@item.ProductId" target="_blank">
+                                <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")" width="136" height="136" /></a>
+                            <p style="height: 5px;"></p>
+                            <p><font color="#5a5958">@item.ProductName</font></p>
+                            <p style="height: 5px;"></p>
+                            <p>
+                                <b>¥<em>@(item.LowestSalePrice.ToString("0.00"))</em></b>
+                                <i>¥@(item.MarketPrice.Value.ToString("F"))</i>
+                            </p>
+                        </li>
+                    }
+                }
+            </ul>
+        </ol>
+        <span class="NEW2_b"><a href="#"></a></span>
+    </div>
+
+</div>

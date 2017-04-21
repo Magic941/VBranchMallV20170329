@@ -1,0 +1,187 @@
+﻿
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="description" content="好友推荐" />
+<title>好友推荐</title>
+<link href="/Areas/SNS/Themes/M1/Content/css/friend_select.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div class="zxx_fri_box">
+				<h3 class="zxx_fri_title">选择您感兴趣的用户加关注</h3>
+                <div class="zxx_fri_body">
+               @* 	<div>
+                        <strong class="g6">分组名称</strong><input class="zxx_fri_input" type="text"><span class="g9 f9">（最多输入10个字符）</span>
+                    </div>
+                    <div class="mt5">
+                    	<strong class="g6">查找好友</strong><input class="zxx_fri_input" type="text">
+                    </div>*@
+                    <div id="friSelectMenu" class="zxx_fri_num">
+                    	<a href="javascript:void(0);" class="fri_num_on" id="friSelectAll"><span>全部</span></a>
+                        <a href="javascript:void(0);" id="friHaveSelected"><span>已选(<i id="selectNum">0</i>)</span></a>
+                        <a href="javascript:void(0);" id="friUnSelected"><span>未选(<i id="unSelectNum">15</i>)</span></a>
+                    </div>
+                    <div id="zxxFriMain" class="zxx_fri_con">
+                    	<span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn111.xnimg.cn/photos/hdn111/20090907/2300/tiny_cOUQ_20502g204235.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">张宏达</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                            <a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn.xnimg.cn/photos/hdn321/20091019/0055/tiny_gXS2_3799d019116.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">陈露娜</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                            <a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn111.xnimg.cn/photos/hdn111/20090502/0915/tiny_j0z2_51491p204236.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">张艳</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn211.xnimg.cn/photos/hdn211/20090404/23/05/tiny_QwFi_76100b204238.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">李胜兰</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn211.xnimg.cn/photos/hdn211/20090223/17/40/tiny_M7mp_30421j204238.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">刘菲</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn211.xnimg.cn/photos/hdn211/20090804/1155/tiny_Znhx_2284h204236.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">李朝霞</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn.xnimg.cn/photos/hdn221/20091018/1615/tiny_GzDq_32009a019118.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">黄雅娜</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn211.xnimg.cn/photos/hdn211/20090414/12/50/tiny_boVm_58452o204236.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">丁蓓蓓</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn511.xnimg.cn/photos/hdn511/20090607/2335/tiny_LOX6_57090k204237.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">刘晓静</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn.xnimg.cn/photos/hdn321/20090927/1445/tiny_Tiyk_125389j019117.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">马劲</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn311.xnimg.cn/photos/hdn311/20090827/2035/tiny_AUgn_4278k204236.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">张琬苓</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn511.xnimg.cn/photos/hdn511/20090319/20/05/tiny_qgyJ_137006h204234.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">蔡维佳</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn411.xnimg.cn/photos/hdn411/20090704/1605/tiny_sTnW_26362m204234.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">周益</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn411.xnimg.cn/photos/hdn411/20090615/2235/tiny_En0P_99950d204235.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">殷娜</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                        <span class="zxx_fri_list">
+                        	<a href="javascript:void(0);" class="zxx_fri_a">
+                            	<span class="b1"></span><span class="b2"></span>
+                            	<span class="b3">
+                                	<img class="fri_head_img" src="http://hdn211.xnimg.cn/photos/hdn211/20090626/1455/tiny_fJYm_8527n204237.jpg"><img class="fri_added_img" src="http://www.zhangxinxu.com/study/image/friend_selected.gif">
+                               		<span class="fri_name">郑明康</span>
+                                </span>
+                                <span class="b2"></span><span class="b1"></span>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+                <div class="zxx_fri_btn">
+                	<!-- 此处按钮未添加事件 -->
+                	<input type="button" class="blue_btn" value="确定"/>
+                    <input type="button" class="gray_btn ml5" value="取消"/>
+                </div>
+            </div>
+    <script src="/Scripts/jquery/jquery.min.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/friend_choose.js" type="text/javascript"></script>
+</body>
+</html>

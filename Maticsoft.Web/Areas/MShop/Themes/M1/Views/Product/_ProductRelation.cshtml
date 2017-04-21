@@ -1,0 +1,19 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+  
+  <script type="text/javascript">
+      $(function () {
+          $.lazyFixedLoadImg('.products_cnxh', 100, 100);
+      })
+</script>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="products_cnxh">
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li><a href="@(ViewBag.BasePath)p/d/@item.ProductId">
+                    <img ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")" /><span>￥@item.LowestSalePrice.ToString("F")</span></a></li>
+            }
+        </ul>
+    </div>
+}

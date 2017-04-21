@@ -1,0 +1,27 @@
+﻿@model List<Maticsoft.Model.CMS.Comment>
+@if (Model != null)
+{
+    <div class="comments">
+        <h3>
+            <a href="javascript:;">精彩评论</a></h3>
+        @foreach (Maticsoft.Model.CMS.Comment item in Model)
+        {
+            <div class="comments_lump">
+                <dl class="comments_lump_part">
+                    <dd class="lump_part_ab">
+                    </dd>
+                    <dd class="lump_part_bb" style="word-wrap: break-word;">
+                        @(Maticsoft.Common.StringPlus.SubString(item.Description,55,".."))</dd>
+                    <dd class="lump_part_cb">
+                    </dd>
+                </dl>
+                <dl class="comments_lump_ant">
+                   @item.CreatedNickName  <a href="@(ViewBag.BasePath)Article/Details/@item.ContentId">@item.Title</a>
+                </dl>
+                <div style="clear: both;">
+                </div>
+            </div>
+        }
+    </div>
+}
+

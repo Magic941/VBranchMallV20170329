@@ -1,0 +1,213 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc;
+@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKCardSalesCenterBaseLayout.cshtml";
+    
+}
+@model PagedList<Maticsoft.Model.SalesPersonCardsSearchModel>
+<script>
+    $("#liMenu2").addClass("active");
+</script>
+<form id="formUpload" action="/SalesCardsSearch/ActivatedCardSearch" method="post">
+    <table class="table table-bordered" style="width: 50%">
+        <tr>
+            <td>
+                <div class="input-group input-group-lg" style="width: 300px">
+                    <span class="input-group-addon">激活卡：</span>
+                    <input type="text" class="form-control" placeholder="卡号" name="searchCardNo" value="@ViewBag.searchCardNo">
+                </div>
+            </td>
+            <td>
+                <div class="input-group input-group-lg" style="width: 300px">
+                    <span class="input-group-addon">证件号：</span>
+                    <input type="text" class="form-control" placeholder="投保人或单位证件号" name="searchCardId" value="@ViewBag.searchCardId">
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="input-group input-group-lg" style="width: 300px">
+                    <span class="input-group-addon">保单号：</span>
+                    <input type="text" class="form-control" placeholder="保单号" name="searchInsureNo" value="@ViewBag.searchInsureNo">
+                </div>
+            </td>
+
+        </tr>
+        <tr>
+            <td style="text-align: right">保单查询类型:</td>
+            <td>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="searchInsureType1" id="optionsRadios1" value="0">全部数据
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="searchInsureType1" id="optionsRadios3" value="1">未投保完成数据
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input type="radio" name="searchInsureType1" id="optionsRadios2" value="2">已投保完成数据
+                    </label>
+                </div>
+
+            </td>
+        </tr>
+    </table>
+    <input type="hidden" name="currentPageIndex" id="hdcurrentPageIndex" value="@ViewBag.currentPageIndex" />
+    <input type="hidden" name="searchInsureType" id="hdsearchInsureType" value="@ViewBag.searchInsureType" />
+
+    <button type="button" id="myButton" data-loading-text="查询" class="btn btn-primary" autocomplete="off" style="margin-left: 100px" onclick="javascript:searchData(1)">
+        查询
+    </button>
+    <input id="btnSearch" type="submit" value="查询数据" style="position: absolute; left: -1000px" />
+</form>
+
+
+<table class="table table-bordered">
+    <caption>营销人员激活卡查询</caption>
+    <thead>
+        <tr>
+            <th>卡号</th>
+            <th>卡状态</th>
+            <th>投保人或单位</th>
+            <th>激活时间</th>
+            <th>证件号</th>
+            <th>保单号</th>
+            <th>保单生效日期</th>
+            <th>保单到期日</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {  
+            <tr>
+                <td>@item.CardNo</td>
+                <td>@(item.IsActivate ? "已激活" : "未激活")</td>
+                <td>@item.Name</td>
+                <td>@item.ActivateDate.ToString("yyyy-MM-dd hh:mm:ss")</td>
+                <td>@item.CardId</td>
+                <td>@item.InsureNo</td>
+                 <td>@item.InsureOrderStart.ToString("yyyy-MM-dd 00:00:00")</td>
+                 <td>@item.InsureOrderEnd.ToString("yyyy-MM-dd 00:00:00")</td>
+            </tr>
+            }
+        }
+        else
+        {
+            if (ViewBag.LoginStatus == true)
+            {
+            <tr>
+                <td>数据为空</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+            }
+            else
+            {
+            <tr>
+                <td>登录已过期,无权查看</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>  
+            }
+        }
+    </tbody>
+</table>
+<nav>
+    <ul class="pagination">
+        <li><a href="javascript:void(0)" onclick="javascript:goPage(@(Model.CurrentPageIndex > 1 ? Model.CurrentPageIndex - 1 : 1))">&laquo;</a></li>
+
+        @{        
+            var y = Model.CurrentPageIndex % 10 - 1;
+            var next = Model.CurrentPageIndex - y + 10;
+            if (next > Model.TotalPageCount)
+            {
+                next = Model.TotalPageCount;
+            }
+            if (Model.CurrentPageIndex % 10 == 0)
+            {
+
+                for (int i = Model.CurrentPageIndex; i <= Model.CurrentPageIndex + 10 && i < Model.TotalPageCount; i++)
+                {
+                    if (i == Model.CurrentPageIndex)
+                    {  
+            <li class="active"><a href="javascript:void(0)" onclick="javascript:goPage(@i)">@i</a></li>
+                    }
+                    else
+                    {
+            <li><a href="javascript:void(0)" onclick="javascript:goPage(@i)">@i</a></li>
+                    }
+                }
+            }
+            else
+            {
+
+
+                for (int i = Model.CurrentPageIndex - y, j = Model.CurrentPageIndex - y; i < j + 10 && i < Model.TotalPageCount; i++)
+                {
+                    if (i == Model.CurrentPageIndex)
+                    {  
+                       <li class="active"><a href="javascript:void(0)" onclick="javascript:goPage(@i)">@i</a></li>
+                    }
+                    else
+                    {
+                           <li><a href="javascript:void(0)" onclick="javascript:goPage(@i)">@i</a></li>
+                    }
+                }
+            }
+         
+        }
+
+        <li><a href="javascript:void(0)" onclick="javascript:goPage(@next)">&raquo;</a></li>
+    </ul>
+</nav>
+
+<script>
+
+    function goPage(pageIndex) {
+
+
+        searchData(pageIndex);
+    }
+
+
+    var ischeckedValue = '@ViewBag.searchInsureType';
+    function searchData(pageIndex) {
+        $("#hdcurrentPageIndex").val(pageIndex);
+        var v = $("[name='searchInsureType1']").filter(":checked").attr("value");
+        $("#hdsearchInsureType").val(v);
+
+        $("#btnSearch").click();
+
+    }
+
+    $(document).ready(function () {
+        //alert(ischeckedValue);
+        $.each($("input[name='searchInsureType1']"), function (i, item) {
+
+            var v = $(item).val();
+            if (v == ischeckedValue) {
+                $(item).attr("checked", "checked");
+                return false;
+            }
+
+        });
+
+    });
+
+
+</script>
+
+
+
+

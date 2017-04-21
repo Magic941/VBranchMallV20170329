@@ -1,0 +1,237 @@
+﻿@using Maticsoft.Model.Shop.Order
+@using Webdiyer.WebControls.Mvc
+@model PagedList<OrderInfo>
+@{
+    Maticsoft.BLL.Shop.Order.OrderReturnGoodsItem bllOrderReturnGoodsItem = new Maticsoft.BLL.Shop.Order.OrderReturnGoodsItem();
+    Func<long, long, bool> FuncCheckHasAppliedReturn = (intOrderId, intOrderItemId) =>
+    {
+        IList<Maticsoft.Model.Shop.Order.OrderReturnGoodsItem> list = bllOrderReturnGoodsItem.GetModelList("orderid = " + intOrderId + " And orderitemid = " + intOrderItemId);
+        return null == list || list.Count <= 0 ? false : true;
+    };
+}
+<script type="text/javascript">
+    $(function () {
+        resizeImg('.img-box', 50, 50);
+    })
+</script>
+@if (Model != null)
+{
+    <table width="100%" border="0" class="user_dingdan" cellspacing="0" cellpadding="0">
+        <tr>
+            <th>订单号</th>
+            <th>订单商品</th>
+            <th>收货人</th>
+            <th>订单金额</th>
+            <th>创建时间</th>
+            <th>订单状态</th>
+            @*<th>完成时间</th>*@
+            <th>商品操作</th>
+            <th>订单操作</th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            //是否拆单模式
+            if (item.HasChildren && (item.PaymentStatus > 1 || (item.PaymentGateway == "cod" || item.PaymentGateway == "bank")))
+            {
+                for (int i = 0; i < item.SubOrders.Count; i++)
+                {
+                    <tr>
+                        @if (i == 0)
+                        {
+                            <td height="40" style="width: 88px"  class="bor" OrderId="@item.OrderId" rowspan="@item.SubOrders.Count">
+                                @item.OrderCode
+                            </td>
+                        }
+                        <td style="width: 80px;" class="bor">
+                            @if (item.SubOrders[i].OrderItems != null && item.SubOrders[i].OrderItems.Count > 0)
+                            {
+                                <ul>
+                                    @for (int j = 0; j < item.SubOrders[i].OrderItems.Count; j++)
+                                    {
+                                        <li>
+                                            <a href="@(ViewBag.BasePath)Product/Detail/@item.SubOrders[i].OrderItems[j].ProductId" style="display:block; margin:2px auto;" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                                                <img title="@item.SubOrders[i].OrderItems[j].Name" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.SubOrders[i].OrderItems[j].ThumbnailsUrl, "T115X115_")" width="100" onerror=" this.onerror = '';this.src = '/Content/themes/base/Shop/images/none.png' " >
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </td>
+                        @if (i == 0)
+                        {
+                            <td style="width: 88px"  class="bor" rowspan="@item.SubOrders.Count">
+                                @item.ShipName
+                            </td>
+                            <td style="width: 88px"  class="bor" rowspan="@item.SubOrders.Count">￥@item.Amount.ToString("F")<br />
+                                @item.PaymentTypeName
+                            </td>
+                            <td style="width: 88px"  class="bor" rowspan="@item.SubOrders.Count">
+                                @item.CreatedDate.ToString("yyyy-MM-dd HH:mm")
+                            </td>
+                        }
+                        <td height="40" style="width: 88px" class="bor">
+                            @Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderType(item.SubOrders[i].PaymentGateway, item.SubOrders[i].OrderStatus, item.SubOrders[i].PaymentStatus, item.SubOrders[i].ShippingStatus)
+                        </td>
+                        @*<td style="width: 70px" class="bor">
+                            @if (item.ActionDate != DateTime.MinValue)
+                            {
+                                DateTime TimeLimit = item.ActionDate.AddDays(double.Parse(System.Configuration.ConfigurationManager.AppSettings["AutoCompleteTimeLimit"]));
+                                @:@TimeLimit.ToString("yyyy-MM-dd HH:mm:ss")
+                            }
+                        </td>*@
+                        <td style="width: 70px" class="bor">
+                            @switch (Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderMainStatus(item.SubOrders[i].PaymentGateway, item.SubOrders[i].OrderStatus, item.SubOrders[i].PaymentStatus, item.SubOrders[i].ShippingStatus))
+                            {
+                                case EnumHelper.OrderMainStatus.Handling:
+                                case EnumHelper.OrderMainStatus.Shipping:
+                                case EnumHelper.OrderMainStatus.Shiped://已发货
+                                    <ul>
+                                    @for (int k = 0; k < item.SubOrders[i].OrderItems.Count; k++)
+                                    { 
+                                        <li>
+                                            @if (item.SubOrders[i].OrderItems[k].ReturnStatus == (int)EnumHelper.Returnstatus.NoApply && !FuncCheckHasAppliedReturn.Invoke(item.SubOrders[i].OrderId, item.SubOrders[i].OrderItems[k].ItemId))
+                                            { 
+                                                <a href="javascript:;" class="btnReturnGoods" style="margin:20px auto;  display:block;" ItemId="@item.SubOrders[i].OrderItems[k].ItemId">申请退货/款</a>
+                                            }
+                                            else
+                                            {
+                                                <span style="color:#aaaaaa; display:block; margin:20px auto;">申请退货/款</span>
+                                            }
+                                        </li>
+                                    }
+                                    </ul>
+                                    break;
+                            }
+                        </td>
+                        <td style="width: 50px" class="bor">
+                            <a href="@(ViewBag.BasePath)UserCenter/OrderInfo/@item.SubOrders[i].OrderId" >查看</a><br />
+                            @switch (item.SubOrders[i].OrderStatus)
+                            {
+                                case (int)EnumHelper.OrderStatus.Complete: //已完成
+                                    if (!item.SubOrders[i].IsReviews)
+                                    {
+                                        <a href="@(ViewBag.BasePath)UserCenter/PReview/@item.SubOrders[i].OrderId" >评论</a><br />
+                                    }
+                                    break;
+                            }
+                            @switch (Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderMainStatus(item.SubOrders[i].PaymentGateway, item.SubOrders[i].OrderStatus, item.SubOrders[i].PaymentStatus, item.SubOrders[i].ShippingStatus))
+                            {
+                                case EnumHelper.OrderMainStatus.Shiped://已发货
+                                    if (!item.SubOrders[i].HasReturn)
+                                    { 
+                                        <a href="javascript:;" class="btnOrderComplete"  itemid="@item.SubOrders[i].OrderId">完成</a>
+                                    }
+                                    break;
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td height="40" style="width: 88px"  class="bor" OrderId="@item.OrderId" >
+                        @item.OrderCode
+                    </td>
+                    <td style="width: 80px;" class="bor">
+                        @if (item.OrderItems != null && item.OrderItems.Count > 0)
+                        {
+                            foreach (var orderItem in item.OrderItems)
+                            {
+                            <a href="@(ViewBag.BasePath)Product/Detail/@orderItem.ProductId" style="display:block; margin:5px auto;" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                                <img title="@orderItem.Name" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(orderItem.ThumbnailsUrl, "T115X115_")" width="100" onerror="this.onerror='';this.src='/Content/themes/base/Shop/images/none.png'" >
+                            </a>
+                            }
+                        }
+                    </td>
+                    <td style="width: 88px" class="bor">
+                        @item.ShipName
+                    </td>
+                    <td style="width: 88px" class="bor">￥@item.Amount.ToString("F")<br />
+                        @item.PaymentTypeName
+                    </td>
+                    <td style="width: 88px" class="bor">
+                        @item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")
+                    </td>
+                    <td style="width: 88px" class="bor">
+                        @Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderType(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus)
+                    </td>
+                    @*<td style="width: 70px" class="bor">
+                        @if (item.ActionDate != DateTime.MinValue)
+                        {
+                            DateTime TimeLimit = item.ActionDate.AddDays(double.Parse(System.Configuration.ConfigurationManager.AppSettings["AutoCompleteTimeLimit"]));
+                            @:@TimeLimit.ToString("yyyy-MM-dd HH:mm")
+                        }
+                    </td>*@
+                    <td style="width: 70px" class="bor">
+                        @switch (Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderMainStatus(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus))
+                        {
+                            case EnumHelper.OrderMainStatus.Handling:
+                            case EnumHelper.OrderMainStatus.Shipping:
+                            case EnumHelper.OrderMainStatus.Shiped://已发货
+                                foreach (var orderItem in item.OrderItems)
+                                {
+                                    if (orderItem.ReturnStatus == (int)EnumHelper.Returnstatus.NoApply && !FuncCheckHasAppliedReturn.Invoke(item.OrderId, orderItem.ItemId))
+                                    { 
+                                        <a href="javascript:;" class="btnReturnGoods"  ItemId="@orderItem.ItemId">申请退货/款</a><br />
+                                    }
+                                    else
+                                    { 
+                                        <span style="color:#aaaaaa;">申请退货/款</span>
+                                    }
+                                }
+                                break;
+                        }
+                    </td>
+                    <td style="width: 50px" class="bor">
+                        <a href="@(ViewBag.BasePath)UserCenter/OrderInfo/@item.OrderId" >查看</a><br />
+                        @switch (item.OrderStatus)
+                        {
+                            case (int)EnumHelper.OrderStatus.UnHandle://未处理
+                                if (item.PaymentGateway != "cod" && item.PaymentGateway != "bank")
+                                {
+                                    <a href="javascript:;" class="btnPayOrder" ItemId="@item.OrderId">支付</a><br />
+                                    <a href="javascript:;" class="btnOrderCancel"  ItemId="@item.OrderId">取消</a><br />
+                                }
+                                break;
+                            case (int)EnumHelper.OrderStatus.Complete://已完成
+                                if (!item.IsReviews)
+                                {
+                            <a href="@(ViewBag.BasePath)UserCenter/PReview/@item.OrderId" >评论</a>  <br />   
+                            <br />
+                                }
+                                break;
+                        }
+                        @switch (Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderMainStatus(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus))
+                        {
+                            case EnumHelper.OrderMainStatus.Shiped://已发货
+                                if (!item.HasReturn)
+                                { 
+                                    <a href="javascript:;" class="btnOrderComplete"  itemid="@item.OrderId">完成</a>   
+                                }
+                                break;
+                        }
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+}
+else
+{
+    <p style="margin-top: 20px; margin-left: 20px; font-size: large;">亲，您暂时还没有订单哦</p>
+}
+
+<center>
+                @Html.AjaxPager(Model, new PagerOptions
+           {
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+               NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+               CssClass = "in_pages",
+               SeparatorHtml = ""
+           }, new AjaxOptions { UpdateTargetId = "LoadOrderList" })
+            </center>
+
+

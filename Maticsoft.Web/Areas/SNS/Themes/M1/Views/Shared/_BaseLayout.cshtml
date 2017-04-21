@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@section head{
+    @RenderSection("head", false)
+}
+@Html.Action("Header", "Partial")@*头部*@
+
+@Html.Action("Navigation", "Partial", new { Theme="M1" })@*导航*@
+<div style="z-index:0">
+@RenderBody()
+
+</div>@*页面内容*@
+
+@Html.Action("Footer", "Partial")@*底部*@

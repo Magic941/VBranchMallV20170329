@@ -1,0 +1,23 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+           <div class="box notice">
+                <div class="hd">
+                    <h2>
+                        最新消息</h2>
+                </div>
+           @if (Model != null && Model.Count > 0)
+           {
+           
+               <div class="bd">
+                   <ul class="notice-list">
+                       @foreach (var item in Model)
+                       { 
+                           <li><a href="/Article/Details/@item.ContentID" target="_blank" title=" @item.Title">@item.Title </a></li>      
+                       }  
+                   </ul>
+               </div>           
+           }
+           else
+           {
+               <p style="margin-top:10px;margin-left:10px;margin-bottom: 5px;">暂无消息</p>
+           }
+ </div>

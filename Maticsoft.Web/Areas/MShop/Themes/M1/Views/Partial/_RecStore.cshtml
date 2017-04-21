@@ -1,0 +1,14 @@
+﻿@model  List<Maticsoft.Model.Shop.Supplier.SupplierInfo>
+   @if (Model != null && Model.Count > 0)
+   {<div class="prolm">
+          @foreach (var item in Model)
+               {
+                      <a href="@(ViewBag.BasePath)Store/@item.SupplierId"  title="@item.ShopName"  >  
+                      @item.ShopName
+                   </a> 
+                   
+               }
+</div>
+   }
+       
+

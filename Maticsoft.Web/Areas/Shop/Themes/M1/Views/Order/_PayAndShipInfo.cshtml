@@ -1,0 +1,86 @@
+﻿@model Maticsoft.ViewModel.Shop.PayAndShip
+<a name="payAndShipFocus"></a>
+<div class="check-infor-Box">
+    <div id="payment-ship">
+        <div class="payment">
+            <h3>支付方式</h3>
+            <div id="save-consignee-tip" class="step-right" style="display: none;">
+                <span class="save-consignee-payship">由于您更改了收货人信息，请重新填写支付及配送方式</span>
+            </div>
+            <div style="padding-bottom: 10px">
+            </div>
+            <div>
+                @if (Model.ListPaymentMode != null && Model.ListPaymentMode.Count > 0)
+                {
+                    <ul class="pay-chose">
+                        @foreach (Maticsoft.Payment.Model.PaymentModeInfo item in Model.ListPaymentMode)
+                        {
+                            <li class="chose">
+                                <input payname="@item.Name" id="pay-method-@item.ModeId" name="payment" type="radio" value="@item.ModeId" /><label for="pay-method-@item.ModeId">
+                                    @item.Name
+                                </label>
+                                <span>@Html.Raw(item.Description)</span>
+                                <span class="clr"></span>
+                            </li>
+                        }
+                    </ul>
+                }
+            </div>
+            <!--<div id="shipment"></div>-->
+            <a href="#none" class="btn-save-Consignee" onclick="Save_PayAndShip(this)"><span>&nbsp;&nbsp;保存支付方式</span> </a>
+        </div>
+    </div>
+</div>
+@*@if (Model.CurrentPaymentMode != null)
+{
+    <script type="text/javascript">
+        $('#step-2 .payment :radio[value=@(Model.CurrentPaymentMode.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}
+@if (Model.CurrentShippingType != null)
+{
+    <script type="text/javascript">
+        $('#step-2 #shipment .sment-box :radio[value=@(Model.CurrentShippingType.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}*@
+<script type="text/javascript">
+    //$('#step-2 .payment :radio').unbind('click').bind('click', function () {
+    //    $('#step-2 .payment :radio').removeAttr('checked').parents('.form:eq(0)>.item').removeClass('item-selected');
+    //    $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    //    $('#step-2').load($Maticsoft.BasePath + 'Order/PayAndShipInfo', {
+    //        payId: $(this).val()
+    //    });
+    //});
+    //$('#step-2 #shipment .sment-box :radio').unbind('click').bind('click', function () {
+    //    $('#step-2 #shipment .sment-box :radio').removeAttr('checked').parents('.sment-box:eq(0)>.item').removeClass('item-selected');
+    //    $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    //});
+    function Save_PayAndShip(sender) {
+        $(sender).hide();
+        $(sender).next().show();
+
+        var addressId = $('#step-1').find('.msg').attr("addressId");
+        if (!addressId) addressId = 0;
+
+        var skuStr = $.getUrlParam('sku');
+        var count = $.getUrlParam('count');
+        var c = $.getUrlParam('c');
+        var g = $.getUrlParam('g');
+
+        $('#step-2').load($Maticsoft.BasePath + 'Order/ShowPayAndShip', {
+            payId: $('#step-2 .payment :radio:checked').val(),
+            shipId: $('#step-2 #shipment .sment-box :radio:checked').val(),
+            addrId: addressId,
+            sku: skuStr ? skuStr : null,
+            count: count ? count : 1,
+            c: c ? c : null,
+            g: g ? g : null
+        }, function () {
+            Status_None();
+            //window.location.hash = "payAndShipFocus";
+        });
+    }
+    $(function () {
+        $(".btn-save-Consignee").click();
+    });
+</script>

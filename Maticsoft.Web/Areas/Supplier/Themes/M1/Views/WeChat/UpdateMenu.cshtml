@@ -1,0 +1,171 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.WeChat.Model.Core.Menu
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnSave").click(function () {
+            var MenuName = $("#MenuName").val();
+            var txtSequence = $("#txtSequence").val();
+            var menu = $("#menu").val();
+            var chkStatus = $("#chkStatus").val();
+            var Remark = $("#Remark").val();
+            if (!MenuName) {
+                ShowFailTip("菜单名称不能为空");
+                return;
+            }
+            $.ajax({
+                url: ($Maticsoft.BasePath + "WeChat/UpdateMenu?timestamp={0}").format(new Date().getTime()),
+                type: 'POST',
+                dataType: 'json',
+                timeout: 10000,
+                async: false,
+                data: { MenuName: MenuName, txtSequenc: txtSequence, menu: menu, chkStatus: chkStatus, Remark: Remark },
+                success: function (resultData) {
+                    if (resultData["Result"] == "OK") {
+                        ShowSuccessTip("修改成功!");
+                        setTimeout("DelayTime()", 2000);
+                    } else {
+                        ShowFailTip("修改失败!");
+                    }
+                }, error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    ShowFailTip(xmlHttpRequest.responseText);
+                }
+            });
+        });
+    });
+    function DelayTime() {
+        window.parent.location.reload();
+    }
+</script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            编辑菜单管理
+        </h3>
+        <small class="desc">您可以进行编辑微信菜单操作 </small>
+    </div>
+    @if (Model != null)
+    { 
+        <input id="hfGroupId" type="hidden" value="@Model.MenuId" name="MenuId"/>
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                        <tr>
+                            <td class="td_class">
+                                上级菜单：
+                            </td>
+                            <td height="25">
+                                @{
+        Maticsoft.WeChat.BLL.Core.Menu menuBll = new Maticsoft.WeChat.BLL.Core.Menu();
+        Maticsoft.WeChat.Model.Core.Menu parent = menuBll.GetModel(Model.ParentId);
+        if (parent == null)
+        {
+                                    <label>
+                                        主菜单</label>
+        }
+        else
+        {
+                                    <label>@parent.Name</label>
+        }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                菜单名称：
+                            </td>
+                            <td height="25">
+                                @* <asp:TextBox ID="tName" TabIndex="1" runat="server" Width="250px" MaxLength="30"></asp:TextBox>*@
+                                <input type="text" name="menuName" value="@Model.Name" id="MenuName" style="width: 250px" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                显示顺序：
+                            </td>
+                            <td height="25">
+                                @*<asp:TextBox ID="txtSequence"  runat="server" Width="250px" MaxLength="30"></asp:TextBox>*@
+                                <input type="text" name="txtSequence" id="txtSequence" style="width: 250px" value="@Model.Sequence.ToString()"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                菜单类型：
+                            </td>
+                            <td height="25">
+                                <select id="menu">
+                                    <option value="1">微信商城</option>
+                                    <option value="2">微官网</option>
+                                    <option value="3">我的账户</option>
+                                    <option value="4">获取优惠劵</option>
+                                    <option value="5">商品分类</option>
+                                    <option value="6">图文信息</option>
+                                    <option value="7">自定义网址</option>
+                                    <option value="8">商品查询</option>
+                                    <option value="9">签到</option>
+                                </select>
+                                <select id="search">
+                                    <option value="value">text</option>
+                                </select>
+                                <label>
+                                    关键字:</label>
+                                @* <asp:DropDownList ID="ddType" runat="server" Width="200px"   AutoPostBack="True" OnSelectedIndexChanged="ddType_Changed">
+                                    <asp:ListItem Value="click" Text="事件"></asp:ListItem>
+                                    <asp:ListItem Value="view" Text="页面跳转"></asp:ListItem>
+                                </asp:DropDownList>
+                                   <asp:TextBox ID="txtMenuUrl" runat="server"  Visible="False"  ></asp:TextBox>
+                                    <asp:DropDownList ID="dropAction" runat="server" Width="200px"  >
+                                </asp:DropDownList>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                是否启用：
+                            </td>
+                            <td height="25">
+                                @if (Model.Status == 1)
+                                {
+                                    <input type="checkbox" name="chkStatus" id="chkStatus" checked /><label>是</label>
+                                }
+                                else
+                                {
+                                    <input type="checkbox" name="chkStatus" id="chkStatus" /><label>是</label>
+                                }
+                                @* <asp:CheckBox ID="chkStatus" Text="是" runat="server"   Checked="True"/>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                菜单描述：
+                            </td>
+                            <td height="25">
+                                <textarea id="Remark" name="Remark" style="width: 250px" maxlength="50" rows="5"
+                                    cols="3">@Model.Remark</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                            </td>
+                            <td height="25">
+                                <div class="form stdform">
+                                    <input type="button" name="name" id="btnSave" value="保存" class="adminsubmit_short" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label id="lblMsg" style="color: Red">
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+</div>

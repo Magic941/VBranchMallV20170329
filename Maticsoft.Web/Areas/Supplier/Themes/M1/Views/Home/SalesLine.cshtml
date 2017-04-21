@@ -1,0 +1,53 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<script src="/FusionCharts/FusionCharts.js" type="text/javascript"></script>
+<form name="form1" method="post" action="">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <label>@(ViewBag.pageTitel)走势图</label>
+        </h3>
+        <small class="desc">
+            <label>
+                您可以查看@(ViewBag.pageTitel)走势图信息</label>
+        </small>
+    </div>
+    <div style="background-color: #ffffff; border: 1px solid #CCC;">
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                        <tr>
+                            <td class="td_class">
+                                选择年份:
+                                @{
+                                    DateTime baseYear = Maticsoft.Common.Globals.SafeDateTime("2013-01-01", DateTime.Now);
+                                    int count = DateTime.Now.Year - baseYear.Year;
+                                    <select name="selectYear">
+                                        @for (int i = 0; i <= count; i++)
+                                        {
+                                            <option value="@(baseYear.AddYears(i).Year.ToString())" >@baseYear.AddYears(i).Year.ToString()</option>
+                                        }
+                                    </select>
+                                }
+                            </td>
+                            <td height="25">
+                                <div class="form stdform">
+                                    &emsp;&emsp;
+                                    <input type="submit" name="name" value="统计" class="reset radius2" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label>@Html.Raw(ViewBag.litChart)</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+</form>

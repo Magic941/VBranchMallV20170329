@@ -1,0 +1,30 @@
+﻿@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {     
+    <li>
+        <i class="hot-Rank hot-Rank1">1</i>
+        <div class="Rec-W Rec-W80">
+            <div class="Rec-img">
+                <a target="_blank" href="/Product/Detail/@item.ProductId">
+                    <img src='@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")' style="width:80px;height:80px"/></a>
+            </div>
+            <div class="Rec-info">
+                <p class="Rec-goods-sel hide">
+                    <a href="#">已售0件</a>
+                </p>
+                <p class="Rec-goods-tit">
+                    <a target="_blank" href="/Shop/Product/Detail/@item.ProductId">@item.ProductName</a>
+                </p>
+                <p class="Rec-goods-price">
+                    <span class="mod_price"><i>¥</i><span>@(item.LowestSalePrice.ToString("F"))</span></span>
+                </p>
+            </div>
+        </div>
+    </li>                 
+                       
+    }
+}
+
+

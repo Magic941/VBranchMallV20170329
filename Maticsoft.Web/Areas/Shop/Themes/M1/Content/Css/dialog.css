@@ -1,0 +1,77 @@
+.J_dialog {
+	position:fixed;
+	z-index:10000;
+	left:50%;
+	top:50%;
+	padding:6px;
+	overflow:hidden;
+	_position:absolute;
+}
+.J_dialog_content {
+	position:relative;
+	background:#FFF;
+	width:420px;
+	z-index:2;
+	border:1px solid #999;
+}
+.J_dialog_hd {
+	background:url(../images/popTitle.jpg) repeat-x 0 0;
+	height:30px;
+	line-height:30px;
+	padding:0 10px;
+	color:#333333;
+}
+.J_dialog_bd,.J_dialog_ft {
+	margin:10px;
+}
+.J_dialog_title {
+	font-weight:bold;
+	font-size:14px;
+}
+.J_dialog_hd .J_dialog_close {
+	position:absolute;
+	top:0;
+	right:10px;
+	background:url(../images/closeNormal.gif) no-repeat 100% 50%;
+	width:40px;
+	height:30px;
+}
+.J_dialog_hd .J_dialog_close:hover {
+	background-image:url(../images/closeHover.gif);
+}
+.J_dialog_mask {
+	position:absolute;
+	top:0;
+	left:0;
+	border:0 none;
+	width:100%;
+	height:100%;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	background:#000;
+	z-index:9999;
+}
+.J_dialog_shadow {
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	background:#000;
+	z-index:1;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	_padding:99em;
+}
+.J_dialog_ifr {
+	position:absolute;
+	border:0 none;
+	filter:alpha(opacity=1);
+	z-index:9998;
+}
+.btn {
+	_position:relative
+}

@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@section head{
+    @RenderSection("head", false)
+}
+@Html.Action("Header", "Partial", new { area = "SNS" }) @*头部*@
+@Html.Action("Navigation", "Partial", new { area = "SNS",Theme="M1" })@*导航*@
+
+<!------usercenter-------->
+<div class="clear"></div>
+<div class="material">
+    @Html.Action("LeftMenu", "Partial") @*菜单*@
+    @RenderBody()  @*页面内容*@
+<div class="clear"></div>
+</div>
+<!------usercenter end----->
+
+@Html.Action("Footer", "Partial", new { area = "SNS" }) @*底部*@

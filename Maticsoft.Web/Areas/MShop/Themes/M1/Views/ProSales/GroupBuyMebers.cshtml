@@ -1,0 +1,243 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "豪礼大派送";
+
+    int number = ViewBag.date;
+   
+    string today =ViewBag.datehour.ToString("yyyy-MM-dd");
+}
+@using Webdiyer.WebControls.Mvc
+@model List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+<link href="/Areas/MShop/Themes/M1/Content/Css/GroupBuyMebers/GroupBuy.css" rel="stylesheet" />
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMdd"))" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/o_loading.gif') no-repeat center;
+    }
+    .Pan2_a  {
+        font-size:0.8rem;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+        $("[id^='first']").die("click").live("click", function () {
+            $("[id^='next']").each(function () {
+                var _self = $(this); _self.css("display", "none");
+            });
+            var _self1 = $(this);
+            //_self1.css("display", "block");
+            var hours = _self1.attr("atr");
+            $("#next" + hours).css("display", "block");
+            //  $("#next"+'"'+index+'"').css("display", $("#next"+index).css("display") == "none" ? "block" : "none");
+            var startdate=$("#hidstartdate").val();
+            $("#hidhours").val(hours);
+            GetHoursproducts(startdate,hours);
+
+        });
+        function GetHoursproducts(startdateval, hoursval) {
+            $.ajax({
+                url: $Maticsoft.BasePath + "ProSales/GroupBuyProductLists",
+                type: 'post',
+                dataType: 'html',
+                async: false,
+                data: {
+                    startdate: startdateval,
+                    hours: hoursval
+                },
+                success: function (Data) {
+                    $("#next" + hoursval + " li").remove();
+                    $("#next" + hoursval).append(Data);
+                },
+                error: function (XMLHttpRequest) {
+
+                    ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                }
+            });
+        };
+        var hourval =Number($("#hidhours").val());
+        if (hourval < 14)
+        {
+            hourval = 12;
+        }
+        else if (hourval > 14 && hourval < 18)
+        {
+            hourval = 14;
+        }
+        else if (hourval > 18 && hourval < 20)
+        {
+            hourval = 18;
+        } else
+        {
+            hourval = 20;
+        }
+        GetHoursproducts($("#hidstartdate").val(), hourval);
+    })
+</script>
+<input type="hidden" id="hidstartdate" value="@ViewBag.StartDate" />
+<input type="hidden" id="hidhours" value="@ViewBag.date" />
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span><span>@DateTime.Now.ToString("MM月dd日") (今天)</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="Panic_buying">
+    <ul>
+        @{
+        int[] a=new []{12,14,18,20}; //时间段数组
+        
+            if (Model != null && Model.Count > 0)
+            {
+                for (int i = 12; i < 21; i++)
+                {
+                    DateTime startDate = Convert.ToDateTime(today).AddHours(i);
+                    DateTime EndDate = Convert.ToDateTime(today).AddHours(i).AddMinutes(59).AddSeconds(59);
+                    if (a.Contains<int>(i))
+                    { 
+                    <li class="Panic_buying_a" >
+                        <a id="first@(i)" atr="@(i)" href="javascript:void(0)" >
+                             <div class="buying_Pan1"   >
+                            @{
+                                if (ViewBag.IsToday)
+                                {
+                                    if (i < number)
+                                    {
+                                        <div class="Pan1_a" style=" background: url(/Areas/MShop/Themes/M1/Content/img/x5_02.png) center no-repeat; background-size: cover;">
+                                            <em>
+                                                <img src="/Areas/MShop/Themes/M1/Content/img/x1.png" /></em>
+                                            <span>
+                                                <b>@i:00</b>
+                                                <i>抢购结束</i>
+                                            </span>
+                                        </div>
+                                    }
+                                    if (i == number)
+                                    {
+                                        <div class="Pan1_a" style="background: url(/Areas/MShop/Themes/M1/Content/img/x2.png) center no-repeat; background-size: cover;">
+                                            <em>
+                                                <img src="/Areas/MShop/Themes/M1/Content/img/x1.png" /></em>
+                                            <span>
+                                                <b>@i:00</b>
+                                                <i>抢购中</i>
+                                            </span>
+                                        </div>
+                                    }
+                                    if (i > number)
+                                    {
+                                        <div class="Pan1_a" style="background: url(/Areas/MShop/Themes/M1/Content/img/x6_11.png) center no-repeat; background-size: cover;">
+                                            <em>
+                                                <img src="/Areas/MShop/Themes/M1/Content/img/x1.png" /></em>
+                                            <span>
+                                                <b>@i:00</b>
+                                                <i>即将开始</i>
+                                            </span>
+                                        </div>
+                                    }
+                                }
+                                else
+                                {
+                                    <div class="Pan1_a" style="background: url(/Areas/MShop/Themes/M1/Content/img/x6_11.png) center no-repeat; background-size: cover;">
+                                            <em>
+                                                <img src="/Areas/MShop/Themes/M1/Content/img/x1.png" /></em>
+                                            <span>
+                                                <b>@i:00</b>
+                                                <i>即将开始</i>
+                                            </span>
+                                        </div> 
+                                }
+                            }
+                            <div class="Pan2_a txtenddate" startDate="@startDate"  endDate="@EndDate" Product="@i"  id="txtenddate_@(i)" curDate="@DateTime.Now" >
+                                <span><em>0</em><em>1</em>：<em>3</em><em>2</em>：<em>3</em><em>2</em></span>
+                            </div>
+
+                        </div>
+                        </a>
+                        <div data-id="next@(i)" id="next@(i)" data-type="@i"  class="buying_Pan2 next@(i)" style="@(i == number ? "display:none" : " display:block")">
+                            <ul>
+                            </ul>
+                        </div>
+                    </li>
+                    }
+                    else { }
+                }
+            }
+        }
+    </ul>
+</div>
+<script id="demo1" type="text/x-jquery-tmpl">
+    ${title}:@*<span style="color: #808080;">${day}</span>天*@<span style="color: #FF0000; ">${hour}</span>时<span style="color: #FF0000;" >${minute}</span>分 <span style="color: #FF0000;" >${second}</span>秒
+</script>
+
+<script type="text/javascript">
+
+    var tmplObj = $('#demo1');
+
+
+    function render(data, productId) {
+
+        //按钮颜色
+        //结束后执行该指令
+        if (data.status == -1) {
+            //$("#img_" + productId).attr("src", "/Areas/Shop/Themes/M1/Content/images/cctv_2.png");
+            //$(this).html("抢购已结束");
+            //$("#" + productId).html("售罄");
+            //$("#" + productId).parent().parent().find("[class=price]").attr("class", "price1");
+            //$("#" + productId).parent().parent().find("[class=progress]").attr("class", "progress1");
+            //$("#" + productId).parent().parent().find("[class=buy]").attr("class", "buy1");
+            //$("#" + productId).parent().attr("class", "buy1");
+        }
+        if (data.status == 0) {
+            data.title = "倒计时";
+            //var tmp = $("#" + $(this).context.id).attr("Product");
+            //$("#" + tmp).html("等待");
+            //$("#" + tmp).parent().parent().attr("class", "feature featureA");
+            //$("#" + tmp).parent().parent().find("[class=progress]").css("display", "none");
+
+            //var tmpid = $(this).id.attr("productid");
+
+            //$("#" + tmpid).html("等待");
+            //$(this).html("准备开抢");           
+        }
+
+        //return $('#demo1').tmpl(data);
+        return tmplObj.tmpl(data);
+
+    }
+
+
+
+
+    //产生秒表
+    function ProSecond() {
+
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+
+            var myclass = new CountDown();
+
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: render,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+
+            });
+        })
+    }
+    ProSecond();
+
+</script>
+
+

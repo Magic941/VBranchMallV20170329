@@ -1,0 +1,53 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+@if (Model != null && Model.Count > 0)
+{
+     <div class="read">
+                <div class="com-title"><span>
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-3.png" alt="保险超市">保险超市</span></div>
+        @foreach (var item in Model)
+        {
+            <div class="readbox">
+                    <div class="readtitle"><a href="#" target="_blank" title="@item.Title">@item.Title</a></div>
+                    <div class="readimg"><a href="#" target="_blank" title="@item.Title">
+                        <img src="@item.ThumbImageUrl" alt="@item.Title" height="59" width="90"></a></div>
+                    <p>@item.Summary.Substring(0,80)....</p>
+                </div>
+        }
+       
+    </div>
+}
+else
+{
+      <div class="read">
+                <div class="com-title"><span>
+                    <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-3.png" alt="保险超市">保险超市</span></div>
+                <div class="readbox">
+                    <div class="readtitle"><a href="#" target="_blank" title="泛社交入口统一，手Q发力陌生人市场将带来多大的效应?">泛社交入口统一，手Q发力陌生人市</a></div>
+                    <div class="readimg"><a href="#" target="_blank" title="泛社交入口统一，手Q发力陌生人市场将带来多大的效应?">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/109.png" alt="泛社交入口统一，手q发力陌生人市场将带来多大的效应=" height="59" width="90"></a></div>
+                    <p>新版手Q的发布，人们关注的焦点是增加了手机QQ红包功能。由于支付宝也推出了红包功能，因此市场的焦点都关注在这个领域。其实，除了手Q红包之外，这次手Q升级中也有一些新...</p>
+                </div>
+                <div class="readbox">
+                    <div class="readtitle"><a href="#" target="_blank" title="谁给了乐视小米们一记响亮的耳光？">谁给了乐视小米们一记响亮的耳光？</a></div>
+                    <div class="readimg"><a href="#" target="_blank" title="谁给了乐视小米们一记响亮的耳光？">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/112.png" title=" 谁给了乐视小米们一记响亮的耳光" height="59" width="90"></a></div>
+                    <p>凭借互联网思维，小米手机短短几年一跃成为国内的知名品牌，市场份额名列前茅，而乐视则喊出用互联网思维颠覆一切的口号。一番征战过后，以乐视和小米为代表的互联网电视，...</p>
+                </div>
+                <div class="readbox">
+                    <div class="readtitle"><a href="#" target="_blank" title="苏宁借阿里风波搞营销：谁挠了用户的心">苏宁借阿里风波搞营销：谁挠了用户</a></div>
+                    <div class="readimg"><a href="#" target="_blank" title="苏宁借阿里风波搞营销：谁挠了用户的心">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/107.jpg" title=" 苏宁借阿里风波搞营销：谁挠了用户的心" height="59" width="90"></a></div>
+                    <p>从具体的营销广告词来看，苏宁巧妙的借势并作为一条情感纽带紧密地连接起两端，如，养正气、走正道、办正事、上正规，短短几十个字就能打动人，构建起和用户亲密无间的认同...</p>
+                </div>
+                <div class="readbox">
+                    <div class="readtitle"><a href="#" target="_blank" title="2015 科技圈三大预言：高速wi-fi、物联网、更智能的手机">2015 科技圈三大预言：高速wi-fi、</a></div>
+                    <div class="readimg"><a href="#" target="_blank" title="2015 科技圈三大预言：高速wi-fi、物联网、更智能的手机">
+                        <img src="/Areas/CMS/Themes/M1/Content/99jkc/uploads/111.jpg" alt="科技圈三大预言：高速wi-fi、物联网、更智能的手机" height="59" width="90"></a></div>
+                    <p>2015年，智能手机将真正的“智能”起来，应用程序之间能够相互融合、连接，实现一种独特的、个性化的体验。消费者希望与品牌有互动，能够立马以书面形式获得他们所需要的信...</p>
+                </div>
+
+
+            </div>
+    
+}

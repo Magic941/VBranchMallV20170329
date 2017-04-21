@@ -1,0 +1,189 @@
+﻿@model Maticsoft.ViewModel.Shop.ShippingAddressModel
+<div class="step-title">
+    <strong>收货人信息</strong><span class="step-action" id="consignee_edit_action" style="display: inline;"><span style="display: none"><a href="#none" onclick="back_Before('consignee')">[关闭]</a></span></span></div>
+<div class="step-content">
+    <div id="consignee" class="sbox-wrap">
+        <div class="sbox">
+            <div id="consignee-list" name="consignee-list">
+                @if (Model.ListAddress != null && Model.ListAddress.Count > 0)
+                {
+                    foreach (Maticsoft.Model.Shop.Shipping.ShippingAddress item in Model.ListAddress)
+                    {
+                    <div class="item">
+                        <input type="radio" class="hookbox" name="consignee_radio" id="consignee_radio_@(item.ShippingId)" value="@(item.ShippingId)" onclick="chose_Consignee('@(item.ShippingId)')">
+                        <label for="consignee_radio_@(item.ShippingId)" onclick="chose_Consignee('@(item.ShippingId)')">
+                            <b>@(item.ShipName)</b>&nbsp; @(item.RegionFullName)
+                            @(Maticsoft.Common.StringPlus.SubString(item.Address,25,".."))
+                            &nbsp; @(item.CelPhone)
+                            &nbsp;
+                        </label>
+                        <span class="item-action" style="display: none;"><a href="javascript:;" onclick="show_ConsigneeDetail('@(item.ShippingId)')">编辑</a> &nbsp; <a href="javascript:;" style="display: none" onclick="delete_Consignee('@(item.ShippingId)')">删除</a>&nbsp; </span>
+                    </div>
+                    }
+                }
+            </div>
+            <div class="item" id="use-new-address">
+                <a name="editConsignee"></a>
+                <input type="radio" onclick="use_NewConsignee()" class="hookbox" name="consignee_radio" id="consignee_radio_new">
+                <label for="consignee_radio_new">
+                    使用新地址
+                </label>
+                <span id="addNumLimitNote" class="status error" style="display: none;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 当前地址数量已达上限，若要继续添加新地址，请先删除部分收货地址。</span>
+            </div>
+            @using (Html.BeginForm("SubmitAddressInfo", "Order", FormMethod.Post, new { id = "FormSubmitAddress" }))
+            {
+                <input type="hidden" id="IsModify" name="IsModify" value="@ViewBag.IsModify" />
+                <input type="hidden" id="selectUser" name="selectUser" value="@ViewBag.UserId" />
+                
+                @Html.HiddenFor(m => m.CurrentAddress.ShippingId)
+                @Html.HiddenFor(m => m.CurrentAddress.UserId)
+                <div class="consignee-form" id="consignee-form" style="padding-left: 12px; display: none;">
+                    <div class="list" id="name_div">
+                        <span class="label"><em>*</em>收货人：</span>
+                        <div class="field">
+                            @Html.TextBoxFor(m => m.CurrentAddress.ShipName, new { maxlength = "20", @class = "textbox" })
+                        </div>
+                        <span class="status error" id="name_div_error"></span>
+                    </div>
+                    <div class="list select-address" id="area_div">
+                        <span class="label"><em>*</em>所在地区：</span>
+                        <div class="field">
+                            <span id="span_area">
+                                @Html.HiddenFor(m => m.CurrentAddress.RegionId, new { id = "hfSelectedNode", handle = "/RegionHandle.aspx", isnull = "true" })
+                                <script src="/Scripts/jquery/maticsoft.selectregion.js" type="text/javascript"></script>
+                            </span><span style="display: none;" class="form-tip">标“*”的为支持货到付款的地区,<a style="color: #005EA7" target="_blank" href="javascript:;">查看货到付款地区</a></span>
+                        </div>
+                        <span class="status error" id="area_div_error"></span>
+                    </div>
+                    <div class="list full-address" id="address_div">
+                        <span class="label"><em>*</em>详细地址：</span>
+                        <div class="field">
+                            @Html.TextBoxFor(m => m.CurrentAddress.Address, new { maxlength = "50", @class = "textbox" })
+                        </div>
+                        <span class="status error" id="address_div_error"></span>
+                    </div>
+                    <div class="list" id="call_div">
+                        <span class="label"><em>*</em>手机号码：</span>
+                        <div class="field">
+                            <div class="phone">
+                                @Html.TextBoxFor(m => m.CurrentAddress.CelPhone, new { maxlength = "11", @class = "textbox" })
+                                <em style="display: none;">或</em> <span style="display: none;">固定电话：</span>
+                                <input style="display: none;" type="text" class="textbox" onblur=" check_Consignee('call_phone_div') " maxlength="20">
+                            </div>
+                            <span class="status error" id="call_div_error"></span>
+                        </div>
+                    </div>
+                    <div class="list" id="email_div">
+                        <span class="label"><em></em>邮编：</span>
+                        <div class="field">
+                            @Html.TextBoxFor(m => m.CurrentAddress.Zipcode, new { maxlength = "10", @class = "textbox" })
+                        </div>
+                        <span class="status error" id="email_div_error"></span>
+                    </div>
+                    <div class="list" id="email_div" style="display: none;">
+                        <span class="label"><em></em>邮箱：</span>
+                        <div class="field">
+                            <input type="text" class="textbox" maxlength="50" onblur=" check_Consignee('email_div') ">
+                            <span class="form-tip">用来接收订单提醒邮件，便于您及时了解订单状态</span>
+                        </div>
+                        <span class="status error" id="email_div_error"></span>
+                    </div>
+                </div>
+                <div class="form-btn group">
+                    <a id="savaAddress" href="#none" class="btn-submit" onclick=" Save_Consignee(this)"><span>确认收货地址</span></a>
+                    <div class="loading loading-1" style="display: none">
+                        <b></b>正在提交信息，请等待！</div>
+                </div>
+                <div style="display: none">
+                    <input id="consignee_form_reset" name="" type="reset"></div>
+            }
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+//    $(function () {
+//        $("#savaAddress").click(function() {
+//            Save_Consignee(this, @(ViewBag.UserId));
+//        });
+//    });
+    function use_NewConsignee() {
+        var $target = $('#step-1');
+        Status_Editing($target);
+        $target.load($Maticsoft.BasePath + 'Order/AddressInfo', { addressId: 0, IsModify: false,userId:@(ViewBag.UserId) });
+    }
+
+    function show_ConsigneeDetail(addressId) {
+        var $target = $('#step-1');
+        Status_Editing($target);
+        $target.load($Maticsoft.BasePath + 'Order/AddressInfo', { addressId: addressId, IsModify: true });
+    }
+
+    function chose_Consignee(addressId) {
+        $('.item-action').hide();
+        $('#consignee-list .item').removeClass('item-selected').find('input[type=radio]').prop('checked', false);
+        $('#use-new-address').removeClass('item-selected').find('input[type=radio]').prop('checked', false);
+        $('#consignee-form').hide();
+        $('#consignee-list .item #consignee_radio_' + addressId).prop('checked', true).parent().addClass('item-selected').find('.item-action').show();
+        $('#CurrentAddress_ShippingId').val(addressId);
+    }
+
+    if ($('#IsModify').val() == "True") {
+        //编辑模式
+        chose_Consignee($('#CurrentAddress_ShippingId').val());
+        $('#consignee-form').show();
+    } else {
+        if (parseInt($('#CurrentAddress_ShippingId').val()) < 1) {
+            //新增模式
+            $('.item-action').hide();
+            $('#consignee-list .item').removeClass('item-selected').find('input[type=radio]').prop('checked', false);
+            $('#consignee-form').show();
+            $('#use-new-address').addClass('item-selected').find('input[type=radio]').prop('checked', true);
+        } else {
+            //默认模式
+            chose_Consignee($('#CurrentAddress_ShippingId').val());
+        }
+    }
+
+    function Save_Consignee(sender) {
+        if ($('#consignee-form').is(':visible')) {
+            var shipName = $("#CurrentAddress_ShipName").val();
+            if (shipName == "") {
+                ShowFailTip("请填写收货人");
+                return;
+            }
+            var regionId = parseInt($("#hfSelectedNode").val());
+            if (regionId == 0 || $("#hfSelectedNode").val() == "") {
+                ShowFailTip("请选择所在地区");
+                return;
+            }
+            var address = $("#CurrentAddress_Address").val();
+            if (address == "") {
+                ShowFailTip("请填写详细地址");
+                return;
+            }
+            var celPhone = $("#CurrentAddress_CelPhone").val();
+            if (celPhone == "") {
+                ShowFailTip("请填写手机号码");
+                return;
+            }
+            var reg = /^[1][3|5|8][0-9]\d{8}$/;
+            if (!reg.exec(celPhone)) {
+                ShowFailTip("输入有效的手机号码");
+                return;
+            }
+        }
+        $(sender).hide();
+        $(sender).next().show();
+        var form = $('#FormSubmitAddress');
+        $.post(
+            form.get(0).action,
+            form.serialize(),
+            function (data) {
+                $('#step-1').html(data);
+                Status_None();
+                //window.location.hash = "consigneeFocus";
+                Edit_Payment(null, true);
+            }
+        );
+    }
+</script>

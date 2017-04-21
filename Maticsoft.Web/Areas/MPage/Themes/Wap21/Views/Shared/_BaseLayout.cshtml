@@ -1,0 +1,13 @@
+﻿@using System.Web.Mvc.Html
+@{
+    Layout = "~/Areas/MPage/Themes/Wap21/Views/Shared/_SiteLayout.cshtml";
+    @*网站前台模版*@
+}
+@section head{
+    @RenderSection("head", false)
+}
+@RenderBody()
+@section foot{
+    @RenderSection("foot", false)
+}
+

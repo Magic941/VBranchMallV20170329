@@ -1,0 +1,71 @@
+﻿@model Maticsoft.ViewModel.SNS.PhotoList
+@{
+    //ViewBag.Title = "迎访问热卖购服装搭配频道，时尚达人们教你如何搭配衣服，分享2012年最新时装搭配、夏季女装搭配经验心得。";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jBox/maticsoft.jquery.jBox.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/PhotoRelease.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            resizeImg('.tus', 225, 340);
+            $('#c@(Html.ViewContext.RouteData.Values["orderby"])').attr('style', 'color: #FF70A7;');
+        });
+    </script>
+}
+<div class="clear">
+</div>
+<!------collocation------->
+<div class="collocation">
+    <div class="os">
+        <div class="suncargo_b">
+            图片秀</div>
+        <div class="order" style="margin-top: 7px;">
+            <div class="order_1">
+                排序：</div>
+            <div class="order_2">
+                <ul>
+                    <li><a id="cpopular" href="@(ViewBag.BasePath)Photo/Index/-1/@(Model.CategoryInfo!=null?Model.CategoryInfo.CategoryId:0)/all/popular">喜欢</a></li>
+           <li><a  id="cnew" href="@(ViewBag.BasePath)Photo/Index/-1/@(Model.CategoryInfo != null ? Model.CategoryInfo.CategoryId : 0)/all/new">最新</a></li>
+           <li style="border-right: 0;"><a id="chot" href="@(ViewBag.BasePath)Photo/Index/-1/@(Model.CategoryInfo != null ? Model.CategoryInfo.CategoryId : 0)/all/hot">最热</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+    @{Html.RenderPartial("PhotoList", Model);}
+    <div class="shopping_bt">
+        @*<a href="javascript:;">
+            <img src="/Areas/SNS/Themes/M1/Content/images/album_04.jpg" /></a>*@
+         @Html.Action("AdDetail", "Partial", new { id =5, ViewName = "_ImageAd" })
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<div id="template" style="display: none">
+    <div id="UploadPhotoTemplate">
+        <div class="picture" id="UploadPhotoWindow">
+            <div class="picture_an" id="UploadPhoto" style="height: auto; margin-left: 40px">
+                <a href="javascript:void(0)">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/user_18.jpg"></a></div>
+            <div class="picture_wen" style="width: 250px">
+                仅支持jpg、gif、png且小于5M</div>
+        </div>
+    </div>
+    <div id="PhotoResultTemplate" style="display: none">
+    </div>
+</div>
+<script type="text/javascript">
+
+
+</script>
+@RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")
+<!------collocation end----->

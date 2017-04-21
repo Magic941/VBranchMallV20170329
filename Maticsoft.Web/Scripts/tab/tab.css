@@ -1,0 +1,98 @@
+﻿
+body{
+color: #000;
+font-family: "宋体", arial;
+font-size: 12px;
+margin: 0;
+}
+.nTab4{
+	float: left;
+	width: 100%;
+	background-position:left;
+	background-repeat:repeat-y;
+	margin-right: auto;
+	margin-left: auto;
+}
+.nTab4 .TabTitle{ float:left;
+	overflow: hidden;
+	background-image: url(cen1.gif);
+	background-repeat: repeat-x;
+	background-position: top;
+	/*height: 38px;*/
+	width: 100%;
+}
+.nTab4 .TabTitle ul{
+border:0;
+margin:0;
+padding:0;
+}
+.nTab4 .TabTitle li{
+	float: left;
+	width: 80px;
+	cursor: pointer;
+	list-style-type: none;
+	height: 38px;
+	line-height:38px;
+}
+
+.nTab4 .TabTitle ul li a{
+line-height:33px;
+}
+
+
+.nTab4 .TabTitle .active{
+	background: url(bt1.gif) no-repeat 0px 6px;
+	color: #003399;
+	padding-top:5px;
+	width:81px;
+	margin-left: 8px;
+	line-height: 33px;
+	height: 33px;
+    text-align: center;
+	
+	font-size:12px;
+}
+.nTab4 .TabTitle .normal{
+	background-image: url(bt2.gif);
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	line-height: 33px;
+	height:33px;
+	 width:81px;
+	margin-left: 8px;
+	font-size:12px;
+	padding-top:5px;
+    text-align: center;
+}
+.normal a {
+	color: #333333;
+	text-decoration: none;
+}
+.normal a:hover {
+	color: #FF6600;
+	text-decoration: underline;
+}
+.active a {
+	color: #003399;
+	text-decoration: none;
+}
+.active a:hover {
+	color: #003399;
+	text-decoration: underline;
+}
+.nTab4 .TabContent{
+	background:#fff;
+	margin-top: 0px;
+	margin-right: auto;
+	margin-bottom: 0px;
+	margin-left: auto;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 0;
+}
+.none4 {display:none;}
+.left1{ background:url(left1.gif) no-repeat; width:8px; height:47px; float:left;}
+.right1{ background:url(right1.gif) no-repeat; width:8px; height:47px; float:left;}
+.daohang{ height:47px; clear:both;}
+.clear{ clear:both;}
+.border{float: left}

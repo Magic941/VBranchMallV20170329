@@ -1,0 +1,167 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierCategories>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/gridviewstyle.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        //$(".iframe").colorbox({ iframe: true, width: "450", height: "325", overlayClose: false });
+        $("#ctl00_ContentPlaceHolder1_gridView tr").each(function (index, domEle) {
+            if (index != 0) {
+                var optionTag = $(this).html();
+                if (optionTag.indexOf("parentid=\"0\"") < 0) {
+                    $(domEle).hide();
+                    $(".productcag1 span img").attr("src", "/Areas/Supplier/Themes/M1/Content/images/jia.gif");
+                }
+            }
+        });
+        $(".btnUpdate").click(function () {
+            var _self = $(this);
+            var categoryId = _self.attr("cid");
+            var value = _self.prev().val();
+            if (isNaN(value) || parseInt(value) <= 0) {
+                ShowFailTip('请填写正确的顺序值');
+                return false;
+            } else {
+                $.ajax({
+                    url: $Maticsoft.BasePath + "Product/UpdateSeqNum",
+                    type: 'POST',
+                    dataType: 'text',
+                    timeout: 10000,
+                    data: { CategoryId: categoryId, UpdateValue: value },
+                    success: function (resultData) {
+                        if (resultData == "SUCCESS") {
+                            ShowSuccessTip('保存成功');
+                        }
+                        else {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                        }
+                    }
+                });
+            }
+        });
+        $("#btnSearch").click(function () {
+            if ($("#proType").val() == -1) {
+                $("#prolist").load($Maticsoft.BasePath + "Product/ProCategory/0");
+            } else {
+                $("#prolist").load($Maticsoft.BasePath + "Product/ProCategory/" + $("#proType").val());
+            }
+        });
+        $("#btnAddPro").click(function () {
+            window.location = $Maticsoft.BasePath + "Product/AddProCate";
+        });
+    });
+</script>
+<!--Title -->
+<div class="contenttitle2 mar30">
+    <h3>
+        <span>商品分类管理</span>
+    </h3>
+    <small class="desc"><span>您可以添加、编辑、删除商品分类信息</span> </small>
+</div>
+<!--Title end -->
+<!--Add  -->
+<!--Add end -->
+<!--Search -->
+<div class="newslistabout">
+    <div class="field shuru shuru1">
+        <img src="/Areas/Supplier/Themes/M1/Content/images/icon-1.gif" width="19" height="19" />
+        <span>搜索</span>
+        <select id="proType" class="myselect">
+            @if (null != Model)
+            {
+                <option value="-1" selected="selected">请选择</option>
+                foreach (var item in Model)
+                {
+                    if (item.Depth == 1)
+                    {
+                <option value="@item.Path">@item.Name</option>
+                    }
+                }
+            }
+        </select>
+        <input type="button" id="btnSearch" value="搜索" class="adminsubmit_short" />
+    </div>
+</div>
+<br />
+<!--Search end-->
+<div class="newslist">
+    <div class="newsicon">
+        <ul>
+            <li style="background: url(/images/icon8.gif) no-repeat; width: 50px;" id="liAdd"><a
+                href="javascript:;" title="添加新的店铺分类" id="btnAddPro">添加</a> <b>|</b> </li>
+            <li style="background: url(/Areas/Supplier/Themes/M1/Content/images/jia.gif) no-repeat  5px -1px;
+                width: auto;"><span id="openAll"><a style="cursor: pointer; text-decoration: none;
+                    line-height: normal;">全部展开</a></span><b>|</b></li>
+            <li style="background: url(/Areas/Supplier/Themes/M1/Content/images/jian.gif) no-repeat  5px -1px;
+                width: auto;"><span id="closeAll"><a style="cursor: pointer; text-decoration: none;
+                    line-height: normal;">全部收缩</a></span><b>|</b></li>
+        </ul>
+    </div>
+    <div id="prolist">
+        @{Html.RenderPartial("_ProCategoryList", Model);}
+    </div>
+</div>
+<table border="0" cellpadding="0" cellspacing="1" style="width: 100%;display: none;">
+    <tr>
+        <td style="width: 1px;">
+        </td>
+        <td align="left">
+            <input type="button" id="btnUpdateSeq" value="确定" class="adminsubmit" />
+        </td>
+    </tr>
+</table>
+<div class="newslist_title">
+    <div class="shou" style="background-color: #FFFFFF">
+    </div>
+</div>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        //全部隐藏
+        $("#closeAll").bind("click", function () {
+            $("span[parentid='2']").parent().parent().hide();
+            $(".productcag1 span img").attr("src", "/Areas/Supplier/Themes/M1/Content/images/jia.gif");
+        });
+        //全部展开
+        $("#openAll").bind("click", function () {
+            $(".GridViewStyle tr").each(function (index, domEle) {
+                if (index != 0) {
+                    $(domEle).show();
+                    $(".productcag1 span img").attr("src", "/Areas/Supplier/Themes/M1/Content/images/jian.gif");
+                }
+            });
+        });
+        $(".productcag1 span img").each(function (index, imgObj) {
+            $(imgObj).click(function () {
+                if ($(imgObj).attr("src") == "/Areas/Supplier/Themes/M1/Content/images/jian.gif") {
+                    var parentid = $(this).attr("parentid");
+                    $("span[itemid='" + parentid + "']").parent().parent().hide();
+                    //把img src设加可开打状态
+                    $(imgObj).attr("src", "/Areas/Supplier/Themes/M1/Content/images/jia.gif");
+                } else {
+                    var currentTrNode = $(imgObj).parents("tr");
+                    currentTrNode = currentTrNode.next();
+                    var optionHTML;
+                    while (true) {
+                        optionHTML = currentTrNode.html();
+                        if (typeof (optionHTML) != "string") {
+                            break;
+                        }
+                        if (optionHTML.indexOf("parentid=\"0\"") < 0) {
+                            currentTrNode.show();
+                            currentTrNode = currentTrNode.next();
+                        } else {
+                            break;
+                        }
+                    }
+                    $(imgObj).attr("src", "/Areas/Supplier/Themes/M1/Content/images/jian.gif");
+                }
+            });
+        });
+    })
+</script>

@@ -1,0 +1,280 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string attrvalues = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+
+}
+<script src="/Scripts/jquery/jquery.lazyload.js" type="text/javascript"></script>
+<style>
+    /*.in_pages span{
+    padding-left:0;
+    }
+    .in_pages span {
+        display:inline-block;
+         *display: inline;zoom:1;
+         margin-right:4px;
+          font-weight :bold;
+          font-size:14px;
+    }
+    .in_pages span.in_r a {
+        padding:0px 2px 0px 2px; background:#fff; color:orange;display:inline-block; *display: inline;zoom:1; background:#fff;border:#E8F0EF 1px solid;
+    font-weight :bold;
+    font-size:16px;
+    }
+     .in_pages span.in_r a:hover{
+        background:#fff;
+        color:orange;
+        border:#E8F0EF 1px solid;
+    }*/
+</style>
+<div id="ProductListDiv">
+    <script type="text/javascript">
+        $(function () {
+            //保存显示价格
+            var priceStr = '@price';
+        var price1 = priceStr.split("-")[0];
+        var price2= priceStr.split("-")[1];
+        if (!isNaN(price1)&&parseInt(price1) > 0) {
+            $("#txtPrice1").val(price1);
+        }
+        if (!isNaN(price2)&&parseInt(price2) > 0) {
+            $("#txtPrice2").val(price2);
+        }
+        var mod = '@mod';
+            $(".Sort").find("li").each(function() {
+                var mode = $(this).find("a").attr("mod");
+                if (mode == mod) {
+                    $(this).find("a").addClass("cur");
+                }
+            });
+            $("#SubPrice").click(function() {
+                var price1 = parseInt($("#txtPrice1").val());
+                var price2=parseInt($("#txtPrice2").val());
+                if (isNaN(price1)) {
+                    price1 = 0;
+                }
+                if (isNaN(price2)) {
+                    price2 = 0;
+                }
+                location.href = $Maticsoft.BasePath+"product/@cid/@brandid/@attrvalues/@mod/"+price1+"-"+price2;
+            });
+            
+        $('.OnlyNum').OnlyNum();
+        $(".item-addcart #Reduction").die('click').live('click',function() {
+            var quantity = $(this).parent().find('#Quantity');
+            var num = parseInt(quantity.val()) -1;
+            if (!num||num < 1) num = 1;
+            quantity.val(num);
+        });
+        $(".item-addcart #Addition").die('click').live('click',function() {
+            var quantity = $(this).parent().find('#Quantity');
+            var num = parseInt(quantity.val()) +1;
+            if (!num) num = 1;
+            if (num > 99) num = 99;
+            quantity.val(num);
+        });
+        $(".item-addcart #AddCart").die('click').live('click',function() {
+            var sender = this;
+            var quantity = $(sender).parent().find('#Quantity');
+            var num = parseInt(quantity.val());
+            if (!num||num < 1) num = 1;
+            if (num > 99) num = 99;
+            quantity.val(num);
+            $.ajax({
+                type: "POST",
+                dataType: "json",
+                async: false,
+                url: $Maticsoft.BasePath + "ShoppingCart/AddCart?s=" + new Date().format('yyyyMMddhhmmssS'),
+                data: { ProductId: $(sender).attr('productId'), Count: num },
+                success: function(resultData) {
+                    switch (resultData.STATUS) {
+                        case "SUCCESS":
+                            ShowSuccessTip("加入购物车成功！");
+                            var quantity = $('#hd-cart-amount');
+                            quantity.text(parseInt(quantity.text()) + num);
+                            $(sender).parent().find('#Quantity').val(1);
+                            break;
+                        default:
+                            switch (resultData.DATA) {
+                                case "NOSTOCK":
+                                    ShowServerBusyTip("非常抱歉, 商品库存不足！");
+                                    break;
+                                case "NOSKU":
+                                case "NO":
+                                default:
+                                    ShowFailTip("服务器繁忙，请稍候再试！");
+                                    break;
+                            }
+                            break;
+                    }
+                }
+            });
+        });
+            
+       @* waterFall.init({
+            //Ajax请求参数
+            AjaxOptions: {
+                //Ajax请求参数
+                Params:@Html.Raw(ViewBag.DataParam),
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Product/ListWaterfall"
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex:$('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "J_lazyload",
+                //列数
+                ColumnNumber: 0,RowNumber: 4
+            });*@
+        $.lazyFixedLoadImg('.list-n4', 175, 228);
+    });
+    </script>
+    @if (Model.ProductPagedList != null)
+    {
+        <div ajaxcontent="1" class="com-bar" name="">
+            <div id="Sort">
+            </div>
+            <div class="com-bar-inner clearfix" id="N1-N101-12-60-1-00-1-1-N-N-0-0-Sort">
+                <div class="bar-innerL">
+                    <ul class="fl mr10 Sort">
+                        <li class="listsale des"><a rel="nofollow" id="MRPX004" canajax="1" anchor="Sort"
+                                     href="@(ViewBag.BasePath)product/@cid/@brandid/@attrvalues/default/@price" mod="default" class="moren">
+                            <span>默认</span></a> </li>
+                        <li class="listsale des"><a rel="nofollow" id="XLPX004" canajax="1" anchor="Sort"
+                            href="@(ViewBag.BasePath)product/@cid/@brandid/@attrvalues/hot/@price"  mod="hot" class=""><span>销量</span><i class="low mgL5"></i></a></li>
+                        <li class="listdate "><a rel="nofollow" id="XPPX004" canajax="1" anchor="Sort"
+                            href="@(ViewBag.BasePath)product/@cid/@brandid/@attrvalues/new/@price"  mod="new" class="" title="上架时间由近到远">
+                            <span>上架时间</span></a></li>
+                       @* <li><a class="'chose" href="#"><i class="c-box mgR5"></i>健康自营店</a></li>*@
+                        <li class="listprice des"><a rel="nofollow" id="JGPX004"  canajax="1" anchor="Sort"
+                            href="@(ViewBag.BasePath)product/@cid/@brandid/@attrvalues/price/@price" mod="price" class="" title="点击按价格由低到高排序">
+                            <span>价格</span><i class="price price-top mgL5"></i></a></li>
+                    </ul>
+                    <div class="fl mr5">
+                        <input name="" type="text" class="mtext priceTxt" id="txtPrice1" maxlength="6" value="">
+                        <span class="lower">-</span>
+                        <input name="" type="text" class="mtext priceTxt" id="txtPrice2" maxlength="6" value="">
+                    </div>
+                    <a canajax="1" overrideclick="1" class="mbtn" id="SubPrice" href="javascript:void(0)"
+                        anchor="Sort"><span>确定</span></a>
+
+                </div>
+                @*<div class="paging fr">
+                    <span class="fl mr5 mt5 c9">1/29</span><a id="FYBOT004" canajax="1" class="paging-next"
+                        anchor="Sort" rel="history" href="/product/@cid/0/@attrvalues/@mod/@price?pageIndex=2"><span>下一页</span></a>
+                </div>*@
+                <div class="bar-innerR">
+                    @*<span class="count"><b>1</b>/50</span>
+                    <span class="Page"><i class="prev-no"></i><a href="/product/@cid/0/@attrvalues/@mod/@price?pageIndex=2"><i class="next"></i></a></span>*@
+                </div>
+            </div>
+            <div class="list-view mt10 pb5 cf" style="display: none">
+                <dl class="view-box">
+                    <dt class="filter-title">筛选：</dt>
+                    <dd class="view-check">
+                        <a rel="nofollow" canajax="1" anchor="Sort" href="http://list.maticsoft/N1-N101-12-60-1-00-3-1-N-N-0-0.htm"
+                            id="A1">特价</a></dd>
+                </dl>
+                <dl class="view-box view-box-r">
+                    <dt class="filter-title">显示：</dt>
+                    <dd>
+                        <a rel="nofollow" anchor="Sort" href="http://list.maticsoft/N1-N101-12-60-1-00-1-1-N-N-0-0.htm#Sort"
+                            class="cur" id="KSLL004">款式</a></dd>
+                    <dd>
+                        <a rel="nofollow" anchor="Sort" href="http://list.maticsoft/N1-N101-12-60-1-00-1-1-N-N-1-0.htm#Sort"
+                            id="HSLL004">花色</a></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="com-goods">
+            <script>
+                $(function(){
+                    $(".Glist-box").hover(function () { $(this).css("border-color", "#01b55a") }, function () { $(this).css("border-color", "") })
+                })
+
+            </script>
+            <div ajaxcontent="1" class="goods-list" name="__FLLB002">
+                <ul class="clearfix" id="J_lazyload">
+
+                    @foreach (var item in Model.ProductPagedList)
+                    {
+                    
+                        <li class="Glist cur" styleid="product_@(item.ProductId)">
+                            <div class="Glist-box">
+                                <a class="Glist-box-img" target="_blank" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">
+                                    <img style="width:200px;height:200px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")" title="@item.ProductName" alt="@item.ProductName" /></a>
+                                <div class="Good-HD" style="height:36px">
+                                    <div  class="txt-red" title="@item.Subhead">
+                                        @if (item.Subhead != null)
+                                        {
+                                             @Maticsoft.Common.StringPlus.SubString(item.Subhead,30,"...")
+                                        }
+                                    </div>
+                                </div>
+                                <div class="price-box clearfix">
+                                    <span class="price txt-red">¥@(item.LowestSalePrice.ToString("F"))</span>
+                                    <del>¥@(item.MarketPrice.Value.ToString("F"))</del>
+                                </div>
+                                <div class="Goods-Tit">
+                                    <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank" title="@item.ProductName">@Maticsoft.Common.StringPlus.SubString(item.ProductName,40,"...")</a>
+                                </div>
+                                <div class="">
+                                    <a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId" target="_blank" title="已售数量：">已售数量：@Maticsoft.Common.StringPlus.SubString(item.SaleCounts+item.FalseSaleCount,40,"...")</a>
+                                </div>
+                                <div class="comment clearfix">
+                                    @*<span class="fL comment-p">评论<a href="#"><em>2150条</em></a></span>
+                                <span class="fan fR">返4.5元</span>*@
+                                </div>
+                                <div class="Glist-act clearfix">
+                                    @*<div class="shopping_num">
+                                        <input type="text" value="1">
+                                        <span>
+                                            <a class="add">加</a>
+                                            <a class="dis_decrease" href="#">减</a>
+                                        </span>
+                                    </div>
+                                    <div class="fL shopping-btn-s"><a href="/Product/Detail/@item.ProductId"></a></div>*@
+                                </div>
+                                @*<div class="owner"><span>健康店自营</span></div>*@
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <div class="loadingmask">
+                    <div class="loadingmask-bg">
+                    </div>
+                    <div class="loadingmask-txt fixtop">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/loading-pink.gif" class="mr10" style="vertical-align: middle">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = true,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 10,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+            <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+            <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+        </div>
+    }
+    </div>

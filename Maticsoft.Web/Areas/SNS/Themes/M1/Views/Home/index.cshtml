@@ -1,0 +1,134 @@
+﻿@model  List<Maticsoft.Model.SNS.Categories>
+@{
+    //ViewBag.Title = "热卖购-专业社会化分享导购社区，淘宝客网站，SNS社区，动软社会化电商方案";
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayOut.cshtml";
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            resizeImg('.CategoryDetailPart', 150, 170);
+            $.lazyFixedLoadImg('.AlbumPart', 62, 62);
+            resizeImg('.PhotoPart', 150, 170);
+            $("#loadUser").load("@(ViewBag.BasePath)Home/IndexUser");
+            $(".HotCom").mouseover(function () {
+                var _self = $(this);
+                var type = _self.attr("type");
+                $(".HotCom").removeClass("current");
+                $(".HotCom[type=" + type + "]").addClass("current");
+                $(".HotComList").each(function () {
+                    var type1 = $(this).attr("type");
+                    if (type == type1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/weibo.js" type="text/javascript"></script>
+}
+<div class="clear">
+</div>
+<!------banner-------->
+
+<!------banner结束----->
+<div class="club_w960">
+    <div class="layout">
+        <div class="grid-9">
+            <div id="tab-primary-slider" class="module mod-primary-slider">
+                <div class="cell-bd">
+                    @Html.Action("IndexAd", new { id = 38 })
+                </div>
+            </div>
+            <div class="module mod-index-category">
+                <div class="module mod-primary-recom cg-bbs-topic">
+                    <div class="cell-hd-cglt">
+                        <h2 style="color: #F60;">
+                            交流圈</h2>
+                        <a class="hd-sub font-song" href="@(ViewBag.BasePath)Group" title="更多">更多<b>&gt;</b></a>
+                    </div>
+                    @Html.Action("GroupTopic", new { ViewName = "_GroupTopic", Top = 12 })
+                </div>
+            </div>
+        </div>
+        <div class="grid-14">
+            <div class="module mod-primary-recom mod-hot-topic">
+                @Html.Action("CMSArticle", new { ViewName = "_IndexHot", Top = 6, Rec = Maticsoft.Model.CMS.EnumHelper.ContentRec.Hot })
+            </div>
+            <div class="module mod-primary-recom mod-trade-topic">
+                @Html.Action("UserBlog", new { ViewName = "_UserBlog", Top = 8 })
+            </div>
+        </div>
+        <div class="grid-7 grid-fixed">
+            <div class="module mod-index-userpiece">
+                <div class="cell-bd">
+                    <div class="userpiece-notlogin" id="loadUser">
+                    </div>
+                </div>
+            </div>
+            <div class="module mod-holding-activity">
+                <style>
+                    .mod-holding-activity .cell-hd a.hd-sub:visited
+                    {
+                        color: #666666;
+                    }
+                    .mod-holding-activity .cell-hd a.hd-sub:hover
+                    {
+                        color: #FF7300;
+                    }
+                </style>
+                @Html.Action("ScrollPost", "Home", new { ViewName = "_ScrollPost", PostType = Maticsoft.Model.SNS.EnumHelper.PostContentType.None })
+            </div>
+        </div>
+    </div>
+    <div style="clear: both">
+    </div>
+    <div class="layout m_t_10">
+        <div class="grid-22 region-article">
+            @Html.Action("CMSArticle", new { ViewName = "_IndexRecArticle", Top = 6, ClassId = 17 })
+            <div class="mod-separate">
+            </div>
+            @Html.Action("CMSArticle", new { ViewName = "_IndexRecArticle", Top = 6, ClassId = 18 })
+            <div class="clear" style="padding-top: 12px">
+            </div>
+            @Html.Action("CMSArticle", new { ViewName = "_IndexRecArticle", Top = 6, ClassId = 19 })
+            <div class="mod-separate">
+            </div>
+            @Html.Action("CMSArticle", new { ViewName = "_IndexRecArticle", Top = 6, ClassId = 20 })
+        </div>
+        <div class="grid-8 grid-fixed">
+            <div id="tab-comment-rank" class="module mod-rightbox mod-comment-rank">
+                <div class="cell-hd">
+                    <h2>
+                        热评排行</h2>
+                    <ul class="hd-sub">
+                        <li class="f-tab-t current HotCom" type="Week">一周</li>
+                        <li class="f-tab-t HotCom" type="Day">24小时</li>
+                    </ul>
+                </div>
+                <div class="cell-bd">
+                    <div class="f-tab-b HotComList " type="Week">
+                        @Html.Action("HotComment", new { ViewName = "_IndexHotCom", Top = 10, comType = "week" })
+                    </div>
+                    <div class="f-tab-b HotComList" type="Day" style="display: none">
+                        @Html.Action("HotComment", new { ViewName = "_IndexHotCom", Top = 10, comType = "day" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="clear: both">
+    </div>
+    <div class="club-meitu-t">
+        <a href="@(ViewBag.BasePath)Photo/Index/-1/0/all/hot" target="_blank"><span>晒货</span></a></div>
+    @Html.Action("PhotoPart", new { Top = 9, ViewName = "_PhotoPart" })
+    <div style="clear: both">
+    </div>
+    <!------显示商品部分 提供两种样式模板，ProductList 和 _ProductList2。 使用不同模板 参照 《模板制作手册》 替换下面的参数即可----->
+    <div class="club-meitu-t">
+        <a href="@(ViewBag.BasePath)Product/all/0/0/0-0-new-all" target="_blank"><span>分享</span></a></div>
+    @Html.Action("ProductList", new { Cid = 6, Top = 9, viewName = "_ProductList2" })
+    <!-----商品部分---->
+</div>

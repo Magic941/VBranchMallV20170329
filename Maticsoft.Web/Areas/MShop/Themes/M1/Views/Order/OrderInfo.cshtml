@@ -1,0 +1,172 @@
+﻿@{
+    Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+  
+}
+@model Maticsoft.Model.Shop.Order.OrderInfo
+<style>
+    .seach_bg {
+        background: #f2f2f2;
+    }
+
+    .condition_dd {
+        float: left;
+    }
+
+        .condition_dd span {
+            display: block;
+            color: #999999;
+            font-size: 14px;
+        }
+
+            .condition_dd span em {
+                color: #d91047;
+                font-style: normal;
+            }
+
+    .condition_icon {
+        width: 100%;
+        /*float:right;*/
+    }
+
+        .condition_icon a {
+            display: block;
+            /*width:17rem;*/
+            height: 2rem;
+            line-height: 2rem;
+            background: #da1c10;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1rem;
+            color: #fff;
+            margin-right: 3px;
+        }
+</style>
+<script type="text/javascript">
+    $(".btnPayOrder").die("click").live("click", function () {
+        var id = $(this).attr("itemid");
+        if (id) {
+            //window.location = '/pay/certification' + id + '/' + $Maticsoft.CurrentArea;
+            window.location = $Maticsoft.BasePath + 'Order/SubmitSuccess/' + id;
+        }
+    });
+</script>
+<div class="top">
+    <a href="javascript:;" onclick="history.go(-1)"><span>&lt;返回</span></a>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@*<div class="yy">
+</div>*@
+<div class="wrap_960">
+    <div class="douwuche">
+        <h1>订单详情
+        </h1>
+    </div>
+    <div class="" style="overflow: hidden; padding: 0 10px; width: 85%; margin: 0 auto;">
+        <div class="condition_dd">
+            <span>订单状态：<em>@Maticsoft.Web.Areas.MShop.Controllers.UserCenterController.GetOrderType(Model.PaymentGateway, Model.OrderStatus, Model.PaymentStatus, Model.ShippingStatus)</em></span>
+            <span>订单号：  @(Model.OrderCode)</span>
+        </div>
+
+    </div>
+    <div class="con_part_2" style="padding: 0 10px;">
+
+        @if (Model != null && Model.OrderItems.Count > 0)
+        {
+            <div style="border-radius: 10px; padding: 10px 11px; border-radius: 10px; margin: 0 auto; width: 92%">
+                <div class="jingge_JE">
+                    <span style="float: left; padding-left: 10px;">订单金额：</span>
+                    <span style="float: right; padding-right: 10px;">¥@Convert.ToDecimal(Model.Amount - Model.Freight).ToString("F")
+                    </span>
+                </div>
+                <div class="jingge_Jk" style="padding: 10px 10px; overflow: hidden; color: #333">
+                    <div class="wupin w60" style="float: none; /*text-align: left; */">
+                        运费：<span style="color: red; font-size: 16px; display: inline-block; *display: inline; zoom: 1; float: right;">￥@(Model.Freight.HasValue ? Model.Freight.Value.ToString("F") : "0.00")
+                        </span>
+
+                    </div>
+                    <div class="yunfei" style="float: none; text-align: left;">
+                        应付：<b>￥@Model.Amount.ToString("F")</b>
+                    </div>
+                </div>
+            </div>
+@*<div class="p12">
+                商品列表</div>*@
+            <div class="gou_list">
+                @foreach (var item in Model.OrderItems)
+                {
+                    <ul>
+                        <div class="checkbox" style="display: none">
+                            <input name="CheckboxGroup1" type="checkbox" id="CheckboxGroup1_0" value="复选框" checked="checked" />
+                        </div>
+                        <em><a href="@(ViewBag.BasePath)p/d/@item.ProductId/@item.ActiveID/@item.ActiveType" target="_blank">
+                            <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T115X115_")" width="50" height="50" /></a></em>
+                        <div class="goulist_x">
+                            <p class="p-name">
+                                <a href="@(ViewBag.BasePath)p/d/@item.ProductId/@item.ActiveID/@item.ActiveType" target="_blank">@item.Name</a>
+                            </p>
+                            @*       <p class="p-num">
+                        编号：@item.SKU</p>*@
+                            <p class="p-price">
+                                <span class="red">￥@((item.AdjustedPrice * item.Quantity).ToString("F"))</span>
+                            </p>
+                            <p class="p-amount" style="float: right; color: #666666; padding-right: 12px;">
+                                数量： @item.Quantity
+                            </p>
+
+                        </div>
+                    </ul>
+                }
+
+                <div class="gou_nrtext" style="background: #fff;">
+                    <div class="sbox">
+                        <span class="gou_title">配送地址</span>
+                        <div class="s-content">
+                            <p>
+                                @Model.ShipName &nbsp; @Model.ShipCellPhone &nbsp; &nbsp;
+                        <br />
+                                @Model.ShipAddress
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gou_nrtext" style="background: #fff;">
+                    <div class="sbox">
+                        <span class="gou_title">物流信息</span>
+                        <div class="s-content">
+                            <p>
+                                配送方式：@Model.RealShippingModeName &nbsp; &nbsp;<br />
+                                物流单号：@(string.IsNullOrWhiteSpace(Model.ShipOrderNumber) ? "无" : Model.ShipOrderNumber)
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.OrderStatus == -1)
+                { 
+                    <div class="condition_icon" style="padding-bottom: 10px;"><a href="javascript:;" style="background: #999999">已取消</a></div>
+                }
+                else if (Model.OrderStatus == 0)
+                {
+                    <div class="condition_icon" style="padding-bottom: 10px;"><a href="javascript:;" class="btnPayOrder" ItemId="@Model.OrderId">去支付</a></div>
+                }
+                else if (Model.OrderStatus==1)
+                {
+                    <div class="condition_icon" style="padding-bottom: 10px;"><a href="/MShop/order/ship?ename=@Model.ExpressCompanyName&code=@(string.IsNullOrWhiteSpace(Model.ShipOrderNumber) ? "无" : Model.ShipOrderNumber)" class="btnPayOrder" >配送详情</a></div>
+                }
+                else if (Model.OrderStatus == -4 || Model.OrderStatus == -3 || Model.OrderStatus == -2)
+                {
+                    <div class="condition_icon" style="padding-bottom: 10px;"><a href="javascript:;" class="btnPayOrder" >订单锁定</a></div>
+                }
+                else if (Model.OrderStatus==2)
+                {
+                    <div class="condition_icon" style="padding-bottom: 10px;"><a href="javascript:;" style="background: #999999">已完成</a></div>
+                }
+                <div class="hengxian">
+                </div>
+
+            </div>
+
+        }
+
+    </div>
+</div>

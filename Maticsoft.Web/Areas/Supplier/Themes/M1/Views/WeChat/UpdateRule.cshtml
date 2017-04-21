@@ -1,0 +1,62 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.WeChat.Model.Core.KeyRule
+<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/UpdateRule.helper.js" type="text/javascript"></script>
+<form action="" method="post" id="updateRule">
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            微信规则管理 <small class="desc">您可以进行编辑微信规则操作 </small>
+    </div>
+    @if (Model != null)
+    { 
+        <input id="RuleId" type="hidden" value="@Model.RuleId" name="RuleId"/>
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                        <tr>
+                            <td class="td_class">
+                                规则名称:
+                            </td>
+                            <td height="25">
+                                <input type="text" name="Name" id="Name" value="@Model.Name" style="width: 250px" tabindex="1" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                规则描述：
+                            </td>
+                            <td height="25">
+                                <textarea id="Remark" name="Remark" style="width: 250px" maxlength="50" rows="5"
+                                    cols="3">@Model.Remark</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                            </td>
+                            <td height="25">
+                                <div class="form stdform">
+                                    <input type="button" name="name" id="btnSave" value="保存" class="adminsubmit_short" />
+                                    &nbsp;&nbsp;
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label id="lblMsg" style="color: Red">
+                                </label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+</div>
+</form>

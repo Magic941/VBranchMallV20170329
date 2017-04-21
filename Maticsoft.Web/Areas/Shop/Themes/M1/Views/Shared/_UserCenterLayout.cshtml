@@ -1,0 +1,34 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+@*会员中心模版*@
+}
+@section head{
+    @*<link href="/Areas/Shop/Themes/M1/Content/css/mem.css" type="text/css" rel="stylesheet" />*@
+    <link href="/Areas/Shop/Themes/M1/Content/css/user-v1-a.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/Shop/Themes/M1/Content/css/center-v2.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/css/userCenter/user.css" rel="stylesheet" />
+    @RenderSection("head", false)
+}
+<div id="hd">
+    @Html.Action("Header", "Partial", new { area = "Shop" })
+    @Html.Action("Search", "Partial", new { area = "Shop" })
+    @Html.Action("Navigation", "Partial", new { area = "Shop" })
+</div>
+<!------usercenter-------->
+<div class="user-center">
+    <div class="wrapper clearfix">
+        <div class="W-row"><a href="#"><strong>首页</strong></a><i>></i><a href="#">我的健康</a><i>></i><span>订单中心</span></div>
+        <div class="U-L">
+            @Html.Action("LeftMenu", "UserCenter", new { area = "Shop" })
+        </div>
+        <div class="U-R">
+            @RenderBody()
+        </div>
+    </div>
+    
+</div>
+<!------usercenter end----->
+@Html.Action("Footer", "Partial", new { area = "Shop" })
+@section foot{
+    @RenderSection("foot", false)
+}

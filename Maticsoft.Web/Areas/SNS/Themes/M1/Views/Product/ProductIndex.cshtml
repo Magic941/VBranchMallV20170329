@@ -1,0 +1,13 @@
+﻿@model  Maticsoft.ViewModel.SNS.ProductCategory
+@{
+    //ViewBag.Title = Model.CurrentCateName;;
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_ProductLayout.cshtml";
+}
+
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+  <script src="/Areas/SNS/Themes/M1/Content/Scripts/InfoBind.js" type="text/javascript"></script>
+  <script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+@{Html.RenderPartial("/Areas/SNS/Themes/M1/Views/Partial/_ProductCategory.cshtml", Model);} 
+@{Html.RenderPartial("ProductList", Model);}

@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-我的专属二维码";
+}
+
+<script src="/Scripts/jquery-1.10.2.js.js"></script>
+<script src="/Scripts/jquery.qrcode.js"></script>
+<script src="/Scripts/base64.js"></script>
+<script src="/Scripts/canvas2image.js"></script>
+<style>
+.QR_Code b{
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	display:block;
+	color:#c7000b;
+	}
+.QR_Code p{
+	width:95%;
+	margin:0 auto;
+	line-height:30px;
+	color:#404040;
+	}
+.QR_Code em{
+	width:80%;
+	display:block;
+	margin:0 auto;
+	padding:15px 0;
+	}
+.QR_Code em img{
+	width:100%;
+	}
+.QR_Code span{
+	color:#c7000b;
+	}
+</style>
+
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="margin:30px auto; text-align:center;">
+<img id="tImg" alt="验证码"  src="/QRCode.aspx?Url=@ViewBag.MyQRCode"  style="width:250px; height:250px; text-align:center;"/>
+</div>
+
+
+<div class="QR_Code">
+	<b>“我的二维码”扫描方法</b>
+    <p>1.手机与手机直接扫描</p>
+    <p>点击“<span>我的二维码</span>”就会显示出您的专属二维码，让他人直接用手机扫描后注册即可成为好粉。</p>
+    <em><img src="/Areas/MShop/Themes/M1/Content/img/0001_03.png"/></em>
+    <p>2.将二维码发送给他人</p>
+    <p>1）<span>长按我的专属二维</span>码会弹出提示框，选择“<span>保存到手机</span>”再发送给朋友，或者点击“<span>发送给朋友</span>”即可发送给您的微信好友。</p>
+	<em><img src="/Areas/MShop/Themes/M1/Content/img/0002_07.png" /></em>
+    <p>2）当您的朋友收到二维码图片时，他只需扫描收到的二维码即可注册成为好粉。</p>
+    <em><img src="/Areas/MShop/Themes/M1/Content/img/0003_10.png"/></em>
+    <em><img src="/Areas/MShop/Themes/M1/Content/img/0004_14.png" /></em>
+    <p>3）然后可在手机相册里找到专属二维码，这样能通过更多的途径发展好粉（如通过QQ，邮件，微博等）1.手机与手机直接扫描点击“我的二维码”就会显示出您的专属二维码，让他人直接用手机扫描后注册即可成为好粉。</p>
+</div>
+
+

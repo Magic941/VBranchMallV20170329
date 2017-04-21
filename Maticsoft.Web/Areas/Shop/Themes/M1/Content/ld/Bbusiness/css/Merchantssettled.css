@@ -1,0 +1,253 @@
+@import url("base.css");
+.wrapper{
+	width:1200px;
+	margin:0 auto;
+	}
+/*Brand-Poster*/ 
+/*.Brand-Poster{
+	height:482px;
+	background:url(/Areas/Shop/Themes/M1/Content/ld/Bbusiness/images/ShouBanner.jpg) #7123b4 center no-repeat;
+	}*/
+.Brand-Poster_left{
+	float:left;
+	}
+.Brand-Poster_left a{
+	display:block;
+	height:239px;
+	}
+.Brand-Poster_right{
+	width:283px;
+	height:482px;
+	float:right;
+	background:#ffffff;
+	}
+.Brand-Poster_right span{
+	width:210px;
+	height:48px;
+	line-height:48px;
+	font-family:"微软雅黑";
+	font-size:16px;
+	margin:0 auto;
+	display:block;
+	color:#5b5b5b;
+	}
+.Brand-Poster_right span em{
+	font-style:normal;
+	color:#ff5100;
+	}
+.nominate{
+	width:240px;
+	height:55px;
+	margin:0 auto;
+	position:relative;
+	}
+.nominate i{
+	position:absolute;
+	bottom:0;
+	font-style:normal;
+	display:block;
+	}
+.nominate i b{
+	font-size:14px;
+	color:#313131;
+	}
+.Brand-Poster_right p{
+	width:240px;
+	line-height:20px;
+	color:#adadad;
+	padding:10px 0;
+	margin:0 auto;
+	font-size:12px;
+	}
+
+/*Brand-Poster*/
+
+/* Brand-business */
+.Brand-business{
+	background:#f5f5f5;
+	}
+/* this_week */
+.this_week_nav{
+	padding-top:40px;
+	}
+.this_week_nav b{
+	height:56px;
+	line-height:56px;
+	font-family:"微软雅黑";
+	font-size:22px;
+	display:block;
+	float:left;
+	padding-right:20px;
+	}
+.this_week_nav li{
+	font-family:"微软雅黑";
+	font-size:16px;
+	color:#6f6f6f;
+	}
+.this_week_nav ul{
+	float:left;
+	}
+.this_week_nav ul li{
+	float:left;
+	height:56px;
+	line-height:56px;
+	padding:0 5px;
+	}
+.this_week_reveal li{
+	float:left;
+	}
+/* this_week end */
+
+/*Popular_brand*/
+.Popular_brand{
+	border-bottom:4px solid #e71f19;
+	}
+.Popular_brand_left {
+	width:945px;
+	float:left;
+	}
+.Popular_brand_left li a{
+	display:block;
+	float:left;
+	border-right:1px solid #f5f5f5;
+	border-bottom:1px solid #f5f5f5;
+	}
+.Popular_brand_ad a{
+	height:306px;
+	}
+.Popular_brand_bd{
+	height:203px;
+	}
+.Popular_brand_right{
+	width:255px;
+	float:left;
+	background:#fff;
+	}
+.Popular_brand_right span{
+	height:55px;
+	line-height:55px;
+	border-bottom:1px solid #f5f5f5;
+	display:block;
+	text-align:center;
+	}
+.Popular_brand_right li{
+	float:left;
+	border-bottom:1px solid #f5f5f5;
+	}
+.Popular_brand_right li a{
+	width:127px;
+	height:64px;
+	display:block;
+	}
+.MKJO_OPP{
+	border-right:1px solid #f5f5f5;
+	}
+.KZG_gha{
+	padding-top:20px;
+	}
+/*Popular_brand*/
+
+/*Merchants_settledin*/
+.Merchants_settledin_left{
+	width:455px;
+	float:left;
+	background:#fff;
+	}
+.Merchants_settledin_left a{
+	display:block
+	}
+.Merchants_settledin_left span{
+	padding:43px 0;
+	text-align:center;
+	display:block;
+	}
+.Merchants_settledin_left span em{
+	padding-bottom:10px;
+	display:block;
+	}
+.Merchants_settledin_left span p{
+	font-family:"微软雅黑";
+	font-size:12px;
+	color:#6a6a6a;
+	}
+.Merchants_settledin_right{
+	width:745px;
+	float:left;
+	}
+.Merchants_settledin_right li{
+	width:232px;
+	background:#fff;
+	float:left;
+	position:relative;
+	margin-left:16px;
+	}
+.Merchants_settledin_right li a,.Merchants_settledin_right li a img,.Merchants_settledin_right li span,.Merchants_settledin_right li span em,.Merchants_settledin_right li span i{
+	display:block;
+	}
+.Merchants_settledin_right li span{
+	width:232px;
+	padding:18px 0;
+	background:#272525;
+	position:absolute;
+	top:167px;
+	left:0;
+	filter:alpha(opacity=50);
+	 -moz-opacity:0.5;
+	  -khtml-opacity: 0.5;
+	   opacity: 0.5;
+	}
+.Merchants_settledin_right li span i,.Merchants_settledin_right li span em{
+	font-family:"微软雅黑";
+	font-size:14px;
+	text-align:center;
+	font-style:normal;
+	color:#fff;
+	}
+.UPT_Lq{
+	padding:20px 0 15px 0;
+	}
+.UPT_Lq em{
+	float:left;
+	display:block;
+	padding-left:20px;
+	}
+.UPT_Lq p{
+	width:125px;
+	font-family:"微软雅黑";
+	font-size:10px;
+	text-align:center;
+	color:#adadad;
+	display:block;
+	float:right;
+	}
+/*Merchants_settledin*/
+
+/*Brand_Street*/
+.Brand_Street_left{
+	width:193px;
+	float:left;
+	}
+.Brand_Street_among{
+	width:814px;
+	float:left;
+	}
+.Brand_Street_among li{
+	float:left;
+	padding-bottom:2px;
+	padding-right:2px;
+	}
+.Brand_Street_among li.PYU_yu{
+	padding-left:3px;
+	}
+.Brand_Street_among li a{
+	width:133px;
+	height:80px;
+	display:block;
+	}
+.Brand_Street_right{
+	width:193px;
+	float:right;
+	}
+/*Brand_Street*/
+/* Brand-business */
+

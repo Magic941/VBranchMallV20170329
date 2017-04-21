@@ -1,0 +1,83 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<div class="jiankang w1200 c m">
+    <div class="jiankang_top">
+        <h3>健康知识</h3>
+        <p><span>HEALTH KNOWLEDGE</span><font></font></p>
+    </div>
+
+    <!--健康知识,显示头几天-->
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="jiankang_mid">
+            <ul>
+                @foreach (var item in Model)
+                {               
+                
+                    <li class="mr45">
+                        <a href="/Article/Details/@item.ContentID">
+                            <img src="@string.Format(@item.ThumbImageUrl, "T235x1280_")" alt="@item.Title" />
+                            <h3>@item.Title </h3>
+
+                            @if (item.Summary.Length > 48)
+                            {
+                                <p>@item.Summary.Substring(0, 48)...</p>
+                       
+                            }
+                            else
+                            {
+                                <p>@item.Summary</p>
+                       
+                            }
+
+
+                        </a>
+                    </li>
+                 
+                }
+            </ul>
+            <div class="c"></div>
+        </div>
+       
+    }
+    else
+    {    
+        <div class="jiankang_mid">
+            <ul>
+                <li class="mr45">
+                    <a href="#">
+                        <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_01.jpg" />
+                        <h3>这些网传妙招千万别用! </h3>
+                        <p>预防流感，防控医学方面主要包括药物及距离两大块预防策略。即接种流感疫苗，与流感病........</p>
+                    </a>
+                </li>
+                <li class="mr45">
+                    <a href="#">
+                        <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_02.jpg" />
+                        <h3>菠菜这么多做法! </h3>
+                        <p>菠菜有"营养模范生"之称，其可以经常用来烧汤，凉拌，单炒，煮粥。大力水手的最.........</p>
+                    </a>
+                </li>
+                <li class="mr45">
+                    <a href="#">
+                        <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_03.jpg" />
+                        <h3>宝宝辅食要不要加盐 ? </h3>
+                        <p>宝宝的肾脏还未发育完全，如果摄入的盐过量了，很容易加重肾脏负担。而且过多的食盐会给身体带来过多.....</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="/Areas/CMS/Themes/M2/Content/wb5188/images/index_04.jpg" />
+                        <h3>取暖器有辐射吗？ </h3>
+                        <p>取暖器有辐射吗?任何一种电器都有辐射，只是大小不同而已。那么至于哪些取暖器辐射大，而哪些取暖器辐...</p>
+                    </a>
+                </li>
+            </ul>
+            <div class="c"></div>
+        </div>  
+    
+    }
+
+    <div class="jiankang_bom c m">
+        <a href="/Article/ArticleList?classid=44&viewName=BXZiXunList">MORE</a>
+    </div>
+</div>

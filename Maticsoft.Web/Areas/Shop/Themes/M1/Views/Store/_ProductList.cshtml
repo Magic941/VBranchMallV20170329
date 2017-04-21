@@ -1,0 +1,83 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+  @*<ul>
+               @if (Model != null )
+               {
+                   foreach (var item in Model)
+                   {
+             <li ><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"  target="_blank"  title="@item.ProductName"><img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T158X158_")" width="220" height="220" /></a>
+                <div class="shanpinlist_con">
+                    <h2><a href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"  target="_blank"  title="@item.ProductName">@Maticsoft.Common.StringPlus.SubString(item.ProductName, 20, "...")</a></h2>
+                    <p style="display:none;" >已有 <a href="javascript:;">0</a> 人评价</p>
+                    <div class="jiage_left">￥ @(item.LowestSalePrice.ToString("F"))</div>
+                    <div class="goumai" style="display:none;"><a href="javascript:;">立刻购买</a></div>
+                </div>
+            </li>
+                   }
+               }
+        </ul>*@
+<div class="com-goods">
+            <script>
+                $(function () {
+                    $(".Glist-box").hover(function () { $(this).css("border-color", "#eb020b") }, function () { $(this).css("border-color", "") })
+                })
+
+            </script>
+            <div ajaxcontent="1" class="goods-list" name="__FLLB002">
+                <ul class="clearfix" id="J_lazyload">
+@{
+    if (Model != null)
+    {
+                    foreach (var item in Model)
+                    {
+                    
+                        <li class="Glist cur" styleid="product_@(item.ProductId)">
+                            <div class="Glist-box">
+                                <a class="Glist-box-img" href="/Product/Detail/@item.ProductId">
+                                    <img style="width:200px;height:200px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")" title="@item.ProductName" alt="@item.ProductName" /></a>
+                                <div class="Good-HD" style="height:36px">
+                                    <div  class="txt-red" title="@item.Subhead">
+                                        @if (item.Subhead != null)
+                                        {
+                                             @Maticsoft.Common.StringPlus.SubString(item.Subhead, 40, "...")
+                                        }
+                                    </div>
+                                </div>
+                                <div class="price-box clearfix">
+                                    <span class="price txt-red">¥@(item.LowestSalePrice.ToString("F"))</span>
+                                    <del>¥@(item.MarketPrice.Value.ToString("F"))</del>
+                                </div>
+                                <div class="Goods-Tit">
+                                    <a href="#" title="@item.ProductName">@Maticsoft.Common.StringPlus.SubString(item.ProductName, 40, "...")</a>
+                                </div>
+                                <div class="comment clearfix">
+                                    @*<span class="fL comment-p">评论<a href="#"><em>2150条</em></a></span>
+                                <span class="fan fR">返4.5元</span>*@
+                                </div>
+                                <div class="Glist-act clearfix">
+                                    @*<div class="shopping_num">
+                                        <input type="text" value="1">
+                                        <span>
+                                            <a class="add">加</a>
+                                            <a class="dis_decrease" href="#">减</a>
+                                        </span>
+                                    </div>*@
+                                    <div class="fL shopping-btn-s"><a href="/Product/Detail/@item.ProductId"></a></div>
+                                </div>
+                                @*<div class="owner"><span>健康店自营</span></div>*@
+                            </div>
+                        </li>
+                    }
+    }
+}
+
+                </ul>
+             @*   <div class="loadingmask">
+                    <div class="loadingmask-bg">
+                    </div>
+                    <div class="loadingmask-txt fixtop">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/loading-pink.gif" class="mr10" style="vertical-align: middle">
+                    </div>
+                </div>*@
+            </div>
+        </div>
+       

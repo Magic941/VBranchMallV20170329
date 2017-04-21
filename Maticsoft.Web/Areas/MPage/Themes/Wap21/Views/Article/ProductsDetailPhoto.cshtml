@@ -1,0 +1,39 @@
+﻿@model Maticsoft.Model.CMS.Content    
+ <!--产品详细页1开始 三级 <div id="products9" class="page ui-page ui-body-c ui-page-active" title="桑拿木地板" data-role="page" ax-type="ajax" data-url="products9" tabindex="0" style="min-height: 893px;">-->
+
+<header class="header view">
+    <span class="nowposition">
+        <a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');">首页</a>
+        <a href="javascript:;" onclick="pageload('Article','products@(ViewBag.AclassID)','@ViewBag.AclassName','News', 'Products','@ViewBag.AclassID','-1','-1','-1','-1','-1','3');">@ViewBag.AclassName</a>
+        <a href="javascript:;" class="aclassname" >@ViewBag.ClassName</a>
+        <script type="text/javascript">
+            hideclassname($('.aclassname').last());
+        </script>
+    </span>
+ 
+</header>
+@if (Model != null)
+{ 
+<div class="content content_view">
+<h2 class="view_title">@Model.Title</h2>
+    <span class="view_img">
+        <img src="@Model.ImageUrl">
+    </span>
+    <div class="view_remark">  
+                   @Html.Raw(Model.Description)
+               </div>
+    <div class="view_remark" >
+        <a onclick="pageloadComment('Comment','commenttype3_@(Model.ContentID)','@Model.Title','Index', 'Index','@Model.ContentID','3','6')" class="publishComment button"> 发表评论 </a>
+    </div>
+</div>
+
+<div class="pagePrevNext controlgroup"  style="display:none;">
+<span>
+<a  >上一条</a>
+</span>
+<span>
+<a  >下一条</a>
+</span>
+</div>
+}
+ 

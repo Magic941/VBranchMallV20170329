@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link href="/Areas/MShop/Themes/M1/Content/Css/shopc2.css" rel="stylesheet" type="text/css" />
+<style>
+    .seach_bg {
+        background: #f5f5f5;
+    }
+    .btn-impay {
+        display:block;
+        margin:0 auto;
+    }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="w main" style="margin-bottom: 7px;">
+    <div class="m m3" id="qpay">
+        <div class="mc">
+            <div class="Submission" style="background: #fff; padding-top: 20px; margin-bottom: 7px;">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/images/icon48.png"></em>
+                <h3 class="ftx-01" style="margin-top: 25px; padding-bottom: 7px;">订单支付失败，请重新进入公共账号后再重试。</h3>
+            </div>
+            <div class="fore">
+                <ul class="list-h" style="margin: 0 auto; text-align: center; background: #fff; margin-bottom: 7px;">
+                    <li class="fore2" style="width: 80%;">订单号：@(ViewBag.OrderCode)</li>
+                    <li>
+                        <p id="p_show_info" style="margin-bottom: 30px; width: 80%; margin: 0 auto; text-align: center">
+                            <strong>点击下面按钮可重新支付</strong>
+                        </p>
+                    </li>
+                </ul>
+                <div style="margin: 0 auto; background: #fff; padding: 20px 0;">
+                    <input type="button" border="none" name="" class="btn-impay" style="" value="继续支付">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<input type="hidden" value="@ViewBag.OrderId" id="OrderId"/>
+<input type="hidden" value="@ViewBag.PayStatus" id="Status"/>
+<script type="text/javascript">
+    (function () {
+        var id = $('#OrderId').val();
+        var url;
+        if (id) {
+            url = '/pay/certification' + id + '/' + $Maticsoft.CurrentArea;
+        } else {
+            url = $Maticsoft.BasePath + 'UserCenter/Orders';
+        }
+        $('.btn-impay').unbind('click').bind('click', function () {
+            window.location.replace(url);
+        });
+    })();
+</script>

@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+    Maticsoft.Model.Members.UsersExpModel UserInfo = ViewBag.UserInfo;
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.PointsDetail>
+<input type="hidden" id="currentpage" value="span_5"/>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            我的积分</p>
+    </h1>
+    <div class="integral_a">
+        您当前的积分:<span class="integral_a1">@UserInfo.Points</span></div>
+    <div class="integral_b">
+        <div class="integral_b_a1">
+            <span class="min">积分明细</span></div>
+        <div class="integral_b_b1">
+            <ul>
+               <li class="td2">积分日期</li>
+                  <li class="td4">积分类型</li>
+                 <li class="td1">积分</li>
+            <li class="td3">说明</li>
+               
+            </ul>
+        </div>
+        <div class="integral_b_c1">
+            <table width="718" cellspacing="0" cellpadding="0">
+                @if (Model != null)
+                {
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td height="40">
+                            @item.CreatedDate.ToString("yyyy-MM-dd")
+                        </td>
+                        <td>
+                            @item.RuleName
+                        </td>
+                        <td>
+                            @if (item.Type == 0)
+                            {
+                                <strong style="color: #ff8a00;">+@item.Score</strong>
+                 
+                            }
+                            else
+                            {
+                                <strong style="color: #33982e;">-@item.Score</strong>
+                            }
+                        </td>
+                        <td>
+                            @item.Description
+                        </td>
+                    </tr>
+                    }
+                }
+            </table>
+   <center>
+            @Html.Pager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 10,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       })
+          </center>  
+@*
+            <center>
+    <!--jQuery Ajax Paging Start-->
+    @Html.AjaxPager(Model, new PagerOptions()
+{
+    CssClass = "in_pages",
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 5,
+
+}, new AjaxOptions() { UpdateTargetId = "OutBoxList" })
+    <!--jQuery Ajax Paging End-->
+</center>*@
+
+        </div>
+    </div>
+</div>
+

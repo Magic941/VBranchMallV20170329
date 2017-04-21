@@ -1,0 +1,353 @@
+﻿@*@model Maticsoft.Model.Shop.Products.ShoppingCartInfo*@
+@model Maticsoft.ViewModel.Shop.ShoppingCartModel
+@{
+    var SupplierList = Model.AllCartInfo.Items.GroupBy(m => m.SupplierId).ToList();
+    
+    Func<int, int> funcGetLeastbuyNum = activeId => {
+        if (activeId <= 0) return 1;
+        Maticsoft.BLL.Shop.PromoteSales.WeiXinGroupBuy tempBllGroupBy = new Maticsoft.BLL.Shop.PromoteSales.WeiXinGroupBuy();
+        Maticsoft.Model.Shop.PromoteSales.WeiXinGroupBuy tempModelGroupBy = tempBllGroupBy.GetModel(activeId);
+        return null == tempModelGroupBy ? 1 : tempModelGroupBy.LeastbuyNum;
+    };
+}
+<link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+<style>
+    .seach_bg {
+        background:#eeeeee;
+    }
+    .gou_js a {
+        width:6rem;
+        height:2.8rem;
+        line-height:2.8rem;
+        text-align:center;
+        background:#d91c10;
+        display:inline-block;
+        *display:inline;zoom:1;
+        color:#fff;
+        border-radius:5px;
+    }
+    .gou_list ul {
+        border:1px solid #dddddd;
+    }
+    .merchandise_kiji {
+        overflow:hidden;
+        border-bottom:1px solid #dedede;
+    }
+    .merchandise_kiji em {
+        float:left;
+        display:block;
+        padding:15px;
+        }
+        .merchandise_kiji em a {
+            display:block;
+        }
+    .merchandise_kiji em img {
+        border:1px solid #d3d3d3;
+        display:block;
+        }
+    .merchandise_kiji p{
+        width:70%;
+        float:left;
+        }
+        .merchandise_kiji p a,.merchandise_kiji p em {
+            display:block;
+        }
+        .merchandise_kiji p em {
+            font-style:normal;
+            font-size:18px;
+            color:#cc0001;
+            padding:0;
+        }
+    .goulist_x p {
+        margin:0;
+    }
+    .PO_ol a,.PO_ol span,.PO_ol input{
+         
+        display:block;
+        float:left;
+    }
+    .PO_ol {
+        overflow:hidden;
+    }
+    .PO_ol a {
+        width:25px; height:25px;
+        line-height:25px;
+        text-align:center;
+    }
+    .PO_ol input {
+         width:25px; height:21px;
+         line-height:21px; 
+         text-align:center;
+         margin:0 5px;
+    }
+    .merchandise_kiji p a {
+        font-size:14px;
+        color:#3d3d3d;
+    }
+ h1 {
+        margin:0;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        var selectItem = new Array();
+        $(".SalePrice").each(function () {
+            var sellprice = $(this).attr("toalSellPrice");
+            var adjustedprice = $(this).attr('toalAdjustedPrice');
+            var p = parseFloat(sellprice) - parseFloat(adjustedprice);
+            if (p > 0) {
+                $(this).text(p);
+                $(this).parent().show();
+            }
+        });
+        //填充数组
+        $(".btnCheck").each(function () {
+            var itemId = $(this).attr("ItemId");
+            //判断选中数组中是否已存在该项
+            var index = $.inArray(itemId, selectItem);
+            if (index > -1) {
+                selectItem.splice(index, 1);
+            } else {
+                selectItem.push(itemId);
+            }
+        });
+        $("#btnRemoveAll").click(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "ShoppingCart/ClearShopCart",
+                data: {},
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load($Maticsoft.BasePath + "ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+        $("#btnCheckAll").click(function () {
+            if ($(this).attr("checked") == "checked") {
+                $(".btnCheck").each(function () {
+                    $(this).attr("checked", "checked");
+                });
+            } else {
+                $(".btnCheck").each(function () {
+                    $(this).removeAttr("checked");
+                });
+            }
+        });
+        $(".btnCheck").click(function () {
+            var itemId = $(this).attr("ItemId");
+            //判断选中数组中是否已存在该项
+            // jQuery.inArray
+            var index = $.inArray(itemId, selectItem);
+            if (index > -1) {
+                selectItem.splice(index, 1);
+            } else {
+                selectItem.push(itemId);
+            }
+        });
+        $("#btnRemoveSelect").click(function () {
+            alert(selectItem);
+            var itemIds = selectItem.join(",");
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "ShoppingCart/RemoveItem",
+                data: { ItemIds: itemIds },
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load($Maticsoft.BasePath + "ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+        $(".btnDelete").click(function () {
+            var itemId = $(this).attr("ItemId");
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: $Maticsoft.BasePath + "ShoppingCart/RemoveItem",
+                data: { ItemIds: itemId },
+                success: function (data) {
+                    if (data != "No") {
+                        $("#LoadCartList").load($Maticsoft.BasePath + "ShoppingCart/CartList");
+                    } else {
+                        ShowFailTip("服务器繁忙，请稍候再试！");
+                    }
+                }
+            });
+        });
+        // 结算前验证最小起订量
+        $("#toSettlement").click(function () {
+            var resultMsg = "";
+            var items = $(".gou_list div table input.SupplierCheck:checked").closest("table").parent().children("div[productid][productname][leastbuynum]");
+            if (items.length > 0) {
+                var arr = [];
+                items.each(function (i) {
+                    var productid = $(this).attr("productid");
+                    var productname = $(this).attr("productname");
+                    var leastbuynum = $(this).attr("leastbuynum");
+                    var bolContains = false;
+                    $(arr).each(function (i) {
+                        if (this.productid == productid && !bolContains) bolContains = !bolContains;
+                    });
+                    if (!bolContains) arr.push({ "productid": productid, "productname": productname, "leastbuynum": leastbuynum });
+                });
+                $(arr).each(function (i) {
+                    var productid = this.productid;
+                    var productname = this.productname;
+                    var leastbuynum = this.leastbuynum;
+                    var sum = 0;
+                    items.each(function (j, el) {
+                        var div = $(el);
+                        if (div.attr("productid") == productid) sum += parseInt(div.find("div.PO_ol input[name='num']").attr("value"));
+                    });
+                    if (sum < leastbuynum) resultMsg += ("" == resultMsg ? "" : "<br />") + "【" + productname + " 】购买数量【" + sum + "】不能小于最小起订量【" + leastbuynum + "】";
+                });
+            }
+            else {
+                resultMsg = "请选择商品!";
+            }
+            if ("" != resultMsg) {
+                $.alert(resultMsg);
+            }
+            else {
+                window.location.href = "@(ViewBag.BasePath)Order/SubmitOrder";
+        }
+        });
+    });
+</script>
+@if (Model != null && Model.AllCartInfo.Items.Count > 0)
+{
+    <div class="gou_he">
+        <div class="checkbox" style="display: none">
+            <input name="CheckboxGroup1" type="checkbox" id="CheckboxGroup1_0" value="复选框" checked="checked" />
+        </div>
+        @*<div class="gou_zj">
+            <span>总计：<strong>¥@Model.TotalAdjustedPrice.ToString("F")</strong></span>商品总额：¥@Model.TotalAdjustedPrice.ToString("F")*@
+            @*  返现￥0.00*@ @*</div*@
+        <div class="gou_js">
+            <a id="toSettlement">
+            @*<a href="@(ViewBag.BasePath)Order/SubmitOrder" id="toSettlement">*@
+                @*<img src="/Areas/MShop/Themes/M1/Content/images/js.gif" />*@去结算</a>
+        </div>
+        <div class="gou_js" >
+            <a href="@(ViewBag.BasePath)" class="link ft15" style="background:#f96c28;">
+                @*<img src="/Areas/MShop/Themes/M1/Content/images/继续购物.png" />*@继续购买</a>
+
+        </div>
+        </div>
+    
+    <div class="gou_list">
+        @foreach (var Supplier in SupplierList)
+                {
+                    var SupplierName = Supplier.Where(m => m.SupplierId == Supplier.Key).First().SupplierName;
+                    var PreferentialType = 0; ;
+                    var UnitValue = 0M;
+                    var RateValue = 0M;
+                    string ActiveName = "";
+                    if (Model.AllCartInfo.SupplierPriceList.Count != 0)
+                    {
+                        var s_Model = Model.AllCartInfo.SupplierPriceList.Where(m => m.SupplierId == Supplier.Key && (m.PreferentialType == 1 || m.PreferentialType == 2)).ToList();
+                        if (s_Model.Count != 0)
+                        {
+                            PreferentialType = s_Model.First().PreferentialType;
+                            UnitValue = s_Model.First().AMDUnitValue;
+                            RateValue = s_Model.First().AMDRateValue;
+                            ActiveName = "满" + UnitValue + (PreferentialType == 1 ? "打" + RateValue / 10 + "折" : "减" + RateValue);
+                        }
+                    }
+                    <div class="" style="border:1px solid #dddddd; margin-top:10px; background:#fff;">
+                    <table style="border-bottom:1px solid #dddddd; width:100%;">
+                        <tr>
+                            <th colspan="8" class="">
+                                <div class="fL" style="float:left">
+                                    <input name="@Supplier.Key" type="checkbox" checked="checked" class="SupplierCheck" id="SupplierCheck@(Supplier.Key)"  SupplierID="@Supplier.Key"  value="" />
+                                    <span style="font-size:14px; color:#bebebe;">@SupplierName</span>
+                                </div>
+                                <div class="fL" style='position: relative;display:@(PreferentialType == 0 ? "none" : "block")'>
+                                    <a class="ico-server" href="#"  style="height:24px;width:30px;font-size:11px;line-height:20px;text-align:center;;color:white;display:inherit;background-image:url(/Areas/Shop/Themes/M1/Content/images/images/activity/activity_@(PreferentialType).png)">
+                                        @(PreferentialType==1?"满折":"满减")</a>
+                                    <div style='display:none;color: #333; width: 60px; top: 5px; left: 35px;' class="poptip tag-pop">
+                                        <span class="poptip-arrow poptip-arrow-left"><em>◆</em><i>◆</i></span>
+                                        <a href="/Store/@Supplier.Key" >@ActiveName</a>
+                                    </div>
+                                </div>
+                            </th>
+                        </tr>
+                    </table>
+                    <table class="myCart-goods" width="100%" border="0" cellspacing="0" cellpadding="0">
+                        @foreach (var item in Supplier)
+                        {
+                            <tr>
+                                <div productid="@item.ProductId" productname="@item.Name" leastbuynum ="@funcGetLeastbuyNum.Invoke(item.ActiveID)">
+                                    <div class="merchandise_kiji">
+                                        <em><a href="@(ViewBag.BasePath)p/d/@item.ProductId/@item.ActiveID/@item.ActiveType/" target="_blank">
+                                            <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T158X158_")" width="50" height="50" /></a></em>
+                                        <p class="p-name">
+                                            <a href="@(ViewBag.BasePath)p/d/@item.ProductId/@item.ActiveID/@item.ActiveType/" target="_blank">@item.Name  
+                                                 @if (item.SkuValues != null && item.SkuValues.Length > 0)
+                                                  {
+                                                     @Html.Raw(" (" + string.Join(",", item.SkuValues) + ")");
+                                                  }
+                                            </a>
+                                            <em>￥@item.AdjustedPrice.ToString("F")</em>
+                                        </p>
+                                    </div>
+                                    
+                                    <div class="goulist_x">
+                                        
+                                        @*<p class="p-num">
+                                            编号：@item.SKU @item.Attributes</p>*@
+                                            @if (!string.IsNullOrWhiteSpace(item.SaleDes))
+                                            {
+                                                @*<p class="p-name">
+                                                    优惠: @item.SaleDes</p>*@
+                                            }
+                                            <div class="p-amount gouwuchelist" ItemId="@item.ItemId" style="width:100%; overflow:hidden; border-bottom:1px solid #d3d3d3; padding:10px 0;">
+                                                <div class="" style="float:left;padding:0 10px;">
+                                                    <a href="javascript:;" class="btn  btnDelete"  ItemId="@item.ItemId" style="display:block;width:1.3rem; ">
+                                                        <img src="/Areas/MShop/Themes/M1/Content/images/clear.png" style=" width:1.3rem; height:1.3rem; padding-top:0px;display:block;" />
+                                                    </a>
+                                                 </div>
+                                                <div class="PO_ol" style="float:left;" ItemId="@item.ItemId">
+                                                    <span>数量：</span>
+                                                    <a href="javascript:;" class="redu" style="border:1px solid #dddddd;">-</a>
+                                                    <input type="text" size="4" value="@item.Quantity" name="num"  class="common-input txtQuantity"/>
+                                                    <a href="javascript:;" class="add" style="border:1px solid #dddddd;">+</a> 
+                                                </div>
+                                            </div>
+                                           <div class="">  
+                                                <p class="p-price" style="/*float:right;*/background:#dddddd;padding-left:10px; height:30px; line-height:30px;">
+                                                    小计：<span class="red" style="color:red">￥@((item.AdjustedPrice * item.Quantity).ToString("F"))</span>
+                                                </p>
+                                            </div>
+                                    </div>
+                                </div>
+                            </tr>
+                        }
+                    </table> 
+                </div>
+                }
+        <div  style="margin-top: 6px; float: left; margin-left:10px">
+            <img src="/Areas/MShop/Themes/M1/Content/images/clear.png" style="width:18px; height:18px;/*vertical-align: middle;*/float:left;padding-top:12px;display:block; " /><a href="javascript:void()" id="btnRemoveAll" class="link ft15" style=" text-decoration:underline; color:#A6A6A6;border-radius:5px; height:2.8em; line-height:2.8em;">清空购物车</a></div>
+    </div>
+}
+else
+{
+    <script type="text/javascript">
+        $(function () {
+            $("#body").addClass("gou_bg");
+        })
+    </script>
+    <div class="gou_wu">
+        <a href="@(ViewBag.BasePath)p">
+            <img src="/Areas/MShop/Themes/M1/Content/images/gou_wu.gif" /></a>
+    </div>
+}
+<script src="/Scripts/jqueryui/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/maticsoft.jqueryui.dialog.min.js" type="text/javascript"></script>

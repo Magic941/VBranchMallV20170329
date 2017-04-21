@@ -1,0 +1,24 @@
+﻿@*
+商品详情页 右侧推荐列表 （绑定当前商品分类的推荐商品）
+*@
+@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null && Model.Count > 0)
+{
+    <div class="tuijian">
+        <h3>推荐商品</h3>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li>
+                    <a href="/Product/Detail/@item.ProductId">
+                        <img style="width: 95px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")" /></a>
+                    <p><a href="/Product/Detail/@item.ProductId">@item.ProductName</a></p>
+                    <p>
+                        <b>
+                            <abbr>&yen;</abbr>@item.LowestSalePrice.ToString("F")</b><del><abbr>&yen;</abbr>@item.MarketPrice</del>
+                    </p>
+                </li>
+            }
+        </ul>
+    </div> 
+}

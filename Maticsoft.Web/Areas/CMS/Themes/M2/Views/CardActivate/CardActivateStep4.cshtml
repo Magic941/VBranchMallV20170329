@@ -1,0 +1,72 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKCardActivateBaseLayout.cshtml";
+}
+
+@model Maticsoft.Model.Shop_CardUserInfo
+@section head{
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/jihuo.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/hcalendar.css" rel="stylesheet" type="text/css" />
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/moment_min.js"></script>
+    <script src="/Scripts/jquery/validate/jquery.validate.js?v=1" type="text/javascript"></script>
+    <script type="text/javascript" src="/Areas/CMS/Themes/M2/Content/wb5188/js/jquery.tmpl.min.js"></script>
+
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/hcalendar.js"></script>
+
+    <!--异常提示样式在其中-->
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/moment_min.js"></script>
+    <script src="/Areas/CMS/Themes/M2/Content/wb5188/js/daterange.js"></script>
+}
+
+
+@if (Model != null)
+{
+<div class="w1200 liuc_wl">    
+    <div class="yy_jh_one">
+    	<p>
+        	<span class="sel_yuan">1</span><span class="sel_xian"></span>
+            <span class="sel_yuan">2</span><span class="sel_xian"></span>
+            <span class="sel_yuan">3</span><span class="sel_xian" style="width:100px;"></span>
+            <span class="sel_xian" style="width:100px;"></span><span class="sel_yuan">4</span>
+        </p>
+        <h3>
+        	<span style="margin-left:-10px;">阅读条款</span>
+            <span style="margin-left:150px;">填写详细资料</span>
+            <span style="margin-left:152px;">确认信息</span>
+            <span style="margin-left:170px;">激活成功</span>
+        </h3>
+    </div>
+    <div style="height:50px; clear:both;"></div>
+    <div class="ankang_wl">
+    	<div class="xinxi1">
+        	<img src="/Areas/CMS/Themes/M2/Content/wb5188/images/aa.png" />
+       		<p>已经在平台激活成功!</p>            
+            <a href="/" id="btn">继续激活另外一张卡</a>
+        </div>
+    </div>
+</div>
+
+}
+else
+{
+    <span>激活失败.</span>
+}
+
+<script>
+
+    //当前样式
+    $("#liStep4").addClass("on");
+
+    function login() {
+
+        $("#formLogin")[0].submit();
+    }
+
+
+    function ViewActivatedCard() {      
+
+    }
+
+
+</script>
+
+

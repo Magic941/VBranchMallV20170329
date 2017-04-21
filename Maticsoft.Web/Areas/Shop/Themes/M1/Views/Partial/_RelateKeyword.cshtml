@@ -1,0 +1,10 @@
+﻿@model List<Maticsoft.Model.Shop.Products.HotKeyword>
+ @if (Model != null && Model.Count > 0)
+ {
+     <div class="rel-search-key-con">
+         @foreach (var item in Model)
+         {
+             <a href="/search/@ViewBag.Cid/0/default/0-0/@item.Keywords">@item.Keywords </a>
+         }
+     </div>
+ }

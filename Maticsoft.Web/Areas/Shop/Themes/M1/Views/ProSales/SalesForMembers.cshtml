@@ -1,0 +1,134 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/dialog,item,item-s,paging,scroeAndlist-v1.css"
+    type="text/css" />
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.history.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.cookie.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.scrollto.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/dialog.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/List.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/lazyLoad.js"></script>
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDown.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMddHHmmss"))" type="text/javascript"></script>
+<script type="text/javascript">
+    var isOpenAjax = true;
+    var styleClassInfo = { "ClassId": "N101", "ClassId1": "N1", "ClassId2": "N101", "ClassId3": "", "ClassLevel": 2, "ClassName": "T恤\/卫衣", "CleanCount": 90, "GPCount": 0, "IsShowScoreOption": false, "IsShowSpecialPriceOption": true, "MemberCount": 0, "MetaDescription": "%ClassName2%，时尚细节的至真追求,打造都市靓丽新贵。动软为中国地区的会员提供来自于中国、韩国、日本等地各类风格的个性T恤,长款T恤,韩版T恤,女装T恤,休闲T恤，为向往美丽、时尚的年轻人创造更开阔的流行、时尚空间，帮助塑造属于自己的流行时尚。", "MetaKeyword": "个性T恤,长款T恤,韩版T恤,女装T恤,休闲T恤", "NewGoodsCount": 0, "PageJumpType": 1, "ParentClassId": "N1", "ShowSequence": 200, "ShowType": 0, "SpecialPriceCount": 1098, "TitleKeyword": "%ClassName2%- 时尚款式- 特惠新品- 女装频道- 动软(maticsoft)", "TotalCount": 1718, "VirtualClassFlag": false, "VirtualClassId": null };
+    var hashInfo = { init: "N1-N101-12-60-1-00-1-1-N-N-0-0", current: "N1-N101-12-60-1-00-1-1-N-N-0-0", target: "", anchor: "", url: "", pos: "", Repeatflag: false };
+    try {
+        if ((document.characterSet || document.charset).toLowerCase() != 'utf-8' && navigator.userAgent.indexOf("MSIE") > 0) {
+            window.location = window.location;
+        }
+    }
+    catch (exp) { }
+
+    $(function () {
+        $(".txtenddate").each(function () {
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+            var myclass = new CountDown();
+            myclass.init({
+                id: 'txtenddate_' + productId,
+                //天数
+                day_Dom: $("#dayEnd_" + productId),
+                //小时 
+                hour_Dom: $("#hourEnd_" + productId),
+                //分钟
+                min_Dom: $("#minEnd_" + productId),
+                //秒
+                sec_Dom: $("#secEnd_" + productId),
+                endTime: endDate
+            });
+        })
+
+    });
+
+</script>
+<form id="form1">
+<div class="w980">
+    <div class="crumb">
+        <ul>
+            <li class="crumb-hp"><a href="/">首页</a></li>
+        </ul>
+    </div>
+</div>
+<div class="w980">
+    <div class="col-main" id="mainDiv">
+        <div id="adcms" name="__LDCP" class="mb10">
+            <div class="dcpbox">
+                @Html.Action("AD", "Partial", new { AdvPositionId = 32 })
+                </div>
+        </div>
+        <div style="display: none;" id="ajaxContentPosition">
+        </div>
+        <div ajaxcontent="1" id="N1-N101-12-60-1-00-1-1-N-N-0-0-Filter" class="proditembox mb20">
+            <div id="Filter">
+            </div>
+        </div>
+        @{Html.RenderPartial("_BuyProductList", Model);}
+    </div>
+    <div class="col-sub">
+        <!--热销新品-->
+        <div class="box-sub" id="areaHotNew" name="__RXSP004">
+            <div class="hd">
+                <h2>
+                    热销新品</h2>
+            </div>
+            @Html.Action("ProductRec", "Partial", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Latest, Top = 10, Cid = Model.CurrentCid })
+        </div>
+        <!--品牌旗舰店-->
+        @*     @Html.Action("BrandList", "Product", new { productType=Model.ProductInfo.TypeId,Top=10})*@
+        <script type="text/javascript">
+            var MbarndBtn = $('<div class="moreBrand"><a href="#">显示更多品牌</a></div>');
+            if ($("#J_brand>li").size() > 10) {
+                $("#J_brand>li").slice(10).hide();
+                $("#J_brand").after(MbarndBtn);
+            }
+            $(".moreBrand").click(function () {
+                $("#J_brand>li").slice(10).show();
+                $(".moreBrand").remove();
+                return false;
+            })
+        </script>
+        <!--广告-->
+        <!--热门评论-->
+        <div class="box-sub" id="areaHotComment" style="" name="__NZPL001">
+            <div class="hd">
+                <h2>
+                    特价商品</h2>
+            </div>
+            @Html.Action("ProductRec", "Partial", new { Type = Maticsoft.Model.Shop.Products.ProductRecType.Cheap, Top = 10, Cid = Model.CurrentCid })
+        </div>
+        <!--最近浏览的商品-->
+    </div>
+</div>
+
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/tab.js" type="text/javascript"></script>
+<script type="text/javascript">
+    new Tab('#mainpush', { auto: 'true', delay: '10', event: 'click', index: 'r' });
+    $.history.init(function (hash) {
+        try {
+            if (isOpenAjax) {
+                DoAjax(location.href);
+            }
+            if (!hashInfo.Repeatflag) {
+                if (hash.length > 0) {
+                    var object = document.getElementById(hash);
+                    if (typeof (object) != "underfined" && object != null) {
+                        //		                    $("#" + hash).ScrollTo(500);
+                    }
+                    setTimeout("new LazyLoad('#J_lazyload')", 500);
+                }
+                else new LazyLoad("#J_lazyload");
+            }
+        }
+        catch (ex) {
+            new LazyLoad("#J_lazyload");
+        }
+    });
+</script>
+<!--分类热门关键词维护-->
+</form>

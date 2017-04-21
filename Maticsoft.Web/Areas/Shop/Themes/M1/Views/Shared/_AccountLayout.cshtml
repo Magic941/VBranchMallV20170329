@@ -1,0 +1,17 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+@*网站前台购物环节模版*@
+}
+@section headtop{
+    @*<link href="/Areas/Shop/Themes/M1/Content/css/base.css" rel="stylesheet" type="text/css" />*@
+}
+@section head{
+    
+    @RenderSection("head", false)
+}
+@Html.Action("Header", "Partial", new { area = "Shop" })
+@RenderBody()
+@Html.Action("Footer", "Partial", new { area = "Shop" })
+@section foot{
+    @RenderSection("foot", false)
+}

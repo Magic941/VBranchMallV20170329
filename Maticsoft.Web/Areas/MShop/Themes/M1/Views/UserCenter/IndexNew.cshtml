@@ -1,0 +1,282 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心";
+    ViewBag.Keywords = "个人中心";
+    ViewBag.Description = "个人中心";
+}
+@model Maticsoft.Model.Members.UsersExpModel
+
+
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/index.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+<style>
+    .seach_bg {
+        background: #f2f2f2;
+    }
+
+    .shift_personal_core li a {
+        width: 100%;
+        height: 2.7rem;
+        display: block;
+        overflow: hidden;
+    }
+</style>
+<div class="top">
+    <span>个人中心</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="shift_personal">
+    <div class="shift_personal_news">
+        <a href="#">
+            <img src="/Areas/MShop/Themes/M1/Content/img/9_03.png" /></a>
+        <p>用户ID： @Model.NickName</p>
+
+
+        <p>@Model.Points 积分</p>
+        @* <p>优惠券（<i>@ViewBag.CouponTotalCount 张</i>）</p>*@
+        @if (Model.UserOldType == 0)
+        {
+            <p>(会员)</p>
+        }
+        else if (Model.UserOldType == 1)
+        {
+            <p>(好粉)</p>
+        }
+        else if (Model.UserOldType == 2)
+        {
+            if (Model.Probation == 0)
+            {
+            <p>(好店)</p>
+            }
+            else if (Model.Probation == 1)
+            {
+            <p>(试用好店)</p>
+            }
+            else if (Model.Probation == 2)
+            {
+            <p>(待激活好店)</p>
+            }
+        }
+        else if (Model.UserOldType == 3)
+        {
+            <p>(分销店)</p>
+        }
+        else if (Model.UserOldType == 4)
+        {
+            <p>(服务店)</p>
+        }
+        else if (Model.UserOldType == 5)
+        {
+            <p>(省级旗舰店)</p>
+        }
+        else if (Model.UserOldType == 51)
+        {
+            <p>(市级旗舰店)</p>
+        }
+        else if (Model.UserOldType == 52)
+        {
+            <p>(县级旗舰店)</p>
+        }
+        else if (Model.UserOldType == 21)
+        {
+            <p>(VIP高级会员)</p>
+        }
+        else if (Model.UserOldType == 22)
+        {
+            <p>(大学生创业店)</p>
+        }
+        else
+        {
+            //0 表示会员 1 表示好粉 2 表示好代 3 分销店，4服务店,5省级旗舰店，
+            //51市级旗舰店 52县级旗舰店 ,21（VIP高级会员） ,22 大学生创业店
+            <p>(会员)</p>
+        }
+    </div>
+    <div class="shift_personal_out">
+        <a  href="@(ViewBag.BasePath)account/Logout" >
+            <em>
+                <img src="/Areas/MShop/Themes/M1/Content/img/15_03.png" /></em>
+            退出
+        </a>
+    </div>
+</div>
+<div class="shift_personal_nav">
+    <ul class="">
+        <li>
+            <a href="@(ViewBag.BasePath)u/Orders">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/12_03.png" /></em>
+                <span>全部订单</span>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u/Orders?type=nopay">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/13_03.png" /></em>
+                <span>待付款<i>@ViewBag.OrderNoPaytoalCount</i></span>
+
+            </a>
+        </li>
+        <li style="border-right: none;">
+            <a href="@(ViewBag.BasePath)u/MyQRCode">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/qrcode.png" /></em>
+                <span>我的二维码</span>
+            </a>
+        </li>
+    </ul>
+</div>
+<div class="shift_personal_core">
+    <ul>
+            <li>
+            <a href="@(ViewBag.BasePath)u/Mycertificate"  >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/20_03.png" /></em>
+                <span>我的证书</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u/MyCoupon"  >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/20_03.png" /></em>
+                <span>我的优惠券</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u/MyFavor" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/21_06.png" /></em>
+                <span>我的收藏</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u/MyFans">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/22_24.png" /></em>
+                <span>我的好粉</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+
+        @if (Model.UserOldType != null)
+        {
+            if (Model.UserOldType >= 2)
+            {
+            <li>
+                <a href="@(ViewBag.BasePath)u/LongHu">
+                    <em>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/22_12.png" /></em>
+                    <span>粉丝排行龙虎榜</span>
+                    <i>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+                </a>
+            </li>
+            }
+        }
+        @if (Model.UserOldType != null)
+        {
+            if (Model.UserOldType >= 2)
+            {
+            <li>
+                <a href="@(ViewBag.BasePath)u/MyPerfor">
+                    <em>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/22_23.png" /></em>
+                    <span>我的业绩</span>
+                    <i>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+                </a>
+            </li>
+            }
+        }
+       @* @if (Model.UserOldType != null)
+        {
+            if (Model.UserOldType >= 2)
+            {
+            <li>
+                <a href="@(ViewBag.BasePath)u/Dailychart">
+                    <em>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/22_12.png" /></em>
+                    <span>当天业绩龙虎榜</span>
+                    <i>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+                </a>
+            </li>
+            }
+        }
+        @if (Model.UserOldType != null)
+        {
+            if (Model.UserOldType >= 2)
+            {
+            <li>
+                <a href="@(ViewBag.BasePath)u/PerformanceRanking">
+                    <em>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/22_12.png" /></em>
+                    <span>周月业绩龙虎榜</span>
+                    <i>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+                </a>
+            </li>
+            }
+        }*@
+        <li>
+            <a href="@(ViewBag.BasePath)u/Personal" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/23_14.png" /></em>
+                <span>个人信息修改</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+       @* <li>
+            <a href="@(ViewBag.BasePath)u/ApplyAgent" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/21_06.png" /></em>
+                <span>申请个人微店</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>*@
+        <li>
+            <a href="@(ViewBag.BasePath)u/ChangePassword" >
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/24_16.png" /></em>
+                <span>密码修改</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u/MyAddress">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/25_18.png" /></em>
+                <span>我的收货地址</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+        <li style="margin-bottom: 10px;">
+            <a href="@(ViewBag.BasePath)u/ReturnInfos">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/09ss.png" /></em>
+                <span>我的退货单</span>
+                <i>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/11_03.png" /></i>
+            </a>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    if (window.navigator.userAgent.indexOf('Maticsoft_Shop_APP') == -1) {
+        //非手机APP访问
+        $('#div_logout').show();
+    }
+</script>

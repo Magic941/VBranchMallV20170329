@@ -1,0 +1,182 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Supplier.ProductsStationMode
+<div class="left">
+    <h1>
+        @ViewBag.Msg
+    </h1>
+    <form id="btnSearch">
+    <div class="form stdform">
+        <ul>
+            @if (Model.DrpProductCategory != null && Model.DrpProductCategory.Count() > 0)
+            {
+                <li>分类： @Html.DropDownList("drpProductCategory", Model.DrpProductCategory, "请选择")
+                </li> 
+            }
+            <li>商品名称：<input type="search" id="txtProductName" />
+            </li>
+            <li>
+                <input type="submit" value="查询" class="reset radius2" />
+            </li>
+        </ul>
+    </div>
+    </form>
+    <div class="content">
+        <div id="searchproductslist" class="youhuiproductlist searchproductslist">
+            <input id="hfCurrentAllData" type="hidden" value="@ViewBag.hfCurrentAllData"/>
+            @if (Model.SearchProductList != null && Model.SearchProductList.Count > 0)
+            {
+                <table id="dlstSearchProducts" cellspacing="0" border="0" style="width: 96%; border-collapse: collapse;">
+                    <tbody>
+                        @foreach (Maticsoft.Model.Shop.Products.ProductInfo item in Model.SearchProductList)
+                        {
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" class="conlisttd" skuid="@item.ProductId">
+                                        <tr>
+                                            <td width="14%" rowspan="3" class="img">
+                                                <div class="borderImage">
+                                                    <a href="@Maticsoft.Components.MvcApplication.GetCurrentRoutePath(Maticsoft.Web.AreaRoute.Shop)Product/Detail/@item.ProductId" target="_blank">
+                                                        <img  width="80px" height=80px id="ThumbnailUrl40" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T400X400_")" />
+                                                    </a>
+                                                </div>
+                                            </td>
+                                            <td height="27" colspan="5" class="br_none">
+                                                <span class="Name"><a href='@Maticsoft.Components.MvcApplication.GetCurrentRoutePath(Maticsoft.Web.AreaRoute.Shop)Product/Detail/@item.ProductId' target="_blank">@item.ProductName</a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="29%" height="28" valign="top">
+                                                <span class="colorC">最低价：@item.LowestSalePrice.ToString("F")</span>
+                                            </td>
+                                            <td width="11%" align="right" valign="top">
+                                                &nbsp;
+                                            </td>
+                                            <td width="14%" align="left" valign="top" class="a_none">
+                                                &nbsp;
+                                            </td>
+                                            <td width="15%" valign="top">
+                                                <a href="javascript:void(0);"><span id="lbtnAdd" class="submit_add">添加</span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="r">
+            <div>
+                &nbsp;</div>
+            <div class="pagination">
+                @if (Model.SearchProductList != null && Model.SearchProductList.Count > 0)
+                {
+                    @Ajax.Pager(Model.SearchProductList, new PagerOptions
+               {
+                   ShowDisabledPagerItems = false,
+                   AlwaysShowFirstLastPageNumber = true,
+                   PageIndexParameterName = "searchPageIndex",
+                   NumericPagerItemCount = 10,
+                   CurrentPagerItemWrapperFormatString = "<span class=\"cpb\">{0}</span>",
+                   NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                   NavigationPagerItemWrapperFormatString = "<span>{0}</span>",
+                   CssClass = "anpager",
+                   SeparatorHtml = ""
+               }, new AjaxOptions { UpdateTargetId = "Goodsgifts" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="right">
+    <h1>
+        已添加的商品</h1>
+    <div class="form stdform">
+        <ul>
+            <li id="liDelAll">
+                <input id="btnClear" type="button" class="reset radius2" value="清空列表" />
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <input id="hfSelectedData" type="hidden" value="@ViewBag.hfSelectedData"/>
+        <div id="addedproductslist" class="youhuiproductlist addedproductslist">
+            @if (Model.AddedProductList != null && Model.AddedProductList.Count > 0)
+            {
+                <table id="dlstAddedProducts" cellspacing="0" border="0" style="width: 96%; border-collapse: collapse;">
+                    <tbody>
+                        @foreach (Maticsoft.Model.Shop.Products.ProductInfo item in Model.AddedProductList)
+                        {
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellspacing="0" class="conlisttd" skuid="@item.ProductId">
+                                        <tr>
+                                            <td width="14%" rowspan="3" class="img">
+                                                <div class="borderImage">
+                                                    <img id="Img1" width="80px" height="80px" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T400X400_")" /></div>
+                                            </td>
+                                            <td height="27" colspan="5" class="br_none">
+                                                <span class="Name"><a href='@Maticsoft.Components.MvcApplication.GetCurrentRoutePath(Maticsoft.Web.AreaRoute.Shop)Product/Detail/@item.ProductId' target="_blank">@item.ProductName</a>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="29%" height="28" valign="top">
+                                                <span class="colorC">最低价：@item.LowestSalePrice.ToString("F")</span>
+                                            </td>
+                                            <td width="11%" align="right" valign="top">
+                                                &nbsp;
+                                            </td>
+                                            <td width="14%" align="left" valign="top" class="a_none">
+                                                &nbsp;
+                                            </td>
+                                            <td width="15%" valign="top">
+                                                <a href="javascript:void(0);"><span id="lbtnDel"><span class="submit_del" skuid="@item.ProductId">
+                                                    删除</span></span></a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+        <div class="r">
+            <div>
+                &nbsp;</div>
+            <div class="pagination">
+                @if (Model.AddedProductList != null && Model.AddedProductList.Count > 0)
+                {
+                    @Ajax.Pager(Model.AddedProductList, new PagerOptions
+               {
+                   ShowDisabledPagerItems = false,
+                   AlwaysShowFirstLastPageNumber = true,
+                   PageIndexParameterName = "addPageIndex",
+                   NumericPagerItemCount = 10,
+                   CurrentPagerItemWrapperFormatString = "<span class=\"cpb\">{0}</span>",
+                   NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                   NavigationPagerItemWrapperFormatString = "<span>{0}</span>",
+                   CssClass = "anpager",
+                   SeparatorHtml = ""
+               }, new AjaxOptions { UpdateTargetId = "Goodsgifts" })
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/admin/js/jquery/jquery.scrollTo-min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/ProductStationMode.helper.js"
+    type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        resizeImg('.borderImage', 80, 80);
+    });
+</script>

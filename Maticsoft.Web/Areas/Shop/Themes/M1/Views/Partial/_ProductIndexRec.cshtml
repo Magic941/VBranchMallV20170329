@@ -1,0 +1,31 @@
+﻿  @model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="hd">
+    <h2>
+        推荐商品</h2>
+    <div class="act">
+        <ul>
+            <li class="prev fl">prev</li>
+            <li class="next fr">next</li>
+        </ul>
+    </div>
+</div>
+<div class="bd">
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="j-sw-clip" style="position: relative;">
+            <ul class="j-sw-c" style="position: absolute; width: 678px;">
+                @foreach (var item in Model)
+                {
+                       <li style="display: block; float: left;">
+                   @* <a target="_blank" title="@item.ProductName"
+                       href="@(ViewBag.BasePath)Product/Detail/@item.ProductId">*@
+                       <a target="_blank" title="@item.ProductName" href="@item.SeoUrl">
+                        <img alt="@item.ProductName" 
+                        src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T95X120_")" width="95"
+                             height="120"></a>
+                </li>
+                }
+            </ul>
+    </div>
+    }
+</div>

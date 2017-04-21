@@ -1,0 +1,74 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+@model List<Maticsoft.Model.Shop.Shipping.ShippingAddress>
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+    <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<input type="hidden" id="currentpage" value="span_6" />
+<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg" style="height: 32px; vertical-align: bottom;">
+            <h3 class="fL">收货地址</h3>
+            <input onclick="window.location='@(ViewBag.BasePath)UserCenter/ShippAddress';return false;" type="button" style="margin-left: 10px; border:none; vertical-align: middle; width: 65px; height: 30px; background-image: url('/Areas/Shop/Themes/M1/Content/images/btnadd.gif')" value="" />
+        </div>
+        <div id="LoadOrderList" class="add-adress">
+            <h3>以保存的有效地址<span style="color: #999">(最多保存10个有效地址)</span></h3>
+            <table width="100%" border="0" class="address-valid" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th width="124">
+                        <h4>收货人</h4>
+                    </th>
+                    <th width="212">
+                        <h4>联系电话</h4>
+                    </th>
+                    <th width="393">
+                        <h4>联系地址</h4>
+                    </th>
+                    <th width="211">
+                        <h4>操作</h4>
+                    </th>
+                </tr>
+                @if (Model != null && Model.Count > 0)
+                {
+                    foreach (Maticsoft.Model.Shop.Shipping.ShippingAddress item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @item.ShipName
+                        </td>
+                        <td>
+                            @item.CelPhone
+                        </td>
+                        <td>
+                            @item.RegionFullName @item.Address
+                        </td>
+
+                        <td class="caozuo"><a href="@(ViewBag.BasePath)UserCenter/ShippAddress/@(item.ShippingId)">修改</a><span>|</span>
+                            <a href="javascript:;" onclick="DelAddress(@(item.ShippingId))">删除</a><span>|</span><a href="#">设为默认</a></td>
+
+                    </tr>
+                    }
+                }
+            </table>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    function DelAddress(id) {
+        if (!confirm('确认删除?')) {
+            return;
+        }
+        $.post('@(ViewBag.BasePath)UserCenter/DelShippAddress/' + id,
+            function (data) {
+                if (data == "OK") {
+                    window.location.reload();
+                } else {
+                    ShowFailTip("服务器忙, 请稍后再试!");
+                }
+            }
+        );
+    }
+</script>

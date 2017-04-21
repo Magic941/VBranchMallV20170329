@@ -1,0 +1,71 @@
+﻿@using Maticsoft.Model.SNS
+@model Maticsoft.ViewModel.SNS.PhotoList
+@{
+    <script type="text/javascript">
+        $(function () {
+            $('.emerge').unbind('hover').hover(function () {
+                $(this).find('#dodge').show();
+                $(this).find('#delAlbumDetail').show();
+            }, function () {
+                $(this).find('#dodge').hide();
+                $(this).find('#delAlbumDetail').hide();
+            });
+            resizeImg('.imagewalls_id', 211, 1280);
+        });
+    </script>
+    foreach (PostContent item in Model.PhotoListWaterfall)
+    {
+    <div class="i_w_y">
+        <div id="emerge" class="emerge">
+            <p>
+                <a class="pic_load" href="@item.StaticUrl">
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))" alt="@item.TargetDescription" />
+                    @if (item.Type == 1&&item.Price>-1)
+                    {
+                        <span class="price">¥@item.Price.ToString("F")</span>
+                    }
+                </a>
+            </p>
+            @if (ViewBag.IsCurrentUser == true)
+            {
+                <div id="delAlbumDetail">
+                    <a href="javascript:;" class="delAlbumDetail" albumid="@Model.AlbumModel.AlbumID" targetid="@item.TargetId" imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.ImageType.Product ? "Product" : "Photo")">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/del-btn-19x19.png" /></a></div>
+            }
+            <div id="dodge" class="addalbum"  imagetype="@(item.Type == (int)Maticsoft.Model.SNS.EnumHelper.ImageType.Product ? "Product" : "Photo")"  targetid=@item.TargetId  imageurl="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T116x170_"))" >
+                <a href="javascript:;">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" />
+                </a>
+            </div>
+        </div>
+        <div class="search_com">
+                            <div class="search_com_a">
+                                <p class="search_com_a1">
+                                    <a href="javascript:void(0)" class="favourite" imagetype="Photo" targetid=@item.TargetId>
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_22.jpg" /></a></p>
+                                <p class="search_com_a2">
+                                    <a href="javascript:;">@item.FavouriteCount</a></p>
+                            </div>
+                                       <div class="search_com_b" style="cursor: pointer">
+                                <p class="search_com_b1">
+                                    <a href="javascript:;">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/user_23.jpg" /></a></p>
+                                <p class="search_com_b2">
+                                    <span class="commentcount">@item.CommentCount</span>评论</p> 
+                                    <input class="TargetId" type="hidden" value="@item.TargetId" imagetype="Photo"/>
+                            </div>
+                           
+                            <div class="clear">
+                            </div>
+                        </div>
+        <div class="search_iss">
+            @{if (item.CommentCount > 0 && item.CommentList.Count > 0)
+              {
+                  Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/Partial/TargetListComment.cshtml", item.CommentList);
+              }}
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    }
+}

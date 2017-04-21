@@ -1,0 +1,106 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierAD>
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="contenttitle2 mar30">
+    <h3>
+        <span>广告位设置</span></h3>
+    <small class="desc"><span>您可以新增、修改、删除 广告位</span> </small>
+</div>
+<!--Title end -->
+<!--Add  -->
+<!--Add end -->
+<!--Search -->
+<div class="newslistabout">
+    <div class="field shuru shuru1">
+        <img src="/Areas/Supplier/Themes/M1/Content/images/list.gif" />
+        <span>关键字</span>
+        <input type="text" id="txtKeyword" class="admininput_1" />
+        <input type="button" id="btnSearch" value="搜索" style="cursor: pointer;"/>
+    </div>
+</div>
+<!--Search end-->
+<br />
+<!--Toolbar -->
+<div class="newslist">
+    <div class="newsicon">
+        <ul>
+            <li style="background: url(/images/icon8.gif) no-repeat 5px 3px"><a href="javascript:;"
+                id="addAd">添加</a></li>
+            <li style="background: url(/Areas/Supplier/Themes/M1/Content/images/cross.png) no-repeat">
+                <a href="javascript:;" id="btnDeletetwo">批量删除</a></li>
+        </ul>
+    </div>
+    <!--Toolbar end -->
+    <div id="LoadMenuList">
+        @{Html.RenderPartial("_AdsList", Model);}
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        var idlist = "";
+        $("#btnDeletetwo").click(function () {//批量删除
+            var $checkBoxList = $("input[type='checkbox']:checked");
+            if ($checkBoxList.length == 0) {
+                ShowFailTip("请选择要删除的菜单！");
+                return false;
+            } else {
+                if (!confirm('您确定要删除吗？')) {
+                    return false;
+                }
+                $checkBoxList.each(function () {
+                    idlist += $(this).attr("adId") + ",";
+                });
+                $.post($Maticsoft.BasePath + "Home/DeleteAds", { idList: idlist }, function (data) {
+                    if (data == "ok") {
+                        ShowSuccessTip("删除成功");
+                        window.location = $Maticsoft.BasePath + "Home/AdsSetting";
+                    } else {
+                        ShowFailTip("删除失败！");
+                    }
+                });
+            }
+        });
+        $(".deleteThisAd").die('click').live('click', function () {//单个删除
+            if (!confirm("您确定要删除吗？")) {
+                return false;
+            }
+            $.post($Maticsoft.BasePath + "Home/DeleteaAd", { AdId: $(this).attr("adid") }, function (data) {
+                if (data == "ok") {
+                    ShowSuccessTip("删除成功");
+                    window.location = $Maticsoft.BasePath + "Home/AdsSetting";
+                } else {
+                    ShowFailTip("删除失败！");
+                }
+            });
+        });
+        $(".editThisAd").die('click').live('click', function () {//广告编辑
+            window.location = $Maticsoft.BasePath + "Home/AdsDetail/" + $(this).attr("adid") + "?viewName=EditAds";
+            //            $.ajax({
+            //                url: "@(ViewBag.BasePath)SellerCenter/AdsDetail",
+            //                type:"Post",
+            //                data: {
+            //                    id: $(this).attr("adid"),
+            //                    viewName:"EditAds"
+            //                }
+            //            });
+            // window.location = "@(ViewBag.BasePath)SellerCenter/EditMenu/" + $(this).attr("adid");
+        });
+        $("#btnSearch").click(function () {//广告搜索
+            if ($("#txtKeyword").val().length == 0) {
+                $("#LoadMenuList").load($Maticsoft.BasePath + "Home/AdsSetting");
+            } else {
+                $("#LoadMenuList").load($Maticsoft.BasePath + "Home/AdsSetting", { keyword: $("#txtKeyword").val() });
+            }
+
+        });
+        $("#addAd").click(function () {//添加广告
+            window.location = $Maticsoft.BasePath + "Home/AddAds";
+        });
+        $(".adDetail").click(function () {//查看详情
+            window.location = $Maticsoft.BasePath + "Home/AdsDetail/" + $(this).attr("adid");
+        });
+    });
+</script>

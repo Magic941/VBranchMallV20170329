@@ -1,0 +1,205 @@
+﻿@using Maticsoft.Model.Shop.Order
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Order.OrderInfo>
+@{
+    Maticsoft.BLL.Shop.Order.OrderReturnGoodsItem bllOrderReturnGoodsItem = new Maticsoft.BLL.Shop.Order.OrderReturnGoodsItem();
+    Func<long, long, bool> FuncCheckHasAppliedReturn = (intOrderId, intOrderItemId) =>
+    {
+        IList<Maticsoft.Model.Shop.Order.OrderReturnGoodsItem> list = bllOrderReturnGoodsItem.GetModelList("orderid = " + intOrderId + " And orderitemid = " + intOrderItemId);
+        return null == list || list.Count <= 0 ? false : true;
+    };
+}
+<style>
+    .wieft {
+        width: 10rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .wieft span {
+            display: block;
+        }
+    .home_pic_listimg a {
+        font-size:0.9rem;
+    }
+</style>
+
+@if (Model != null)
+{
+    <div class="index_h1" style="height: 38px; line-height: 38px; font-size: 14px;">@(ViewBag.orderType == "all" ? "我的订单" : "我的未付款订单") : <span style="color: red">@ViewBag.Count </span></div>
+    foreach (var item in Model)
+    {
+    <div class="home_piclist">
+        <div class="ddnum">
+            <ul>
+                <li><a href="#" style="display: none;">订单追踪</a><span>订单编号：</span>@item.OrderCode</li>
+                <li><span>订单金额：</span><strong>￥@item.Amount.ToString("F")</strong></li>
+                <li class="ddnum_shijian"><span>下单时间：</span><em>@item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</em></li>
+            </ul>
+        </div>
+      
+        @*是否拆单模式*@
+        @if (item.HasChildren && (item.PaymentStatus > 1 || (item.PaymentGateway == "cod" || item.PaymentGateway == "bank")))
+        {
+            for (int i = 0; i < item.SubOrders.Count; i++)
+            {
+
+                if (item.SubOrders[i].OrderItems != null && item.SubOrders[i].OrderItems.Count > 0)
+                {
+                    foreach (var orderItem in item.SubOrders[i].OrderItems)
+                    {
+                    <div class="home_pic_listimg" style="border-top: solid 1px rgb(164, 164, 164); /*border-bottom:none;*/">
+                        <a href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/"  class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                            <img title="@orderItem.Name" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(orderItem.ThumbnailsUrl, "T115X115_")" width="50" height="65"  onerror=" this.onerror = '';this.src = '/Content/themes/base/Shop/images/none.png' " >
+                        </a>
+                        <span><a href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/" target="_blank">@orderItem.Name </a></span>
+                        <span>@orderItem.Attribute </span>
+                        @switch (Maticsoft.Web.Areas.Shop.Controllers.UserCenterController.GetOrderMainStatus(item.SubOrders[i].PaymentGateway, item.SubOrders[i].OrderStatus, item.SubOrders[i].PaymentStatus, item.SubOrders[i].ShippingStatus))
+                        {
+                            case EnumHelper.OrderMainStatus.Handling: //正在处理
+                            case EnumHelper.OrderMainStatus.Shipping: //配货中
+                            case EnumHelper.OrderMainStatus.Shiped://已发货
+                                <br />
+                                if (orderItem.ReturnStatus == (int)EnumHelper.Returnstatus.NoApply && !FuncCheckHasAppliedReturn.Invoke(item.SubOrders[i].OrderId, orderItem.ItemId))
+                                { 
+                                    <a href="javascript:;" class="btnReturnGoods" style="font-size:0.6rem; color:#ee6f6f; border:1px solid #ee6f6f; padding:2px 2px;" ItemId="@orderItem.ItemId">申请退货/款</a>
+                                }
+                                else
+                                {
+                                    @*<span style="color: #aaaaaa;">申请退货</span>*@
+                                }
+                                break;
+                        }
+                    </div>
+                    <span style="display:block;width:90%;margin:0 auto; /*border:1px solid #DFDFDF*/"></span>
+                    }
+                }
+                <div class="home_order" style="background:#fff;">
+                    <div class="" style="width: 14.75rem; margin: 0 auto;background:#fff;">
+                        @switch (Maticsoft.Web.Areas.MShop.Controllers.UserCenterController.GetOrderMainStatus(item.SubOrders[i].PaymentGateway, item.SubOrders[i].OrderStatus, item.SubOrders[i].PaymentStatus, item.SubOrders[i].ShippingStatus))
+                        {
+                            case EnumHelper.OrderMainStatus.Shiped://已发货
+                                if (!item.HasReturn)
+                                { 
+                                    <a href="javascript:;"  class="btnOrderComplete u-btn"  style="width:85px;line-height:25px;border-radius:5px; color:#fff;background:#f8a309;" itemid="@item.SubOrders[i].OrderId">确认收货</a>                                              
+                                }    
+                            break;
+                            case EnumHelper.OrderMainStatus.Complete://已完成
+                                if (item.SubOrders[i].IsReviews)
+                                {
+
+                                }
+                                else
+                                {
+                                    <a href="@(ViewBag.BasePath)U/Order_Productreviews/@item.SubOrders[i].OrderId" class="btnProductreviews u-btn" style="margin-left:94px;color:#fff;background:#f8a309" itemid="@item.SubOrders[i].OrderId">评论</a> 
+                                }
+                                break;
+                        }
+                        <a href="@(ViewBag.BasePath)O/oi/@item.SubOrders[i].OrderId"  class="u-btn" style="border:1px solid #d91b0f; color:#d91b0f; width:58px; height:23px; line-height:23px; float:right; margin-right:0px;">详情</a>
+                    </div>
+                </div>
+            <span class="clr"></span>
+            }
+        }
+        else
+        {
+            if (item.OrderItems != null && item.OrderItems.Count > 0)
+            {
+                foreach (var orderItem in item.OrderItems)
+                {
+                <div class="home_pic_listimg">
+                    <a href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/" class="img-box" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                        <img title="@orderItem.Name" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(orderItem.ThumbnailsUrl, "T115X115_")" width="50" height="65"  onerror=" this.onerror = '';this.src = '/Content/themes/base/Shop/images/none.png' " />
+                    </a>
+                    <span><a href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/" target="_blank">@orderItem.Name </a></span>
+                    <span>@(string.IsNullOrWhiteSpace(orderItem.Attribute) ? "" : "规格：") @orderItem.Attribute </span>
+                    @switch (Maticsoft.Web.Areas.MShop.Controllers.UserCenterController.GetOrderMainStatus(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus))
+                        {
+                            case EnumHelper.OrderMainStatus.Handling: //正在处理
+                            case EnumHelper.OrderMainStatus.Shipping: //配货中
+                            case EnumHelper.OrderMainStatus.Shiped://已发货
+                                <br />
+                                if (orderItem.ReturnStatus == (int)EnumHelper.Returnstatus.NoApply && !FuncCheckHasAppliedReturn.Invoke(item.OrderId, orderItem.ItemId))
+                                { 
+                                    <a href="javascript:;" class="btnReturnGoods" style="font-size:0.6rem; color:#ee6f6f; border:1px solid #ee6f6f; padding:2px 2px;" ItemId="@orderItem.ItemId">申请退货/款</a>
+                                }
+                                else
+                                { 
+                                    @*<span style="color:#aaaaaa;">申请退货</span>*@
+                                }
+                                break;
+                        }
+                </div>
+                }
+            }
+            <div class="home_piczt">
+                <span>订单状态：</span><strong>@Maticsoft.Web.Areas.MShop.Controllers.UserCenterController.GetOrderType(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus)</strong>
+            </div>
+            <div class="home_order" style="background:#fff;">
+                <div class="" style="width: 14.75rem; margin: 0 auto;">
+                    @* <span>操作：</span>*@
+                    @switch (item.OrderStatus)
+                    {
+                        case (int)EnumHelper.OrderStatus.UnHandle://未处理
+                            if (item.PaymentGateway != "cod" && item.PaymentGateway != "bank")
+                            {
+                            <a href="javascript:;" class="btnPayOrder u-btn" ItemId="@item.OrderId" style="color:#fff;">支付</a>
+                            <a href="javascript:;" class="btnOrderCancel u-btn"  ItemId="@item.OrderId">取消</a>
+                                }
+                                break;
+
+                            case (int)EnumHelper.OrderStatus.Handling://未处理
+                                if (item.PaymentGateway != "cod" && item.PaymentGateway != "bank")
+                                {
+                                <a href="javascript:;" class="btnPayOrder u-btn" ItemId="@item.OrderId" style="color:#fff; display:none">支付</a>
+                                <a href="javascript:;" class="btnOrderCancel u-btn"  style="margin-left:94px; display:none" ItemId="@item.OrderId">取消</a>
+                                }
+                                break;
+                    }
+                    @switch (Maticsoft.Web.Areas.MShop.Controllers.UserCenterController.GetOrderMainStatus(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus))
+                    {
+                        case EnumHelper.OrderMainStatus.Shiped://已发货
+                            if (!item.HasReturn)
+                            { 
+                                <a href="javascript:;"  class="btnOrderComplete u-btn"  style="width:85px;line-height:25px;border-radius:5px; color:#fff;background:#f8a309;" itemid="@item.OrderId">确认收货</a>
+                            }
+                            break;
+                        case EnumHelper.OrderMainStatus.Complete://已完成
+                            if (item.IsReviews)
+                            {
+
+                            }
+                            else
+                            {
+                                <a href="@(ViewBag.BasePath)U/Order_Productreviews/@item.OrderId" class="btnProductreviews u-btn" style="margin-left:94px;color:#fff;background:#f8a309" itemid="@item.OrderId">评论</a> 
+                            }
+                            break;
+                    }
+                    <a href="@(ViewBag.BasePath)O/oi/@item.OrderId"  class="u-btn" style="border:1px solid #d91b0f; color:#d91b0f; width:58px; height:23px; line-height:23px; float:right; margin-right:0px;">详情</a>
+                </div>
+            </div>
+        }
+    </div>
+    }
+
+}
+else
+{
+    <div class="wieft">
+        <span>
+            <img src="/Areas/MShop/Themes/M1/Content/img/isnull.png" style="width: 130px; height: 130px; margin-top: 18%" />
+        </span>
+        <span style="color: #333333; font-size: 15px; font-family: 微软雅黑; margin-top: 18%">暂时还没有订单信息</span>
+    </div>
+}
+
+
+@Html.AjaxPager(Model, new PagerOptions
+                    {
+                        PageIndexParameterName = "pageIndex",
+                        NumericPagerItemCount = 3,
+                        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                        CssClass = "in_pages_m",
+                        SeparatorHtml = ""
+                    }, new AjaxOptions { UpdateTargetId = "LoadOrderList" })

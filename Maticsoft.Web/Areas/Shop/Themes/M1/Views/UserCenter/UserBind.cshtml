@@ -1,0 +1,220 @@
+﻿ @{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+ }
+ @model Maticsoft.ViewModel.UserCenter.UserBindList
+<style type="text/css">
+    /*****绑定帐号*****/
+.bangding{width:650px; height:auto !important; margin:20px auto 0;}
+.zhanghu{width:650px;  overflow:hidden; margin-top:40px;}
+.zhanghu_a{ float:left; width:61px; height:61px; margin-right:15px;}
+.zhanghu_b{width:574px; float:left;}
+.zhanghu_b p{ color:#999; line-height:24px;}
+.zhanghu_b_a{width:124px; margin-top:10px; height:22px; text-align:center; color:#fff; line-height:22px; background: url(/Areas/Shop/Themes/M1/Content/images/bangding.jpg); font-weight:bold;}
+.zhanghu_b_c{width:574px; overflow:hidden;}
+.zhanghu_b_c1{font-size:14px; color:#666; float:left;}
+.zhanghu_b_c1 a{color:#74a700; font-weight:bold;}
+.zhanghu_b_c2{font-size:12px; color:#999; float:right;}
+.zhanghu_b_c2 a{ color:#999; text-decoration:underline;}
+.zhanghu_b_d{width:574px; margin-top:13px; background:#f2f2f2; height:30px;}
+.zhanghu_b_d1{width:300px; float:left; margin-top:8px;*margin-top:5px; margin-left:15px; vertical-align:middle;}
+.zhanghu_b_d1 dt{ margin-right:10px; float:left; color:#666; vertical-align:middle;}
+.zhanghu_b_d1 dt input{ margin-right:5px;}
+</style>
+<script type="text/javascript">
+    $(function () {
+
+    });
+    function CancelBind(Id) {
+        $.ajax({
+            url: "/UserCenter/CancelBind",
+            type: 'post',
+            data: { Action: "post", BindId: Id },
+            dataType: 'text',
+            success: function (resultData) {
+                if (resultData == "success") {
+                    window.location = " /UserCenter/UserBind";
+                }
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert("请求错误！");
+            }
+        });
+    }
+    function SetCheck(control) {
+        if ($(control).attr("checked")) {
+            $(control).removeAttr("checked");
+            alert($(control).attr("checked"));
+        }
+        else {
+            $(control).attr("checked", 'checked');
+        }
+    }
+
+    function btnSet(type, Id) {
+        alert(type);
+        $("." + type + "[checked]").each(function () {
+            var str = $(this).val();
+            alert(str);
+        })
+        //        $.ajax({
+        //            url: "/UserCenter/CancelBind",
+        //            type: 'post',
+        //            data: { Action: "post", BindId: Id },
+        //            dataType: 'text',
+        //            success: function (resultData) {
+        //                if (resultData == "success") {
+        //                    window.location = " /UserCenter/UserBind";
+        //                }
+        //            },
+        //            error: function (XMLHttpRequest, textStatus, errorThrown) {
+        //                alert("请求错误！")
+        //            }
+        //        });
+    }
+</script>
+<div class="col-main">
+  
+  <div class="user_dingdantitle">绑定帐号</div>  
+ 
+       <div class="bangding">
+        @if (Model.Sina != null)
+        {
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/bangding1.jpg" /></div>
+                <div class="zhanghu_b">
+                    <div class="zhanghu_b_c">
+                        <dl class="zhanghu_b_c1">
+                            你已绑定新浪微博：@Model.Sina.MediaNickName</dl>
+                        <dl class="zhanghu_b_c2">
+                            <a href="javascript:void(0)" onclick="CancelBind(@Model.Sina.BindId)">取消绑定</a></dl>
+                    </div>
+                    <div class="zhanghu_b_d">
+                        <dl class="zhanghu_b_d1 ">
+                            <dt>
+                                @if (Model.Sina.Comment)
+                                {
+                                    <input name="" type="checkbox" value="comment" checked="checked" class="sina"  onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="comment" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                 
+                                评论</dt>
+                            <dt>
+                               @* <input name="" type="checkbox" value="topic"   class="sina" onclick="SetCheck(this)"/>*@
+                                @if (Model.Sina.GroupTopic)
+                                {
+                                    <input name="" type="checkbox" value="topic" checked="checked" class="sina"  onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="topic"   class="sina" onclick="SetCheck(this)"/>
+                                }
+                          
+                                主题</dt>
+                            <dt>
+                                @if (Model.Sina.iHome)
+                                {
+                                    <input name="" type="checkbox" value="home" checked="checked" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                else
+                                {
+                                    <input name="" type="checkbox" value="home" class="sina" onclick="SetCheck(this)"/>
+                                }
+                                我的首页</dt>
+                  @*          <dt>
+                                <input name="" type="button"  onclick="btnSet('sina',@Model.Sina.BindId)" value="同步设置" /></dt>*@
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/bangding1.jpg" /></div>
+                <div class="zhanghu_b">
+                    <p>
+                        你的新浪微博（未绑定）</p>
+                    <div class="zhanghu_b_a">
+                        <a style="color: #fff;" href="/Account/ToBind?pName=Sina">绑定并关注@(ViewBag.SiteName)</a></div>
+                </div>
+            </div>
+        }
+
+         @if (Model.QZone != null)
+         {
+              <div class="zhanghu">
+                <div class="zhanghu_a">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/bangding3.jpg" /></div>
+                <div class="zhanghu_b">
+                    <div class="zhanghu_b_c">
+                        <dl class="zhanghu_b_c1">
+                            你已绑定QQ空间：@Model.QZone.MediaNickName</dl>
+                        <dl class="zhanghu_b_c2">
+                            <a   href="javascript:void(0)" onclick="CancelBind(@Model.QZone.BindId)">取消绑定</a></dl>
+                    </div>
+                    <div class="zhanghu_b_d">
+                        <dl class="zhanghu_b_d1">
+                            <dt>
+                                <input name="" type="checkbox" value="" checked="checked" />评论</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>主题</dt>
+                            <dt>
+                                <input name="" type="checkbox" value=""  checked="checked"/>我的首页</dt>
+                      @*      <dt style="width: 120px">
+                                <input name="" type="button" onclick="btnSet()" value="同步设置" /></dt>*@
+                        </dl>
+                    </div>
+                </div>
+            </div>
+         }
+         else
+         {
+                <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/Shop/Themes/M1/Content/images/bangding3.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的QQ空间帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a style="color: #fff;"  href="/Account/ToBind?pName=QZone">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+         }
+
+        @*<div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/Shop/Themes/M1/Content/images/bangding4.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的人人帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a  style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+        <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/Shop/Themes/M1/Content/images/bangding5.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的豆瓣帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>
+        <div class="zhanghu">
+            <div class="zhanghu_a">
+                <img src="/Areas/Shop/Themes/M1/Content/images/bangding6.jpg" /></div>
+            <div class="zhanghu_b">
+                <p>
+                    你的淘宝帐号（未绑定）</p>
+                <div class="zhanghu_b_a">
+                    <a  style="color: #fff;" href="javascript:void(0)" onclick="$.jBox.tip('该功能即将上线，请稍后再试。')">绑定并关注@(ViewBag.SiteName)</a></div>
+            </div>
+        </div>*@
+    </div>
+</div>

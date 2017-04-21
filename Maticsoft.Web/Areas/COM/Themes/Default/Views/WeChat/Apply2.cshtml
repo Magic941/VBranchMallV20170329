@@ -1,0 +1,362 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/onlinebooking.css?2014-02-26-2"
+        media="all" />
+    <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/datepicker.css?2014-02-26-2"
+        media="all" />
+    <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/template/weimob-ui-1-1.css?2014-02-26-2"
+        media="all" />
+    <link rel="stylesheet" type="text/css" href="http://stc.weimob.com/css/template/common.css?2014-02-26-2"
+        media="all" />
+    <script type="text/javascript" src="http://stc.weimob.com/src/jQuery.js?2014-02-26-2"></script>
+    <script type="text/javascript" src="http://stc.weimob.com/src/jquery-ui.js?2014-02-26-2"></script>
+    <title></title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"
+        name="viewport">
+    <meta content="application/xhtml+xml;charset=UTF-8" http-equiv="Content-Type">
+    <meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="0" http-equiv="expires">
+    <meta content="telephone=no, address=no" name="format-detection">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!-- apple devices fullscreen -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <link rel="shortcut icon" href="http://stc.weimob.com/img/favicon.ico" />
+    <style>
+        img
+        {
+            max-width: 100% !important;
+        }
+    </style>
+</head>
+<body onselectstart="return true;" ondragstart="return false;">
+    <body id="onlinebooking">
+        <div class="qiandaobanner">
+            <img src="http://img.weimob.com/static/0f/73/0b/image/20131206/20131206182702_49020.jpg">
+        </div>
+        <div class="cardexplain">
+            <!--普通用户登录时显示-->
+            <ul class="round">
+                <li><a href="/Webreserve/ReserveMyBook/wechatid/o3hb9jimhWSgUZoy6nyOQ-non3Zg/rid/3138">
+                    <span>我的招聘<em class="ok">0</em></span></a> </li>
+            </ul>
+            <!--后台可控制是否显示-->
+            <ul class="round">
+                <li>
+                    <h2>
+                        招聘说明</h2>
+                    <div class="text">
+                        请仔细填写一下信息，我们会与您及时取得联系，期待您的加入！</div>
+                </li>
+            </ul>
+            <!--后台可控制是否显示-->
+            <ul class="round">
+                <li class="addr"><a href="http://api.map.baidu.com/marker?location=39.684293,118.196144&title=便利365&name=便利365&content=请仔细填写一下信息，我们会与您及时取得联系，期待您的加入！&output=html&src=weiba|weiweb">
+                    <span>地址： 唐山市路北区龙泽北路476号</span></a></li>
+                <li class="tel"><a href="tel:4008536524"><span>招聘电话： 4008536524</span></a></li>
+            </ul>
+            <ul class="round roundyellow" style="display: none;">
+                <li class="userinfo"><a href="/Webreserve/PerfectInfo/wechatid/o3hb9jimhWSgUZoy6nyOQ-non3Zg/id//rid/3138">
+                    <span>请完善个人资料再填表单</span></a></li>
+            </ul>
+            <!--粉丝填写过的信息的，直接就显示名字电话，粉丝没有填写过信息的话，这里就直接留空让粉丝填写-->
+            <ul class="round">
+                <form action="javascript:;" method="post">
+                <li class="title mb"><span class="none">请认真填写表单</span></li>
+                <li class="nob">
+                    <input name="formhash" id="formhash" value="2be3071a" type="hidden">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                联系人
+                            </th>
+                            <td>
+                                <input name="truename" class="px" id="truename" value="" placeholder="请输入您的真实姓名"
+                                    type="text">
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                联系电话
+                            </th>
+                            <td>
+                                <input name="tel" class="px" id="tel" value="" placeholder="请输入您的电话" type="tel">
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                您的年龄
+                            </th>
+                            <td>
+                                <input name="txt1" class="single px" id="txt1" placeholder="请填写" value="" type="text">
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                您的性别
+                            </th>
+                            <td>
+                                <select name="" class="download dropdown-select">
+                                    <option value="请选择">请选择</option>
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                您要应聘的职位
+                            </th>
+                            <td>
+                                <select name="" class="download dropdown-select">
+                                    <option value="请选择应聘职位">请选择应聘职位</option>
+                                    <option value="兼职营业员">兼职营业员</option>
+                                    <option value="全职营业员">全职营业员</option>
+                                    <option value="储备店长">储备店长</option>
+                                    <option value="拓展经理">拓展经理</option>
+                                    <option value="媒体运营专员">媒体运营专员</option>
+                                    <option value="其他">其他</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                到岗时间
+                            </th>
+                            <td>
+                                <select name="" class="download dropdown-select">
+                                    <option value="请选择时间">请选择时间</option>
+                                    <option value="立即">立即</option>
+                                    <option value="一个月内">一个月内</option>
+                                    <option value="一个月以上">一个月以上</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th>
+                                您的学历
+                            </th>
+                            <td>
+                                <select name="" class="download dropdown-select">
+                                    <option value="请选择您的学历">请选择您的学历</option>
+                                    <option value="初中">初中</option>
+                                    <option value="高中">高中</option>
+                                    <option value="中专">中专</option>
+                                    <option value="大专">大专</option>
+                                    <option value="本科">本科</option>
+                                    <option value="研究生及以上">研究生及以上</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                <li class="nob">
+                    <table class="kuang" border="0" cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <th class="thtop" valign="top">
+                                备注
+                            </th>
+                            <td>
+                                <textarea name="info" class="pxtextarea" style="height: 99px; overflow-y: visible"
+                                    id="info" placeholder="请输入备注信息"></textarea>
+                                <input type="hidden" name="uid" id="uid" value="o3hb9jimhWSgUZoy6nyOQ-non3Zg" />
+                                <input type="hidden" name="rid" id="rid" value="3138" />
+                                <input type="hidden" name="aid" id="aid" value="25292" />
+                            </td>
+                        </tr>
+                    </table>
+                </li>
+                </form>
+            </ul>
+            <div class="footReturn">
+                <input id="showcard" class="submit" value="提交消息" type="button">
+                <div class="window" id="windowcenter">
+                    <div id="title" class="wtitle">
+                        操作提示<span class="close" id="alertclose"></span></div>
+                    <div class="content">
+                        <div id="txt">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript"> 
+
+$(document).ready(function () {
+		$( "#dateline" ).datepicker({
+			minDate: new Date(),
+			dateFormat: "yy-mm-dd"
+		}).val((
+				function(d){
+					return [d.getFullYear(), d.getMonth()+1, d.getDate()].join("-");
+				}
+			)(new Date()));
+	$("#showcard").click(function () {
+		var ret_single = ret_download = tel_num = '';
+		$(".single").each(function(i){
+			var s_name = $(this).parent().siblings().text();
+			var s_value = $(this).val();
+			if('' != s_value) ret_single += '$'+s_name+'#'+s_value;
+		});
+	
+		$(".download").each(function(i){
+			var s_name = $(this).parent().siblings().text();
+			var s_value = $(this).val();
+			if('' != s_value) ret_download += '$'+s_name+'#'+s_value;
+		});
+
+		tel_num = $("#tel").val();
+		if('undefined' !== typeof(tel_num)){
+			if(tel_num ==''){alert('电话不能为空');return;} 
+			if(tel_num.length < 11){alert('请输入正确的电话');return;} 
+		}
+
+		if($("#truename").val()==''){alert('名字不能为空');return;}
+//		if($("#dateline").val()==''){alert('请选择时间');return;}
+		var submitData = {
+			wechatid: $("#uid").val(),
+			rid: $("#rid").val(),
+			aid: $("#aid").val(),
+			contact: $("#truename").val(),
+			dateline: $("#dateline").val(),
+			timepart: $("#timepart").val(),
+			remark: $("#info").val(),
+			contacttel: $("#tel").val(),
+			fieldsigle:ret_single,
+			fielddownload:ret_download
+		};
+		if('fromUsername' == submitData.wechatid) submitData.wechatid = '';
+		$.post('/Webreserve/SubmitBook', submitData,
+			function(data) {
+				if (0 == data.errno) {
+					alert(data.msg);
+					var count = $(".ok").text();
+					count = 1+ parseInt(count);
+					$(".ok").text(count);
+					setTimeout(function(){
+						jumpurl(data.url);
+					},1500);
+					return;
+				} else {
+					alert(data.msg);
+				}
+			},
+		"json")
+
+	}); 
+}); 
+
+
+$("#dateline").change(function () {
+	var submitData = {
+	wxname: "o5JGbjuFTr6lumWIyyW3yfP-G5m0",
+	dateline: $("#dateline").val(),
+	formhash: $("#formhash").val(),
+	action: "getcount"
+	};
+}); 
+
+
+
+$("#windowclosebutton").click(function () { 
+$("#windowcenter").slideUp(500);
+
+}); 
+$("#alertclose").click(function () { 
+$("#windowcenter").slideUp(500);
+
+}); 
+function jumpurl(url){
+	window.location.href = url;
+}
+function alert(title){ 
+
+$("#windowcenter").slideToggle("slow"); 
+$("#txt").html(title);
+//$("#windowcenter").hide("slow"); 
+setTimeout('$("#windowcenter").slideUp(500)',4000);
+} 
+
+	        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        window.shareData = {  
+            "imgUrl": "http://img.weimob.com/static/0f/73/0b/image/20131206/20131206182702_49020.jpg", 
+            "timeLineLink": "http://www.weimob.com/webreserve/ReserveBook?rid=3138&wechatid=fromUsername",
+            "sendFriendLink": "http://www.weimob.com/webreserve/ReserveBook?rid=3138&wechatid=fromUsername",
+            "weiboLink": "http://www.weimob.com/webreserve/ReserveBook?rid=3138&wechatid=fromUsername",
+            "tTitle": "【加入我们，为梦想而战】",
+            "tContent": "请仔细填写一下信息，我们会与您及时取得联系，期待您的加入！",
+            "fTitle": "【加入我们，为梦想而战】",
+            "fContent": "请仔细填写一下信息，我们会与您及时取得联系，期待您的加入！",
+            "wContent": "请仔细填写一下信息，我们会与您及时取得联系，期待您的加入！" 
+        };
+        // 发送给好友
+        WeixinJSBridge.on('menu:share:appmessage', function (argv) {
+            WeixinJSBridge.invoke('sendAppMessage', { 
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.sendFriendLink,
+                "desc": window.shareData.fContent,
+                "title": window.shareData.fTitle
+            }, function (res) {
+                _report('send_msg', res.err_msg);
+            })
+        });
+
+        // 分享到朋友圈
+        WeixinJSBridge.on('menu:share:timeline', function (argv) {
+            WeixinJSBridge.invoke('shareTimeline', {
+                "img_url": window.shareData.imgUrl,
+                "img_width": "640",
+                "img_height": "640",
+                "link": window.shareData.timeLineLink,
+                "desc": window.shareData.tContent,
+                "title": window.shareData.tTitle
+            }, function (res) {
+                _report('timeline', res.err_msg);
+            });
+        });
+
+        // 分享到微博
+        WeixinJSBridge.on('menu:share:weibo', function (argv) {
+            WeixinJSBridge.invoke('shareWeibo', {
+                "content": window.shareData.wContent,
+                "url": window.shareData.weiboLink,
+            }, function (res) {
+                _report('weibo', res.err_msg);
+            });
+        });
+        }, false)
+        </script>
+    </body>
+    <div mark="stat_code" style="width: 0px; height: 0px; display: none;">
+    </div>
+</body>
+</html>

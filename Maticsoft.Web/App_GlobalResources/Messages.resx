@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="drpListUU" xml:space="preserve">
+    <value>员工</value>
+  </data>
+  <data name="ErrorContentNotNull" xml:space="preserve">
+    <value>消息内容不能为空！</value>
+  </data>
+  <data name="ErrorLastDateForm" xml:space="preserve">
+    <value>更新时间格式错误！</value>
+  </data>
+  <data name="ErrorReciveID" xml:space="preserve">
+    <value>收件人ID格式错误！</value>
+  </data>
+  <data name="ErrorSendDateForm" xml:space="preserve">
+    <value>发送时间格式错误！</value>
+  </data>
+  <data name="ErrorSendID" xml:space="preserve">
+    <value>发件人ID格式错误！</value>
+  </data>
+  <data name="ErrorTitleNotNull" xml:space="preserve">
+    <value>消息主题不能为空!</value>
+  </data>
+  <data name="fieldAddresserId" xml:space="preserve">
+    <value>发件人</value>
+  </data>
+  <data name="fieldEmployeeID" xml:space="preserve">
+    <value>员工编码</value>
+  </data>
+  <data name="fieldIsRead" xml:space="preserve">
+    <value>是否已读</value>
+  </data>
+  <data name="fieldLastTime" xml:space="preserve">
+    <value>更新时间</value>
+  </data>
+  <data name="fieldPublishContent" xml:space="preserve">
+    <value>消息内容</value>
+  </data>
+  <data name="fieldPublishDate" xml:space="preserve">
+    <value>发送日期</value>
+  </data>
+  <data name="fieldReceiveMessageId" xml:space="preserve">
+    <value>信息编号</value>
+  </data>
+  <data name="fieldRecipient" xml:space="preserve">
+    <value>收件人</value>
+  </data>
+  <data name="fieldSendMessageId" xml:space="preserve">
+    <value>发信息编号</value>
+  </data>
+  <data name="fieldTitle" xml:space="preserve">
+    <value>消息主题</value>
+  </data>
+  <data name="lblChoseUser" xml:space="preserve">
+    <value>选择用户</value>
+  </data>
+  <data name="lblInboxList" xml:space="preserve">
+    <value>您可以对收件箱进行管理</value>
+  </data>
+  <data name="lblMessageShow" xml:space="preserve">
+    <value>详细短信息</value>
+  </data>
+  <data name="lblOutboxList" xml:space="preserve">
+    <value>您可以对发件箱里的信息进行管理</value>
+  </data>
+  <data name="lblSendMessage" xml:space="preserve">
+    <value>发信息</value>
+  </data>
+  <data name="lblSendMessageSelectUser" xml:space="preserve">
+    <value>您可以选择给所有用户,指定等级用户或单个用户发送站内消息。</value>
+  </data>
+  <data name="lblSendMessageToUser" xml:space="preserve">
+    <value>您可以向网站的用户发送短消息</value>
+  </data>
+  <data name="ptEditInformation" xml:space="preserve">
+    <value>编辑信息</value>
+  </data>
+  <data name="ptInboxList" xml:space="preserve">
+    <value>收件箱管理</value>
+  </data>
+  <data name="ptMessageShow" xml:space="preserve">
+    <value>信息详情</value>
+  </data>
+  <data name="ptOutboxList" xml:space="preserve">
+    <value>发件箱管理</value>
+  </data>
+  <data name="ptSendMessage" xml:space="preserve">
+    <value>发送短消息</value>
+  </data>
+  <data name="ptSendMessageSelectUser" xml:space="preserve">
+    <value>选择用户发送站内消息</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>是否生效</value>
+  </data>
+  <data name="TooltipSendFail" xml:space="preserve">
+    <value>发生失败！</value>
+  </data>
+  <data name="TooltipSendSucceed" xml:space="preserve">
+    <value>发送成功！</value>
+  </data>
+</root>

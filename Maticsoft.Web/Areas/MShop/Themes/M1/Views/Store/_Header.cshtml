@@ -1,0 +1,29 @@
+﻿@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+           @if (Model != null)
+           {
+ <div class="credit" style="margin-bottom: 0px;">
+     <a href="javascript:;">
+         <div class="shop-img">
+             <img src="@(ViewBag.BasePath)Partial/SuppLogo?id=@(Model.SupplierId)&size=T200X200"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_200X200.jpg'" width="80px" height="80px"/> 
+         </div>
+         <div class="clearfix shop-rank">
+             <ul>
+                 <li  ><h1>@Model.ShopName</h1></li>
+                 <li   class="shop-seller">电话：<a href="tel:@Model.ServicePhone" class="ui-link">@Model.ServicePhone</a>  </li>
+                
+             </ul>
+         </div>
+     </a>
+      <p style="font-size: 0.9em;margin-top: 20px;">
+       地&#12288;&#12288;址：@Model.Address 
+     </p>
+       @if (!String.IsNullOrWhiteSpace(Model.Introduction))
+       {
+      <p style="font-size: 0.9em;">
+      <a href="@(ViewBag.BasePath)Store/Intr/@Model.SupplierId"> 商家介绍：@Maticsoft.Common.StringPlus.SubString(Maticsoft.Common.InjectionFilter.HtmlFilter(Model.Introduction) , 50, "...") </a>
+      </p>
+             }
+  
+     
+</div>
+           }

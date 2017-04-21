@@ -1,0 +1,157 @@
+﻿@using Maticsoft.Model.CMS
+@using Webdiyer.WebControls.Mvc;
+@model Maticsoft.ViewModel.CMS.Photo
+<div id="PhotListDiv">
+    <div class="Pfen_sub">
+        <p>
+            <a href="javascript:;"><span>全部</span></a></p>
+        @if (Model.PhotoClassList != null && Model.PhotoClassList.Count > 0)
+        {
+            foreach (Maticsoft.Model.CMS.PhotoClass photoClass in Model.PhotoClassList)
+            {
+            <p>
+                <a href="javascript:;" classid="@photoClass.ClassID">@photoClass.ClassName</a></p>
+            }
+        }
+        <div class="clear">
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            if ("@ViewBag.PhotoClassId") {
+                $('.Pfen_sub a').removeClass('sblack').filter('[classid=@ViewBag.PhotoClassId]').addClass('sblack');
+            } else {
+                $('.Pfen_sub a').removeClass('sblack').first().addClass('sblack');
+            }
+            $('.Pfen_sub a').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "@(ViewBag.BasePath)Photo/Index",
+                    async: false,
+                    dataType: "html",
+                    data: { photoClassId: $(this).attr('classid'), pageIndex: "@Model.PhotoPagedList.CurrentPageIndex" },
+                    success: function (data) {
+                        if (!data) return;
+                        $("#PhotListDiv").html(data);
+                    },
+                    error: function (event, XMLHttpRequest, ajaxOptions, thrownError) {
+                        //do..
+                        console.error(event);
+                    }
+                });
+            });
+            $('.emerge').unbind('hover').hover(function () {
+                $(this).find('#dodge').show();
+            }, function () {
+                $(this).find('#dodge').hide();
+            });
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Photo/PhotoListWaterfall",
+                    Params: { PhotoClassId: "@ViewBag.PhotoClassId" },
+                    Success: function () {
+                        resizeImg('.pic_load', 235, 1280);
+                        $('.emerge').unbind('hover').hover(function () {
+                            $(this).find('#dodge').show();
+                        }, function () {
+                            $(this).find('#dodge').hide();
+                        });
+                    }
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "col_",
+                //列数
+                ColumnNumber: 4
+            });
+            resizeImg('.pic_load', 235, 1280);
+
+            //下面是添加喜欢的功能
+            $(".like").die("click").live("click", function () {
+                var likethis = $(this);
+                if ($.cookie("like" + +likethis.attr("data-pid") + +"")) {
+                    ShowServerBusyTip("您已经喜欢过啦");
+                    return;
+                }
+                $.ajax({
+                    type: "POST",
+                    dataType: "text",
+                    url: "@(ViewBag.BasePath)Photo/AjaxLikePhoto",
+                    data: { PhotoId: likethis.attr("data-pid") },
+                    success: function (data) {
+                        if (data == "True") {
+                            likethis.find("span").text(parseInt(likethis.find("span").text()) + 1);
+                            $.cookie("like" + +likethis.attr("data-pid") + +"", "1");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+    <div class="imagewalls">
+        @if (Model.PhotoList4ForCol != null && Model.PhotoList4ForCol.Length > 0)
+        {
+            for (int i = 0; i < Model.PhotoList4ForCol.Length; i++)
+            {
+            <div id="col_@(i)" class="col1" @(i == 3 ? "style=margin-right:0px;" : "")>
+                @foreach (Photo item in Model.PhotoList4ForCol[i])
+                {
+                    <div class="i_w_y">
+                        <div id="emerge" class="emerge">
+                            <p>
+                                @*@(ViewBag.BasePath+"Photo/Detail/"+item.PhotoID)*@
+                                <a href="@item.ImageUrl" target="_blank" class="pic_load">
+                                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T235x1280_"))"/></a>
+                            </p>
+                            <div id="dodge">
+                                <div class="dodge_a">
+                                </div>
+                                <div class="dodge_b">
+                                    <p class="dodge_b1">
+                                        <a  target="_blank" href="@item.ImageUrl">@(Maticsoft.Common.StringPlus.SubString(item.PhotoName, 20, ".."))</a></p>
+                                    <div class="dodge_b_s">
+                                        <p class="dodge_b_s1">@item.CreatedDate</p>
+                                        <p class="dodge_b_s2 like" style="cursor:pointer" data-pid="@item.PhotoID">
+                                            <img src="/Areas/CMS/Themes/M1/Content/images/like.png" />
+                                            <span>@item.FavouriteCount</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            }
+        }
+        <div class="clear">
+        </div>
+    </div>
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+    <!--Paging Start-->
+    <center>
+    <div class="container_sidebar_paging">
+        <ul>
+            <!--Standard Paging Start-->
+            @Html.AjaxPager(Model.PhotoPagedList, new PagerOptions
+       {
+           PageIndexParameterName = "pageIndex",
+           CssClass = "anpager",
+           NumericPagerItemCount = 10
+       }, new AjaxOptions { UpdateTargetId = "PhotListDiv" })
+            <!--Standard Paging End-->
+        </ul>
+    </div>
+</center>
+    <!--Paging End-->
+</div>

@@ -1,0 +1,99 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+<link href="/Areas/Shop/Themes/M1/Content/card/css/style.css" rel="stylesheet" />
+
+@*<link href="/Areas/Shop/Themes/M1/Content/Css/xinke/style.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/xinke/activation.css" rel="stylesheet" type="text/css" />*@
+
+<script>
+    $(window).load(function () {
+        $("#btn-next-2").live('click', function () {
+
+            if (!$("#Chk2").attr("checked")) { alert("请同意保险协议！"); return }
+            var html = $(".reading_yd_bot").html();
+            $(".reading_yd_bot").fadeOut("fast", function () {
+                $(".reading_yd_bot").html("<div  style=\"background-color:#f7e688;border:solid 1px #8e2626;width:150px;height:25px;padding-top:5px;\"><span id='wait'>正在提交,请稍等......<span></div>").fadeIn("slow");
+
+                setInterval(function () { $("#wait").fadeIn("slow", function () { $("#wait").fadeOut("slow"); }) }, 1000);
+            });
+            //alert('@ViewBag.BasePath'+'Account/JKCardUserInfo');
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: '/Shop/Account/JKCardUserInfo',
+                async: true,
+                success: function (data) {
+                    if (data) {
+                        if (data == "1") {
+                            location.href = "@ViewBag.BasePath/Account/JKActiveSuccess"
+                        } else {
+                            ShowFailTip(data);
+                            $(".reading_yd_bot").html(html);
+                        }
+                    }
+                },
+                error: function (request) {
+                    ShowFailTip("网络连接错误！");
+                    $(".reading_yd_bot").html(html);
+                }
+            });
+
+        });
+
+    });
+</script>
+
+
+<div class="header">
+	<div class="wrapper">
+    	<h1 class="logo">
+        	<a href="#"></a>
+        </h1>
+    </div>
+</div>
+<div class="container">
+	<div class="wrapper">
+        <div class="service_explain" style="padding-top:0;">
+        	<div class="activation_nav">
+                <ul class="clearfix">
+                    <li class="active">
+                        <b>1</b>
+                        <span>激活</span>
+                    </li>                   
+                    <li class="active" >
+                        <b>2</b>
+                        <span>提交激活卡</span>
+                    </li>
+                    <li class="active">
+                        <b>3</b>
+                        <span>保险协议</span>
+                    </li>
+                    <li>
+                        <b>4</b>
+                        <span>激活成功</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="title">会员卡激活保险协议</div>
+            <div class="content_frame">
+                  @Html.Raw(@ViewBag.Agreement)   
+                </div>
+            <div class="fastener">
+                <div class="agree">
+                      <span style="clear:both;margin-left:30px;">
+                        <input type="checkbox" id="Chk2" style="float: left; margin: 10px" name="sex" />
+                        <label id="agreement_pr" style="font-size: 130%;clear:both;width:100%;">@ViewBag.ActivatePrompt</label>
+                        <label>同意并阅读此说明</label>                  
+                    </span>                     
+                </div>               
+                <div class="button reading_yd_bot" >
+                    <a class="green"  href="/Account/JKCardActiveConfirm">上一步</a>
+                <a class="huang" href="javascript:void(0);" id="btn-next-2">确认激活</a>
+
+               </div>
+           </div>
+        </div>
+    </div>
+</div>
+

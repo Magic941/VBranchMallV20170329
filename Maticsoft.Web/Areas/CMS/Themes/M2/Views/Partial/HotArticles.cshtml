@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+@using Maticsoft.Common;
+@model List<Maticsoft.Model.CMS.Content>
+<div class="articles">
+    <h3>
+        <a href="javascript:void(0);">热门文章</a></h3>
+    <ul>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <li>
+                @*@Html.ActionLink(StringPlus.SubString(Globals.HtmlDecode(item.Title), "...", 22, false), "../Article/Details/", new { id = item.ContentID })*@
+                <a href="@item.SeoUrl">@StringPlus.SubString(Globals.HtmlDecode(item.Title), "...", 22, false)</a>
+            </li>
+            }
+        }
+    </ul>
+</div>

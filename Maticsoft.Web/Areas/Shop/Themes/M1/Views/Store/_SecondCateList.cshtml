@@ -1,0 +1,17 @@
+﻿  @model List<Maticsoft.Model.Shop.Supplier.SupplierCategories>
+                @{
+                  string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+                  string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+                  string ky = Request.RequestContext.RouteData.Values["ky"] != null ? Request.RequestContext.RouteData.Values["ky"].ToString() : "";
+                   }
+   @if (Model != null)
+   {
+        <ul>
+       @foreach (var item in Model )
+       {    
+             <li>  
+                 <a href="/Store/list/@item.SupplierId/@item.CategoryId/@mod/@price/@ky">@Maticsoft.Common.StringPlus.SubString(item.Name, 11, "...")</a>
+             </li>
+       }
+           </ul>
+   }

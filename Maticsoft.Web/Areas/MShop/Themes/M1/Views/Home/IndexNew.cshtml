@@ -1,0 +1,760 @@
+﻿@using Maticsoft.Model.Shop.Products
+@using Webdiyer.WebControls.Mvc
+@model List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>
+@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    string userid = ViewBag.Phone as string;
+    DateTime nowday = System.DateTime.Now;
+   
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDownHaoLi.js" type="text/javascript"></script>
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.tmpl.min.js" type="text/javascript"></script>
+}
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/o_loading.gif') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+
+</script>
+<style>
+    .secondary-classification ul {
+        overflow: hidden;
+    }
+
+    .secondary-classification li {
+        width: 32%;
+        float: left;
+        padding-bottom: 1.5%;
+    }
+
+    .secondary-classification ul {
+        overflow: hidden;
+    }
+
+    .secondary-classification li a img {
+        width: 100%;
+    }
+
+    .Mens_classification22 li:nth-child(2n+1) {
+        float: left;
+    }
+
+    .Mens_classification22 li {
+        width: 49%;
+        float: right;
+        padding-bottom: 1.5%;
+    }
+
+        .Mens_classification22 li a img {
+            width: 100%;
+        }
+
+    .Mens_classification22 ul {
+        overflow: hidden;
+    }
+/*2015.04.13*/
+.Star_week{
+    padding-top:2rem;
+    }
+.special {
+    padding-top:10px;
+    }
+.Star_week .title,.special .title,.boutique .title,.flashsale .title{
+    /*width:100%;*/
+    height:3rem;
+    line-height:3rem;
+    background:#fff;
+    overflow:hidden;
+    padding:0 10px;
+    }
+.Star_week .title em,.special .title em,.boutique .title em,.flashsale .title em{
+    width:12px;
+    height:2rem;
+    background:#c8000b;
+    display:block;
+    float:left;
+    margin:8px 10px 0 0;
+    padding-left:10px;
+    }
+.Star_week .title b,.special .title b {
+    font-size:1rem;
+    float:left;
+    color:#c8000b;
+    }
+.Star_weektop,.Star_weekbottom{
+    width:100%;
+    overflow:hidden;
+    }
+.Star_weektop a{
+    width:50%;
+    float:left;
+    display:block;
+    }
+.Star_weekbottom a{
+    display:block;
+    float:left;
+    }
+.Star_weektop a img,.Star_weekbottom a img{
+    width:100%;
+    display:block
+    }
+.flashsale {
+    border-top:1px solid #d0d0d0;
+    border-bottom:1px solid #d0d0d0;
+    overflow:hidden;
+    background:#fff;
+    margin:10px auto;
+    }
+.flashsale_left{
+    width:40%;
+    float:left;
+    text-align:center;
+    }
+.flashsale_left b {
+    font-size:1.1rem;
+    color:#c8000b;
+    }
+.flashsale_left p {
+    padding-top:5px;
+    }
+.flashsale_left p em {
+    width:1.5rem;
+    height:1.8rem;
+    line-height:1.8rem;
+    display:inline-block;
+    border:1px solid #2b272e;
+    border-radius:5px;
+    *display:inline;zoom:1;
+    background:#36363e;
+    color:#fff;
+    margin:0 5px;
+    }
+.flashsale_right{
+    width:60%;
+    float:left;
+    background:#fff;
+    }
+.flashsale_right a,.flashsale_right a img{
+    width:100%;
+    display:block;
+    }
+.special_picture{
+    width:95%;
+    margin:0 auto;
+    padding-bottom:15px;
+    }
+.special_picture a,.special_picture a img{
+    width:100%;
+    display:block;
+    }
+.special .title i{
+    font-style:normal;
+    color:#a8a8a8;
+    margin-left:5px;
+    }
+
+.oneyuan_purchase .title{
+    height:2.5rem;
+    overflow:hidden;
+    background:#fff;
+    margin-top:10px;
+    padding:0 10px;
+    }
+.oneyuan_purchase .title em{
+    width:1.5rem;
+    height:1rem;
+    display:block;
+    float:left;
+    margin-top:9px;
+    }
+.oneyuan_purchase .title em img{
+    width:100%;
+    display:block;
+    }
+.oneyuan_purchase .title b{
+    height:2.5rem;
+    line-height:2.5rem;
+    font-size:1rem;
+    color:#c8000b;
+    padding-left:10px;
+    display:block;
+    float:left;
+    }
+.oneyuan_purchase .title span{
+    float:left;
+    display:block;
+    margin-top:5px;
+    color:#36363e;
+    }
+.oneyuan_purchase .title span i {
+    width:1.5rem;
+    height:1.8rem;
+    line-height:1.8rem;
+    margin:0 3px;
+    text-align:center;
+    font-style:normal;
+    background:#fff;
+    border:1px solid #b1b1b1;
+    border-radius:5px;
+    display:inline-block;
+    *display:inline;
+    zoom:1;
+    }
+.oneyuan_purchase {
+    background:#fff;
+    }
+.purchase_chart,.purchase_wares ul{
+    width:95%;
+    margin:0 auto;
+    overflow:hidden;
+    padding:10px 0;
+    }
+.purchase_chart a{
+    width:32%;
+    display:block;
+    float:left;
+    padding-right:1.95%
+    }
+.purchase_chart a img {
+    width:100%;
+    display:block;
+    }
+.purchase_wares li{
+    display:inline-block;
+    border:1px solid #d3d3d3;
+    margin-bottom:10px;
+    }
+.purchase_wares lia{
+    display:block;
+    }
+.purchase_wares li span{
+    width:90%;
+    margin:0 auto;
+    display:block;
+    padding:10px 0;
+    }
+.purchase_wares li span img{
+    width:100%;
+    display:block;
+    }
+.purchase_wares li p,.purchase_wares li em {
+    width:90%;
+    height:20px;
+    font-size:0.8rem;
+    color:#666;
+    margin:0 auto;
+    overflow:hidden;
+    }
+.purchase_wares li em{
+    display:block;
+    }
+.purchase_wares li i {
+    width:90%;
+    margin:0 auto;
+    font-style:normal;
+    display:block;
+    color:#c8000b;
+    font-size:1rem;
+    }
+.boutique{
+    background:#fff;
+    }
+
+
+</style>
+<style type="text/css">
+    body {
+        word-break: break-all;
+    }
+
+    .prolm_ahimg li {
+        float: left;
+    }
+
+    .prolm_ahimg ul {
+        overflow: hidden;
+    }
+
+    .prolm_ahimg li em {
+        width: 3rem;
+        height: 3rem;
+        display: block;
+        border-radius: 50%;
+    }
+.Star_week span{
+        width:100%;
+        height:2.5rem;
+        line-height:2.5rem;
+        font-size:1.5rem;
+        background:url(/Areas/MShop/Themes/M1/Content/img/2015_11.png) no-repeat center top;
+	    background-size: cover;
+        display:block;
+        text-align:center;
+        color:#fff;
+    }
+.Star_week li {
+    overflow:hidden;
+    }
+.Star_week_ad5,.Star_week_ad4,.Star_week_ad3,.Star_week_ad2,.Star_week_ad1 {
+    float:left;
+    display:block;
+    }
+.Star_week_ad1 {
+    width:57.26%;
+        
+    }
+.Star_week_ad2 {
+    width:42.74%;
+    }
+.Star_week_ad3 {
+    width:50.14%;
+    }
+/*.Star_week_ad4 {
+    width:42.8%;
+    }*/
+.Star_week_ad5 {
+    width:49.86%;
+    }
+.Star_week_ad1 img,.Star_week_ad2 img,.Star_week_ad3 img,.Star_week_ad4 img,.Star_week_ad5 img {
+    width:100%;
+    display:block;
+        }
+.QlO_PP {
+    /*padding-top:10px;*/
+    }
+.QlO_PP a,.QlO_PP a img{
+    width:100%;
+    display:block;
+    }
+.QlO_gg ul {
+    overflow:hidden;
+    margin-top:10px;
+    }
+.QlO_gg li{
+    float:left;
+    }
+.QlO_gg li a,.QlO_gg li a img{
+    width:100%;
+    display:block;
+    }
+.Star_week_adlp{
+    width:57.26%;
+    float:left;
+    }
+.Star_week_adlo {
+    width:42.74%;
+    float:left;
+    }
+.Star_week_adlo a {
+    width:100%;
+    }
+.flashsale_left {
+    }
+
+
+/*2015.4.17*/
+.oneyuan_purchase .title a {
+    height:2.5rem;
+    line-height:2.5rem;
+    float:right;
+    }
+.purchase_wares ul {
+    text-align:justify;
+
+    }
+/*2015-04-24*/
+.flash_sale {
+    width:95%;
+    margin:0 auto;
+    position:relative;
+    background:#d3d3d3;
+    margin-bottom:10px;
+    }
+.flash_sale a,.flash_sale a img {
+    width:100%;
+    display:block;
+    }
+.flash_sale .time{
+    width:8.0rem;
+    height:1.8rem;
+    position:absolute;
+    top:10px;
+    background:#000;
+    filter:alpha(opacity=50);  
+    -moz-opacity:0.50; 
+    opacity:0.50;  
+    }
+.flash_sale a p {
+    height:2rem;
+    line-height:2rem;
+    overflow:hidden;
+    font-size:0.8rem;
+    color:#333;
+    padding-left:5px;
+    }
+.flash_sale a p i{
+    font-size:0.8rem;
+    font-style:normal;
+    color:#c8000b;
+    display:inline-block;
+    *display:inline;zoom:1;
+    }
+.flash_sale a p s {
+     font-size:0.8rem;
+    /*color:#c8000b;*/
+    }
+.flash_sale .time b {
+    padding-left:15px;
+    }
+.flash_sale .time p{
+    color:#fff;
+    height:1.8rem;
+    line-height:1.8rem;
+    font-size:0.8rem;
+    display:inline-block;
+    *display:inline;zoom:1;
+    padding-left:10px;
+    }
+
+</style>
+
+<script id="sencondTemplate" type="text/x-jquery-tmpl">
+    ${title}:<i id="hourEnd"> ${hour} </i>:<i id="minEnd">${minute}</i>:<i id="secEnd">${second}</i>
+</script>
+<script id="groupbyTemplate" type="text/x-jquery-tmpl">
+    <p><em>${day} 天</em> : <em>${hour}</em> : <em>${minute}</em>: <em>${second}</em></p>
+  
+</script>
+  @Html.Action("HeadDoor", "Partial", new { ViewName = "_HeadDoor" })
+<div class="top">
+    <div class="header-btn fl">
+        <a href="@(ViewBag.BasePath)a/r" style="/*margin: 8px;*/ /*padding-top: 8px;*/ height: 22px; line-height:37px; border:0px">
+            注册
+        </a>
+
+        @if (userid != "")
+        {
+            <a href="@(ViewBag.BasePath)account/Logout" style=" height: 22px; line-height:37px; border:0px"> 退出 </a>
+        }
+        else
+        {
+            <a href="@(ViewBag.BasePath)a/l" style=" height: 22px; line-height:37px; border:0px">登录 </a> 
+        }
+        
+    </div>
+    <div class="logo fl" style="/*padding-top: 5px; height: 25px;*/ border: 0px">
+        <a href="@ViewBag.BasePath">
+        </a>
+    </div>
+
+    <div class="header-btn fr">
+        <a href="@(ViewBag.BasePath)u" style="/*margin: 8px 8px 8px 0;*/ padding-top: 5px; height: 25px; border:0px">
+            <img width="22" height="21" src="/Areas/MShop/Themes/M1/Content/images/header-icon2.png"></a>
+        <a  href="@(ViewBag.BasePath)sc/ci" style="/*margin: 8px 8px 8px 0;*/ padding-top: 5px; height: 25px; border:0px">
+            <img src="/Areas/MShop/Themes/M1/Content/images/header-icon1.png" width="22" height="21">
+        </a>
+
+        <a href="@(ViewBag.BasePath)service" style="margin:8px 8px 8px 0;padding-top:5px;height:25px;border:0px">
+            <img src="/Areas/MShop/Themes/M1/Content/images/fg.png" width="22" height="21">
+        </a>
+    </div>
+</div>
+<div class="search">
+    <script type="text/javascript">
+        $(function () {
+
+            $("#btnSearch").click(function () {
+                var keyword = $("#txtKeyWord").val();
+                if (keyword == "") {
+                    ShowFailTip('请输入关键字！');
+                    return;
+                }
+                location.href = $Maticsoft.BasePath + "s/0/0/default/0-0/" + keyword;
+            });
+        })
+
+    </script>
+    <input name="keyword" id="txtKeyWord" value="" placeholder="请输入关键字" class="keyword" style="color: #cccccc; width: 98.5%; font-size: 0.8rem;">
+    <input type="button" value="搜商品" id="btnSearch" class="search-button" style="float: right; right: 2%">
+</div>
+
+
+@Html.Action("AdDetail", "Partial", new { id = 49, ViewName = "_IndexAd3" })
+
+<div class="prolm_ah">
+    <ul style="overflow: hidden;">
+       <li>
+            <a href="@(ViewBag.BasePath)p/t">
+                <em style="background: #54bdff;">
+                    <img src="/Areas/MShop/Themes/M1/Content/img/4_12.png" width="20" height="16" />
+                </em>
+                <span>全部分类</span>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)Prosales/GroupBuyMebers/">
+                <em style="background: #ff4780;">
+                    <img src="/Areas/MShop/Themes/M1/Content/img/imgb_02.png" width="22" height="20" style="display: block; padding-top: 6px;" />
+                </em>
+                <span>小时购</span>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)service">
+                <em style="background: #f35a1e;">
+                    <img src="/Areas/MShop/Themes/M1/Content/img/imgb_03.png" width="25" height="20" style="display: block; padding-top: 6px;" />
+                </em>
+                <span>更多服务</span>
+            </a>
+        </li>
+        <li>
+            <a href="@(ViewBag.BasePath)u">
+                <em style="background: #ff5454;">
+                    <img src="/Areas/MShop/Themes/M1/Content/img/imgb_04.png" width="22" height="20" style="display: block; padding-top: 6px;" />
+                </em>
+                <span>用户中心</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
+@*<div class="">
+    <div style="width: 100%;  margin-bottom:-2px;">
+            <img style="width: 100%;" src="/Areas/MShop/Themes/M1/Content/img/00002_07.png" />
+        </div>
+</div>*@
+<div class="oneyuan_purchase">
+    @*<a href=" @(ViewBag.BasePath)Prosales/GroupBuyMebers/"></a>*@
+    <div class="title">
+        <em><img src="/Areas/MShop/Themes/M1/Content/img/yyg007.png" /></em>
+        <b>< 豪礼大派送</b>
+        <span class="txtenddate" startDate="@ViewBag.StartDate"  endDate="@ViewBag.EndDate" curDate="@DateTime.Now" product="hour" >
+           @* <i>00</i>:<i>43</i>:<i>11</i>*@
+
+        </span>
+        <a href=" @(ViewBag.BasePath)Prosales/GroupBuyMebers/">更多</a>
+    </div>
+    
+    <div class="purchase_wares">
+        <ul>
+            @if (ViewBag.DataList != null || ViewBag.DataListend != null)
+            {
+                int number = ViewBag.date; //当前开抢时间
+
+                if (ViewBag.DataList != null)
+                {
+                    foreach (var item in ViewBag.DataList)
+                    {
+
+                        string url = ViewBag.BasePath + "ProSales/SalesGroupBuy?ProductId=" + item.ProductId + "&ActiveID=" + item.GroupBuyId + "&ActiveType=1&ViewName=SalesGroupBuy";
+                        <li>
+                            <a href="@url">
+                                <span><img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.GroupBuyImage, "T300X300__")" /></span>
+                                <p>@(Maticsoft.Common.StringPlus.SubString(item.ProductName, 10))</p>
+                                @*<em>市场价：￥76</em>*@
+                                <i>￥@(Math.Round(Convert.ToDecimal(item.Price), 2))</i>
+                            </a>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
+<div class="" style="width:100%">
+    <a href="@(ViewBag.BasePath)Home/StudentsPlace">
+        <img src="/Areas/MShop/Themes/M1/Content/img/students/dxbk.jpg"  style="width:100%" />
+    </a>
+</div>
+<div class="Star_week" style="/*padding: 5px 0 8px 0;*/">
+    <div class="title">
+        <em></em>
+        <b>每周星品</b>
+    </div>
+    <div class="Star_weektop">
+        <a href="@(ViewBag.BasePath)p/d/1157426/0/0">
+            <img src="/Areas/MShop/Themes/M1/Content/img/ZhouXingpin/zxp001.png" />
+        </a>
+        <a href="@(ViewBag.BasePath)p/d/1157376/0/0">
+            <img src="/Areas/MShop/Themes/M1/Content/img/ZhouXingpin/zxp002.png" />
+        </a>
+    </div>
+    <div class="Star_weekbottom">
+        <a href="@(ViewBag.BasePath)p/d/1157406/0/0" style="width:34.07%;">
+            <img src="/Areas/MShop/Themes/M1/Content/img/ZhouXingpin/zxp003.png" />
+        </a>
+        <a href="@(ViewBag.BasePath)p/d/1157383/0/0" style="width:31.96%;">
+            <img src="/Areas/MShop/Themes/M1/Content/img/ZhouXingpin/zxp004.png" />
+        </a>
+        <a href="@(ViewBag.BasePath)p/d/1157423/0/0" style="width:33.96%;">
+            <img src="/Areas/MShop/Themes/M1/Content/img/ZhouXingpin/zxp005.png" />
+        </a>
+    </div>
+</div>
+<div class="flashsale">
+     <div class="title">
+            <em></em>
+            <b style="color:#c8000b;">限时抢购</b>
+            @*<i>健康微店 微信用户专享</i>*@
+        </div>
+    <ul>
+         @{ if (ViewBag.tuan != null)
+            {
+                List<Maticsoft.Model.Shop.PromoteSales.GroupBuy> listtuan = new List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>();
+                listtuan = (List<Maticsoft.Model.Shop.PromoteSales.GroupBuy>)ViewBag.tuan;
+                foreach (Maticsoft.Model.Shop.PromoteSales.GroupBuy item in listtuan)
+                {
+        <li class="flash_sale">
+            <a href="@(ViewBag.BasePath)ProSales/SalesGroupBuy?ProductId=@(item.ProductId)&ActiveID=@(item.GroupBuyId)&ActiveType=1&ViewName=SalesGroupBuy">
+                <img src="@(Maticsoft.BLL.SysManage.ConfigSystem.GetValueByCache("PicServerUrl") + item.GroupBuyImage)"  />
+                <p>@item.ProductName</p>
+                <p><s>市场价:￥@item.MarketPrice.ToString("0.00")</s> <i style="padding-left:50px">抢购价:￥@item.Price.ToString("0.00")</i></p>
+                
+            </a>
+            <div class="time">
+                <span class="txtenddategroupby" startDate="@item.StartDate"  endDate="@item.EndDate" curDate="@DateTime.Now" product="@(item.GroupBuyId)" >
+                <p><em>00</em> : <em>43</em> : <em>11</em></p>
+                </span>
+            </div>
+        </li>
+                }
+            }
+        }
+    </ul>
+  
+</div>
+<div class="special">
+    <div class="title">
+            <em></em>
+            <b>微信专享</b>
+            <i>健康微店 微信用户专享</i>
+        </div>
+    <div class="special_picture" style="padding-top:10px;">
+         <a href="@(ViewBag.BasePath)Product/BagSpecialColumn?Type=7&ViewName=BagSpecialColumn">
+            <img src="/Areas/MShop/Themes/M1/Content/img/zc001.png" />
+        </a>
+    </div>
+    <div class="special_picture">
+        <a href="@(ViewBag.BasePath)Product/BagSpecialColumn?Type=8&ViewName=BagSpecialColumn">
+            <img src="/Areas/MShop/Themes/M1/Content/img/zc002.png" />
+        </a>
+    </div>
+    <div class="special_picture">
+         <a href="@(ViewBag.BasePath)Product/BagSpecialColumn?Type=9&ViewName=BagSpecialColumn">
+            <img src="/Areas/MShop/Themes/M1/Content/img/zc003.png" />
+        </a>
+    </div>
+    <div class="special_picture">
+          <a href="@(ViewBag.BasePath)Product/BagSpecialColumn?Type=10&ViewName=BagSpecialColumn">
+            <img src="/Areas/MShop/Themes/M1/Content/img/zc004.png" />
+        </a>
+    </div>
+    <div class="special_picture">
+          <a href="@(ViewBag.BasePath)Product/ShopActive">
+            <img src="/Areas/MShop/Themes/M1/Content/img/zc005.png" />
+        </a>
+    </div>
+</div>
+<div class="boutique">
+    <div class="title">
+        <em></em>
+        <b>精品特卖</b>
+    </div>
+ @Html.Action("BoutiqueSale", "Product", new { Top = 30, Cid = 0, Type = 0, ViewName = "_PagefeaturedB" })
+</div>
+<div class="" style="overflow: hidden; padding-top:10px; ">
+    <div>
+          <a href="@(ViewBag.BasePath)Product/BoutiqueSale?Type=11&&ViewName=_BoutiqueSale">
+            <img style="width: 100%" src="/Areas/MShop/Themes/M1/Content/img/2015315.jpg" /></a>
+    </div>
+</div>
+<div class="Wechat_page" style="background: #fff;">
+    <div class="Wechat">
+        <div class="Wechat_a">
+            <a class="ccc" href="@(ViewBag.BasePath)">精选新品</a>
+            <a href="@(ViewBag.BasePath)service">快速导航</a>
+        </div>
+    </div>
+    @Html.Action("BoutiqueSale", "Product", new { Top = 30, Cid = 0, Type = 3, ViewName = "_PagefeaturedB" })
+</div>
+<script type="text/javascript">
+  
+    var tmplObj = $('#sencondTemplate');
+    var tmplObjgroupby = $('#groupbyTemplate');
+    
+    function render(data, productId) {
+        //按钮颜色
+        //结束后执行该指令
+        
+        if (data.status == 0) {
+            data.title = "准备开抢";
+        }
+        //购买按钮禁用
+        return tmplObj.tmpl(data);
+    }
+    function rendergroupby(data, productId) {
+        //购买按钮禁用
+        return tmplObjgroupby.tmpl(data);
+    }
+    //产生秒表
+    function ProSecond() {
+       
+        $(".txtenddate").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("product");
+
+            var myclass = new CountDown();
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: render,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+            });
+        });
+
+        //团购
+        $(".txtenddategroupby").each(function () {
+
+            var curDate = $(this).attr("curDate");
+            var startDate = $(this).attr("startDate");
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("product");
+
+            var myclass = new CountDown();
+            thisObj = $(this);
+            myclass.init({
+                thisObj: thisObj,
+                productId: productId,
+                renderCallback: rendergroupby,
+                serverTime: curDate,
+                startTime: startDate,
+                endTime: endDate
+            });
+        })
+    }
+    $(function () {
+        $(".txtenddate").empty();
+        ProSecond();
+    });
+</script>
+

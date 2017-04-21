@@ -1,0 +1,15 @@
+﻿@model List<Maticsoft.Model.SNS.StarType>
+@if (Model != null && Model.Count > 0)
+{
+    foreach (Maticsoft.Model.SNS.StarType item in Model)
+    {
+        if (ViewBag.StarType == @item.TypeID.ToString())
+        {
+    <li><a href="@(ViewBag.BasePath)Star/Pioneer?StarType=@item.TypeID" class="pion1">@item.TypeName</a></li>
+        }
+        else
+        {
+    <li><a href="@(ViewBag.BasePath)Star/Pioneer?StarType=@item.TypeID" >@item.TypeName</a></li>
+        }
+    }
+}

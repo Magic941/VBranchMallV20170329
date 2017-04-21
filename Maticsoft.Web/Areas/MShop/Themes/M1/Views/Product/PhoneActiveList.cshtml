@@ -1,0 +1,19 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>  
+<div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            @foreach(Maticsoft.Model.Shop.Products.ProductInfo item in Model)
+            {
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">
+                        <img class="lazy" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T300X300_")" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">@item.ProductName</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ @item.LowestSalePrice</em>
+                </div>
+            </li>
+            }
+           
+        </ul>
+    </div>

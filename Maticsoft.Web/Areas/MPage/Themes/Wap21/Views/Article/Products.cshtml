@@ -1,0 +1,31 @@
+﻿ <!--产品服务开始 一级<div id="products" class="page ui-page ui-body-c ui-page-active" title="产品服务" data-role="page" ax-type="ajax" data-url="products" tabindex="0" style="min-height: 817px;">-->
+@model List<Maticsoft.Model.CMS.ContentClass>
+<header class="header ilist">
+    <a  href="tel:@ViewBag.tel"  class="ui-link">电话</a>
+    <h1>@ViewBag.ClassName</h1>
+</header>
+<div class="content content_list">
+
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+<div class="listmate">
+<span>@item.ClassName</span>
+</div>
+<div class="ax-waterfall-list">
+     @Html.Action("NewsContent", "Article", new { viewName = "_ProductsContent", hasImageurl= true, classID = item.ClassID, top = 6 })
+</div>
+<div class="list_more">
+<a href="javascript:;" onclick="pageloadByPage('Article','productsList_@(item.ClassID)page1','@item.ClassName','NewsList', 'ProductsList','@(item.ClassID)','1');" class="button ui-link"> 进入 @item.ClassName &gt;&gt;</a>
+</div>
+        }
+    }
+    else
+    {
+        <span>暂无相关内容</span>
+    }
+ 
+</div> 
+ 
+ 

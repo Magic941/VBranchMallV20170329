@@ -1,0 +1,38 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "微信用户绑定";
+ }
+
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/UserCenter/DefaultLogin.js" type="text/javascript"></script>
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+ @model Maticsoft.ViewModel.Shop.LogOnModel 
+<div class="top"> <span>用户登录</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"><span id="diverror" style="margin-left:10px;margin-top:10px;" class="txterror"></span></div>
+<div class="logincontent">
+            <input   type="hidden"  value="@ViewBag.User" id="txtUser"/>
+             <input   type="hidden"  value="@ViewBag.OpenId" id="txtOpenId"/>
+               <span class="login_title">账户：</span>
+    <div> @Html.TextBoxFor(m => m.UserName, new { Class = "logininput", id = "txtLogin" })@* <input name="" type="text" class="logininput" />*@<br />
+        <div id="divLoginTip"  class="txterror" >
+                                    <span   class="txterror"> @Html.ValidationMessageFor(m => m.UserName)</span>
+                                </div></div>
+ 
+    <span class="login_title">密码：</span>
+             <div>@Html.PasswordFor(m => m.Password, new { Class = "logininput", id = "password" }) @*<input name="" type="text" class="logininput" />*@<br />
+                <div id="divPasswordTip" class="txterror">
+                                    <span  class="txterror"> @Html.ValidationMessageFor(m => m.Password)</span>
+                                </div>
+             </div>
+    <span class="login_title" style="text-align:center;"> </span>
+ 
+    <div><input  type="button" value="绑定" id="bindsubmit" class="sub_btn"></div>
+ 
+</div>
+ 
+ 
+ 
+
+
+

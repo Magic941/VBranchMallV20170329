@@ -1,0 +1,92 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-订单评价";
+}
+
+@using Webdiyer.WebControls.Mvc
+@model List<Maticsoft.Model.Shop.Order.OrderInfo>
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Scripts/jquery.upload/fineuploader-3.4.1.css" rel="stylesheet" />
+<script src="/Scripts/jquery.upload/jquery.fineuploader-3.4.1.min.js"></script>
+<link href="/Areas/MShop/Themes/M1/Content/Css/Comment.css" rel="stylesheet" type="text/css" />
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/OrderComment.js"></script>
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"></div>
+<div class="Iwant-tocomment">
+    <div class="Comment_top"><span>发表有内容评论，分享购物心得！</span></div>
+    <ul>
+        @if (Model != null || Model.Count>0)
+        {
+            foreach (var item in Model)
+            {
+                if (item.OrderItems != null && item.OrderItems.Count > 0)
+                {
+                    foreach (var orderItem in item.OrderItems)
+                    {
+                    <li>
+                        <div class="Comment-Commodity">
+                            <div class="Comment_images">
+                                <a  href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/" clstag="click|keycount|orderinfo|order_product" target="_blank">
+                                    <img title="@orderItem.Name" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(orderItem.ThumbnailsUrl, "T115X115_")" />
+                                </a>
+                            </div>
+                            <div class="Comment-definition">
+                                <div class="" style="float: left; width: 90%;">
+                                    <p><a href="@(ViewBag.BasePath)p/d/@orderItem.ProductId/@orderItem.ActiveID/@orderItem.ActiveType/" target="_blank">@orderItem.Name</a></p>
+                                    <span>@(string.IsNullOrWhiteSpace(orderItem.Attribute) ? "" : "规格：")@orderItem.Attribute</span>
+                                    <span>
+                                        <em>数量：@orderItem.Quantity </em>
+                                        <i></i>
+                                    </span>
+                                </div>
+                                <div class="" style="width: 0.6rem; height: 2rem; float: right; padding-top: 28px;">
+                                    <img src="/Areas/MShop/Themes/M1/Content/img/icon2_06.png" style="width: 100%" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="review_a">
+                            <input type="hidden" value="@orderItem.OrderId" name="orderId" />
+                            <input type="hidden" value="@orderItem.ProductId" name="pid" />
+                            <input type="hidden" value="@orderItem.Attribute" name="attribute" />
+                            <input type="hidden" value="@orderItem.SKU" name="sku" />
+                            <div class="Control_number" style="padding-left: 10px;">
+                                <a style="color: #3D3D3D;">还可以输入</a>
+                                <span maxlength="4" name="shengyu" size="3" style="color: #FFDB69; font-size: 17px;" value="140">500</span>
+                                <a style="color: #3D3D3D;">字</a>
+                            </div>
+                            <textarea class="textrea_box" name="content" rows="6" onkeyup="textCounter(this,500)" onkeydown="textCounter(this,500)" style="/*width: 95%; */ margin: 0 auto; display: block; background: #eeeeee; border: 1px solid #eeeeee; border-radius: 5px;"></textarea>
+                            <div class="reviewimg-upload">
+                                <input type="hidden" value="" name="UploadPhotoPath" />
+                                <input type="hidden" value="" name="UploadPhotoNames" />
+                                <div name="UploadPhoto" style="padding-left: 5px; width: 70px;">
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                    }
+                }
+            }
+            <div class="fb f-act  " style="margin-top: 18px;">
+                <div class="f-input">
+                    <a href="javascript:;" style="width: 5rem; text-align: center; margin: 0 auto; display: block; height: 30px; line-height: 30px; border-radius: 5px; background: #c8000b; color: #fff;" id="btnDraw" onclick="submit();">提交评论</a>
+                </div>
+                <div class="f-msg">
+                    <div id="divRegTip">
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <li>
+                <span>暂时还没有商品评论
+                </span>
+            </li>
+        }
+    </ul>
+</div>

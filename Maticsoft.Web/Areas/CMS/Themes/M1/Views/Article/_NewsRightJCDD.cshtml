@@ -1,0 +1,16 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+    <div class="readbox">
+        <div class="readimg">
+            <a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">
+                <img src="@string.Format(@item.ThumbImageUrl,"T235x1280_")" alt="@item.Title" width="90" height="59">
+            </a>
+        </div>
+        <p><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">@item.Title</a></p>
+        <div class="floatfix"></div>
+    </div>
+    }
+}

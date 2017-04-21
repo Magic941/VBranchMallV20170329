@@ -1,0 +1,38 @@
+﻿@model  List<Maticsoft.Model.SNS.Photos>
+ 
+ <script type="text/javascript">
+    
+     $(function () {
+         $('body').timeago();
+         $("#tqq").show(); 
+         myFocus.set({
+         id: 'tqq',
+         pattern: 'mF_sd_tqq',
+         time: 5
+     });
+     });
+</script>
+  <script src="/Areas/SNS/Themes/M1/Content/Scripts/weibo.js" type="text/javascript"></script>       
+<script src="/Scripts/timeCount/js/timeago.js" type="text/javascript"></script>
+<script src="/Scripts/timeCount/js/locales/timeago.zh-cn.js" type="text/javascript"></script>
+<div class="cgund" >
+<p class="gund_s" style="margin-bottom:0px">最新动态</p>
+<div id="ctqq" class="mF_sd_tqq mF_sd_tqq mF_sd_tqq-tqq" >
+<ul class="msgs" style="margin-top: 0px;">
+  @foreach (Maticsoft.Model.SNS.Photos item in Model)
+   {
+            <li style="opacity: 0.72;">
+                <div class="img">
+                    <a target="_blank" href="@(ViewBag.BasePath)User/Posts/@(item.CreatedUserID)">
+                        <img style=" width:40px; height:40px" alt="@item.CreatedNickName" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" /></a></div>
+                <div class="msg">
+                        <a target="_blank" href="@(ViewBag.BasePath)User/Posts/@(item.CreatedUserID)">@item.CreatedNickName
+                            &nbsp;</a><span>:<a style="color: #666;" href="@item.StaticUrl">刚秀了一张搭配</a></span><br />
+                        <time class="timeago" datetime="@item.CreatedDate.ToString()"></time>
+                                   
+                </div>
+            </li>
+   }
+    </ul>
+</div>
+</div>

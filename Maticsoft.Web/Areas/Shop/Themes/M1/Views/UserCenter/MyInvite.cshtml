@@ -1,0 +1,99 @@
+﻿@using Maticsoft.Common
+ @{
+    ViewBag.Title = "邀请有奖";
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+} 
+<link href="/Areas/Shop/Themes/M1/Content/Css/UserCenterStyle.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#txtUserUrl").text('http://'+$('#hiddomain').val() + $Maticsoft.BasePath + $('#hidurl').val());
+//        window.location.origin 
+        $("#yaoqing").click(function () {
+            if (-[1, ]) { //处理非IE浏览器
+                alert("您使用的浏览器不支持此复制功能，请使用Ctrl+C或鼠标右键。");
+//                $("#txtUserUrl").setSelectionRange(0, $("#txtUserUrl").text().length);
+//                $("#txtUserUrl").focus();
+            } else {
+                var flag = window.clipboardData.setData("text", $("#txtUserUrl").text());
+                if (flag == true) {
+                    alert("复制成功。现在您可以粘贴（Ctrl+v）到Blog或BBS中了。");
+                } else {
+                    alert("复制失败。");
+                }
+                var range = obj.createTextRange();
+                range.moveEnd("character", end);
+                range.moveStart("character", 0);
+                range.select();
+            }
+        });
+       
+
+    })
+      
+ 
+</script>
+<!----内容部分----->
+<input type="hidden" value="@(Globals.DomainFullName)" id="hiddomain"/>
+
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+   <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<div class="U-R">  
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">我的邀请</h3>
+        </div>
+    </div> 
+   
+        <div class="user_right">       
+            <div class="guize">
+              邀请送积分！
+            </div> 
+        </div> 
+ 
+       <div class="user_right" >
+                <h1> 专用邀请链接</h1>
+                <p class="user_right_a">
+                    这是你的专用邀请链接，可通过任何方式发送给好友</p>
+                <div class="user_right_b">
+                    <div class="user_right_b1">
+                        <input type="hidden" value="@ViewBag.Url" id="hidurl"/>
+                        快去邀请好友来@(ViewBag.WebName)享受购物拿返利的乐趣吧！<span id="txtUserUrl"></span>
+                    </div>
+                    <div class="user_right_b2">
+                        <a href="javascript:;"  >
+                            <img src="/Areas/Shop/Themes/M1/Content/images/yao1.jpg" id="yaoqing"/></a></div>
+                </div>
+             @*    <h1 class="_b"  >
+                        分享到你的社区</h1>
+           <div class="user_right_b3"  >
+               @Html.Action("BaiduShare","Partial") 
+                <ul>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao3.jpg" /></a></li>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao4.jpg" /></a></li>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao5.jpg" /></a></li>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao6.jpg" /></a></li>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao7.jpg" /></a></li>
+                        <li><a href="javascript:;">
+                            <img src="/Content/themes/base/Tao/images/yao8.jpg" /></a></li>
+                    </ul>  
+           </div> *@
+           <div class="clear">
+           </div>
+          
+       </div> 
+    <div id="divlist">
+            @Html.Action("InviteList", "UserCenter")
+     </div>
+</div>  
+
+ 
+<!----内容结束----->
+

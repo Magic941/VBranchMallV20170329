@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.Accounts.Bus.User
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/UserPass.helper.js" type="text/javascript"></script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            修改密码</h3>
+        <small class="desc">您可以对密码进行修改</small>
+    </div>
+    <div style="background-color: #ffffff; border: 1px solid #CCC;">
+        <table style="width: 100%;" cellpadding="2" cellspacing="1" class="">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="3" width="100%" border="0" class="border form">
+                        <tr>
+                            <td class="td_class">
+                                用户名：
+                            </td>
+                            <td height="25">
+                                @Model.UserName
+                                <input type="hidden" id="txtName" name="txtName" value="@Model.UserName"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                原密码：
+                            </td>
+                            <td height="25">
+                                <input type="password" id="txtPwd" name="txtPwd" maxlength="40" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                新密码：
+                            </td>
+                            <td height="25">
+                                <input type="password" id="txtNewPwd" name="txtNewPwd" maxlength="40" />
+                                @*<asp:TextBox ID="txtPassword" TabIndex="2" runat="server" Width="249px" MaxLength="20"
+                                 TextMode="Password"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" 
+					ErrorMessage="<%$ Resources:Sysmanage, ErrorInputPassword%>" ControlToValidate="txtPassword"></asp:RequiredFieldValidator>*@
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                                确认密码：
+                            </td>
+                            <td height="25">
+                                <input type="password" id="txtConfirmPwd" name="txtConfirmPwd" maxlength="40" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <label style="color: Red;">
+                                </label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="td_class">
+                            </td>
+                            <td height="25">
+                                <div class="form stdform">
+                                    <input type="button" name="btnSave" class="btn_style" value="保存" onclick="return SubSave();" />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

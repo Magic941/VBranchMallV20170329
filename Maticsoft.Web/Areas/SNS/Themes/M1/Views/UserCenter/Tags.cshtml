@@ -1,0 +1,164 @@
+﻿@model   List<Maticsoft.Model.SNS.Tags>
+@{
+    string UserTags = ViewBag.UserTags;
+     string[] UserTagsList = !string.IsNullOrEmpty(UserTags) ? UserTags.Split(',') : null;
+      Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+<input type="hidden" id="currentpage" value="span_15"/>
+<div class="material_con">
+<h1>
+            <p class="material_con_a">
+                个人标签</p>
+            <p class="material_con_b">
+                (您直接选择或填写标签)</p>
+        </h1>
+<div id="main_c">
+    <div class="h10">
+    </div>
+    <div class="photo_yy">
+        <div class="photo_t">
+                            
+            <div class="search_btn">
+                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="height: 38px;">
+                    <tbody><tr>
+                               <td width="21%">
+                                   &nbsp;<a href="javascript:;" style="color: #095EA1;">添加标签&gt;&gt;</a>
+                               </td>
+                               <td width="39%">
+                                   <input name="" id="tags" type="text" class="inp_y" value="">
+                               </td>
+                               <td width="40%" style="padding-top: 4px;">
+                                   <a href="javascript:void(0)" id="addtags" ><img src="/Areas/SNS/Themes/M1/Content/images/tgoods_101.jpg"/></a>
+
+                               </td>
+                           </tr>
+                    </tbody></table>
+            </div>
+            <div class="photo_pic_list">
+      
+                <div class="text_yy">
+                    <span style="font-size: 12px; font-weight: bold; color: #0E6CAA;">+ 选择标签：</span>
+                    <ul class="text_list" id="tagslist">
+                           
+                               @if (Model != null && Model.Count > 0)
+                               {
+                                   foreach (var item in Model)
+                                   {
+                                       if (string.IsNullOrEmpty(UserTags) || !UserTags.Contains(item.TagName))
+                                       { 
+                                           <li ><a href="javascript:void(0)" class="addtags" data-tag="@item.TagName">@item.TagName<span>+</span></a></li>
+                                       }
+
+                                     }
+                                 }
+                           
+                         <div class="clear">
+                        </div>
+                    </ul>
+                    <div style="clear: both">
+                    </div>
+                </div> 
+                <div style="clear: both">
+                </div>
+                                
+            </div>
+            <div style="clear: both">
+            </div>
+        </div>
+        <div style="clear: both">
+        </div>
+    </div>
+    <div style="clear: both">
+    </div>
+</div>
+
+<div id="main_r">
+    <div class="h10">
+    </div>
+    <div class="m_cj">
+        <div class="right_text">
+            我选择的标签</div>
+        <ul class="cen_yy">
+            @if (!string.IsNullOrEmpty(ViewBag.UserTags))
+            {
+                for (int i = 1; i < UserTagsList.Count();i++ )
+                {
+                    <li class='colord7 classcolor'  style=""><a  href="javascript:void(0)" style='color:#0078B6' data-tag="@UserTagsList[i-1]">@UserTagsList[i-1] <span class="deltags" style=" cursor: pointer">×</span></a></li>
+                }
+            }
+            <div style="clear: both">
+            </div>
+        </ul>
+        <div style="clear: both">
+        </div>
+    </div>
+    <div class="h10">
+    </div>
+                    
+    <div class="h15">
+    </div>
+                    
+    <div style="clear: both">
+    </div>
+</div>
+</div>
+<script type="text/javascript">
+    $("#addtags").click(function () {
+        if ($("#tags").val().length <= 0) {
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "UserCenter/AjaxAddTags",
+            data: { tags: $("#tags").val() },
+            success: function (data) {
+                if (data == "Ok") {
+
+                    $(".cen_yy").append("<li class='colord7'><a  href='javascript:void(0)' style='color:#0078B6' data-tag='" + $("#tags").val() + "'>" + $("#tags").val() + "  <span class='deltags' style=' cursor: pointer'>×</span></a></li>");
+                    $("#tags").val("");
+                } else {
+                    $.jBox.tip('操作失败', 'success');
+                }
+            }
+        });
+    });
+
+    $(".deltags").die("click").live("click",function() {
+        var objectThis = $(this);
+        var tags = $(this).parent().attr("data-tag"); 
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "UserCenter/AjaxDeleTags",
+            data: { tags: tags },
+            success: function (data) {
+                if (data == "Ok") {
+                    objectThis.parents("li").hide(); 
+                    $("#tagslist").append("<li ><a  href='javascript:void(0)' class='addtags' data-tag='"+tags+"'>"+tags+"<span>+</span></a></li>")
+                    ;
+                }
+            }
+        });
+    });
+
+    $(".addtags").die("click").live("click", function () {
+        var objectThis = $(this);
+        var tags = $(this).attr("data-tag");
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "UserCenter/AjaxAddTags",
+            data: { tags: tags },
+            success: function (data) {
+                if (data == "Ok") {
+                    objectThis.parent().hide();
+                    $(".cen_yy").append("<li class='colord7'><a href='javascript:void(0)' style=''color:#0078B6'  data-tag='" + tags + "'>" + tags + "<span class='deltags' style=' cursor: pointer'>×</span></a> </li>");
+                }
+            }
+        });
+    });
+ 
+
+
+</script>

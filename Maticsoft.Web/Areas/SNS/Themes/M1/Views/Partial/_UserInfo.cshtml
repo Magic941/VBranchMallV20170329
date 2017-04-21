@@ -1,0 +1,191 @@
+﻿@model Maticsoft.Model.Members.UsersExpModel
+       
+           @if (ViewBag.IsPost == false)
+           {    
+<div class="newuser">
+    <div class="newuser_z">
+        <div class="newuser_a" style="height: 4px">
+        </div>
+        <div class="newuser_b">
+            <div class="newuser_b_tou">
+                <a href="@(ViewBag.BasePath)User/Posts/@(Model.UserID)"  target="_blank" >
+                    <img  src="/Upload/User/Gravatar/@{@Model.UserID}.jpg" alt="@Model.NickName" width="142px;" height="142px;" /></a></div>
+            <div class="newuser_b_n">
+                <div class="newuser_b_na">
+                    <div class="newuser_b_na1">
+                        <p class="ming"><a style=" color:#2466b7" href="@(ViewBag.BasePath)User/Posts/@(Model.UserID)" target="_blank">@Model.NickName
+                        @if (ViewBag.Level != null)
+                        {    
+                            <span class="W_level_ico@(@ViewBag.Level)" title='当前等级：@ViewBag.Level' ><span node-type="level" title='当前等级：@ViewBag.Level'  ></span> </span>
+                        }
+                        @if (Model.IsUserDPI)
+                        { 
+                        <img src='/Areas/SNS/Themes/M1/Content/images/geren.png'  alt="实名用户" title="实名用户"/>
+                        }
+                        @if (ViewBag.IsStar)
+                        { 
+                        <img src='/Areas/SNS/Themes/M1/Content/images/daren.png'  alt="达人身份证" title="达人身份证"/>
+                        }
+                        </a>
+                        </p>
+                        <p class="wangzhi">
+                            <a href="@(ViewBag.BasePath)User/Posts/@(Model.UserID)">@(Request.Url.Authority)/User/Posts/@(Model.UserID)</a></p>
+                        <p class="area">
+                             @if (Model.Sex == "1")
+                        {
+                            <img src="/Areas/SNS/Themes/M1/Content/images/user_9.png" />
+                        }
+                        else
+                        {
+                          <img src="/Areas/SNS/Themes/M1/Content/images/user_8.jpg" />
+                        }
+                            @Model.Address
+                        </p>
+                            <p class="area">@(string.IsNullOrEmpty(Model.Remark) ? "" : "个人标签：" + Model.Remark)</p>
+                        <p class="area">@(string.IsNullOrEmpty(Model.Singature) ? "暂无签名" : "个性签名：" + Model.Singature)</p>
+                          
+                    </div>
+                        <div class="facs">
+                            <div class="facs_x">
+                                <p class="facs_x1">
+                                    <a href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserID"><span>粉丝</span></a></p>
+                                    <p class="facs_x2">
+                                        <a href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserID">@Model.FansCount</a></p>
+                            </div>
+                            <div class="facs_x">
+                      
+                                    <p class="facs_x1">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.UserID">
+                                            <span>关注</span></a></p>
+                                    <p class="facs_x2">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)User/Fellows?uid=@Model.UserID">@Model.FellowCount</a></p>
+                            </div>
+                            <div class="facs_x" style="border-right: none;">
+                         
+                                    <p class="facs_x1">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID">
+                                            <span>被喜欢</span></a></p>
+                                    <p class="facs_x2">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID">@Model.FavoritedCount</a></p>
+                             
+                              @*  else
+                                { 
+                                    <p class="facs_x1">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)Profile/Fav"><span>喜欢</span></a></p>
+                                    <p class="facs_x2">
+                                        <a style="text-decoration:none" href="@(ViewBag.BasePath)Profile/Fav">@Model.FavouritesCount</a></p>
+                               
+                                }*@
+                            </div>
+                        </div>
+                </div>
+                <div class="newuser_b_nb">
+                 @if (ViewBag.IsCurrentUser == false)
+                 {
+                     <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+                     <div class="newuser_b_nb1" id="Fellow">
+                         <a href="javascript:;" class="FellowUser"  UserId="@Model.UserID">
+                             <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  style="display: none"  UserId="@Model.UserID" >
+                                                                                                   <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                     </div>
+                     <div class="newuser_b_nb2">
+                         <p class="newuser_b_nb2r">
+                             <a href="javascript:;">
+                                 <img src="/Areas/SNS/Themes/M1/Content/images/newuser_6.jpg"></a></p>
+                         <p class="newuser_b_nb2s">
+                             <a href="javascript:;" class="SendMsg" nickname="@Model.NickName">发私信</a></p>
+                         <script src="/Areas/SNS/Themes/M1/Content/Scripts/SendSiteMsg.js" type="text/javascript"></script>
+                     </div>
+                 }
+                 else
+                 {
+                     <div class="newuser_b_nb1" >
+                         <a href="/UserCenter/Personal"   >
+                             帐号设置</a> 
+                     </div>
+                 }
+                     
+                        <div class="fenxiang">
+                                      @Html.Action("BaiduShare", "Partial")
+                        </div>
+              @*      else
+                    {
+          
+                        <div class="newuser_b_nb1">
+                            <a href="/UserCenter/Personal" style="color: rgb(172, 77, 77); font-weight: bolder; font-size: 14px;">
+                            账号设置
+                                <img src="/Areas/SNS/Themes/M1/Content/images/newuser_z5.jpg"></a></div>
+                               
+                    }*@
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="newuser_nav">
+        <div class="newuser_nav_a">
+        </div>
+        <div class="newuser_nav_b">
+            <ul>
+   
+                    <li id="snscenterindex" ><a href="@(ViewBag.BasePath)User/Posts?uid=@Model.UserID" >
+                        首页</a></li>
+                    <li id="snsfav"><a href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID">喜欢(@Model.FavouritesCount)</a></li>
+                    <li id="snsalbums"><a href="@(ViewBag.BasePath)User/Albums?uid=@Model.UserID">专辑(@Model.AblumsCount)</a></li>
+                       <li id="snsgroup"><a href="@(ViewBag.BasePath)User/Group?uid=@Model.UserID">小组</a></li>     
+           @*     else
+                { 
+                    <li id="snscenterindex"><a href="@(ViewBag.BasePath)Profile/Posts">首页</a></li>
+                    <li id="snsfav"><a href="@(ViewBag.BasePath)Profile/Fav">喜欢(@Model.FavouritesCount)</a></li>
+                    <li id="snsalbums"><a href="@(ViewBag.BasePath)Profile/Albums">专辑(@Model.AblumsCount)</a></li>
+                       <li id="snsgroup"><a href="@(ViewBag.BasePath)Profile/Group">我的小组</a></li>     
+                }*@
+            </ul>
+        </div>
+        <div class="newuser_nav_c">
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<input type="hidden" id="FellowUserId" value="@Model.UserID"/>
+           }
+           else
+           {
+                 <div class="user_cont_top"></div>
+           }
+<script type="text/javascript">
+    $(function () {
+        if ('@(Request.RequestContext.RouteData.Values["Action"])' == 'Fav') {
+            $('#snscenterindex').removeClass('smalb');
+            $('#snsalbums').removeClass('smalb');
+            $("#snsfav").addClass('smalb');
+             $("#snsfav a").css("color", "white");
+            $('#snsgroup').removeClass('smalb');
+
+        }
+       else if ('@(Request.RequestContext.RouteData.Values["Action"])' == 'Albums' || '@(Request.RequestContext.RouteData.Values["Action"])' == 'FavAlbums') {
+            $('#snscenterindex').removeClass('smalb');
+            $('#snsfav').removeClass('smalb');
+            $("#snsalbums").addClass('smalb');
+            $('#snsgroup').removeClass('smalb');
+            $("#snsalbums a").css("color", "white");
+        }
+       else if ('@(Request.RequestContext.RouteData.Values["Action"])' == 'Group') {
+            $('#snscenterindex').removeClass('smalb');
+            $('#snsfav').removeClass('smalb');
+            $("#snsgroup").addClass('smalb');
+            $('#snsalbums').removeClass('smalb');
+            $("#snsgroup a").css("color", "white");
+        }
+        else {
+            $('#snscenterindex').addClass('smalb');
+            $('#snsfav').removeClass('smalb');
+            $("#snsgroup").removeClass('smalb');
+            $('#snsalbums').removeClass('smalb');
+            $("#snscenterindex a").css("color", "white");
+        }
+    
+    });
+</script>

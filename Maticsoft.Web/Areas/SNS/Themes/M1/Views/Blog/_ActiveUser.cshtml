@@ -1,0 +1,16 @@
+﻿           @model List<Maticsoft.Model.SNS.UserBlog>
+           
+           @if (Model != null && Model.Count > 0)
+           {
+               <dl class="single_online_ht">
+                   @foreach (var item in Model)
+                   {
+                      <dl class="hts">
+                         <dt><a href="@(ViewBag.BasePath)User/Posts/@item.UserID"><img alt="@item.UserName" style=" height:50px; width:50px" src="/Upload/User/Gravatar/@(@item.UserID).jpg"/></a></dt>
+                         <dd class="hts_a"><a href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.UserName</a></dd>
+                      </dl>
+                   }
+                     
+                   </dl>
+           }
+

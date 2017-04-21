@@ -1,0 +1,189 @@
+﻿@model  Maticsoft.ViewModel.SNS.Stars
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    int i = 13; 
+
+}
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function () {
+        resizeImg('.HotStar', 208, 300);
+        $(".applyerIsLogin").click(
+
+           function () { if (CheckUserState()) { return true } else {return false } }
+        )
+    });
+    </script>
+<div class="clear">
+</div>
+<!------pioneer------->
+<div class="pioneer">
+    <div class="pioneer_a">
+        <ul>
+            @if (ViewBag.Type == "Index")
+            {
+                <li><a href="@(ViewBag.BasePath)Star/Pioneer"  class="pion1">综合推荐</a></li>
+            }
+            else
+            {
+                <li><a href="@(ViewBag.BasePath)Star/Pioneer" >综合推荐</a></li>
+            }
+            @Html.Action("StarType", "Star")
+            <li><a class="applyerIsLogin" href="@(ViewBag.BasePath)Star/Apply"><span>申请成为达人</span></a></li>
+        </ul>
+    </div>
+</div>
+@if (Model.HotStarList != null && Model.HotStarList.Count > 0)
+{
+    <div class="pioneer_star">
+        <div class="pioneer_star_bj">
+            <div class="cor">
+                <img src="/Areas/SNS/Themes/M1/Content/images/pioneer_2.jpg" /></div>
+            <p class="csr">
+                编辑推荐</p>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="pioneer_star_img">
+            @foreach (var item in Model.HotStarList)
+            {
+                <div class="code HotStar">
+                    <a href="@(ViewBag.BasePath)User/Posts/@item.UserId">
+                        <img ref="@item.UserGravatar" alt="@item.NickName" /></a>
+                    <div class="code_ba">
+                    </div>
+                    <div class="code_ca">
+                        <div class="code_ca_a">
+                            <p class="code_ca_a1">
+                                <a href="@(ViewBag.BasePath)User/Posts/@item.UserId">@item.NickName</a></p>
+                            <p class="code_ca_a2">
+                                 <a href="javascript:;" class="FellowUser"  UserId="@item.UserId"  >
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.UserId"  >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a></p>
+                        </div>
+                        @if (!String.IsNullOrWhiteSpace(item.Singature))
+                        {
+                        <div class="code_ca_b">
+                            @item.Singature</div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+}
+<div class="pioneer_ad">
+    <a class="applyerIsLogin" href="@(ViewBag.BasePath)Star/Apply">
+        <img src="/Areas/SNS/Themes/M1/Content/images/poineer_6.jpg" /></a></div>
+<div class="pioneer_lis">
+    <div class="pioneer_lis_zuo">
+        <h1>
+            @ViewBag.TypeName</h1>
+        <script type="text/javascript">
+            $(function () {
+//                $('.emerge').hover(function () {
+//                    $(this).find('#dodge').show();
+//                }, function () {
+//                    $(this).find('#dodge').hide();
+//                });
+            });
+        </script>
+        @{Html.RenderPartial("StarList", Model);}
+    </div>
+    <div class="pioneer_lis_you">
+        @if (Model.StarNewList != null && Model.StarNewList.Count > 0)
+        {
+            <div class="newtf">
+                <div class="newtf_a">
+                    新晋达人</div>
+                @foreach (var item in Model.StarNewList)
+                {
+                    <div class="group_con" style="width: 210px; margin-left: 12px;">
+                        <div id="reveal">
+                            <div class="leader_a">
+                                <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                    <img src="/Upload/User/Gravatar/@(item.UserID).jpg" alt="@item.NickName" width="80px" height="80px"/></a> @*<div id="hide">
+                                <dl class="hide_a">
+                                    <dl class="hide_a_A">
+                                        <dl class="hide_a_AP">
+                                            <a href="javascript:;">
+                                                <img src="/Areas/SNS/Themes/M1/Content/images/group_25.jpg" /></a></dl>
+                                        <dl class="hide_a_AS">
+                                            <p>
+                                                <a href="javascript:;" style="font-weight: bold;">搭配我最大</a></p>
+                                            <p>
+                                                北京 海淀区</p>
+                                            <p>
+                                                <a href="javascript:;">1077</a>粉丝 <a href="javascript:;">77</a>分享 <a href="javascript:;">1806</a>喜欢</p>
+                                        </dl>
+                                        <div class="clear">
+                                        </div>
+                                    </dl>
+                                    <dl class="hide_a_B">
+                                        欧美风 擅长搭配 日系 90后 田园小清新</dl>
+                                    <dl class="hide_a_C">
+                                        <a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/group_23.jpg" /></a></dl>
+                                </dl>
+                                <dl class="hide_b">
+                                </dl>
+                            </div>*@
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div id="sidebar" style="width: 120px;">
+                            <div class="newtf_b">
+                                 <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.NickName：</a>@item.Singature</div>
+                            <div class="newtf_c">
+                               <a href="javascript:;" class="FellowUser"  UserId="@item.UserID"  autotest="false">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.UserID"  >
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                              </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                }
+            </div>
+        }
+        @if (Model.StarRankList != null && Model.StarRankList.Count > 0)
+        {
+            <div class="rank">
+                <div class="rank_a">
+                    达人排行榜</div>
+                    @foreach(var item in Model.StarRankList)
+                    {
+                <div class="rank_b">
+                    <div class="rank_b_1">
+                        <img src="/Areas/SNS/Themes/M1/Content/images/pioneer_@(i).jpg"  /></div>
+                    <div class="rank_b_2">
+                           <a href="@(ViewBag.BasePath)User/Posts/@item.UserId">
+                            <img src="/Upload/User/Gravatar/@(item.UserId).jpg" alt="@item.NickName" width="30px" height="30px"/></a></div>
+                    <div class="rank_b_3">
+                        <div class="rank_b_3_a">
+                           <a href="@(ViewBag.BasePath)User/Posts/@item.UserId">@item.NickName</a></div>
+                        <p class="rank_b_3_b">
+                            分享了<span>@item.ProductsCount</span>个宝贝<br />
+                            收到了<span>@item.FavouritesCount</span>个喜欢</p>
+                    </div>
+                     <div style=" display:none">@(i++)</div>
+                </div>
+                         
+                        }
+        
+                <div class="clear">
+                </div>
+            </div>
+          
+        }
+    </div>
+    <div class="clear">
+    </div>
+</div>
+<!------pioneer end----->

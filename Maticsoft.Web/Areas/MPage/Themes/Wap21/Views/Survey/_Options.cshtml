@@ -1,0 +1,31 @@
+﻿ @model List<Maticsoft.Model.Poll.Options>
+              @if (Model != null)
+              {
+                  int i = ViewBag.type;
+                  switch (i)
+                  {
+                      case 0://单选
+                          foreach (var item in Model)
+                          {
+                            <div style="display: inline-block; width: 100%;">
+                                  <input type="radio" id="@(item.ID)_surveytopic0" name="radionls@(item.TopicID)" value="@item.ID" class="jq-ui-forms" data-role="none">
+                                  <label for="@(item.ID)_surveytopic0">@item.Name</label>
+                             </div>
+                          }   
+                         <input value="0" type="hidden" name="hidtopics0" topicstype="0"  qnumber="@ViewBag.qnumber"  topicsid="@ViewBag.topicid" class="topicsoptions"/> <!--用来保存每一个问题的所有答案的name-->
+                           break;
+                      case 1://多选
+                          foreach (var item in Model)
+                          {
+                              <div style="display: inline-block; width: 100%;">       
+                                  <input type="checkbox" id="@(item.ID)_surveytopic1" name="checkbox@(item.TopicID)" value="@item.ID" class="jq-ui-forms" data-role="none">
+                                  <label for="@(item.ID)_surveytopic1">@item.Name</label>
+                              </div>
+                          }
+                         <input value="" type="hidden" name="hidtopics1" topicstype="1"  qnumber="@ViewBag.qnumber"  topicsid="@ViewBag.topicid" class="topicsoptions"/> <!--用来保存每一个问题的所有答案的name-->
+                          break;
+                      case 2://填写反馈 
+                        @:<input type="text" name="hidtopics2" topicstype="2" value=""  class="jq-ui-forms topicsoptions" qnumber="@ViewBag.qnumber"  topicsid="@ViewBag.topicid"> 
+                      break;
+                  }
+              }

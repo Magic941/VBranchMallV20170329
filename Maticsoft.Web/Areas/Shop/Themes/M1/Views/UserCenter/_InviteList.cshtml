@@ -1,0 +1,57 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.UserInvite>
+         <h1 class="userin" > 我的邀请记录</h1>
+      <table width="100%" border="0" class="user_dingdan user_balancelist" cellspacing="0" cellpadding="0">
+              <tr>
+                  <th>时间</th>
+                  <th>被邀请人</th>
+                  <th style="display:none">是否已返利</th>
+                  <th>返利情况</th>
+              </tr>
+              @if (Model != null)
+              {
+                  foreach (var item in Model)
+                  {
+                  <tr>
+                      <td height="40" style="width: 140px" class="bor">
+                          @item.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")
+                      </td>
+                      <td style="width: 220px;" class="bor">
+                          @item.UserNick
+                      </td>
+                      <td style="width: 88px;display:none;" class="bor status">
+                          @(item.IsRebate?"是":"否")
+                      </td>
+                      <td style="width: 88px" class="bor" >
+                          @item.RebateDesc
+                      </td>
+                     
+                  </tr>
+                  }
+              }
+           
+           </table>
+    
+ 
+<!-- FansList BEGIN -->
+
+ <center>
+     <!--jQuery Ajax Paging Start-->
+      @Html.AjaxPager(Model, new PagerOptions
+                    {
+                        PageIndexParameterName = "pageIndex",
+                        NumericPagerItemCount = 10,
+                        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                        CssClass = "in_pages",
+                        SeparatorHtml = ""
+                    }, new AjaxOptions { UpdateTargetId = "divlist" })
+    <!--jQuery Ajax Paging End-->
+ </center> 
+ <script>
+     $(function () {
+         $('.status:contains("否")').addClass('tdstatusno');
+         $('.status:contains("是")').addClass('tdstatusok');
+     })
+</script>

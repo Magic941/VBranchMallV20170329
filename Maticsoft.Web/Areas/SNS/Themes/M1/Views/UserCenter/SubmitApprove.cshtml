@@ -1,0 +1,85 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@model Maticsoft.Model.Members.UsersApprove
+<script type="text/javascript" src="@Url.Content("~/Areas/SNS/Themes/M1/Content/Scripts/userApprovehelper.js")"></script>
+<input type="hidden" id="currentpage" value="span_7"/>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            实名认证</p>
+    </h1>
+    <div class="approve">
+        <div class="approve_nav">
+            <img src="/Areas/SNS/Themes/M1/Content/images/approve1.1.jpg" /></div>
+        <div class="audit">
+            <div class="audit_f">
+            @if (Model != null)
+            { 
+                <table width="580" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td height="35" colspan="2" bgcolor="#F5F5F5">
+                            <span class="audit_a">请确认个人信息</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="100" height="40" align="right">
+                            真实姓名：
+                        </td>
+                        <td width="208">
+                            <span style="margin-left: 10px;">@Model.TrueName</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="40" align="right">
+                            身份证号码：
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;">@Model.IDCardNum</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="114" align="right">
+                            身份证：
+                        </td>
+                        <td>
+                            <span style="margin-left: 10px;">
+                                <img src="@Model.FrontView" width="140" height="85" /></span>
+                            <span style="margin-left: 10px;">
+                                <img src="@Model.RearView"  width="140" height="85" /></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="40" colspan="2" align="right" valign="middle" bgcolor="#F5F5F5">
+                            <a href="/UserCenter/UserApprove/1"><span style="margin-right: 10px;">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/approve7.jpg" /></span></a>
+                        </td>
+                    </tr>
+                </table>
+            }
+            </div>
+            <div class="audit_b">
+                <a href="javascript:;"  onclick="comsubmit();">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/approve8.jpg" /></a></div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="approve_d">
+            <p>
+                认证前需要准备</p>
+            <ul>
+                <li>1.个人身份证件的清晰照片，无遮挡，无修改</li>
+                <li>2.证件在有效期范围内</li>
+            </ul>
+            <p class="app">
+                说明</p>
+            <ul>
+                <li>1.实名认证通过后获得标志<img src="/Areas/SNS/Themes/M1/Content/images/approve6.jpg" />大家更信赖认证过的帐户。</li>
+                <li>2.认证是免费的，但认证后不可取消。</li>
+                <li>3.认证后会获得150个信用。</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>

@@ -1,0 +1,396 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "新品服装";
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+<style>
+    .Wechat_baf a img {
+        height: 165px;
+    }
+
+    .Popularity {
+        width: 90%;
+        margin: 0 auto;
+        padding-bottom: 10px;
+    }
+
+        .Popularity a, .Popularity a img {
+            width: 100%;
+        }
+
+    .bag_classify {
+        width: 95%;
+        margin: 0 auto;
+        padding: 5px 0 8px 0;
+    }
+
+        .bag_classify dl {
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .bag_classify dt {
+            width: 4rem;
+            height: 2rem;
+            line-height: 2rem;
+            float: left;
+            background: #d91047;
+            text-align: center;
+            color: #fff;
+        }
+
+        .bag_classify dd {
+            float: right;
+            margin: 0;
+        }
+
+            .bag_classify dd a {
+                height: 2rem;
+                line-height: 2rem;
+                border: 1px solid #d1d1d1;
+                display: inline-block;
+                *display: inline;
+                zoom: 1;
+                text-align: center;
+                padding: 0 8px;
+                margin-bottom: 10px;
+            }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="background: #fff">
+    <div class="boutique_cn">
+        <a href="javascript:void(0)">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/021.png" />
+        </a>
+    </div>
+    <div class="bag_classify">
+        <dl>
+            <dt>女装</dt>
+            <dd>
+                <a href="@(ViewBag.BasePath)h/607" target="_blank">T恤</a>
+                <a href="@(ViewBag.BasePath)h/608" target="_blank">雪纺衫</a>
+                <a href="@(ViewBag.BasePath)h/609"  target="_blank">衬衫</a>
+                <a href="@(ViewBag.BasePath)h/630"  target="_blank">针织衫</a>
+                <a href="@(ViewBag.BasePath)h/612"  target="_blank">连衣裙</a>
+                <a href="@(ViewBag.BasePath)h/617" target="_blank">打底裤</a>
+            </dd>
+        </dl>
+        <dl>
+            <dt>男装</dt>
+            <dd>
+                <a href="@(ViewBag.BasePath)h/633"  target="_blank">衬衫</a>
+                <a href="@(ViewBag.BasePath)h/634"  target="_blank">针织衫</a>
+                <a href="@(ViewBag.BasePath)h/646"  target="_blank">休闲裤</a>
+            </dd>
+        </dl>
+    </div>
+
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/022.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156737/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/rq01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156737/0/0">春装新款欧美精品女装时尚拼接格纹收腰无袖大摆裙连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 305.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156784/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/rq02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156784/0/0">欧洲站春装新款提花套装无袖荷叶下摆上衣+公主裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 210.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157245/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/rq03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157245/0/0">2015春装新款男装秘鲁卫裤休闲素色针织哈伦裤</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 209.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/13622/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/rq04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/13622/0/0">TKZ春装男士新款 纯棉修身韩版开衫毛衣潮男 纯色英伦针织衫外套</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 210.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/023.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/10553/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/10553/0/0">2015新款女装翻领欧美风开衫修身毛衫上衣流苏热卖春款外套</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 133.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154669/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154669/0/0">燕知草 三色条纹针织开衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 79.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157284/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157284/0/0">晶尚晶美 JM7111 衬衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157275/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157275/0/0">晶尚晶美 JM7139 雪纺衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 118.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157271/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157271/0/0">晶尚晶美 韩版时尚小清新 修身气质JM1540 连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 198.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156584/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156584/0/0">茧蝶 2015春季新款女装不规则针织毛衣+包臀鱼尾摆半身裙时尚套装</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 209.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156756/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156756/0/0">春装新款 欧洲站女装品牌欧根纱拼接裙摆无袖连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 259.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156766/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156766/0/0">春装新款欧美套装 印花喇叭袖上衣+显瘦短裤套装</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 205.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156832/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156832/0/0">欧美高端女装立领订珠长袖连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 369.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156557/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/ss10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156557/0/0">茧蝶 2015春装新款网络红人菁菁同款高端气质时尚性感修身连衣裙</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 359.00</em>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="Popularity">
+        <a href="javascript:void(0)" target="_blank">
+            <img src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/024.png" />
+        </a>
+    </div>
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/13632/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp01.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/13632/0/0">2015春季新男装男士毛衣v领撞色毛衫长袖针织衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 226.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/13636/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp02.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/13636/0/0">AFS JEEP战地吉普2015春装宽松开衫针织衫男装 男士毛衣外套 大码</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 183.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1157243/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp03.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1157243/0/0">2015春装男士上衣优质秘鲁棉卫衣布连帽套头长袖卫衣</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 199.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156574/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp04.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156574/0/0">2015春夏新款 男士纯棉中老年大码直筒裤全棉商务休闲长裤子普通款</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 59.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156501/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp05.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156501/0/0">ZHANWEI/展之威100%纯山羊绒男士高端休闲羊绒衫男加厚</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 549.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156194/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp06.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156194/0/0">柯瑞普 春秋冬三季户外男款运动加绒防寒保暖防泼水防风冲锋裤</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 225.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1156453/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp07.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1156453/0/0">【2015男装底价清仓】男式衬衫 时尚男衬衫 潮流修身百搭保暖衬衫</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 229.00</em>
+                </div>
+
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1155916/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp08.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1155916/0/0">[CARTELO/卡帝乐鳄鱼]针织衫 KCS1683</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 229.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/1154774/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp09.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/1154774/0/0">男士长裤韩版时尚中腰棉麻纯色抓毛裤直筒修身</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 125.00</em>
+                </div>
+            </li>
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/13645/0/0">
+                        <img class="lazy" src="/Areas/MShop/Themes/M1/Content/img/BagSpecialColumn/fushi/xp10.jpg" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/13645/0/0">太平鸟2015春装新品 男士时尚开衫/线衫/针织衫拼接潮</a></p>
+                <div class="Wechat_sell">
+                    <em>￥ 266.00</em>
+                </div>
+
+            </li>
+
+
+        </ul>
+    </div>
+</div>

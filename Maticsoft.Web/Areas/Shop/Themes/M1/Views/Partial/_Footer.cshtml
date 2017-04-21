@@ -1,0 +1,206 @@
+﻿<script charset="utf-8" src="http://wpa.b.qq.com/cgi/wpa.php"></script>
+
+<style>
+    .pubcertifk {
+        width: 500px;
+        margin: 10px auto;
+    }
+
+        .pubcertifk li {
+            float: left;
+            padding-right: 12px;
+        }
+
+            .pubcertifk li a {
+                width: 91px;
+                height: 31px;
+            }
+</style>
+<div class="guild " style="display: block">
+    <div class="guild_floor">
+        <ul>
+            <li class="floor_a1 floor_active"><a href="#Floor1"></a></li>
+            <li class="floor_a2"><a href="#Floor2"></a></li>
+            <li class="floor_a3"><a href="#Floor3"></a></li>
+            <li class="floor_a4"><a href="#Floor4"></a></li>
+            <li class="floor_a5"><a href="#Floor5"></a></li>
+            <li class="floor_a6">
+                <div id="BizQQWPA"><a href="javascript:void(1);"></a></div>
+            </li>
+            <li class="floor_a7"><a href="#"></a></li>
+        </ul>
+    </div>
+</div>
+<div class="footer">
+    <div class="wrapper">
+        <div class="mod_agree">
+            <ul class="clearfix">
+                <li class="mod_agree-item mod_agree-item1"><a href="#"></a></li>
+                <li class="mod_agree-item mod_agree-item2"><a href="#"></a></li>
+                <li class="mod_agree-item mod_agree-item3"><a href="#"></a></li>
+                <li class="mod_agree-item mod_agree-item4"><a href="#"></a></li>
+                <li class="mod_agree-item mod_agree-item5"><a href="#"></a></li>
+                <li class="mod_agree-item mod_agree-item6"><a href="#"></a></li>
+            </ul>
+        </div>
+        <div class="footTop-msg">
+            <div class="footTop-msg-cont clearfix">
+                @*<ul>
+                    <h4>服务保障</h4>
+                    <li><a href="#">正品保证</a></li>
+                    <li><a href="#">七天无理由</a></li>
+                    <li><a href="#">退货退货返运费</a></li>
+                    <li><a href="#">7x24小时客户服务</a></li>
+                    <li><a href="#">满百包邮</a></li>
+                    <li><a href="#">闪电发货</a></li>
+
+                </ul>*@
+                <!--服务保障-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 12, Top = 6 })
+                @*<ul>
+                    <h4>购物指南</h4>
+                    <li><a href="#">导购演示</a></li>
+                    <li><a href="#">订单操作</a></li>
+                    <li><a href="#">会员注册</a></li>
+                    <li><a href="#">账户管理</a></li>
+                    <li><a href="#">收货样品</a></li>
+                </ul>*@
+                <!--购物指南-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 13, Top = 6 })
+                @*<ul>
+                    <h4>支付方式</h4>
+                    <li><a href="#">网银支付</a></li>
+                    <li><a href="#">货到付款</a></li>
+                    <li><a href="#">支付宝/银联等支付</a></li>
+                    <li><a href="#">信用卡支付</a></li>
+                    <li><a href="#">健康卡/钱包支付</a></li>
+                </ul>*@
+                <!--支付方式-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 14, Top = 6 })
+                @*<ul>
+                    <h4>配送方式</h4>
+                    <li><a href="#">全场满百免运费</a></li>
+                    <li><a href="#">配送范围及运费</a></li>
+                    <li><a href="#">验货与签收</a></li>
+                </ul>*@
+                <!--配送方式-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 15, Top = 6 })
+                @*<ul>
+                    <h4>售后服务</h4>
+                    <li><a href="#">退货政策</a></li>
+                    <li><a href="#">退货流程</a></li>
+                    <li><a href="#">退款方式和时效</a></li>
+                </ul>*@
+                <!--售后服务-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 16, Top = 6 })
+                @*<ul>
+                    <h4>商家服务</h4>
+                    <li><a href="#">商家帮助</a></li>
+                    <li><a href="#">商家入驻</a></li>
+                    <li><a href="#">新手指导</a></li>
+                    <li><a href="#">培训中心</a></li>
+                    <li><a href="#">信息公告</a></li>
+                </ul>*@
+                <!--商家服务-->
+                @Html.Action("ContentList", "Partial", new { viewName = "_FooterContentList", ClassID = 40, Top = 6 })
+            </div>
+        </div>
+    </div>
+
+    <!-- guarantee end -->
+    <script type="text/javascript">
+
+        //更改页脚显示样式
+        $('[itemid=helpcenterabout]').eq(1).removeClass('help-center-about').addClass('help-center-novice');
+        $('[itemid=helpcenterabout]').eq(2).removeClass('help-center-about').addClass('help-center-pay');
+        $('[itemid=helpcenterabout]').eq(3).removeClass('help-center-about').addClass('help-center-exp');
+        $('[itemid=helpcenterabout]').eq(4).removeClass('help-center-about').addClass('help-center-service');
+        $('.help-center-about').append("<dd><a href=\"" + $Maticsoft.BasePath + "store/apply\" target=\"_blank\">商家入驻</a></dd>");
+    </script>
+
+
+    <!-- WPA Button End -->
+
+    <script type="text/javascript">
+        var _mvq = _mvq || [];
+        _mvq.push(['$setAccount', 'm-29312-0']);
+
+        _mvq.push(['$logConversion']);
+        (function () {
+            var mvl = document.createElement('script');
+            mvl.type = 'text/javascript'; mvl.async = true;
+            mvl.src = ('https:' == document.location.protocol ? 'https://static-ssl.mediav.com/mvl.js' : 'http://static.mediav.com/mvl.js');
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(mvl, s);
+        })();
+
+    </script>
+
+
+
+    <script>
+
+
+        if ($("#Floor1").length == 0) {
+            $(".floor_a1").hide();
+            $(".floor_a2").hide();
+            $(".floor_a3").hide();
+            $(".floor_a4").hide();
+            $(".floor_a5").hide();
+        }
+
+        BizQQWPA.addCustom({ aty: 0, a: "0", nameAccount: 4000213888, selector: "BizQQWPA" });
+
+
+    </script>
+
+    <div class="pubcertify">
+        @* <span><a rel="nofollow" class="pubcertify-mast" href="javascript:;" target="_blank">mastcard认证</a></span>
+        <span><a rel="nofollow" class="pubcertify-visa" href="javascript:;" target="_blank">visacard认证</a></span>
+        <span><a rel="nofollow" class="pubcertify-visashop" href="javascript:;" target="_blank">推荐商家</a></span>
+        <span><a rel="nofollow" class="pubcertify-safe" href="http://www.sgs.gov.cn/lz/etpsInfo.do?method=viewDetail;">上海工商</a></span> 
+        <span><a href="javascript:;" target="_blank" class="pubcertify-credit" rel="nofollow">信</a></span>
+        <span><a href="#"><img src="/Areas/Shop/Themes/M1/Content/images/pu_klkl.jpg" width="" /></a></span>*@
+    </div>
+    <div class="pubcertifk">
+        <ul class="clearfix">
+            <li>
+               @* <a href="http://www.zx110.org/?tp=1.1.20.0.27.KkHbnLO-10-F3l8q" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/AD/zx_001.png" width="90" height="31" />
+                </a>*@
+            </li>
+            <li>
+              @*  <form id="gsform" method="post" name="etpsQryForm" action="https://www.sgs.gov.cn/lz/etpsInfo.do?method=doSearch" target="_blank">
+
+                    <input id="keyWords" value="310113001013302" name="keyWords" type="hidden">
+                    <input id="searchType" value="2" type="hidden" name="searchType">
+
+                    <a href="javascript:void(1);" onclick="javascript:document.getElementById('gsform').submit()">
+                        <img src="/Areas/Shop/Themes/M1/Content/images/AD/gs_001.gif" width="90" height="31" />
+                    </a>
+                </form>*@
+            </li>
+            <li>
+               @* <a href="javascript:" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/AD/kx_001.png" width="90" height="31" />
+                </a>*@
+            </li>
+            <li>
+                @*<a href="javascript:" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/AD/yl_001.gif" width="90" height="31" />
+                </a>*@
+            </li>
+            <li style="padding-right: 0;">
+              @*  <a href="javascript:" target="_blank">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/AD/zfb_001.jpg" width="90" height="31" />
+                </a>*@
+            </li>
+        </ul>
+    </div>
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/topmenu.js"></script>
+  @*  <div class='copyright'>
+        <p>
+            <span><a href="http://www.beianbeian.com/beianxinxi/c2970e40-a9e1-40bf-92d8-3ef4e3bdadda.html" target="_blank">沪ICP备13014317号</a> </span>
+            </p>
+        <p><span><a href="/Areas/Shop/Themes/M1/Content/images/home/yyzz.jpg">营业执照</a></span></p>
+    </div>*@

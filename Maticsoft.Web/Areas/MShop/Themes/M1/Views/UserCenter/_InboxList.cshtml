@@ -1,0 +1,63 @@
+﻿@using Maticsoft.Common;
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+@if (null != Model)
+{   
+        <input type="hidden" id="hidpage" value="@ViewBag.inboxpage"/>         
+    foreach (var item in Model)
+    {
+        if (item.ReceiverIsRead == false)
+        {
+            <div class="home_newlist">
+                <div class="home_newtitle">
+                    <span> @(item.SenderID == -1 ? "管理员" : item.SenderUserName)</span> <small> @(item.SendTime.HasValue ? item.SendTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : "")</small></div>
+                <div class="home_newcontent"  title="未读消息,点击">
+                  <a href="@(ViewBag.BasePath)UserCenter/ReadMsg?MsgID=@item.ID" class="readMsgContent" style="font-weight:bold;"  >  @(string.IsNullOrEmpty(item.Title) ? "" : item.Title + ":")@item.Content  </a>
+                    <p><a href="javascript:;" class="DelReceiveMsg u-btn" itemid="@item.ID">删除</a><a href="javascript:;"  class="SendMsg u-btn" nickname="@item.SenderUserName" asendid="@item.SenderID">回复</a> </p></div>
+            </div> 
+        }
+        else
+        {
+                <div class="home_newlist">
+                <div class="home_newtitle">
+                    <span> @(item.SenderID==-1? "管理员" : item.SenderUserName)</span> <small> @(item.SendTime.HasValue ? item.SendTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : "")</small></div>
+                <div class="home_newcontent">
+                 @(string.IsNullOrEmpty(item.Title) ? "" : item.Title + ":")@item.Content 
+                   <p>  <a href="javascript:;" class="DelReceiveMsg u-btn" itemid="@item.ID">删除</a><a href="javascript:;"  class="SendMsg u-btn" nickname="@item.SenderUserName" asendid="@item.SenderID">回复</a> </p></div>
+            </div> 
+       
+        }
+    }
+
+}
+
+<script type="text/javascript">
+    $(function() {
+          $('[asendid="-1"]').css('display', 'none'); //如果是管理员发送的信息 就隐藏回复按钮
+    })
+</script>   
+ 
+    
+    <!-- FansList BEGIN -->
+ 
+    <!--jQuery Ajax Paging Start-->
+@Html.AjaxPager(Model, new PagerOptions()
+{
+    CssClass = "in_pages_m",
+    PageIndexParameterName = "page",
+    NumericPagerItemCount = 3,
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+}, new AjaxOptions() { UpdateTargetId = "InBoxList" })
+    <!--jQuery Ajax Paging End-->
+ 
+
+<div id="divSendSiteMsg" style="display:none ;  ">
+    <div style='margin-top:20px;font-size: 14px; font-weight: bold;'>
+        <span>标题：</span><input type='text' style="width:70%"  id='title' name='Title' />
+    </div>
+    <div style='margin-top:20px;font-size: 14px;font-weight: bold;'>
+        <div style="width: 30%;">内容：</div><textarea rows="5" style= 'width:70%;margin:-20px 0 0 45px;'   id='content' name='Content'></textarea> 
+    </div>
+    <input type='hidden' name='NickName' id="nickname" value='' />
+</div>

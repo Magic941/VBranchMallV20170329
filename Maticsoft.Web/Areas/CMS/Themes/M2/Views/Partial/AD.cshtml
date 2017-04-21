@@ -1,0 +1,9 @@
+﻿@{
+    Layout = null;
+}
+@model Maticsoft.Model.Settings.Advertisement
+@if (null != Model)
+{
+    <a href="@Model.NavigateUrl" target="_blank">
+        <img src="@Model.FileUrl" /></a>
+}

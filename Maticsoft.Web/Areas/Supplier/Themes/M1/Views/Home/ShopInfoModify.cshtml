@@ -1,0 +1,481 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+    int num = 0;
+}
+<style type="text/css">
+    .border
+    {
+        border: 1px solid #CCC;
+        background: #FFF;
+        color: #666;
+    }
+    table
+    {
+        border-collapse: separate;
+        border-spacing: 2px;
+        border-color: gray;
+    }
+    .hideMes
+    {
+        visibility: hidden;
+    }
+</style>
+@using Maticsoft.Web
+@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<script src="/Scripts/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+<!--图片上传开始-->
+<link href="/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/swfobject.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.uploadify/uploadify-v2.1.0/jquery.uploadify.v2.1.0.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery.colorpicker.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var upload = function ($Id, type) {
+            $Id.uploadify({
+                'uploader': '/Scripts/jquery.uploadify/uploadify-v2.1.0/uploadify.swf',
+                'script': '/SupplierUploadLogo.aspx',
+                'cancelImg': '/Scripts/jquery.uploadify/uploadify-v2.1.0/cancel.png',
+                'buttonImg': '/Areas/Supplier/Themes/M1/Content/images/uploadfile.jpg',
+                'folder': 'UploadFile',
+                'queueID': 'fileQueue',
+                'auto': true,
+                'multi': true,
+                'width': 76,
+                'height': 25,
+                'fileExt': '*.jpg;*.gif;*.png;*.bmp',
+                'fileDesc': 'Image Files (.JPG, .GIF, .PNG)',
+                'queueSizeLimit': 1,
+                'sizeLimit': 1024 * 1024 * 10,
+                'onInit': function () {
+                },
+
+                'onSelect': function (e, queueID, fileObj) {
+                },
+                'onComplete': function (event, queueId, fileObj, response, data) {
+                    var responsejson = $.parseJSON(response);
+                    if (responsejson.success) {
+                        switch (type) {
+                            case "ShopStoreIndex":
+                                $("[id$='hfLogoUrl']").val(responsejson.data.format(''));
+                                $("[id$='imagelogourl']").attr('src', responsejson.data.format(''));
+                                break;
+                            case "ShopSearch":
+                                $("[id$='hfLogoUrlSearch']").val(responsejson.data.format(''));
+                                $("[id$='imagelogourlSearch']").attr('src', responsejson.data.format(''));
+                                break;
+                            case "MShop":
+                                $("[id$='hfLogoUrlm']").val(responsejson.data.format(''));
+                                $("[id$='imagelogourlm']").attr('src', responsejson.data.format(''));
+                                break;
+                            case "Sale":
+                                $("[id$='hfLogoUrlSale']").val(responsejson.data.format(''));
+                                $("[id$='imagelogourlSale']").attr('src', responsejson.data.format(''));
+                                break;
+                            case "Background":
+                                $("[id$='hfLogoUrlBackground']").val(responsejson.data.format(''));
+                                $("[id$='imagelogourlBackground']").attr('src', responsejson.data.format(''));
+                                break;
+                            default:
+                                break;
+                        }
+                        ShowSuccessTip("上传成功");
+                    } else {
+                        ShowFailTip("图片上传失败！");
+                    }
+                }
+            });
+        };
+        upload($("#uploadify"), "ShopStoreIndex");
+        upload($("#uploadifySearch"), "ShopSearch");
+        upload($("#uploadifym"), "MShop");
+        upload($("#uploadifySale"), "Sale");
+        upload($("#uploadifyBackground"), "Background");
+        $('[id$="txtIndexProdTop"]').OnlyNum();
+
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+
+        $("[id$='txtEstablishedDate']").prop("readonly", true).datepicker({ dateFormat: "yy-mm-dd" });
+        $("[id$=txtRegisteredCapital],[id$=txtCellPhone],[id$=txtMobileCount],[id$=txtQQ]").OnlyNum(); 
+        $("[id$=txtBalance]").OnlyFloat();
+
+        $("#Background").colorpicker({
+            fillcolor: true,
+            success: function (o, color) {
+                $(o).css("color", color);
+            }
+        });
+    });
+</script>
+<!--图片上传结束-->
+ 
+<script type="text/javascript">
+    window.UEDITOR_HOME_URL = "/ueditor/";
+</script>
+<script src="/ueditor/editor_config.js" type="text/javascript"></script>
+<script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+<link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>编辑店铺信息</span></h3>
+        <small class="desc"><span>您可以编辑店铺信息</span> </small>
+    </div>
+    @if (Model != null)
+    {
+         <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border form" >
+            <tr><td>
+                    <fieldset class="border_radius border" style="width: 850px;margin: 20px;padding-bottom: 10px;" >
+                        <legend>基本设置</legend>
+                        <table style="width: 100%;" cellpadding="2" cellspacing="1">
+                            <tr>
+                                <td class="td_class">
+                                    名称 ：
+                                </td>
+                                <td height="25">
+                                    <input type="text" id="txtShopName" style="width: 350px;"  maxlength="100" value="@Model.ShopName"/>
+                                    <span><a href="@MvcApplication.GetCurrentRoutePath(AreaRoute.Shop)store/@Model.SupplierId" style="color: #1317FC;@(MvcApplication.MainAreaRoute == AreaRoute.MShop ? "display:none;" : "")" class="hideMes" id="prevShow" target="_blank">
+                                              预览</a></span> &nbsp;&nbsp;如需您要开店, 请填写店铺名称。
+                                    <input id="storeStatus" type="hidden" value="@Model.StoreStatus.ToString()" />
+                                    <span style="color: Red;" id="lterShopClose" class="hideMes">您的店铺已关闭</span>
+                                </td>
+                            </tr>
+                             @if (ViewBag.HasShopArea)
+                             {
+                                 <tr>
+                                     <td class="td_class">
+                                         Logo@(++num) ：
+                                     </td>
+                                     <td height="25">
+                                         <span id="hfLogoUrl"></span>
+                                   
+                                         <input type="file" name="uploadify" id="uploadify"   /> &nbsp;&nbsp; 建议上传图片的尺寸为 1200*68(px)  (用于商城店铺首页)
+                                     </td>
+                                 </tr>
+                                 <tr>
+                                     <td class="td_class">
+                                     </td>
+                                     <td height="25">   
+                                         <img id="imagelogourl"  width="490" height="34" src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.SupplierId,"T980X68")" onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_980X68.jpg'"/>
+                                     </td>
+                                 </tr> 
+                             }
+                            <tr>
+                                <td class="td_class">
+                                    Logo@(++num) ：
+                                </td>
+                                <td height="25">
+                                    <span id="hfLogoUrlm"></span>
+                                    <input type="file" name="uploadify" id="uploadifym"   />     &nbsp;&nbsp; 建议上传图片为正方形    @if (!ViewBag.HasShopArea)
+                                                                                                                            {
+                                                                                                                                @:(用于微信商城店铺)  
+                                                                                                                            }
+                                                                                                                            else if (!ViewBag.HasMShopArea)
+                                                                                                                            {
+                                                                                                                                @:(用于商城首页精品店铺)
+                                                                                                                            }
+                                                                                                                            else
+                                                                                                                            {
+                                                                                                                            @:(用于商城首页精品店铺、微信商城店铺)  
+                                                                                                                            }                           
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td  >
+                                    <img id="imagelogourlm"  width="100" height="100"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.SupplierId,"T200X200")" onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_200X200.jpg'"/> 
+                                </td>
+                            </tr>
+                              @if (ViewBag.HasShopArea)
+                              {
+                            <tr>
+                                <td class="td_class">
+                                    Logo@(++num) ：
+                                </td>
+                                <td height="25">
+                                    <span id="hfLogoUrlSearch"></span>
+                                    <input type="file" name="uploadify" id="uploadifySearch" />&nbsp;&nbsp; 建议上传图片的尺寸为 180*60(px)   (用于商城搜索店铺)
+                                </td>
+                            </tr>
+                            
+                                  <tr>
+                                      <td class="td_class">
+                                      </td>
+                                      <td height="25">
+                                          <img id="imagelogourlSearch"  width="180" height="60"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.SupplierId,"T180X60")"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_180X60.jpg'"/>
+                                      </td>
+                                  </tr>
+                              }
+
+                            <tr>
+                                <td class="td_class">
+                                    Logo4：
+                                </td>
+                                <td height="25">
+                                     <span ID="hfLogoUrlSale"></span>
+                                    <input type="file" name="uploadify" id="uploadifySale" />&nbsp;&nbsp; 建议上传图片的尺寸为 580*280(px)   (用于商城促销展示)
+                                </td>
+                            </tr>
+
+                             <tr>
+                                      <td class="td_class">
+                                      </td>
+                                      <td height="25">
+                                          
+                                         <img id="imagelogourlSale"  width="276" height="133"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.SupplierId,"T200X400")"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_180X60.jpg'" />
+                                      </td>
+                                  </tr>
+
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td height="25">
+                                    <div class="form stdform" style="margin-top:10px;">
+                                        <span>
+                                            <input type="button" id="btnClose" value="关闭店铺" style="width: 80px !important;"  class="reset radius2 " />
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </fieldset>
+
+                </td></tr>
+                @if (ViewBag.HasShopArea)
+                {
+                         <tr><td>
+                    <fieldset class="border_radius border" style="width: 850px;margin: 20px;padding-bottom: 10px;" >
+                        <legend>商城店铺设置</legend>
+                        <table style="width: 100%;" cellpadding="2" cellspacing="1">
+                           
+                            
+                       
+                            <tr>
+                                <td class="td_class" valign="top">
+                                    自定义内容区 ：
+                                </td>
+                                <td height="25">
+                                    <textarea id="txtIndexContent" style="width: 600px;">@Model.IndexContent</textarea>
+                                </td>
+           
+                            </tr>
+                            <tr>
+                                <td class="td_class" valign="top">
+                                    首页显示商品数量 ：
+                                </td>
+                                <td height="25">
+                                    <input type="text"  id="txtIndexProdTop" style="width: 50px;" value="@Model.IndexProdTop.ToString()"/>
+                                    &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+          
+                                <td class="td_class" valign="top">
+                                    客服QQ ：
+                                </td>
+                                <td height="25">
+                                  <input type="text" value="@Model.QQ" id="txtQQ" name="QQ" style="width:100px" maxlength="11" />
+                                    &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class" valign="top">
+                                    店铺背景类型 ：
+                                </td>
+                                <td height="25">
+                                    @Html.RadioButtonFor(m=> m.BGType, true, new { @id = "rdT"}) 背景色
+                                    @Html.RadioButtonFor(m=> m.BGType, false, new { @id = "rdF"}) 背景图片
+                                    &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class" valign="top">
+                                    店铺背景色 ：
+                                </td>
+                                <td height="25">
+                                   @Html.TextBox("Background",Model.Background)
+                                    &nbsp;&nbsp;
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                    店铺背景图 ：
+                                </td>
+                                <td height="25">
+                                     <span ID="hfLogoUrlBackground"></span>
+                                    <input type="file" name="uploadify" id="uploadifyBackground" />&nbsp;&nbsp; 建议上传无缝贴图，尺寸以较小为宜   (用于商铺店面背景)
+                                </td>
+                            </tr>
+
+                             <tr>
+                                      <td class="td_class">
+                                      </td>
+                                      <td height="25">
+                                          
+                                         <img id="imagelogourlBackground"  width="276" height="133"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.SupplierId,"T200X600")"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_180X60.jpg'" />
+                                      </td>
+                                  </tr>
+                        </table> 
+                    </fieldset>
+
+                </td></tr>
+                }
+          @if (ViewBag.HasMShopArea)
+          {
+               <tr><td>
+                    <fieldset class="border_radius border" style="width: 850px;margin: 20px;padding-bottom: 10px;" >
+                        <legend>微商城店铺设置</legend>
+                        <table style="width: 100%;" cellpadding="2" cellspacing="1">
+                                <tr  >
+                <td class="td_class">
+                    客服电话 ：
+                </td>
+                <td height="25">
+                    <input type="text" value="@Model.ServicePhone" name="ServicePhone" id="txtServicePhone" style="width:100px" maxlength="11" />
+                </td>
+            </tr>      
+                            <tr>
+                                <td class="td_class" valign="top">
+                                    首页显示商品数量 ：
+                                </td>
+                                <td height="25">
+                                    <input type="text"  id="txtMobileCount" style="width: 50px;" value="@(ViewBag.mobileCount != null ? ViewBag.mobileCount : "10")"/>
+                                </td>
+                            </tr>  
+                         
+                        </table> 
+                        </fieldset>
+
+                </td></tr>
+          }
+                 
+  <tr>
+                                <td height="25" colspan="2" class="td_class" >
+                                    <div class="form stdform" style="margin: 0px 0px 2px 200px;text-align: left;">
+                                        <input type="button" id="btnSave" value="保存" class="reset radius2 btn_style" />
+                                        
+                                    </div>
+                                </td>
+                            </tr>
+            
+        </table>
+
+    }
+       
+    
+</div>
+<br />
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: '/ueditor/themes/default/iframe.css', toolbars: [
+
+            ['fullscreen',
+                'bold', 'underline', 'strikethrough', '|', 'removeformat', '|', 'forecolor', 'backcolor',
+                '|', 'justifyleft', 'justifycenter', 'justifyright', '|',
+                'insertimage', 'imagenone', 'imageleft', 'imageright',
+                'imagecenter', '|', 'fontfamily', 'fontsize', '|', 'link', 'unlink', '|']
+        ],
+        initialContent: '',
+        minFrameHeight: 280,
+        pasteplain: false
+        , wordCount: false
+        , elementPathEnabled: false
+        , autoClearinitialContent: false, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor.render('txtIndexContent'); //将编译器渲染到容器
+</script>
+<script type="text/javascript">
+    $(function () {
+        if ($("#storeStatus").val() == "2") { //
+            $("#lterShopClose").removeClass("hideMes");
+            $("#btnClose").hide();
+        }
+        if ($("#storeStatus").val() == "0") {
+            $("#lterShopClose").text("您的店铺正在审核中").removeClass("hideMes");
+            $("#btnClose").hide();
+        }
+        if ($("#storeStatus").val() == "1") {
+            $("#prevShow").removeClass("hideMes");
+        }
+        $("#btnClose").click(function () {
+            $.get($Maticsoft.BasePath + "Home/CloseShop", function (data) {
+                if (data == "ok") {//关闭成功
+                    ShowSuccessTip("关闭成功！");
+                    $("#btnClose").hide();
+                    $("#lterShopClose").removeClass("hideMes");
+                } else {//关闭失败
+                    ShowFailTip("关闭失败!");
+                }
+            });
+        });
+        $("#btnSave").click(function () {
+            var $shopname = $("#txtShopName").val();
+            if ($shopname.length == 0) {
+                ShowFailTip("请输入店铺名称！");
+                return false;
+            }
+            if ($shopname.length > 100) {
+                ShowFailTip("店铺名称请控制在1~100字符！");
+                return false;
+            }
+            //var logoUrl = $("#imagelogourl").attr("src");
+            var logoUrl = $Val("hfLogoUrl");  
+            // var textDes = editor.getContent();
+            var logoUrlSearch = $Val("hfLogoUrlSearch"); 
+            var logoUrlm = $Val("hfLogoUrlm");
+            var logoUrlSale = $Val("hfLogoUrlSale");
+            var txtproductCount = $Val("txtIndexProdTop"); 
+            var txtMobileCount = $Val("txtMobileCount");  
+            var qq = $Val("txtQQ"); 
+            var servicePhone = $Val("txtServicePhone");
+            var bgType = $("input[name='BGType']:checked").val();
+            var background = $Val("Background");
+            var bgImg = $Val("hfLogoUrlBackground");
+            $.ajax({
+                url: $Maticsoft.BasePath + "Home/EditShop",
+                type: "Post",
+                data: {
+                    shopName: $shopname,
+                    logoUrl: logoUrl,
+                    textDes: editor.getContent(),
+                    txtProductCount: txtproductCount,
+                    txtMobileCount: txtMobileCount,
+                    logoUrlSearch: logoUrlSearch,
+                    logoUrlm: logoUrlm,
+                    logoUrlSale:logoUrlSale,
+                    qq: qq,
+                    servicePhone: servicePhone,
+                    BGType: bgType,
+                    Background: background,
+                    BGImg: bgImg
+                }
+                    , success: function (data) {
+                        if (data == "ok") {
+                            ShowSuccessTip("保存成功，请等待审核！");
+                            setTimeout(function () {
+                                window.location = $Maticsoft.BasePath + "Home/ShopInfo";
+                            }, 2000);
+
+                        }
+                        if (data == "no") {
+                            ShowFailTip("更新失败！");
+                        }
+                        if (data == "exit") {
+                            ShowFailTip("该名称已经被注册，请更换名称再操作！");
+                        }
+                    }
+            });
+        });
+    });
+        function $Val(Id) {
+            if ($('#' + Id)) {
+                return $('#' + Id).val();
+            } else {
+                return "";
+            }
+        }
+</script>

@@ -1,0 +1,25 @@
+﻿    @model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<div class="hd">
+    <h2>
+        推荐商品</h2>
+</div>
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="bd">
+                <ul class="list-s">
+                    @foreach (var item in Model)
+                    {
+                         <li class="item-s"><a target="_blank" title="@item.ProductName" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"
+                                          class="item-s-pic">
+                                           <img height="65" width="50" alt="" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T50X65_")"></a>
+                        <div class="item-s-txt">
+                            <a target="_blank" title="@item.ProductName" href="@(ViewBag.BasePath)Product/Detail/@item.ProductId"
+                               class="item-s-title">@item.ProductName</a>
+                            <p class="item-s-price">
+                                <span>  @item.LowestSalePrice.ToString("F")</span></p>
+                        </div>
+                    </li>
+                    }
+                </ul>
+            </div>
+        }

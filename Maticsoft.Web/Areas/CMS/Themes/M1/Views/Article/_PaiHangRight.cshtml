@@ -1,0 +1,51 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+
+@if (Model != null && Model.Count > 0)
+{    
+    
+     <div class="viewpoint hotlist">
+        <div class="com-title"><span>
+            <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-18.png" alt="排行榜">排行榜</span></div>
+        <div class="bd">
+            <ul style="display: block;">
+               
+               @foreach (var item in Model)
+                {
+                  if(item.Title.Length>=18)
+                  {
+                      <li><a href="/Article/Details/@item.ContentID">@item.Title.Substring(0,17)..</a></li>
+                  }
+                  else
+                  {
+                      <li><a href="/Article/Details/@item.ContentID">@item.Title</a></li>
+                  }                                                                                           
+               }
+            </ul>
+        </div>
+    </div>
+    <div class="floatfix"></div>
+    
+}
+else
+{
+    <div class="viewpoint hotlist">
+        <div class="com-title"><span>
+            <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-18.png" alt="">排行榜</span></div>
+        <div class="bd">
+            <ul style="display: block;">
+                <li><a href="#">“差评”改“好评”一个收费260，揭</a></li>
+                <li><a href="#">模仿苹果？小米线下软肋永不会补全</a></li>
+                <li><a href="#">潘石屹拜访30多家互联网公司的背后—</a></li>
+                <li><a href="#">一位自媒体人士的呐喊：微信公众号抄</a></li>
+                <li><a href="#">红包成兵家必争之地，泛滥有隐忧需发</a></li>
+                <li><a href="#">传统媒体人那么三次离职潮——伴随媒</a></li>
+                <li><a href="#">聚美“有钱任性”，“极速免税店”10</a></li>
+                <li><a href="#">三连封杀令：暴露微信对外部社交力量</a></li>
+                <li><a href="#">你感受过那种狂躁吗——电信业务办完</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="floatfix"></div>
+    
+}

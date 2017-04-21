@@ -1,0 +1,41 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+       <h2 class="h-h2 cate_list">
+        <a href="javascript:void(0)" class="link-tit on"> @ViewBag.CateName</a>
+    </h2>
+  @if (Model != null && Model.Count > 0)
+  {
+      <div class="opt-lst categoryList" id="expandSort1" style="-webkit-transform-origin: 0px 0px; opacity: 1;  display: none;
+                                      -webkit-transform: scale(1, 1);">
+             
+          @for (int i = 0; i < Model.Count; i++)
+          {
+              if (i % 2 == 0)
+              {
+                  @: <ul class="lst-comm">
+                    <li class="wit33 tc cateValues"  >
+                  <a href="javascript:void(0)" CateId="@Model[i].CategoryId"
+                     class="lnk  ">@Model[i].Name </a>
+              </li>
+              }
+
+              if (i % 2 == 1)
+              {
+                    <li class="wit33 tc cateValues" >
+                 <span class="bar">
+                 </span>
+                 <a href="javascript:void(0)"   CateId="@Model[i].CategoryId" class="lnk  ">@Model[i].Name </a>
+             </li>
+                  @: </ul>
+              }
+              if (i == Model.Count - 1 && i % 2 == 0)
+              {
+                  <li class="wit33 tc"  >
+                        <span class="bar"></span>
+                      <a href="javascript:void(0)"  class="lnk " >&nbsp;</a>
+                  </li>
+              @: </ul>
+              }
+          }
+      </div>
+  }
+ 

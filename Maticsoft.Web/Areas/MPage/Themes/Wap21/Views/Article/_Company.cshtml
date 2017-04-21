@@ -1,0 +1,8 @@
+﻿
+@model Maticsoft.Model.CMS.Content 
+ @if (Model != null)
+ {
+    <div class="content content_view">
+        @Html.Raw(Model.Description)
+    </div>      
+ }

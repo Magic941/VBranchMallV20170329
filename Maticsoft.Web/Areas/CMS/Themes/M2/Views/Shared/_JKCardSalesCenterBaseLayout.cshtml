@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M2/Views/Shared/_JKIIBaseLayout.cshtml";
+
+}
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js" type="text/javascript"></script>
+
+<link href="https://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jquery/jquery.form.js"></script>
+@section head{
+    
+}
+<div style="margin:0 auto;width:80%;clear:both;">
+
+@Html.Action("PV", "Partial", new { viewName="_SalesCenterTopNav"})  
+     
+ @RenderBody()
+</div>
+@section foot{
+    @RenderSection("foot", false)
+}

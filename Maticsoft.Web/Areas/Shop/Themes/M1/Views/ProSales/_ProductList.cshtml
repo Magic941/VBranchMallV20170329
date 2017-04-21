@@ -1,0 +1,116 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+<div id="ProductListDiv">
+    <script type="text/javascript">
+        $(function () {
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)ProSales/ListWaterfall?type=@Html.ViewData["type"]"
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "J_lazyload",
+                //列数
+                ColumnNumber: 0, RowNumber: 4
+            });
+            $.lazyFixedLoadImg('.list-n4', 175, 228);
+
+            $(".W-img img").hover(function () {
+                $(".W-img-hover").show();
+            })
+        });
+    </script>
+
+    @if (Model != null)
+    {
+            if (Model.ProductPagedList != null)
+            {
+        <div ajaxcontent="1" class="filterbox cf mb20" name="">
+            <div id="Sort">
+            </div>
+        </div>
+        <div ajaxcontent="1" class="itemmain mb20 relative" name="__FLLB002">
+            <ul class="clearfix" id="J_lazyload">
+                @foreach (var item in Model.ProductPagedList)
+                {
+                    <li class='@Html.Raw(int.Parse(Html.ViewData["type"].ToString()) == 1 ? "" : "sell-all")'>
+                        @Html.Raw(int.Parse(Html.ViewData["type"].ToString()) == 1 ? "" : "<span class='sell-all-bg'></span>")
+                        <div class="W-img">
+                            <a target="_blank"  href="/Product/ProSaleDetail/@item.CountDownId"
+                                                            title="@item.ProductName">
+                                <img title="@item.ProductName" alt="@item.ProductName" width="175" height="228" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T400X400_")">
+                                @*<img src="/Areas/Shop/Themes/M1/Content/images/images/w/hy.jpg" />*@
+                            </a>
+                            <div class="W-img-hover" style='display:@Html.Raw(int.Parse(Html.ViewData["type"].ToString()) == 1 ? "block" : "none")' endDate="@item.ProSalesEndDate" Product="@item.ProductId"  id="txtenddate_@(item.ProductId)">
+                                剩余：<span><span id="dayEnd_@(item.ProductId)">0</span>天<span id="hourEnd_@(item.ProductId)">0</span>时 
+                            <span id="minEnd_@(item.ProductId)">0</span>分 <span id="secEnd_@(item.ProductId)">0</span>秒</span>
+                            </div>
+                        </div>
+                        <p class="Scatg-list-tit">
+                            <a class="txt-red" href="#">
+                                
+                                 @if (item.MarketPrice.HasValue)
+                                 {
+                                     if (item.MarketPrice.Value > 0)
+                                     {
+                                       
+                                     <span class="txt-red"> @((item.ProSalesPrice * 10 / item.MarketPrice.Value).ToString("0.0"))折</span>@item.ProductName
+                                     }
+                                 }
+                                </a>
+                        </p>
+                        <div class="Scatg-list-yh clearfix">
+                            <div class="clearfix price-msg">
+                                <div class="price-btn fL">¥@(item.ProSalesPrice.ToString("F"))</div>
+                                <div class="fL price-save">
+                                    <b class="txt-red">立省@((item.MarketPrice.Value - item.ProSalesPrice).ToString("0.0"))元</b><br />
+                                    @if (item.MarketPrice.HasValue)
+                                    {
+                                        <del><b>¥@(item.MarketPrice.Value.ToString("F"))</b></del>
+                                    }
+                                </div>
+                            </div>
+                            <div class="goods-buy"><a target="_blank"  href="/Product/ProSaleDetail/@item.CountDownId" ></a></div>
+                        </div>
+                    </li>
+                }
+            </ul>
+            <div class="loadingmask">
+                <div class="loadingmask-bg">
+                </div>
+                <div class="loadingmask-txt fixtop">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/loading-pink.gif" class="mr10" style="vertical-align: middle">
+                </div>
+            </div>
+        </div>
+        <div>
+            @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = true,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 10,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+            <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+            <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+        </div>
+            }
+    }
+
+</div>

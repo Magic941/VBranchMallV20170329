@@ -1,0 +1,84 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "商城提示";
+
+     var img = ViewBag.img;
+     var url = ViewBag.url;
+     var tips= ViewBag.tips ;
+     var msg1= ViewBag.msg1 ;
+     var msg2 = ViewBag.msg2;
+     
+ }
+
+<script type="text/javascript">
+    $(function()
+    {
+        setTimeout("location.href='@url'", 3000);
+    });
+
+</script>
+
+<style type="text/css">
+body{
+	background:#fff;
+	}
+
+
+.Submission{
+	padding:5rem 0;
+	}
+.Submission em{
+	width:4rem;
+	height:4rem;
+	display:block;
+	margin:0 auto;
+	}
+.Submission em img{
+	width:100%;
+	}
+.Submission span{
+    margin-top:10px;
+    margin-bottom:10px;
+	display:block;
+	text-align:center;
+	font-size:1.5rem;
+	color:#03D091;
+	}
+.Submission p{
+	font-size:1rem;
+	color:#8c8c8c;
+	text-align:center;
+	margin:0;
+	}
+.status{
+	width:8rem;
+	margin:0 auto;
+	padding-top:20px;
+	}
+.status a{
+	height:40px;
+	line-height:40px;
+	text-decoration:underline;
+	}
+</style>
+<div class="top">
+    <span><a href="javascript:;" >&lt;@ViewBag.tips</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div></div>
+<div class="Submission" >
+	<em><img src="@ViewBag.img"/></em>
+    <span>@ViewBag.msg1</span>
+    <p>@ViewBag.msg2</p>
+    <p>页面将在3秒后自动返回</p>
+    <div class="status">
+    	<a style=" display:inline-block; *display:inline;zoom:1; padding-right:27px;" href="@ViewBag.url">@ViewBag.tips</a>
+        <a style=" display:inline-block; *display:inline;zoom:1;" href="@ViewBag.BasePath">返回首页</a>
+    </div>
+</div>
+
+ 
+ 
+ 
+ 
+

@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-申请健康服务店";
+   
+}
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.Model.Members.UsersExpModel
+<link href="/Areas/MShop/Themes/M1/Content/Css/ShopGoodservice.css" rel="stylesheet" type="text/css" />
+
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div></div>
+<div class="touch_icon">
+    @if (Model != null)
+    {
+        if (Model.UserAppType == 4 && Model.UserStatus == 1)
+        {
+        <a href="javascript:void(0)" style="background-color:#808080;color:#fff;">已申请服务店</a>
+        }
+        else if (Model.UserAppType == 4 && Model.UserStatus == 0)
+        {
+        <a href="javascript:void(0)" style="background-color:#808080;color:#fff;">申请服务店处理中</a>
+        }
+        else if (Model.UserAppType == 4 && Model.UserStatus == 2)
+        { 
+        <a href="(@ViewBag.BasePath)U/ApplyShop?ApplyType=1">服务店审核失败,重新申请 </a>
+        }
+        else
+        {
+        @*<a href="/M/U/ApplyShop?ApplyType=1">申请健康服务店</a>  *@
+            Response.Redirect(ViewBag.BasePath + "U/ApplyShop?ApplyType=4");
+        }
+    }
+    else
+    {
+          @*<a href="/M/U/ApplyShop?ApplyType=1">申请健康服务店</a>  *@
+        Response.Redirect(ViewBag.BasePath + "U/ApplyShop?ApplyType=4");
+    }
+</div>

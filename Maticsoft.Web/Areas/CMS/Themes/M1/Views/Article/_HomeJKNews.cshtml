@@ -1,0 +1,58 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--首页头部新闻-->
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="topnews">
+        <div class="com-title">
+            <span>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-3.png" alt="">健康新闻</span>
+        </div>
+        <div class="sideMenu" style="margin: 0 auto">
+            @{                
+                for(int i=1;i<=Model.Count;i++)
+                {
+                  var item = Model[i-1];
+                <h3 class='@("h3img"+i)'><a href="/Article/Details/@item.ContentID" target="_blank" title="@item.Title">@item.Title.Substring(0,16) ...</a></h3>
+                <ul style="display: none;">
+                    <li>@item.Summary</li>
+                </ul> 
+                   
+               }
+            }
+        </div>
+    </div>
+}
+else
+{
+    <div class="topnews">
+        <div class="com-title">
+            <span>
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/symbol-3.png" alt="">健康新闻</span>
+        </div>
+        <div class="sideMenu" style="margin: 0 auto">
+            <h3 class="h3img1"><a href="#" target="_blank" title="小米小盒子震撼首发 “最小”和“最强”集于一身">小米小盒子震撼首发 “最小”和“</a></h3>
+            <ul style="display: none;">
+                <li>1月15日，备受关注的小米旗舰新品发布会现场，全球最小的四核全高清网络机顶盒——小米小盒子隆重登场，这款售价199元的全新力作，作为小米回馈广大“米粉”们的2015新年礼物，仍以其一贯主打的高性价比，......</li>
+            </ul>
+            <h3 class="h3img2"><a href="#" target="_blank" title="工商阿里忙互殴，苏宁高调打假争做主角？">工商阿里忙互殴，苏宁高调打假争做</a></h3>
+            <ul style="display: none;">
+                <li>阿里与工商总局网监司的口水战似乎还没有停止的迹象。因工商总局一纸行政指导工作白皮书，阿里市值开盘蒸发600多亿人民币，看样子不给个说法，阿里是不会善罢甘休了，事实上，事件也在持续发酵中。与此......</li>
+            </ul>
+            <h3 class="h3img3"><a href="#" target="_blank" title="互联网装修大战：蘑菇装修VS小米家装谁是赢家">互联网装修大战：蘑菇装修VS小米家</a></h3>
+            <ul style="display: none;">
+                <li>再唠叨一句，互联网装修的各位提升用户装修幸福指数的家装O2O们要团结，耍文案搞传播可以，但不要内斗，一致对外吧，别让传统装修给喷死了。自己的阵脚不要乱，先把互联网装修做起来吧，让用户用口碑去选......</li>
+            </ul>
+            <h3 class="h3img4"><a href="#" target="_blank" title="支付宝莫慌，当心陷入微信的红包圈套">支付宝莫慌，当心陷入微信的红包圈</a></h3>
+            <ul style="display: none;">
+                <li>支付宝此次慌乱下发动的红包保卫战，其意就是要保卫自己的支付地位。但是支付宝万万没有想到的是，微信发红包竟然是要撬动从支付到商家再到用户的整个O2O生态链，而这一次的微信春晚红包更是声东击西，名......</li>
+            </ul>
+            <h3 class="h3img5"><a href="#" target="_blank" title="农村电商：发展的关键其实在于运营">农村电商：发展的关键其实在于运营</a></h3>
+            <ul style="display: block;">
+                <li>对于现在的农村电商而言，现在最主要的是如何不要将自己困在小巷中，在开阔的地方多尝试几条路。...</li>
+            </ul>
+
+        </div>
+    </div>
+    
+}

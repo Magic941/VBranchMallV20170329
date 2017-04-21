@@ -1,0 +1,36 @@
+﻿ @model List<Maticsoft.Model.CMS.ContentClass>
+ <div class="grid5">
+     <div class="helpSlide">
+          @if (Model == null ||  Model.Count==0)
+          {
+                      <div class="helpCenter-title f14 fb">
+                          @ViewBag.AclassName</div>
+                      <div class="border-blue help-item">
+                          <dl class="border-blue-b"><dt style="background-color: transparent; background-image: none; height: auto;"></dt>
+                          @Html.Action("ContentTitleList", "Article", new { classid = ViewBag.AclassId })
+                          </dl>
+                      </div>  
+           }
+           else
+           {
+                  <div class="helpCenter-title f14 fb">
+                      @ViewBag.AclassName</div>
+              <div class="border-blue help-item">
+                  @for (int i = 0; i < Model.Count;i++ )
+                  { 
+                      <dl class="border-blue-b">
+                          <dt class="border-blue-b f14 fb" id="hct-@(i)">@Model[i].ClassName </dt>
+                          @Html.Action("ContentTitleList", "Article", new { classid = Model[i].ClassID })
+                      </dl>
+                      
+             
+                  }
+              </div>
+                  
+                 
+            }
+
+         
+                
+              </div>
+        </div>

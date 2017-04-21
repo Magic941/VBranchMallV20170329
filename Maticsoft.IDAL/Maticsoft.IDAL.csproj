@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A4F34F0C-FE32-40C1-9443-87A2BF72EF7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.IDAL</RootNamespace>
+    <AssemblyName>Maticsoft.IDAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Accounts">
+      <HintPath>..\Lib\Maticsoft.Accounts.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.Common, Version=4.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.ShoppingCart">
+      <HintPath>..\Lib\Maticsoft.ShoppingCart.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.TaoBao">
+      <HintPath>..\Lib\Maticsoft.TaoBao.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CMS\IComment.cs" />
+    <Compile Include="JLT\IAttendanceType.cs" />
+    <Compile Include="JLT\IReports.cs" />
+    <Compile Include="JLT\IToDoInfo.cs" />
+    <Compile Include="JLT\IUserAttendance.cs" />
+    <Compile Include="Members\IGuestBook.cs" />
+    <Compile Include="Members\IFeedback.cs" />
+    <Compile Include="Members\IFeedbackType.cs" />
+    <Compile Include="Members\IPointsAction.cs" />
+    <Compile Include="Members\IUserCard.cs" />
+    <Compile Include="Members\IUserInvite.cs" />
+    <Compile Include="Members\IUserRank.cs" />
+    <Compile Include="Members\IUsersApprove.cs" />
+    <Compile Include="Ms\Agent\IAgentAD.cs" />
+    <Compile Include="Ms\Agent\IAgentConfig.cs" />
+    <Compile Include="Ms\Agent\IAgentMenus.cs" />
+    <Compile Include="Ms\Agent\IAgentRank.cs" />
+    <Compile Include="Ms\Agent\IAgents.cs" />
+    <Compile Include="Ms\IRegionAreas.cs" />
+    <Compile Include="Ms\IEmailTemplet.cs" />
+    <Compile Include="Ms\IRegionRec.cs" />
+    <Compile Include="Ms\ITheme.cs" />
+    <Compile Include="Ms\IThumbnailSize.cs" />
+    <Compile Include="Ms\IWeiBoMsg.cs" />
+    <Compile Include="Ms\IWeiBoTaskMsg.cs" />
+    <Compile Include="Pay\IBalanceDetails.cs" />
+    <Compile Include="Pay\IBalanceDrawRequest.cs" />
+    <Compile Include="Pay\IRechargeRequest.cs" />
+    <Compile Include="Shop\ActivityManage\IAMDetail.cs" />
+    <Compile Include="Shop\ActivityManage\IAM.cs" />
+    <Compile Include="Shop\ActivityManage\IAMP.cs" />
+    <Compile Include="Shop\Card\IShop_Card.cs" />
+    <Compile Include="Shop\Card\IShop_CardType.cs" />
+    <Compile Include="Shop\Card\IShop_CardUserInfo.cs" />
+    <Compile Include="Shop\Coupon\ICouponHistory.cs" />
+    <Compile Include="Shop\Coupon\ICouponInfo.cs" />
+    <Compile Include="Shop\Coupon\ICouponClass.cs" />
+    <Compile Include="Shop\Coupon\ICouponRule.cs" />
+    <Compile Include="Shop\Coupon\IShop_CouponRuleExt.cs" />
+    <Compile Include="Shop\Freight\Shop_ProductsFreight.cs" />
+    <Compile Include="Shop\IShippers.cs" />
+    <Compile Include="Shop\Order\IOrderReturnGoods.cs" />
+    <Compile Include="Shop\Order\IOrderReturnGoodsItem.cs" />
+    <Compile Include="Shop\Order\IShop_ReturnOrderAction.cs" />
+    <Compile Include="Shop\PaymentNumber\IShop_PaymentNumber.cs" />
+    <Compile Include="Shop\Products\IGoodsType.cs" />
+    <Compile Include="Shop\PromoteSales\IWeiXinGroupBuy.cs" />
+    <Compile Include="Shop\Sales\IExpressTemplate.cs" />
+    <Compile Include="Shop\IConstant.cs" />
+    <Compile Include="Shop\Inquiry\IInquiryInfo.cs" />
+    <Compile Include="Shop\Inquiry\IInquiryItem.cs" />
+    <Compile Include="Shop\Order\IOrderAction.cs" />
+    <Compile Include="Shop\Order\IOrderItems.cs" />
+    <Compile Include="Shop\Order\IOrderLookupItems.cs" />
+    <Compile Include="Shop\Order\IOrderLookupList.cs" />
+    <Compile Include="Shop\Order\IOrderOptions.cs" />
+    <Compile Include="Shop\Order\IOrderRemark.cs" />
+    <Compile Include="Shop\Order\IOrders.cs" />
+    <Compile Include="Shop\Order\IOrdersHistory.cs" />
+    <Compile Include="Shop\Order\IOrderService.cs" />
+    <Compile Include="Shop\Products\IProductCategories.cs" />
+    <Compile Include="Shop\Package\IPackage.cs" />
+    <Compile Include="Shop\Package\IPackageCategory.cs" />
+    <Compile Include="Shop\Package\IProductPackage.cs" />
+    <Compile Include="Shop\Products\IShoppingCarts.cs" />
+    <Compile Include="Shop\Products\ISupplierAD.cs" />
+    <Compile Include="Shop\PromoteSales\ICountDown.cs" />
+    <Compile Include="Shop\PromoteSales\IGroupBuy.cs" />
+    <Compile Include="Shop\RechargeCards\IRechargeCards.cs" />
+    <Compile Include="Shop\Sales\ISalesItem.cs" />
+    <Compile Include="Shop\Sales\ISalesRule.cs" />
+    <Compile Include="Shop\Sales\ISalesRuleProduct.cs" />
+    <Compile Include="Shop\Sales\ISalesUserRank.cs" />
+    <Compile Include="Shop\Sales\IShipperInfo.cs" />
+    <Compile Include="Shop\Sample\ISample.cs" />
+    <Compile Include="Shop\Sample\ISampleDetail.cs" />
+    <Compile Include="Shop\Shipping\IExpress.cs" />
+    <Compile Include="Shop\Shipping\IShippingAddress.cs" />
+    <Compile Include="Shop\Shipping\IShippingPayment.cs" />
+    <Compile Include="Shop\Shipping\IShippingRegionGroups.cs" />
+    <Compile Include="Shop\Shipping\IShippingRegions.cs" />
+    <Compile Include="Shop\Shipping\IShippingType.cs" />
+    <Compile Include="Shop\Shipping\IShop_freefreight.cs" />
+    <Compile Include="Shop\Supplier\ISupplierCategories.cs" />
+    <Compile Include="Shop\Supplier\ISupplierConfig.cs" />
+    <Compile Include="Shop\Supplier\ISupplierMenus.cs" />
+    <Compile Include="Shop\Supplier\ISupplierRank.cs" />
+    <Compile Include="Shop\Supplier\ISupplierRankThemes.cs" />
+    <Compile Include="Shop\Supplier\ISupplierInfo.cs" />
+    <Compile Include="Shop\Supplier\ISupplierScoreDetails.cs" />
+    <Compile Include="Shop\Supplier\ISupplierThemes.cs" />
+    <Compile Include="Shop\Supplier\ISuppProductCategories.cs" />
+    <Compile Include="Shop\Supplier\ISuppProductStatModes.cs" />
+    <Compile Include="Shop\Tags\ITagCategories.cs" />
+    <Compile Include="Shop\Tags\ITags.cs" />
+    <Compile Include="SNS\IGradeConfig.cs" />
+    <Compile Include="SNS\IGroupTags.cs" />
+    <Compile Include="Members\IPointsDetail.cs" />
+    <Compile Include="Members\IPointsLimit.cs" />
+    <Compile Include="Members\IPointsRule.cs" />
+    <Compile Include="Members\ISiteMessage.cs" />
+    <Compile Include="Members\ISiteMessageLog.cs" />
+    <Compile Include="Settings\IAdvertisement.cs" />
+    <Compile Include="Settings\IAdvertisePosition.cs" />
+    <Compile Include="CMS\IClassType.cs" />
+    <Compile Include="CMS\IContent.cs" />
+    <Compile Include="CMS\IContentClass.cs" />
+    <Compile Include="CMS\IVideo.cs" />
+    <Compile Include="CMS\IVideoAlbum.cs" />
+    <Compile Include="CMS\IVideoClass.cs" />
+    <Compile Include="Settings\IFilterWords.cs" />
+    <Compile Include="Settings\IMainMenus.cs" />
+    <Compile Include="Settings\IFriendlyLink.cs" />
+    <Compile Include="Settings\ISEORelation.cs" />
+    <Compile Include="Shop\Gift\IExchangeDetail.cs" />
+    <Compile Include="Shop\Gift\IGifts.cs" />
+    <Compile Include="Shop\Gift\IGiftsCategory.cs" />
+    <Compile Include="Shop\IFavorite.cs" />
+    <Compile Include="Shop\Products\IProductQA.cs" />
+    <Compile Include="Shop\Products\IHotKeyword.cs" />
+    <Compile Include="Shop\Products\IProductConsults.cs" />
+    <Compile Include="Shop\Products\IProductConsultsType.cs" />
+    <Compile Include="Shop\Products\IProductReviews.cs" />
+    <Compile Include="Shop\Products\IProductService.cs" />
+    <Compile Include="Shop\Products\IScoreDetails.cs" />
+    <Compile Include="SNS\IAlbumType.cs" />
+    <Compile Include="SNS\ICategories.cs" />
+    <Compile Include="SNS\ICategorySource.cs" />
+    <Compile Include="SNS\IComments.cs" />
+    <Compile Include="SNS\IFellowTopics.cs" />
+    <Compile Include="SNS\IGroups.cs" />
+    <Compile Include="SNS\IGroupTopicFav.cs" />
+    <Compile Include="SNS\IGroupTopicReply.cs" />
+    <Compile Include="SNS\IGroupTopics.cs" />
+    <Compile Include="SNS\IGroupUsers.cs" />
+    <Compile Include="SNS\IGuestBook.cs" />
+    <Compile Include="Appt\IReservation.cs" />
+    <Compile Include="Appt\IServices.cs" />
+    <Compile Include="SNS\IUserBlog.cs" />
+    <Compile Include="SNS\SearchWordTop.cs" />
+    <Compile Include="SNS\IOnLineShopPhoto.cs" />
+    <Compile Include="SNS\IPhotos.cs" />
+    <Compile Include="SNS\IPhotoTags.cs" />
+    <Compile Include="SNS\IPosts.cs" />
+    <Compile Include="SNS\IPostsTopics.cs" />
+    <Compile Include="SNS\IProducts.cs" />
+    <Compile Include="SNS\IProductSources.cs" />
+    <Compile Include="SNS\IReferUsers.cs" />
+    <Compile Include="SNS\IReport.cs" />
+    <Compile Include="SNS\IReportType.cs" />
+    <Compile Include="SNS\HotWords.cs" />
+    <Compile Include="SNS\ISearchWordLog.cs" />
+    <Compile Include="SNS\IStar.cs" />
+    <Compile Include="SNS\IStarRank.cs" />
+    <Compile Include="SNS\IStarType.cs" />
+    <Compile Include="SNS\ITags.cs" />
+    <Compile Include="SNS\ITagType.cs" />
+    <Compile Include="SNS\IUserAlbumDetail.cs" />
+    <Compile Include="SNS\IUserAlbums.cs" />
+    <Compile Include="SNS\IUserAlbumsType.cs" />
+    <Compile Include="SNS\IUserFavAlbum.cs" />
+    <Compile Include="SNS\IUserFavourite.cs" />
+    <Compile Include="SNS\IUserShip.cs" />
+    <Compile Include="SNS\IUserShipCategories.cs" />
+    <Compile Include="SNS\IVideos.cs" />
+    <Compile Include="SNS\IVisiteLogs.cs" />
+    <Compile Include="Members\IMailConfig.cs" />
+    <Compile Include="Ms\IEnterprise.cs" />
+    <Compile Include="Members\IEntryForm.cs" />
+    <Compile Include="Ms\IRegions.cs" />
+    <Compile Include="CMS\IPhoto.cs" />
+    <Compile Include="CMS\IPhotoAlbum.cs" />
+    <Compile Include="CMS\IPhotoClass.cs" />
+    <Compile Include="Poll\IForms.cs" />
+    <Compile Include="Poll\IOptions.cs" />
+    <Compile Include="Poll\IReply.cs" />
+    <Compile Include="Poll\ITopics.cs" />
+    <Compile Include="Poll\IUserPoll.cs" />
+    <Compile Include="Poll\IPollUsers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shop\Products\IAccessoriesValue.cs" />
+    <Compile Include="Shop\Products\IAttributeInfo.cs" />
+    <Compile Include="Shop\Products\IAttributeValue.cs" />
+    <Compile Include="Shop\Products\IBrandInfo.cs" />
+    <Compile Include="Shop\Products\ICategoryInfo.cs" />
+    <Compile Include="Shop\Products\IDistributor.cs" />
+    <Compile Include="Shop\Products\ILineDistributor.cs" />
+    <Compile Include="Shop\Products\IProductAccessorie.cs" />
+    <Compile Include="Shop\Products\IProductAttribute.cs" />
+    <Compile Include="Shop\Products\IProductImage.cs" />
+    <Compile Include="Shop\Products\IProductLine.cs" />
+    <Compile Include="Shop\Products\IProductInfo.cs" />
+    <Compile Include="Shop\Products\IProductStationMode.cs" />
+    <Compile Include="Shop\Products\IProductTypeBrand.cs" />
+    <Compile Include="Shop\Products\IProductType.cs" />
+    <Compile Include="Shop\Products\IRelatedProduct.cs" />
+    <Compile Include="Shop\Products\ISKUItem.cs" />
+    <Compile Include="Shop\Products\ISKUMemberPrice.cs" />
+    <Compile Include="Shop\Products\ISKUInfo.cs" />
+    <Compile Include="SysManage\IConfigArea.cs" />
+    <Compile Include="SysManage\IConfigSystem.cs" />
+    <Compile Include="SysManage\IConfigType.cs" />
+    <Compile Include="SysManage\IErrorLog.cs" />
+    <Compile Include="SysManage\IMultiLanguage.cs" />
+    <Compile Include="SysManage\ISysTree.cs" />
+    <Compile Include="SysManage\ITaskQueue.cs" />
+    <Compile Include="SysManage\ITreeFavorite.cs" />
+    <Compile Include="Members\IUserBind.cs" />
+    <Compile Include="SysManage\IUserLog.cs" />
+    <Compile Include="Members\IUsers.cs" />
+    <Compile Include="Members\IUsersExp.cs" />
+    <Compile Include="SysManage\IVerifyMail.cs" />
+    <Compile Include="Team\ISalesInfo.cs" />
+    <Compile Include="Team\ITeamB2CComm.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maticsoft.Model\Maticsoft.Model.csproj">
+      <Project>{0988C03E-F019-40C3-B24E-476A6DA1BC60}</Project>
+      <Name>Maticsoft.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maticsoft.Payment\Maticsoft.Payment.csproj">
+      <Project>{f441a3ed-f88e-4862-8648-d8a4c37e13c8}</Project>
+      <Name>Maticsoft.Payment</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

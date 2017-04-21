@@ -1,0 +1,76 @@
+﻿@{
+    Layout = null;
+    }
+@using Maticsoft.ViewModel.Shop;
+@using Maticsoft.Model.Shop.Products;
+@model List<Maticsoft.Model.Settings.MainMenus>
+<link href="/Areas/Shop/Themes/M1/Content/css/g-v1-a.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/base.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/main-catg.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/index/marquee.css" rel="stylesheet" />
+<link href="/Areas/Shop/Themes/M1/Content/Css/revision.css" rel="stylesheet" />
+@{
+    var ShopCarModel = (@ViewBag.ShopCarPreview) as ShoppingCartModel;
+    var CarList = ((@ViewBag.ShopCarPreview) as ShoppingCartModel).AllCartInfo.Items;
+    var Count = CarList.Count;
+    var toalPrice = ((@ViewBag.ShopCarPreview) as ShoppingCartModel).AllCartInfo.TotalCostPrice;
+
+    List<CategoryInfo> categoryInfos = (@ViewBag.TopCatg) as List<CategoryInfo>;
+    
+}
+<div class="head_navI mgT10">
+    <div class="wrapper">
+        <div class="navI-cont clearfix">
+            @foreach (var item in Model)
+            {
+                if (item.URLType == 4)
+                {
+                <a class="LeveA" href="shop/product/@item.NavURL" @(item.Target == 1 ? "target='_blank'" : "") >@(item.MenuName)</a>
+                }
+                else
+                {
+                <a class="LeveA" href="@item.NavURL" @(item.Target == 1 ? "target='_blank'" : "")>@(item.MenuName)</a>
+                
+                }
+@*<a href="/product/@item.NavURL">@item.MenuName</a>*@
+            }
+
+        </div>
+        <div class="navI-contas"><p>热线：400-011-6065</p></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $(".LeveA").css("color", "#fff");
+        $(".LeveA").hover(function () { $(this).css("color", "#01b55a"); });
+        $(".LeveA").mouseleave(function () { $(this).css("color", "#fff"); });
+    });
+
+    function showmenu() {
+        var target = document.getElementById("allcatg");
+        if (target.style.display == "block") {
+            target.style.display = "none";
+        } else {
+            target.style.display = "block";
+            $(".p").css("width", "130px");
+        }
+        //alert(target.innerHTML);
+    }
+    //function hidecateg() {
+    //    document.getElementById("allcatg").style.display = "none";
+    //}
+    var inTip = false;
+    $('#allcatg').live('mouseover', function (event) {
+        event.preventDefault();
+        $(this).show();
+    }).live('mouseout', function (event) {
+        event.preventDefault();
+        $(this).hide();
+    });
+    $(function () {
+        $(".Right_cont").load("@(ViewBag.BasePath)Partial/ShopCarPrev");
+    })
+
+</script>
+
+

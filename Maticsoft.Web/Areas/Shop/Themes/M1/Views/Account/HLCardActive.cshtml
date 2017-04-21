@@ -1,0 +1,363 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@model Maticsoft.Model.Shop_CardUserInfo
+<link href="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js")" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/DataPicker4CN.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/CardUserInfoCheck.js?ver=@Html.Raw(DateTime.Now.ToString("yyyyMMddHHmmss"))" type="text/javascript"></script>
+<link href="/Areas/Shop/Themes/M1/Content/Css/css/hlcardactive/activestep2.css" rel="stylesheet" />
+<style>
+    .basic_inforionmat li.active a{
+	color:red;
+	display:inline-block;
+	*display:inline;
+    zonn:1;
+    font-weight:bold;
+	text-decoration:underline;
+	}
+</style>
+<script type="text/javascript">
+    //激活过程中写基本资料
+    $(function () {
+        
+        $("#btn-next-1").click(function () {
+            //检查第二被保人必填项是否为空
+            if($("#Second_Info").css("display")=="block")
+            {
+                if($("#NameOne").val() == "") {
+                    alert("请输入第二被保人姓名!");
+                    return;
+                }
+                if ($("#NameOneCardId").val() == "") {
+                    alert("请输入第二被保人身份证号!");
+                    return;
+                }
+                if ($("#NameOneCardId").val().length != 15 && $("#NameOneCardId").val().length != 18)
+                {
+                    alert("请填写正确的身份证号码!");
+                    return;
+                }
+            }
+            var Bool = true;
+          
+            if ("@(ViewBag.RegisterType)" == "normal") {
+                if (!NormalCheck()) Bool = false;
+                
+            }
+            else {
+                if (!SimpleCheck()) Bool = false;
+            }
+            if (Bool) {
+                //复杂卡激活
+                if ("@ViewBag.RegisterType" == "normal") {
+                    if (!checkCardId()) {
+                        return;
+                    }
+                    $('#baseInfo').attr("action", "@(ViewBag.BasePath)Account/ConfirmAgreement");
+                    $('#baseInfo').attr("method", "post");
+                    $('#baseInfo').submit();
+
+                }
+                else {
+                    //简单卡不用看保险协议，直接提交激活信息
+                    $.ajax({
+                        cache: true,
+                        type: "POST",
+                        url: '/Account/CardUserInfoSimple',
+                        data: $('#baseInfo').serialize(),
+                        async: false,
+                        success: function (data) {
+                            if (data) {
+                                if (data == "1") {
+                                    location.href = "/Account/ActiveSuccess"
+                                } else {
+                                    ShowFailTip(data);
+                                    setTimeout(function () { location.href = "/UserCenter/HLCard"; }, 800);
+                                }
+                            }
+                        },
+                        error: function (request) {
+                            ShowFailTip("网络连接错误！");
+                            ShowFailTip(data);
+                        }
+                    });
+                }
+            }
+            else {
+                ShowFailTip("完善信息");
+            }
+
+        });
+        $(":radio[name='sex']").click(function () { $("#Sex").val($(this).val()); });
+        $(".sele[name='relation1']").click(function () { $("#RelationshipOne").val($(this).val()); });
+        $(".sele[name='relation2']").click(function () { $("#RelationshipTwo").val($(this).val()); });
+        //$("[id$='Birthday']").datepicker({ dateFormat: "yy-mm-dd", yearRange: ("1900:" + new Date().getFullYear()) });
+
+        $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+        var constellation = $("#hfConstellation").val();
+        var personalstatus = $("#hfPersonalStatus").val();
+        var sex = $("#hfSex").val();
+        if (sex == "1") {
+            $("#radman").attr("checked", true);
+            $("#radwoman").attr("checked", false);
+        }
+        if (sex == "0") {
+            $("#radman").attr("checked", false);
+            $("#radwoman").attr("checked", true);
+        }
+
+        if ($("#radman").click(function () {
+            $("#radwoman").attr("checked", false);
+        }));
+
+        if ($("#radwoman").click(function () {
+            $("#radman").attr("checked", false);
+        }));
+        $("#dropConstellation").val(constellation);
+
+        $("#dropPersonalStatus").val(personalstatus);
+        $("#BackPerson").val("@ViewBag.SalesName");
+
+        $("#CardNo").val("@ViewBag.cardNum");
+        $("#cardid1").val("@ViewBag.cardNum");
+        $("#cardid2").val("@ViewBag.cardNum");
+        $("#CardSysId").val("@ViewBag.CardSysId");
+
+        /*
+        $("#First").click(function () {
+            $(this).parent().addClass("active");
+            $("#Second").parent().removeClass("active");
+            $("#Third").parent().removeClass("active");
+            $("#Second_Info").hide();
+            $("#First_Info").show();
+            $("#Third_Info").hide();
+        });
+
+        $("#Second").click(function () {
+            $(this).parent().addClass("active");
+            $("#First").parent().removeClass("active");
+            $("#Third").parent().removeClass("active");
+            $("#Second_Info").show();
+            $("#First_Info").hide();
+            $("#Third_Info").hide();
+        });
+
+        $("#Third").click(function () {
+            $(this).parent().addClass("active");
+            $("#First").parent().removeClass("active");
+            $("#Second").parent().removeClass("active");
+            $("#Second_Info").hide();
+            $("#First_Info").hide();
+            $("#Third_Info").show();
+        });
+        */
+        
+    });
+</script>
+@using (Html.BeginForm("CardUserInfo", "UserCenter", FormMethod.Post, new { id = "baseInfo" }))
+{
+    @Html.HiddenFor(m => m.CardSysId, new { id = "CardSysId" })
+    <input type="hidden" name="CardTypeNo" value="@ViewBag.CardTypeNo" />
+    <input type="hidden" name="Batch" value="@ViewBag.Batch" />
+    <input type="hidden" name="Password" value="@ViewBag.Pwd" />
+    <div class="big_backdrop">
+        <div class="white_background">
+            <div class="protocol_script ">
+                <div class="procedure_bz clearfix">
+                    <span>基本资料</span>
+                    <div class="step buju">
+                        <ul class="clearfix">
+                            <li>
+                                <dl>
+                                    <dt>第一步</dt>
+                                    <dd>验证卡号及密码</dd>
+                                </dl>
+                            </li>
+                            <li class="active">
+                                <dl>
+                                    <dt>第二步</dt>
+                                    <dd>基本资料</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>第三步</dt>
+                                    <dd>确认协议</dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>第四步</dt>
+                                    <dd>成功激活</dd>
+                                </dl>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+                <div class="basic_inforionmat">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt>
+                                    <div class="first_insured">
+                                        <ul class="clearfix">
+                                            <li class="active"><a href="javascript:;"  id="First">第一被保人</a></li>
+                                            
+                                            @*<li><a href="javascript:;" id="Third" style='display:@(ViewBag.RegisterType == "normal" && ViewBag.PersonNum >= 3 ? "block" : "none")'>第三被保人</a></li>*@
+                                        </ul>
+                                    </div>
+                                </dt>
+                                <dd>
+                                    <div class="neighbor_application" id="First_Info">
+                                        <ul class="clearfix">
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>健康卡号</label>
+                                                @Html.TextBoxFor(m => m.CardNo, new { id = "CardNo", ReadOnly = "true", name = "" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>姓名</label>
+                                                @Html.TextBoxFor(m => m.Name, new { id = "Name", name = "" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>身份证号</label>
+                                                @Html.TextBoxFor(m => m.CardId, new { id = "CardId", name = "" })
+                                            </li>
+                                            <li class="card_number_b"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>性别</label>
+                                                <input type="radio" name="sex" checked="checked" value="男">
+                                                男
+                                                    <input type="radio" name="sex" value="女">
+                                                女
+                                            @Html.HiddenFor(m => m.Sex, new { id = "Sex" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>邮箱</label>
+                                                @Html.TextBoxFor(m => m.Email, new { id = "Email", name = "" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label>固定电话</label>
+                                                @Html.TextBoxFor(m => m.Tel, new { id = "Tel", name = "" })
+                                            </li>
+                                            <li class="card_number_b"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>婚否</label>
+                                                <input type="radio" checked="checked" name="ismarry" value="1">
+                                                是
+                                                    <input type="radio" name="ismarry" value="2">
+                                                否
+                                            @Html.HiddenFor(m => m.IsMarry, new { id = "IsMarry" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>手机号</label>
+                                                @Html.TextBoxFor(m => m.Moble, new { id = "Moble", name = "" })
+                                            </li>
+                                            <li class="card_number_c"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>详细地址</label>
+                                                @Html.TextBoxFor(m => m.Address, new { id = "Address", name = "" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>生日</label>
+                                                @Html.TextBoxFor(m => m.BirthDay, new { name = "txtBirthday", id = "txtBirthday", ReadOnly = "true" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>职业</label>
+                                                @Html.TextBoxFor(m => m.Job, new { id = "Job", name = "" })
+                                            </li>
+                                            <li class="card_number_a" style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>邮编</label>
+                                                @Html.TextBoxFor(m => m.CodeNo, new { id = "CodeNo", name = "" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "block" : "none")'>
+                                                <label><em>*</em>紧急联系人</label>
+                                                @Html.TextBoxFor(m => m.BackPerson, new { ReadOnly = "true", id = "BackPerson", name = "" })
+                                            </li>
+                                           
+                                        </ul>
+                                        <ul class="clearfix">
+                                             <li class="card_number_a" style='display:@(ViewBag.RegisterType == "normal" ? "none" : "block")'>
+                                                <label><em>*</em>登陆账号</label>
+                                                @Html.TextBoxFor(m => m.UserName, new { id = "UserName", name = "" })
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "none" : "block")'>
+                                                <label><em>*</em>密码</label>
+                                               @* @Html.PasswordFor(m => m.S_Password, new { id = "S_Password", name = "" })*@
+                                            </li>
+                                            <li class="card_number_a"   style='display:@(ViewBag.RegisterType == "normal" ? "none" : "block")'>
+                                                <label><em>*</em>确认密码</label>
+                                                @Html.Password("confirmPassword")
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="first_insured">
+                                        <ul class="clearfix">
+                                            <li><a href="javascript:;" id="Second" style='color:red;display:@(ViewBag.RegisterType == "normal" && ViewBag.PersonNum >= 2 ? "block" : "none")'>第二被保人</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="neighbor_application" id="Second_Info" style='display:@(ViewBag.RegisterType == "normal" && ViewBag.PersonNum >= 2 ? "block" : "none")'>
+                                        <ul class="clearfix">
+                                            @*<li class="card_number_a">
+                                                <label><em>*</em>健康卡号:</label>
+                                                @Html.TextBoxFor(m => m.CardId, new { id = "cardid1", ReadOnly = "true", name = "" })
+                                            </li>*@
+                                            <li class="card_number_a">
+                                                <label><em>*</em>姓名:</label>
+                                                @Html.TextBoxFor(m => m.NameOne, new { id = "NameOne", name = "",value="" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>身份证号:</label>
+                                                @Html.TextBoxFor(m => m.NameOneCardId, new { id = "NameOneCardId", name = "",value="" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>与客户关系：</label>
+                                                <select class="sele" name="relation1" style="margin-top:10px;">
+                                                    <option>请选择</option>
+                                                    <option selected="selected">父子</option>
+                                                    <option>母子</option>
+                                                </select>
+                                                @Html.HiddenFor(m => m.RelationshipOne, new { id = "RelationshipOne", name = "" })
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    @*<div class="neighbor_application_b" id="Third_Info" style="display: none">
+                                        <ul class="clearfix">
+                                            <li class="card_number_a">
+                                                <label><em>*</em>健康卡号:</label>
+                                                @Html.TextBoxFor(m => m.CardId, new { id = "cardid2", ReadOnly = "true", name = "" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>姓名:</label>
+                                                @Html.TextBoxFor(m => m.NameTwo, new { id = "NameTwo", name = "" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>身份证号:</label>
+                                                @Html.TextBoxFor(m => m.NameTwoCardId, new { id = "NameTwoCardId", name = "" })
+                                            </li>
+                                            <li class="card_number_a">
+                                                <label><em>*</em>与客户关系：</label>
+                                                <select class="sele" name="relation2">
+                                                    <option>请选择</option>
+                                                    <option>父子</option>
+                                                    <option>母子</option>
+                                                </select>
+                                                @Html.HiddenFor(m => m.RelationshipTwo, new { id = "RelationshipTwo", name = "" })
+                                            </li>
+                                        </ul>
+                                    </div>*@
+                                    <div class="reading_yd_bottom">
+                                        @*<a href="/Account/HLRegAgreement">*@
+                                         <a href ="/Account/HLRegAgreement">
+                                            <img src="/Areas/Shop/Themes/M1/Content/images/images/shang_1_03.png" width="65" height="29" /></a>
+                                        <a href="javascript:;">
+                                            <img src="/Areas/Shop/Themes/M1/Content/images/images/xia_1_05.png" id="btn-next-1" width="65" height="29" /></a>
+                                    </div>
+                                </dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+

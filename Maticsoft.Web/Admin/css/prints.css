@@ -1,0 +1,16 @@
+﻿
+        .tabHead
+        {
+            background-color: #e4ecf7;
+            text-align: center;
+        }
+        #tableDatagrid
+        {
+            background-color: #d0d7e5;
+        }
+        #tableDatagrid TD
+        {
+            background-color: #ffffff;
+        }      
+        @media Print { .Noprn { DISPLAY: none }}  
+

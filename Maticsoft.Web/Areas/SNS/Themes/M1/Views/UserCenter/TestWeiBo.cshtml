@@ -1,0 +1,45 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+<script type="text/javascript">
+    $(function () {
+        $("#btnOk").click(function () {
+            var mediaIds = "";
+            $(".post>.chk").each(function (i) {
+                if ($(this).attr("checked") != undefined) {
+                    if (i == 0) {
+                        mediaIds = $(this).val();
+                    }
+                    else {
+                        mediaIds = mediaIds + "," + $(this).val();
+                    }
+                }
+            });
+            alert(mediaIds);
+            var ShareDes = $("#textDesc").val();
+            if (mediaIds != "") {
+                $.ajax({
+                    url: $Maticsoft.BasePath + "profile/AjaxPostWeibo",
+                    type: 'post', dataType: 'text', timeout: 10000,
+                    data: { MediaIds: mediaIds, ShareDes: ShareDes },
+                    success: function (resultData) {
+                        //            if (resultData == "No") {
+                        //                ShowFailTip("操作失败，请您重试！");
+                        //            }
+                        alert(resultData);
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        ShowFailTip("操作失败：" + errorThrown);
+                    }
+                });
+            }
+        })
+    });
+</script>
+<h2>
+    TestWeiBo</h2>
+<textarea id="textDesc" cols="20" rows="2"></textarea>
+   <div class="post">
+                     @Html.Action("WeiBoBind", "Partial", new { area="SNS"})
+                     </div>
+<input id="btnOk" type="button" value="确定" />

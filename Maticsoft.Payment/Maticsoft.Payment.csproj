@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F441A3ED-F88E-4862-8648-D8A4C37E13C8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.Payment</RootNamespace>
+    <AssemblyName>Maticsoft.Payment</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <Prefer32Bit>false</Prefer32Bit>
+    <CodeAnalysisIgnoreGeneratedCode>false</CodeAnalysisIgnoreGeneratedCode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Maticsoft.Payment.XML</DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Common, Version=1.9.5259.7769, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Maticsoft.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.DBUtility, Version=1.5.5259.7765, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Maticsoft.DBUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Common, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Microsoft.Practices.EnterpriseLibrary.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.EnterpriseLibrary.Data, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\Microsoft.Practices.EnterpriseLibrary.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\Lib\3dll\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\MVC3DLL\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\PaymentModeManage.cs" />
+    <Compile Include="Configuration\WebConfigHelper.cs" />
+    <Compile Include="Core\DataCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\MsCryptographer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\NotifyQuery.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\PaymentRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DAL\PaymentModeService.cs" />
+    <Compile Include="Handler\ErrorLogText.cs" />
+    <Compile Include="Handler\PaymentReturnHandlerBase.cs" />
+    <Compile Include="Handler\RechargeReturnHandlerBase.cs" />
+    <Compile Include="Handler\SendRechargeHandlerBase.cs" />
+    <Compile Include="Model\AccountSummaryInfo.cs" />
+    <Compile Include="Model\BalanceDetailInfo.cs" />
+    <Compile Include="Model\CurrencyInfo.cs" />
+    <Compile Include="Model\DataProviderAction.cs" />
+    <Compile Include="Model\DriveEnum.cs" />
+    <Compile Include="Model\IPaymentOption.cs" />
+    <Compile Include="Model\IRechargeRequest.cs" />
+    <Compile Include="Model\RechargeRequestInfo.cs" />
+    <Compile Include="Model\IOrderInfo.cs" />
+    <Compile Include="Model\SortAction.cs" />
+    <Compile Include="Model\TradeTypes.cs" />
+    <Compile Include="Model\IUserInfo.cs" />
+    <Compile Include="Model\IRechargeOption.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="PaymentInterface\Advance\AdvanceRequest.cs" />
+    <Compile Include="PaymentInterface\AlipayWap\AlipayWapNotify.cs" />
+    <Compile Include="PaymentInterface\AlipayWap\AlipayWapRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\AlipayWap\Globals.cs" />
+    <Compile Include="PaymentInterface\Alipay\AlipayNotify.cs" />
+    <Compile Include="PaymentInterface\Alipay\Globals.cs" />
+    <Compile Include="PaymentInterface\Alipay\StandardRequest.cs" />
+    <Compile Include="PaymentInterface\Bank\BankRequest.cs" />
+    <Compile Include="PaymentInterface\Bank\Globals.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\ChinaUMSNotify.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\ChinaUMSRequest.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\Common\Common.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\Common\HttpClient.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\Common\RSAUtils.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\IPayChannel.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\PayChannel.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\PayManager.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\PayMessage.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\UnionPay\UnionPayChannel.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\UnionPay\UnionPayConfig.cs" />
+    <Compile Include="PaymentInterface\ChinaUMS\ChinaUMSOrder.cs" />
+    <Compile Include="PaymentInterface\Cod\CodRequest.cs" />
+    <Compile Include="PaymentInterface\WeChat\Globals.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\UnifiedMessage\NotifyMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\UnifiedMessage\RefundMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\UnifiedMessage\ReturnMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\UnifiedMessage\UnifiedOrderQueryMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\UnifiedMessage\UnifiedPrePayMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Models\WeiXinUserInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\CommonUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\HttpClientHelper.cs" />
+    <Compile Include="PaymentInterface\WeChat\Utils\MD5SignUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\MD5Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\RefundHelper.cs" />
+    <Compile Include="PaymentInterface\WeChat\Utils\SDKRuntimeException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\SHA1Util.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\Utils\UnifiedWxPayHelper.cs" />
+    <Compile Include="PaymentInterface\WeChat\Utils\WeiXinConst.cs" />
+    <Compile Include="PaymentInterface\WeChat\Utils\WxPayHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\WeChatNotify.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PaymentInterface\WeChat\WeChatRequest.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ShoppingProcessor.cs" />
+    <Compile Include="Web\RechargeNotify.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\RechargeReturn.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\RechargeReturnTemplatedController.cs" />
+    <Compile Include="Web\RechargeReturnTemplatedPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Model\GatewayInfo.cs" />
+    <Compile Include="Configuration\GatewayProvider.cs" />
+    <Compile Include="Handler\SendPaymentHandlerBase.cs" />
+    <Compile Include="Model\OrderStatus.cs" />
+    <Compile Include="Model\OrderActions.cs" />
+    <Compile Include="Model\PaymentModeActionStatus.cs" />
+    <Compile Include="Model\PaymentModeInfo.cs" />
+    <Compile Include="Model\PaymentStatus.cs" />
+    <Compile Include="Model\RefundStatus.cs" />
+    <Compile Include="Model\ShippingStatus.cs" />
+    <Compile Include="Handler\NotifyEventHandler.cs" />
+    <Compile Include="OrderProcessor.cs" />
+    <Compile Include="Configuration\PayConfiguration.cs" />
+    <Compile Include="Model\PayeeInfo.cs" />
+    <Compile Include="PaymentInterface\AlipayAssure\AlipayAssureNotify.cs" />
+    <Compile Include="PaymentInterface\AlipayAssure\AssureRequest.cs" />
+    <Compile Include="PaymentInterface\AlipayAssure\Globals.cs" />
+    <Compile Include="PaymentInterface\AlipayDirect\AlipayDirectNotify.cs" />
+    <Compile Include="PaymentInterface\AlipayDirect\DirectRequest.cs" />
+    <Compile Include="PaymentInterface\AlipayDirect\Globals.cs" />
+    <Compile Include="PaymentInterface\Allbuy\AllbuyNotify.cs" />
+    <Compile Include="PaymentInterface\Allbuy\AllbuyRequest.cs" />
+    <Compile Include="PaymentInterface\Bill99\Bill99Notify.cs" />
+    <Compile Include="PaymentInterface\Bill99\Bill99Request.cs" />
+    <Compile Include="PaymentInterface\Chinabank\ChinabankNotify.cs" />
+    <Compile Include="PaymentInterface\Chinabank\ChinabankRequest.cs" />
+    <Compile Include="PaymentInterface\Cncard\CncardNotify.cs" />
+    <Compile Include="PaymentInterface\Cncard\CncardRequest.cs" />
+    <Compile Include="PaymentInterface\Ipay\IpayNotify.cs" />
+    <Compile Include="PaymentInterface\Ipay\IpayRequest.cs" />
+    <Compile Include="PaymentInterface\IPSExpress\IpsExpressNotify.cs" />
+    <Compile Include="PaymentInterface\IPSExpress\IpsExpressRequest.cs" />
+    <Compile Include="PaymentInterface\IPS\IpsNotify.cs" />
+    <Compile Include="PaymentInterface\IPS\IpsRequest.cs" />
+    <Compile Include="PaymentInterface\Paypal\PaypalNotify.cs" />
+    <Compile Include="PaymentInterface\Paypal\PaypalRequest.cs" />
+    <Compile Include="PaymentInterface\ShengPay\ShengPayNotify.cs" />
+    <Compile Include="PaymentInterface\ShengPay\ShengPayRequest.cs" />
+    <Compile Include="PaymentInterface\TenpayAssure\Globals.cs" />
+    <Compile Include="PaymentInterface\TenpayAssure\TenpayAssureNotify.cs" />
+    <Compile Include="PaymentInterface\TenpayAssure\TenpayAssureRequest.cs" />
+    <Compile Include="PaymentInterface\Tenpay\Globals.cs" />
+    <Compile Include="PaymentInterface\Tenpay\TenpayNotify.cs" />
+    <Compile Include="PaymentInterface\Tenpay\TenpayRequest.cs" />
+    <Compile Include="PaymentInterface\YeePay\Buy.cs" />
+    <Compile Include="PaymentInterface\YeePay\Digest.cs" />
+    <Compile Include="PaymentInterface\YeePay\HmacMD5.cs" />
+    <Compile Include="PaymentInterface\YeePay\YeepayNotify.cs" />
+    <Compile Include="PaymentInterface\YeePay\YeepayRequest.cs" />
+    <Compile Include="Model\TradeInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web\PaymentReturnTemplatedPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Web\PaymentReturnTemplatedController.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Gateway.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="Lib\Microsoft.Practices.EnterpriseLibrary.Common.dll" />
+    <Content Include="Lib\Microsoft.Practices.EnterpriseLibrary.Data.dll" />
+    <Content Include="Lib\Microsoft.Practices.ObjectBuilder.dll" />
+    <Content Include="Web\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="PaymentInterface\ChinaUMS\Config\PayConfig\UnionPay.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="PaymentInterface\ChinaUMS\Config\UnionPay\SignKey\private_key.pem" />
+    <None Include="PaymentInterface\ChinaUMS\Config\UnionPay\SignKey\public_key.pem" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Web\Demo\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

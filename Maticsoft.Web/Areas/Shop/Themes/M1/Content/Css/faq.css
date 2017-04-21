@@ -1,0 +1,694 @@
+.distop {
+	text-align:right;
+	font-size:12px;
+	color:#818181;
+	line-height:30px;
+	padding:0 12px;
+	overflow:hidden;
+}
+.distop .fweight {
+	float:left;
+	font-size:14px;
+	font-weight:600;
+	font-family:"Microsoft YaHei";
+}
+.align80 {
+	padding-left:80px;
+}
+.align80 img {
+	float:left;
+	margin:0 6px;
+}
+.fill-dis {
+	margin:15px 0 0 0;
+	width:720px;
+	clear:both;
+	position:relative;
+}
+.fill-dis p {
+	color:#969696;
+}
+.fill-dis label {
+	float:left;
+	width:75px;
+	text-align:right;
+	color:#333;
+}
+.fill-dis textarea {
+	width:560px;
+	height:70px;
+	border:1px solid #CECECE;
+}
+.fill-dis.err textarea {
+	border-color:#F00;
+}
+.fill-dis.err p {
+	color:#F00;
+}
+.btn-pub,.btn-faq {
+	display:block;
+	border:0;
+	cursor:pointer;
+}
+.btn-pub {
+	width:99px;
+	height:32px;
+	background:url(../images/btn-pub.gif) no-repeat 0 0;
+}
+.btn-faq {
+	width:100px;
+	height:32px;
+	background:url(../images/btn-faq.jpg) no-repeat 0 0;
+}
+.face,.btn-pub,.btn-faq {
+	text-indent:-99em;
+	overflow:hidden;
+}
+.face {
+	display:block;
+	width:40px;
+	height:20px;
+	background:url(../images/btn-facial.gif) no-repeat 0 10px;
+}
+.faq {
+	color:#333;
+}
+.relay {
+	position:absolute;
+	width:100%;
+}
+.faq-q {
+	margin:4px 0;
+	border:1px solid #E8E8E8;
+	border-width:1px 0;
+	padding:10px 10px 15px 50px;
+	background:#F8F8F8 url(../images/btn-qa.jpg) no-repeat 6px 10px;
+	overflow:hidden;
+}
+.faq-f {
+	overflow:hidden;
+	margin-top:-15px;
+	margin-left:55px;
+	border:1px solid #E8E8E8;
+	padding:0 5px 0;
+}
+.faq-f li {
+	border-top:1px dotted #E8E8E8;
+	padding:8px;
+	position:relative;
+}
+.faq-f li.first {
+	border-top-width:0;
+}
+.callcenter .fl {
+	color:#CD1E3B;
+}
+.faq-arrow .uparrow {
+	display:block;
+	position:relative;
+	width:15px;
+	height:13px;
+	top:-12px;
+	left:80px;
+	background:url(../images/uparrow.gif) no-repeat 0 0;
+	z-index:9
+}
+.bt1 {
+	border-top:1px solid #E7E7E7;
+}
+#gotop {
+	position:fixed;
+	bottom:10%;
+	_position:absolute;
+	display:block;
+	width:25px;
+	height:69px;
+	background:url(../images/topback.gif) no-repeat 0 0;
+	text-indent:-9em;
+	overflow:hidden;
+}
+.item.itemf {
+	width:175px;
+	margin:10px auto;
+}
+.item.itemf li {
+	margin:0 25px;
+}
+.item.itemf .title {
+	display:block;
+	padding:0 5px;
+	font-size:14px;
+	font-weight:600;
+}
+.item.itemf .hl2 {
+	font-size:16px;
+	font-weight:600;
+}
+.item.itemf .brand {
+	font:14px "Microsoft YaHei";
+	color:#CCC;
+	font-weight:bold;
+}
+.bline {
+	border-bottom:1px solid #E8E8E8;
+}
+.tab1 {
+	height:39px;
+	padding-left:10px;
+	margin:15px 0 10px;
+	background:url(../images/bg-tab1.png) repeat-x 0 100%;
+}
+.tab1 li {
+	overflow:hidden;
+	float:left;
+	margin:0 1px -1px 0;
+	line-height:40px;
+	font-size:14px;
+	font-family:"Microsoft YaHei";
+	text-align:center;
+}
+.tab1 li a {
+	display:block;
+	width:134px;
+	height:39px;
+	background:url(../images/bg-tab1-off.png) no-repeat 0 0;
+}
+.tab1 li a.cur {
+	background:url(../images/bg-tab1-on.png) no-repeat 0 0;
+	cursor:default;
+}
+.tab1 li a:hover {
+	text-decoration:none;
+}
+.tab1 li a.cur:hover {
+	color:#666;
+}
+.fpage {
+	text-align:right;
+}
+.ml30 {
+	margin-left:30px;
+}
+.ml5 {
+	margin-left:5px;
+}
+.zmt15 {
+	margin-top:-15px;
+}
+/**page**/
+.page {
+	margin:20px 0;
+	text-align:right;
+}
+.page a {
+	margin:0 5px;
+	padding:0px 4px;
+	background:#757575;
+	color:#fff;
+}
+.page a.pageprev,.page a.pageprev:hover {
+	padding-left:10px;
+	background:transparent url(../images/bg-pageprev.png) no-repeat 0 50%;
+	color:#757575;
+}
+.page a.nextpage,.page a.nextpage:hover {
+	display:inline-block;
+	margin-right:15px;
+	padding-right:6px;
+	color:#757575;
+	background:url(../images/page-arrow.gif) no-repeat 100% 5px;
+	text-decoration:none;
+}
+.page a.cur {
+	background:#C2030D;
+}
+.page .input1 {
+	width:28px;
+	height:17px;
+	border:1px solid #ccc;
+	background:url(../images/inputbg.gif) no-repeat 0 0;
+	text-align:center;
+}
+.page .input2 {
+	border:none;
+	background:#9B938A;
+	color:#fff;
+}
+.page a:hover {
+	background:#C2030D none repeat 0 0;
+	color:#FFFFFF;
+	text-decoration:none;
+}
+.btn-dis {
+	background:transparent url(../images/btn-y.gif) no-repeat 0 0;
+	border:1px solid #CACACA;
+	color:#696363;
+	display:inline-block;
+	height:25px;
+	line-height:25px;
+	padding:0 14px;
+}
+.mtout {
+	margin-top:-40px;
+}
+.btn-detail-f {
+	margin:10px auto;
+	width:95px;
+}
+.btn-detail-f a {
+	display:block;
+	padding-left:2px;
+	height:21px;
+	background:url(../images/brandbg.gif) no-repeat 0 0;
+	line-height:21px;
+	text-align:center;
+	cursor:pointer;
+}
+.btn-detail-f a span {
+	display:block;
+	padding-right:2px;
+	height:21px;
+	background:url(../images/brandbg.gif) no-repeat 100% 0;
+	color:#682335;
+}
+.btn-detail-f a:hover {
+	text-decoration:none;
+}
+/**viewed **/
+#viewed {
+	position:relative;
+}
+#viewed ul {
+	margin:5px;
+	overflow:hidden;
+}
+#viewed .handle {
+	position:absolute;
+	top:0;
+	right:5px;
+	line-height:30px;
+	color:#999;
+}
+#viewed li {
+	float:left;
+	margin-bottom:-1px;
+	width:100%;
+	border-bottom:1px dotted #CCC;
+	zoom:1;
+}
+#viewed li a {
+	float:left;
+	padding:5px;
+}
+#viewed li a:hover {
+	text-decoration:none;
+}
+#viewed li span {
+	display:block;
+	margin-left:60px;
+}
+#viewed li .s-pic {
+	float:left;
+	width:50px;
+	height:65px;
+}
+/**viewed over**/
+.columnbg {
+	background:url(../images/bg-h2.png) repeat-x 0 1px;
+}
+.wselect {
+	width:140px;
+}
+/** all discuss**/
+.discusslist {
+	/* border-bottom:1px solid #E8E8E8;
+	*/color:#333333;
+	margin:10px 0;
+}
+.discusslist li {
+	padding:10px 15px;
+	border:1px solid #E8E8E8;
+}
+.dis-content {
+	margin:0 5px;
+}
+.alt {
+	background:#F8F8F8;
+}
+.call-con {
+	margin-left:2em;
+	padding-top:5px;
+	border-top:1px dotted #ccc;
+}
+.btn-pub {
+	background:url(../images/btn-pub.gif) no-repeat 0 0;
+	height:32px;
+	width:99px;
+}
+/***Size**/
+
+.columnbg #sizepop1 #sizem.sizecon {
+	background-position:0 -140px;
+}
+.columnbg .sptitle {
+	padding-left:30px;
+	background:url(../images/size-ico.png) no-repeat 10px 12px;
+	font-size:14px;
+	font-family:"Microsoft YaHei";
+	height:28px;
+	line-height:28px;
+	border:0;
+	color:#666;
+}
+.columnbg #sizem.sizecon {
+	background-position:0 -131px;
+}
+/*.columnbg #sizepop1 .sizecon {
+	padding-top:20px;
+}
+*/
+.columnbg .sizecon {
+	background:none;
+	min-height:100px;
+	padding:0 0 0 40px;
+	_height:100px;
+}
+.columnbg #sizepop1 input.text {
+	padding:0;
+	width:54px;
+}
+.columnbg .sizelist {
+	padding-bottom:0;
+	width:auto;
+}
+.columnbg .sizelist li {
+	padding:6px 0;
+}
+.columnbg .sizelist li span {
+	font-size:11px;
+	font-family:Arial;
+}
+.columnbg .sbt-size {
+	float:none;
+	margin-right:0;
+	border:none;
+	margin-left:28px;
+	width:50px;
+	height:22px;
+	background:url(../images/btn-size.gif) no-repeat 0 0;
+	color:#FFFFFF;
+	cursor:pointer;
+	letter-spacing:6px;
+	line-height:22px;
+}
+.nocontent {
+	margin:20px 0 40px;
+	text-align:center;
+}
+/**Login comment**/
+#login-pop .overlay {
+	width:420px;
+	height:300px;
+	margin-left:-210px;
+}
+#login-pop .overlaymain {
+	width:400px;
+	height:280px;
+	margin:-135px 0 0 -200px;
+}
+#login-pop .clew {
+	padding:10px 15px;
+	border-bottom:1px solid #666;
+	background:#FFFFCC;
+}
+#login-pop fieldset {
+	padding:20px 0 0 80px;
+}
+#login-pop .uname-length {
+	padding:20px 0 0 20px;
+}
+#login-pop legend {
+	position:absolute;
+	left:-999em;
+	font-size:0;
+}
+#login-pop fieldset div {
+	height:40px;
+}
+#login-pop fieldset label {
+	vertical-align:middle;
+	text-align:right;
+}
+#login-pop .uname-length label {
+	float:left;
+	width:110px;
+}
+#login-pop fieldset .text {
+	height:20px;
+}
+#login-pop .handle {
+	overflow:hidden;
+	margin:10px auto 0;
+}
+#login-pop .handle a {
+	float:right;
+	margin-top:5px;
+	text-decoration:underline;
+}
+#login-pop .handle input {
+	float:left;
+	width:112px;
+	height:32px;
+	background:url(../images/btn-login.png) no-repeat 0 0;
+	border:none;
+	text-indent:-99em;
+	cursor:pointer;
+}
+#login-pop .login_error {
+	padding-left:80px;
+}
+.col_2£¬.hy-con {
+	overflow:hidden;
+}
+/**FAQ input**/
+.fill-dis .faqchoice .itemfaq {
+	text-align:right;
+	color:#333;
+	height:24px;
+	line-height:24px;
+	float:left;
+	width:80px;
+}
+.fill-dis .faqchoice div {
+	height:24px;
+	line-height:24px;
+}
+.fill-dis .faqchoice label {
+	margin-left:0;
+	margin-right:10px;
+	float:none;
+	cursor:pointer;
+}
+.fill-dis .faqchoice input {
+	margin-left:0;
+	vertical-align:middle;
+	*vertical-align:-3px;
+	_vertical-align:0;
+}
+/*--new add for FAQ error--*/
+#login-pop .handle {
+	margin:5px auto 5px 0;
+	padding-left:130px;
+	overflow:hidden;
+}
+#login-pop .handle a {
+	float:left;
+	margin:8px 0 0 10px;
+	width:100px;
+	font-size:14px;
+}
+#login-pop .handle input {
+	float:left;
+	width:112px;
+	height:32px;
+	background:url(../images/btn-login.png) no-repeat 0 0;
+	border:none;
+	text-indent:-99em;
+	cursor:pointer;
+}
+#login_error {
+	height:20px;
+	line-height:20px;
+	margin:-10px 0 0 80px;
+	color:#F00;
+}
+/*--for answer succeed pop up box--*/
+.pop-box {
+	width:600px;
+	background:#FFFFDF url(../images/account-photo.gif) no-repeat 25px 30px;
+	position:absolute;
+	top:-2px;
+	left:70px;
+}
+.pop-main {
+	background:url(../../i/comm/box_shadow_b.gif) 0 100% no-repeat;
+	height:100%;
+}
+.pop-content {
+	background:url(../../i/comm/box_shadow_r.gif) 100% 100% no-repeat;
+	height:100%;
+	position:relative;
+}
+.bor2-r {
+	border:2px solid #C00;
+}
+.pop-box .bor2-r {
+	padding:40px 10px 55px 110px;
+	line-height:2em;
+}
+.bor1-r {
+	border:1px solid #C00;
+}
+.f14 {
+	font-size:14px;
+}
+.pop-box .f14 {
+	color:#666;
+}
+.fag-error {
+	background:#FFECEC url(../images/error-2.gif) no-repeat 5px 3px;
+	padding:2px 10px 2px 25px;
+	margin:5px 0 0 10px;
+	display:inline;
+}
+.clearboth {
+	clear:both;
+}
+.close-t {
+	position:absolute;
+	top:10px;
+	right:15px;
+	padding-left:16px;
+	display:block;
+	width:24px;
+	height:18px;
+	background:url(../images/ico-close.png) no-repeat 0 1px;
+}
+/*--link blue--*/
+.link-b:link {
+	color:#034ACF;
+}
+.link-b:visited {
+	color:#034ACF;
+}
+.link-b:hover {
+	color:#F60;
+	text-decoration:none;
+}
+/*--how to pusblished comment--*/
+#comment-help .h2 span {
+	background:url(../images/ico-warn.gif) no-repeat 0 5px;
+	padding-left:15px;
+}
+/*--ol sort--*/
+.ol-sort li {
+	list-style:decimal inside;
+}
+#comment-help .ol-sort li {
+	margin-bottom:5px;
+}
+.goods-comm-stars {
+	line-height:25px;
+}
+.align105 {
+	padding-left:105px;
+}
+/*--other way login--*/
+.pl35 {
+	padding-left:35px;
+}
+.otherLogin {
+	border-top:1px dotted #CCCCCC;
+	line-height:27px;
+}
+.tsinaLogin {
+	background:url(../images/icon-tsina.gif) no-repeat 0 0;
+	margin:0 0 0 5px;
+	padding:3px 0 0 35px;
+	display:inline-block;
+}
+/*--also buy--*/
+.newrec .h2 {
+	color:#C10628;
+	font:bolder 12px/26px "ËÎÌå";
+	background:url(../images/bg-h2s.png) repeat-x 0 0;
+}
+.newrec .item {
+	margin:10px 10px 0 7px;
+}
+.newrec .item .special {
+	position:relative;
+	top:2px;
+}
+.newrec .item li:hover,.newrec .item li.hover {
+	background:none;
+}
+.item a:hover {
+	text-decoration:none;
+}
+.item li {
+	float:left;
+	width:175px;
+	padding:3px 2px 20px 3px;
+	margin:0 2px;
+	position:relative;
+	_display:inline;
+}
+.item li:hover,.item li.hover {
+	background:url(../images/bg-good.png) repeat-x 0 0;
+}
+.item li img {
+	display:block;
+	width:175px;
+	height:228px;
+	margin:0 auto 5px;
+}
+.item .title {
+	display:block;
+	padding-right:10px;
+}
+.item .brand {
+	font:14px "Microsoft YaHei";
+	color:#CCC;
+}
+.item .special,.item .point,.item .spe-point {
+	overflow:hidden;
+	position:absolute;
+	top:239px;
+	right:5px;
+	width:31px;
+	height:13px;
+	background:url(../images/ico-item.png) no-repeat 0 -15px;
+	text-indent:-9em;
+}
+.item .point {
+	background-position:0 0;
+}
+.item .spe-point {
+	height:28px;
+	background-position:0 0;
+}
+/*--add for messure body--*/
+.textInput {
+	line-height:20px;
+	height:20px;
+}
+.bortDot {
+	border-top:1px dashed #E4E4E4;
+}
+.fItem label {
+	margin-top:3px\9;
+}
+.fItem .textInput {
+	width:80px;
+}

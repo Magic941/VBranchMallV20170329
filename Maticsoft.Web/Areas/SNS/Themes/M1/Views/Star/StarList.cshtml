@@ -1,0 +1,114 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.Stars
+@if (Model == null) { return; }
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+<div id="StarListDiv">
+    <script type="text/javascript">
+        $(function () {
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    Params: { StarType: $.getUrlParam('StarType') == null ? 0 : $.getUrlParam('StarType') },
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Star/WaterfallStarListData",
+                    Success: function () {
+                        resizeImg($(this).find('.pic_load'), 211, 1280);
+                    },
+                    Error: function () {
+                        
+                    }
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID
+                ColumnFirstId: "col_",
+                //列数 0 特殊模式 整行加载 功能完善中
+                ColumnNumber: 3
+            });
+            resizeImg('.StarListImage', 211, 1280);
+        });
+    </script>
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+    <div class="imagewalls_id">
+        @if (Model.StarList3ForCol != null)
+        {
+            for (int i = 0; i < Model.StarList3ForCol.Length; i++)
+            {
+           <div id="col_@(i)" class="col1" @(i == 2 ? "style=margin-right:0px":"")>
+                @foreach (var item in Model.StarList3ForCol[i])
+                {
+                    <div class="i_w_y StarListImage">
+                        <div id="emerge" class="emerge">
+                            <p>
+                             <a class="pic_load" href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                    <img ref="@item.UserGravatar" alt="@item.NickName" /></a></p>
+                        @*    <div id="dodge" class="dodge">
+                            <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/user_21.png" /></a></div>*@
+                        </div>
+                        <div class="search_com">
+                            <div class="srcoll_a">
+                                <p class="srcoll_a_s">
+                                       <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">@item.NickName</a></p>
+                                <p class="srcoll_a_f">
+                                   <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                        @Html.Action("StarDPI", "Partial", new { UserId = @item.UserID })
+                                    </a></p>
+                            </div>
+                            <div class="srcoll_b">
+                               @*   <a href="@(ViewBag.BasePath)User/Posts/@item.UserID">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_7.jpg" /></a>*@
+                            @if (item.IsFellow == false)
+                            {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.UserID"  autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.UserID"  >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao1.jpg" /></a>
+                          }
+                            else
+                            {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.UserID" style="display:none"  autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/poineer_5.png" /></a> <a href="javascript:;" class="UnFellowUser"  UserId="@item.UserID"  >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao1.jpg" /></a>
+                              }
+                                    </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="srcoll_d">
+                            粉丝：<span>@item.FansCount</span> 喜欢：<span>@item.FavouritesCount</span> 宝贝：<span>@item.ProductsCount</span></div>
+                                    @if (!String.IsNullOrWhiteSpace(item.Singature))
+                        {
+                        <div class="srcoll_c">
+                            @item.Singature</div>
+                                        }
+                    </div>
+                }
+            </div>
+            }
+        }
+    </div>
+    <div class="clear">
+    </div>
+    @Html.AjaxPager(Model.StarPagedList, new PagerOptions
+{
+    CssClass = "in_pages",
+    ShowDisabledPagerItems = false,
+    AlwaysShowFirstLastPageNumber = false,
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 10,
+    CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+    SeparatorHtml = ""
+}, new AjaxOptions { UpdateTargetId = "StarListDiv" })
+</div>
+<!-- 照片列表end-->

@@ -1,0 +1,110 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.SNS.TopicReply
+<script type="text/javascript" >
+    $(function () {
+        resizeImg('.pic_load', 450, 800);
+    
+    })
+</script>
+@if (Model.TopicsReply != null)
+{
+    foreach (Maticsoft.Model.SNS.GroupTopicReply item in Model.TopicsReply)
+    {
+    <dl class="answer_a">
+        <dl class="answer_a_qu">
+            <dt class="answer_a_qua"><a href="@(ViewBag.BasePath)User/Posts/@(item.ReplyUserID)">
+               <img  src="/Upload/User/Gravatar/@(item.ReplyUserID).jpg" alt="@(item.ReplyNickName)" width="42px;" height="42px;" /></a></dt>
+            <dd class="answer_a_qub" style=" display:none">
+                <a href="javascript:;">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/detailed_18.jpg" /></a></dd>
+        </dl>
+        <dl class="answer_a_wn">
+            <dt class="answer_a_wn_a"><a href="javascript:;">@item.ReplyNickName：</a>@Html.Raw(Maticsoft.ViewModel.ViewModelBase.ReplaceFace(item.Description))</dt>
+            <ul class="pic_b" style="margin-top: 20px; margin-top: 20px">
+                @if (!(item.OriginalID > 0) && !string.IsNullOrEmpty(item.PhotoUrl))
+                {
+                    if (string.IsNullOrEmpty(item.ProductLinkUrl))
+                    {
+                    <li class="pic_b_f r5" style="display: block; width: 320px" ttype="bigMode" iid="1th8z8"
+                        type="image">
+                        <div class="pic_b_bd" style="cursor: default;">
+                            <a href="javascript:;" class="add_to_album_btn" style="display: none;"></a><a href="@item.PhotoUrl" class="pic_load"
+                                target="_blank">
+                                <img class="bm_img" ref="@item.PhotoUrl" >
+                            </a>
+                        </div>
+                    </li>
+                    }
+                    else
+                    {
+                    <li class="pic_b_f r5 goods_b_f" style="display: block; min-height: 100px" ttype="bigMode"
+                        type="goods" iid="1yj5b0">
+                        <div class="pic_b_bd" style="cursor: default;">
+                            <a href="javascript:;" class="add_to_album_btn"></a><a href="@item.ProductLinkUrl"
+                                target="_blank" class="pic_load">
+                                <img ref="@item.PhotoUrl"  style=" width:100px; height:100px"
+                                alt="@item.ProductName" >
+                            </a>
+                        </div>
+                        <div class="goods_info">
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@item.ProductLinkUrl"
+                                    class="mg_slink ofh">@(!string.IsNullOrEmpty(item.ProductName) ? ":" + (item.ProductName.Length > 20 ? item.ProductName.Substring(0, 20) + ".." : item.ProductName) : "")</a></p>
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@item.ProductLinkUrl"
+                                    class="g_price"><span>¥@item.Price.Value.ToString("F")</span> </a>
+                            </p>
+                            <p>
+                                <a ref="nofollow" target="_blank" href="@item.ProductLinkUrl"
+                                    class="buy_link">去淘宝看详情 </a>
+                            </p>
+                        </div>
+                    </li>
+                    }
+                }
+            </ul>
+            @if (item.OriginalID > 0)
+            {
+                <div class="zhuanfa">
+                    <p class="zhuanfa_a">
+                        <span><a href="/User/Posts/90">@item.OrgianlNickName</a></span>:@Html.Raw(Maticsoft.ViewModel.ViewModelBase.ReplaceFace(item.OrginalDes))</p>
+                    @if (!string.IsNullOrEmpty(item.PhotoUrl))
+                    {
+                    <p class="zhuanfa_b">
+                        <img class="Postimg" style="display: inline; cursor: pointer; max-width: 128px;"
+                            onclick="$(this).hide().next().show();" alt="小图片" src="@item.PhotoUrl">
+                        <img class="Postimg" style="display: none; cursor: pointer; max-width: 400px;" onclick="$(this).hide().prev().show();"
+                            alt="大图片" src="@item.PhotoUrl">
+                    </p>
+                    }
+                </div>
+            }
+            <dd class="answer_a_wn_b">
+                <dl class="answer_a_wn_ba">
+</dl>
+                 <dl class="answer_a_wn_bb" style="width: 200px;text-align: right;"><span>
+                  @Maticsoft.ViewModel.ViewModelBase.DateDiff(item.CreatedDate)</span>
+                    <a href="javascript:;" style="color: #999; display:none">举报</a>| <a href="javascript:void(0)" class="replyTopic" replyid=@item.ReplyID>
+                        回应</a></dl>
+            </dd>
+        </dl>
+        <div class="clear">
+        </div>
+    </dl>
+    }
+}
+
+    <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model.TopicsReply, new PagerOptions()
+       {
+           CssClass = "in_pages",
+           PageIndexParameterName = "page",
+           NumericPagerItemCount = 5,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       },
+                                   new AjaxOptions() { UpdateTargetId = "MaticsoftTopicReply" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+

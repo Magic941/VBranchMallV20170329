@@ -1,0 +1,272 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.ViewModel.Shop.OrderDetailModel
+<link href="/Scripts/tab/tab.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/tab/tab.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.jquery.min.js" type="text/javascript"></script>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet" type="text/css" />
+    <!--jQueryUploadify Start-->
+    <!--jQueryUploadify End-->
+<style type="text/css">
+     .td_class{
+        width: 80px;
+        border-right: 1px solid #DBE2E7;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #fff;
+        padding-bottom: 4px;
+        padding-top: 4px;
+    }
+    .td_content{
+        border-right: 1px solid #DBE2E7;
+        border-left: 1px solid #fff;
+        border-bottom: 1px solid #ddd;
+        border-top: 1px solid #fff;
+    }
+
+</style>
+<script type="text/javascript">
+    $(function () {
+        //隔行换色
+        var trs = $('table.GridViewTyle tr');
+        for (var i = 0; i < trs.length; i++) {
+            if (i % 2 != 0) {
+                trs.eq(i).addClass('eventrcolor');
+            }
+        }
+        //鼠标移动效果
+        $("table.GridViewTyle tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+
+
+        $('#btnSave').click(function () {
+            var oi = $('#hfOrderInfo').val();
+            if (parseInt(oi) <= 0) {
+                return false;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "Order/Picking",
+                type: 'post',
+                dataType: 'text',
+                async: false,
+                timeout: 10000,
+                data: { oi: oi },
+                success: function (resultData) {
+                    switch (resultData) {
+                        case "NO":
+                            ShowFailTip("确认失败！");
+                            break;
+                        case "OK":
+                            ShowSuccessTip("确认成功！");
+                            setTimeout(function() {
+                                window.parent.location.reload();
+                            }, 2000);
+                            break;
+                        default:
+                            ShowServerBusyTip("确认失败！");
+                            break;
+                    }
+                },
+                error: function (xmlHttpRequest, textStatus, errorThrown) {
+                    ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                }
+            });
+        });
+    });
+</script>
+@*<input type="hidden" id="hfSuccess" value=""/>*@
+<input type="hidden" id="hfOrderInfo" value="@Model.OrderInfo.OrderId"/>
+    <div class="newslistabout">
+        <div class="newslist_title">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+                <tr>
+                    <td bgcolor="#FFFFFF" class="newstitle">
+                        正在进行订单【@Model.OrderInfo.OrderCode 】配货操作
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="nTab4">
+            <div class="TabTitle">
+                <ul id="myTab1">
+                    <li class="active" onclick="nTabs(this,0);"><a href="javascript:;">商品清单</a></li>
+                    <li class="normal" onclick="nTabs(this,1);"><a href="javascript:;">其它信息</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="TabContent">
+            <!--基本信息-->
+            <div id="myTab1_Content0">
+                <table style="width: 100%; border-bottom: none; border-top: none; float: left;" cellpadding="2"
+                    cellspacing="1" class="border">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                         订单号：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span ID="lblOrderCode"  >@Model.OrderInfo.OrderCode</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                         下单日期：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span id="lblCreatedDate"  >@Model.OrderInfo.CreatedDate.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                         配送方式：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span id="lblShipTypeName">@Model.OrderInfo.ShippingModeName</span>
+                                        
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                       实际运费：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                         <span id="lblFreightActual">@(Model.OrderInfo.FreightActual.HasValue?Model.OrderInfo.FreightActual.Value.ToString("F"):"")</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <table cellspacing="0" cellpadding="3" rules="all" border="0px" class="GridViewTyle"   style="border-color:#CCCCCC;border-width:1px;border-style:solid;width:100%;border-collapse:collapse;float: left;"> 
+                                <tr height="35px" style="background-color:#E3EFFF;height:35px;background:#FFF">
+                                    <th scope="col" style="border:1px solid #dae2e8;border-right:0px;">商品图片</th>
+                                    <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;">商品名称</th>
+                                    <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;">货号</th>
+                                    <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;">规格</th>
+                                    <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;">购买数量</th>
+                                    <th scope="col" style="border:1px solid #dae2e8;border-left:0px;border-right:0px;">商品单价</th>
+                                </tr>
+                           @if (Model.ListOrderItems != null)
+                           {
+                               foreach (var item in Model.ListOrderItems)
+                               {
+                                 <tr height="27px"  class="oddtrcolor" >
+                                    <td align="center" height="27px" style="width:60px;padding-left:5px;height:27px;">
+                                        <a href="javascript:;" target="_blank">
+                                            <img  width="80px" height="80px" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailsUrl, "T150X150_")" onerror="this.src='/Content/themes/base/images/404/80.jpg'" style="display: inline;">
+                                        </a>
+                                    </td>
+                                    <td align="left" height="27px" style="padding-left:5px;height:27px;">
+                                        @item.Name   
+                                    </td>
+                                     <td align="center" height="27px" style="width:80px;padding-left:5px;height:27px;">
+                                         @item.SKU
+                                     </td>
+                                     <td align="center" height="27px" style="width:80px;padding-left:5px;height:27px;">
+                                          @if (!string.IsNullOrWhiteSpace(item.Attribute))
+                                                {
+                                                    string[] tmpAttr = item.Attribute.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+                                                    foreach (string val in tmpAttr)
+                                                    {
+                                                        @(val+ " ")
+                                                    }
+                                                }
+                                     </td>
+                                    <td align="center" height="27px" style="width:50px;padding-left:5px;height:27px;">
+                                        @item.Quantity
+                                    </td>
+                                    <td align="center" height="27px" style="width:50px;padding-left:5px;height:27px;">
+                                        <span class="txtprice">
+                                            @item.AdjustedPrice.ToString("F")
+                                        </span>
+                                    </td>
+                                </tr>
+                               }
+
+                           }
+                              
+
+	 </table>
+                      
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <!-- 收货人信息-->
+            <div id="myTab1_Content1" class="none4">
+                <table style="width: 100%; border-bottom: none; border-top: none; float: left;" cellpadding="2"
+                    cellspacing="1" class="border">
+                    <tr>
+                        <td style="vertical-align: top;">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang"
+                                style="padding-top: 8px">
+                                <tr>
+                                    <td colspan="2" class="newstitle" bgcolor="#FFFFFF">
+                                        <span style="font-size: 16px; padding-left: 20px">购买人信息</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                        购买人：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span ID="lblBuyerName"  >@Model.OrderInfo.BuyerName</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                         手机号码：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span ID="lblBuyerCellPhone"  >@Model.OrderInfo.BuyerCellPhone</span>
+                                    </td>
+                                </tr>
+                                <tr style="display: none;">
+                                    <td class="td_class" style="background-color: #E2E8EB">
+                                        邮箱地址：
+                                    </td>
+                                    <td height="25" class="td_content">
+                                        <span ID="lblBuyerEmail" >@Model.OrderInfo.BuyerEmail</span>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="newslistabout">
+        <table style="width: 100%; border-top: none; float: left;" cellpadding="2" cellspacing="1"
+            class="border">
+            <tr>
+                <td class="tdbg">
+                    <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                        <tr>
+                            <td style="height: 6px;">
+                            </td>
+                            <td height="6">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                            </td>
+                            <td height="25" style="text-align: center">
+                                <button id="btnSave"  class="adminsubmit btn_style" style="width: 88px !important;" >确认配货</button>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>

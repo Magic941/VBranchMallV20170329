@@ -1,0 +1,380 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0988C03E-F019-40C3-B24E-476A6DA1BC60}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Maticsoft.Model</RootNamespace>
+    <AssemblyName>Maticsoft.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Maticsoft.Accounts">
+      <HintPath>..\Lib\Maticsoft.Accounts.dll</HintPath>
+    </Reference>
+    <Reference Include="Maticsoft.ShoppingCart">
+      <HintPath>..\Lib\Maticsoft.ShoppingCart.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CMS\Comment.cs" />
+    <Compile Include="CMS\EnumHelper.cs" />
+    <Compile Include="CMS\JobTypeModel.cs" />
+    <Compile Include="CustomModel\SupplierPrice.cs" />
+    <Compile Include="JLT\AttendanceType.cs" />
+    <Compile Include="JLT\Reports.cs" />
+    <Compile Include="JLT\ToDoInfo.cs" />
+    <Compile Include="JLT\UserAttendance.cs" />
+    <Compile Include="Members\Enum\PointRule.cs" />
+    <Compile Include="Members\Guestbook.cs" />
+    <Compile Include="Members\Feedback.cs" />
+    <Compile Include="Members\FeedbackType.cs" />
+    <Compile Include="Members\PointsAction.cs" />
+    <Compile Include="Members\PointsDetail.cs" />
+    <Compile Include="Members\PointsLimit.cs" />
+    <Compile Include="Members\PointsRule.cs" />
+    <Compile Include="Members\SiteMessage.cs" />
+    <Compile Include="Members\SiteMessageLog.cs" />
+    <Compile Include="Members\Enum\MediaType.cs" />
+    <Compile Include="Members\UserCard.cs" />
+    <Compile Include="Members\UserInvite.cs" />
+    <Compile Include="Members\UserRank.cs" />
+    <Compile Include="Members\UsersApprove.cs" />
+    <Compile Include="Ms\Agent\AgentAD.cs" />
+    <Compile Include="Ms\Agent\AgentConfig.cs" />
+    <Compile Include="Ms\Agent\AgentMenus.cs" />
+    <Compile Include="Ms\Agent\AgentRank.cs" />
+    <Compile Include="Ms\Agent\AgentInfo.cs" />
+    <Compile Include="Ms\RegionAreas.cs" />
+    <Compile Include="Ms\EmailTemplet.cs" />
+    <Compile Include="Ms\EnumHelper.cs" />
+    <Compile Include="Ms\RegionRec.cs" />
+    <Compile Include="Ms\Theme.cs" />
+    <Compile Include="Ms\ThumbnailSize.cs" />
+    <Compile Include="Ms\WeiBoMsg.cs" />
+    <Compile Include="Ms\WeiBoTaskMsg.cs" />
+    <Compile Include="Pay\BalanceDetails.cs" />
+    <Compile Include="Pay\BalanceDrawRequest.cs" />
+    <Compile Include="Pay\RechargeRequest.cs" />
+    <Compile Include="Poll\PollActionHelper.cs" />
+    <Compile Include="Settings\Advertisement.cs" />
+    <Compile Include="Settings\AdvertisePosition.cs" />
+    <Compile Include="CMS\ClassType.cs" />
+    <Compile Include="CMS\Content.cs" />
+    <Compile Include="CMS\ContentClass.cs" />
+    <Compile Include="CMS\Video.cs" />
+    <Compile Include="CMS\VideoAlbum.cs" />
+    <Compile Include="CMS\VideoClass.cs" />
+    <Compile Include="Settings\EnumHelper.cs" />
+    <Compile Include="Settings\FilterWords.cs" />
+    <Compile Include="Settings\MainMenus.cs" />
+    <Compile Include="Settings\SEORelation.cs" />
+    <Compile Include="Settings\SettingConstant.cs" />
+    <Compile Include="Shop\ActivityManage\AMDetailModel.cs" />
+    <Compile Include="Shop\ActivityManage\AMModel.cs" />
+    <Compile Include="Shop\ActivityManage\AMPModel.cs" />
+    <Compile Include="Shop\Card\Shop_Card.cs" />
+    <Compile Include="Shop\Card\Shop_CardType.cs" />
+    <Compile Include="Shop\Card\Shop_CardUserInfo.cs" />
+    <Compile Include="Shop\Constant.cs" />
+    <Compile Include="Shop\Coupon\CouponHistory.cs" />
+    <Compile Include="Shop\Coupon\CouponInfo.cs" />
+    <Compile Include="Shop\Coupon\CouponClass.cs" />
+    <Compile Include="Shop\Coupon\CouponRule.cs" />
+    <Compile Include="Shop\Coupon\Shop_CouponRuleExt.cs" />
+    <Compile Include="Shop\Freight\Shop_ProductsFreight.cs" />
+    <Compile Include="Shop\Order\OrderReturnGoods.cs" />
+    <Compile Include="Shop\Order\OrderReturnGoodsItem.cs" />
+    <Compile Include="Shop\Order\Shop_ReturnOrderAction.cs" />
+    <Compile Include="Shop\PaymentNumber\Shop_PaymentNumber.cs" />
+    <Compile Include="Shop\Products\GoodsType.cs" />
+    <Compile Include="Shop\Products\Lucene\EnumSearchSortType.cs" />
+    <Compile Include="Shop\Products\Lucene\ProductIndexAPIBaseModel.cs" />
+    <Compile Include="Shop\Products\Lucene\ProductIndexField.cs" />
+    <Compile Include="Shop\Products\Lucene\IndexType.cs" />
+    <Compile Include="Shop\Products\Lucene\ProductSearchResult.cs" />
+    <Compile Include="Shop\Products\Lucene\ProductIndexLocalData.cs" />
+    <Compile Include="Shop\PromoteSales\GroupBuyHistory.cs" />
+    <Compile Include="Shop\PromoteSales\WeiXinGroupBuy.cs" />
+    <Compile Include="Shop\SalesPerson\SalesPersonModel.cs" />
+    <Compile Include="Shop\SalesPerson\SalesPersonCardsReportModel.cs" />
+    <Compile Include="Shop\SalesPerson\SalesPersonCardsSearchModel.cs" />
+    <Compile Include="Shop\Sales\ExpressTemplate.cs" />
+    <Compile Include="Shop\FavoriteEnums.cs" />
+    <Compile Include="Shop\Inquiry\InquiryInfo.cs" />
+    <Compile Include="Shop\Inquiry\InquiryItem.cs" />
+    <Compile Include="Shop\Order\EnumHelper.cs" />
+    <Compile Include="Shop\Order\OrderAction.cs" />
+    <Compile Include="Shop\Order\OrderItems.cs" />
+    <Compile Include="Shop\Order\OrderLookupItems.cs" />
+    <Compile Include="Shop\Order\OrderLookupList.cs" />
+    <Compile Include="Shop\Order\OrderOptions.cs" />
+    <Compile Include="Shop\Order\OrderRemark.cs" />
+    <Compile Include="Shop\Order\OrderInfo.cs" />
+    <Compile Include="Shop\Order\OrdersHistory.cs" />
+    <Compile Include="Shop\Order\OrderInfoEx.cs" />
+    <Compile Include="Shop\Products\ProductCategories.cs" />
+    <Compile Include="Shop\Products\ProductQA.cs" />
+    <Compile Include="Shop\Products\AttributeHelper.cs" />
+    <Compile Include="Shop\Favorite.cs" />
+    <Compile Include="Shop\Gift\ExchangeDetail.cs" />
+    <Compile Include="Shop\Gift\Gifts.cs" />
+    <Compile Include="Shop\Gift\GiftsCategory.cs" />
+    <Compile Include="Shop\Products\AttributeInfoEx.cs" />
+    <Compile Include="Shop\Products\HotKeyword.cs" />
+    <Compile Include="Shop\Products\ProductAccessorieEx.cs" />
+    <Compile Include="Shop\Products\ProductCompareServer.cs" />
+    <Compile Include="Shop\Products\ProductConsults.cs" />
+    <Compile Include="Shop\Products\ProductConsultsType.cs" />
+    <Compile Include="Shop\Products\ProductInfoEx.cs" />
+    <Compile Include="Shop\Products\ProductReviews.cs" />
+    <Compile Include="Shop\Products\ProductSearch.cs" />
+    <Compile Include="Shop\Products\ScoreDetails.cs" />
+    <Compile Include="Shop\Products\ShoppingCartItem.cs" />
+    <Compile Include="Shop\Products\SKUInfoEx.cs" />
+    <Compile Include="Shop\Products\SKUItemEx.cs" />
+    <Compile Include="Shop\Products\SKURelation.cs" />
+    <Compile Include="Shop\Package\Package.cs" />
+    <Compile Include="Shop\Package\PackageCategory.cs" />
+    <Compile Include="Shop\Package\ProductPackage.cs" />
+    <Compile Include="Shop\Products\ShoppingCartInfo.cs" />
+    <Compile Include="Shop\PromoteSales\CountDown.cs" />
+    <Compile Include="Shop\PromoteSales\GroupBuy.cs" />
+    <Compile Include="Shop\RechargeCards\RechargeCards.cs" />
+    <Compile Include="Shop\Sales\SalesItem.cs" />
+    <Compile Include="Shop\Sales\SalesRule.cs" />
+    <Compile Include="Shop\Sales\SalesRuleProduct.cs" />
+    <Compile Include="Shop\Sales\SalesUserRank.cs" />
+    <Compile Include="Shop\Sales\ShipperInfo.cs" />
+    <Compile Include="Shop\Sample\Sample.cs" />
+    <Compile Include="Shop\Sample\SampleDetail.cs" />
+    <Compile Include="Shop\Shippers.cs" />
+    <Compile Include="Shop\Shipping\Express.cs" />
+    <Compile Include="Shop\Shipping\ShippingAddress.cs" />
+    <Compile Include="Shop\Shipping\ShippingPayment.cs" />
+    <Compile Include="Shop\Shipping\ShippingRegionGroups.cs" />
+    <Compile Include="Shop\Shipping\ShippingRegions.cs" />
+    <Compile Include="Shop\Shipping\ShippingType.cs" />
+    <Compile Include="Shop\Shipping\Shop_freefreight.cs" />
+    <Compile Include="Shop\Supplier\SupplierAD.cs" />
+    <Compile Include="Shop\Supplier\SupplierCategories.cs" />
+    <Compile Include="Shop\Supplier\SupplierComm.cs" />
+    <Compile Include="Shop\Supplier\SupplierConfig.cs" />
+    <Compile Include="Shop\Supplier\SupplierMenus.cs" />
+    <Compile Include="Shop\Supplier\SupplierRank.cs" />
+    <Compile Include="Shop\Supplier\SupplierRankThemes.cs" />
+    <Compile Include="Shop\Supplier\SupplierInfo.cs" />
+    <Compile Include="Shop\Supplier\SupplierScoreDetails.cs" />
+    <Compile Include="Shop\Supplier\SupplierThemes.cs" />
+    <Compile Include="Shop\Supplier\SuppProductCategories.cs" />
+    <Compile Include="Shop\Supplier\SuppProductStatModes.cs" />
+    <Compile Include="Shop\Tags\TagCategories.cs" />
+    <Compile Include="Shop\Tags\Tags.cs" />
+    <Compile Include="Shop\Tags\TagsEnum.cs" />
+    <Compile Include="SNS\AlbumType.cs" />
+    <Compile Include="SNS\Categories.cs" />
+    <Compile Include="SNS\CategorySource.cs" />
+    <Compile Include="SNS\Comments.cs" />
+    <Compile Include="SNS\EnumHelper.cs" />
+    <Compile Include="SNS\FellowTopics.cs" />
+    <Compile Include="SNS\GradeConfig.cs" />
+    <Compile Include="SNS\Groups.cs" />
+    <Compile Include="SNS\GroupTags.cs" />
+    <Compile Include="SNS\GroupTopicFav.cs" />
+    <Compile Include="SNS\GroupTopicReply.cs" />
+    <Compile Include="SNS\GroupTopics.cs" />
+    <Compile Include="SNS\GroupUsers.cs" />
+    <Compile Include="SNS\GuestBook.cs" />
+    <Compile Include="Appt\Reservation.cs" />
+    <Compile Include="SNS\SearchWordTop.cs" />
+    <Compile Include="SNS\MsgTip.cs" />
+    <Compile Include="SNS\PhotoTags.cs" />
+    <Compile Include="SNS\PicAd.cs" />
+    <Compile Include="SNS\PostContent.cs" />
+    <Compile Include="SNS\OnLineShopPhoto.cs" />
+    <Compile Include="SNS\Photos.cs" />
+    <Compile Include="SNS\Posts.cs" />
+    <Compile Include="SNS\PostsSet.cs" />
+    <Compile Include="SNS\PostsTopics.cs" />
+    <Compile Include="SNS\ProductQuery.cs" />
+    <Compile Include="SNS\Products.cs" />
+    <Compile Include="SNS\ProductSources.cs" />
+    <Compile Include="SNS\ReferUsers.cs" />
+    <Compile Include="SNS\Report.cs" />
+    <Compile Include="SNS\ReportType.cs" />
+    <Compile Include="SNS\HotWords.cs" />
+    <Compile Include="SNS\SearchWordLog.cs" />
+    <Compile Include="Appt\Services.cs" />
+    <Compile Include="Appt\ServicesEx.cs" />
+    <Compile Include="SNS\Star.cs" />
+    <Compile Include="SNS\StarRank.cs" />
+    <Compile Include="SNS\StarType.cs" />
+    <Compile Include="SNS\Tags.cs" />
+    <Compile Include="SNS\TagType.cs" />
+    <Compile Include="SNS\UserAlbumDetail.cs" />
+    <Compile Include="SNS\UserAlbums.cs" />
+    <Compile Include="SNS\UserAlbumsType.cs" />
+    <Compile Include="SNS\UserBlog.cs" />
+    <Compile Include="SNS\UserFavAlbum.cs" />
+    <Compile Include="SNS\UserFavourite.cs" />
+    <Compile Include="SNS\UserShip.cs" />
+    <Compile Include="SNS\UserShipCategories.cs" />
+    <Compile Include="SNS\Videos.cs" />
+    <Compile Include="SNS\VisiteLogs.cs" />
+    <Compile Include="Settings\FriendlyLink.cs" />
+    <Compile Include="Members\MailConfig.cs" />
+    <Compile Include="Ms\Enterprise.cs" />
+    <Compile Include="Members\EntryForm.cs" />
+    <Compile Include="Ms\Regions.cs" />
+    <Compile Include="CMS\Photo.cs" />
+    <Compile Include="CMS\PhotoAlbum.cs" />
+    <Compile Include="CMS\PhotoClass.cs" />
+    <Compile Include="Poll\Forms.cs" />
+    <Compile Include="Poll\Options.cs" />
+    <Compile Include="Poll\Reply.cs" />
+    <Compile Include="Poll\Topics.cs" />
+    <Compile Include="Poll\UserPoll.cs" />
+    <Compile Include="Poll\PollUsers.cs" />
+    <Compile Include="Shop\Products\AccessoriesValue.cs" />
+    <Compile Include="Shop\Products\AttributeInfo.cs" />
+    <Compile Include="Shop\Products\AttributeValue.cs" />
+    <Compile Include="Shop\Products\BrandInfo.cs" />
+    <Compile Include="Shop\Products\CategoryInfo.cs" />
+    <Compile Include="Shop\Products\ProductEnums.cs" />
+    <Compile Include="Shop\Products\Distributor.cs" />
+    <Compile Include="Shop\Products\LineDistributor.cs" />
+    <Compile Include="Shop\Products\ProductAccessorie.cs" />
+    <Compile Include="Shop\Products\ProductAttribute.cs" />
+    <Compile Include="Shop\Products\ProductImage.cs" />
+    <Compile Include="Shop\Products\ProductLine.cs" />
+    <Compile Include="Shop\Products\ProductInfo.cs" />
+    <Compile Include="Shop\Products\ProductStationMode.cs" />
+    <Compile Include="Shop\Products\ProductTypeBrand.cs" />
+    <Compile Include="Shop\Products\ProductType.cs" />
+    <Compile Include="Shop\Products\RelatedProduct.cs" />
+    <Compile Include="Shop\Products\SKUItem.cs" />
+    <Compile Include="Shop\Products\SKUMemberPrice.cs" />
+    <Compile Include="Shop\Products\SKUInfo.cs" />
+    <Compile Include="SNS\ZuiInPhoto.cs" />
+    <Compile Include="SysManage\ApplicationKeyType.cs" />
+    <Compile Include="SysManage\ConfigArea.cs" />
+    <Compile Include="SysManage\EnumHelper.cs" />
+    <Compile Include="SysManage\ErrorLog.cs" />
+    <Compile Include="SysManage\SysNode.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Members\UserBind.cs" />
+    <Compile Include="SysManage\TaskQueue.cs" />
+    <Compile Include="SysManage\UserLog.cs" />
+    <Compile Include="Members\Users.cs" />
+    <Compile Include="Members\UsersExp.cs" />
+    <Compile Include="SysManage\VerifyMail.cs" />
+    <Compile Include="Team\Accounts.cs" />
+    <Compile Include="Team\AppInCome.cs" />
+    <Compile Include="Team\AppMember.cs" />
+    <Compile Include="Team\SalesInfo.cs" />
+    <Compile Include="Team\SalesPerformance.cs" />
+    <Compile Include="Team\SalesPersonBillboard.cs" />
+    <Compile Include="Team\SalesPersonModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Maticsoft.Payment\Maticsoft.Payment.csproj">
+      <Project>{f441a3ed-f88e-4862-8648-d8a4c37e13c8}</Project>
+      <Name>Maticsoft.Payment</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

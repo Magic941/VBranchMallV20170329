@@ -1,0 +1,67 @@
+﻿<!--首页开始--->
+        <header class="header index tab-buttons">
+            <span class="selected">首页</span>
+            <span class="">新闻中心</span>
+            <span class="">产品服务</span>
+            @*<span class="" style="display:none;">视频</span>*@
+            <span class="">关于我们</span>
+        </header>
+        <div class="content content_index">
+            <div class="tab-content">
+                <div style="display: block;">
+                    <img  src="@ViewBag.MPageLogo" width="135" height="68"  alt="logo" class="logo">@*/Areas/MPage/Themes/Wap21/Content/images/logo.png*@
+                    @Html.Action("NavBar", "Partial", new { viewName = "_IndexNav" })
+                    <article class="copyer">
+                        <div class="versions controlgroup">
+                            <span>
+                                <a href="http://www.maticsoft.com" target="_blank" class="ui-link"> 桌面版 </a>
+                            </span>
+                            <span class="selected">
+                                <a class="ui-link"> 触屏版 </a>
+                            </span>
+                        </div><span style=" font-family:宋体">@Html.Raw(ViewBag.WebPowerBy) </span></article> 
+                </div>
+                <!--新闻列表开始-->
+                <div style="display: none;" class="mainlistsbox news">
+                    <ol class="listbox">
+                        @Html.Action("IndexNewsList", "Home", new { classID = 19, viewName = "_IndexNewsList", top = 10, topclass = 3 })
+                    </ol>
+                    <div class="list_more">
+                        <a href="javascript:;" onclick="pageloadByPage('Article','newsList_19page1','新闻中心','NewsListTwo', 'NewsList','19','1','','3')" class="button ui-link"> 查看 更多新闻 &gt;&gt;</a>
+                    </div>
+                </div>
+                <!--新闻列表结束-->
+
+                <!--产品开始-->
+                <div style="display: none;" class="mainlistsbox products">
+                    <div class="ax-waterfall-list">
+
+                     @Html.Action("IndexNewsList", "Home", new { classID = 23, hasImageurl= true, viewName = "_IndexProductList", top = 10, topclass = 3 })
+
+                    </div>
+                    <div class="list_more">
+                        <a href="javascript:;" onclick="pageloadByPage('Article','productsList_23page1','产品服务','NewsListTwo', 'ProductsList','23','1',true,'3')" class="button ui-link"> 查看 更多产品 &gt;&gt;</a>
+                    </div>
+                </div>
+                <!--产品结束-->
+               
+              @* <!--视频开始-->
+                <div style="display: none;" class="mainlistsbox videos">
+                    <div class="ax-waterfall-list">
+                        @Html.Action("RecVideos", "Home", new { top = 3, viewName = "_IndexVideosList" })                    
+                    </div>
+                    <div class="list_more">
+                        <a href="javascript:;" onclick="pageloadByPage('Videos','videosList_page1','视频','VideosList', 'VideosList','-1','1')" class="button ui-link"> 查看 更多视频 &gt;&gt;</a>
+                    </div>
+                </div>
+                <!--视频结束-->*@
+                   <!--关于我们开始-->
+                <div style="display: none;" class="mainlistsbox case">
+                     @Html.Action("SingleArticleDetail", "Article", new { classID = 35, viewName = "_Company" })
+                </div>
+                <!--关于我们结束-->
+
+            </div>
+        </div>
+   <!-- </div>-->
+<!--首页结束-->

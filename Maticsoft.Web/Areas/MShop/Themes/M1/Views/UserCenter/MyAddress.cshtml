@@ -1,0 +1,286 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "我的收货地址";
+}
+@model List<Maticsoft.Model.Shop.Shipping.ShippingAddress>
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/myfans.css" rel="stylesheet" type="text/css" />
+<style>
+body{
+	}
+ul{
+	padding:0;
+	margin:0;
+	}
+ @@media (min-width: 1440px){
+
+}
+
+@@media (min-width: 1330px){
+/* 1080+, Wide Screen */
+}
+
+@@media (min-width: 1280px){	
+/* 1080+, Wide Screen */
+.classify li a{
+	height:432px;
+	}
+.classify li a span{
+	padding-top:160px;
+	}
+.site_icon{
+	top:16px;
+	right:12px;
+	}
+.site_icon a{
+	width:2rem;
+	height:2rem;
+	}
+.receipt ul{
+	width:97%;
+	}
+}
+
+@@media (min-width: 1024px){
+/* 1080+, Wide Screen */
+
+}
+@@media (max-width: 980px) {
+/* 980-, Wide Mobile Or Computer */
+.classify li a{
+	height:329px;
+	}
+.classify li a span{
+	padding-top:150px;
+	}
+.site_icon{
+	top:16px;
+	right:12px;
+	}
+.site_icon a{
+	width:2rem;
+	height:2rem;
+	}
+.receipt ul{
+	width:96%;
+	}
+}
+
+
+@@media (max-width: 979px) {
+/* 980-, Wide Mobile Or Computer */
+
+
+}
+@@media (max-width: 800px) {
+/* 980-, Wide Mobile Or Computer */
+.classify li a{
+	height:268.5px;
+	}
+.classify li a span{
+	padding-top:100px;
+	}
+.site_icon{
+	top:16px;
+	right:12px;
+	}
+.site_icon a{
+	width:2rem;
+	height:2rem;
+	}
+.receipt ul{
+	width:95%;
+	}
+}
+
+@@media (max-width: 768px) {
+/* 768-980, General Mobile */
+}
+
+@@media (max-width: 640px){
+}
+
+@@media (max-width: 480px) {
+/* 480-, Narrow Screen Mobile Or Net Books */
+
+}
+@@media (max-width: 360px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.classify li a{
+	height:121px;
+	}
+.classify li a span{
+	padding-top:40px;
+	}
+.site_icon{
+	top:12px;
+	right:8px;
+	}
+.site_icon a{
+	width:1.3rem;
+	height:1.3rem;
+	}
+.receipt ul{
+	width:90%;
+	}
+	
+}
+
+@@media (max-width: 345px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+
+}
+
+@@media (max-width: 320px) {
+/* 320-, Narrow Screen Mobile Or Net Books */
+.classify li a{
+	height:107.5px;
+	}
+.classify li a span{
+	padding-top:40px;
+	}
+.site_icon{
+	top:10px;
+	right:6px;
+    float:right;
+	}
+.site_icon a{
+
+	width:1rem;
+	height:1rem;
+	}
+.receipt ul{
+	width:90%;
+	}
+	
+}
+.receipt ul{
+	margin:0 auto;
+	padding:30px 0 15px 0;
+	}
+.receipt li{
+	}
+.receipt-site{
+	width:100%;
+	background:#fff;
+	border:1px solid #959595;
+	border-radius:15px;
+	padding:5px 0;
+	position:relative;
+	}
+.receipt-site span{
+	width:90%;
+	margin:0 auto;
+	display:block;
+	border-bottom:1px solid #959595;
+	}
+.receipt-site em{
+	padding-right:10px;
+	}
+.receipt-site em,.receipt-site i{
+	height:2.5rem;
+	line-height:2.5rem;
+	font-style:normal;
+	}
+.receipt-site p{
+	width:90%;
+	margin:0 auto;
+	font-size:0.8rem;
+	padding-top:15px;
+	}
+.receipt_append{
+	width:40%;
+	height:2.5rem;
+	margin:0 auto;
+	border:2px solid #D91C10;
+	background:#fff;
+	border-radius:13px;
+	}
+.receipt_append a{
+	height:2.5rem;
+	line-height:2.5rem;
+	text-align:center;
+	display:block;
+	color:#D91C10;
+	}
+.default input{
+	}
+.default span{
+	height:30px;
+	line-height:30px;
+	font-size:0.8rem;
+	}
+.site_icon{
+	position:absolute;
+	}
+.site_icon a{
+	display:block;
+	}
+.site_icon a img{
+	width:100%;
+	}
+
+
+
+
+</style>
+<script type="text/javascript">
+    $(function () {
+        $(".setOnly").click(function () {
+            if ($(this).is(":checked")) {
+                $(".setOnly").removeAttr("checked");
+                $(this).attr("checked","checked");
+            }
+
+            $(".setOnly").each(function () {
+                var tag = false;
+                if ($(this).is(":checked")) {
+                    tag = true;
+                }
+                $.post(
+                        '@(ViewBag.BasePath)u/SetDefaultAddress',
+                        { id: $(this).attr("data-key"), State: tag },
+                        function (data) {
+                            if (data == "OK") {
+
+                            } else {
+                                ShowFailTip("服务器忙, 请稍后再试!");
+                            }
+                        }
+                    );
+            });
+        });
+    });
+</script>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+    <span style="padding-left: 32px">我的收货地址</span>
+</div>
+
+<div class="receipt">
+    	<ul>
+            @if (Model != null && Model.Count > 0)
+            {
+                foreach (Maticsoft.Model.Shop.Shipping.ShippingAddress item in Model)
+                {
+        	<li>
+            	<div class="receipt-site">
+                	<span>
+                    	<em>@item.ShipName</em>
+                        <i>@item.CelPhone</i>
+                        <i style="float: right; margin-right:10px;"><a href="@(ViewBag.BasePath)u/ShippAddress/@(item.ShippingId)"><img src="/Areas/MShop/Themes/M1/Content/img/icon4_03.jpg" style="width:1.2rem;height:1.2rem;"/></a></i>
+                    </span>
+                    <p>@item.RegionFullName @item.Address</p>
+                    @*<div class="site_icon"><a href="@(ViewBag.BasePath)u/ShippAddress/@(item.ShippingId)"><img src="/Areas/MShop/Themes/M1/Content/img/icon4_03.jpg"/></a></div>*@
+                </div>
+                <div class="default">
+                	<input type="checkbox" data-key="@(item.ShippingId)" class="setOnly" @(item.IsDefault?"checked='checked'":"") />
+                	<span>设为默认</span>
+                </div>
+            </li>
+                }
+            }
+        </ul>
+        <div class="receipt_append"><a href="@(ViewBag.BasePath)u/ShippAddress/">添加新的地址</a></div>
+    </div>

@@ -1,0 +1,98 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "商品分类";
+    ViewBag.Keywords = "商品分类";
+    ViewBag.Description = "商品分类";
+}
+@model List<Maticsoft.Model.Shop.Products.GoodsType>
+<script type="text/javascript">
+    $(function () {
+        $(".CategoryList").click(function () {
+            $(this).next().toggle();
+        });
+    })
+</script>
+<style>
+    .assor-tment-JI li {
+        height: 2.5rem;
+        border-top: 1px solid #cbcbcb;
+        overflow: hidden;
+    }
+
+        .assor-tment-JI li a {
+            display: block;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding: 0 20px 0 35px;
+            background: #ececec;
+        }
+
+            .assor-tment-JI li a span {
+                display: block;
+                float: left;
+                font-size: 0.8rem;
+                color: #747474;
+            }
+
+            .assor-tment-JI li a em {
+                width: 0.5rem;
+                height: 1rem;
+                display: block;
+                float: right;
+                margin-top: 5px;
+            }
+
+                .assor-tment-JI li a em img {
+                    width: 100%;
+                }
+
+            .assor-tment-JI li a:hover {
+                background: #fff;
+            }
+
+                .assor-tment-JI li a:hover span {
+                    color: #c7000b;
+                }
+
+    .title_List span {
+        height: 50px;
+        line-height: 50px;
+        display: block;
+        padding: 0 0 0 15px;
+        color: red;
+        font-size: 1.2rem;
+    }
+</style>
+<div class="top">
+    @if (ViewBag.ParentId > -1)
+    {
+        <a href="@(ViewBag.BasePath)p/c/@ViewBag.ParentId"><span>@ViewBag.CurrentName</span></a>
+    }
+    else
+    {
+        <span>全部分类</span>
+    }
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="assor-tment-JI" style="">
+    <div class="title_List">
+        <span>@ViewBag.Name</span>
+    </div>
+    <ul style="margin: 0; padding: 0;">
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+            <li>
+                <a href="@(ViewBag.BasePath)p/@item.GoodTypeID">
+                    <span>@item.GoodTypeName</span>
+                    <em>
+                        <img src="/Areas/MShop/Themes/M1/Content/img/right_icon_03.png" />
+                    </em>
+                </a>
+            </li>
+            }
+        }
+    </ul>
+</div>

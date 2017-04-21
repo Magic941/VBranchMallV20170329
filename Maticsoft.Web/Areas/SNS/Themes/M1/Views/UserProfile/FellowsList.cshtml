@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.UserShip>
+<div class="user_cont_zuo">
+    <div class="dong">
+        <ul>
+            @if (ViewBag.IsCurrentUser == false)
+            {
+                <li><a href="@(ViewBag.BasePath)User/Fans?uid=@(ViewBag.UserId)" class="dong2">Ta的粉丝</a></li>
+                <li><a href="@(ViewBag.BasePath)User/Fellows?uid=@(ViewBag.UserId)" class="dong3">Ta的关注</a></li>
+            }
+            else
+            {
+                <li><a href="@(ViewBag.BasePath)Profile/Fans" class="dong2">我的粉丝</a></li>
+                <li><a href="@(ViewBag.BasePath)Profile/Fellows" class="dong3">我的关注</a></li>
+            }
+        </ul>
+    </div>
+    <!-- FansList BEGIN -->
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+    
+        <div class="myfans"  id="MaticsoftCancelAttention@(@item.PassiveUserID)">
+            <div class="myfans_a">
+                <div class="myfans_a1">
+                    <a href="@(ViewBag.BasePath)User/Posts?uid=@(item.PassiveUserID)" title="@item.NickName">
+                        <img src="/Upload/User/Gravatar/@(item.PassiveUserID).jpg" alt="@item.NickName" width="100px" height="100px;" /></a></div>
+                <div class="myfans_a2">
+                    <div class="myfans_a2_w">
+                        <p class="myfans_a2_w1">
+                            <a href="@(ViewBag.BasePath)User/Posts?uid=@(item.PassiveUserID)">@item.NickName</a></p>
+                        <p class="myfans_a2_w2">
+                            粉丝@(@item.FansCount)人</p>
+                        <p class="myfans_a2_w2">
+                            @item.Singature</p>
+                    </div>
+                    <div class="myfans_a2_x">
+                        <div class="myfans_a2_x1">
+                            @if (ViewBag.IsCurrentUser == false)
+                            {
+                                if (item.IsFellow == true)
+                                {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.PassiveUserID"   autotest="false" style="display:none">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  UserId="@item.PassiveUserID" >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                                }
+                                else
+                                {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.PassiveUserID"   autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.PassiveUserID" >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                                }
+                            }
+                            else
+                            {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.PassiveUserID"  style="display:none" autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  UserId="@item.PassiveUserID" >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                            }
+                        </div>
+                        <div class="myfans_a2_x2">
+                        @*    <p class="myfans_a2_x2a">
+                                <a href="javascript:;">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/newuser_6.jpg"></a></p>*@
+                          @*  <p class="myfans_a2_x2a">
+                                <a href="javascript:;">发私信</a></p>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        }
+    }
+    <!-- FansList BEGIN -->
+    <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model, new PagerOptions()
+   {
+       CssClass = "in_pages",
+       PageIndexParameterName = "page",
+       NumericPagerItemCount = 5,
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+   }, new AjaxOptions() { UpdateTargetId = "MaticsoftFellows" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+</div>
+

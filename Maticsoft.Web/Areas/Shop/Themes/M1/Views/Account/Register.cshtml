@@ -1,0 +1,78 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+    string regStr = ViewBag.RegisterToggle;
+}
+@model Maticsoft.ViewModel.Shop.RegisterModel
+@section head{
+
+    @*<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,reg-base,reg.css?v=12022713" />*@
+    <link href="/Scripts/jqueryui/base/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/Shop/Themes/M1/Content/Css/Style-1.css" rel="stylesheet" type="text/css" />
+    
+    <script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/EmailRegister.js"></script>
+    <link href="/Areas/Shop/Themes/M1/Content/Css/css/register/register.css" rel="stylesheet" />
+    
+}
+
+<script>
+    $(function () {
+        if ("@ViewBag.type" == "3") {
+            $("#CardActive").parent().addClass("active_y");
+            $("#EmailReg").parent().removeClass("active_y");
+            $("#PhoneReg").parent().removeClass("active_y");
+            $("#LoadDiv").load("/Account/HLCard");
+        }
+        else {
+            $("#LoadDiv").load("/Account/PhoneRegister");
+        }
+
+        
+        $("#PhoneReg").click(function () {
+            $(this).parent().addClass("active_y");
+            $("#CardActive").parent().removeClass("active_y");
+            $("#EmailReg").parent().removeClass("active_y");
+            $("#LoadDiv").load("/Account/PhoneRegister");
+
+        });
+        $("#EmailReg").click(function () {
+            $(this).parent().addClass("active_y");
+            $("#PhoneReg").parent().removeClass("active_y");
+            $("#CardActive").parent().removeClass("active_y");
+            $("#LoadDiv").load("/Account/EmailRegister");
+        });
+        $("#CardActive").click(function () {
+            $(this).parent().addClass("active_y");
+            $("#EmailReg").parent().removeClass("active_y");
+            $("#PhoneReg").parent().removeClass("active_y");
+            $("#LoadDiv").load("/Account/HLCard");
+        });
+    })
+</script>
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { Class = "wform form" }))
+{
+    <div class="disem_bark">
+        <div class="disem_bark_top clearfix">
+            <h1><a href="/">健康商城</a></h1>
+            <span>欢迎注册</span>
+        </div>
+        <div class="land_bark">
+            <div class="land_bark_nav">
+                <ul class="clearfix">
+                    <li class="active_y"><a id="PhoneReg" href="javascript:;">手机号注册</a></li>
+                    <li><a id="EmailReg" href="javascript:;">邮箱注册</a></li>
+                    <li><a id="CardActive" href="javascript:;">健康卡激活</a></li>
+                </ul>
+            </div>
+            <div class="mem_ber">               
+                <div id="LoadDiv"></div>
+            </div>
+        </div>
+    </div>
+    <div id="divUserAgreement" style="display: none;">
+    <div>
+        @Html.Raw(Model.UserAgreement)
+    </div>
+</div>
+
+}
+

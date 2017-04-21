@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_UserCenterLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc;
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+<input type="hidden" id="currentpage" value="span_11" />
+
+
+@*<ul class="crumb w980">
+    <li class="crumb-hp"><a title="首页" href="/">首页</a></li>
+    <li><a href="@(ViewBag.BasePath)UserCenter/">我的商城</a> </li>
+</ul>*@
+<div class="U-R">
+    <div class="U-R-T1">
+        <div class="clearfix U-R-Tbg">
+            <h3 class="fL">系统消息</h3>
+        </div>
+    </div>
+
+    <div id="SysInfoList">
+        @{Html.RenderPartial("~/Areas/Shop/Themes/M1/Views/UserCenter/_SysInfoList.cshtml", Model);}
+    </div>
+</div>

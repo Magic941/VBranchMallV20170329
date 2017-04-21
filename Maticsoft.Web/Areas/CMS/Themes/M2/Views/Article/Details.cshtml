@@ -1,0 +1,65 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@model Maticsoft.Model.CMS.Content
+@section head{
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/xiangqing.css" rel="stylesheet" type="text/css" />    
+}
+
+<div class="guanyu_wl">
+	<div class="w1200 me_wl">
+    	<div class="meleft_wl">
+        	<ul class="jiamenh_wl">
+                <li><a href="#" target="_blank"> </a></li>
+                <li style="border-bottom:none;"><a href="#" target="_blank"> </a></li>    
+                     
+            </ul>
+        </div>
+        <div class="mecenter_wl">
+        	<div class="tab" id="tab1">               
+                <ul class="qie_wl">
+                    <li class="@(Model.ClassID==42?"active":"")"><a href="/Article/ArticleList?classid=42&viewName=JKZhiShiList">健康知识</a></li>
+                    <li class="@(Model.ClassID==43?"active":"")"><a href="/Article/ArticleList?classid=43&viewName=JKZhiShiList">健康新闻</a></li>
+                    <li class="@(Model.ClassID==44?"active":"")"><a href="/Article/ArticleList?classid=44&viewName=JKZhiShiList">保险资讯</a></li>
+                    <li class="@(Model.ContentID==73?"active":"")"><a href="/Article/Details/73">加盟合作</a></li>
+                    <li class="@(Model.ContentID==72?"active":"")"><a href="/Article/Details/72">关于我们</a></li>                    
+                </ul>
+                <div class="active">
+                	<div class="zhishi_wl">
+                    	<h2>健康知识</h2>
+                        <p>作者：@Model.CreatedUserName&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;来源：@Model.BeFrom&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;@Model.CreatedDate.ToString("yyyy-MM-dd hh:mm:ss")</p>
+                    </div>
+                    <div class="mimi_wl">@Model.Title</div>
+                    <div class="jianjie_wl">
+                          @Html.Raw(Model.Description)
+                    </div>
+                    <!-- 按录入时间排序的  -->
+                    @Html.Action("ArticleNextUpPartial", "Article", new { classid = Model.ClassID,currentArticleId=Model.ContentID,viewName="_NewsNextAndUp", })
+                    <div class="zhuming_wl">
+                    	<h2>转载请注明出处:</h2>
+                        <div class="zhuan_wl">
+                        	<span>声<br />明</span>
+                            <p>1.本站遵循行业规范，任何转载的稿件都会明确标注作者和来源；2.本站的原创文章，请转载时务必注明文
+                                          章作者和来源，不尊重原创的行为我们将追究责任；3.作者投稿可能会经我们编辑修改或补充。</p>
+                        </div>
+                    </div>
+                </div>               
+                
+        	</div>
+        </div>
+        <div class="meright_wl">
+        	<div class="zhishi_wl">
+                <h2>精彩导读</h2>
+            </div>
+             @Html.Action("HomePartial", "Article", new { classid = Model.ClassID,viewName="_NewsRight",top=5,isRec=false  }) 
+            
+            <div class="zhishi_wl">
+                <h2>编辑推荐</h2>
+            </div>
+             
+             @Html.Action("HomePartial", "Article", new { classid = Model.ClassID,viewName="_NewsRightRec",top=5,isRec=true  }) 
+        </div>
+        <img class="fanhui_wl" src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw10.png" />
+        <div class="c"></div>
+    </div>
+</div>

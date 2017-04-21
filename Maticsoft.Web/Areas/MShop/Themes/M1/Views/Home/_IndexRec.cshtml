@@ -1,0 +1,48 @@
+﻿@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null && Model.Count > 0)
+{
+    int i = 0;
+    foreach (var item in Model)
+    {
+        i = i + 1;
+        if (i == 1)
+        {
+            <div class="Wechat_b">
+                <div class="Wechat_bag">
+                    <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/">
+                        <img class="lazy" data-original="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ImageUrl, "T300X300_")" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/" >@Maticsoft.Common.StringPlus.SubString(item.ProductName, "", 40, false)</a></p>
+                <em>¥ @item.LowestSalePrice.ToString("F")</em>
+            </div>
+        }
+        if (i == 1)
+        {
+          @Html.Raw("<div class='Wechat_cn'> <ul class=' clearfix'>")
+        }
+        if (i > 1)
+        {
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/" >
+                        <img class="lazy" data-original="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ImageUrl, "T300X300_")" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/" >@Maticsoft.Common.StringPlus.SubString(item.ProductName, "", 20, false)</a></p>
+                <div class="Wechat_sell">
+                    <em>¥ @item.LowestSalePrice.ToString("F")</em>
+                </div>
+            </li>	
+        }
+        if (i == Model.Count)
+        {
+            @Html.Raw(" </ul></div>")
+        }
+    }
+}
+
+
+
+
+
+
+

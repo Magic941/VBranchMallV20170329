@@ -1,0 +1,28 @@
+﻿@model List<Maticsoft.Model.CMS.Content>
+<!--一般的新闻-->
+@if (Model != null && Model.Count > 0)
+{
+     
+    
+    
+     <div class="adlr" style="top: 450px;">
+         @{
+             
+               var item = Model.FirstOrDefault();
+              <a href="/Article/Details/@item.ContentID">
+                <img src="@item.ImageUrl">
+
+              </a>
+          }
+
+           
+        </div>
+}
+else
+{
+      <div class="adlr" style="top: 450px;">
+            <a href="">
+                <img src="/Areas/CMS/Themes/M1/Content/99jkc/images/index_001.jpg"></a>
+        </div>
+    
+}

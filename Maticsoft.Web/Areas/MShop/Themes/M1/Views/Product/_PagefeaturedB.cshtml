@@ -1,0 +1,51 @@
+﻿
+
+@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+
+<div class='Wechat_cn'>
+    <ul class=' clearfix'>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <li>
+                <div class="Wechat_baf">
+                    <a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">
+                        <img class="lazy"  data-original="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T300X300_")" /></a>
+                </div>
+                <p><a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">@item.ProductName</a></p>
+                <div class="Wechat_sell">
+                    <em>￥@item.LowestSalePrice.ToString("F")</em>
+                </div>
+            </li>
+            }
+        }
+    </ul>
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "文章详细";
+}
+@model   Maticsoft.Model.CMS.Content
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)Article/ArticleList?classid=9">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@if (Model != null)
+{
+    <div class="home_newlist">
+        <div class="home_newtitle">
+            <span>@Model.Title</span> <small>@Model.CreatedDate.ToString("yyyy-MM-dd hh:mm")</small></div>
+        <div class="home_newcontent">
+            @Html.Raw(Model.Description)
+        </div>
+        
+    </div>
+    <div><span style="padding-left: 36px"><a href="@ViewBag.PreUrl">上一篇</a></span><span style="float: right;padding-right: 42px"><a href="@ViewBag.NextUrl">下一篇</a></span></div>
+}

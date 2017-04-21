@@ -1,0 +1,197 @@
+#menu .index::after,#navbar .index{
+	 background-image: url("../icon_files/index.png");
+}
+.site_menu .index{
+	 background-image: url("../icon_files/index1.png");
+}
+
+.page_index {
+	background:url("../../images/") no-repeat center;
+}
+.page_index {
+	background:url("../../images/") no-repeat center;
+}
+#menu .news::after,#navbar .news{
+	 background-image: url("../icon_files/news.png");
+}
+.site_menu .news{
+	 background-image: url("../icon_files/news1.png");
+}
+
+.page_news {
+	background:url("../../images/") no-repeat center;
+}
+.page_news {
+	background:url("../../images/") no-repeat center;
+}
+#menu .products::after,#navbar .products{
+	 background-image: url("../icon_files/products.png");
+}
+.site_menu .products{
+	 background-image: url("../icon_files/products1.png");
+}
+
+.page_products {
+	background:url("../../images/") no-repeat center;
+}
+.page_products {
+	background:url("../../images/") no-repeat center;
+}
+#menu .jobs::after,#navbar .jobs{
+	 background-image: url("../icon_files/jobs.png");
+}
+.site_menu .jobs{
+	 background-image: url("../icon_files/jobs1.png");
+}
+
+.page_jobs {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+.page_jobs {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+#menu .gbook::after,#navbar .gbook{
+	 background-image: url("../icon_files/gbook.png");
+}
+.site_menu .gbook{
+	 background-image: url("../icon_files/gbook1.png");
+}
+
+.page_gbook {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+.page_gbook {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+#menu .alinks::after,#navbar .alinks{
+	 background-image: url("../icon_files/alinks.png");
+}
+.site_menu .alinks{
+	 background-image: url("../icon_files/alinks1.png");
+}
+
+.page_alinks {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+.page_alinks {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+#menu .sitemap::after,#navbar .sitemap{
+	 background-image: url("../icon_files/sitemap.png");
+}
+.site_menu .sitemap{
+	 background-image: url("../icon_files/sitemap1.png");
+}
+
+.page_ {
+	background:url("") no-repeat center;
+}
+.page_ {
+	background:url("") no-repeat center;
+}
+#menu .videos::after,#navbar .videos{
+	 background-image: url("../icon_files/videos.png");
+}
+.site_menu .videos{
+	 background-image: url("../icon_files/videos1.png");
+}
+
+.page_videos {
+	background:url("../../images/") no-repeat center;
+}
+.page_videos {
+	background:url("../../images/") no-repeat center;
+}
+#menu .downs::after,#navbar .downs{
+	 background-image: url("../icon_files/downs.png");
+}
+.site_menu .downs{
+	 background-image: url("../icon_files/downs1.png");
+}
+
+.page_downs {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+.page_downs {
+	background:url("../../images/about_bg.jpg") no-repeat center;
+}
+#menu .survey::after,#navbar .survey{
+	 background-image: url("../icon_files/survey.png");
+}
+.site_menu .survey{
+	 background-image: url("../icon_files/survey1.png");
+}
+
+.page_survey {
+	background:url("../../images/survey.jpg") no-repeat center;
+}
+.page_survey {
+	background:url("../../images/survey.jpg") no-repeat center;
+}
+#menu .userregister::after,#navbar .userregister{
+	 background-image: url("../icon_files/single.png");
+}
+.site_menu .userregister{
+	 background-image: url("../icon_files/single1.png");
+}
+
+.page_userregister {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+.page_userregister {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+#menu .updateinfo::after,#navbar .updateinfo{
+	 background-image: url("../icon_files/single.png");
+}
+.site_menu .updateinfo{
+	 background-image: url("../icon_files/single1.png");
+}
+
+.page_updateinfo {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+.page_updateinfo {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+#menu .getpassword::after,#navbar .getpassword{
+	 background-image: url("../icon_files/single.png");
+}
+.site_menu .getpassword{
+	 background-image: url("../icon_files/single1.png");
+}
+
+.page_getpassword {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+.page_getpassword {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+#menu .myshopping::after,#navbar .myshopping{
+	 background-image: url("../icon_files/single.png");
+}
+.site_menu .myshopping{
+	 background-image: url("../icon_files/single1.png");
+}
+
+.page_myshopping {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+.page_myshopping {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+#menu .myorders::after,#navbar .myorders{
+	 background-image: url("../icon_files/single.png");
+}
+.site_menu .myorders{
+	 background-image: url("../icon_files/single1.png");
+}
+
+.page_myorders {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+.page_myorders {
+	background:url("../../images/about.jpg") no-repeat center;
+}
+
+#divaddressselect select{width:90px;}

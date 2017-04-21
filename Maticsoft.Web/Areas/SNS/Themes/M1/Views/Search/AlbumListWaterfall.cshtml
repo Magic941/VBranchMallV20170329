@@ -1,0 +1,39 @@
+﻿@using Maticsoft.ViewModel.SNS
+@model List<Maticsoft.ViewModel.SNS.AlbumIndex> 
+@{
+    foreach (var item in Model)
+        {
+            <div class="main_album_bl_f">
+                <h1>
+                    <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">@Maticsoft.Common.StringPlus.SubString(item.AlbumName,11,"..")</a>@* <span class="nub"> (@item.PhotoCount)</span>*@</h1>
+                <ul>
+              @{int n = 0;}
+            @for (n = 0; n < item.TopImages.Count; n++)
+            {
+                <li class="AlbumPart"><a class="pic_load" style="background: none;" href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.TopImages[n], "T60x60_"))" /></a></li>
+            }
+            @if (n < 9)
+            {
+                for (; n < 9; n++)
+                {
+                   <li class="AlbumPart">
+                    <img ref="/Areas/SNS/Themes/M1/Content/images/bgs.jpg" /></li>
+                }
+            }
+            <div class="main_beij"></div> <div class="main_wz">宝贝&nbsp;@(item.PhotoCount)&nbsp;|收藏&nbsp;@(item.FavouriteCount)&nbsp;</div>
+                </ul>
+                <div class="clear">
+                </div>
+                <div class="inside">
+                    <div class="album_anniu">
+                        <a href="javascript:;" class="FellowAlbum"  AlbumId=@item.AlbumID>
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_3.jpg" /></a> 
+               <a href="javascript:;" class="UnFellowAlbum"  style="display:none" AlbumId=@item.AlbumID   >
+                        <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao.jpg" /></a></div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        }
+}

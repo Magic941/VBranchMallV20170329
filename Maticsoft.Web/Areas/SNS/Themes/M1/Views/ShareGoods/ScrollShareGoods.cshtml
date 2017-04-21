@@ -1,0 +1,18 @@
+﻿<script src="/Scripts/pptBox.js" type="text/javascript"></script>
+@model List<Maticsoft.Model.SNS.Photos>
+<div id="cgun"  >
+      <script type="text/javascript">
+         var box = new PPTBox();
+         box.autoplayer = 3; //自动播放间隔时间
+         //box.add({"url":"图片地址","title":"悬浮标题","href":"链接地址"})
+      @foreach(var item  in Model)
+     {
+         @Html.Raw("box.add({ 'ref': '"+(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbImageUrl, "T211x1280_"))+"', 'href': '"+item.StaticUrl+"', 'title': '"+Maticsoft.Common.StringPlus.SubString(item.Description,8,"..")+"' });")
+     }
+         box.show();
+
+         $(function() {
+             $.scaleLoad('#cgun', 195, 265);
+         });
+    </script>
+</div>

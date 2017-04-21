@@ -1,0 +1,343 @@
+﻿@using (Html.BeginForm("MsgList", "WeChat", FormMethod.Post))
+{
+    <div class="nTab4">
+        <div class="TabTitle">
+            <ul id="myTab1">
+                <li class="active" onclick="nTabs(this,0);" id="tab0"><a href="javascript:;">关注时回复</a></li>
+                <li class="normal" onclick="nTabs(this,1);" id="tab1"><a href="javascript:;">默认回复消息</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="TabContent">
+        @*   <%-- 自动关注消息 --%>*@
+        <div id="myTab1_Content0">
+            <table style="width: 100%; border-top: none; border-bottom: none; padding-top: 10px"
+                cellpadding="2" cellspacing="1" class="border">
+                <tr>
+                    <td class="tdbg">
+                        <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                            <tr>
+                                <td class="td_class">
+                                    消息类型:
+                                </td>
+                                <td height="25">
+                                    @{
+    Maticsoft.WeChat.BLL.Core.SysMsg bll = new Maticsoft.WeChat.BLL.Core.SysMsg();
+    List<Maticsoft.WeChat.Model.Core.SysMsg> sysMsgs = bll.GetSysMsgList(ViewBag.OpenId);
+    Maticsoft.WeChat.Model.Core.SysMsg Subscription = sysMsgs.FirstOrDefault(c => c.SysType == 1);
+    if (Subscription.MsgType == "text")
+    {
+                                        <input type="radio" name="type_S" value="text" checked="checked" /><label>文本消息</label>
+                                        <input type="radio" name="type_S" value="news" /><label>图文消息</label>
+    }
+    else
+    {
+                                        <input type="radio" name="type_S" value="text" /><label>文本消息</label>
+                                        <input type="radio" name="type_S" value="news" checked="checked" /><label>图文消息</label>
+    }
+                                    }
+                                </td>
+                            </tr>
+                            <tr class="news_s" style="display: none">
+                                <td class="td_class" style="margin-top: 10px;">
+                                    图片：
+                                </td>
+                                <td height="25" style="padding-left: 5px">
+                                    <input type="hidden" name="path_s" id="path_s" value="@ViewBag.path"/>
+                                    <div id="fileQueue">
+                                    </div>
+                                    <input type="file" name="uploadify" id="uploadify_s" /><br />
+                                </td>
+                            </tr>
+                            <tr class="news_s" style="display: none">
+                                <td class="td_class" style="margin-top: 10px;">
+                                </td>
+                                <td height="25" style="padding-left: 5px">
+                                    <input type="image" src="@ViewBag.url" name="timage_s" id="timage_s" style="display: none" />
+                                </td>
+                            </tr>
+                            <tr class="news_s" style="display: none">
+                                <td class="td_class">
+                                    标题：
+                                </td>
+                                <td height="25">
+                                    <input type="text" name="txtTitle_S" style="width: 320px" value="@ViewBag.title" />
+                                </td>
+                            </tr>
+                            <tr class="news_s" style="display: none">
+                                <td class="td_class">
+                                    链接地址：
+                                </td>
+                                <td height="25">
+                                    <select id="sele_S" name="sele_S">
+                                        <option value="0" selected>首页</option>
+                                        <option value="1">自定义</option>
+                                    </select>
+                                    <input type="text" name="url_S" id="url_S" style="width: 320px; display: none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td height="25">
+                                    <textarea id="txtSubscription" name="txtSubscription" style="width: 80%" rows="5"
+                                        cols="3">@ViewBag.Subscription</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="TabContent">
+        @* <%-- 自动回复消息 --%>*@
+        <div id="myTab1_Content1" class="none4">
+            <table style="width: 100%; border-top: none; border-bottom: none; padding-top: 10px"
+                cellpadding="2" cellspacing="1" class="border">
+                <tr>
+                    <td class="tdbg">
+                        <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                            <tr>
+                                <td class="td_class">
+                                    消息类型：
+                                </td>
+                                <td height="25">
+                                    @{
+    Maticsoft.WeChat.BLL.Core.SysMsg bll2 = new Maticsoft.WeChat.BLL.Core.SysMsg();
+    List<Maticsoft.WeChat.Model.Core.SysMsg> sysMsgs2 = bll.GetSysMsgList(ViewBag.OpenId);
+    Maticsoft.WeChat.Model.Core.SysMsg ReplyMsg = sysMsgs2.FirstOrDefault(c => c.SysType == 2);
+    if (ReplyMsg.MsgType == "text")
+    {
+                                        <input type="radio" name="type_R" value="text" checked="checked" /><label>文本消息</label>
+                                        <input type="radio" name="type_R" value="news" /><label>图文消息</label>
+    }
+    else
+    {
+                                        <input type="radio" name="type_R" value="text" /><label>文本消息</label>
+                                        <input type="radio" name="type_R" value="news" checked="checked" /><label>图文消息</label>
+    }
+                                    }
+                                </td>
+                            </tr>
+                            <tr class="news_r" style="display: none">
+                                <td class="td_class" style="margin-top: 10px;">
+                                    图片：
+                                </td>
+                                <td height="25" style="padding-left: 5px">
+                                    <input type="hidden" name="path_R" value="@ViewBag.pathR" id="path_R"/>
+                                    <div id="Div1">
+                                    </div>
+                                    <input type="file" name="uploadify" id="uploadify_R" /><br />
+                                </td>
+                            </tr>
+                            <tr class="news_r" style="display: none">
+                                <td class="td_class" style="margin-top: 10px;">
+                                </td>
+                                <td height="25" style="padding-left: 5px">
+                                    <input type="image" src="@ViewBag.urlR" name="timage_R" id="timage_R" style="display: none" />
+                                </td>
+                            </tr>
+                            <tr class="news_r" style="display: none">
+                                <td class="td_class">
+                                    标题：
+                                </td>
+                                <td height="25">
+                                    <input type="text" id="txtTitle_R" style="width: 320px" name="txtTitle_R" value="@ViewBag.Rtitle"/>
+                                </td>
+                            </tr>
+                            <tr class="news_r" style="display: none">
+                                <td class="td_class">
+                                    链接地址：
+                                </td>
+                                <td height="25">
+                                    <select id="sele_R" name="sele_R">
+                                        <option value="0" selected>首页</option>
+                                        <option value="1">自定义</option>
+                                    </select>
+                                    <input type="text" name="txtUrl_R" id="txtUrl_R" style="display: none" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="td_class">
+                                </td>
+                                <td height="25">
+                                    <textarea id="txtReplyMsg" name="txtReplyMsg" style="width: 80%" rows="5" cols="3">@ViewBag.ReplyMsg</textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <table style="width: 100%; border-top: none; float: left; padding-top: 20px; padding-bottom: 20px"
+        cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="0" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <input type="submit" id="btnSave" name="btnSave" value="全部保存" class="adminsubmit" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: '/ueditor/themes/default/iframe.css', toolbars: [
+            ['source', 'link', 'unlink']],
+        initialContent: '',
+        minFrameHeight: 220,
+        initialFrameHeight: 220,
+        pasteplain: false
+         , wordCount: false
+          , elementPathEnabled: false
+ , autoClearinitialContent: false, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor.render(document.getElementById("txtSubscription")); //将编译器渲染到容器
+
+    var editor2 = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: '/ueditor/themes/default/iframe.css', toolbars: [
+            ['source', 'link', 'unlink']
+                 ],
+        initialContent: '',
+        minFrameHeight: 220,
+        initialFrameHeight: 220,
+        pasteplain: false
+         , wordCount: false
+          , elementPathEnabled: false
+ , autoClearinitialContent: false, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor2.render(document.getElementById("txtReplyMsg")); //将编译器渲染到容器
+
+    $(function () {
+        $("#baidu_editor_1").css("height", "220px");
+
+
+        //初次加载数据
+        var type_s = $(':radio[name=type_S]:checked').val();
+        if (type_s == "news") {
+            $("#timage_s").show();
+            $(".news_s").show();
+        }
+
+        var type_r = $(':radio[name=type_R]:checked').val();
+        if (type_r == "news") {
+            $("#timage_R").show();
+            $(".news_r").show();
+        }
+
+
+        $("[name=type_S]").change(function () {
+            var value = $(this).val();
+            $(".news_s").hide();
+            if (value == "news") {
+                $(".news_s").show();
+            }
+        });
+
+
+        $("[name=type_R]").change(function () {
+            var value = $(this).val();
+            $(".news_r").hide();
+            if (value == "news") {
+                $(".news_r").show();
+            }
+        });
+
+        $("#sele_S").click(function () {
+            if ($("#sele_S").val() == 1) {
+                $("#url_S").show();
+            } else {
+                $("#url_S").hide();
+            }
+        });
+        $("#sele_R").click(function () {
+            if ($("#sele_R").val() == 1) {
+                $("#txtUrl_R").show();
+            } else {
+                $("#txtUrl_R").hide();
+            }
+        });
+
+        $("#uploadify_s").uploadify({
+            'uploader': '/admin/js/jquery.uploadify/uploadify-v2.1.0/uploadify.swf',
+            'script': '/WeChatImg.aspx',
+            'cancelImg': '/admin/js/jquery.uploadify/uploadify-v2.1.0/cancel.png',
+            'buttonImg': '/admin/images/uploadfile.jpg',
+            'queueID': 'fileQueue',
+            'width': 76,
+            'height': 25,
+            'auto': true,
+            'multi': true,
+            'fileExt': '*.jpg;*.gif;*.png;*.bmp',
+            'fileDesc': 'Image Files (.JPG, .GIF, .PNG)',
+            'queueSizeLimit': 1,
+            'sizeLimit': 1024 * 1024 * 10,
+            'onInit': function () {
+            },
+
+            'onSelect': function (e, queueID, fileObj) {
+            },
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                var responseJSON = $.parseJSON(response);
+                if (responseJSON.success) {
+                    $("#timage_s").attr("src", responseJSON.data.format('T_'));
+                    $("#timage_s").show();
+                    $("#path_s").val(responseJSON.data);
+                }
+                else {
+                    ShowFailTip("图片上传失败！", 2000);
+                }
+            },
+
+            'onError': function (event, ID, fileObj, errorObj) {
+                ShowFailTip('上传文件发生错误, 状态码: [' + errorObj.info + ']', 2000);
+            }
+        });
+
+        $("#uploadify_R").uploadify({
+            'uploader': '/admin/js/jquery.uploadify/uploadify-v2.1.0/uploadify.swf',
+            'script': '/WeChatImg.aspx',
+            'cancelImg': '/admin/js/jquery.uploadify/uploadify-v2.1.0/cancel.png',
+            'buttonImg': '/admin/images/uploadfile.jpg',
+            'queueID': 'fileQueue',
+            'width': 76,
+            'height': 25,
+            'auto': true,
+            'multi': true,
+            'fileExt': '*.jpg;*.gif;*.png;*.bmp',
+            'fileDesc': 'Image Files (.JPG, .GIF, .PNG)',
+            'queueSizeLimit': 1,
+            'sizeLimit': 1024 * 1024 * 10,
+            'onInit': function () {
+            },
+
+            'onSelect': function (e, queueID, fileObj) {
+            },
+            'onComplete': function (event, queueId, fileObj, response, data) {
+                var responseJSON = $.parseJSON(response);
+                if (responseJSON.success) {
+                    $("#timage_R").attr("src", responseJSON.data.format('T_'));
+                    $("#timage_R").show();
+                    $("#path_R").val(responseJSON.data);
+                }
+                else {
+                    ShowFailTip("图片上传失败！", 2000);
+                }
+            },
+
+            'onError': function (event, ID, fileObj, errorObj) {
+                ShowFailTip('上传文件发生错误, 状态码: [' + errorObj.info + ']', 2000);
+            }
+        });
+    });
+
+
+</script>

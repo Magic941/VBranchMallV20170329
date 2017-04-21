@@ -1,0 +1,98 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.UserBlog>
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+
+}
+@section head{
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/slides.min.jquery.js"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/CheckUserIsJoinGroup.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/GroupInfo.js" type="text/javascript"></script>
+
+}
+<!------Single group-------->
+<div class="clear">
+</div>
+<div class="single_bk">
+    <div class="single_bk_F">
+        <div class="single_bk_FA">
+            <div class="clear">
+            </div>
+            <div class="single_CF">
+                <div class="single_CF_s">
+                    <h1>
+                        用户博客</h1>
+                    <div class="topShow" id="tab">
+                        <div class="tabmenu">
+                            <ul style="display: none">
+                                <li><a href="" class="tabmenu_a" id="tabAll">全部</a></li>
+                                <li><a href="" class="tabmenu_b" id="tabRecommand">推荐</a></li>
+                            </ul>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="content" style="display: block;">
+                            <div class="content_sear">
+                                <dl class="content_sear_a">
+                                    共有@(ViewBag.TotalCount)
+                                    篇文章</dl>
+                                <dl class="content_sear_b">
+                                    <dl class="content_sear_bu" style="display: none">
+                                        <dt class="content_sear_bua" id="searchtopic"><a href="javascript:;">
+                                            <img src="/Areas/SNS/Themes/M1/Content/images/single_6.jpg" /></a></dt>
+                                        <dd class="content_sear_bub">
+                                        </dd>
+                                    </dl>
+                                </dl>
+                                <div class="clear">
+                                </div>
+                            </div>
+                            <div class="content_post" id="MaticsoftToplist" style="margin-top: -20px">
+                                @{Html.RenderPartial("/Areas/SNS/Themes/M1/Views/Blog/BlogList.cshtml", Model);}
+                                <div class="clear">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!------右侧内容------->
+                <div class="single_CF_t">
+                    <div class="clear">
+                    </div>
+                    <dl class="single_newest">
+                        <h1>
+                            热门文章</h1>
+                        @Html.Action("HotBlog", "Blog", new { Top = 15, ViewName = "_BlogPart" })
+                    </dl>
+                    <div class="clear">
+                    </div>
+                    
+                    <dl class="single_online">
+                   <h1>活跃用户</h1>
+                     @Html.Action("ActiveUser", "Blog", new { Top = 15, ViewName = "_ActiveUser" })
+                   <div class="clear"></div>
+                   @if (ViewBag.IsJoin == false)
+                   {
+                    <dl class="single_online_sq" ><a href="javascript:void(0)" class="joingroup">申请加入</a></dl>
+                   }
+                   
+                <div class="clear"></div>
+               </dl>
+               
+                        <dl class="single_newest">
+                        <h1>
+                            最新评论</h1>
+                        @Html.Action("NewComment", "Blog", new { Top = 15, ViewName = "_NewComment" })
+                    </dl>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------Single group end----->

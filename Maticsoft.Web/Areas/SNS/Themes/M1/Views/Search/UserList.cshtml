@@ -1,0 +1,71 @@
+﻿@{
+    Layout = null;
+}
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Members.UsersExpModel>
+<div class="user_cont_zuo">
+
+    <!-- FansList BEGIN -->
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+    
+        <div class="myfans">
+            <div class="myfans_a">
+                <div class="myfans_a1">
+                    <a href="@(ViewBag.BasePath)User/Posts?uid=@(item.UserID)" title="@item.NickName">
+                        <img src="/Upload/User/Gravatar/@(item.UserID).jpg" alt="@item.NickName" width="100px" height="100px;" /></a></div>
+                <div class="myfans_a2">
+                    <div class="myfans_a2_w">
+                        <p class="myfans_a2_w1">
+                            <a href="@(ViewBag.BasePath)User/Posts?uid=@(item.UserID)">@item.NickName</a></p>
+                        <p class="myfans_a2_w2">
+                            粉丝@(@item.FansCount)人</p>
+                        <p class="myfans_a2_w2">
+                            @item.Singature</p>
+                    </div>
+                    <div class="myfans_a2_x">
+                        <div class="myfans_a2_x1">
+                            @if (item.IsFellow == false)
+                            {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.UserID"  autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser" style="display:none" UserId="@item.UserID"  >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                          }
+                            else
+                            {
+                                <a href="javascript:;" class="FellowUser"  UserId="@item.UserID" style="display:none"  autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png" /></a> <a href="javascript:;" class="UnFellowUser"  UserId="@item.UserID"  >
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png" /></a>
+                              }
+                        </div>
+                        <div class="myfans_a2_x2">
+                            <p class="myfans_a2_x2a">
+                               <a href="javascript:;" class="btnSendMessage" name="@item.NickName">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/newuser_6.jpg"></a></p>
+                            <p class="myfans_a2_x2a">
+                                   <a href="javascript:;" class="btnSendMessage" name="@item.NickName">发私信</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        }
+    }
+    <!-- FansList BEGIN -->
+    <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model, new PagerOptions()
+   {
+       CssClass = "in_pages",
+       PageIndexParameterName = "page",
+       NumericPagerItemCount = 5,
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+   }, new AjaxOptions() { UpdateTargetId = "MaticsoftFellows" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+</div>
+

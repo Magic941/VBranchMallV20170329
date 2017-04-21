@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+@*网站前台模版*@
+}
+@section head{
+    @RenderSection("head", false)
+}
+
+@Html.Action("Header", "Partial", new { area = "Shop" })
+
+@Html.Action("Search", "Partial", new { area = "Shop" })
+
+@Html.Action("Navigation", "Partial", new { area = "Shop" })
+
+@RenderBody()
+
+@section foot{
+    @RenderSection("foot", false)
+}
+
+@Html.Action("Footer", "Partial", new { area = "Shop" })

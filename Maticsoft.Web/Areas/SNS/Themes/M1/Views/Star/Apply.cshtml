@@ -1,0 +1,247 @@
+﻿@model  Maticsoft.ViewModel.SNS.Star
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_ProductLayout.cshtml";
+}
+<div class="clear">
+</div>
+<div class="clear">
+</div>
+<!------pioneer------->
+<div class="pioneer">
+    <div class="pioneer_a">
+        <ul>
+            <li><a href="@(ViewBag.BasePath)Star/Pioneer" >综合推荐</a></li>
+            @Html.Action("StarType", "Star")
+            <li><a href="@(ViewBag.BasePath)Star/Apply" class="pion1"><span>申请成为达人</span></a></li>
+        </ul>
+    </div>
+</div>
+<script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>
+<script type="text/javascript">
+    function Upload(control) {
+
+        $(".btn-success").find("input").css("height", "28px");
+        var uploadbutton = $(control).html();
+        var templatehtml = '<div class="qq-uploader span12">' +
+            '<pre class="qq-upload-drop-area span12"><span>{dragZoneText}</span></pre>' +
+            '<div class="qq-upload-button btn btn-success" style="width: 140px;padding-top: 0px;background:#fff; height: 34px;">{uploadButtonText}</div>' +
+            '<span class="qq-drop-processing"><span>{dropProcessingText}</span><span class="qq-drop-processing-spinner"></span></span>' +
+            '<ul class="qq-upload-list" style="margin-top: 10px; text-align: center; "></ul>' +
+            '</div>';
+        var uploader = new qq.FineUploader({
+            element: $(control)[0],
+            request: {
+                endpoint: '/Upload/SNSUploadTmpImg.aspx'
+            },
+            text: {
+                uploadButton: uploadbutton,
+                waitingForResponse: "\r处理中",dragZone:"上传",dropProcessing: "正在上传，请稍候..."
+            },
+            multiple: false,
+            template: templatehtml,
+            validation: {
+                allowedExtensions: ['jpeg', 'jpg', 'gif', 'png'],
+                sizeLimit: 10485760 // 10M = 10 * 1024*1024 bytes
+            },
+            callbacks: {
+                onComplete: function (id, fileName, responseJSON) {
+                    $(".btn-success").find("input").css("height", "28px");
+                    $(".qq-upload-list").hide();
+                    $(".btn-success").css("overflow", "");
+                    if (responseJSON.success) {
+                        var dd = new Date();
+                        $("#imgPhoto").attr("src", responseJSON.data.format("T116x170_") + "?id=" + dd.getMilliseconds);
+                        $("#tPhoto").val(responseJSON.data.format(""));
+                        $.jBox.tip('上传成功！', 'success');
+                    } else {
+                        ShowFailTip("服务器没有返回数据，可能服务器忙，请稍候再试：");
+                    }
+                }
+            }
+        });
+    }
+    function Return() {
+        window.location = $Maticsoft.BasePath + "Star/Pioneer";
+    }
+
+    $(function () {
+        Upload("#UploadPhoto");
+
+        $("#btnApplication").click(function () {
+            var imageurl = $("#tPhoto").val();
+            var desc = $("#tDesc").val();
+            var type = $("#type").val();
+            if (imageurl == "") {
+                ShowFailTip("请上传照片！");
+                return;
+            }
+            if (desc == "") {
+                ShowFailTip("请填写自荐理由！");
+                return;
+            }
+            if (type == 0) {
+                ShowFailTip("请选择达人类型！");
+                return;
+            }
+            $(this).attr("disabled", "disabled");
+            //ShowSuccessTip("添加爱车成功！正在跳转首页 。。。");
+            $("form:first").submit();
+        });
+    });
+
+</script>
+<!--申请达人开始-->
+<div class="application">
+    <div class="application_a">
+        <img src="/Areas/SNS/Themes/M1/Content/images/ap_1.jpg" /></div>
+    <div class="application_b">
+        <h1>
+            申请标准</h1>
+        <div class="application_b_1">
+            <div class="application_b_1s">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_2.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        01有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+            <div class="application_b_1s">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_4.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        02有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+            <div class="application_b_1s" style="margin-right: 0px;">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_6.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        03有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+            <div class="application_b_1s">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_3.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        04有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+            <div class="application_b_1s">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_5.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        05有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+            <div class="application_b_1s" style="margin-right: 0px;">
+                <div class="ons">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/ap_7.jpg" /></div>
+                <div class="tns">
+                    <p class="tns_a">
+                        06有头像</p>
+                    <p class="tns_b">
+                        有头像，头像积极向上，最好是本人真实头像</p>
+                </div>
+            </div>
+        </div>
+        <div class="application_b_2">
+            <ul>
+                <li>1、申请时，个人页需具备一定量的精彩分享。</li>
+                <li>2、申请时请简要介绍一下自己的风格特色，以及自荐理由。举例：我很懂欧美风搭配、我会做手工、我会编发</li>
+                <li>3、申请时，请附个人街拍照，更容易入选噢。</li>
+                <li>4、申请时，附上首页达人照(450宽x300高)，更容易在首页封面显示噢。</li>
+                <li>友情提示，请勿重复反复申请，申请一次就OK啦</li>
+            </ul>
+        </div>
+        <h1>
+            在线申请</h1>
+        @using (Html.BeginForm())
+        {
+            <div class="application_b_3">
+                <table width="820" border="0">
+                    <tr>
+                        <td width="80" height="50">
+                            达人类型
+                        </td>
+                        <td width="730">
+                            @Html.DropDownListFor(m => m.StarModel.TypeID, Model.DropList, new { id = "type", @class = "my-" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50">
+                            首页达人照
+                        </td>
+                        <td>
+                             <div class="picture_an" id="UploadPhoto" style="width: 142px">
+                                <a href="javascript:void(0);" class="btn_addPic"><span><em>+</em>上传照片</span><input
+                                    tabindex="3" title="支持jpg、jpeg、gif、png格式，文件小于5M" size="3" name="pic" id="absFileInput"
+                                    class="filePrew" type="file" /></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50">
+                        </td>
+                        <td>
+                            @Html.HiddenFor(m => m.StarModel.UserGravatar, new { id = "tPhoto" })
+                            <img src="" id="imgPhoto"  height="176px" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="100">
+                            自荐理由
+                        </td>
+                        <td>
+                            @Html.TextAreaFor(m => m.StarModel.ApplyReason, new { id = "tDesc" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="50">
+                        </td>
+                        <td>
+                            <a href=" javascript:void(0)" id="btnApplication">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/ap_9.jpg" /></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+<!--申请达人结束-->
+@if (ViewBag.Type == "Exists")
+{
+    <script type="text/javascript">
+       $(function () {
+           ShowFailTip("您已经申请了该达人类型！");
+           window.setTimeout(Return, 3000);
+    });
+    </script>
+}
+
+@if (ViewBag.Type == "Success")
+{
+     <script type="text/javascript">
+         $(function () {
+             ShowSuccessTip("申请已提交，管理员会马上处理，请耐心等待！");
+             window.setTimeout(Return, 3000);
+         });
+
+        
+    </script>
+}

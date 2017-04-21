@@ -1,0 +1,177 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductSKUModel
+@if (Model == null) { return; }
+
+
+@if (!ViewBag.HasStock && !ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#SKUOptions').parent().find('#btnAddToCart').removeClass('addCart-red').addClass('addCart-gray').attr('title','此商品已售罄');
+            $('#iteminfo #divBuyInfo').hide();
+            $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已售罄!");
+            $('#iteminfo #closeArrivingNotifyMess').show();
+        });
+    </script>
+}
+@if (!ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#SKUOptions').parent().find('#btnAddToCart').attr('itemid', '@Model.ListSKUInfos[0].SKU');
+        });
+    </script>
+}
+@if (Model.ListAttrSKUItems == null || Model.ListAttrSKUItems.Count < 1)
+{
+    return;
+}
+<input type="hidden" id="SKUDATA" value="@ViewBag.SKUJson"/>
+@foreach (KeyValuePair<Maticsoft.Model.Shop.Products.AttributeInfo, SortedSet<Maticsoft.Model.Shop.Products.SKUItem>>
+    attrSKUItem in Model.ListAttrSKUItems)
+{
+    //if (attrSKUItem.Key.UseAttributeImage)
+    if (!string.IsNullOrWhiteSpace(attrSKUItem.Value.Min.ImageUrl))
+    {
+    <div class="colorOptions cf sku-color-div">
+        <span class="fl sku-color-title">
+            @if (attrSKUItem.Key.AttributeName.Length == 2)
+            {
+                @Html.Raw(attrSKUItem.Key.AttributeName.Insert(1, "<em class=\"s2em\"></em>") + "：")
+            }
+            else
+            {
+                @(attrSKUItem.Key.AttributeName + "：")
+            }
+        </span>
+        <ul class="sku-color-select AttrItems">
+            @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+            {
+                <li AttrId="@skuItem.ValueId" class="SkuItems" >
+                    <a  href="javascript:;" title="@skuItem.ValueStr" alt="@skuItem.ValueStr">
+                              @if (!string.IsNullOrWhiteSpace(skuItem.ImageUrl))
+                              {
+                                  if (skuItem.ImageUrl.Contains("{0}"))
+                                  {
+                                    <img width="25" height="25" class="vm" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T32x32_")" largeurl="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T400X400_")" alt="@skuItem.ValueStr" title="@skuItem.ValueStr" />
+                                  }
+                                  else
+                                  {
+                                    <img width="25" height="25" class="vm" src="@Maticsoft.Web.Components.FileHelper.GetImageUrl(skuItem.ImageUrl)" largeurl="@Maticsoft.Web.Components.FileHelper.GetImageUrl(skuItem.ImageUrl)" alt="@skuItem.ValueStr" title="@skuItem.ValueStr" />
+                                  }
+                              }
+                          </a><span class="selected">选中</span> 
+                </li>
+            }
+        </ul>
+    </div>
+    }
+    else
+    {
+    <div class=" colorOptions sizeOptions mt10 cf sku-size-div">
+        <span class="fl sku-size-title">
+            @if (attrSKUItem.Key.AttributeName.Length == 2)
+            {
+                @Html.Raw(attrSKUItem.Key.AttributeName.Insert(1, "<em class=\"s2em\"></em>") + "：")
+            }
+            else
+            {
+                @(attrSKUItem.Key.AttributeName + "：")
+            }
+        </span>
+        <ul class="sku-size-select AttrItems">
+            @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+            {
+                <li attrId="@skuItem.ValueId" class="SkuItems">
+                    <a href="javascript:;" title="@skuItem.ValueStr" alt="@skuItem.ValueStr">@skuItem.ValueStr</a>
+                    <span class="selected">选中</span> 
+                </li>
+            }
+        </ul>
+    </div>
+    }
+}
+
+@*@model Maticsoft.ViewModel.Shop.ProductSKUModel
+@if (Model == null) { return; }
+
+
+@if (!ViewBag.HasStock && !ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#btnAddToCart').removeClass('addCart-red').addClass('addCart-gray');
+            $('#iteminfo #divBuyInfo').hide();
+            $('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已售罄!");
+            $('#iteminfo #closeArrivingNotifyMess').show();
+        });
+    </script>
+}
+@if (!ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#btnAddToCart').attr('itemid', '@Model.ListSKUInfos[0].SKU');
+        });
+    </script>
+}
+@if (Model.ListAttrSKUItems == null || Model.ListAttrSKUItems.Count < 1)
+{
+    return;
+}
+<input type="hidden" id="SKUDATA" value="@ViewBag.SKUJson"/>
+<ul>
+    @foreach (KeyValuePair<Maticsoft.Model.Shop.Products.AttributeInfo, SortedSet<Maticsoft.Model.Shop.Products.SKUItem>>
+    attrSKUItem in Model.ListAttrSKUItems)
+    {
+        //if (attrSKUItem.Key.UseAttributeImage)
+        if (!string.IsNullOrWhiteSpace(attrSKUItem.Value.Min.ImageUrl))
+        {
+        <li>
+            <span>
+                @if (attrSKUItem.Key.AttributeName.Length == 2)
+                {
+                    @Html.Raw(attrSKUItem.Key.AttributeName+ "：")
+                }
+                else
+                {
+                    @(attrSKUItem.Key.AttributeName + "：")
+                }
+            </span>
+
+            @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+            {
+                    
+                <a  href="javascript:;" title="@skuItem.ValueStr" alt="@skuItem.ValueStr">
+                    @if (!string.IsNullOrWhiteSpace(skuItem.ImageUrl))
+                    {
+                        <img width="25" height="25" class="vm active" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T32x32_")" largeurl="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T400X400_")" alt="@skuItem.ValueStr" title="@skuItem.ValueStr" />
+                    }
+
+                </a>
+            }
+        </li>
+        }
+        else
+        {
+        <li>
+            <span>
+                @if (attrSKUItem.Key.AttributeName.Length == 2)
+                {
+                    @Html.Raw(attrSKUItem.Key.AttributeName + "：")
+                }
+                else
+                {
+                    @(attrSKUItem.Key.AttributeName + "：")
+                }
+            </span>
+           
+                @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+                {
+                   
+                    <a href="javascript:;" class="active" title="@skuItem.ValueStr" alt="@skuItem.ValueStr"><i>@skuItem.ValueStr</i></a>
+                   
+                }
+        </li>
+        }
+    }
+</ul>*@

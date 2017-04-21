@@ -1,0 +1,255 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Order.OrderInfo> 
+<script type="text/javascript">
+    $(function () {
+        //隔行换色
+        var trs = $('table.GridViewTyle tr');
+        for (var i = 0; i < trs.length; i++) {
+            if (i % 2 != 0) {
+                trs.eq(i).addClass('eventrcolor');
+            }
+        }
+        //鼠标移动效果
+        $("table.GridViewTyle tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+
+        $(".ShipedAction").each(function () {
+            var ShippingStatus = $(this).attr("ShippingStatus");
+            var OrderStatus = $(this).attr("OrderStatus");
+            if (ShippingStatus <= 1 && OrderStatus > 0) {
+                $(this).show();
+            }
+        });
+
+        $(".ShipAction").each(function () {
+            var ShippingStatus = $(this).attr("ShippingStatus");
+            var OrderStatus = $(this).attr("OrderStatus");
+
+            if (ShippingStatus < 1 && OrderStatus > 0) {
+                $(this).show();
+            }
+        });
+        $(".iframe").colorbox({ iframe: true, width: "840", height: "700", overlayClose: false });
+
+        //            $(".ordertype").each(function () {
+        //                var tab = $(this).attr("value");
+        //                var value = $(this).children().val();
+        //                if (value == "True") {
+        //                    $("#tab" + tab).show();
+        //                }
+        //            });
+        $(".CompleteAction").each(function () {
+            var OrderStatus = $(this).attr("OrderStatus");
+            if (OrderStatus != 2 && OrderStatus != -1) {
+                $(this).show();
+            }
+        });
+        $(".CancelAction").each(function () {
+            var OrderStatus = $(this).attr("OrderStatus");
+            if (OrderStatus != 2 && OrderStatus != -1) {
+                $(this).show();
+            }
+        });
+
+
+        //取消订单 
+        $(".CancelAction").click(function () {
+            var orderid = $(this).attr('ordirid');
+            if (confirm('您确定要取消吗？')) {
+                $.ajax({
+                    url: $Maticsoft.BasePath + "Order/OrderStatus",
+                    type: 'post',
+                    dataType: 'text',
+                    async: false,
+                    timeout: 10000,
+                    data: { action: "CancelOrder", oi: orderid },
+                    success: function (resultData) {
+                        switch (resultData) {
+                            case "NO":
+                                ShowFailTip("操作失败！");
+                                break;
+                            case "OK":
+                                ShowSuccessTip("操作成功！");
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 2000);
+                                break;
+                            default:
+                                ShowServerBusyTip("操作失败！");
+                                break;
+                        }
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                    }
+                });
+            }
+        });
+
+
+        //完成订单
+        $(".CompleteAction").click(function () {
+            var orderid = $(this).attr('ordirid');
+            var ordercode = $(this).attr('ordercode');
+            if (confirm('您确认要完成订单吗？')) {
+                $.ajax({
+                    url: $Maticsoft.BasePath + "Order/OrderStatus",
+                    type: 'post',
+                    dataType: 'text',
+                    async: false,
+                    timeout: 10000,
+                    data: { action: "Success", oi: orderid, oc: ordercode },
+                    success: function (resultData) {
+                        switch (resultData) {
+                            case "NO":
+                                ShowFailTip("操作失败！");
+                                break;
+                            case "OK":
+                                ShowSuccessTip("操作成功！");
+                                setTimeout(function () {
+                                    window.location.reload();
+                                }, 2000);
+                                break;
+                            case "NOTPERMISSIONS":
+                                ShowFailTip("该数据不存在，或者您没有权限操作该订单！");
+                                break;
+                            default:
+                                ShowServerBusyTip("操作失败！");
+                                break;
+                        }
+                    },
+                    error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        ShowServerBusyTip("服务器没有返回数据，可能服务器忙，请稍候再试！");
+                    }
+                });
+            }
+        });
+       
+    }); 
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridViewTyle">
+    <tr class="head1">
+        <td width="10%" bgcolor="#FFFFFF">
+            订单号
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">
+            下单时间
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            订单总额
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            应付总额
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            用户名
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            收货人
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            发货状态
+        </td>
+        <td width="5%" bgcolor="#FFFFFF">
+            配送方式
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">
+            支付方式
+        </td>
+        <td width="10%" bgcolor="#FFFFFF">
+            订单状态
+        </td>
+        <td width="30%" bgcolor="#FFFFFF">
+            订单操作
+        </td>
+    </tr>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <tr class="oddtrcolor" height="27px">
+            
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                <a class="iframe cboxElement" href="OrderShow?oi=@item.OrderId">@item.OrderCode
+                </a>
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @item.OrderDate.ToString("yyyy-MM-dd HH:mm:ss")
+            </td>
+            <td align="center" height="27px" style="width: 80px; padding-left: 5px; height: 27px;">
+                @item.OrderTotal.ToString("F")
+            </td>
+            <td align="center" height="27px" style="width: 80px; padding-left: 5px; height: 27px;">
+                @item.Amount.ToString("F")
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @item.BuyerName
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @item.ShipName
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @Maticsoft.Web.Areas.Supplier.Controllers.OrderController.GetShippingStatus(item.ShippingStatus)
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @item.ShippingModeName
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @item.PaymentTypeName
+            </td>
+            <td align="center" height="27px" style="width: 120px; padding-left: 5px; height: 27px;">
+                @Maticsoft.Web.Areas.Supplier.Controllers.OrderController.GetOrderType(item.PaymentGateway, item.OrderStatus, item.PaymentStatus, item.ShippingStatus)
+            </td>
+            <td align="left" height="27px" style="padding-left: 5px; height: 27px;">
+                <a class="iframe seller_orlist_st" style="display:inline-block;" href="OrderShow?oi=@item.OrderId&type=0" >
+                    查看 </a><a class="iframe ShipAction seller_orlist_st"  ShippingStatus="@item.ShippingStatus"  OrderStatus='@item.OrderStatus' href="OrderItemInfo?oi=@item.OrderId" >
+                        配货 </a><a class="iframe ShipedAction seller_orlist_st"    ShippingStatus="@item.ShippingStatus" OrderStatus='@item.OrderStatus' href="OrderShip?oi=@item.OrderId" >
+                            发货 </a><a class="CancelAction seller_orlist_st"   ShippingStatus="@item.ShippingStatus"  OrderStatus='@item.OrderStatus' ordirid="@item.OrderId"  >
+                                取消 </a><a class="CompleteAction seller_orlist_st"   ShippingStatus="@item.ShippingStatus"  OrderStatus='@item.OrderStatus'  ordirid="@item.OrderId" ordercode="@item.OrderCode">
+                                    完成 </a>
+            </td>
+        </tr>
+                  
+        }
+        <tr height="27px" style="background: #FFF">
+            <div class="abc">
+                <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                    <tr>
+                        <td width="5%" style="padding-left: 12px;">
+                        </td>
+                        <td width="5%">
+                            &nbsp;
+                        </td>
+                        <td width="5%">
+                            &nbsp;
+                        </td>
+                        <td width="50%">
+                            @Html.AjaxPager(Model, new PagerOptions
+                             {
+                                 ShowDisabledPagerItems = false,
+                                 AlwaysShowFirstLastPageNumber = false,
+                                 PageIndexParameterName = "p",
+                                 NumericPagerItemCount = 6,
+                                 //CurrentPagerItemWrapperFormatString = "<span class=\"in_s\">{0}</span>",
+                                 //NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                                 //NavigationPagerItemWrapperFormatString = "<span>{0}</span>",
+                                 CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+                                 MorePagerItemWrapperFormatString = "<span>{0}</span>",
+                                 NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                                 NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+                                 CssClass = "page",
+                                 SeparatorHtml = ""
+                             }, new AjaxOptions { UpdateTargetId = "divOrderList" })
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </tr>
+    }
+</table>

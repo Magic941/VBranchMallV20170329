@@ -1,0 +1,18 @@
+﻿@using System.Web.Mvc.Html
+@{
+    Layout = "~/Areas/COM/Themes/Default/Views/Shared/_SiteLayout.cshtml";
+    @*网站前台模版*@
+}
+@section head{
+    @RenderSection("head", false)
+}
+@RenderBody()
+
+<script type="text/javascript">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideToolbar');
+    });
+</script>
+@section foot{
+    @RenderSection("foot", false)
+}

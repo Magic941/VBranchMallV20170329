@@ -1,0 +1,113 @@
+﻿@using Maticsoft.Controls.MVC
+@model Maticsoft.ViewModel.SNS.CreateAlbum
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    <style type="text/css">
+        .radioButto input { margin-left: 10px; margin-bottom: 5px; }
+    </style>
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    <script type="text/javascript">
+        function sub() {
+            var name = $('#AlbumName').val();
+            if (!name) {
+               ShowFailTip('请输入名称');
+                return false;
+            }
+            if (ContainsDisWords(name)) {
+                ShowFailTip("您输入的名称含有禁用词");
+                return false;
+            }
+            if ($('[name=TypeRadio]:checked').length < 1) {
+                ShowFailTip('请选择类型');
+                return false;
+            }
+            
+            return true;
+        }
+    </script>
+    <!------published------>
+    <div class="clear">
+    </div>
+    <div class="single_bk">
+        <div class="single_bk_F">
+            <div class="single_bk_FA">
+                <div class="clear">
+                </div>
+                <div class="single_CF">
+                    <div class="published">
+                        <h1>
+                            创建新专辑</h1>
+                        <div class="published_h">
+                            <p>
+                                名称:</p>
+                            <div class="published_h_i">
+                                <dl class="published_h_i1">
+                                </dl>
+                                <dl class="published_h_i2">
+                                    @Html.EditorFor(model => model.AlbumName)
+                                </dl>
+                                <dl class="published_h_i3">
+                                </dl>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h">
+                            <p>
+                                描述:</p>
+                            <div class="published_u">
+                                <div class="published_u_1">
+                                </div>
+                                <div class="published_u_2">
+                                    @Html.EditorFor(model => model.Description)
+                                </div>
+                                <div class="published_u_3">
+                                </div>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_h">
+                            <p>
+                                类型:</p>
+                            <div class="published_h_i">
+                                <dl>
+                                </dl>
+                                <dl class="radioButto">
+                                    @Html.RadioButtonList("TypeRadio", Model.TypeList, null, 6)
+                                </dl>
+                                <dl>
+                                </dl>
+                            </div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="published_w">
+                            <div class="published_w_a">
+                                <input type="submit" onclick="return sub();" value="" style="background: url(/Areas/SNS/Themes/M1/Content/images/published_7.jpg) no-repeat; width: 113px; height: 30px; margin: 0; padding: 0; border: 0px; cursor: pointer;" /></div>
+                            <div class="published_w_b">@Html.ActionLink("取消", "Index")</div>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!------published end----->
+    
+    
+    
+    
+    
+}

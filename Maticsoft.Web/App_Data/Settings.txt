@@ -1,0 +1,5 @@
+WriteServerList: 127.0.0.1
+ReadServerList: 127.0.0.1
+MaxWritePoolSize: 5
+MaxReadPoolSize: 5
+AutoStart: True

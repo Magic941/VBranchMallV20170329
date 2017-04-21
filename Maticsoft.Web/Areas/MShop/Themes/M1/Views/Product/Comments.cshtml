@@ -1,0 +1,73 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model  PagedList<Maticsoft.Model.Shop.Products.ProductReviews>    
+<link href="/Areas/MShop/Themes/M1/Content/Css/Comment.css" rel="stylesheet" type="text/css" />
+
+<style>
+    .detail_proimage {
+        width: 100%;
+    }
+</style>
+<div id="CommentListDiv">
+    <div class="top">
+        <a href="javascript:;" onclick="history.go(-1)"><span>&lt;返回</span></a>
+        @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+    </div>
+
+    @if (Model != null)
+    {
+        <div class="Thecomments_show" style="background: #fff;">
+            @foreach (var item in Model)
+            {
+                <ul>
+                    <li>
+                        <span>
+                            @*<a target="_blank" href="/SNS/User/Posts/@item.UserId">
+                                <img src="/Upload/User/Gravatar/@(item.UserId).jpg"/>
+                            </a>*@
+                            <a href="@(ViewBag.BasePath)u">
+                            <img src="/Areas/MShop/Themes/M1/Content/images/head.png"/>
+                            </a>
+                        </span>
+                        <div class="comments_show-Name">
+                            <em>@item.UserName</em>
+                            <p>@Html.Raw(item.ReviewText)</p>
+                            @if (!String.IsNullOrWhiteSpace(item.ImagesPath) && !String.IsNullOrWhiteSpace(item.ImagesNames))
+                            {
+                                string[] arr = item.ImagesNames.Split(new Char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
+                                <div class="discusslist-correlate">
+                                    <!--图片-->
+                                    @for (int k = 0; k < arr.Length; k++)
+                                    {
+                                        <i style="display:inline-block;*display:inline;zoom:1;">
+                                            <span class="detail_proimage">
+                                                <img  itemprop="image" src="@string.Format(item.ImagesPath, arr[k])" jqimg="@item.ImagesPath" style="width:100%; height:4rem;"/>
+                                            </span>
+                                        </i>
+                                    }
+                                </div>  
+                            }
+                            <i style="display: block;">@item.CreatedDate.ToString("yyyy-MM-dd") @(string.IsNullOrWhiteSpace(item.Attribute) ? "" : "规格：")@item.Attribute</i>
+                        </div>
+                    </li>
+                </ul>
+            }
+            <div>
+                @Html.AjaxPager(Model, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = false,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 3,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "CommentListDiv" })
+            </div>
+        </div>
+    }
+</div>

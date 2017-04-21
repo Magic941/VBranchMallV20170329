@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="EditTopic" xml:space="preserve">
+    <value>编辑题目</value>
+  </data>
+  <data name="ErrorFormsExplainNull" xml:space="preserve">
+    <value>问卷说明不能为空！</value>
+  </data>
+  <data name="ErrorFormsNameNull" xml:space="preserve">
+    <value>问卷名称不能为空！</value>
+  </data>
+  <data name="ErrorNoData" xml:space="preserve">
+    <value>没有数据！！</value>
+  </data>
+  <data name="lblFormsAdd" xml:space="preserve">
+    <value>您可以增加问卷</value>
+  </data>
+  <data name="lblFormsExplain" xml:space="preserve">
+    <value>问卷说明</value>
+  </data>
+  <data name="lblFormsID" xml:space="preserve">
+    <value>问卷编号</value>
+  </data>
+  <data name="lblFormsIndex" xml:space="preserve">
+    <value>您可以对问卷进行管理</value>
+  </data>
+  <data name="lblFormsName" xml:space="preserve">
+    <value>问卷名称</value>
+  </data>
+  <data name="ptFormsAdd" xml:space="preserve">
+    <value>增加问卷</value>
+  </data>
+  <data name="ptFormsIndex" xml:space="preserve">
+    <value>问卷管理</value>
+  </data>
+  <data name="TooltipUrl" xml:space="preserve">
+    <value>提示：网站投票使用地址为</value>
+  </data>
+  <data name="ViewResults" xml:space="preserve">
+    <value>查看结果</value>
+  </data>
+  <data name="ErrorOptionsExists" xml:space="preserve">
+    <value>该选项已经存在！</value>
+  </data>
+  <data name="ErrorOptionsNotNull" xml:space="preserve">
+    <value>选项名称不能为空！</value>
+  </data>
+  <data name="ErrorTopicExists" xml:space="preserve">
+    <value>该题目已经存在！</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>项目</value>
+  </data>
+  <data name="lblCheck" xml:space="preserve">
+    <value>多选</value>
+  </data>
+  <data name="lblDefaultCheched" xml:space="preserve">
+    <value>默认选中</value>
+  </data>
+  <data name="lblEditingOptions" xml:space="preserve">
+    <value>编辑选项</value>
+  </data>
+  <data name="lblFeedBack" xml:space="preserve">
+    <value>填写反馈</value>
+  </data>
+  <data name="lblIsChecked" xml:space="preserve">
+    <value>是否选中</value>
+  </data>
+  <data name="lblOption" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="lblOptionsAdd" xml:space="preserve">
+    <value>您可以进行增加选项操作</value>
+  </data>
+  <data name="lblOptionsCommon" xml:space="preserve">
+    <value>共有</value>
+  </data>
+  <data name="lblOptionsIndex" xml:space="preserve">
+    <value>您可以增加题目</value>
+  </data>
+  <data name="lblOptionsName" xml:space="preserve">
+    <value>选项名称</value>
+  </data>
+  <data name="lblOptionsQuestions" xml:space="preserve">
+    <value>的选项设计</value>
+  </data>
+  <data name="lblOptionsShow" xml:space="preserve">
+    <value>您可以查看投票</value>
+  </data>
+  <data name="lblOptionsShowCount" xml:space="preserve">
+    <value>您可以查看问卷投票结果</value>
+  </data>
+  <data name="lblOptionsTotal" xml:space="preserve">
+    <value>人参加，合计投票</value>
+  </data>
+  <data name="lblParticipation" xml:space="preserve">
+    <value>人参与投票，参与本问卷投票</value>
+  </data>
+  <data name="lblPollResults" xml:space="preserve">
+    <value>用户投票结果</value>
+  </data>
+  <data name="lblQuestionnaire" xml:space="preserve">
+    <value>问卷</value>
+  </data>
+  <data name="lblRadio" xml:space="preserve">
+    <value>单选</value>
+  </data>
+  <data name="lblSelected" xml:space="preserve">
+    <value>选择的是：</value>
+  </data>
+  <data name="lblTopicsTitle" xml:space="preserve">
+    <value>题目标题</value>
+  </data>
+  <data name="lblTopicsType" xml:space="preserve">
+    <value>题目类型</value>
+  </data>
+  <data name="lblTotalOfUsers" xml:space="preserve">
+    <value>共有注册用户</value>
+  </data>
+  <data name="lblType" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="lblUsersList" xml:space="preserve">
+    <value>您可以对投票用户进行管理</value>
+  </data>
+  <data name="NumberOfVotes" xml:space="preserve">
+    <value>投票数</value>
+  </data>
+  <data name="OptionsStatistics" xml:space="preserve">
+    <value>投票统计</value>
+  </data>
+  <data name="Person" xml:space="preserve">
+    <value>人</value>
+  </data>
+  <data name="PhoneOrEmial" xml:space="preserve">
+    <value>电话/邮箱</value>
+  </data>
+  <data name="PollCount" xml:space="preserve">
+    <value>票数</value>
+  </data>
+  <data name="Proportion" xml:space="preserve">
+    <value>比例</value>
+  </data>
+  <data name="ptFormsModify" xml:space="preserve">
+    <value>编辑问卷</value>
+  </data>
+  <data name="ptOptionsAdd" xml:space="preserve">
+    <value>增加选项</value>
+  </data>
+  <data name="ptOptionsIndex" xml:space="preserve">
+    <value>增加题目</value>
+  </data>
+  <data name="ptOptionsShow" xml:space="preserve">
+    <value>查看投票</value>
+  </data>
+  <data name="ptOptionsShowCount" xml:space="preserve">
+    <value>问卷投票结果</value>
+  </data>
+  <data name="ptUsersList" xml:space="preserve">
+    <value>投票用户管理</value>
+  </data>
+  <data name="Votes" xml:space="preserve">
+    <value>票</value>
+  </data>
+    <data name="lblWriteFormsID" xml:space="preserve">
+    <value> 请填写要在前台展示的问卷编号</value>
+  </data>
+</root>

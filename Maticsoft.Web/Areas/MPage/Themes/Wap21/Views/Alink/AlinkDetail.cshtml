@@ -1,0 +1,20 @@
+﻿@model  Maticsoft.Model.Settings.FriendlyLink
+
+<header class="header view">
+<span class="nowposition">
+<a href="javascript:;" onclick="pageload('Home','index','首页','_Index', '_Index');" class="ui-link">首页</a>
+<a href="javascript:;" onclick="pageload('Alink','alinks','友情链接','Alinks', 'Alinks','-1','-1','6')" class="ui-link">友情链接</a>
+</span>
+</header>
+<div class="content content_view">
+    @if (Model != null)
+    {
+     <h2 class="view_title">@Model.Name</h2>
+    <a href="@Model.LinkUrl" class="view_img ui-link" target="_blank">
+        <img src="@Model.ImgUrl" alt="baidu">
+    </a>
+    <h2 class="view_infos">@Model.LinkUrl</h2>
+    }
+   
+</div>
+ 

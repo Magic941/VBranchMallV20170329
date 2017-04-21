@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@model Maticsoft.ViewModel.Shop.ProductModel 
+<script type="text/javascript">
+    $(function () {
+        $("body").addClass("body_bai");
+    })
+</script>
+<div class="blank10">
+</div>
+@if (Model != null)
+{
+    <div class="cgyd">
+        <div class="cgyd_left">
+            <h2>
+                已成功将一件商品加入购物车</h2>
+            <dl>
+                <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(Model.ProductInfo.ThumbnailUrl1, "T150X150_")" width="80" height="80" />
+                <dt>@Model.ProductInfo.ProductName</dt>
+                <dd>
+                    ￥ @Model.ProductSkus[0].SalePrice.ToString("F")</dd>
+            </dl>
+        </div>
+        <div class="cgyd_right">
+            <div class="cgyd_r_1">
+                <p>
+                    订单小记：(不含运费)</p>
+                <p class="fense">
+                    ￥ @ViewBag.TotalPrice.ToString("F")</p>
+                <p>
+                    购物车中共有<span id="txtItemCount">@(ViewBag.ItemCount)</span>件商品</p>
+            </div>
+            <div class="jiesuan">
+                <a href="@(ViewBag.BasePath)Product">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/jixugouwu.jpg" width="176" height="38" /></a>
+                <a href="@(ViewBag.BasePath)ShoppingCart/CartInfo">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/qugouwuchebingjiesuan.jpg" width="177"
+                        height="38" />
+                </a>
+            </div>
+        </div>
+    </div>
+}
+<div class="hengxian">
+</div>
+@*@Html.Action("ProductRan", "Product", new { ViewName = "_ProductRan", Top = 5 })*@
+<div class="hengxian">
+</div>

@@ -1,0 +1,56 @@
+﻿@model  Maticsoft.Model.Members.UsersExpModel
+            <script src="/Areas/SNS/Themes/M1/Content/Scripts/FellowUser.js" type="text/javascript"></script> 
+            @if (Model.UserID != 0)
+            {
+                <div>
+                    <dl class="hide_a">
+                        <dl class="hide_a_A">
+                            <dl class="hide_a_AP">
+                                <a  target="_blank" href="@(ViewBag.BasePath)User/Posts/@Model.UserID">
+                                    <img src="/Upload/User/Gravatar/@{@Model.UserID}.jpg" alt="@Model.NickName" style="width:64px; height:64px"></a></dl>
+                            <dl class="hide_a_AS">
+                                <p>
+                                    <a  target="_blank"  href="@(ViewBag.BasePath)User/Posts/@Model.UserID" style="font-weight: bold;">
+                                    @Model.NickName
+                                    @if (Model.IsUserDPI)
+                                    { 
+                                    <img src='/Areas/SNS/Themes/M1/Content/images/geren.png'  alt="实名用户" title="实名用户"/>
+                                    }</a></p>
+                                <p>
+                                    @Model.Address</p>
+                                <p>
+                                   粉丝<a  target="_blank"  href="@(ViewBag.BasePath)User/Fans?uid=@Model.UserID">@Model.FansCount</a>  喜欢<a  target="_blank"  href="@(ViewBag.BasePath)User/Fav?uid=@Model.UserID">@Model.FavouritesCount</a>  专辑<a  target="_blank"  href="@(ViewBag.BasePath)User/Albums?uid=@Model.UserID">@Model.AblumsCount</a></p>
+                            </dl>
+                            <div class="clear">
+                            </div>
+                        </dl>
+                        <dl class="hide_a_B">@Model.Singature</dl>
+                        <dl class="hide_a_C" style="margin-bottom: 10px;">
+                            @if (ViewBag.IsSelf != true)
+                            {
+                                if (ViewBag.IsFellow == true)
+                                {
+                                <a href="javascript:;" style="display: none" class="FellowUser" userid="@Model.UserID" autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png"></a> <a href="javascript:;" class="UnFellowUser"
+                                   userid="@Model.UserID">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png"></a>
+                               }
+                             else
+                            { 
+                                <a href="javascript:;"  class="FellowUser" userid="@Model.UserID" autotest="false">
+                                    <img src="/Areas/SNS/Themes/M1/Content/images/gz.png"></a> <a href="javascript:;" class="UnFellowUser" style="display: none"
+                                   userid="@Model.UserID">
+                                        <img src="/Areas/SNS/Themes/M1/Content/images/qx.png"></a>
+                        
+                            }
+                        }
+                        </dl>
+                    </dl>
+                </div>
+
+            }
+            else
+            { 
+              <div style="width:360px;padding-top:15px;padding-bottom:15px;text-align:center"><span>抱歉，该昵称目前不存在哦(*^__^*)</span></div>
+            
+            }

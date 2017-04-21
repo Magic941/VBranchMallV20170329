@@ -1,0 +1,64 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "登录";
+ }
+<script type="text/javascript">
+    var selfurl = window.location.pathname + window.location.search;
+    if (selfurl.indexOf( 'a/l') == -1 &&
+        selfurl.indexOf('a/login') == -1 &&
+        selfurl.indexOf( 'account/login') == -1) {
+        window.location = $Maticsoft.BasePath + "a/l?returnUrl=" + selfurl;
+    }
+</script>
+<script src="/Areas/MShop/Themes/M1/Content/Scripts/UserCenter/DefaultLogin.js" type="text/javascript"></script>
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+ @model Maticsoft.ViewModel.Shop.LogOnModel 
+            @if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#diverror').html('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+        })
+    </script>
+}    
+<input id="hfSMSIsOpen" type="hidden" value="@ViewBag.SMSIsOpen" /> 
+<div class="top"> <span>用户登录</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+@*<div class="yy"><span id="diverror" style="margin-left:10px;margin-top:10px;" class="txterror"></span></div>*@
+<div style="height:30px"></div>
+<div class="logincontent">
+         @using (Html.BeginForm("Login", "Account", FormMethod.Post ,new {id="formlogin"}))
+         { <input id="hfRegisterToggle" type="hidden" value="Phone" /> 
+             <input name="returnUrl" type="hidden"  value="@ViewBag.returnUrl"/>
+               <span class="login_title">  用户名(手机号)：</span>
+    <div> @Html.TextBoxFor(m => m.UserName, new { Class = "logininput", id = "txtLogin",@Value =Maticsoft.Common.Cookies.getCookie("UserNamePhone", "Value") })@* <input name="" type="text" class="logininput" />*@<br />
+        <div id="divLoginTip"  class="txterror" >
+                                    <span   class="txterror"> @Html.ValidationMessageFor(m => m.UserName)</span>
+                                </div></div>
+ 
+    <span class="login_title">密码：</span>
+             <div>@Html.PasswordFor(m => m.Password, new { Class = "logininput", id = "password" }) @*<input name="" type="text" class="logininput" />*@<br />
+                <div id="divPasswordTip" class="txterror">
+                                    <span  class="txterror"> @Html.ValidationMessageFor(m => m.Password)</span>
+                                </div>
+             </div>
+ 
+    <span class="login_title" style="text-align:center;"><a style="display:none;" href="@(ViewBag.BasePath)a/fp">找回密码</a> <a href="@(ViewBag.BasePath)Account/FindPwdByPhone" >忘记密码?</a>|<a href="@(ViewBag.BasePath)a/r">新用户注册</a> </span>
+ 
+    <div style="margin-top:50px;">
+        <a href="javascript:void(0);" id="loginsubmit" class="sub_btn" style="color:white;">登录</a></div>
+ 
+         }
+  @*<input  type="button" id="loginsubmit" class="sub_btn" value="登录" >*@
+ 
+</div>
+<div style="margin-top:40px"></div>
+ 
+ 
+ 
+ 
+

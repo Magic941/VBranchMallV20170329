@@ -1,0 +1,95 @@
+﻿@using Maticsoft.Model;
+
+@using Maticsoft.BLL.Shop.Card;
+@using Maticsoft.Accounts.Bus
+@{
+    User u = Session["UserInfo"] as User;
+    Maticsoft.BLL.Shop_CardUserInfo cardInfoBLL = new Maticsoft.BLL.Shop_CardUserInfo();
+    string defaultCard = cardInfoBLL.GetDefaultCardNo(u.UserName);
+    
+}
+
+@model Shop_CardUserInfo
+<div class="Orders" style="display: block">
+    @if (Model != null)
+    {
+        <div class="border-out">
+            <table frame="void" class="card-detail" width="100%" border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="4">投保人信息</th>
+                </tr>
+                <tr>
+                    <td width="16%" class="bg1">卡号：</td>
+                    <td width="34%">@Model.CardNo</td>
+                    <td width="16%" class="bg1">激活时间：</td>
+                    <td width="34%">@Model.ActiveDate</td>
+                </tr>
+                @if(string.IsNullOrEmpty(Model.InsureNo))
+                {
+                    <tr>
+                        <td width="16%" class="bg1">保单号：</td>
+                        <td width="34%">@Model.InsureNo</td>
+                        <td width="16%" class="bg1">保单</td>
+                        <td width="34%"><a href="@Model.InsureOrderFileUrl"target="_blank">点击查看</a></td>
+                    </tr>
+                }
+                <tr>
+                    <td class="bg1">姓名：</td>
+                    <td>@Model.Name</td>
+                    <td class="bg1">性别：</td>
+                    <td><span>@Model.SexTxt</span></td>
+                </tr>
+                <tr>
+
+                    <td class="bg1">紧急联系人：</td>
+                    <td>@Model.BackPerson</td>
+                    <td class="bg1">紧急联系人手机：</td>
+                    <td>@Model.BakPersonMoble</td>
+                </tr>
+                <tr>
+                    <td class="bg1">手机号:</td>
+                    <td>@Model.Moble</td>
+                    <td class="bg1">身份证：</td>
+                    <td>@Model.CardId</td>
+                </tr>
+                <tr>
+                    <td class="bg1">地址:</td>
+                    <td>@Model.Address</td>
+                    <td class="bg1">邮箱：</td>
+                    <td>@Model.Email</td>
+                </tr>
+            </table>
+           @for (int i = 1; i <= Model.CardInsurantList.Count; i++)
+           {
+               var item = Model.CardInsurantList[i-1];
+               <table frame="void" class="card-detail" width="100%" border="1" cellspacing="0" cellpadding="0">
+                <tr>
+                    <th colspan="4">被保人@(i)信息</th>
+                </tr>
+                <tr>
+                    <td width="16%" class="bg1">和投保人关系：</td>
+                    <td width="34%">@item.RelationShipTxt</td>
+                    <td width="16%" class="bg1">姓名：</td>
+                    <td width="34%">@item.Name</td>
+                </tr>
+                <tr>
+                    <td class="bg1">证件类型：</td>
+                    <td>@item.CertificateTypeTxt</td>
+                    <td class="bg1">证件号：</td>
+                    <td><span>@item.CardId</span></td>
+                </tr>
+                <tr>
+                    <td class="bg1">性别：</td>
+                    <td>@item.SexTxt</td>
+                    <td class="bg1">出生日期：</td>
+                    <td>@item.BirthDay.ToString("yyyy-MM-dd")</td>
+                </tr>                
+            </table>
+           }
+        </div>
+    }
+    else
+    {
+        <h4>暂无健康卡激活信息</h4>
+    }
+</div>

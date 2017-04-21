@@ -1,0 +1,89 @@
+﻿@using System.Web.Mvc.Ajax
+@using Maticsoft.Model.SNS
+@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.Posts> 
+<!-- 照片列表-->
+<div id="AudioListDiv">
+    <script type="text/javascript">
+        $(function () {
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Audio/AudiosWaterfall",
+                    Success: function () {
+                    }
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID前缀
+                ColumnFirstId: "col_",
+                //列数
+                ColumnNumber: 0, RowNumber: 4
+            });
+            //            resizeImg('.imagewalls', 211, 1280);
+        });
+    </script>
+    @if (Model != null && Model.Count > 0)
+    {
+        <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+        <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+
+        <div id="col_">
+            @foreach (var item in Model)
+            {
+                <div class="main_album_bl_f" style="margin-right: 15px;margin-top: 15px;">
+                    <div class="videocontent">
+                        音频列表
+                        <div class="videopinglun">
+                            <p class="search_com_a1">
+                                <img src="/Areas/SNS/Themes/M1/Content/images/main10.jpg" />
+                                @item.FavCount
+                            </p>
+                            <p>
+                                <img src="/Areas/SNS/Themes/M1/Content/images/main11.jpg" />@item.CommentCount
+                                评论
+                            </p>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div style="padding-top: 8px; width: 188px;">
+                            <span title="@item.Description"> <a href="@(ViewBag.BasePath)Audio/Detail/@item.PostID" target="_blank" style="color:#6b6b6b;">@Maticsoft.Common.StringPlus.SubString(item.Description, 32, "...")</a>
+                            </span>
+                        </div>
+                        <a href="@(ViewBag.BasePath)Audio/Detail/@item.PostID" target="_blank">
+                            <img class="blogVideo" src="/Scripts/microblog/images/videoplay.png" alt="" />
+                        </a>
+                        <div class="clear">
+                        </div>
+                    </div>
+                    </div>
+            }
+        </div>
+        <div class="clear">
+        </div>
+        <div class="pages" style="background-image: none;">
+            @Html.AjaxPager(Model, new PagerOptions
+   {
+       CssClass = "in_pages",
+       ShowDisabledPagerItems = false,
+       AlwaysShowFirstLastPageNumber = false,
+       PageIndexParameterName = "pageIndex",
+       NumericPagerItemCount = 10,
+       CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       SeparatorHtml = ""
+   }, new AjaxOptions { UpdateTargetId = "AudioListDiv" })
+        </div>
+    }
+</div>
+<!-- 照片列表end-->

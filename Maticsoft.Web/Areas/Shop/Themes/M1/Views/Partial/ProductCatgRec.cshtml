@@ -1,0 +1,45 @@
+﻿@using Maticsoft.Model.Shop.Products;
+@model List<ProductInfo>
+
+@{
+    if (Model==null)
+    {
+        return;
+    }
+    }
+
+<div class="m0 mgT10">
+@*    <div class="mt">
+        <h3>浏览<font color="red">乒乓球</font>最终购买</h3>
+    </div>*@
+    <div class="mc">
+        @if(Model!=null){
+            if(Model.Count>=4){
+            <style type="text/css">
+                .cate3-L, #Float {height:950px;}
+            </style>
+        }
+        else
+        {
+            <style type="text/css">
+                .cate3-L, #Float {height:800px;}
+            </style> 
+            }
+        <ul>
+            @foreach (ProductInfo item in Model)
+            {
+                <li class="li_L">
+                <div class="p-img"><a href="#">
+                    <img style="width:100px;height:100px;" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T50X65_")" /></a></div>
+                <div class="rate">
+                    <strong>10%会买：</strong><a href="#">@item.ProductName</a>
+                </div>
+                <div class="p-price"><strong>￥@item.LowestSalePrice.ToString("F")</strong></div>
+            </li>
+            }
+            <li style="text-align:right; padding:10px 0px;"><a href="#">查看更多推荐</a></li>
+        </ul>
+        }
+        @*<div class="more"><a href="#">查看更多推荐</a></div>*@
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.CMS.Content>
+<div id="ArticleList">
+@if (Model != null)
+{      
+    <ul>
+    @foreach (var item in Model)
+    {
+             <li><a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@item.ContentID" title="@item.Title">@Maticsoft.Common.StringPlus.SubString(item.Title,30,"...") </a> <span>@item.CreatedUserName</span> <small><u>@item.TotalComment</u>/@item.PvCount</small>
+                <em>@item.CreatedDate.ToString("yyyy-MM-dd HH:mm")</em></li>
+    }
+    </ul>
+}
+
+<center>
+    <!--jQuery Ajax Paging Start-->
+    @Html.AjaxPager(Model, new PagerOptions()
+        {
+            CssClass = "in_pages",
+            PageIndexParameterName = "page",
+            NumericPagerItemCount = 5,
+            NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+            NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+        },
+                    new AjaxOptions() { UpdateTargetId = "ArticleList" })
+    <!--jQuery Ajax Paging End-->
+</center>
+</div>
+           
+
+      

@@ -1,0 +1,49 @@
+﻿@using System.Web.Mvc.Html
+@model  Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.SNS.Posts> 
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    @*------------以下是通用的瀑布流js脚本---------*@
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    @*------------以下是default模版用到的js---------*@
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+}
+    <style type="text/css">
+    .blogVideo { float: left; position: relative; top:  -140px;; cursor: pointer; width: 40px; padding-left: 40%; }
+    .videocontent { float: left; height: 200px;}
+    .videoimage {  width: 188px;  }
+    .videoimage .videoimg {  border: 0; width: 180px;height: 132px; }
+    .videoblock{padding-right: 20px; }
+</style>
+<!------suncargo------->
+<div class="clear">
+</div>
+<div class="suncargo">
+    <div class="os">
+        <div class="suncargo_b">
+            视频秀</div>
+        <div class="s_fen">
+            <ul>
+            </ul>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+
+  @{Html.RenderPartial("VideoList", Model);}
+    <!--VIDEO VIEW END-->
+    <div class="clear">
+    </div>
+    <div class="shopping_bt">
+        @* <a href="javascript:;">
+            <img src="/Areas/SNS/Themes/M1/Content/images/album_04.jpg" /></a>*@
+         @Html.Action("AdDetail", "Partial", new { id =20, ViewName = "_ImageAd" })
+    </div>
+</div>
+@RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")
+<div id="PhotoResultTemplate" style="display: none">
+</div>
+<!------suncargo end----->

@@ -1,0 +1,43 @@
+﻿@using Webdiyer.WebControls.Mvc
+ @model PagedList<Maticsoft.Model.Shop.Products.ProductInfo>
+
+@if (Model != null)
+{
+    <div class="products_list">
+        @foreach (var item in Model)
+        {
+            <ul>
+                <a href="@(ViewBag.BasePath)p/d/@item.ProductId" class="listimg">
+                    <img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  width="100"/></a>
+                <a href="@(ViewBag.BasePath)p/d/@item.ProductId">
+                    <h3>
+                        @item.ProductName
+                    </h3>
+                    <small class="zeng">￥@item.LowestSalePrice.ToString("F")
+                    </small>@*<span class="valuation-star">
+                                     <span class="mu-star">
+                                         <span class="mu-starv" style="width: 80%"></span>
+                                     </span>
+                                     <span
+                                         class="txt-star">已有103人评价
+                                     </span>
+                                 </span>*@ </a>
+            </ul>
+        }
+        <div>
+            @Html.AjaxPager(Model, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = false,
+           PageIndexParameterName = "p",
+           NumericPagerItemCount = 5,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+        </div>
+    </div>
+}
+ 

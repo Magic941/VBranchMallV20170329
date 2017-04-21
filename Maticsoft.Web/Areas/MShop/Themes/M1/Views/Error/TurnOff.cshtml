@@ -1,0 +1,17 @@
+﻿ @{
+     Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+ }
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<div class="top"> <span>功能已关闭</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+
+<div class="home_newlist">
+  <div class="home_newtitle"><span>提示</span> </div>
+    <div class="home_newcontent">
+     
+     <p class="error_w_a"> Sorry!  该功能已被管理员关闭</p>
+     <p class="error_w_b">如果有疑问，请联系网站管理员，您还可以：</p>
+      <span ><a href="@ViewBag.BasePath"  >返回首页</a></span>
+    </div>
+</div>

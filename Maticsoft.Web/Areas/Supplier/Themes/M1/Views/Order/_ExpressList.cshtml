@@ -1,0 +1,33 @@
+﻿@model List<Maticsoft.Model.Shop.Shipping.LastData>
+<table cellpadding="0" cellspacing="0" width="100%">
+    @if (Model != null)
+    {
+        <tbody id="tbody_track">
+            <tr>
+                <th width="15%">
+                    <strong>处理时间</strong>
+                </th>
+                <th width="50%">
+                    <strong>处理信息</strong>
+                </th>
+            </tr>
+            @foreach (Maticsoft.Model.Shop.Shipping.LastData item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.time
+                    </td>
+                    <td>
+                        @item.context
+                    </td>
+                </tr>
+            }
+        </tbody>
+    }
+    else
+    {
+          <tr>
+                暂无物流信息
+            </tr>
+    }
+</table>

@@ -1,0 +1,46 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+<div id="ProductListDiv">
+  <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            resizeImg('.products_list', 100, 100);
+        });
+    </script>
+@if (Model.ProductPagedList != null)
+{
+    <div class="products_list">
+        @foreach (var item in Model.ProductPagedList)
+        {
+            <ul style="">
+                <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/" class="listimg">
+                    <img ref="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T115X115_")"  width="100"/></a>
+                <a href="@(ViewBag.BasePath)p/d/0/@item.ProductId/4/">
+                    <h3>
+                        @item.ProductName
+                    </h3>
+                    </a>
+                    <small class="zeng" style="margin-top:10px;">￥@item.LowestSalePrice.ToString("F")
+                    </small><br />
+                <b style="font-family: SimSun; color:#808080; text-decoration: line-through; vertical-align: middle;">￥@item.MarketPrice.Value.ToString("F") </b>
+                
+                <h style="font-family: SimSun; color:#808080; float:right;margin-right:10px ">已售 @Maticsoft.Common.StringPlus.SubString(item.SaleCounts,40,"...") 件 </h>
+            </ul>
+        }
+        <div>
+            @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = false,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 5,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+        </div>
+    </div>
+}
+</div>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@section head{
+    @RenderSection("head", false)
+}
+@Html.Action("Header", "Partial")
+@Html.Action("Navigation", "Partial", new { Theme="M1" })@*导航*@
+<div class="clear">
+</div>
+<div class="user_cont" >
+        @Html.Action("UserInfo", "Partial") 
+        <div class="user_cont_con" style="padding:5px 10px 20px 10px;">
+        @RenderBody()
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>
+@Html.Action("Footer", "Partial")

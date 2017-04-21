@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_JKIISiteLayout.cshtml";
+}
+@section head{
+    <link href="/Areas/CMS/Themes/M1/Content/99jkc/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/cmstop-common.js"></script> 
+    <script src="/Areas/CMS/Themes/M1/Content/99jkc/js/common.js"></script> 
+	<script src="/Areas/CMS/Themes/M1/Content/99jkc/js/index.js"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    @RenderSection("head", false)
+}
+
+@Html.Partial("_99JKCHeader") 
+
+@RenderBody()
+
+@Html.Partial("_99JKCFooter")
+ 
+@section foot{
+    @RenderSection("foot", false)
+}

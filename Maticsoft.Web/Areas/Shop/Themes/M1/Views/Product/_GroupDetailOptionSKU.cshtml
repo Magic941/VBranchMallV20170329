@@ -1,0 +1,118 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductSKUModel
+@if (Model == null) { return; }
+
+@if (!ViewBag.HasStock && !ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#btnAddToCart').die("click").attr("title", "非常抱歉, 此商品已售罄!");
+            $('#btnAddToCart').removeClass('addCart').addClass('addCart-gray');
+
+            //$('#iteminfo #divBuyInfo').hide();
+            //$('#iteminfo #closeArrivingNotifyMess').text("非常抱歉, 此商品已售罄!");
+            //$('#iteminfo #closeArrivingNotifyMess').show();
+        });
+    </script>
+}
+<style>
+    .spanC {
+        float: left;
+        margin-left: 10px;
+        font-family: "微软雅黑";
+        font-size: 14px;
+        color: #999999;
+        /*display: inline-block;*/
+    }
+
+    .spanS {
+        margin-left: 10px;
+        font-family: "微软雅黑";
+        font-size: 14px;
+        color: #999999;
+    }
+</style>
+@if (!ViewBag.HasSKU && Model.ListSKUInfos != null && Model.ListSKUInfos.Count == 1)
+{
+   
+    <script type="text/javascript">
+        $(function () {
+           // alert("1");
+            $('#btnAddToCart').attr('itemid', '@Model.ListSKUInfos[0].SKU'); 
+        });           
+    </script>
+}
+@if (Model.ListAttrSKUItems == null || Model.ListAttrSKUItems.Count < 1)
+{
+    return;
+}
+<input type="hidden" id="SKUDATA" value="@ViewBag.SKUJson"/>
+
+@foreach (KeyValuePair<Maticsoft.Model.Shop.Products.AttributeInfo, SortedSet<Maticsoft.Model.Shop.Products.SKUItem>>
+    attrSKUItem in Model.ListAttrSKUItems)
+{
+    //if (attrSKUItem.Key.UseAttributeImage)
+    if (!string.IsNullOrWhiteSpace(attrSKUItem.Value.Min.ImageUrl))
+    {
+    
+    <table class="colorOptions cf sku-color-div">
+        <tr>
+            <td class="spanC">
+                @if (attrSKUItem.Key.AttributeName.Length == 2)
+                {
+                    @Html.Raw(attrSKUItem.Key.AttributeName.Insert(1, "<em class=\"s2em\"></em>") + "：")
+                }
+                else
+                {
+                    @(attrSKUItem.Key.AttributeName + "：")
+                }
+            </td>
+            <td>
+                <ul class="sku-color-select AttrItems" style="margin-left: 0px; width: 150px">
+                    @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+                    {
+                        <li AttrId="@skuItem.ValueId" class="SkuItems" >
+                            <a  href="javascript:;" title="@skuItem.ValueStr" alt="@skuItem.ValueStr">
+                                @if (!string.IsNullOrWhiteSpace(skuItem.ImageUrl))
+                                {
+                                    <img width="25" height="25" class="vm" src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T32x32_")" largeurl="@Maticsoft.Web.Components.FileHelper.GeThumbImage(skuItem.ImageUrl, "T300X390_")" alt="@skuItem.ValueStr" title="@skuItem.ValueStr" />
+                                }
+                                @*<span class="selected">选中</span>*@
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+    }
+    else
+    {
+    
+    <table class="colorOptions cf sku-color-div">
+        <tr>
+            <td class="spanC">
+                @if (attrSKUItem.Key.AttributeName.Length == 2)
+                {
+                    @Html.Raw(attrSKUItem.Key.AttributeName.Insert(1, "<em class=\"s2em\"></em>") + "：")
+                }
+                else
+                {
+                    @(attrSKUItem.Key.AttributeName + "：")
+                }
+            </td>
+            <td>
+                <ul class="sku-size-select AttrItems" style="margin-left: 0px; width: 150px">
+                    @foreach (Maticsoft.Model.Shop.Products.SKUItem skuItem in attrSKUItem.Value)
+                    {
+                        <li attrId="@skuItem.ValueId" class="SkuItems">
+                            <a href="javascript:;" title="@skuItem.ValueStr" alt="@skuItem.ValueStr"><i></i>@skuItem.ValueStr</a>
+                          
+                            <em></em>
+                        </li>
+                    }
+                </ul>
+            </td>
+        </tr>
+    </table>
+    }
+}

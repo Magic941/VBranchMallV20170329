@@ -1,0 +1,55 @@
+﻿@model List<Maticsoft.Model.Members.Users>
+<link href="/Admin/js/select2-3.4.1/select2.css" rel="stylesheet" type="text/css" />
+<script src="/Admin/js/select2-3.4.1/select2.min.js" type="text/javascript" charset="utf-8"></script>
+<style type="text/css">
+    .select2-container {
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+</style>
+<div class="step-title">
+    <strong>选择下单用户</strong><span class="step-action" id="consignee_edit_action" style="display: inline;"><span style="display: none"><a href="#none" onclick="back_Before('consignee')">[关闭]</a></span></span></div>
+
+
+
+    @*<option value="-1" selected="selected">请选择</option>*@
+    
+    @if (null != Model && Model.Count > 0)
+    {
+        <select id="selectUser"  style="min-width: 200px;padding-left: 20px;padding-bottom: 20px;" >
+        <option></option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.UserID">@(item.NickName??item.UserName)</option>
+        }
+        </select>
+    }
+    else
+    {
+        <div style="padding: 0 20px;margin-bottom: 10px;"><span style="margin-right: 20px;">暂无可选用户,请添加用户之后再操作</span></div>
+    }
+
+
+<script type="text/javascript">
+    $(function () {
+        //选择用户
+        $("#selectUser").select2({ placeholder: "请选择" });
+        $(".select2-container").css("vertical-align", "middle");
+
+        $("#selectUser").die("change").live("change", function () {
+            $("#step-1").load("/COM/Order/ShowAddress", { userId: $(this).val() });
+        });
+        //        $("#selectUser").focus(function () {
+        //            $("#step - 0").addClass("step-current").siblings().removeClass("step-current");
+        //            $("#checkout").append(
+        //        ('<div id="mask_maticsoft" style="width: 100%; height: {0}px; position: absolute; top: 0px; left: 0px; z-index: 9998; opacity: 0.7; display: block;"></div>').format(
+        //            $("#checkout").height())
+        //    );
+        //            
+        //        });
+//        $(".addUser").click(function() {
+//            window.parent.$.colorbox.close();
+//            window.location.href = "/admin/Sales/addCustom.aspx";
+//        });
+    });
+</script>

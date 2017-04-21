@@ -1,0 +1,29 @@
+﻿@model Maticsoft.Model.CMS.Content          
+<!--新闻咨询详细页 -->
+@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_SitePageLayout.cshtml";
+    ViewBag.Title = "文章详细";
+}
+    @if (Model != null)
+    { 
+        <div class="content content_view">
+            <h2 class="view_title">@Model.Title</h2>
+            <div class="view_infos">
+               发表时间 :@Model.CreatedDate.ToString("yyyy-MM-dd")
+            </div>
+            @if (!String.IsNullOrWhiteSpace(Model.ImageUrl))
+            {
+                <span class="view_img">
+                    <img src="@Model.ImageUrl">
+                </span>
+            }
+            <article class="view_remark">@Html.Raw(Model.Description)</article>
+        </div>
+    }
+    <script type="text/javascript">
+        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+            WeixinJSBridge.call('hideToolbar');
+        });
+</script>
+
+<!--</div>新闻咨询详细页 -->

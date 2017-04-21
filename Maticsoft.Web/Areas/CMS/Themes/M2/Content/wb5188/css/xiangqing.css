@@ -1,0 +1,74 @@
+﻿@charset "utf-8";
+/* CSS Document */
+.guanyu_wl{ width:100%; height:auto; background:url(../images/zxw08.png) top center no-repeat; padding-top:117px;}
+.me_wl{ margin:0 auto; position:relative;}
+.meleft_wl{ width:206px; float:left; background:#00A0EA;}
+.jiamenh_wl { margin-top:147px;}
+.jiamenh_wl li{ width:206px; height:48px; border-bottom:1px solid #FFF; font-size:18px; color:#fff; text-align:center; line-height:48px;}
+.jiamenh_wl li a{ display:block; color:#fff;}
+.jiamenh_wl li:hover,.tab .qie_wl li:hover{ background:#FF8812;}
+.jiamenh_wl li.jiasele_wl{ background:#FF8812;}
+.mecenter_wl{ width:620px; background:#fff; padding:12px 22px 37px; float:left; margin-left:25px;}
+.tab { width:620px; height:auto; position:relative; padding-top:24px;}
+.tab .qie_wl{ width:206px; position:absolute; left:-253px; top:-12px;}
+.tab .qie_wl li { cursor: pointer; width:206px; height:48px; line-height:48px; text-align:center; color:#FFF; font-size:18px; border-bottom:1px solid #FFF;}
+.tab .qie_wl li.active { background:#FF8812;}
+.tab div { display:none;}
+.tab div.active,.tab div.active div {display: block;}
+.zhishi_wl{ width:100%; height:63px; border-bottom:1px solid #D2D2D2;}
+.zhishi_wl h2{ font-size:24px; font-weight:bold; line-height:63px; float:left; color:#ff8812; font-family:"微软雅黑";}
+.zhishi_wl p{ float:right; font-size:12px; color:#999; line-height:26px; margin-top:37px;}
+.mimi_wl{ width:607px; margin-top:38px; line-height:35px; font-size:18px; color:#fff; background:#FF8812; padding-left:13px;}
+.jianjie_wl p{ font-size:15px; line-height:30px; color:#656565; text-indent:22px; margin:14px 0;}
+.shang_wl{ width:100%; height:81px; border-bottom:1px solid #D3D3D3; border-top:1px solid #D3D3D3; margin-top:46px; padding-top:20px; margin-bottom:41px;}
+.shang_wl a{ display:block; font-size:12px; line-height:30px; color:#999; margin-left:4px;}
+.zhuming_wl{ width:100%;}
+.zhuming_wl h2{ font-size:20px; line-height:60px; color:#333; font-weight:normal;}
+.zhuan_wl{ width:100%; height:66px; background:#EEE;}
+.zhuan_wl span{ width:25px; height:45px; background:#FF870F; color:#fff; font-size:15px; line-height:20px; text-align:center; display:block; font-family:"微软雅黑"; margin:10px 0 0 12px; float:left;}
+.zhuan_wl  p{ width:565px; font-size:12px; line-height:24px; float:left; margin:10px 0 0 8px; color:#9A9A9A;}
+/*.fanhui_wl{ width:36px; height:53px; position:absolute; bottom:181px; right:-66px; cursor:pointer;}*/
+.fanhui_wl{ width:36px; height:53px; position:fixed; bottom:20%; margin-left:0px; cursor:pointer; margin-left:320px;}
+.meright_wl{ width:247px; float:right; background:#fff; padding:4px 15px 0; padding-bottom:17px;}
+.meright_wl .zhishi_wl{ height:53px;}
+.meright_wl .zhishi_wl h2{ font-size:18px; font-weight:normal; line-height:53px;}
+.dao_wl{ width:247px; margin-bottom:26px;}
+.dao_wl li{ margin-top:14px;}
+.dao_wl li img{ float:left; margin-top:10px; width:6px; height:6px;}
+.dao_wl li a{ float:left; width:229px; float:right; display:block; border-bottom:1px dotted #E2E2E2; color:#999; line-height:20px; font-size:14px; padding-bottom:8px;}
+.dao_wl li a:hover{ color:#FF8810;}
+.bianji_wl{ width:245px; border:1px solid #EEEEEE; margin-top:16px;}
+.bianji_wl:hover{border:1px solid #FF8810;}
+.bianji_wl dt{ border*bottom:1px solid #EEEEEE;}
+.bianji_wl dd{ padding:0 8px;}
+.bianji_wl dd h3{ font-size:18px; color:#666; font-weight:normal; line-height:48px;}
+.bianji_wl dd p{ font-size:14px; line-height:21px; color:#898989; padding-bottom:5px;}
+.bianji_wl:hover.bianji_wl dd h3{color:#FF8810;}
+.bianji_wl:hover.bianji_wl dd p{color:#FF8810;}
+/**    关于我们    **/
+.guanyume_wl{ margin-top:40px;}
+.dianhua_wl{ margin-top:85px;}
+.rexian_wl{ margin-bottom:23px;}
+.rexian_wl p{ float:left; font-size:24px; color:#323232;}
+.rexian_wl span{ width:163px; height:35px; float:left; background:#FF8810; text-align:center; line-height:35px; color:#fff; font-size:24px;}
+/**    加盟合作    **/
+.hezuo_wl{ width:526px; background:#FF8812; text-align:center; line-height:82px; margin-top:40px; padding-left:14px; font-size:56px; color:#fff;}
+.tanxun_wl{ margin-top:8px; width:259px; line-height:46px; color:#fff; padding-left:20px; font-size:25px; color:#fff; background:#FF8812;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

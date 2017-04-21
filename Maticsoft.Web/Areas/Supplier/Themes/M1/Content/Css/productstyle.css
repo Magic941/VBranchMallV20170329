@@ -1,0 +1,19 @@
+﻿
+.table{width: 450px;font-size: inherit;border-collapse: collapse;border-spacing: 0;border-color: gray;}
+.th{background-color: #EDEDED;border: 1px solid #D7D7D7;font-weight: 400;height: 25px;text-align: center;vertical-align: middle;font-style: normal;margin: 0;padding: 0;display: table-cell;}
+.td{border: 1px solid #D7D7D7;padding: 3px 5px;vertical-align: middle;height: 25px;min-width: 60px;margin: 0;}
+.tile{padding-left: 20px;max-width: 100px;text-align: left;border: 1px solid #D7D7D7;padding: 3px 5px;vertical-align: middle;height: 25px;min-width: 60px;margin: 0;}
+.edit{padding: 2px;margin-left: 5px;width: 72px;display: inline;border: 1px solid #A7A6AA;height: auto;margin: 0;}
+
+
+/*弹出层分类 890px*/
+.results_pos { position: relative; overflow: hidden; background: red; float: left; width: 450px; background: #e5f0ff; border: 1px solid #c7deff; border-left: 0; height: 298px; }
+.results_ol { position: absolute; display: block; overflow: hidden; clear: both; left: 0px; }
+
+#category h2{font-size: 12px;margin: 0;padding-left: 4px;height: 22px;line-height: 22px;background: #ebebeb;border-bottom: 1px solid #ccc;}
+#category h2 span {float: right;margin-right: 4px;}
+.mover {background: #ffc;}
+#category ul li{ width: auto;}
+#category li img {display: block;float: right;margin-right: 8px;cursor: pointer;}
+.rowBKcolor {background: #f8f8f8;}
+#category li {margin: 0;padding: 4px;border-bottom: 1px solid #ccc;padding-left: 4px;}

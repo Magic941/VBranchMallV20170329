@@ -1,0 +1,130 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "精品特卖";
+    var imgtype = @ViewBag.Imgurl;
+    var imgbgcolor = "";
+    var imgurl = "";
+
+    if (imgtype == 0)
+    {
+        imgbgcolor = "#ff3162";
+        imgurl = "/Areas/MShop/Themes/M1/Content/img/Index7_090.png";
+        ViewBag.Title = "精品特卖";
+    }
+    else if (imgtype == 7)
+    {
+        imgbgcolor = "#9a3501";
+        imgurl = "/Areas/MShop/Themes/M1/Content/img/Index7_10.jpg";
+        ViewBag.Title = "新品服装";
+    }
+    else if (imgtype == 8)
+    {
+        imgbgcolor = "#69cb78";
+        imgurl = "/Areas/MShop/Themes/M1/Content/img/Index7_11.jpg";
+        ViewBag.Title = "品质男女鞋";
+    }
+    else if (imgtype == 9)
+    {
+        imgbgcolor = "#8d0f3f";
+        imgurl = "/Areas/MShop/Themes/M1/Content/img/Index7_12.jpg";
+        ViewBag.Title = "包包专卖";
+    }
+    else if (imgtype == 10)
+    {
+        imgbgcolor = "#006716";
+        imgurl = "/Areas/MShop/Themes/M1/Content/img/Index7_13.jpg";
+        ViewBag.Title = "母婴用品";
+    }
+    else if (imgtype == 11)
+    {
+        imgbgcolor = "#660000";
+        // imgurl = "#";
+
+        ViewBag.Title = "首页活动";
+    }
+}
+@section head{
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/common.js?v=201304011"></script>
+    <script type="text/javascript" src="/Areas/MShop/Themes/M1/Content/Scripts/spin.min.js"></script>
+    <script src="/Areas/MShop/Themes/M1/Content/Scripts/jquery.lazyload.js" type="text/javascript"></script>
+    <link href="/Areas/MShop/Themes/M1/Content/Css/index.css" rel="stylesheet" type="text/css" />
+    <link href="/Areas/MShop/Themes/M1/Content/Css/indexnew.css" rel="stylesheet" type="text/css" />
+}
+@using Webdiyer.WebControls.Mvc
+@model List<Maticsoft.Model.Shop.Products.ProductInfo>
+<style>
+    .boutique_cn {
+        width: 100%;
+        padding-bottom: 10px;
+    }
+
+        .boutique_cn a, .boutique_cn a img {
+            display: block;
+        }
+
+            .boutique_cn a img {
+                width: 100%;
+            }
+</style>
+<style type="text/css">
+    .lazy {
+        background: url('/Areas/MShop/Themes/M1/Content/images/defalutlogo.jpg') no-repeat center;
+    }
+</style>
+<script type="text/javascript">
+    $(function () {
+        $("img.lazy").lazyload({
+            threshold: 150,
+            effect: "fadeIn"
+        });
+    });
+</script>
+<style>
+    .Wechat_baf a img {
+        height: 165px;
+    }
+</style>
+<div class="top">
+    <span><a href="@(ViewBag.BasePath)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style=" background:@(imgbgcolor)">
+    <div class="boutique_cn">
+        @if (imgtype == 11)
+        {
+       
+            <a href="javascript:;" style="display: none">
+                <img src="@(imgurl)" />
+            </a>
+   
+        }
+        else
+        { 
+        
+        <a href="javascript:;" >
+                <img src="@(imgurl)" />
+            </a>
+        }
+    </div>
+
+    <div class='Wechat_cn'>
+        <ul class=' clearfix'>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                <li>
+                    <div class="Wechat_baf">
+                        <a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">
+                            <img class="lazy"  data-original="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T300X300_")" /></a>
+                    </div>
+                    <p><a href="@(ViewBag.BasePath)p/d/@item.ProductId/0/0">@item.ProductName</a></p>
+                    <div class="Wechat_sell">
+                        <em>￥@item.LowestSalePrice.ToString("F")</em>
+                    </div>
+                </li>
+                }
+            }
+        </ul>
+    </div>
+</div>

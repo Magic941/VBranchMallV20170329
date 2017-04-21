@@ -1,0 +1,94 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKCardSalesCenterBaseLayout.cshtml";
+    int total1 = 0, total2 = 0, total3 = 0;
+    foreach (var item in Model)
+    {
+        total1 = total1 + item.TotalCardsCount;
+        total2 = total2 + item.ActivateCardsCount;
+        total3 = total3 + item.NoActivateCardsCount;
+    }
+           
+    
+}
+@model List<Maticsoft.Model.SalesPersonCardsReportModel>
+<script>
+    $("#liMenu1").addClass("active");
+
+</script>
+<table class="table table-bordered">
+    <caption>营销人员卡量报表</caption>
+    <thead>
+        <tr>
+            <th>团队总卡量</th>
+            <th>已激活量</th>
+            <th>未激活量</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@total1</td>
+            <td>@total2</td>
+            <td>@total3</td>
+        </tr>
+    </tbody>
+</table>
+<table class="table table-bordered">
+    <caption>营销人员卡量报表</caption>
+    <thead>
+        <tr>
+            <th>营销人员</th>
+            <th>身份</th>
+            <th>手机号</th>
+            <th>有卡量</th>
+            <th>已激活量</th>
+            <th>未激活量</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+  
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.LevelName</td>
+                <td>@item.Mobel</td>
+                <td>@item.TotalCardsCount</td>
+                <td>@item.ActivateCardsCount</td>
+                <td>@item.NoActivateCardsCount</td>
+            </tr>
+            }
+        }
+        else
+        {
+            if (ViewBag.LoginStatus == true)
+            {
+            <tr>
+                <td>数据为空</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>
+            }
+            else
+            {
+            <tr>
+                <td>登录已过期,无权查看</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+                <td>--</td>
+            </tr>  
+            }
+        }
+    </tbody>
+</table>
+
+
+
+
+

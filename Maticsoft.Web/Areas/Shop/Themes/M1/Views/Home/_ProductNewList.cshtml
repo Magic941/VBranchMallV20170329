@@ -1,0 +1,33 @@
+﻿@model List<Maticsoft.Model.Shop.Products.CategoryInfo>
+<div class="hp-newprd" name="__XPQXE">
+    <div class="hd hd-title">
+    </div>
+    @if (Model != null && Model.Count > 0)
+    {
+        <div class="bd">
+            <div id="j-tab-newprd" class="hp-tab-newprd">
+                <ul class="j-sw-nav">
+                    @for (int i = 0; i < Model.Count; i++)
+                    {
+                        <li class="newprd-s@(i + 1)" cate="@Model[i].CategoryId"><a href="javascript:;">@Model[i].Name</a>
+                        </li>
+                    }
+                </ul>
+                <div class="newprd-clip" style="position: relative;">
+                    <div class="j-sw-c" style="position: absolute;">
+                        @for (int j = 0; j < Model.Count; j++)
+                        {
+                            @Html.Action("NewListPart", new { Cid = Model[j].CategoryId, Top = 5 })
+                        }
+                    </div>
+                </div>
+                <div id="newprd-img-b" style="opacity: 1; left: 399px;">
+                    <a target="_blank" href="#" title="" id="newprd-img-b-a">
+                        <img src="" width="206" height="270" id="newprd-mask-bg">
+                        <img src="" width="206" height="270" id="newprd-mask-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,11 @@
+﻿@model List<Maticsoft.Model.Settings.FriendlyLink>
+<li>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <a href="@item.LinkUrl" target="_blank">@item.Name</a> 
+        }
+    }
+</li>
+

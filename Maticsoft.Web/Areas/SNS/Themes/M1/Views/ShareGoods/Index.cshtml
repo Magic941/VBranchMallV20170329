@@ -1,0 +1,92 @@
+﻿@model  Maticsoft.ViewModel.SNS.PhotoList
+@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+@section head{
+    @*------------以下是通用的瀑布流js脚本---------*@
+    <script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+    <script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+    @*------------以下是default模版用到的js---------*@
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/targetComment.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/AjaxUpload.js" type="text/javascript"></script>
+    <script src="/Areas/SNS/Themes/M1/Content/Scripts/PhotoRelease.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            resizeImg('.tus', 225, 340);
+            $('#c@(Html.ViewContext.RouteData.Values["orderby"])').attr('style', 'color: #FF70A7;');
+        });
+    </script>
+}
+<!------suncargo------->
+<div class="clear">
+</div>
+<div class="suncargo">
+    <div class="collocation_in">
+        <div class="collocation_in_a">
+            <div class="collocation_in_a1">
+                本周最IN晒货</div>
+            <div class="collocation_in_a2">
+                @if (Model != null && Model.ZuiInList != null)
+                {
+                    foreach (var item in Model.ZuiInList)
+                    {
+                    <div class="tus" style="width: 225px">
+                        <a href="@item.StaticUrl" class="pic_load">
+                            <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.PhotoUrl, "T225x350_"))" style=" width:225px; height:340px"/></a>
+                        <div class="tus_a">
+                        </div>
+                        <div class="tus_b">
+                            <dl class="tus_b_a">
+                                <p class="tus_b_a1">
+                                    <a href="@(ViewBag.BasePath)User/Posts/@item.UserId">@item.NickName</a></p>
+                                <p class="tus_b_a2">
+                                    专辑<span>@item.AlbumsCount</span> 粉丝<span>@item.FansCount</span></p>
+                                <div class="clear">
+                                </div>
+                            </dl>
+                        </div>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+        <div class="collocation_in_b">
+            <p style="margin-bottom: 0px">
+                随时秀出你的晒货，期待您的加入！</p>
+            <div style="margin-bottom: 3px" class="panti" id="UploadPhotoBtn" imagetype="@((int)Maticsoft.Model.SNS.EnumHelper.PhotoType.ShareGoods)">
+                <a href="javascript:void(0)">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/collocation_3.jpg" /></a></div>
+            @Html.Action("ScrollShareGoods", "ShareGoods")
+        </div>
+    </div>
+    <div class="os">
+        <div class="suncargo_b">
+            晒货</div>
+        <div class="s_fen">
+            <ul>
+            </ul>
+        </div>
+        <div class="order" style="margin-top: 7px;padding-left: 24px;">
+            <div class="order_1">
+                排序：</div>
+            <div class="order_2">
+                <ul>
+                    <li><a id="cpopular" href="@(ViewBag.BasePath)ShareGoods/">潮流</a></li>
+                    <li><a  id="cnew" href="@(ViewBag.BasePath)ShareGoods/new">最新</a></li>
+                    <li style="border-right: 0;"><a id="chot" href="@(ViewBag.BasePath)ShareGoods/hot">最热</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    @{Html.RenderPartial("ShareGoodsList", Model);}
+    <div class="shopping_bt">
+          @Html.Action("AdDetail", "Partial", new { id =5, ViewName = "_ImageAd" })
+    </div>
+</div>
+@RenderPage("~/Areas/SNS/Themes/M1/Views/Partial/TargetCommentInput.cshtml")
+<div id="PhotoResultTemplate" style="display: none">
+</div>
+<!------suncargo end----->

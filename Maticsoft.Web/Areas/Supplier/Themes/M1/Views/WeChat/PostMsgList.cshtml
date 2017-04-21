@@ -1,0 +1,251 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+<script src="/Scripts/jquery-1.7.2.min.js" type="text/javascript"></script>
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/PostMsg.helper.js" type="text/javascript"></script>
+<style type="text/css">
+    #msgBox
+    {
+        background: #fff;
+        border-radius: 5px;
+        padding-top: 10px;
+    }
+    #msgBox img
+    {
+        border-radius: 3px;
+    }
+    #msgBox .list ul
+    {
+        overflow: hidden;
+        zoom: 1;
+        width: 720px;
+        border: 1px solid #ccc;
+    }
+    #msgBox .list ul li
+    {
+        float: left;
+        clear: both;
+        width: 100%;
+        border-bottom: 1px dashed #d8d8d8;
+        padding: 10px 0;
+        background: #fff;
+        overflow: hidden;
+    }
+    #msgBox .list ul li.hover
+    {
+        background: #f5f5f5;
+    }
+    #msgBox .list .content
+    {
+        float: left;
+        width: 680px;
+        font-size: 14px;
+        font-family: arial;
+        word-wrap: break-word;
+    }
+    #msgBox .list .msgInfo
+    {
+        display: inline;
+        word-wrap: break-word;
+    }
+    #msgBox .list .times
+    {
+        color: #889db6;
+        font: 12px/18px arial;
+        margin-top: 5px;
+        overflow: hidden;
+        zoom: 1;
+    }
+    #msgBox .list .times span
+    {
+        float: left;
+    }
+    #msgBox .list .times a
+    {
+        float: right;
+        color: #889db6;
+    }
+    .content
+    {
+        background: #fff;
+    }
+    #txtPostMsg
+    {
+        width: 668px;
+        resize: none;
+        height: 65px;
+        overflow: auto;
+    }
+    #userName, #conBox
+    {
+        color: #777;
+        border: 1px solid #d0d0d0;
+        border-radius: 6px;
+        padding: 3px 5px;
+        font: 14px/1.5 arial;
+    }
+    #msgBox .list .userPic
+    {
+        float: left;
+        height: 50px;
+        display: inline;
+        margin-left: 10px;
+        border-radius: 3px;
+        padding-top: 4px;
+    }
+    #userName.active, #conBox.active
+    {
+        border: 1px solid #7abb2c;
+    }
+    #userName
+    {
+        height: 20px;
+    }
+    #btnAddMsg
+    {
+        border: 0;
+        height: 30px;
+        cursor: pointer;
+        margin-left: 10px;
+    }
+    #btnAddMsg.hover
+    {
+        background-position: 0 -30px;
+    }
+    .tr
+    {
+        overflow: hidden;
+        zoom: 1;
+        width: 668px;
+    }
+    .tr p
+    {
+        float: right;
+        line-height: 30px;
+    }
+    .tr *
+    {
+        float: left;
+    }
+</style>
+<input type="hidden" id="hfRuleId" name="hfRuleId" value="@ViewBag.RuleID" />
+<div class="mar30">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td bgcolor="#FFFFFF">
+                <div class="contenttitle2">
+                    规则的关键字和回复内容管理
+                </div>
+            </td>
+            <td rowspan="2" width="120">
+                <a href="@(ViewBag.BasePath)WeChat/RuleList" style="color: grey">返回规则列表</a>
+            </td>
+        </tr>
+        <tr>
+            <td bgcolor="#FFFFFF">
+                <small class="desc">设置用户微信咨询的关键字和系统的智能回复答案内容</small>
+            </td>
+        </tr>
+    </table>
+    <!--Add end -->
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td style="vertical-align: top">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <span class="newstitle">关键字列表</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td height="25" width="50%">
+                            <div class="form stdform">
+                                <input id="txtValue" type="text" style="width: 360px" />
+                                <span id="spanAddValue" runat="server">
+                                    <input id="btnAddValue" type="button" value="添加关键字" class="adminsubmit" /></span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align: top">
+                            <table width="100%" cellpadding="2" cellspacing="1" class="border borderkuang" style="margin-top: 20px">
+                                <tr>
+                                    <td class="tdbg">
+                                        <table cellspacing="0" width="100%" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="width: 80px; vertical-align: top">
+                                                    全匹配：
+                                                </td>
+                                                <td id="AllMatchTags">
+                                                    @* <%=AllMatchValue.ToString()%>*@
+                                                    @Html.Raw(ViewBag.AllMatchValue)
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td style="vertical-align: top">
+                            <table width="100%" cellpadding="2" cellspacing="1" class="border borderkuang" style="margin-top: 20px">
+                                <tr>
+                                    <td class="tdbg">
+                                        <table cellspacing="0" width="100%" cellpadding="0" border="0">
+                                            <tr>
+                                                <td style="width: 80px; vertical-align: top">
+                                                    模糊匹配：
+                                                </td>
+                                                <td id="NoMatchTags">
+                                                    @* <%=NoMatchValue.ToString()%>*@
+                                                    @Html.Raw(ViewBag.NoMatchValue)
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="borderkuang">
+        <tr>
+            <td style="vertical-align: top">
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <span class="newstitle">消息回复列表</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>
+                                <textarea id="txtPostMsg" class="f-text"></textarea></div>
+                            <div class="tr">
+                                <p id="pbtnAddMsg" runat="server">
+                                    <div class="form stdform">
+                                        <input id="btnAddMsg" type="button" value="添加回复" title="添加回复" class="adminsubmit" />
+                                    </div>
+                                </p>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="msgBox">
+                            <div class="list">
+                                <ul>
+                                    @Html.Raw(ViewBag.PostMsg)
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

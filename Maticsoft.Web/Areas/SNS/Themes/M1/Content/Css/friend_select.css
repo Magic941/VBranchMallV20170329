@@ -1,0 +1,31 @@
+@charset "utf-8";
+* html{filter:expression(document.execCommand("BackgroundImageCache", false, true));}
+.zxx_fri_box{width:480px; border:1px solid #3777bc;}
+.zxx_fri_title{height:26px; padding-left:5px; font:bold 14px/26px Verdana, Geneva, sans-serif; background:#FF69A2; color:white;}
+.zxx_fri_body{padding:10px;}
+.zxx_fri_body .zxx_fri_input{width:150px; height:18px; border:1px solid #BDC7D8; margin:auto 5px; padding:2px 0 1px 2px; vertical-align:middle;}
+.zxx_fri_num{padding:10px 0 8px; text-align:right; font-size:0;}
+.zxx_fri_num a{display:inline-block; margin-right:6px; padding-left:8px; font-size:12px; text-decoration:none;}
+.zxx_fri_num a span{display:inline-block; height:19px; padding-right:8px; line-height:19px; cursor:pointer;}
+.zxx_fri_num a.fri_num_on,.zxx_fri_num a:hover{background:url(../images/fri_sel_num_bg.png) no-repeat; color:white; text-decoration:none;}
+.zxx_fri_num a.fri_num_on span,.zxx_fri_num a:hover span{background:url(../images/fri_sel_num_bg.png) no-repeat right top;}
+.zxx_fri_con{height:290px; padding-left:10px; border:1px solid #cccccc; font-size:0; overflow-y:scroll; position:relative;}
+.zxx_fri_list{display:inline-block; width:32%; padding:6px 0px 2px;}
+.zxx_fri_a{display:block; padding:0 3px; color:#333333; text-decoration:none; position:relative; overflow:hidden; zoom:1;}
+.zxx_fri_a .b1,.zxx_fri_a .b2,.zxx_fri_a .b3{display:block;}
+.zxx_fri_a .b1{margin:0 2px; height:0px; border-bottom:1px solid #ffffff; overflow:hidden;}
+.zxx_fri_a .b2{margin:0 1px; height:1px; border-left:1px solid #ffffff; border-right:1px solid #ffffff; background:#ffffff;}
+.zxx_fri_a .b3{padding:2px 4px; border-left:1px solid #ffffff; border-right:1px solid #ffffff; background:#ffffff;}
+.zxx_fri_a:hover{color:#333333; border:0; text-decoration:none;}
+.zxx_fri_a:hover .b1,.zxx_fri_a:hover .b2,.zxx_fri_a:hover .b3{border-color:#b8d4e8; background-color:#f0f5f8;}
+.fri_head_img{width:50px; height:50px; padding:2px; border:1px solid #b1d1e1;}
+.fri_added_img{margin-left:-53px; margin-bottom:3px; visibility:hidden;}
+.zxx_fri_list .fri_name{position:absolute; left:68px; top:8px; padding-right:5px; font-size:12px; font-weight:bold; overflow:hidden;}
+.zxx_fri_on .b1,.zxx_fri_on:hover .b1,.zxx_fri_on .b2,.zxx_fri_on:hover .b2,.zxx_fri_on .b3,.zxx_fri_on:hover .b3{border-color:#005eac; background-color:#3777bc;}
+.zxx_fri_on .fri_added_img{visibility:visible;}
+.zxx_fri_on .fri_name{color:white;}
+.zxx_fri_on .fri_head_img{background-color:#8497c0;}
+.zxx_fri_btn{padding:10px; background:#f0f5f8; border-top:1px solid #cccccc; text-align:right;}
+.blue_btn{background:#005EAC; padding:3px 15px 1.9px; border-width:1px; border-style:solid; border-color:#0089FF #124680 #124680 #0089FF; font-size:12px; color:#ffffff; letter-spacing:1px; line-height:15px; cursor:pointer; overflow:visible;}
+.gray_btn{background:#f0f0f0; padding:3px 15px 1.9px; border-width:1px; border-style:solid; border-color:#ffffff #848484 #848484 #ffffff; font-size:12px;  letter-spacing:1px; line-height:15px; cursor:pointer; overflow:visible;}
+

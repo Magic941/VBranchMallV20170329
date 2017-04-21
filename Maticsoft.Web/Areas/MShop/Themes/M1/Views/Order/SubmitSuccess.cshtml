@@ -1,0 +1,119 @@
+﻿@{
+    Layout = "~/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    List<Maticsoft.Payment.Model.PaymentModeInfo> PaymentModeInfo = ViewBag.PaymentModeInfolist;
+}
+<link href="/Areas/MShop/Themes/M1/Content/css/shopc2.css" rel="stylesheet" type="text/css" />
+
+<div class="top">
+    <span>订单成功</span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy">
+</div>
+<div class="w main">
+    <div class="m m3" id="qpay">
+        <div class="mc" style="margin: 0 auto;">
+            <div class="Submission" style="background: #fff;">
+                <em>
+                    <img src="/Areas/MShop/Themes/M1/Content/img/y_03.jpg"></em>
+                <h3 class="ftx-02" style="text-align: center; color: #04d295; padding-bottom: 20px; margin-bottom: 7px;">订单提交成功，请您尽快付款！</h3>
+            </div>
+            <div class="fore" style="">
+                <ul class="list-h" style="padding-left: 0px; background: #fff; text-align: center;">
+                    <li class="fore1" style="border-right: none; width: 20rem; margin: 0 auto; display: block;">订单号：@ViewBag.OrderCode</li>
+                    <li class="fore2" style="width: 12rem; margin: 0 auto; display: block">应付金额：<strong style="color: red"> @(ViewBag.OrderAmount.ToString("F"))  元</strong></li>
+                </ul>
+                <p class="reminder" style="margin-bottom: 7px; background: #fff; text-align: center; padding-top: 10px;">
+                    <strong>现在支付 : <span class="ftx-01">@(ViewBag.OrderAmount.ToString("F"))元</span>即可完成订单。</strong>
+                </p>
+                <div>
+                    <p style="background: #f5f5f5; height: 15px;">
+                    </p>
+                    <div>
+                        <div style="font-family: 微软雅黑; font-size: 16px; color: #8c8c8c; text-align: left; padding-left: 20px; padding-bottom: 10px;">
+                            请选择支付方式:
+                        </div>
+                        <div>
+                            <ul class="defray-wayad" style="">
+                                @{
+                                    var i = 1;
+                                    foreach (var item in PaymentModeInfo)
+                                    {
+
+                                        if (i == 1)
+                                        {
+                                        <li>
+                                            <input type="radio" checked="checked" class="checkbox" id="paymentType@(item.ModeId)" name="checkbox" value="@item.ModeId" />
+                                            <div class="labpaymentType">
+
+                                                <label  for="paymentType@(item.ModeId)">
+                                                    <img src="@item.Logo"/>
+                                                </label>
+                                            </div>
+                                        </li>
+                                            i++;
+                                        }
+                                        else
+                                        { 
+                                        <li>
+                                            <input type="radio" class="checkbox" id="paymentType@(item.ModeId)" name="checkbox" value="@item.ModeId" />
+                                            <div class="labpaymentType">
+                                                <label  for="paymentType@(item.ModeId)" >
+                                                    <img src="@item.Logo"/>
+                                                </label>
+                                            </div>
+                                        </li>
+                                        }
+
+
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <p style="background: #f5f5f5; height: 15px;">
+                </p>
+            </div>
+            @*<input type="button" border="none" name="" class="btn-impay" value="立即支付"/>*@
+            <div style="background: #fff; padding: 20px 0 0 0;">
+                <a href="javascript:void(0);" style="border: none;" class="btn-impay">立即支付</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(".labpaymentType").unbind('click').bind('click', function (){ 
+        //var checked=$('input:radio[name="checkbox"]:checked');
+       
+        $(".labpaymentType").css("border","0px solid #000000");
+        $(this).css("border","1px solid #000000");
+        
+    });
+
+
+    $('.btn-impay').unbind('click').bind('click', function () {
+        var orderid=@(ViewBag.OrderId);
+        var PaymentTypeId = $('input:radio[name="checkbox"]:checked').val();
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "Order/Immediatepayment",
+            data: { OrderId: orderid,PaymentTypeId:PaymentTypeId},
+            success: function (data) {
+                if (data == "True")
+                {
+                    window.location.replace('/pay/certification@(ViewBag.OrderId)/@(ViewBag.CurrentArea)');
+                }
+                else if(data == "False") {
+                    ShowFailTip('服务器繁忙，请稍候再试！');
+                    return;
+                }else{
+                    ShowFailTip('服务器繁忙，请稍候再试！');
+                    return;
+                }
+            }
+        });
+        // return;
+    });
+</script>

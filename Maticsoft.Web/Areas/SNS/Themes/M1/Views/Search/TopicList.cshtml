@@ -1,0 +1,42 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.SNS.GroupTopics>
+            <ul class="topic_list">
+    @foreach (var item in Model)
+    {
+    <li class="tl_f">
+        <div class="tl_c">
+            <a href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID" target="_blank">
+                <img class="pic icard" src="/Upload/User/Gravatar/@(item.CreatedUserID).jpg" alt="@item.CreatedNickName" style=" height:35px; width:35px"
+                    alt="NALA美容护肤"></a>
+            <div class="ct">
+                <p class="title clearfix">
+                    <a href="@(ViewBag.BasePath)Group/TopicReply?id=@(item.TopicID)" target="_blank" class="tit fl ">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 20)</a>
+                </p>
+                <p class="author">
+                    <span class="n"><a class="icard" target="_blank" href="@(ViewBag.BasePath)User/Posts/@item.CreatedUserID">@item.CreatedNickName</a></span>
+                </p>
+            </div>
+        </div>
+        <div class="count">
+            @item.ReplyCount</div>
+        <div class="title_time">
+            <a target="_blank" style="color: #690;" href="@(ViewBag.BasePath)Group/GroupInfo?GroupId=@item.GroupID">[@item.GroupName]</a> <span
+                class="p_time">@item.CreatedDate</span>
+        </div>
+    </li>
+    }
+    </ul>
+    <center>
+        <!--jQuery Ajax Paging Start-->
+        @Html.AjaxPager(Model, new PagerOptions()
+       {
+           CssClass = "in_pages",
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 5,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+       },
+                                            new AjaxOptions() { UpdateTargetId = "MaticsoftToplist" })
+        <!--jQuery Ajax Paging End-->
+    </center>
+

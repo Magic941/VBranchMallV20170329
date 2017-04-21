@@ -1,0 +1,46 @@
+﻿<div style='margin-left:90px;margin-top:20px;font-size: 16px;font-weight: bold;'>账号：<input type='text' style='height: 30px;width: 200px;' id='loginname' name='name' /><span style='display:none;color:red;font-size: 16px;' name='tipname' id='tipname'>请输入账号</span></div>
+<div style='margin-left:90px;margin-top:20px;font-size: 16px;font-weight: bold;'>密码：<input type='password' style='height: 30px;width: 200px;' id='loginpwd' name='pwd' /><span style='display:none;color:red;font-size: 16px;' name='tippwd' name='tippwd'>请输入密码</span></div>
+<div class='login'><ul><li><a href='#' id='ajaxloginbtn'> <img src='/Areas/SNS/Themes/M1/Content/images/login.jpg'></a></li></ul>
+<ul><li><a href='/Account/Register'><img src='/Areas/SNS/Themes/M1/Content/images/reg.jpg'></a></li></ul>
+<ul><li><a href='@(ViewBag.BasePath)social/sina'><img src='/Areas/SNS/Themes/M1/Content/images/sin.jpg'></a></li><li><a href='@(ViewBag.BasePath)social/sina'>新浪微博</a></li></ul>
+<ul style="display: none"><li><a href='http://open.denglu.cc/transfer/tencent?appid=@ViewBag.APPID'><img src='/Areas/SNS/Themes/M1/Content/images/tengxun.jpg'></a></li><li><a href='http://open.denglu.cc/transfer/tencent?appid=@ViewBag.APPID'>腾讯微博</a></li></ul>
+<ul><li><a href='@(ViewBag.BasePath)social/qq'> <img src='/Areas/SNS/Themes/M1/Content/images/qq.jpg'></a></li> <li><a href='@(ViewBag.BasePath)social/qq'>QQ登录</a></li></ul></div>
+<script type="text/javascript">
+    $(function() {
+        $("#ajaxloginbtn").die("click").live("click", function(e) {
+            e.preventDefault();
+            $(".jbox-button").click();
+        });
+    });
+    var submitLogin = function (v, h, f) {
+        alert(f.name);
+        if (f.name == '') {
+            $("#tipname").show();
+            $("#tippwd").hide();
+            return false;
+        }
+        if (f.pwd == '') {
+            $("#tippwd").show();
+            $("#tipname").hide();
+            return false;
+        }
+        $.ajax({
+            type: "POST",
+            dataType: "text",
+            url: $Maticsoft.BasePath + "Account/AjaxLogin",
+            async: false,
+            data: { UserName: $("#loginname").val(), UserPwd: $("#loginpwd").val() },
+            success: function (data) {
+                if (data == "True") {
+                    AjaxLoginGetUserInfo();
+                    return true
+                }
+                else {
+                    return false;
+
+                }
+            }
+        });
+        return true;
+    };
+</script>

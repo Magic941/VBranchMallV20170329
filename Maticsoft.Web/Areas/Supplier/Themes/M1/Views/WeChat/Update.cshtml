@@ -1,0 +1,163 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@model Maticsoft.WeChat.Model.Core.Command
+<link href="/admin/css/admin.css" type="text/css" rel="stylesheet" charset="utf-8" />
+<script src="/admin/js/jquery-1.7.2.min.js" type="text/javascript"></script>
+<link href="/Scripts/msgbox/css/msgbox.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/msgbox/js/msgbox.js" type="text/javascript"></script>
+<link href="/Scripts/jqueryui/jquery-ui-1.8.19.custom.css" rel="stylesheet" type="text/css" />
+<script src="/Scripts/jqueryui/jquery-ui-1.8.19.custom.min.js" type="text/javascript"></script>
+<script src="/Areas/Supplier/Themes/M1/Content/Scripts/UpdateCommand.helper.js" type="text/javascript"></script>
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            微信指令管理
+        </h3>
+        <small class="desc">您可以进行添加微信指令操作 </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="border">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            指令名称：
+                        </td>
+                        <td height="25">
+                            <input type="hidden" name="CommandId" id="CommandId" value="@Model.CommandId" />
+                            <input type="text" name="Name" id="Name" value="@Model.Name" style="width: 250px" tabindex="1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            对应操作：
+                        </td>
+                        <td height="25">
+                            <select name="dropAction" id="dropAction">
+                                <option value="-1">请选择...</option>
+                                @{
+                                    System.Collections.Generic.List<Maticsoft.WeChat.Model.Core.Action> actionList = Maticsoft.WeChat.BLL.Core.Action.GetAllAction();
+                                    foreach (var item in actionList)
+                                    {
+                                    <option value="@item.ActionId">@item.Name</option>
+                                    }
+                                }
+                            </select>
+                            <select id="ddTarget" name="ddTarget">
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            显示顺序：
+                        </td>
+                        <td height="25">
+                            <input type="text" name="txtSequence" id="txtSequence" style="width: 250px" value="@Model.Sequence" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            解析类型：
+                        </td>
+                        <td height="25">
+                            <select style="width: 200px" id="ddParseType">
+                                <option value="0">长度</option>
+                                <option value="1">特殊字符</option>
+                            </select>
+                            @if (Model.ParseType == 0)
+                            {
+                                <input type="text" name="txtParseType" id="txtParseType" value="@Model.ParseLength.ToString()" />                     
+                            }
+                            else
+                            {
+                                <input type="text" name="txtParseType" id="txtParseType" value="@Model.ParseChar" />                     
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            是否启用：
+                        </td>
+                        <td height="25">
+                            <input type="checkbox" name="chkStatus" id="chkStatus" />是
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            导航菜单描述：
+                        </td>
+                        <td height="25">
+                            <textarea id="Remark" name="Remark" style="width: 250px" maxlength="50" rows="5"
+                                cols="3">@Model.Remark</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                            <div class="form stdform">
+                                <input type="button" name="name" id="btnSave" value="保存" class="adminsubmit_short" />
+                                &nbsp;&nbsp;
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label id="lblMsg" style="color: Red">
+                            </label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#ddParseType option[value='@Model.ParseType.ToString()']").attr("selected", "selected");
+        if ("@Model.Status" == 1) {
+            $("#chkStatus").attr("checked", true);
+        }else{
+            $("#chkStatus").attr("checked", false);
+        }
+        $("#dropAction option[value='@Model.ActionId.ToString()']").attr("selected", "selected");
+        if ("@Model.ActionId" == 1) {
+            $("#ddTarget").attr("style", "display:inline");
+            $.ajax({
+                url: ($Maticsoft.BasePath + "WeChat/ActionOne?timestamp={0}").format(new Date().getTime()),
+                type: 'POST',
+                dataType: 'json',
+                timeout: 10000,
+                async: false,
+                data: { ActionId: @Model.ActionId },
+                success: function (resultData) {
+                    if (resultData["Status"] = "OK") {
+                        var option = $('<option value="' + resultData["ClassID"] + '">' + resultData["ClassName"] + '</option>').appendTo($("#ddTarget"));
+                    }
+                }
+            });
+        } else if (@Model.ActionId == "2") {
+            $("#ddTarget").attr("style", "display:inline");
+            $.ajax({
+                url: ($Maticsoft.BasePath + "WeChat/ActionTwo?timestamp={0}").format(new Date().getTime()),
+                type: 'POST',
+                dataType: 'json',
+                timeout: 10000,
+                async: false,
+                data: { ActionId: @Model.ActionId },
+                success: function (resultData) {
+                    if (resultData.Status && resultData.Status == "OK" && resultData.DATA) {
+                        $("#ddTarget").empty();
+                        $(resultData.DATA).each(function () {
+                            $('<option value="' + this.Value + '">' + this.Name + '</option>').appendTo($("#ddTarget"));
+                        });
+                    }
+                }
+            });
+        } else {
+            $("#ddTarget").attr("style", "display:none");
+        }
+    });
+</script>

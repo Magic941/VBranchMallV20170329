@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+
+<div class="fou">
+   <div class="fou_a">
+      <p class="fou_a1">抱歉，您访问的用户不存在</p>
+      <p class="fou_a2"><a href="@ViewBag.BasePath">返回首页</a></p>
+   </div>
+   <div class="fou_b">
+     <p>你还可以：</p>
+     <p>1.<a href="@(ViewBag.BasePath)Group"> 去小组逛逛</a></p>
+     <p>2.<a href="@(ViewBag.BasePath)Album"> 去专辑逛逛</a></p>
+   </div>
+</div>

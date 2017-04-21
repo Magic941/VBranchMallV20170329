@@ -1,0 +1,97 @@
+﻿@using Webdiyer.WebControls.Mvc
+@using Maticsoft.Common
+@using Maticsoft.Model.Shop.Products
+@model Maticsoft.ViewModel.Supplier.SupplierComm
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<style>
+    .Fac-Tb img{
+        width:1920px;
+        height:450px;
+        position: absolute;
+        left: 50%;
+        margin-left: -960px;
+        /*margin:0 auto;*/
+    }
+</style>
+<div class="catg-II">
+    	<div class="">
+        	<div class="" style="margin:auto; width:100%; height:450px; position:relative;">
+            	<div class="Fac-Tb"><a href="http://www.zhenhaolin.com/ld/hahuazt.html"><img src="/Areas/Shop/Themes/M1/Content/images/images/AD/ddd.jpg" /></a></div>
+            </div>
+        </div>
+    	<div class="Fac">
+        	<div class="wrapper">
+            	
+                <div class="bz-B"><img src="/Areas/Shop/Themes/M1/Content/images/images/bz.png" /></div>
+                <div>
+                	<div class="W-tit-bg clearfix" style="width:1200px">
+                    	<p class="fL W-tit">※&nbsp;商家入驻</p>
+                        <p class="fR W-ss">您身边的商城</p>
+                    </div>
+                    <div class="clearfix">
+                        @if(Model!=null){
+                           var supplierList = Model.SupplierList;
+                           var brandList = Model.BrandList;
+                           var picServerUrl = Model.ServerURL;    
+                    	<div class="Fac-tj">
+                        	<ul>
+                                @foreach (Maticsoft.Model.Shop.Supplier.SupplierInfo item in supplierList)
+                                {
+                            	<li class="Facs">
+                                	<div class="Facs-markL"></div>
+                                    <div class="Facs-markR"></div>
+                                	<div class="fL FacsL">
+                                    	<div><img id="imagelogourlSearch"  width="200" height="60"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(item.SupplierId,"T180X60")"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_180X60.jpg'" /></div>
+                                        <p class="txt-red">@(item.ShopName)</p>
+                                        <p class="slogan">@item.Slogan</p>
+                                        <div class="disco clearfix">
+                                        	<div class="discoL">@item.Discount</div>
+                                            <div class="discoR">
+                                                @if(!string.IsNullOrEmpty(item.Discount)){
+                                            	<p>&nbsp;</p>
+                                                <p>折起</p>}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="fR FacsR"><a href="../store/@item.SupplierId"><img id="imagelogourlSale"  width="580" height="280"  src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(item.SupplierId,"T200X400")"  onerror="this.onerror='';this.src='/Content/themes/base/images/404/404_180X60.jpg'" /></a></div>
+                                </li>
+                                    }
+                            </ul>
+                                 @Html.AjaxPager(Model.SupplierPagedList, new PagerOptions
+                                   {
+                                       ShowDisabledPagerItems = false,
+                                       AlwaysShowFirstLastPageNumber = true,
+                                       PageIndexParameterName = "pageIndex",
+                                       NumericPagerItemCount = 10,
+                                       CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+                                       NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+                                       NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+                                       CssClass = "in_pages",
+                                       SeparatorHtml = ""
+                                   }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+                                        <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+                                        <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+                        </div>
+                        <div class="Fac-tj-side"  >
+                        	<div style="border:1px solid #dedede;padding:15px;margin-top:10px">
+                            	<a target="_blank" href=" /search/0/0/default/0-0/%E5%AD%9D%E4%BA%B2%E9%9E%8B"><img src="/Areas/Shop/Themes/M1/Content/images/images/AD/fff.jpg" /></a>
+                            </div>
+                            <div class="ppzs" style="display:none" >
+                            	<h3>品牌展示区</h3>
+                                <ul class="clearfix">
+                                    @foreach (Maticsoft.Model.Shop.Products.BrandInfo item in brandList)
+                                    {
+                                	<li><a href="/store/@item.BrandId"><img src="@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.BrandsThumbs, "T110X50_")" /></a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                         }
+                    </div>
+                </div>
+            </div>
+        </div>
+    	
+    </div>

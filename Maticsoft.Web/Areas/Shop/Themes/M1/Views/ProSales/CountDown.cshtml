@@ -1,0 +1,223 @@
+﻿@model Maticsoft.ViewModel.Shop.ProductListModel
+
+@{
+    var sellOut = ViewBag.SellOut as Maticsoft.ViewModel.Shop.ProductListModel;
+    var cid = Request.QueryString["cid"];
+    }
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+}
+<link rel="stylesheet" href="/Areas/Shop/Themes/M1/Content/css/dialog,item,item-s,paging,scroeAndlist-v1.css"
+    type="text/css" />
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.history.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.cookie.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/jquery.scrollto.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/dialog.js" type="text/javascript"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/List.js" type="text/javascript"></script>
+<script type="text/javascript" src="/Areas/Shop/Themes/M1/Content/Scripts/lazyLoad.js"></script>
+<script src="/Scripts/jquery/maticsoft.waterfall.min.js" type="text/javascript"></script>
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="@Url.Content("/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+<script src="/Areas/Shop/Themes/M1/Content/Scripts/timeCountDown.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var isOpenAjax = true;
+    var styleClassInfo = { "ClassId": "N101", "ClassId1": "N1", "ClassId2": "N101", "ClassId3": "", "ClassLevel": 2, "ClassName": "T恤\/卫衣", "CleanCount": 90, "GPCount": 0, "IsShowScoreOption": false, "IsShowSpecialPriceOption": true, "MemberCount": 0, "MetaDescription": "%ClassName2%，时尚细节的至真追求,打造都市靓丽新贵。动软为中国地区的会员提供来自于中国、韩国、日本等地各类风格的个性T恤,长款T恤,韩版T恤,女装T恤,休闲T恤，为向往美丽、时尚的年轻人创造更开阔的流行、时尚空间，帮助塑造属于自己的流行时尚。", "MetaKeyword": "个性T恤,长款T恤,韩版T恤,女装T恤,休闲T恤", "NewGoodsCount": 0, "PageJumpType": 1, "ParentClassId": "N1", "ShowSequence": 200, "ShowType": 0, "SpecialPriceCount": 1098, "TitleKeyword": "%ClassName2%- 时尚款式- 特惠新品- 女装频道- 动软(maticsoft)", "TotalCount": 1718, "VirtualClassFlag": false, "VirtualClassId": null };
+    var hashInfo = { init: "N1-N101-12-60-1-00-1-1-N-N-0-0", current: "N1-N101-12-60-1-00-1-1-N-N-0-0", target: "", anchor: "", url: "", pos: "", Repeatflag: false };
+    try {
+        if ((document.characterSet || document.charset).toLowerCase() != 'utf-8' && navigator.userAgent.indexOf("MSIE") > 0) {
+            window.location = window.location;
+        }
+    }
+    catch (exp) { }
+
+    $(function () {
+        $(".W-img-hover").each(function () {
+            var endDate = $(this).attr("endDate");
+            var productId = $(this).attr("Product");
+            var myclass = new CountDown();
+            myclass.init({
+                id: 'txtenddate_' + productId,
+                //天数
+                day_Dom: $("#dayEnd_" + productId),
+                //小时
+                hour_Dom: $("#hourEnd_" + productId),
+                //分钟
+                min_Dom: $("#minEnd_" + productId),
+                //秒
+                sec_Dom: $("#secEnd_" + productId),
+                endTime: endDate
+            });
+        });
+
+    });
+
+</script>
+<div class="catg-II">
+    <div class="hy-T" style="background: #1f1f21">
+        <div class="wrapper">
+            <div class="T-ad">
+                <a href="#">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/t-ad.jpg" style="width:1300px;height:400px;"/></a>
+                <div class="T-tj" style=" display:none">
+                    <div class="T-tjBox">
+                        <a class="T-tj-img" href="#">
+                            <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/v.jpg" /></a>
+                        <div class="clearfix" style="padding: 5px 15px; border-bottom: 1px dotted #ccc">
+                            <div class="fL T-tj-prc">
+                                <span class="price txt-red">¥129</span><p>原价：<del>¥329</del></p>
+                            </div>
+                            <div class="fR">
+                                <a href="#">
+                                    <img src="/Areas/Shop/Themes/M1/Content/images/images/AD/qg1.png" /></a>
+                            </div>
+                        </div>
+                        <div class="T-kc">
+                            <dl>
+                                <dt>库存：</dt>
+                                <dd>
+                                    <p class="T-kc-Bg"></p>
+                                    <p class="T-kc-Bgt"></p>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
+                    <div class="day-W">
+                        <p class="fL">每日一款</p>
+                        <p class="fR"><span>6/3</span><span>周三</span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="disc">
+        <div class="wrapper">
+            <div class="disc-con">
+                @*<h3 class="txt-red">促销专区</h3>
+                <div class="disc-tab">
+                    <ul class="clearfix">
+                        <li class="chose"><a href="#">零食第2件5折</a></li>
+                        <li><a href="#">零食第2件5折</a></li>
+                        <li><a href="#">零食第2件5折</a></li>
+                        <li><a href="#">零食第2件5折</a></li>
+                        <li><a href="#">零食第2件5折</a></li>
+                        <li><a href="#">零食第2件5折</a></li>
+                    </ul>
+                </div>*@
+                @*<div class="disc-W">
+                    <div class="pre"><a href="#"></a></div>
+                    <div class="disc-Wcon">
+                        <ul class="clearfix">
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <img src="images/AD/200X200.jpg" /></a>
+                                <div class="Wcon-p">
+                                    <p><span class="price">¥129</span></p>
+                                    <div class="disc-price">第2件5折</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nex"><a href="#"></a></div>
+                </div>*@
+                <div class="W-row"><a href="/"><strong>首页</strong></a><i>></i><a href="#">会员体验区</a><i>></i><span></span></div>
+                <div class="Scatg-box">
+                    <div class="Scatg-txt">
+                        <ul class="clearfix">
+                            @{ System.Data.DataSet dsproducttype = ViewBag.ProductType as System.Data.DataSet;
+                               var allclass = "";
+                               if (string.IsNullOrEmpty(cid))
+                               {
+                                    allclass = " class=chose ";
+                               }
+                                 
+                            <li @allclass  ><a href="/ProSales/CountDown">全部（@ViewBag.ProductCount）</a></li>
+                                for(int i=0;i<dsproducttype.Tables[0].Rows.Count;i++)
+                                {
+                                    System.Data.DataRow dr=dsproducttype.Tables[0].Rows[i];
+                                    var strclass = "";
+                                    if(!string.IsNullOrEmpty(cid))
+                                    {
+                                        if(cid.ToString() == dr["CategoryId"].ToString())
+                                        {
+                                            strclass = " class=chose ";
+                                        }
+                                    }
+                                   
+                                     <li @strclass  ><a href="/ProSales/ShowCountDown?cid=@dr["CategoryId"]">@dr["Name"]（@dr["ProdcutCount"]）</a></li>
+                                }
+                          
+                           
+                            }
+                        </ul>
+                    </div>
+                    <div class="Scatg-btn" style="display:none">
+                        <div class="clearfix"><a href="#" class="btn btn-gry btn-gry-border Ritem-btn"><span>只显示有货商品</span></a><a href="#" class="btn btn-gry btn-gry-border Ritem-btn px1-btn"><span>有货<i class="price-top mgL10"></i></span></a><a href="#" class="btn btn-gry btn-gry-border px1-btn"><span>价格<i class="price-top mgL10"></i></span></a></div>
+                    </div>
+                </div>
+
+                <div class="Scatg-list">
+                    @{var type1 = new ViewDataDictionary(); type1.Add("type", 1); Html.RenderPartial("_ProductList", Model, type1);}
+                    @{var type2 = new ViewDataDictionary(); type2.Add("type", 2); Html.RenderPartial("_ProductList", sellOut, type2);}@*type=2:卖光了的商品*@
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

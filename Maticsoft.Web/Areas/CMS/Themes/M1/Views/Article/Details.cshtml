@@ -1,0 +1,49 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@model Maticsoft.Model.CMS.Content
+<div class="main newslist">
+    <!--左侧-->
+    <div class="listl">
+        <div class="inner">
+            <div class="listview2">新闻中心</div>
+            <div class="listlcon" style="margin-bottom: 30px;">
+                <div class="listltitle">
+                    <div style="position: relative;">
+                        <button id="reader-tip-bar-close" class="reader-tip-bar-close"></button>
+                    </div>
+                    <h3>@Model.Title</h3>
+                    <p>
+                        <a class="tfontsize">预览:@(Model.PvCount)次</a>
+                        <span class="spanimg1">作者：@Model.CreatedUserName </span>
+                        <span class="spanimg2">来源：<a href="" title="未知" target="_blank">@Model.BeFrom</a></span>
+                        <span class="spanimg3">@Model.CreatedDate</span>
+
+                    </p>
+                </div>
+              @*  @if(!string.IsNullOrEmpty(Model.Summary))
+                {
+                    <div>
+                        <div class="say">
+                            <p>@Model.Summary</p>
+                        </div>
+                    </div>
+                }*@
+            </div>
+            <div class="article-content fontSizeSmall BSHARE_POP">
+                @Html.Raw(Model.Description)
+                <p style="text-indent: 0em; font-size: 16px;"><strong>转载请注明出处。</strong></p>
+            </div>
+
+
+            <div class="avow">
+                <div class="avowtitle"></div>
+                <!-- 声明 -->
+                <p>1.本站遵循行业规范，任何转载的稿件都会明确标注作者和来源；2.本站的原创文章，请转载时务必注明文章作者和来源，不尊重原创的行为我们将追究责任；3.作者投稿可能会经我们编辑修改或补充。</p>
+                <!-- 声明 -->
+            </div>
+        </div>
+    </div>
+  @Html.Partial("_NewsRight")
+
+</div>

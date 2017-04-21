@@ -1,0 +1,55 @@
+﻿<script type="text/javascript">
+    $(function () {
+
+        $(function () {
+            $.ajax({
+                type: "POST",
+                dataType: "text",
+                url: "@(ViewBag.BasePath)Account/GetCurrentUser",
+                success: function (data) {
+                    if (data == "No") {
+                        $("#login_no_h").show();
+                        $("#login_yes_h").hide();
+                    }
+                    else {
+                        $("#login_no_h").hide();
+                        $("#login_yes_h").show();
+                        $("#usernick_h").text(data);
+                    }
+                }
+            });
+            $("#btnLogin").click(function () {
+                var href = window.location.pathname;
+                location.href = "@(ViewBag.BasePath)Account/Login?returnUrl=" + href;
+            });
+        })
+    })
+</script>
+<div class="header">
+    <div class="logo">
+        <p class="logo_pic">
+            <a href="@ViewBag.BasePath"><img src="@ViewBag.Logo" width="120" height="58" alt="@ViewBag.WebName" /></a>
+            <script type="text/javascript">$.scaleLoad('.logo', 120, 58);</script>
+            </p>
+        <p class="logo_text">
+            <img src="/Areas/CMS/Themes/M1/Content/images/text.jpg" width="253" height="58" alt="@ViewBag.WebName" /></p>
+    </div>
+    <div class="search">
+        <dl class="search_k">
+            <input name="keywords" type="text" id="txtKeywords" onfocus="if (this.value=='输入关键字...') this.value=''"
+                onblur="if (this.value=='') this.value='输入关键字...'" value="输入关键字..." /></dl>
+        <dl class="search_s">
+            <a href="javascript:;">
+                <img src="/Areas/CMS/Themes/M1/Content/images/search.jpg" width="30" height="28" onclick="Search();" /></a></dl>
+    </div>
+    <div class="denglu" id="login_no_h" >
+        <a href="javascript:void(0);" id="btnLogin">登录</a>| <a href="@(ViewBag.BasePath)Account/Register">
+            注册</a></div>
+            <div class="denglu"   style=" display:none" id="login_yes_h" >
+                    <a href="javascript:void(0);" id="usernick_h"></a><a href="@(ViewBag.BasePath)Account/Logout">  退出</a>
+      </div>
+    <div style="clear: both;">
+    </div>
+</div>
+<div style="clear: both">
+</div>

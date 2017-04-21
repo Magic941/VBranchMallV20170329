@@ -1,0 +1,91 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.ViewModel.SNS.AlbumIndex>
+@if (Model == null) { return; }
+<div id="AlbumListDiv">
+    <script type="text/javascript">
+        $(function () {
+            waterFall.init({
+                //Ajax请求参数
+                AjaxOptions: {
+                    //Ajax请求参数
+                    Params: { keyword: $.getUrlParam('keyword') == null ? "" : $.getUrlParam('keyword'), type: $.getUrlParam('type') == null ? "hot" : $.getUrlParam('type') },
+                    //Ajax请求URL
+                    DataURL: "@(ViewBag.BasePath)Search/WaterfallAlbumListData",
+                    Success: function () {
+                        $.lazyFixedLoadImg('.AlbumPart', 62, 62);
+                        ReloadFellowAlbum();
+                    }
+                },
+                //瀑布流起始索引记录器 - 用于累计
+                CurrentAjaxStartIndexHF: $('#hfCurrentPageAjaxStartIndex'),
+                //瀑布流起始索引
+                StartIndex: $('#hfCurrentPageAjaxStartIndex').val() ? parseInt($('#hfCurrentPageAjaxStartIndex').val()) : 0,
+                //瀑布流结束索引
+                EndIndex: $('#hfCurrentPageAjaxEndIndex').val() ? parseInt($('#hfCurrentPageAjaxEndIndex').val()) : 0,
+
+                //分页容器
+                PagedContainer: $('.in_pages'),
+                //列容器ID
+                ColumnFirstId: "DataContainer",
+                //列数 0 特殊模式 整行加载 功能完善中
+                ColumnNumber: 0, RowNumber: 4
+            });
+
+            $.lazyFixedLoadImg('.AlbumPart', 62, 62);
+        });
+    </script>
+    <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+    <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+    <div class="main_album_bl" id="DataContainer">
+        @foreach (var item in Model)
+        {
+            <div class="main_album_bl_f">
+                <h1>
+                    <a href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">@Maticsoft.Common.StringPlus.SubString(item.AlbumName,11,"..")</a>@* <span class="nub"> (@item.PhotoCount)</span>*@</h1>
+                <ul>
+              @{int n = 0;}
+            @for (n = 0; n < item.TopImages.Count; n++)
+            {
+                <li class="AlbumPart"><a class="pic_load" style="background: none;" href="@(ViewBag.BasePath)Album/Details?AlbumID=@item.AlbumID">
+                    <img ref="@(Maticsoft.Web.Components.FileHelper.GeThumbImage(item.TopImages[n], "T60x60_"))" /></a></li>
+            }
+            @if (n < 9)
+            {
+                for (; n < 9; n++)
+                {
+                   <li class="AlbumPart">
+                    <img ref="/Areas/SNS/Themes/M1/Content/images/bgs.jpg" /></li>
+                }
+            }
+            <div class="main_beij"></div> <div class="main_wz">宝贝&nbsp;@(item.PhotoCount)&nbsp;|收藏&nbsp;@(item.FavouriteCount)&nbsp;</div>
+                </ul>
+                <div class="clear">
+                </div>
+                <div class="inside">
+                    <div class="album_anniu">
+                        <a href="javascript:;" class="FellowAlbum"  AlbumId=@item.AlbumID>
+                    <img src="/Areas/SNS/Themes/M1/Content/images/id_3.jpg" /></a> 
+               <a href="javascript:;" class="UnFellowAlbum"  style="display:none" AlbumId=@item.AlbumID   >
+                        <img src="/Areas/SNS/Themes/M1/Content/images/zhuanjiquxiao.jpg" /></a></div>
+                    <div class="clear">
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+        <div class="clear">
+        </div>
+    @Html.AjaxPager(Model, new PagerOptions
+    {
+        CssClass = "in_pages",
+        ShowDisabledPagerItems = false,
+        AlwaysShowFirstLastPageNumber = false,
+        PageIndexParameterName = "pageIndex",
+        NumericPagerItemCount = 10,
+        CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+        NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+        NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+        SeparatorHtml = ""
+    }, new AjaxOptions { UpdateTargetId = "AlbumListDiv" })
+</div>
+<!-- 照片列表end-->

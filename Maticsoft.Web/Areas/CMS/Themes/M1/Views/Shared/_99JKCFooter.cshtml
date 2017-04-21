@@ -1,0 +1,40 @@
+﻿@{
+    
+    Maticsoft.BLL.SysManage.WebSiteSet WebSiteSetShop = new Maticsoft.BLL.SysManage.WebSiteSet(Maticsoft.Model.SysManage.ApplicationKeyType.Shop);
+    var WebPowerBy = WebSiteSetShop.WebPowerBy;
+    var WebName = WebSiteSetShop.WebName;
+    
+}
+<div class="footer">
+
+    <div class="wrapper">
+        <div class="lft">@Html.Raw(WebPowerBy)  @WebName </div>
+        <div class="rgt">
+
+            <a href='/About/Index'>关于我们</a>
+            <span></span>
+
+            <a href='/Article/ArticleList?classid=43&viewName=JKNewsList'>新闻动态</a>
+            <span></span>
+
+            <a href='/Article/ArticleList?classid=42&viewName=JKZhiShiList'>健康服务</a>
+            <span></span>
+
+            <a href='#'>兑换中心</a>
+            <span></span>
+
+            <a href='#'>健康商城</a>
+            <span></span>
+
+            <a href='/About/Index'>联系我们</a>
+            <span></span>
+
+            <a href='/SalesCardsSearch/Index'>管理中心</a>
+            <span></span>
+
+            <span style="display: none">
+                <!-- 站长统计 -->
+            </span>
+        </div>
+    </div>
+</div>

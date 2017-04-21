@@ -1,0 +1,12 @@
+﻿@model  List<Maticsoft.Model.CMS.Content>  
+<ul>
+    @if (Model != null && Model.Count > 0)
+    {
+        foreach (var item in Model)
+        {
+        <li><a href="@(ViewBag.BasePath)Article/ArticleDetail?id=@item.ContentID">@Maticsoft.ViewModel.ViewModelBase.Substring(item.Title, 15)</a><span
+            style="float: right; padding-right: 18px">(@item.PvCount)</span></li>
+        }
+    }
+</ul>
+

@@ -1,0 +1,47 @@
+﻿ @{
+     Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+     ViewBag.Title = "个人中心-积分详细";
+ }
+ @using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Members.PointsDetail>
+<link href="/Areas/MShop/Themes/M1/Content/Css/UserCenter/userstyle.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<div class="top"> <span><a href="@(ViewBag.BasePath)u">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="yy"></div>
+<div class="index_h1">我的积分</div>
+<div style=" font-family:微软雅黑; font-size:14px;margin-left:10px;">您当前的积分:<span style="color: #ff8a00;"> @ViewBag.UserInfo  </span></div>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    {
+        <div class="home_piclist">
+            <div class="ddnum" style="height:80px;">
+                <span>日期：</span>@item.CreatedDate.ToString("yyyy-MM-dd")<br />
+                <span>类型：</span>@item.RuleName<br />
+                <span>积分：</span>@if (item.Type == 0)
+                                {
+                                     <strong style="color: #ff8a00;">+@item.Score</strong>
+                 
+                                }
+                                else
+                                {
+                                     <strong style="color: #33982e;">-@item.Score</strong>
+                                }<br />
+                <span>说明：</span>@item.Description
+               
+            </div>
+        </div>
+    
+    }
+    @Html.Pager(Model, new PagerOptions
+{
+    PageIndexParameterName = "pageIndex",
+    NumericPagerItemCount = 3,
+    NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+    NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+    CssClass = "in_pages_m",
+    SeparatorHtml = ""
+})
+}

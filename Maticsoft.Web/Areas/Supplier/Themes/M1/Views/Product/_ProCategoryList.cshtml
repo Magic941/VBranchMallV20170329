@@ -1,0 +1,137 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model PagedList<Maticsoft.Model.Shop.Supplier.SupplierCategories>
+<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<table width="100%" border="0" cellspacing="0" cellpadding="5" class="show stdtable stdtablecb GridViewStyle">
+    <tbody>
+        <tr class="head1">
+             <th width="20%" bgcolor="#FFFFFF">
+                显示顺序
+            </th>
+            <th width="50%" bgcolor="#FFFFFF">
+                分类名称
+            </th>
+            <th width="25%" bgcolor="#FFFFFF">
+                操作
+            </th>
+        </tr>
+        @if (null != Model)
+        {
+            foreach (var item in Model)
+            {
+                <tr class="grdrow" style="height: 34px; background: #FFF">
+                    <td align="left" style="width: 5%;">
+                        <input  type="text" value="@item.DisplaySequence" style="width: 50px;">
+                        <a href="javascript:;"  cid="@item.CategoryId" class="btnUpdate">保存</a>
+                    </td>
+                    <td class="productcag@(item.Depth)" align="left" style="width: 10%;">
+                        <span id="ctl00_ContentPlaceHolder1_gridView_ctl02_spShowImage" parentid="@item.Depth" itemid="@item.ParentCategoryId">
+                            @if (item.Depth == 1)
+                            {
+                                @:<img src="/Areas/Supplier/Themes/M1/Content/images/jian.gif" width="24" height="24"parentid="@item.CategoryId">
+                            }
+                        </span><span>@item.Name</span>
+                    </td>
+                    
+                    <td align="center" style="width: 15%;">
+                        &nbsp;&nbsp; <span><a href="@(ViewBag.BasePath)Product/ProCateEdit/@item.CategoryId" style="color: Blue" class="btnEdit" cid="@item.CategoryId">
+                                               编辑</a> &nbsp;&nbsp;</span> <a  href="javascript:;" style="color: Blue;" cid="@item.CategoryId" class="btnDelete">
+                                                                              删除</a>
+                    </td>
+                </tr>
+            }
+            <tr height="27px" style="background: #FFF">
+                <div class="abc">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="5" class="news_123">
+                        <tr>
+                            <td width="5%" style="padding-left: 12px;">
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="5%">
+                                &nbsp;
+                            </td>
+                            <td width="50%">
+                                      @Html.AjaxPager(Model, new PagerOptions
+                           {
+                               AlwaysShowFirstLastPageNumber = false,
+                               PageIndexParameterName = "pageIndex",
+                               NumericPagerItemCount = 10,
+                               CurrentPagerItemWrapperFormatString = "<li><span class=\"ins\">{0}</span></li>",
+                               NumericPagerItemWrapperFormatString = "<span>{0}</span>",
+                               NavigationPagerItemWrapperFormatString = "<label class=\"page_xia\">{0}</label>",
+                               CssClass = "page",
+                               SeparatorHtml = ""
+                           }, new AjaxOptions { UpdateTargetId = "prolist" })
+ 
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </tr>
+ 
+        }
+    </tbody>
+</table>
+
+
+
+@*<center>
+    @Html.AjaxPager(Model, new PagerOptions
+        {
+            AlwaysShowFirstLastPageNumber = true,
+            PageIndexParameterName = "pageIndex",
+            NumericPagerItemCount = 10,
+            NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+            NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+            CssClass = "in_pages",
+            SeparatorHtml = ""
+        }, new AjaxOptions { UpdateTargetId = "prolist" })
+</center>*@
+<script type="text/javascript">
+    $(function () {
+        $(".btnDelete").click(function () {
+            if (!confirm("请确定要删除？")) {
+                return false;
+            }
+            $.ajax({
+                url: $Maticsoft.BasePath + "Product/DeleteProCate/" + $(this).attr("cid"),
+                data: $(this).attr("cid"),
+                type: "Post",
+                success: function (data) {
+                    if (data == "hasChild") {
+                        ShowFailTip("请先删除子分类!");
+                        return false;
+                    }
+                    if (data == "hasProduct") {
+                        ShowFailTip("请先删除该分类下的商品!");
+                        return false;
+                    }
+                    if (data == "ok") {
+                        ShowSuccessTip("删除成功！");
+                        setTimeout(function () {
+                            window.location = $Maticsoft.BasePath + "Product/ProCategory";
+                        }, 2000);
+                    } else {
+                        ShowFailTip("删除失败!");
+                        return false;
+                    }
+                }
+            });
+        });
+        //        $(".btnEdit").click(function() {
+        //            window.location = $Maticsoft.BasePath + "Product/ProCateEdit/" + $(this).attr("cid");
+        //        });
+        $(".grdrow:even").css("background-color", "rgb(244, 244, 244)");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+
+    });
+</script>

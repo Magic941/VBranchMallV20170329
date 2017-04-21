@@ -1,0 +1,143 @@
+﻿<link href="/Areas/Supplier/Themes/M1/Content/Css/supplier.css" rel="stylesheet"
+    type="text/css" />
+<script type="text/javascript">
+    //全选按钮
+    $(document).ready(function () {
+        $(".iframe").colorbox({ iframe: true, width: "480", height: "372", overlayClose: false });
+
+        //全选按钮
+        $('#cbxAll').click(function () {
+            var obj = $(':checkbox[name="WCCusMsg"]');
+            if (($(this).attr("checked")) == "checked") {
+                obj.attr("checked", true);
+            } else {
+                obj.attr("checked", false);
+            }
+        });
+    });
+</script>
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.ViewModel.Supplier.WeChatCusMsg>
+<table cellspacing="0" cellpadding="0" rules="all" border="0px" class="GridView"
+    style="border-color: #CCCCCC; border-width: 1px; border-style: solid; width: 100%;
+    border-collapse: collapse;">
+    <tbody>
+        <tr class="trclass">
+            <th class="input_middle" style="width: 18px; padding-left: 5px; border: 1px solid #dae2e8;
+                border-right: 0px; height: 34px;">
+                <input type="checkbox" id="cbxAll" />
+            </th>
+            <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                text-align: center; height: 34px;">
+                <span style="color: #666666;">发送时间</span>
+            </th>
+            <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                height: 34px; text-align: center">
+                <span style="color: #666666;">消息内容</span>
+            </th>
+            <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                height: 34px; text-align: center">
+                <span style="color: #666666;">公众号</span>
+            </th>
+            <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                height: 34px; text-align: center">
+                <span style="color: #666666;">消息类型</span>
+            </th>
+            <th scope="col" style="border: 1px solid #dae2e8; border-left: 0px; border-right: 0px;
+                height: 34px; text-align: center">
+                <span style="color: #666666;">操作</span>
+            </th>
+        </tr>
+        @if (Model != null)
+        {
+            foreach (var item in Model)
+            {
+            <tr>
+                <td class="itemcheck">
+                    <input type="checkbox" name="WCCusMsg" id="@item.MsgId"/>
+                </td>
+                <td>
+                    @item.CreateTime
+                </td>
+                <td>
+                    @item.Description
+                </td>
+                <td>
+                    @item.OpenId
+                </td>
+                <td>
+                    @item.MsgTypes
+                </td>
+                <td align="left" height="27px" style="padding-left: 5px; height: 27px;">
+                    <a class="iframe seller_orlist_st" style="display:inline-block;" href="@(ViewBag.BasePath)WeChat/UserCusList?id=@item.MsgId">
+                        查看用户</a>&nbsp;&nbsp;
+                </td>
+            </tr>
+            }
+        }
+        <tr height="27px" style="background: #FFF">
+            <td colspan="12" style="white-space: nowrap;" align="right">
+                @Html.AjaxPager(Model, new PagerOptions
+           {
+               AlwaysShowFirstLastPageNumber = true,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+               NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+               CssClass = "in_pages",
+               SeparatorHtml = ""
+           }, new AjaxOptions { UpdateTargetId = "LoadContentList" })
+            </td>
+        </tr>
+    </tbody>
+</table>
+<script type="text/javascript">
+    $(function () {
+        $(".GridView tr:odd").addClass("eventrcolor");
+        $(".GridView tr:even").addClass("oddtrcolor");
+        $("table.GridView tr").hover(
+            function () {
+                $(this).addClass("tylehover");
+            },
+            function () {
+                $(this).removeClass("tylehover");
+            }
+        );
+        //批量删除
+        $('#btnDelete').click(function () {
+            var Ids = "";
+            var obj = $(':checkbox[name="WCCusMsg"][checked=checked]')
+            if (obj.length == 0) {
+                ShowFailTip("请选择要删除的用户");
+                return false;
+            } else {
+                if (!confirm('您确定要删除吗？')) {
+                    return false;
+                }
+                obj.each(function () {
+                    if (($(this).attr("checked")) == "checked") {
+                        Ids += $(this).attr("id") + ",";
+                    }
+                });
+                $.ajax({
+                    url: ($Maticsoft.BasePath + "WeChat/AllMsgDelete?timestamp={0}").format(new Date().getTime()),
+                    type: 'POST',
+                    dataType: 'json',
+                    timeout: 10000,
+                    async: false,
+                    data: { ids: Ids },
+                    success: function (resultData) {
+                        if (resultData["Result"] == "OK") {
+                            ShowSuccessTip("批量删除成功!");
+                            window.location.href = $Maticsoft.BasePath + 'WeChat/CusMsgList';
+                        } else {
+                            ShowFailTip("批量删除失败!");
+                        }
+                    }, error: function (xmlHttpRequest, textStatus, errorThrown) {
+                        ShowFailTip(xmlHttpRequest.responseText);
+                    }
+                });
+            }
+        });
+    });
+</script>

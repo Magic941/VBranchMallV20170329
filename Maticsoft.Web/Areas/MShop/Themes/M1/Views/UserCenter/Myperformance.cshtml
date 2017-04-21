@@ -1,0 +1,68 @@
+﻿@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.Team.SalesPersonIncome> 
+<style>
+    .wieft {
+        width: 10rem;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+        .wieft span {
+            display: block;
+        }
+
+    .anding_a span {
+        text-align: center;
+    }
+</style>
+<br />
+@if (Model != null && Model.Count > 0)
+{
+    <div class="" style="height: 30px; line-height: 30px; margin-left: 20px;">我的业绩共计 : <span style="color: red">@Convert.ToDecimal(ViewBag.TotalPrice).ToString("F") 元  共( @ViewBag.Count)单</span></div>
+    <br />
+    <div class="" style="width: 95%; margin: 0 auto;">
+        <div style=" height:40px;line-height:40px;">已结算：@(Math.Round(Convert.ToDecimal(ViewBag.Totalpay),2)) &nbsp;&nbsp;&nbsp;&nbsp; 未结算：@(Math.Round(Convert.ToDecimal(ViewBag.Totalnopay),2))</div>
+        <ul style="width: 100%; margin: 0;">
+            <li class="anding_a" style="width: 100%;overflow:hidden;">
+                <span class="" style="display:block;float:left; zoom: 1; width: 60%; border-right: 1px solid #dcdcdc;">订单号</span>
+                <span class="" style="display:block;float:left; width:38.3%">绩效金额</span>
+            </li>
+            @foreach (var item in Model)
+            {
+                <li class="anding_b" style="width: 100%;overflow:hidden;border-bottom:1px solid #dcdcdc">
+                    <span class="" style="display:block;float:left; *display: inline; zoom: 1; width: 60%; border-right: 1px solid #dcdcdc;">@item.OrderCode</span>
+                    <span style="display:block;float:left; width:38.8%">￥@item.Income.ToString("F")  
+                         @{
+                            if(item.InComeStatus==3) {
+                              <em style="color:#5E5EFF; font-style:normal;">(已结算)</em> 
+                        }else{
+                            <em style='color:#FF0000; font-style:normal;'>(未结算)</em>
+                                                                     }}
+                    </span>
+                </li>
+            }
+            @Html.AjaxPager(Model, new PagerOptions
+       {
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 3,
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages_m",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "outstanding" })
+
+        </ul>
+    </div>
+}
+else
+{
+    <div class="wieft">
+        <span>
+            <img src="/Areas/MShop/Themes/M1/Content/img/isnull.png" style="width: 130px; height: 130px; margin-top: 18%" />
+        </span>
+        <span style="color: #333333; font-size: 15px; font-family: 微软雅黑; margin-top: 18%">暂时还没有业绩信息</span>
+    </div>
+}
+
+
+

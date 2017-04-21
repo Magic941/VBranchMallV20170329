@@ -1,0 +1,194 @@
+﻿@{
+    Layout = "~/Areas/Shop/Themes/M1/Views/Shared/_SiteLayout.cshtml";
+}
+@section head{
+
+    <script type="text/javascript">
+        var selfurl = window.location.pathname + window.location.search;
+        if (selfurl.indexOf($Maticsoft.BasePath + 'Account/Login') == -1) {
+            window.location = $Maticsoft.BasePath + "Account/Login?returnUrl=" + selfurl;
+        }
+        ; if (parent.length) { top.window.location = $Maticsoft.BasePath + "Account/Login" + window.location.search; }
+    </script>
+
+    @*<link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/msg,btn,form,login.css" />  *@
+    <link rel="stylesheet" type="text/css" href="/Areas/Shop/Themes/M1/Content/Css/css/login/login.css" />
+    <script src="/Areas/Shop/Themes/M1/Content/Scripts/UserCenter/DefaultLogin.js" type="text/javascript"></script>
+}
+@model Maticsoft.ViewModel.Shop.LogOnModel 
+@if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            ShowFailTip('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+        })
+    </script>
+}
+
+<!--Conent Start-->
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { Class = "wform form" }))
+{
+    <input name="returnUrl" type="hidden"  value="@ViewBag.returnUrl"/>
+    <div class="disem_bark">
+        <div class="disem_bark_top clearfix">
+            <h1><a href="/">健康商城</a></h1>
+            <span>欢迎登录</span>
+        </div>
+
+        <div class="land_bark">
+            <div class="land_bark_nav">
+                <ul class="clearfix">
+                    <li><a href="/Account/Register">手机号注册</a></li>
+                    <li><a href="/Account/Register">邮箱注册</a></li>
+                    <li><a href="/Account/JkCard">健康卡激活</a></li>
+                </ul>
+            </div>
+            <div class="mem_ber">
+                <div class="mem_ber_pu"><a href="/">
+                    <img src="/Areas/Shop/Themes/M1/Content/images/images/login/register1.jpg" width="492" height="160" /></a></div>
+                <div class="mem_ber_pur">
+                    <ul>
+                        <li>
+                            <label>邮箱/健康卡用户/已验证手机</label>
+                            <div class="us_er">
+                                <input type="submit" id="inputloginsubmit" value="" style="display: none;" />
+                                @Html.TextBoxFor(m => m.UserName, new { Class = "inp", id = "txtLogin", name = "xlInput" })
+                                <bdo></bdo>
+                                <span id="userNameTip" class="spanMsg"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label>密码：</label>
+                            <div class="secret_code">
+                                @Html.PasswordFor(m => m.Password, new { Class = "inp", id = "password", name = "xlInput" })
+                                <bdo></bdo>
+                                <span id="pwdTip" class="spanMsg"></span>
+                                @*                        	<script>
+                        	    $("#txtLogin").val("399193924@qq.com");
+                        	    $("#password").val("123456");
+                    		</script>*@
+                            </div>
+                        </li>
+                        @*<li class="">
+                            <input class="checkbox" type="checkbox" name="sex" />
+                            <input type="checkbox" class="checkbox" id="d01" />
+                            <span>自动登录 
+                                @*<input type="checkbox" id="d02" /><label for="d02">安全控件登录</label>
+                            </span>
+                            
+                        </li>*@
+                        <span><a href="/Account/FindPwdByPhone">忘记密码</a></span>
+                        <li class="regi_stra_ti_on clearfix">
+                            <a href="javascript:;" class="red_den" id="loginsubmit">登  录</a>
+                            <a href="/Account/Register" class="my_zhu">我要注册</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+@*            <div class="team_work">
+                <span>使用合作网站账号登陆：</span>
+                <a href="#">QQ</a>
+            </div>*@
+        </div>
+    </div>
+}
+@*<div class="w980">
+        <div class="box login-reg">
+            <div class="hd mb15">
+                <h2 class="fn f18">
+                    登录</h2>
+            </div>
+            <div class="bd">
+                <div class="login fl">
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post,new {Class="wform form"}))
+                {
+                    <input id="hfRegisterToggle" type="hidden" value="@ViewBag.RegisterToggle" /> 
+                    <input name="returnUrl" type="hidden"  value="@ViewBag.returnUrl"/>
+                    <fieldset>
+                        <legend>登录</legend>
+                        <div class="f-box">
+                            <label class="f-label">
+                               @if (ViewBag.RegisterToggle == "Phone")
+                               {
+                                   @:手机号码：
+                               }
+                               else
+                               {
+                                   @:邮箱地址：
+                               } </label>
+                            <div class="f-input">
+                                <!--<input type="text" class="f-txt-b f-txt" id="txtLogin" name="xlInput" value=""/>-->
+                                 @Html.TextBoxFor(m => m.UserName, new { Class="f-txt-b f-txt" ,id="txtLogin" ,name="xlInput"})
+                            </div>
+                            <div class="f-msg">
+                                <div id="divLoginTip" >
+                                    <span   style="  color: red;  font-size: 14px;"> @Html.ValidationMessageFor(m => m.UserName)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="f-box">
+                            <label class="f-label">
+                                密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
+                            <div class="f-input">
+                                <!--<input type="password" class="f-txt-b f-txt" id="password" name="xlInput"/>-->
+                                @Html.PasswordFor(m => m.Password, new { Class = "f-txt-b f-txt", id = "password", name = "xlInput" })   
+                            </div>
+                            <div class="f-msg">
+                                <div id="divPasswordTip">
+                                    <span   style="  color: red;  font-size: 14px;"> @Html.ValidationMessageFor(m => m.Password)</span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="f-box" style="display:none;">
+                             <label class="f-label">
+                                 验证码：</label>
+                             <div class="f-input">
+                                 <input type="text" maxlength="4" class="f-txt-s f-txt" id="VerifyCode" name="xlInput"/>
+                                 <div class="f-vcode">
+                                     <img src="" id="loginVerifyCodeImg"/>
+                                     <a href="javascript:;" class="imgchange c6" id="loginChangeImage">换一张</a>
+                                 </div>
+                             </div>
+                             <div class="f-msg">
+                                 <div id="divVerifyCodeTip">
+                                 </div>
+                             </div>
+                         </div>
+                         <input type="submit" id="inputloginsubmit" value="" style="display:none;"/>
+                        <div class="login-btn">
+                            <a class="btn btn-important-large fb" href="javascript:;" id="loginsubmit"><span>登<em class="s1em"></em>录</span></a>
+                            <a class="ml10 c3" href="/Account/FindPwd">忘记密码？</a>
+                        </div>
+                        <div class="login-other cf">
+                            <span class="c9">其它登录方式：</span>
+                            <ul class="cf">
+                                <li logintype="default" class="i-weibo" ><a href="/social/sina">新浪微博</a></li>
+                                <li logintype="default" class="i-alipay"><a href="/social/qq">QQ登录</a></li>
+                            </ul>
+                        </div>
+                    </fieldset>
+                  }
+                </div>
+                <div class="reg fr">
+                    <div class="reg-box">
+                        <h3 class="fb f14 mb20">
+                            马上成为@(ViewBag.WebName)会员</h3>
+                        <p class="mb25">
+                            现在注册@(ViewBag.WebName)，在家就能享受Fashion的购物乐趣，便宜、安全又放心！</p>
+                        <div class="reg-btn mb25 pb25">
+                            <a class="btn btn-highlight-large" href="/Account/Register" target="_blank"><span>注册新用户</span></a>
+                        </div>
+                     
+                        <p class="c6">
+                            <i class="i-mobile"></i>手机购物，上商城手机版<a href="/m"  class="ml10">点击进入</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>*@
+<!--Conent End-->
+
+

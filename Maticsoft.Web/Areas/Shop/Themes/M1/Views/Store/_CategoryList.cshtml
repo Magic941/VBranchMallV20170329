@@ -1,0 +1,23 @@
+﻿ @model List<Maticsoft.Model.Shop.Supplier.SupplierCategories>
+@{
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "";
+    string ky = Request.RequestContext.RouteData.Values["ky"] != null ? Request.RequestContext.RouteData.Values["ky"].ToString() : "";
+                  //string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "hot";
+            }
+<ul>
+    @if (Model != null)
+    {
+     foreach (var item in Model)
+        { 
+            <li>
+        <div class="menuopen"></div>
+         <a class="clearfix" href="/Store/list/@item.SupplierId/@item.CategoryId/@mod/@price/@ky">@Maticsoft.Common.StringPlus.SubString(item.Name, 11, "...")</a>
+         @Html.Action("CategoryList", "Store", new { Pcid = item.CategoryId, suppId = item.SupplierId, viewName = "_SecondCateList" })
+       </li>
+        
+        }
+       
+    }
+ 
+</ul>

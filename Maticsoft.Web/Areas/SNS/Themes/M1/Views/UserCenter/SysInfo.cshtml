@@ -1,0 +1,22 @@
+﻿@{
+    Layout = "~/Areas/SNS/Themes/M1/Views/Shared/_UserCenterLayOut.cshtml";
+}
+@using Webdiyer.WebControls.Mvc;
+@model PagedList<Maticsoft.Model.Members.SiteMessage>
+<input type="hidden" id="currentpage" value="span_11"/>
+<div class="material_con">
+    <h1>
+        <p class="material_con_a">
+            系统消息</p>
+    </h1>
+    <div class="letters">
+
+        <div class="letters_b" id="SysInfoList">
+                        @{Html.RenderPartial("~/Areas/SNS/Themes/M1/Views/UserCenter/SysInfoList.cshtml", Model);}
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+</div>
+<div class="clear">
+</div>

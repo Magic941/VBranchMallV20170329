@@ -1,0 +1,53 @@
+﻿@model PagedList<Maticsoft.Model.Shop.PromoteSales.GroupBuyHistory>
+@using Webdiyer.WebControls.Mvc
+<style>
+    .in_pages span{
+    padding-left:0;
+    }
+    .in_pages span.in_r a {
+        padding:0px 1px 0px 1px; background:#fff; color:orange;display:inline-block; *display: inline; background:#fff;border:#E8F0EF 1px solid;
+    font-weight :bold;
+    font-size:14px;
+    }
+     .in_pages span.in_r a:hover{
+        background:#fff;
+        color:orange;
+        border:#E8F0EF 1px solid;
+    }
+</style>
+ @if (Model!=null && Model.Count>0)
+ {
+
+     <table>
+    <tr>
+        <td class="ProductName">商品</td>
+        <td>成交价格</td>
+        <td class="transaction">数量</td>
+        <td class="bullposition">买家</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="ProductName">@item.ProductName</td>
+            <td class="streetvalue ">@item.Amount.ToString("0.0") 元</td>
+            <td class="transaction">1</td>
+            <td class="bullposition">@item.UserName</td>
+        </tr>    
+    }
+</table>
+<div class="paginal_number">
+ @Html.AjaxPager(Model, new PagerOptions
+           {
+               CssClass = "in_pages",
+               ShowDisabledPagerItems = false,
+               AlwaysShowFirstLastPageNumber = false,
+               PageIndexParameterName = "pageIndex",
+               NumericPagerItemCount = 10,
+               CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+               NumericPagerItemWrapperFormatString = "<span class=\"in_r\">{0}</span>",
+               NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           }, new AjaxOptions { UpdateTargetId = "groupbuylist" })
+</div>
+ }
+
+

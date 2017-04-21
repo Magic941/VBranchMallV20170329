@@ -1,0 +1,70 @@
+﻿    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = "/ueditor/";
+    </script>
+    <script src="/ueditor/editor_config.js" type="text/javascript"></script>
+    <script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+<link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+
+<script type="text/javascript">
+    var editor = new baidu.editor.ui.Editor({//实例化编辑器
+        iframeCssUrl: 'ueditor/themes/default/iframe.css', toolbars: [
+
+            ['fullscreen',
+                'bold', 'underline', 'strikethrough', '|', 'removeformat', '|', 'forecolor', 'backcolor',
+                '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', 'insertorderedlist', 'insertunorderedlist', '|',
+                'insertimage', 'imagenone', 'imageleft', 'imageright',
+                'imagecenter', '|']
+                 ],
+        initialContent: '', autoHeightEnabled: false,
+        minFrameHeight: 220,
+        pasteplain: false
+         , wordCount: false
+          , elementPathEnabled: false
+ , autoClearinitialContent: true, imagePath: "/Upload/RTF/", imageManagerPath: "/"
+    });
+    editor.render('contentBlog'); //将编译器渲染到容器
+    </script>
+<div class="single_CF" id="PostBlog" style=" width: 540px;margin: 0px">
+    <div class="published" style="margin-left: 20px">
+        <div class="published_h">
+            <p>
+                标题:</p>
+                <div class="published_h_i" style="width: 542px">
+                <dl class="published_h_i1">
+                </dl>
+                 <dl class="published_h_i2" style=" width: 520px">
+                    <input name="" type="" value="" id="titleBlog" /></dl>
+                <dl class="published_h_i3">
+                </dl>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="published_h">
+            <p>
+                正文:</p>
+            <div class="published_u">
+                <div class="published_u_2" style=" width: 543px">
+                    <textarea name="" cols="" rows="" id="contentBlog"></textarea></div>
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="published_v" style="margin-top:40px ;display: none  ">
+            @Html.Action("WeiBoBind", "Partial")
+            <div class="clear">
+            </div>
+        </div>
+        <div class="published_w"  >
+            <div class="published_w_a">
+                <a href="javascript:void(0);" id="postBlog">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/published_7.jpg" /></a></div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+    </div>
+    <div class="clear">
+    </div>
+</div>

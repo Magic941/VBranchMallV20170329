@@ -1,0 +1,150 @@
+﻿@model Maticsoft.ViewModel.Shop.PayAndShip
+<a name="payAndShipFocus"></a>
+<div class="step-title">
+    <div id="save-consignee-tip" class="step-right" style="display: none;">
+        <span class="save-consignee-payship">由于您更改了收货人信息，请重新填写支付及配送方式</span></div>
+    <strong>支付及配送方式</strong> <span class="step-action" id="payment-ship_edit_action" style="display: inline;"><span style="display: none"><a href="#none" onclick="back_Before('payment-ship')">[关闭]</a></span></span>
+</div>
+<div class="step-content">
+    <div id="payment-ship" class="sbox-wrap" style="position: relative;">
+        <div class="payment">
+            <h3>
+                支付方式</h3>
+            <div style="padding-bottom: 10px">
+            </div>
+            <div class="mc form">
+                @if (Model.ListPaymentMode != null && Model.ListPaymentMode.Count > 0)
+                {
+                    foreach (Maticsoft.Payment.Model.PaymentModeInfo item in Model.ListPaymentMode)
+                    {
+                    <div class="item">
+                        <div class="label">
+                            <input type="radio" name="payment" payname="@item.Name" id="pay-method-@item.ModeId" class="hookbox" value="@item.ModeId">
+                            <label for="pay-method-@item.ModeId">
+                                @item.Name
+                            </label>
+                        </div>
+                        <div class="field">
+                            <span class="tip">@Html.Raw(item.Description)</span>
+                        </div>
+                        <span class="clr"></span>
+                    </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="shipment">
+            <div class="way" style="padding-top: 20px;">
+                <h3>
+                    配送方式</h3>
+                <div class="mc form">
+                    <div class="way-category">
+                        <div class="way-category-label" id="pick-sku" style="padding-top: 10px;">
+                            <div class="way-category-label-a">
+                                <span style="color: #999">根据您选择的支付方式, 可以使用以下配送方式:</span>
+                            </div>
+                        </div>
+                        <div id="subway-sment">
+                            <div class="mc form">
+                                <div class="sment-box" id="pickSiteInfo">
+                                    @if (Model.ListShippingType != null && Model.ListShippingType.Count > 0)
+                                    {
+                                        foreach (Maticsoft.Model.Shop.Shipping.ShippingType item in Model.ListShippingType)
+                                        {
+                                        <div class="item ">
+                                            <div class="label" style="width: 210px;">
+                                                <input name="pick" id="shipping-type-@item.ModeId" class="hookbox" value="@item.ModeId" type="radio"/>
+                                                <label for="shipping-type-@item.ModeId">
+                                                    @item.Name</label>
+                                            </div>
+                                            <div class="field">
+                                                <span class="tip">@Html.Raw(@item.Description)</span>
+                                            </div>
+                                        </div>
+                                        }
+                                    }
+                                </div>
+                                @*<div class="sment-form" style="display: none;">
+                                    <div class="list">
+                                        <span class="label">送货日期：</span>
+                                        <select id="pickDate">
+                                            <option value="2013-06-21">6月21日[周五] </option>
+                                            <option value="2013-06-22">6月22日[周六] </option>
+                                            <option value="2013-06-23">6月23日[周日] </option>
+                                            <option value="2013-06-24">6月24日[周一] </option>
+                                            <option value="2013-06-25">6月25日[周二] </option>
+                                        </select>
+                                    </div>
+                                    <ul class="note group">
+                                        <li class="first">温馨提示：</li>
+                                        <li>1、您选择的时间可能会因库存不足等因素导致订单延迟，请您谅解！
+                                            <br>
+                                            2、我们会在您选定提货日期的前一天处理您的订单，在此之前您的订单处于暂停状态。 </li>
+                                    </ul>
+                                    <br>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <div class="form-btn group">
+                    <a href="#none" class="btn-submit" onclick="Save_PayAndShip(this)"><span>保存支付方式及配送方式</span> </a>
+                    <div class="loading loading-1" style="display: none">
+                        <b></b>正在提交信息，请等待！</div>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <!--<div id="shipment"></div>-->
+</div>
+@if (Model.CurrentPaymentMode != null)
+{
+    <script type="text/javascript">
+        $('#step-2 .payment :radio[value=@(Model.CurrentPaymentMode.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}
+@if (Model.CurrentShippingType != null)
+{
+    <script type="text/javascript">
+        $('#step-2 #shipment .sment-box :radio[value=@(Model.CurrentShippingType.ModeId)]').attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    </script>
+}
+<script type="text/javascript">
+    $('#step-2 .payment :radio').unbind('click').bind('click', function () {
+        $('#step-2 .payment :radio').removeAttr('checked').parents('.form:eq(0)>.item').removeClass('item-selected');
+        $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+        $('#step-2').load($Maticsoft.BasePath + 'Order/PayAndShipInfo', {
+            payId: $(this).val()
+        });
+    });
+    $('#step-2 #shipment .sment-box :radio').unbind('click').bind('click', function () {
+        $('#step-2 #shipment .sment-box :radio').removeAttr('checked').parents('.sment-box:eq(0)>.item').removeClass('item-selected');
+        $(this).attr('checked', 'checked').parents('.item:eq(0)').addClass('item-selected');
+    });
+    function Save_PayAndShip(sender) {
+        $(sender).hide();
+        $(sender).next().show();
+
+        var addressId = $('#step-1 .step-content').attr("addressId");
+        if (!addressId) addressId = 0;
+
+        var skuStr = $.getUrlParam('sku');
+        var count = $.getUrlParam('count');
+        var c = $.getUrlParam('c');
+        var g = $.getUrlParam('g');
+        $('#step-2').load($Maticsoft.BasePath + 'Order/ShowPayAndShip', {
+            payId: $('#step-2 .payment :radio:checked').val(),
+            shipId: $('#step-2 #shipment .sment-box :radio:checked').val(),
+            addrId: addressId,
+            sku: skuStr ? skuStr : null,
+            count: count ? count : 1,
+            c: c ? c : null,
+            g: g ? g : null
+        }, function () {
+            Status_None();
+            //window.location.hash = "payAndShipFocus";
+        });
+    }
+</script>

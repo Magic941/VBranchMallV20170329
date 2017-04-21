@@ -1,0 +1,60 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "个人中心-我的专属二维码";
+}
+
+<script src="/Scripts/jquery-1.10.2.js.js"></script>
+<script src="/Scripts/jquery.qrcode.js"></script>
+<script src="/Scripts/base64.js"></script>
+<script src="/Scripts/canvas2image.js"></script>
+<style>
+.QR_Code b{
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	display:block;
+	color:#c7000b;
+	}
+.QR_Code p{
+	width:95%;
+	margin:0 auto;
+	line-height:30px;
+	color:#404040;
+	}
+.QR_Code em{
+	width:80%;
+	display:block;
+	margin:0 auto;
+	padding:15px 0;
+	}
+.QR_Code em img{
+	width:100%;
+	}
+.QR_Code span{
+	color:#c7000b;
+	}
+</style>
+
+<div class="top">
+    <span><a href="javascript:;" onclick="history.go(-1)">&lt;返回</a></span>
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div style="margin:30px auto; text-align:center;">
+    @if(!string.IsNullOrWhiteSpace(ViewBag.Name))
+    {
+<img id="tImg" alt="我的证书"  src="/mycert.aspx?truename=@ViewBag.Name"  style="width:250px; height:250px; text-align:center;"/>
+    }
+    else
+    {
+       <div>请完善你的真实姓名</div>
+    }
+</div>
+
+
+<script type="text/javascript">
+    var imgUrlVal = $("#tImg").val();
+    var desc = "健康商城-您身边的商城（zhenhaolin.com）-贴心服务、优惠返利、保险赠送、轻松购物,网上商城，批发商城，分销商城，电子商务解决方案";
+    var title = "我的证书";
+</script>
+
+

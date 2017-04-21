@@ -1,0 +1,84 @@
+﻿@{
+    Layout = "/Areas/MShop/Themes/M1/Views/Shared/_BaseLayout.cshtml";
+    ViewBag.Title = "校园创业卡激活成功";
+    Maticsoft.Model.Shop_CardUserInfo userinfo = ViewBag.userInfo;
+}
+<style type="text/css">
+    p {
+        margin: 0;
+    }
+
+    .Card-activation {
+        width: 16.2rem;
+        margin: 0 auto;
+        overflow: hidden;
+        padding: 70px 0 50px 0;
+    }
+
+    .activation-left {
+        width: 2.5rem;
+        height: 2.5rem;
+        float: left;
+    }
+
+        .activation-left img {
+            width: 100%;
+            display: block;
+        }
+
+    .activation-right {
+        width: 13rem;
+        float: left;
+        padding: 0 0 0 10px;
+    }
+
+        .activation-right b {
+            font-size: 1rem;
+            display: block;
+            color: #333333;
+        }
+
+        .activation-right p {
+            font-size: 0.8rem;
+            color: #333333;
+        }
+
+    .activation-bottom a {
+        width: 80%;
+        height: 2rem;
+        line-height: 2rem;
+        text-align: center;
+        display: block;
+        margin: 0 auto;
+        margin-top: 30px;
+        text-decoration: none;
+        color: #666666;
+        border-radius: 5px;
+    }
+</style>
+<div class="top">
+    @Html.Partial("/Areas/MShop/Themes/M1/Views/Partial/_HeadRight.cshtml")
+</div>
+<div class="Card-activation">
+    <div class="activation-left">
+        <img src="/Areas/MShop/Themes/M1/Content/img/y_03.jpg" />
+    </div>
+    <div class="activation-right">
+        <b>恭喜您已激活健康商城大学生校园创业卡
+            @if (userinfo != null)
+            {
+                <span>@userinfo.CardNo</span>
+            }!
+        </b>
+        <b>您已成为健康商城的一份子,</b>
+            <b>您已拥有 大学生创业微店的尊贵身份</b>
+        <p>现在开始您的健康商城梦想之旅吧！</p>
+    </div>
+</div>
+<div class="activation-bottom">
+    <a href="@(ViewBag.BasePath)UserCenter/index" style="border:1px solid #3dce97;">去个人中心</a>
+    <a href="@(ViewBag.BasePath)" style="border:1px solid #d91047;">立即去购物</a>
+</div>
+
+@*恭喜您已激活健康商城大学生校园创业卡【xxxxxx】,您已成为健康商城的一份子，
+您已拥有 大学生创业微店的尊贵 身份，现在开始您的健康商城梦想之旅吧！*@

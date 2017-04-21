@@ -1,0 +1,82 @@
+﻿@{
+    Layout = "~/Areas/Supplier/Themes/M1/Views/Shared/_SupplierLayout.cshtml";
+}
+@using Maticsoft.Controls.MVC
+@model Maticsoft.Model.Shop.Supplier.SupplierAD
+<div class="mar30">
+    <div class="contenttitle2">
+        <h3>
+            <span>广告位信息</span>
+        </h3>
+        <small class="desc"><span>广告位信息查看</span> </small>
+    </div>
+    <table style="width: 100%;" cellpadding="2" cellspacing="1" class="borderkuang">
+        <tr>
+            <td class="tdbg">
+                <table cellspacing="0" cellpadding="3" width="100%" border="0">
+                    <tr>
+                        <td class="td_class">
+                            <span>广告名称：</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>图片地址：</span>
+                        </td>
+                        <td height="25">
+                            <img src="@Maticsoft.BLL.Shop.Supplier.SupplierInfo.SupperLogo(Model.FileUrl)" style="height:300px;width:600px;border-width:0px;"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>链接地址：</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(m => m.NavigateUrl)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>状态：</span>
+                        </td>
+                        <td>
+                            @Html.RadioButtonList("Status", new List<SelectListItem> { new SelectListItem { Value = "1", Text = "启用", Selected = Model.Status==1}, 
+                                new SelectListItem { Value = "0", Text = "未启用",Selected = Model.Status==0} }, new Dictionary<string, object>() { }, Position.Horizontal, 2)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                            <span>顺序：</span>
+                        </td>
+                        <td height="25">
+                            @Html.DisplayFor(m => m.Sequence)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_class">
+                        </td>
+                        <td height="25">
+                        <div class="form stdform">
+                            <input type="button" value="确定" id="btnSave" class="reset radius2" style="display: none;" />
+                            <input type="button" value="取消" id="btnCancle" class="reset radius2" />
+                       </div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("input[type='radio']").prop("disabled", true);
+        $("#btnCancle").click(function () {
+            window.top.history.go(-1);
+            //history.go(-1); 
+        });
+    })
+</script>

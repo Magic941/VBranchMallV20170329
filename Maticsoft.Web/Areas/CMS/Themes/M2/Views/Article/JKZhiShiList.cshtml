@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "/Areas/CMS/Themes/M2/Views/Shared/_JKIIBaseLayout.cshtml";
+}
+@using Webdiyer.WebControls.Mvc
+@model Webdiyer.WebControls.Mvc.PagedList<Maticsoft.Model.CMS.Content>
+  @section head{
+    <link href="/Areas/CMS/Themes/M2/Content/wb5188/css/zixun.css" rel="stylesheet" type="text/css" />  
+  
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <div class="zixun_wl">
+        <div class="w1200 miaoz_wl">
+            <ul class="kaopu_wl">
+                @foreach (var item in Model)
+                { 
+                    <li>
+                        <img class="huago_wl" src="/Areas/CMS/Themes/M2/Content/wb5188/images/zxw02.jpg" />
+                        <img src="@item.ImageUrl" width="353" height="266" />
+                        <a href="/Article/Details/@item.ContentID" target="_blank">@item.Title</a>
+                        <p>@item.Summary</p>
+                        <span>@item.CreatedDate.ToString("yyyy.MM.dd")</span>
+                    </li>
+                }
+                <div class="c"></div>
+            </ul>
+            
+                @Html.Pager(Model, new PagerOptions
+                                            {
+                                               CurrentPagerItemWrapperFormatString="<a class='fen-sel_wl'>{0}</a>",
+                                                NumericPagerItemCount = 3,
+                                                NumericPagerItemWrapperFormatString = "{0}",
+                                                NavigationPagerItemWrapperFormatString = "{0}",
+                                                CssClass = "fanye_wl",
+                                                SeparatorHtml = "",
+                                                ShowPrevNext=true,
+                                                ShowFirstLast=false,
+                                                NextPageText="<img src=\"/Areas/CMS/Themes/M2/Content/wb5188/images/zxw07.png\">",
+                                                PrevPageText="<img src=\"/Areas/CMS/Themes/M2/Content/wb5188/images/zxw06.png\">"
+                                            })
+           
+        </div>
+    </div>
+                
+
+}
+else
+{
+    <p>暂无内容</p>
+}
+
+        
+
+

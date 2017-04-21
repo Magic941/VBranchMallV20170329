@@ -1,0 +1,80 @@
+﻿@using Maticsoft.Model.Shop.Products;
+
+<div id="Floor1" class="Floor Floor5">
+    <div class="Floor_hd clearfix">
+        <h2 class="hd-Tit fL"><span class="f3"></span>美食饮料</h2>
+        <div class="Catg-R fR">
+            <ul class="Catg_ul">
+                @*<li><a target="_blank" href=" /search/0/0/default/0-0/%E5%A5%B3%E8%A3%85">品牌女装</a></li>
+                <li><a target="_blank" href=" /search/0/0/default/0-0/%E7%94%B7%E8%A3%85">品牌男装</a></li>
+                <li><a target="_blank" href=" /search/0/0/default/0-0/%E9%9E%8B%E9%9D%B4%E7%AE%B1%E5%8C%85">鞋靴箱包</a></li>
+                <li><a target="_blank" href=" /search/0/0/default/0-0/%E8%BF%90%E5%8A%A8%E6%88%B7%E5%A4%96">运动户外</a></li>
+                <li><a target="_blank" href="/search/0/0/default/0-0/%E7%89%B9%E4%BB%B7%E5%95%86%E5%93%81">特价商品</a></li>*@
+            </ul>
+        </div>
+    </div>
+    <div class="Floor_cont clearfix">
+        <div class="cont-S fL">           
+             @Html.Action("AdDetail", "Partial", new { id = 66, ViewName = "_IndexFloorAd" })
+        </div>
+        <div class="cont-M fL">
+            <div class="M_fgoods_wrap M_fgoods_wrap4 tab_0">
+                <ul class="M_fgoods">
+                    @Html.Action("RecommendProducts", "Partial", new { recommendId = 3, top = 5, ViewName = "_IndexFloorProducts" })
+
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="Floor_bt clearfix">
+        <div class="Floor_btL">
+            <div class="sy_mod_key">
+                <dl class="sy_mod_key_dl clearfix">
+                    <dt><a href="#">热门分类</a></dt>
+                    <dd>
+                        <a target="_blank" href=" product/602">红酒</a>
+                        <a target="_blank" href=" product/603"> 白酒</a>
+                        <a target="_blank" href=" product/605">葡萄酒</a></dd>
+                </dl>
+                <dl class="sy_mod_key_dl clearfix">
+                    <dt><a href="#">热门品牌</a></dt>
+                    <dd>
+                        <a target="_blank" href=" product/181/93/0/default/">阿尔曼萨</a>
+                        <a target="_blank" href=" product/181/337/0/default/">西凤酒</a>
+                        <a target="_blank" href=" product/181/30043/0/default/">茅宴</a></dd>
+                </dl>
+                <dl class="sy_mod_key_dl clearfix">
+                    <dt><a href="#">热门茶水</a></dt>
+                    <dd>
+                        <a target="_blank" href=" product/181/29931/0/default">素曰</a>
+                        <a target="_blank" href=" product/181/30051/0/default/"> 牧香园</a>
+                        <a target="_blank" href=" product/181/142/0/default/">尚庄</a></dd>
+                </dl>
+            </div>
+        </div>
+        <div class="Floor_btR">
+            <div class="lowleft tab_low_0">
+                <i class="rank-bod"></i>
+                <div class="hot-sell-tit clearfix">
+                    <div class="hot-sell-H fL">
+                        本周热销排行榜
+                    </div>
+
+                </div>
+                <div class="hot-sell-W clearfix">
+                    <ul class="tab-hot-sell-0">
+                        @Html.Action("RecommendProducts", "Partial", new { recommendId = 31, top = 5, ViewName = "_IndexFloorHotProducts" })
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="BT-af">
+    <div class="wrapper">
+        <a href="ld/dh.html" target="_blank">
+            <img src="/Areas/Shop/Themes/M1/Content/images/images/index/1fa.jpg" width="1200" height="60"></a>
+    </div>
+</div>

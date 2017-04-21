@@ -1,0 +1,57 @@
+﻿@{
+    Layout = "~/Areas/CMS/Themes/M1/Views/Shared/_JKIIBaseLayout.cshtml";
+
+    var menulist = new List<Maticsoft.Model.CMS.Content>();
+    if (ViewBag.NavContent != null)
+    {
+        menulist = (List<Maticsoft.Model.CMS.Content>)ViewBag.NavContent;
+    }
+}
+ <link rel="stylesheet" type="text/css" href="/Areas/CMS/Themes/M1/Content/99jkc/css/about.css" />
+<div class="main">
+    <div class="wrapper">
+        <div class="imgbox clearfix">
+            <div class="lft">
+                <img alt="" src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_01.png">
+            </div>
+            <div class="rgt">
+                <img alt="" src="/Areas/CMS/Themes/M1/Content/99jkc/images/img_02.png">
+            </div>
+        </div>
+        <div class="mainBox">
+            <div class="leftBox">
+                <ul class="subNav">
+                    @foreach (var item in menulist)
+                    {
+
+                        if (item.ContentID == (int)ViewBag.CurContentId)
+                        {
+                         <li class="on"><a href="/About/index?curContentId=@item.ContentID">@item.Title<i></i></a></li>
+                        }
+                        else
+                        {
+                          <li><a href="/About/index?curContentId=@item.ContentID">@item.Title<i></i></a></li>
+                        }
+                    }
+
+                </ul>
+            </div>
+
+            <!--leftbox-->
+            <div class="rightBox">
+                @if (menulist.Count > 0)
+                {   
+                    <div class="position">您所在的位置：<a href="/">主页</a> &gt; <a href="/">关于</a> &gt; <a href="/">@ViewBag.CurTitle </a></div>
+                    <div class="body" style="min-height:600px">
+                        <h1 style="margin: 0px; padding: 20px 0px; outline: 0px; color: rgb(102, 102, 102); line-height: 30px; font-family: 微软雅黑, 黑体, Arial; font-size: 22px; zoom: 1;">@ViewBag.CurTitle</h1>
+                        @Html.Raw(@ViewBag.CurContent)
+                        <br>
+                    </div>  
+                }
+            </div>
+
+            <!--rightbox-->
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

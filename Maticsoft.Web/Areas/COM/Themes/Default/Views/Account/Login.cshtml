@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "/Areas/COM/Themes/Default/Views/Shared/_NoFootLayout.cshtml";
+    ViewBag.Title = "用户登录";
+}
+@model Maticsoft.ViewModel.Member.LogOnModel
+<link href="/Areas/COM/Themes/Default/Content/Css/userstyle.css" rel="stylesheet"
+    type="text/css" />
+<link href="/Areas/COM/Themes/Default/Content/Css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript">
+    $(function () {
+        //微信新用户绑定
+        $('#loginsubmit').click(function () {
+                $("#formlogin").submit(); //触发submit按钮
+        });
+    })
+</script>
+
+@if (ViewData.ModelState != null &&
+         ViewData.ModelState.Count > 0 &&
+         ViewData.ModelState["Message"] != null &&
+         ViewData.ModelState["Message"].Errors.Count > 0)
+{
+    <script type="text/javascript">
+        $(function () {
+            $('#diverror').html('@ViewData.ModelState["Message"].Errors[0].ErrorMessage');
+        })
+    </script>
+}
+<input id="hfSMSIsOpen" type="hidden" value="@ViewBag.SMSIsOpen" />
+<div class="top">
+    <span>用户登录</span>
+</div>
+<div class="yy">
+    <span id="diverror" style="margin-left: 10px; margin-top: 10px;" class="txterror">
+    </span>
+</div>
+<div class="logincontent">
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "formlogin" }))
+    { 
+        <input id="hfRegisterToggle" type="hidden" value="@ViewBag.RegisterToggle" /> 
+        <input name="returnUrl" type="hidden"  value="@ViewBag.returnUrl"/>
+        <span class="login_title">用户名： </span>
+        <div>
+            @Html.TextBoxFor(m => m.UserName, new { Class = "logininput", id = "txtLogin" })<br /> 
+            <div id="divLoginTip" class="txterror">
+                <span class="txterror">@Html.ValidationMessageFor(m => m.UserName)</span>
+            </div>
+        </div>
+ 
+        <span class="login_title">密码：</span>
+        <div>@Html.PasswordFor(m => m.Password, new { Class = "logininput", id = "password" })
+            <br />
+            <div id="divPasswordTip" class="txterror">
+                <span class="txterror">@Html.ValidationMessageFor(m => m.Password)</span>
+            </div>
+        </div>
+        <div>
+            <input type="button" value="登录" id="loginsubmit" class="sub_btn"></div>
+ 
+    }
+</div>

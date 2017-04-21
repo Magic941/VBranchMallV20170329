@@ -1,0 +1,18 @@
+﻿@model  List<Maticsoft.Model.Shop.Products.ProductInfo>
+@if (Model != null)
+{
+    foreach (var item in Model)
+    { 
+      
+    <div class="best_seller1">
+        <a href="/Product/Detail/@item.ProductId" target="_blank">
+            <img src='@Maticsoft.Web.Components.FileHelper.GeThumbImage(item.ThumbnailUrl1, "T350X350_")' width="136" height="136"></a>
+        <p>@item.ProductName</p>
+        <p>
+            <b>¥<em>@(item.LowestSalePrice.ToString("0.00"))</em></b>           
+            <i>¥@(item.MarketPrice.Value.ToString("0.00"))</i>
+        </p>
+    </div>
+                       
+    }
+}

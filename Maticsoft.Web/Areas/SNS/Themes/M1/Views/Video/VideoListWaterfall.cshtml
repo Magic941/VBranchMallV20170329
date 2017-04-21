@@ -1,0 +1,37 @@
+﻿@model List<Maticsoft.Model.SNS.Posts> 
+@{
+    
+    foreach (var item in Model)
+    {
+    <div class="main_album_bl_f" style="margin-right: 15px; margin-top: 15px;">
+        <div class="videocontent">
+            <div class="videoimage">
+                     <a href="@(ViewBag.BasePath)Video/Detail/@item.PostID" target="_blank">
+                     <img class="videoimg" src="@item.PostExUrl" />
+                     </a>
+            </div>
+            <div class="videopinglun">
+                <p class="search_com_a1">
+                    <img src="/Areas/SNS/Themes/M1/Content/images/main10.jpg" />
+                    @item.FavCount
+                </p>
+                <p>
+                    <img src="/Areas/SNS/Themes/M1/Content/images/main11.jpg" />@item.CommentCount
+                    评论
+                </p>
+                <div class="clear">
+                </div>
+            </div>
+            <div style="padding-top: 8px; width: 188px;">
+                <span title="@item.Description">   <a href="@(ViewBag.BasePath)Video/Detail/@item.PostID" target="_blank" style="color:#6b6b6b;">@Maticsoft.Common.StringPlus.SubString(item.Description, 322, "...")</a>
+                </span>
+            </div>
+            <a href="@(ViewBag.BasePath)Video/Detail/@item.PostID" target="_blank">
+                <img class="blogVideo" src="/Scripts/microblog/images/videoplay.png" alt="" />
+            </a>
+            <div class="clear">
+            </div>
+        </div>
+    </div>
+    }
+}

@@ -1,0 +1,142 @@
+﻿@*@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+*@
+@using Webdiyer.WebControls.Mvc
+@model Maticsoft.ViewModel.Shop.ProductListModel
+@{
+    string cid = Request.RequestContext.RouteData.Values["cid"] != null ? Request.RequestContext.RouteData.Values["cid"].ToString() : "0";
+    string brandid = Request.RequestContext.RouteData.Values["brandid"] != null ? Request.RequestContext.RouteData.Values["brandid"].ToString() : "0";
+    string keyword = Request.RequestContext.RouteData.Values["attrvalues"] != null ? Request.RequestContext.RouteData.Values["attrvalues"].ToString() : "0";
+    string mod = Request.RequestContext.RouteData.Values["mod"] != null ? Request.RequestContext.RouteData.Values["mod"].ToString() : "default";
+    string price = Request.RequestContext.RouteData.Values["price"] != null ? Request.RequestContext.RouteData.Values["price"].ToString() : "0-0";
+        //int cid = 0, int brandid = 0, string keyword = "", string mod = "hot", string price = "0-0",
+        //                  int? pageIndex = 1
+}
+
+<style>
+    body { 
+        /*background: #f2f2f2;*/
+    }
+
+    .seach_bg {
+        /*background: #f2f2f2;*/
+    }
+
+    .listimg {
+    }
+
+    .products_list li {
+        overflow: hidden;
+        margin: 0 auto;
+    }
+
+    .listimg img {
+        width: 100%;
+        border: 1px solid #d3d3d3;
+    }
+
+    .lisdimg {
+        font-size: 12px;
+    }
+
+    .lisdimgAD {
+        float: left;
+        padding-top: 10px;
+    }
+    .bg {
+        background-color:#fff;
+    }
+</style>
+
+<script src="/Scripts/jquery/maticsoft.img.min.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="/Scripts/jquery.waterfall/js/jquery.waterfallnew.js"></script>
+<link rel="stylesheet" href="/Scripts/jquery.waterfall/css/stylenew.css" />
+<script type="text/javascript">
+    $(function () {
+        resizeImg('.products_list', 100, 100);
+    });
+</script>
+@*@if (Model.ProductPagedList != null)
+{
+  
+    <div>
+        @Html.AjaxPager(Model.ProductPagedList, new PagerOptions
+       {
+           ShowDisabledPagerItems = false,
+           AlwaysShowFirstLastPageNumber = false,
+           PageIndexParameterName = "pageIndex",
+           NumericPagerItemCount = 3,
+           CurrentPagerItemWrapperFormatString = "<p class=\"in_s\">{0}</p>",
+           NumericPagerItemWrapperFormatString = "<p>{0}</p>",
+           NavigationPagerItemWrapperFormatString = "<p>{0}</p>",
+           CssClass = "in_pages",
+           SeparatorHtml = ""
+       }, new AjaxOptions { UpdateTargetId = "ProductListDiv" })
+    </div>
+}*@
+@*<div id="ProductListDiv">*@
+    @if (Model.ProductPagedList != null)
+    {
+        <div class="products_list" id="J_lazyload">
+        </div>
+        <div>
+            <!--数据索引开始位置-->
+            <input type="hidden" id="hfCurrentPageAjaxStartIndex" value="@ViewBag.CurrentPageAjaxStartIndex" />
+            <input type="hidden" id="hfCurrentPageAjaxEndIndex" value="@ViewBag.CurrentPageAjaxEndIndex" />
+        </div>
+    }
+@*</div>*@
+<script type="text/javascript">
+    $(function(){
+        // 一次性全部加载到本地，再部分显示
+       
+        
+        // $("#divResult2").html( $("#divResult2").html() + "执行索引为："+waterFall.StartIndex);
+        //结束数据位置
+        var width=document.body.clientWidth;
+        var colwidthval=width-10;
+        var endpageindex=$("#hfCurrentPageAjaxEndIndex").val();
+        // 按需加载方式
+        var wf_page = 0;
+        var pageindex=1;
+        $('#J_lazyload').waterfall({
+           
+            EndIndex:endpageindex,
+            StartIndex:pageindex,
+            perNum:4,
+            colWidth:colwidthval,
+            imgUrlName:"ThumbnailUrl1",
+            // 自定义跨域请求
+            ajaxFunc: function(success, error){
+               
+                $.ajax({
+                    type: 'GET',
+                    url: "@(ViewBag.BasePath)Product/ListWaterfallNew",
+                    cache: false,
+                    data: $.extend(@Html.Raw(ViewBag.DataParam),{ PageIndex:  ++wf_page }),
+                    dataType:'json',
+                    timeout: 60000,
+                    success: success,
+                    error: error
+                });
+         	    
+            },
+            createHtml: function(data){
+     
+                return '<div class="wf_item_inner bg"  >' +
+                          '<a href="@(ViewBag.BasePath)p/d/0/'+data.ProductId +'/4" class="listimg ALIsting" target="_blank">' +
+                            '<img class="thumb_img"  src="'+data.ThumbnailUrl1 +'"  />' +
+                          '</a>' +
+                          '<h3 class="desc" style="margin-top:1px;"> <a href="@(ViewBag.BasePath)p/d/0/'+data.ProductId +'/4"> '+ data.ProductName +' </a>  </h3>' +
+                          '<small class="zeng"style=" font-size:16px; color:red;"  >￥'+data.LowestSalePrice +'</small>' +
+                    '<div class="zsdgu"><b style="font-family: SimSun; color:#808080;font-size:12px; text-decoration: line-through; vertical-align: middle;  display:block;">￥'+data.MarketPrice+' </b>'+
+                    '<h style="font-family: SimSun; color:#808080; float:right;margin-right:10px ">已售 '+data.SaleCounts+' 件 </h>'+
+                        '</div></div>';
+              
+
+            }
+        });
+    });
+</script>
+

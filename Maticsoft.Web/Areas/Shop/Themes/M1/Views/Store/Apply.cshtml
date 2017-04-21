@@ -1,0 +1,498 @@
+﻿@model Maticsoft.Model.Shop.Supplier.SupplierInfo
+@{
+    Layout = "/Areas/Shop/Themes/M1/Views/Shared/_SupplierApplyLayout.cshtml";
+}
+@section head{
+    <link href="/Scripts/jqueryui/red/jquery-ui-1.9.2.min.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/jqueryui/jquery-ui-1.9.2.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery/jquery.guid.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        window.UEDITOR_HOME_URL = "/ueditor/";
+    </script>
+    <script src="/ueditor/editor_config.js" type="text/javascript"></script>
+    <script src="/ueditor/editor_all_min.js" type="text/javascript"></script>
+    <link href="/ueditor/themes/default/ueditor.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery/jquery.hash.min.js"></script>
+}
+@section step{
+    <div class="wrap">
+        <ul class="step" id="step1">
+            <li class="fore1">1.填写核对商家信息<b></b></li>
+            <li class="fore2">2.选填店铺信息<b></b></li>
+            <li class="fore3">3.商家审核</li>
+        </ul>
+    </div>
+}
+<div id="page-form" class="wrap m2">
+    <a name="consigneeFocus"></a>
+    <div id="checkout">
+        <div class="mt" style="padding-bottom: 7px;">
+            <h3 id="title" style="margin-left: 10px; font-weight: bold; font-size: 17px;">
+                填写并核对商家信息</h3>
+        </div>
+        <div id="wizard" class="checkout-steps">
+            <div id="step-1" class="step step-complete">
+                <div class="step-content">
+                    <div id="consignee" class="sbox-wrap">
+                        <div class="sbox">
+                            @using (Html.BeginForm("Apply", "Store", FormMethod.Post, new { id = "FormSubmitApply" }))
+                            {
+                                @Html.HiddenFor(m => m.SupplierId)
+                                @Html.HiddenFor(m => m.UserId)
+                                <div class="consignee-form" id="consignee-form" style="padding-left: 12px;">
+                                    <div class="panel-form" id="CompanyInfo">
+                                        <div class="list" id="name_div">
+                                            <span class="label"><em>*</em>公司名称：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.Name, new { maxlength = "20", @class = "textbox", id = "SupplierName" })
+                                            </div>
+                                            <span class="status error" id="name_div_error"></span>
+                                        </div>
+                                        <div class="list select-address" id="area_div">
+                                            <span class="label"><em>*</em>所在地：</span>
+                                            <div class="field">
+                                                <span id="span_area">
+                                                    @Html.HiddenFor(m => m.RegionId, new { id = "hfSelectedNode" })
+                                                    <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script>
+                                                </span>
+                                            </div>
+                                            <span class="status error" id="area_div_error"></span>
+                                        </div>
+                                        <div class="list full-address" id="address_div">
+                                            <span class="label"><em>*</em>详细地址：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.Address, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error" id="address_div_error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>成立时间：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.EstablishedDate, new { maxlength = "10", @class = "textbox txtDate" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>注册资本：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.RegisteredCapital, new { maxlength = "10", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>注册地：</span>
+                                            <div class="field">
+                                                @Html.HiddenFor(m => m.EstablishedCity, new { id = "hfSelectedNode" })
+                                                <script src="/Scripts/jquery/maticsoft.selectregion.js" handle="/RegionHandle.aspx" isnull="true" type="text/javascript"></script>
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>法人：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.ArtiPerson, new { maxlength = "25", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>电话：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.TelPhone, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>手机：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.CellPhone, new { maxlength = "11", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>联系邮箱：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.ContactMail, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>联系人：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.Contact, new { maxlength = "10", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>邮编：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.PostCode, new { maxlength = "10", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">传真：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.Fax, new { maxlength = "15", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">主页：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.HomePage, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address" style="display: none;">
+                                            <span class="label">商家等级：</span>
+                                            <div class="field">
+                                                @Html.DropDownListFor(m => m.Rank, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem{Text = "--请选择--",Value = "0"},
+                                                    new SelectListItem{Text = "N星级",Value = "1"}
+                                                })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>类别：</span>
+                                            <div class="field">
+                                                @Html.DropDownListFor(m => m.CategoryId, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem{Text = "--请选择--",Value = "0"},
+                                                    new SelectListItem{Text = "合资",Value = "1"},
+                                                    new SelectListItem{Text = "独资",Value = "2"},
+                                                    new SelectListItem{Text = "国有",Value = "3"},
+                                                    new SelectListItem{Text = "私营",Value = "4"},
+                                                    new SelectListItem{Text = "全民所有制",Value = "5"},
+                                                    new SelectListItem{Text = "集体所有制",Value = "6"},
+                                                    new SelectListItem{Text = "股份制",Value = "7"},
+                                                    new SelectListItem{Text = "有限责任制",Value = "8"}
+                                                })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>性质：</span>
+                                            <div class="field">
+                                                @Html.DropDownListFor(m => m.CompanyType, new List<SelectListItem>
+                                                {
+                                                    new SelectListItem{Text = "--请选择--",Value = "0"},
+                                                    new SelectListItem{Text = "个体工商",Value = "1"},
+                                                    new SelectListItem{Text = "私营独资商家",Value = "2"},
+                                                    new SelectListItem{Text = "国营商家",Value = "3"}
+                                                })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address" style="display: none;">
+                                            <span class="label">营业执照：</span>
+                                            <div class="field">
+                                                <input type="file" name="BusinessLicense" id="BusinessLicense" />
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">税务登记：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.TaxNumber, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">开户银行：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.AccountBank, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">账号信息：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.AccountInfo, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label"><em>*</em>客服电话：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.ServicePhone, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">QQ：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.QQ, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                    </div>
+                                    <div class="panel-form" id="ShopInfo" style="display: none;">
+                                        <div class="list" id="name_div">
+                                            <span class="label">店铺名称：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.ShopName, new { maxlength = "20", @class = "textbox", id = "ShopName" })
+                                                <span class="status error" id="name_div_error" style="margin-left: 10px;">如需您要开店, 请填写店铺名称, 不开店请直接提交</span>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="list full-address" style="display: none;">
+                                            <span class="label">LOGO：</span>
+                                            <div class="field">
+                                                @Html.TextBoxFor(m => m.HomePage, new { maxlength = "50", @class = "textbox" })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                        <div class="list full-address">
+                                            <span class="label">店铺介绍：</span>
+                                            <div class="field" style="height: auto;">
+                                                @Html.TextAreaFor(m => m.Introduction, new
+                                                {
+                                                    id = "txtDescription",
+                                                    style = "width:500px;height: 337px;float: left;"
+                                                })
+                                            </div>
+                                            <span class="status error"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-btn group" style="margin-left: 100px">
+                                    <a href="javascript:;" class="btn-submit" id="back" style="display: none; float: left;"><span>上一步</span></a> <a href="javascript:;" class="btn-submit" id="next" style="float: left; margin-left: 10px;"><span>下一步</span></a> <a href="javascript:;" class="btn-submit" id="submit" style="display: none; float: left; margin-left: 10px;"><span>提交</span></a>
+                                    <div class="loading loading-1" style="display: none">
+                                        <b></b>正在提交信息，请等待！</div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section foot{
+    <script src="/Scripts/jqueryui/JqueryDataPicker4CN.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+        $(function() {
+            $.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+            $(".txtDate").prop("readonly", true).datepicker({
+                yearRange: ("1949:" + new Date().getFullYear()),
+                dateFormat: "yy-mm-dd"
+            });
+        });
+        $.hash.defaults = {
+            // 默认的解析类型
+            hashType: "!"
+        };
+        $.hash("n", 1);
+
+        $('#back').click(function() {
+            $(this).fadeOut('slow', function() {
+                show(parseInt($.hash("n")) - 1);
+            });
+        });
+
+        $('#next').click(function() {
+            $(this).fadeOut('slow', function() {
+                show(parseInt($.hash("n")) + 1);
+            });
+        });
+
+        function show(index) {
+            $('.panel-form, .btn-submit').hide();
+            $('.step').attr('id', 'step' + index);
+            switch (index) {
+            case 2:
+                if (!CheckCompanyForm()) {
+                    show(1);
+                    return;
+                }
+                $('#ShopInfo').show();
+                $('#submit').show();
+                $('#back').show();
+                $.hash("n", index);
+                $('#title').text('选填店铺信息');
+                break;
+            case 1:
+            default:
+                $('#CompanyInfo').show();
+                $('#next').show();
+                $.hash("n", 1);
+                $('#title').text('填写并核对商家信息');
+                break;
+            }
+        }
+
+        function CheckCompanyForm() {
+            var flag = true;
+            $('#CompanyInfo .list').each(function() {
+                if ($(this).find('em').length == 0) return true; //Check是否必填
+
+                if ($(this).find('.field input').length > 0 && !$(this).find('.field input').val()) {
+                    ShowInfoTip("请" +
+                        ($(this).find('.field input').is('[type=text]') ? "输入" : "选择") +
+                        $(this).find('.label').text().replace(/\*|：/ig, ""));
+                    $(this).effect('highlight', 1000);
+                    flag = false;
+                    return false;
+                }
+                return true;
+            });
+            if (flag) {
+                //ajax check 公司名称
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    dataType: "text",
+                    url: $Maticsoft.BasePath + "Store/ExistsSupplierName",
+                    data: { name: $('#SupplierName').val() },
+                    success: function(data) {
+                        if (data == "True") {
+                            ShowInfoTip("公司名称已存在, 请重新输入!");
+                            $('#SupplierName').effect('highlight', 1000);
+                            flag = false;
+                        } else if (data == "ERROR") {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                            flag = false;
+                        }
+                    },
+                    error: function() {
+                        ShowFailTip('服务器繁忙，请稍候再试！');
+                        flag = false;
+                    }
+                });
+            }
+
+            if (flag && !/^0\d{2,3}-?\d{7,8}$/.test($('#TelPhone').val())) {
+                ShowInfoTip("请您输入正确的电话!");
+                $('#TelPhone').effect('highlight', 1000);
+                flag = false;
+            }
+            if (flag && !/^1\d{10}$/.test($('#CellPhone').val())) {
+                ShowInfoTip("请您输入正确的手机号码!");
+                $('#CellPhone').effect('highlight', 1000);
+                flag = false;
+            }
+            if (flag && !/^(\w-*\.*)+@@(\w-?)+(\.\w{2,})+$/.test($('#ContactMail').val())) {
+                ShowInfoTip("请您输入正确的联系邮箱!");
+                $('#ContactMail').effect('highlight', 1000);
+                flag = false;
+            }
+            if (flag && !/^[1-9][0-9]{5}$/.test($('#PostCode').val())) {
+                ShowInfoTip("请您输入正确的邮编!");
+                $('#PostCode').effect('highlight', 1000);
+                flag = false;
+            }
+            if (flag && !/^0\d{2,3}-?\d{7,8}$/.test($('#ServicePhone').val())) {
+                ShowInfoTip("请您输入正确的客服电话!");
+                $('#ServicePhone').effect('highlight', 1000);
+                flag = false;
+            }
+            return flag;
+        }
+
+        function CheckShopForm() {
+            var flag = true;
+//            $('#ShopInfo .list').each(function () {
+//                if ($(this).find('em').length == 0) return true; //Check是否必填
+
+//                if ($(this).find('.field input').length > 0 && !$(this).find('.field input').val()) {
+//                    ShowInfoTip("请" +
+//                        ($(this).find('.field input').is('[type=text]') ? "输入" : "选择") +
+//                        $(this).find('.label').text().replace(/\*|：/ig, ""));
+//                    $(this).effect('highlight', 1000);
+//                    flag = false;
+//                    return false;
+//                }
+//                return true;
+//            });
+            if (flag) {
+                //ajax check 店铺名称
+                $.ajax({
+                    type: "POST",
+                    async: false,
+                    dataType: "text",
+                    url: $Maticsoft.BasePath + "Store/ExistsShopName",
+                    data: { name: $('#ShopName').val() },
+                    success: function(data) {
+                        if (data == "True") {
+                            ShowInfoTip("店铺名称已存在, 请重新输入!");
+                            $('#ShopName').effect('highlight', 1000);
+                            flag = false;
+                        } else if (data == "ERROR") {
+                            ShowFailTip('服务器繁忙，请稍候再试！');
+                            flag = false;
+                        }
+                    },
+                    error: function() {
+                        ShowFailTip('服务器繁忙，请稍候再试！');
+                        flag = false;
+                    }
+                });
+            }
+            return flag;
+        }
+
+        $('#submit').click(function() {
+            $(this).fadeOut('slow', function() {
+                if (editor.hasContents()) {
+                    editor.sync(); //同步富文本内容
+                }
+                if (CheckCompanyForm()) {
+                    if ($('#ShopName').val() && !CheckShopForm()) {
+                        return;
+                    }
+                    var form = $('#FormSubmitApply');
+                    $.post(
+                        form.get(0).action,
+                        form.serialize(),
+                        function(data, textStatus, jqXHR) {
+                            if (jqXHR.status == 403 || jqXHR.status == 801 || jqXHR.status == 803) {
+                                window.location.replace($Maticsoft.BasePath + "Account/Login");
+                                return;
+                            }
+
+                            //TODO: 处理未登录用户
+                            $('#submit').show();
+                            if (data == "OK") {
+                                window.location.replace($Maticsoft.BasePath + "Store/ApplySuccess");
+                            } else {
+                                ShowFailTip("服务器繁忙，请稍候再试！");
+                            }
+                        });
+                }
+                $('#submit').show();
+            });
+        });
+        var editor = new baidu.editor.ui.Editor({
+            //实例化编辑器
+            iframeCssUrl: '/ueditor/themes/default/iframe.css',
+            toolbars: [
+                ['fullscreen',
+                    'bold', 'underline', 'strikethrough', 'removeformat', '|', 'forecolor', 'backcolor',
+                    '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', 'insertorderedlist', 'insertunorderedlist',
+                    'insertimage', 'imagenone', 'imageleft', 'imageright',
+                    'imagecenter']
+            ],
+            initialContent: '',
+            autoHeightEnabled: false,
+            pasteplain: false,
+            minFrameHeight: 296,
+            wordCount: false,
+            elementPathEnabled: false,
+            autoClearinitialContent: true,
+            imagePath: "/Upload/RTF/",
+            imageManagerPath: "/"
+        });
+        //将编译器渲染到容器
+        if ($.browser.msie) {
+            //针对万恶的IE特殊处理
+            $(document).ready(function() { editor.render($('#txtDescription').get(0)); });
+        } else {
+
+            editor.render($('#txtDescription').get(0));
+        }
+
+    </script>
+}
